@@ -867,6 +867,112 @@ const MATEK_DATA = [
     category: "valoszinuseg",
     tex: "\\hat{\\beta}_{OLS} = \\text{BLUE} \\;\\;(\\text{Best Linear Unbiased Estimator})",
     why: "<b>A legkisebb négyzetek módszere nem csak kényelmes — bizonyíthatóan a legjobb lineáris torzítatlan becslés.</b> Ha a hibák várható értéke nulla és varianciájuk állandó, semmilyen más lineáris, torzítatlan becslő nem lehet kisebb varianciájú. Ez ad elméleti alapot minden lineáris regressziónak — statisztikai modellezéstől mérnöki mérési adatok kiegyenlítéséig."
+  },
+  {
+    name: "Cauchy–Schwarz-egyenlőtlenség",
+    tag: "Analízis · 1821/1859",
+    category: "analizis",
+    tex: "|\\langle u,v\\rangle| \\le \\|u\\|\\,\\|v\\|",
+    why: "<b>Két vektor skaláris szorzata sosem nagyobb a hosszaik szorzatánál — ilyen egyszerű, mégis mindenhol felbukkan.</b> A geometriai szemléltetéstől (koszinusz-szabály) a Heisenberg-féle határozatlansági relációig, a Cauchy-eloszlástól a gépi tanulási kernel-módszerekig szinte nincs olyan matematikai terület, ahol ne ez adná a legfontosabb becslési eszközt."
+  },
+  {
+    name: "Weierstrass-approximációs tétel",
+    tag: "Analízis · 1885",
+    category: "analizis",
+    tex: "\\forall \\varepsilon{>}0\\;\\exists\\,p(x)\\text{ polinom}: \\;\\sup_{x\\in[a,b]}|f(x)-p(x)| < \\varepsilon",
+    why: "<b>Bármely folytonos függvény tetszőleges pontossággal megközelíthető polinomokkal — akármilyen 'vad' is a görbéje.</b> Weierstrass ezt már 70 évesen bizonyította. A tétel adja az elméleti alapját annak, hogy a számítógépek miért tudnak bármilyen folytonos jelenséget közelíteni véges sok művelettel — a modern approximációelmélet és neurális hálók univerzális approximációs tulajdonságának is őse."
+  },
+  {
+    name: "Picard–Lindelöf-tétel",
+    tag: "Analízis · differenciálegyenletek, 1890",
+    category: "analizis",
+    tex: "y'=f(x,y),\\; y(x_0)=y_0,\\; f\\text{ Lipschitz} \\;\\Longrightarrow\\; \\exists!\\,\\text{megoldás}",
+    why: "<b>Garantálja, hogy egy fizikai rendszer jövője egyértelműen meghatározott — ha ismered a pillanatnyi állapotát.</b> Ha a differenciálegyenlet jobb oldala 'elég sima' (Lipschitz-folytonos), pontosan egy megoldás létezik adott kezdeti feltétel mellett. Ez a determinizmus matematikai alapja a klasszikus fizikában — és a tétel bizonyítása (iteráció, kontrakciós leképezés) maga is gyönyörű alkalmazása a Banach-fixponttételnek."
+  },
+  {
+    name: "Csebisev-egyenlőtlenség",
+    tag: "Valószínűségszámítás · 1867",
+    category: "valoszinuseg",
+    tex: "P(|X-\\mu|\\ge k\\sigma) \\le \\frac{1}{k^2}",
+    why: "<b>Bármilyen eloszlásról — anélkül, hogy bármit tudnál a formájáról — garantálhatod, mekkora eséllyel térhet el nagyon az átlagtól.</b> Nincs szükség normális eloszlásra, semmilyen feltételezésre: csak a várható érték és szórás ismeretére. Ez teszi lehetővé a Nagy számok törvényének egyik legegyszerűbb bizonyítását, és ez az alapja a statisztikai minőségbiztosítás legrobusztusabb korlátainak."
+  },
+  {
+    name: "Markov-lánc ergodikus tétele",
+    tag: "Sztochasztikus folyamatok · 1906",
+    category: "valoszinuseg",
+    tex: "\\lim_{n\\to\\infty} P^n_{ij} = \\pi_j \\quad \\text{(kezdeti eloszlástól függetlenül)}",
+    why: "<b>Egy 'jól viselkedő' véletlen folyamat idővel elfelejti, honnan indult — és egy egyedi, stabil egyensúlyi eloszláshoz konvergál.</b> Bárhonnan is indulsz egy irreducibilis, aperiodikus Markov-láncban, elég sok lépés után ugyanoda jutsz. Ez a tétel adja a Google PageRank, a Markov-lánc Monte Carlo szimulációk (MCMC) és a meteorológiai előrejelzési modellek elméleti biztosítékát: a folyamat 'beáll', és a kezdeti feltétel elfelejthető."
+  },
+  {
+    name: "Kolmogorov nulla-egy törvénye",
+    tag: "Valószínűségszámítás · 1933",
+    category: "valoszinuseg",
+    tex: "A \\in \\mathcal{T}_{\\text{farok}} \\;\\Longrightarrow\\; P(A) \\in \\{0,1\\}",
+    why: "<b>Egy végtelen véletlen sorozat 'távoli jövőjéről' szóló bármely esemény valószínűsége csak 0 vagy 1 lehet — köztes eshetőség nincs.</b> Meglepő és ellenintuitív: a 'farok-eseményeket' (amelyek nem függenek véges sok kezdeti kimeneteltől) nem lehet félig bekövetkezni. Ez az egyik legmélyebb, legkevésbé nyilvánvaló igazság a valószínűségszámításban — Kolmogorov axiomatikus megalapozásának egyik csúcspontja."
+  },
+  {
+    name: "Löwenheim–Skolem-tétel",
+    tag: "Modellelmélet · 1915/1920",
+    category: "logika-halmaz",
+    tex: "T \\text{ modellel rendelkezik} \\;\\Longrightarrow\\; T\\text{-nek van megszámlálható modellje is}",
+    why: "<b>Ha egy elsőrendű elmélet leírja a valós számokat (megszámlálhatatlan!), akkor is van neki megszámlálható modellje — ez a Skolem-paradoxon.</b> A logikai nyelv sosem tudja teljesen 'befogni' a végtelenség méretét: bármilyen elmélet, aminek van végtelen modellje, minden végtelen számosságon is modellezhető. Ez mutatta meg először, hogy az elsőrendű logika elvi korlátai mennyire mélyek."
+  },
+  {
+    name: "Tarski igazságdefiníció-tétele",
+    tag: "Formális szemantika · 1933",
+    category: "logika-halmaz",
+    tex: "\\nexists\\,\\text{igazságpredikátum } T(x) \\text{ a nyelven belül, amelyre } T(\\ulcorner\\varphi\\urcorner)\\leftrightarrow\\varphi",
+    why: "<b>Egy elég erős nyelv nem tudja saját mondatainak igazságát önmagában definiálni — csak egy erősebb metanyelvből.</b> Tarski a 'ez a mondat hamis' típusú paradoxonokból indult ki, és szigorú matematikai tételt épített belőle. Gödel nemteljességi tételével rokon szellemű eredmény, de a formális nyelvek szemantikájának egészen más rétegét világítja meg — máig a logika, a nyelvfilozófia és a számítástudomány metaszintjeinek alapköve."
+  },
+  {
+    name: "Kruskal-féle fatétel",
+    tag: "Extremál kombinatorika · 1960",
+    category: "kombinatorika-geometria",
+    tex: "\\text{véges fák tetszőleges végtelen sorozatában} \\;\\exists\\, i{<}j: T_i \\hookrightarrow T_j",
+    why: "<b>Bármilyen végtelen sorozatban véges fákból, mindig találsz egy korábbi fát, ami 'beágyazható' egy későbbibe.</b> A tétel önmagában egyszerűnek hangzik, mégis — akárcsak a Goodstein-tétel — bizonyíthatóan nem vezethető le a Peano-aritmetika axiómáiból, csak erősebb rendszerekben. Az egyik legmeglepőbb példa arra, hogy egy 'ártatlannak' tűnő kombinatorikus állítás logikai ereje meghaladja a szokásos aritmetikát."
+  },
+  {
+    name: "Radon-tétel",
+    tag: "Konvex geometria · 1921",
+    category: "kombinatorika-geometria",
+    tex: "d{+}2 \\text{ pont } \\mathbb{R}^d\\text{-ben} \\;\\Longrightarrow\\; \\text{két diszjunkt részhalmazra bomlik, konvex burkaik metszik egymást}",
+    why: "<b>Elég sok pontot két csoportra osztva, a konvex burkaik mindig metszeni fogják egymást — nincs menekvés.</b> d+2 pont d dimenzióban garantáltan felosztható két olyan csoportra, amelyeknek konvex burkai közös ponttal rendelkeznek. Ez az egyszerű geometriai tény adja a Helly-tétel egyik legelegánsabb bizonyítási útját, és alapja a gépi tanulásban használt lineáris szeparálhatósági korlátoknak is."
+  },
+  {
+    name: "Nielsen–Schreier-tétel",
+    tag: "Csoportelmélet · 1921/1927",
+    category: "topologia",
+    tex: "H \\le F_n \\;\\Longrightarrow\\; H \\text{ is szabad csoport}",
+    why: "<b>Egy szabad csoport minden részcsoportja maga is szabad csoport — akkor is, ha végtelen sok generátorra van szüksége.</b> Meglepő stabilitási tulajdonság: a 'szabadság' (nincsenek rejtett relációk a generátorok között) öröklődik minden részstruktúrára. A tétel topologikus bizonyítása (fedő terek, gráfelmélet) az egyik legszebb példa arra, hogyan old meg egy tisztán algebrai kérdést a geometria."
+  },
+  {
+    name: "Jones-polinom",
+    tag: "Csomóelmélet · 1984",
+    category: "topologia",
+    scrollHint: true,
+    tex: "t^{-1}V(L_+) - tV(L_-) = (t^{1/2}-t^{-1/2})V(L_0)",
+    why: "<b>Egy algebrai kifejezés különbséget tud tenni két csomó között, amelyek a szabad szemmel megkülönböztethetetlenek.</b> Vaughan Jones egy operátoralgebrai kutatás közben, véletlenül bukkant rá erre a csomóinvariánsra — a felfedezés annyira váratlan volt, hogy Fields-érmet kapott érte. A csomóelmélet és a kvantumtérelmélet (Witten később kvantumfizikai értelmezést adott neki) közötti mély, előre nem sejtett kapcsolatot tárta fel."
+  },
+  {
+    name: "Church–Turing-tézis",
+    tag: "Számítástudomány & mérnöki · 1936",
+    category: "szamitastudomany-mernoki",
+    tex: "\\text{'kiszámítható'} \\;\\Longleftrightarrow\\; \\text{Turing-géppel kiszámítható}",
+    why: "<b>Minden ésszerű számítási modell — Turing-gép, lambda-kalkulus, mai programozási nyelv — pontosan ugyanazt tudja kiszámítani.</b> Nem bizonyított tétel, hanem tézis: azt állítja, hogy az intuitív 'algoritmus' fogalma egybeesik a formálisan definiált kiszámíthatósággal. Church és Turing egymástól függetlenül, két teljesen különböző matematikai apparátussal jutottak ugyanarra az eredményre — ez adja a tézis meggyőző erejét."
+  },
+  {
+    name: "Shannon-féle csatornakapacitás-tétel",
+    tag: "Információelmélet · 1948",
+    category: "szamitastudomany-mernoki",
+    tex: "C = B\\log_2\\!\\left(1+\\frac{S}{N}\\right)",
+    why: "<b>Egyetlen képlet szabja meg egy zajos csatorna abszolút információátviteli határát — és bizonyítja, hogy ez a határ hibamentesen elérhető.</b> A sávszélesség (B) és a jel-zaj viszony (S/N) egyszerű logaritmikus kapcsolatban áll a maximális átviteli sebességgel. Minden Wi-Fi, mobilhálózat és optikai kábel tervezése ebből az 1948-as képletből indul ki — a modern digitális kommunikáció alapköve."
+  },
+  {
+    name: "Gyors Fourier-transzformáció (FFT)",
+    tag: "Számítástudomány & mérnöki · Cooley–Tukey, 1965",
+    category: "szamitastudomany-mernoki",
+    tex: "O(n^2) \\;\\longrightarrow\\; O(n\\log n)",
+    why: "<b>Egy okos oszd-meg-és-uralkodj trükk négyzetesből lineáris-logaritmikusra gyorsítja a Fourier-transzformáció kiszámítását.</b> Cooley és Tukey algoritmusa (amit valójában Gauss már 1805-ben ismert, csak elfelejtődött) tette lehetővé a digitális jelfeldolgozást, a hangkódolást (MP3), a képtömörítést (JPEG) és a modern rezgésanalízist. Talán a 20. század leggyakrabban lefuttatott algoritmusa."
   }
 ];
 
@@ -1623,6 +1729,156 @@ const FIZIKA_DATA = [
     type: "single",
     tex: "f(q_1,\\ldots,q_n)=0 \\;\\Longrightarrow\\; F(\\pi_1,\\ldots,\\pi_{n-k})=0",
     why: "<b>Bármely fizikai törvény átírható dimenzió nélküli mennyiségek közötti kapcsolattá — és ez drasztikusan csökkenti a szükséges kísérletek számát.</b> Ha egy jelenséget n fizikai mennyiség ír le k alapdimenzióval, elég (n−k) dimenziótlan csoportot vizsgálni. Ez a modellkísérletek (szélcsatorna, hidraulikai modellek) és a Reynolds-szám típusú hasonlósági paraméterek elméleti alapja — kicsiben tesztelsz, és a π-csoportok garantálják, hogy nagyban is érvényes marad."
+  },
+  {
+    rank: 75,
+    name: "Kvantum-alagúthatás",
+    tag: "Kvantummechanika · 1927/1928",
+    category: "kvantum",
+    special: true,
+    type: "single",
+    tex: "T \\approx e^{-2\\kappa L}, \\quad \\kappa=\\frac{\\sqrt{2m(V_0-E)}}{\\hbar}",
+    why: "<b>Egy részecske véges eséllyel átjuthat egy olyan energiagáton, amit klasszikusan sosem tudna leküzdeni.</b> A hullámfüggvény nem tűnik el a tiltott tartományban, csak exponenciálisan lecseng — és a másik oldalon véges valószínűséggel megjelenik. Ez teszi lehetővé a Nap fúzióját (a protonok Coulomb-gáton 'alagutaznak' át), a radioaktív alfa-bomlást és a modern flash-memóriák működését is."
+  },
+  {
+    rank: 76,
+    name: "No-cloning tétel",
+    tag: "Kvantuminformáció · 1982",
+    category: "kvantum",
+    special: false,
+    type: "single",
+    tex: "\\nexists\\, U: \\; U|\\psi\\rangle|0\\rangle = |\\psi\\rangle|\\psi\\rangle \\;\\; \\forall|\\psi\\rangle",
+    why: "<b>Egy ismeretlen kvantumállapotot elvileg lehetetlen tökéletesen lemásolni.</b> Ez nem technikai korlát, hanem a kvantummechanika lineáris szerkezetéből fakadó matematikai szükségszerűség. A tétel adja a kvantumkriptográfia biztonságának elméleti alapját — ha valaki lehallgatna egy kvantumcsatornát, a másolási kísérlet szükségszerűen zavarná és lelepleződne az eredeti állapot."
+  },
+  {
+    rank: 77,
+    name: "Josephson-effektus",
+    tag: "Szupravezetés · 1962",
+    category: "kvantum",
+    special: false,
+    type: "single",
+    tex: "I = I_c \\sin(\\varphi), \\quad \\frac{d\\varphi}{dt} = \\frac{2eV}{\\hbar}",
+    why: "<b>Két szupravezető között egy vékony szigetelőrétegen áram folyik feszültség nélkül is — pusztán a kvantumfázis-különbség hajtja.</b> Josephson 22 évesen, PhD-hallgatóként jósolta meg ezt a tisztán kvantummechanikai jelenséget. A hatás ma a legpontosabb feszültségetalon és a szupravezető kvantumszámítógépek (qubitek) alapvető építőeleme."
+  },
+  {
+    rank: 78,
+    name: "Meissner-effektus",
+    tag: "Szupravezetés · 1933",
+    category: "kvantum",
+    special: false,
+    type: "single",
+    tex: "\\vec{B} = 0 \\;\\; \\text{a szupravezető belsejében}",
+    why: "<b>Egy szupravezető nem csak vezeti az áramot ellenállás nélkül — aktívan kilöki magából a mágneses teret.</b> Ez a jelenség (nem pusztán a tökéletes vezetőképesség) bizonyította, hogy a szupravezetés valódi, új termodinamikai fázisállapot, nem csak 'nagyon jó vezető'. Ez teszi lehetővé a mágneses lebegtetést (pl. maglev vonatok) és ez motiválta a BCS-elmélet megalkotását két évtizeddel később."
+  },
+  {
+    rank: 79,
+    name: "Nernst-tétel (harmadik főtétel)",
+    tag: "Termodinamika · 1906",
+    category: "termodinamika",
+    special: true,
+    type: "single",
+    tex: "\\lim_{T\\to 0} S = 0 \\quad \\text{(tökéletes kristálynál)}",
+    why: "<b>Az abszolút nulla fok elvileg sosem érhető el véges számú lépésben — ezt mondja ki a termodinamika harmadik főtétele.</b> Ahogy a hőmérséklet nullához tart, egy tökéletes kristály entrópiája is nullához tart, és ez egyre nehezebbé, végül lehetetlenné teszi a további hűtést. Nernst kémiai reakciók vizsgálatából jutott el ide — a tétel ma is korlátozza, milyen közel juthatunk a kvantumszámítógépek hűtésében az abszolút nullához."
+  },
+  {
+    rank: 80,
+    name: "Maxwell–Boltzmann sebességeloszlás",
+    tag: "Statisztikus mechanika · 1860/1872",
+    category: "termodinamika",
+    special: false,
+    type: "single",
+    tex: "f(v) = 4\\pi n\\left(\\frac{m}{2\\pi k_BT}\\right)^{3/2} v^2 e^{-mv^2/2k_BT}",
+    why: "<b>Egy gáz molekuláinak sebessége nem egyenletes — pontos, harang alakú eloszlást követ, ami csak a hőmérséklettől függ.</b> Maxwell tisztán valószínűségi érveléssel vezette le, mielőtt Boltzmann statisztikus mechanikai alapokra helyezte volna. Ez volt az első eset, hogy a fizika 'feladta' az egyedi részecskék pontos nyomon követését, és helyette statisztikus törvényekkel írta le a valóságot — ezzel megnyitva az utat a modern statisztikus fizika felé."
+  },
+  {
+    rank: 81,
+    name: "Stefan–Boltzmann-törvény",
+    tag: "Hősugárzás · 1879/1884",
+    category: "termodinamika",
+    special: false,
+    type: "single",
+    tex: "j = \\sigma T^4",
+    why: "<b>Egy izzó test által kisugárzott teljes energia a hőmérséklet negyedik hatványával nő — innen tudjuk, milyen forró a Nap felszíne.</b> Stefan kísérletileg találta meg az összefüggést, Boltzmann öt évvel később termodinamikai úton vezette le. A negyedik hatvány drámai érzékenységet jelent: ha egy csillag hőmérséklete duplázódik, tizenhatszor annyi energiát sugároz — ez a csillagászati fényesség-hőmérséklet becslések alapja."
+  },
+  {
+    rank: 82,
+    name: "Cserenkov-sugárzás",
+    tag: "Részecskefizika · 1934",
+    category: "reszecskefizika",
+    special: false,
+    type: "single",
+    tex: "\\cos\\theta_c = \\frac{1}{n\\beta}",
+    why: "<b>Ha egy töltött részecske gyorsabban halad egy közegben, mint a fény abban a közegben, kék fénykúpot bocsát ki — ez a fény 'hangrobbanása'.</b> A fény vákuumbeli sebességét semmi sem lépheti túl, de egy közegben (pl. vízben) a fénysebesség lassabb, és a részecskék meghaladhatják. A jelenség adja az atomreaktorok jellegzetes kék izzását, és ez alapján épülnek a neutrínó-detektorok (pl. Super-Kamiokande) is."
+  },
+  {
+    rank: 83,
+    name: "Müon g-2 anomália",
+    tag: "Részecskefizika · precíziós teszt, 2021",
+    category: "reszecskefizika",
+    special: true,
+    type: "single",
+    tex: "a_\\mu = \\frac{g-2}{2}, \\quad a_\\mu^{\\text{mért}} - a_\\mu^{\\text{SM}} \\approx 4.2\\sigma",
+    why: "<b>Egy szubatomi részecske mágneses tulajdonsága a Standard Modell jóslatától kis, de makacsul fennmaradó mértékben eltér.</b> A müon mágneses momentuma az egyik legpontosabban mérhető mennyiség a fizikában — a Fermilab 2021-es mérése megerősítette a korábbi Brookhaven-eredményt. Ha az eltérés valódi (és nem elméleti számítási hiba), az új, még ismeretlen részecskék vagy kölcsönhatások létezésére utalhat a Standard Modellen túl."
+  },
+  {
+    rank: 84,
+    name: "Ekvivalenciaelv",
+    tag: "Általános relativitáselmélet · 1907",
+    category: "relativitas",
+    special: true,
+    type: "single",
+    tex: "m_{\\text{tehetetlen}} = m_{\\text{súlyos}}",
+    why: "<b>Egy zárt fülkében lehetetlen megkülönböztetni a gravitációt az egyenletes gyorsulástól — ez volt Einstein 'legboldogabb gondolata'.</b> A tehetetlen és a súlyos tömeg azonossága évszázadok óta ismert kísérleti tény volt, de senki nem gondolt bele a mélyebb jelentésébe. Einstein ebből az egyetlen felismerésből építette fel az egész általános relativitáselméletet — a gravitáció nem erő, hanem a téridő görbülete."
+  },
+  {
+    rank: 85,
+    name: "Kerr-metrika",
+    tag: "Általános relativitáselmélet · 1963",
+    category: "relativitas",
+    special: false,
+    type: "single",
+    tex: "ds^2 = -\\left(1-\\frac{r_sr}{\\Sigma}\\right)dt^2 + \\ldots \\quad (\\text{forgó fekete lyuk})",
+    why: "<b>A valóságos fekete lyukak nem állnak — forognak, és ez alapvetően megváltoztatja a köréjük görbült téridő szerkezetét.</b> Roy Kerr új-zélandi matematikus 1963-ban találta meg az első egzakt megoldást forgó tömegekre — csaknem 50 évvel Einstein után. A forgás 'magával rántja' a téridőt (frame dragging), ami mérhető hatást gyakorol a fekete lyuk körüli anyagra — ezt látjuk az Event Horizon Telescope felvételein."
+  },
+  {
+    rank: 86,
+    name: "Gravitációs hullámok (kvadrupól-formula)",
+    tag: "Általános relativitáselmélet · 1916/2015",
+    category: "relativitas",
+    special: true,
+    type: "single",
+    tex: "P = \\frac{G}{5c^5}\\left\\langle \\dddot{Q}_{ij}\\dddot{Q}^{ij}\\right\\rangle",
+    why: "<b>Gyorsuló tömegek fodrozzák magát a téridőt — ezek a fodrok a fénysebességgel terjednek, és 100 évvel a jóslat után mérhetőkké váltak.</b> Einstein 1916-ban vezette le a képletet, de maga is kételkedett benne, hogy valaha mérhető lesz. A LIGO 2015-ös első detektálása (két fekete lyuk összeolvadásából) egy teljesen új ablakot nyitott az univerzumra — nem fénnyel, hanem a téridő rezgésével 'hallgatjuk' a kozmoszt."
+  },
+  {
+    rank: 87,
+    name: "Timoshenko-gerendaelmélet",
+    tag: "Mérnöki alkalmazások · nyírási alakváltozás, 1921",
+    category: "mernoki-alkalmazasok",
+    special: false,
+    type: "single",
+    tex: "GA_s\\left(\\frac{dw}{dx}-\\phi\\right)' + q = 0",
+    why: "<b>Az Euler–Bernoulli-elmélet elhanyagolja a nyírási alakváltozást — Timoshenko megmutatta, hogy ez zömök gerendáknál nem tehető meg.</b> A klasszikus gerendaelmélet feltételezi, hogy a keresztmetszetek a hajlítás után is merőlegesek maradnak a tengelyre; Timoshenko elengedte ezt a feltevést. Rövid, vastag gerendáknál (pl. hídpillérek, gépalapok) ez a pontosabb modell — máig ez a szabvány a dinamikai és rezgésanalízisben."
+  },
+  {
+    rank: 88,
+    name: "Navier-egyenlet (rugalmasságtan)",
+    tag: "Mérnöki alkalmazások · szilárdtestmechanika, 1821",
+    category: "mernoki-alkalmazasok",
+    special: false,
+    type: "single",
+    tex: "(\\lambda+\\mu)\\nabla(\\nabla\\cdot\\vec{u}) + \\mu\\nabla^2\\vec{u} + \\vec{f} = 0",
+    why: "<b>Egy egyetlen vektoregyenlet írja le, hogyan deformálódik egy háromdimenziós rugalmas test bármilyen terhelés alatt.</b> Navier (ugyanaz, aki a folyadékmechanikai Navier–Stokes-egyenletet is megalkotta) itt a szilárd testek egyensúlyi egyenletét vezette le a Lamé-állandók (λ, μ) segítségével. Ez minden modern végeselemes szerkezetanalízis-szoftver (pl. földrengésálló épülettervezés) elméleti kiindulópontja."
+  },
+  {
+    rank: 89,
+    name: "Rayleigh–Ritz módszer",
+    tag: "Mérnöki alkalmazások · sajátfrekvencia-becslés, 1870/1908",
+    category: "mernoki-alkalmazasok",
+    special: false,
+    type: "single",
+    tex: "\\omega^2 \\approx \\frac{\\int EI\\,(\\phi'')^2\\,dx}{\\int m\\,\\phi^2\\,dx}",
+    why: "<b>Egy szerkezet első sajátfrekvenciája megbecsülhető, ha csak egy 'ésszerű' rezgésalakot feltételezünk — pontos megoldás nélkül is.</b> Az energiamódszer (mozgási és alakváltozási energia egyenlősége) mindig felülbecsli a valódi sajátfrekvenciát, de gyakran meglepően közel kerül hozzá. Ritz általánosította Rayleigh eredeti ötletét, és ez lett a végeselem-módszer közvetlen elméleti elődje — máig ez az első kézi ellenőrzés, amit egy statikus egy rezgő szerkezetnél elvégez."
   }
 ];
 
@@ -1645,7 +1901,7 @@ const DOMAINS = {
       "szamitastudomany-mernoki": "Számítástudomány & mérnöki"
     },
     categoryOrder: ["analizis","topologia","szamelmelet","logika-halmaz","valoszinuseg","kombinatorika-geometria","szamitastudomany-mernoki"],
-    footerNames: "Euler \u00b7 Fourier \u00b7 Ramanujan \u00b7 Gauss \u00b7 Riemann \u00b7 Cauchy \u00b7 Pitagorasz \u00b7 Stirling \u00b7 Basel \u00b7 Gauss\u2013Bonnet \u00b7 Euler-szorzat \u00b7 Stokes \u00b7 Fermat\u2013Wiles \u00b7 G\u00f6del \u00b7 Bayes \u00b7 Liouville \u00b7 Cayley \u00b7 Borsuk\u2013Ulam \u00b7 S\u00fcndiszn\u00f3 \u00b7 Cantor \u00b7 Aranymetsz\u00e9s \u00b7 Banach \u00b7 Brouwer \u00b7 Pr\u00edmsz\u00e1mt\u00e9tel \u00b7 CHT \u00b7 Pell \u00b7 Sylvester\u2013Gallai \u00b7 N\u00e9gysz\u00edn-t\u00e9tel \u00b7 Jordan \u00b7 Collatz \u00b7 Goldbach \u00b7 P vs NP \u00b7 Hilbert-sz\u00e1lloda \u00b7 Monty Hall \u00b7 Sz\u00fclet\u00e9snapi paradoxon \u00b7 Bell/CHSH \u00b7 Lagrange-n\u00e9gyzett\u00e9tel \u00b7 Erd\u0151s\u2013Ko\u2013Rado \u00b7 Banach\u2013Tarski \u00b7 Arrow \u00b7 Poincar\u00e9 \u00b7 Euler-poli\u00e9der \u00b7 Ramsey \u00b7 Szemer\u00e9di \u00b7 Green\u2013Tao \u00b7 Kontinuumhipot\u00e9zis \u00b7 Algebra alapt\u00e9tele \u00b7 Catalan\u2013Mihailescu \u00b7 Kalkulus alapt\u00e9tele \u00b7 Pi transzcendenci\u00e1ja \u00b7 Happy Ending \u00b7 Nash-egyenl\u0151s\u00e9g \u00b7 Kepler-sejt\u00e9s \u00b7 Pick-t\u00e9tel \u00b7 Goodstein-t\u00e9tel \u00b7 Riemann-lek\u00e9pez\u00e9s \u00b7 Korl\u00e1tos pr\u00edmr\u00e9s \u00b7 Cook\u2013Levin \u00b7 Meg\u00e1ll\u00e1si probl\u00e9ma \u00b7 Nagy sz\u00e1mok t\u00f6rv\u00e9nye \u00b7 Rogers\u2013Ramanujan \u00b7 Hardy\u2013Ramanujan \u00b7 Ramanujan \u03c4-f\u00fcggv\u00e9ny \u00b7 Chudnovsky \u00b7 Lax\u2013Milgram \u00b7 Nyquist\u2013Shannon \u00b7 Kalman-sz\u0171r\u0151 \u00b7 Wilson-tétel \u00b7 Brun-tétel \u00b7 Bertrand-posztulátum \u00b7 Hall-tétel \u00b7 Erdős\u2013Szekeres \u00b7 Helly-tétel \u00b7 Sperner-lemma \u00b7 Szimplex-módszer \u00b7 Perron\u2013Frobenius \u00b7 Gauss\u2013Markov"
+    footerNames: "Euler \u00b7 Fourier \u00b7 Ramanujan \u00b7 Gauss \u00b7 Riemann \u00b7 Cauchy \u00b7 Pitagorasz \u00b7 Stirling \u00b7 Basel \u00b7 Gauss\u2013Bonnet \u00b7 Euler-szorzat \u00b7 Stokes \u00b7 Fermat\u2013Wiles \u00b7 G\u00f6del \u00b7 Bayes \u00b7 Liouville \u00b7 Cayley \u00b7 Borsuk\u2013Ulam \u00b7 S\u00fcndiszn\u00f3 \u00b7 Cantor \u00b7 Aranymetsz\u00e9s \u00b7 Banach \u00b7 Brouwer \u00b7 Pr\u00edmsz\u00e1mt\u00e9tel \u00b7 CHT \u00b7 Pell \u00b7 Sylvester\u2013Gallai \u00b7 N\u00e9gysz\u00edn-t\u00e9tel \u00b7 Jordan \u00b7 Collatz \u00b7 Goldbach \u00b7 P vs NP \u00b7 Hilbert-sz\u00e1lloda \u00b7 Monty Hall \u00b7 Sz\u00fclet\u00e9snapi paradoxon \u00b7 Bell/CHSH \u00b7 Lagrange-n\u00e9gyzett\u00e9tel \u00b7 Erd\u0151s\u2013Ko\u2013Rado \u00b7 Banach\u2013Tarski \u00b7 Arrow \u00b7 Poincar\u00e9 \u00b7 Euler-poli\u00e9der \u00b7 Ramsey \u00b7 Szemer\u00e9di \u00b7 Green\u2013Tao \u00b7 Kontinuumhipot\u00e9zis \u00b7 Algebra alapt\u00e9tele \u00b7 Catalan\u2013Mihailescu \u00b7 Kalkulus alapt\u00e9tele \u00b7 Pi transzcendenci\u00e1ja \u00b7 Happy Ending \u00b7 Nash-egyenl\u0151s\u00e9g \u00b7 Kepler-sejt\u00e9s \u00b7 Pick-t\u00e9tel \u00b7 Goodstein-t\u00e9tel \u00b7 Riemann-lek\u00e9pez\u00e9s \u00b7 Korl\u00e1tos pr\u00edmr\u00e9s \u00b7 Cook\u2013Levin \u00b7 Meg\u00e1ll\u00e1si probl\u00e9ma \u00b7 Nagy sz\u00e1mok t\u00f6rv\u00e9nye \u00b7 Rogers\u2013Ramanujan \u00b7 Hardy\u2013Ramanujan \u00b7 Ramanujan \u03c4-f\u00fcggv\u00e9ny \u00b7 Chudnovsky \u00b7 Lax\u2013Milgram \u00b7 Nyquist\u2013Shannon \u00b7 Kalman-sz\u0171r\u0151 \u00b7 Wilson-tétel \u00b7 Brun-tétel \u00b7 Bertrand-posztulátum \u00b7 Hall-tétel \u00b7 Erdős\u2013Szekeres \u00b7 Helly-tétel \u00b7 Sperner-lemma \u00b7 Szimplex-módszer \u00b7 Perron\u2013Frobenius \u00b7 Gauss\u2013Markov \u00b7 Cauchy\u2013Schwarz \u00b7 Weierstrass-approximáció \u00b7 Picard\u2013Lindelöf \u00b7 Csebisev \u00b7 Kolmogorov 0-1 \u00b7 Markov-ergodikus \u00b7 Löwenheim\u2013Skolem \u00b7 Tarski \u00b7 Kruskal-fatétel \u00b7 Radon-tétel \u00b7 Nielsen\u2013Schreier \u00b7 Jones-polinom \u00b7 Church\u2013Turing \u00b7 Shannon-kapacitás \u00b7 FFT"
   },
   fizika: {
     label: "Fizika · Kémia · Biológia",
@@ -1663,7 +1919,7 @@ const DOMAINS = {
       "mernoki-alkalmazasok": "Mérnöki alkalmazások"
     },
     categoryOrder: ["klasszikus","kvantum","relativitas","reszecskefizika","termodinamika","kemia-biologia","mernoki-alkalmazasok"],
-    footerNames: "Maxwell \u00b7 Noether \u00b7 Schr\u00f6dinger \u00b7 Boltzmann \u00b7 Feynman \u00b7 Dirac \u00b7 Bekenstein\u2013Hawking \u00b7 Euler\u2013Lagrange \u00b7 E=mc\u00b2 \u00b7 Yang\u2013Mills \u00b7 Heisenberg \u00b7 Shannon \u00b7 Navier\u2013Stokes \u00b7 Planck \u00b7 Lorentz \u00b7 Hawking-h\u0151m\u00e9rs\u00e9klet \u00b7 Aszimptotikus szabads\u00e1g \u00b7 Peri\u00f3dusos rendszer \u00b7 Kepler \u00b7 Hamilton \u00b7 Lotka\u2013Volterra \u00b7 Hardy\u2013Weinberg \u00b7 Snellius\u2013Descartes \u00b7 Viri\u00e1lt\u00e9tel \u00b7 Hodgkin\u2013Huxley \u00b7 Arrhenius \u00b7 Le Chatelier \u00b7 Bell/CHSH \u00b7 Carnot \u00b7 Higgs \u00b7 Casimir \u00b7 Michaelis\u2013Menten \u00b7 Az id\u0151 nyila \u00b7 Kvarkbez\u00e1r\u00e1s \u00b7 Holografikus elv \u00b7 BCS-elm\u00e9let \u00b7 Drake-egyenlet \u00b7 Fick-t\u00f6rv\u00e9ny \u00b7 Einstein-mez\u0151egyenletek \u00b7 Faraday-indukci\u00f3 \u00b7 Wien-t\u00f6rv\u00e9ny \u00b7 Levinthal-paradoxon \u00b7 Doppler-effektus \u00b7 Bernoulli-egyenlet \u00b7 ATP-szint\u00e1z \u00b7 Homokiralit\u00e1s \u00b7 Hubble\u2013Lema\u00eetre \u00b7 Lorentz-er\u0151 \u00b7 Avogadro-\u00e1lland\u00f3 \u00b7 Compton-effektus \u00b7 Van 't Hoff \u00b7 Pauli-elv \u00b7 Hull\u00e1megyenlet \u00b7 Reynolds-sz\u00e1m \u00b7 Seebeck-effektus \u00b7 Chandrasekhar-hat\u00e1r \u00b7 Bose\u2013Einstein-kondenz\u00e1ci\u00f3 \u00b7 CPT-t\u00e9tel \u00b7 Onsager-reciprocit\u00e1s \u00b7 Landauer-elv \u00b7 Euler-kihajl\u00e1s \u00b7 Saint-Venant \u00b7 Mohr-k\u00f6r \u00b7 Betti-t\u00e9tel \u00b7 Clausius\u2013Clapeyron \u00b7 Gibbs-energia \u00b7 Fermi\u2013Dirac \u00b7 Neutrínó-oszcilláció \u00b7 Gell-Mann\u2013Nishijima \u00b7 Schwarzschild-sugár \u00b7 Friedmann-egyenletek \u00b7 Euler\u2013Bernoulli \u00b7 Castigliano \u00b7 Buckingham π-tétel"
+    footerNames: "Maxwell \u00b7 Noether \u00b7 Schr\u00f6dinger \u00b7 Boltzmann \u00b7 Feynman \u00b7 Dirac \u00b7 Bekenstein\u2013Hawking \u00b7 Euler\u2013Lagrange \u00b7 E=mc\u00b2 \u00b7 Yang\u2013Mills \u00b7 Heisenberg \u00b7 Shannon \u00b7 Navier\u2013Stokes \u00b7 Planck \u00b7 Lorentz \u00b7 Hawking-h\u0151m\u00e9rs\u00e9klet \u00b7 Aszimptotikus szabads\u00e1g \u00b7 Peri\u00f3dusos rendszer \u00b7 Kepler \u00b7 Hamilton \u00b7 Lotka\u2013Volterra \u00b7 Hardy\u2013Weinberg \u00b7 Snellius\u2013Descartes \u00b7 Viri\u00e1lt\u00e9tel \u00b7 Hodgkin\u2013Huxley \u00b7 Arrhenius \u00b7 Le Chatelier \u00b7 Bell/CHSH \u00b7 Carnot \u00b7 Higgs \u00b7 Casimir \u00b7 Michaelis\u2013Menten \u00b7 Az id\u0151 nyila \u00b7 Kvarkbez\u00e1r\u00e1s \u00b7 Holografikus elv \u00b7 BCS-elm\u00e9let \u00b7 Drake-egyenlet \u00b7 Fick-t\u00f6rv\u00e9ny \u00b7 Einstein-mez\u0151egyenletek \u00b7 Faraday-indukci\u00f3 \u00b7 Wien-t\u00f6rv\u00e9ny \u00b7 Levinthal-paradoxon \u00b7 Doppler-effektus \u00b7 Bernoulli-egyenlet \u00b7 ATP-szint\u00e1z \u00b7 Homokiralit\u00e1s \u00b7 Hubble\u2013Lema\u00eetre \u00b7 Lorentz-er\u0151 \u00b7 Avogadro-\u00e1lland\u00f3 \u00b7 Compton-effektus \u00b7 Van 't Hoff \u00b7 Pauli-elv \u00b7 Hull\u00e1megyenlet \u00b7 Reynolds-sz\u00e1m \u00b7 Seebeck-effektus \u00b7 Chandrasekhar-hat\u00e1r \u00b7 Bose\u2013Einstein-kondenz\u00e1ci\u00f3 \u00b7 CPT-t\u00e9tel \u00b7 Onsager-reciprocit\u00e1s \u00b7 Landauer-elv \u00b7 Euler-kihajl\u00e1s \u00b7 Saint-Venant \u00b7 Mohr-k\u00f6r \u00b7 Betti-t\u00e9tel \u00b7 Clausius\u2013Clapeyron \u00b7 Gibbs-energia \u00b7 Fermi\u2013Dirac \u00b7 Neutrínó-oszcilláció \u00b7 Gell-Mann\u2013Nishijima \u00b7 Schwarzschild-sugár \u00b7 Friedmann-egyenletek \u00b7 Euler\u2013Bernoulli \u00b7 Castigliano \u00b7 Buckingham π-tétel \u00b7 Alag\u00fathat\u00e1s \u00b7 No-cloning \u00b7 Josephson \u00b7 Meissner \u00b7 Nernst-t\u00e9tel \u00b7 Maxwell\u2013Boltzmann \u00b7 Stefan\u2013Boltzmann \u00b7 Cserenkov \u00b7 M\u00fcon g-2 \u00b7 Ekvivalenciaelv \u00b7 Kerr-metrika \u00b7 Gravit\u00e1ci\u00f3s hull\u00e1mok \u00b7 Timoshenko \u00b7 Navier (rugalmass\u00e1gtan) \u00b7 Rayleigh\u2013Ritz"
   }
 };
 
