@@ -111,6 +111,78 @@
     transition:background .5s ease;
   }
 
+  /* ---- Toolbar: search + view switch ---- */
+  .toolbar{
+    display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+    margin:clamp(18px,3vw,26px) 0 0;
+  }
+  .search-wrap{
+    position:relative;flex:1 1 240px;min-width:200px;
+  }
+  .search-icon{
+    position:absolute;left:12px;top:50%;transform:translateY(-50%);
+    width:15px;height:15px;color:var(--muted);pointer-events:none;
+  }
+  .search-box{
+    width:100%;
+    font-family:"Inter",sans-serif;font-size:13.5px;
+    color:var(--paper);
+    background:var(--chip-bg);
+    border:1px solid var(--chip-border);
+    border-radius:999px;
+    padding:9px 34px 9px 34px;
+    outline:none;
+    transition:border-color .2s ease, background .5s ease;
+    -webkit-appearance:none;
+  }
+  .search-box::placeholder{color:var(--muted);}
+  .search-box:focus{border-color:var(--primary);}
+  .search-box::-webkit-search-cancel-button{display:none;}
+  .search-clear{
+    position:absolute;right:8px;top:50%;transform:translateY(-50%);
+    width:20px;height:20px;border-radius:50%;
+    background:none;border:none;color:var(--muted);
+    font-size:11px;cursor:pointer;display:none;
+    align-items:center;justify-content:center;
+    transition:color .2s ease;
+  }
+  .search-clear:hover{color:var(--paper);}
+  .search-clear.visible{display:flex;}
+  .view-switch{
+    display:flex;gap:6px;flex:0 0 auto;
+  }
+  .vbtn{
+    font-family:"Inter",sans-serif;font-size:12px;font-weight:600;letter-spacing:.02em;
+    color:var(--muted);
+    background:var(--chip-bg);
+    border:1px solid var(--chip-border);
+    padding:9px 16px;border-radius:999px;
+    cursor:pointer;transition:all .2s ease;
+    white-space:nowrap;
+  }
+  .vbtn:hover{border-color:var(--chip-hover-border);color:var(--paper);}
+  .vbtn.active{
+    background:linear-gradient(135deg,var(--primary-bright),var(--primary));
+    border-color:transparent;color:var(--ink);
+  }
+
+  /* ---- Category headers (grouped view) ---- */
+  .category-header{
+    display:flex;align-items:baseline;gap:10px;
+    margin:clamp(28px,4vw,40px) 0 4px;
+    padding-bottom:8px;
+    border-bottom:1px solid var(--line);
+  }
+  .category-header:first-child{margin-top:8px;}
+  .category-header .cat-name{
+    font-family:"Fraunces",serif;font-weight:500;font-style:italic;
+    font-size:clamp(17px,2.2vw,21px);color:var(--primary-bright);
+    transition:color .5s ease;
+  }
+  .category-header .cat-count{
+    font-size:11.5px;color:var(--muted);letter-spacing:.05em;
+  }
+
   /* ---- Filter bar ---- */
   .filterbar{
     display:flex;flex-wrap:wrap;gap:8px;
@@ -289,6 +361,9 @@
     .filterbar{gap:6px;}
     .chip{font-size:11.5px;padding:6px 11px;}
     .dbtn{font-size:12px;padding:8px 16px;}
+    .toolbar{flex-direction:column;align-items:stretch;}
+    .search-wrap{flex:1 1 auto;}
+    .view-switch{align-self:flex-end;}
   }
   @media(prefers-reduced-motion:reduce){
     .row{animation:none;opacity:1;transform:none;}
@@ -312,11 +387,23 @@
     <div class="rule"></div>
   </header>
 
+  <div class="toolbar">
+    <div class="search-wrap">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input type="search" id="searchBox" class="search-box" placeholder="Keresés név vagy leírás alapján…" autocomplete="off">
+      <button type="button" id="searchClear" class="search-clear" aria-label="Törlés">✕</button>
+    </div>
+    <div class="view-switch" id="viewSwitch">
+      <button type="button" class="vbtn active" data-view="rank">Rangsor</button>
+      <button type="button" class="vbtn" data-view="grouped">Kategóriák</button>
+    </div>
+  </div>
+
   <div class="filterbar" id="filterbar"></div>
   <p class="count-display" id="countDisplay"></p>
 
   <main class="grid" id="grid"></main>
-  <p class="empty-state" id="emptyState">Nincs tétel ebben a kategóriában.</p>
+  <p class="empty-state" id="emptyState">Nincs találat.</p>
 
   <footer>
     <div id="footerCount">Szedés: KaTeX</div>
@@ -1082,6 +1169,76 @@ const MATEK_DATA = [
     category: "szamitastudomany-mernoki",
     tex: "O(n^{3.5}L) \\;\\; \\text{polinomiális idejű lineáris programozás}",
     why: "<b>A Szimplex-módszer csúcsról csúcsra lépked a poliéder élein — Karmarkar helyette a poliéder belsejében, egyenesen a megoldás felé 'siklik'.</b> Az első bizonyítottan polinomiális idejű algoritmus lineáris programozásra, amely gyakorlatban is versenyképesen gyors volt (nem csak elméletileg). A Bell Labs azonnal szabadalmaztatta — ritka eset, hogy egy tisztán matematikai algoritmus ekkora üzleti és katonai jelentőséget kapott (repülőgép-forgalom, telekommunikációs hálózatok optimalizálása)."
+  },
+  {
+    name: "Wald-azonosság",
+    tag: "Martingálelmélet · 1944",
+    category: "valoszinuseg",
+    tex: "E[X_1+\\cdots+X_N] = E[N]\\,E[X]",
+    why: "<b>Ha egy véletlen számú lépésben összeadott véletlen mennyiségek várható összegét keresed, elég a két várható értéket összeszorozni — még ha a megállási időpont maga is véletlen.</b> Abraham Wald a második világháború alatt, szekvenciális statisztikai teszteken dolgozva vezette le. A tétel meglepő ereje, hogy a megállási szabály (N) és a lépések (X) közötti finom függőségek ellenére is ilyen egyszerű marad az eredmény — alapja a szekvenciális elemzésnek és a modern A/B-tesztelésnek."
+  },
+  {
+    name: "Berry–Esseen-tétel",
+    tag: "Valószínűségszámítás · konvergenciasebesség, 1941/1942",
+    category: "valoszinuseg",
+    tex: "\\sup_x |F_n(x)-\\Phi(x)| \\le \\frac{C\\,\\rho}{\\sigma^3\\sqrt{n}}",
+    why: "<b>A Centrális Határeloszlás-tétel csak azt mondja, hogy az eloszlás normálishoz tart — Berry és Esseen megmondták, milyen gyorsan.</b> A konvergencia sebessége 1/√n rendű, és a hibakorlát explicit módon függ a harmadik momentumtól. Ez teszi lehetővé, hogy véges mintaméret esetén is számszerű garanciát adjunk a normális közelítés pontosságára — nélkülözhetetlen a statisztikai próbák megbízhatósági elemzésében."
+  },
+  {
+    name: "Banach–Steinhaus-tétel",
+    tag: "Funkcionálanalízis · egyenletes korlátossági elv, 1927",
+    category: "analizis",
+    tex: "\\sup_n \\|T_n x\\| < \\infty \\;\\; \\forall x \\;\\Longrightarrow\\; \\sup_n \\|T_n\\| < \\infty",
+    why: "<b>Ha egy operátorsorozat minden ponton külön-külön korlátos, akkor — meglepő módon — egyenletesen is korlátos kell legyen.</b> A bizonyítás a Baire-kategóriatételre épül: egy teljes metrikus tér nem bontható fel megszámlálhatóan sok sehol sem sűrű halmazra. Ez a funkcionálanalízis egyik 'nagy három' alaptétele (a Nyílt Leképezés-tétellel és a Hahn–Banach-tétellel együtt) — nélküle a Fourier-sorok konvergenciájának modern elmélete sem állna."
+  },
+  {
+    name: "Sobolev-beágyazási tétel",
+    tag: "Parciális differenciálegyenletek · 1938",
+    category: "analizis",
+    tex: "W^{k,p}(\\Omega) \\hookrightarrow C^{m,\\alpha}(\\Omega) \\quad \\text{ha } k-\\frac{n}{p} > m+\\alpha",
+    why: "<b>Ha egy függvénynek elég sok 'gyenge' deriváltja létezik (megfelelő integrálhatósággal), akkor garantáltan sima, folytonos függvény is — nem csak absztrakt objektum.</b> Ez a híd a modern PDE-elmélet gyenge (variációs) megoldásai és a klasszikus, szemléletes sima megoldások között. Minden végeselem-módszerrel dolgozó mérnöki szoftver implicit módon erre a tételre támaszkodik, amikor a numerikus megoldást fizikailag értelmezhető alakváltozásként vagy hőmérsékleti mezőként kezeli."
+  },
+  {
+    name: "Hopf-fibráció",
+    tag: "Differenciáltopológia · 1931",
+    category: "topologia",
+    tex: "S^3 \\xrightarrow{\\;\\;} S^2, \\quad \\text{szál: } S^1",
+    why: "<b>A háromdimenziós gömb felbontható körök végtelen családjára úgy, hogy minden pár kör pontosan egyszer fonódik össze — mint egy tökéletesen rendezett gombolyag.</b> Heinz Hopf ezzel mutatta meg először, hogy a magasabb homotópiacsoportok sokkal gazdagabbak, mint azt bárki gondolta — a felfedezés előtt sokan hitték, hogy triviálisak. A Hopf-fibráció ma a kvantummechanika (spinorok), a szálkötegek elmélete és a számítógépes grafika (kvaternió-alapú forgatások) egyik legszebb geometriai háttere."
+  },
+  {
+    name: "Van Kampen-tétel",
+    tag: "Algebrai topológia · 1933",
+    category: "topologia",
+    tex: "\\pi_1(X) \\cong \\pi_1(U) *_{\\pi_1(U\\cap V)} \\pi_1(V)",
+    why: "<b>Egy összetett tér fundamentális csoportja (a 'hurkok' algebrai szerkezete) kiszámítható két egyszerűbb darabjának csoportjaiból, ha ismerjük az átfedésüket.</b> A tétel adja meg az eszközt ahhoz, hogy bonyolult topologikus terek — csomók, felületek, CW-komplexusok — algebrai invariánsait lépésről lépésre, 'építőkockákból' rakjuk össze. Az egyik legszebb példa arra, hogyan lehet a globális szerkezetet lokális információkból rekonstruálni."
+  },
+  {
+    name: "De Bruijn–Erdős-tétel",
+    tag: "Kombinatorikus geometria · 1948",
+    category: "kombinatorika-geometria",
+    tex: "n \\text{ nem-kollineáris pont} \\;\\Longrightarrow\\; \\ge n \\text{ egyenes szükséges lefedésükhöz}",
+    why: "<b>Ha n pont a síkban nincs mind egy egyenesen, legalább n különböző egyenesre van szükség ahhoz, hogy minden pontpárt lefedjenek.</b> A bizonyítás elegáns indukciós érvelést használ, és a végeredmény meglepően éles: a szabályos konfigurációk pontosan n egyenest igényelnek. Erdős Pál és de Bruijn egy este alkották meg — tipikus példája annak, milyen mély eredmény születhet egy egyszerűen megfogalmazható geometriai kérdésből."
+  },
+  {
+    name: "Borsuk-sejtés (megcáfolva)",
+    tag: "Konvex geometria · 1933 / cáfolat 1993",
+    category: "kombinatorika-geometria",
+    tex: "\\text{minden korlátos } \\mathbb{R}^d\\text{-beli halmaz felbontható } d{+}1 \\text{ kisebb átmérőjű részre?} \\;\\; \\textbf{HAMIS } d{\\ge}64\\text{-re}",
+    why: "<b>Egy 60 éven át 'majdnem biztosan igaznak' hitt sejtést váratlanul megcáfoltak — egy 1325-dimenziós ellenpéldával.</b> Borsuk sejtése olyan magától értetődőnek tűnt, hogy évtizedekig senki nem is kételkedett benne komolyan, miközben alacsony dimenzióban bizonyítást is nyert. Kahn és Kalai 1993-as ellenpéldája emlékeztető arra, hogy a matematikai intuíció — bármilyen meggyőzőnek is tűnik — sosem helyettesíti a bizonyítást."
+  },
+  {
+    name: "Amdahl-törvény",
+    tag: "Számítástudomány & mérnöki · párhuzamos számítás, 1967",
+    category: "szamitastudomany-mernoki",
+    tex: "S(n) = \\frac{1}{(1-p)+\\frac{p}{n}}",
+    why: "<b>Egy program párhuzamosításának haszna kérlelhetetlenül korlátos — a szekvenciális rész, bármilyen kicsi is, hosszú távon dominánssá válik.</b> Ha egy program 95%-a párhuzamosítható, végtelen sok processzorral is legfeljebb 20-szoros gyorsulás érhető el. Ez a törvény hűti le a szuperszámítógép-tervezők túlzott optimizmusát, és rávilágít, miért olyan értékes minden szekvenciális szűk keresztmetszet megszüntetése egy nagy rendszerben."
+  },
+  {
+    name: "RSA-algoritmus",
+    tag: "Számítástudomány & mérnöki · nyilvános kulcsú titkosítás, 1977",
+    category: "szamitastudomany-mernoki",
+    tex: "c = m^e \\bmod n, \\quad m = c^d \\bmod n",
+    why: "<b>Két nagy prímszám szorzatát könnyű kiszámítani, de a szorzatból visszafejteni a tényezőket gyakorlatilag lehetetlen — erre az aszimmetriára épül a teljes internetes titkosítás.</b> Rivest, Shamir és Adleman Fermat kistételét használták fel egy olyan rendszer megalkotásához, ahol a nyilvános kulcs bárki számára ismert lehet, mégsem törhető fel vele az üzenet. Minden HTTPS-kapcsolat, minden banki tranzakció ezen (vagy egy rokon algoritmuson) alapul — tiszta számelméletből született globális infrastruktúra."
   }
 ];
 
@@ -2138,6 +2295,106 @@ const FIZIKA_DATA = [
     type: "single",
     tex: "E_{\\text{kinyerhető}} \\le \\left(1-\\frac{1}{\\sqrt{2}}\\right)Mc^2 \\approx 0.29\\,Mc^2",
     why: "<b>Egy forgó fekete lyuk ergoszférájából elméletileg energia nyerhető ki — a fekete lyuk forgási energiájának terhére.</b> Ha egy részecske az ergoszférában két darabra hasad, és az egyik darab negatív energiával zuhan be a fekete lyukba, a másik nagyobb energiával távozhat, mint amivel érkezett. A folyamat a Kerr-metrika közvetlen, gyakorlati következménye — és felmerült, hogy hipotetikusan fejlett civilizációk energiaforrásként használhatnák egy forgó fekete lyukat."
+  },
+  {
+    rank: 105,
+    name: "Watson–Crick bázispárosodás",
+    tag: "Molekuláris biológia · 1953",
+    category: "kemia-biologia",
+    special: true,
+    type: "single",
+    tex: "A{=}T \\;(2\\text{ H-kötés}), \\quad G{\\equiv}C \\;(3\\text{ H-kötés})",
+    why: "<b>Négy egyszerű molekula, kizárólag két lehetséges párosítási szabály szerint — és ebből épül fel az élet teljes genetikai kódja.</b> Watson és Crick 1953-as felfedezése (Rosalind Franklin röntgendiffrakciós felvételei alapján) nem csak a DNS szerkezetét adta meg, hanem azonnal megmutatta a másolás mechanizmusát is — a kettős spirál 'magától' szétválik és templátként szolgál. Ritkán esik egybe egy struktúra megismerése ilyen közvetlenül a működésének megértésével."
+  },
+  {
+    rank: 106,
+    name: "Griffith-féle törésmechanika",
+    tag: "Mérnöki alkalmazások · anyagtudomány, 1921",
+    category: "mernoki-alkalmazasok",
+    special: true,
+    type: "single",
+    tex: "\\sigma_f = \\sqrt{\\frac{2E\\gamma_s}{\\pi a}}",
+    why: "<b>Egy anyag törési szilárdsága nem anyagállandó — attól függ, mekkora repedés van már benne.</b> Griffith energiamérleg-elve (a felszabaduló rugalmas energia és a felszínenergia versenye) magyarázza meg, miért törik el egy üveg sokkal kisebb feszültségnél, mint amit az atomi kötések elméletileg elbírnának. Ez az elmélet az alapja minden repedésterjedés-vizsgálatnak, fáradási élettartam-számításnak és a modern roncsolásmentes vizsgálati módszereknek."
+  },
+  {
+    rank: 107,
+    name: "Coulomb-súrlódási törvény",
+    tag: "Mérnöki alkalmazások · érintkezési mechanika, 1785",
+    category: "mernoki-alkalmazasok",
+    special: false,
+    type: "single",
+    tex: "F_s \\le \\mu_s N",
+    why: "<b>A súrlódási erő — meglepő módon — nem függ az érintkező felületek méretétől, csak a normálerőtől és egy anyagpárra jellemző együtthatótól.</b> Coulomb (ugyanaz, aki az elektrosztatikus törvényt is megalkotta) kísérletileg igazolta ezt az egyszerű, de korántsem magától értetődő összefüggést. Minden alapozás csúszásvizsgálata, minden fékrendszer-tervezés és minden csavarkötés nyomatékszámítása erre az egyszerű egyenlőtlenségre épül."
+  },
+  {
+    rank: 108,
+    name: "Elektrogyenge egyesítés",
+    tag: "Részecskefizika · Glashow–Weinberg–Salam, 1967/1968",
+    category: "reszecskefizika",
+    special: true,
+    type: "single",
+    tex: "SU(2)_L \\times U(1)_Y \\;\\xrightarrow{\\text{Higgs}}\\; U(1)_{EM}",
+    why: "<b>Az elektromágnesség és a gyenge kölcsönhatás — két, teljesen különbözőnek tűnő erő — valójában ugyanannak az egyesített szimmetriának két arca alacsony energián.</b> Glashow, Weinberg és Salam egymástól részben függetlenül építették fel az elméletet, amit a Higgs-mechanizmus tesz teljessé: ez adja meg a W- és Z-bozonok tömegét, miközben a foton tömeg nélkül marad. Ez volt a fizikatörténet első sikeres 'nagy egyesítése' — a mai Standard Modell gerince."
+  },
+  {
+    rank: 109,
+    name: "Rutherford-szórás",
+    tag: "Részecskefizika · az atommag felfedezése, 1911",
+    category: "reszecskefizika",
+    special: false,
+    type: "single",
+    tex: "\\frac{d\\sigma}{d\\Omega} = \\left(\\frac{Ze^2}{4E}\\right)^2 \\frac{1}{\\sin^4(\\theta/2)}",
+    why: "<b>Alfa-részecskéket lövöldözve vékony aranyfóliára, néhány váratlanul nagy szögben visszapattant — 'mintha ágyúgolyót lőttünk volna selyempapírra, és az visszapattanna'.</b> Rutherford ebből a meglepetésből következtetett arra, hogy az atom tömege és pozitív töltése egy apró, sűrű magban koncentrálódik, nem szét van kenve egyenletesen (ahogy addig hitték). Ez a kísérlet indította el a modern atommag- és részecskefizikát — a szórási hatáskeresztmetszet képlete ma is a legelső eszköz bármilyen új részecske belső szerkezetének feltérképezésére."
+  },
+  {
+    rank: 110,
+    name: "Kvantum-teleportáció",
+    tag: "Kvantuminformáció · 1993",
+    category: "kvantum",
+    special: true,
+    type: "single",
+    tex: "|\\psi\\rangle_A \\otimes |\\Phi^+\\rangle_{BC} \\;\\xrightarrow{\\text{Bell-mérés + klasszikus csatorna}}\\; |\\psi\\rangle_C",
+    why: "<b>Egy kvantumállapot átvihető egyik részecskéről a másikra anélkül, hogy a részecske maga bárhová is 'utazna' — csak összefonódás és két klasszikus bit szükséges hozzá.</b> Nem tömeget vagy energiát teleportálunk, hanem tiszta információt — és a no-cloning tétel miatt az eredeti állapot szükségszerűen megsemmisül a folyamat során. Ez a protokoll ma a kvantumszámítógépek közötti kommunikáció és a kvantuminternet egyik alapvető építőeleme."
+  },
+  {
+    rank: 111,
+    name: "D'Alembert-elv",
+    tag: "Klasszikus mechanika · analitikus dinamika, 1743",
+    category: "klasszikus",
+    special: false,
+    type: "single",
+    tex: "\\sum_i (\\vec{F}_i - m_i\\ddot{\\vec{r}}_i)\\cdot \\delta\\vec{r}_i = 0",
+    why: "<b>Egy dinamikai feladat átalakítható statikai egyensúlyi feladattá, ha bevezetünk egy fiktív 'tehetetlenségi erőt' — ez a trükk nyitja meg az utat az analitikus mechanika felé.</b> D'Alembert a virtuális munka elvét terjesztette ki mozgó rendszerekre, és ez az elv vezetett közvetlenül Lagrange egyenleteihez néhány évtizeddel később. A rezgő szerkezetek dinamikai vizsgálatában (pl. földrengésterhek) a mérnökök a mai napig gyakran ebben a d'Alembert-i szemléletben gondolkodnak: 'egyensúly, plusz egy tehetetlenségi tag'."
+  },
+  {
+    rank: 112,
+    name: "Lense–Thirring-effektus",
+    tag: "Általános relativitáselmélet · 1918/2004",
+    category: "relativitas",
+    special: false,
+    type: "single",
+    tex: "\\Omega_{LT} = \\frac{2GJ}{c^2r^3}",
+    why: "<b>Egy forgó tömeg (mint a Föld) 'magával rántja' a körülötte lévő téridőt — egy gyűrűkanálhoz hasonlóan, ami mézben forogva örvényt kelt maga körül.</b> Lense és Thirring elméletben jósolta meg, de csak 2004-ben, a Gravity Probe B műhold precíziós giroszkópjaival sikerült ténylegesen kimérni ezt a parányi hatást. Ez a jelenség ugyanaz a 'frame dragging', ami a Kerr-metrikában jelenik meg forgó fekete lyukak körül — csak itt a hétköznapi Föld gyengébb változatában."
+  },
+  {
+    rank: 113,
+    name: "Kirchhoff-féle sugárzási törvény",
+    tag: "Hősugárzás · 1859",
+    category: "termodinamika",
+    special: false,
+    type: "single",
+    tex: "\\frac{E(\\lambda,T)}{A(\\lambda,T)} = B(\\lambda,T) \\quad \\text{(univerzális függvény)}",
+    why: "<b>Egy test kibocsátó- és elnyelőképességének aránya minden anyagra ugyanaz az univerzális függvény — ez vezette Kirchhofföt a 'feketetest' fogalmának bevezetéséhez.</b> A jó elnyelők jó kisugárzók is egyben (ezért fekete a legjobb sugárzó is). Ez a felismerés négy évtizeddel Planck előtt már kijelölte az utat: kellett lennie egy univerzális sugárzási törvénynek — Kirchhoff maga nem találta meg a pontos alakját, de ő tette fel a kérdést, amire Planck végül választ adott."
+  },
+  {
+    rank: 114,
+    name: "Kvark-gluon plazma",
+    tag: "Részecskefizika · nehézion-fizika, 2000/2005",
+    category: "reszecskefizika",
+    special: false,
+    type: "single",
+    tex: "T_c \\approx 150\\text{--}170\\,\\text{MeV} \\quad \\text{(kvark-hadron átmenet)}",
+    why: "<b>Kellően magas hőmérsékleten a kvarkok és gluonok kiszabadulnak a protonokból és neutronokból, és egy szabadon áramló 'ősleves' formájában léteznek — pontosan úgy, ahogy az univerzum a Nagy Bumm után mikroszekundumokkal nézett ki.</b> A CERN LHC és a Brookhaven RHIC nehézion-ütközésekkel (ólom- vagy aranyatommagokat ütköztetve fénysebesség közeli sebességgel) hozzák létre ezt az állapotot, bár csak billiomod-billiomod másodpercre. A kvarkbezárás (amit korábban a gyűjteményben már érintettünk) itt 'oldódik fel' — extrém körülmények között."
   }
 ];
 
@@ -2160,7 +2417,7 @@ const DOMAINS = {
       "szamitastudomany-mernoki": "Számítástudomány & mérnöki"
     },
     categoryOrder: ["analizis","topologia","szamelmelet","logika-halmaz","valoszinuseg","kombinatorika-geometria","szamitastudomany-mernoki"],
-    footerNames: "Euler \u00b7 Fourier \u00b7 Ramanujan \u00b7 Gauss \u00b7 Riemann \u00b7 Cauchy \u00b7 Pitagorasz \u00b7 Stirling \u00b7 Basel \u00b7 Gauss\u2013Bonnet \u00b7 Euler-szorzat \u00b7 Stokes \u00b7 Fermat\u2013Wiles \u00b7 G\u00f6del \u00b7 Bayes \u00b7 Liouville \u00b7 Cayley \u00b7 Borsuk\u2013Ulam \u00b7 S\u00fcndiszn\u00f3 \u00b7 Cantor \u00b7 Aranymetsz\u00e9s \u00b7 Banach \u00b7 Brouwer \u00b7 Pr\u00edmsz\u00e1mt\u00e9tel \u00b7 CHT \u00b7 Pell \u00b7 Sylvester\u2013Gallai \u00b7 N\u00e9gysz\u00edn-t\u00e9tel \u00b7 Jordan \u00b7 Collatz \u00b7 Goldbach \u00b7 P vs NP \u00b7 Hilbert-sz\u00e1lloda \u00b7 Monty Hall \u00b7 Sz\u00fclet\u00e9snapi paradoxon \u00b7 Bell/CHSH \u00b7 Lagrange-n\u00e9gyzett\u00e9tel \u00b7 Erd\u0151s\u2013Ko\u2013Rado \u00b7 Banach\u2013Tarski \u00b7 Arrow \u00b7 Poincar\u00e9 \u00b7 Euler-poli\u00e9der \u00b7 Ramsey \u00b7 Szemer\u00e9di \u00b7 Green\u2013Tao \u00b7 Kontinuumhipot\u00e9zis \u00b7 Algebra alapt\u00e9tele \u00b7 Catalan\u2013Mihailescu \u00b7 Kalkulus alapt\u00e9tele \u00b7 Pi transzcendenci\u00e1ja \u00b7 Happy Ending \u00b7 Nash-egyenl\u0151s\u00e9g \u00b7 Kepler-sejt\u00e9s \u00b7 Pick-t\u00e9tel \u00b7 Goodstein-t\u00e9tel \u00b7 Riemann-lek\u00e9pez\u00e9s \u00b7 Korl\u00e1tos pr\u00edmr\u00e9s \u00b7 Cook\u2013Levin \u00b7 Meg\u00e1ll\u00e1si probl\u00e9ma \u00b7 Nagy sz\u00e1mok t\u00f6rv\u00e9nye \u00b7 Rogers\u2013Ramanujan \u00b7 Hardy\u2013Ramanujan \u00b7 Ramanujan \u03c4-f\u00fcggv\u00e9ny \u00b7 Chudnovsky \u00b7 Lax\u2013Milgram \u00b7 Nyquist\u2013Shannon \u00b7 Kalman-sz\u0171r\u0151 \u00b7 Wilson-tétel \u00b7 Brun-tétel \u00b7 Bertrand-posztulátum \u00b7 Hall-tétel \u00b7 Erdős\u2013Szekeres \u00b7 Helly-tétel \u00b7 Sperner-lemma \u00b7 Szimplex-módszer \u00b7 Perron\u2013Frobenius \u00b7 Gauss\u2013Markov \u00b7 Cauchy\u2013Schwarz \u00b7 Weierstrass-approximáció \u00b7 Picard\u2013Lindelöf \u00b7 Csebisev \u00b7 Kolmogorov 0-1 \u00b7 Markov-ergodikus \u00b7 Löwenheim\u2013Skolem \u00b7 Tarski \u00b7 Kruskal-fatétel \u00b7 Radon-tétel \u00b7 Nielsen\u2013Schreier \u00b7 Jones-polinom \u00b7 Church\u2013Turing \u00b7 Shannon-kapacitás \u00b7 FFT \u00b7 Lebesgue-konvergencia \u00b7 Fubini-t\u00e9tel \u00b7 Arzel\u00e0\u2013Ascoli \u00b7 Poisson-folyamat \u00b7 It\u014d-formula \u00b7 Erd\u0151s\u2013R\u00e9nyi \u00b7 Kolmogorov-komplexit\u00e1s \u00b7 L\u00f6b-t\u00e9tel \u00b7 Robertson\u2013Seymour \u00b7 Tur\u00e1n-t\u00e9tel \u00b7 Poincar\u00e9\u2013Bendixson \u00b7 Whitney-be\u00e1gyaz\u00e1s \u00b7 Lefschetz-fixpont \u00b7 Dijkstra \u00b7 Karmarkar"
+    footerNames: "Euler \u00b7 Fourier \u00b7 Ramanujan \u00b7 Gauss \u00b7 Riemann \u00b7 Cauchy \u00b7 Pitagorasz \u00b7 Stirling \u00b7 Basel \u00b7 Gauss\u2013Bonnet \u00b7 Euler-szorzat \u00b7 Stokes \u00b7 Fermat\u2013Wiles \u00b7 G\u00f6del \u00b7 Bayes \u00b7 Liouville \u00b7 Cayley \u00b7 Borsuk\u2013Ulam \u00b7 S\u00fcndiszn\u00f3 \u00b7 Cantor \u00b7 Aranymetsz\u00e9s \u00b7 Banach \u00b7 Brouwer \u00b7 Pr\u00edmsz\u00e1mt\u00e9tel \u00b7 CHT \u00b7 Pell \u00b7 Sylvester\u2013Gallai \u00b7 N\u00e9gysz\u00edn-t\u00e9tel \u00b7 Jordan \u00b7 Collatz \u00b7 Goldbach \u00b7 P vs NP \u00b7 Hilbert-sz\u00e1lloda \u00b7 Monty Hall \u00b7 Sz\u00fclet\u00e9snapi paradoxon \u00b7 Bell/CHSH \u00b7 Lagrange-n\u00e9gyzett\u00e9tel \u00b7 Erd\u0151s\u2013Ko\u2013Rado \u00b7 Banach\u2013Tarski \u00b7 Arrow \u00b7 Poincar\u00e9 \u00b7 Euler-poli\u00e9der \u00b7 Ramsey \u00b7 Szemer\u00e9di \u00b7 Green\u2013Tao \u00b7 Kontinuumhipot\u00e9zis \u00b7 Algebra alapt\u00e9tele \u00b7 Catalan\u2013Mihailescu \u00b7 Kalkulus alapt\u00e9tele \u00b7 Pi transzcendenci\u00e1ja \u00b7 Happy Ending \u00b7 Nash-egyenl\u0151s\u00e9g \u00b7 Kepler-sejt\u00e9s \u00b7 Pick-t\u00e9tel \u00b7 Goodstein-t\u00e9tel \u00b7 Riemann-lek\u00e9pez\u00e9s \u00b7 Korl\u00e1tos pr\u00edmr\u00e9s \u00b7 Cook\u2013Levin \u00b7 Meg\u00e1ll\u00e1si probl\u00e9ma \u00b7 Nagy sz\u00e1mok t\u00f6rv\u00e9nye \u00b7 Rogers\u2013Ramanujan \u00b7 Hardy\u2013Ramanujan \u00b7 Ramanujan \u03c4-f\u00fcggv\u00e9ny \u00b7 Chudnovsky \u00b7 Lax\u2013Milgram \u00b7 Nyquist\u2013Shannon \u00b7 Kalman-sz\u0171r\u0151 \u00b7 Wilson-tétel \u00b7 Brun-tétel \u00b7 Bertrand-posztulátum \u00b7 Hall-tétel \u00b7 Erdős\u2013Szekeres \u00b7 Helly-tétel \u00b7 Sperner-lemma \u00b7 Szimplex-módszer \u00b7 Perron\u2013Frobenius \u00b7 Gauss\u2013Markov \u00b7 Cauchy\u2013Schwarz \u00b7 Weierstrass-approximáció \u00b7 Picard\u2013Lindelöf \u00b7 Csebisev \u00b7 Kolmogorov 0-1 \u00b7 Markov-ergodikus \u00b7 Löwenheim\u2013Skolem \u00b7 Tarski \u00b7 Kruskal-fatétel \u00b7 Radon-tétel \u00b7 Nielsen\u2013Schreier \u00b7 Jones-polinom \u00b7 Church\u2013Turing \u00b7 Shannon-kapacitás \u00b7 FFT \u00b7 Lebesgue-konvergencia \u00b7 Fubini-t\u00e9tel \u00b7 Arzel\u00e0\u2013Ascoli \u00b7 Poisson-folyamat \u00b7 It\u014d-formula \u00b7 Erd\u0151s\u2013R\u00e9nyi \u00b7 Kolmogorov-komplexit\u00e1s \u00b7 L\u00f6b-t\u00e9tel \u00b7 Robertson\u2013Seymour \u00b7 Tur\u00e1n-t\u00e9tel \u00b7 Poincar\u00e9\u2013Bendixson \u00b7 Whitney-be\u00e1gyaz\u00e1s \u00b7 Lefschetz-fixpont \u00b7 Dijkstra \u00b7 Karmarkar \u00b7 Wald-azonoss\u00e1g \u00b7 Berry\u2013Esseen \u00b7 Banach\u2013Steinhaus \u00b7 Sobolev-be\u00e1gyaz\u00e1s \u00b7 Hopf-fibr\u00e1ci\u00f3 \u00b7 Van Kampen \u00b7 De Bruijn\u2013Erd\u0151s \u00b7 Borsuk-sejt\u00e9s \u00b7 Amdahl-t\u00f6rv\u00e9ny \u00b7 RSA"
   },
   fizika: {
     label: "Fizika · Kémia · Biológia",
@@ -2178,7 +2435,7 @@ const DOMAINS = {
       "mernoki-alkalmazasok": "Mérnöki alkalmazások"
     },
     categoryOrder: ["klasszikus","kvantum","relativitas","reszecskefizika","termodinamika","kemia-biologia","mernoki-alkalmazasok"],
-    footerNames: "Maxwell \u00b7 Noether \u00b7 Schr\u00f6dinger \u00b7 Boltzmann \u00b7 Feynman \u00b7 Dirac \u00b7 Bekenstein\u2013Hawking \u00b7 Euler\u2013Lagrange \u00b7 E=mc\u00b2 \u00b7 Yang\u2013Mills \u00b7 Heisenberg \u00b7 Shannon \u00b7 Navier\u2013Stokes \u00b7 Planck \u00b7 Lorentz \u00b7 Hawking-h\u0151m\u00e9rs\u00e9klet \u00b7 Aszimptotikus szabads\u00e1g \u00b7 Peri\u00f3dusos rendszer \u00b7 Kepler \u00b7 Hamilton \u00b7 Lotka\u2013Volterra \u00b7 Hardy\u2013Weinberg \u00b7 Snellius\u2013Descartes \u00b7 Viri\u00e1lt\u00e9tel \u00b7 Hodgkin\u2013Huxley \u00b7 Arrhenius \u00b7 Le Chatelier \u00b7 Bell/CHSH \u00b7 Carnot \u00b7 Higgs \u00b7 Casimir \u00b7 Michaelis\u2013Menten \u00b7 Az id\u0151 nyila \u00b7 Kvarkbez\u00e1r\u00e1s \u00b7 Holografikus elv \u00b7 BCS-elm\u00e9let \u00b7 Drake-egyenlet \u00b7 Fick-t\u00f6rv\u00e9ny \u00b7 Einstein-mez\u0151egyenletek \u00b7 Faraday-indukci\u00f3 \u00b7 Wien-t\u00f6rv\u00e9ny \u00b7 Levinthal-paradoxon \u00b7 Doppler-effektus \u00b7 Bernoulli-egyenlet \u00b7 ATP-szint\u00e1z \u00b7 Homokiralit\u00e1s \u00b7 Hubble\u2013Lema\u00eetre \u00b7 Lorentz-er\u0151 \u00b7 Avogadro-\u00e1lland\u00f3 \u00b7 Compton-effektus \u00b7 Van 't Hoff \u00b7 Pauli-elv \u00b7 Hull\u00e1megyenlet \u00b7 Reynolds-sz\u00e1m \u00b7 Seebeck-effektus \u00b7 Chandrasekhar-hat\u00e1r \u00b7 Bose\u2013Einstein-kondenz\u00e1ci\u00f3 \u00b7 CPT-t\u00e9tel \u00b7 Onsager-reciprocit\u00e1s \u00b7 Landauer-elv \u00b7 Euler-kihajl\u00e1s \u00b7 Saint-Venant \u00b7 Mohr-k\u00f6r \u00b7 Betti-t\u00e9tel \u00b7 Clausius\u2013Clapeyron \u00b7 Gibbs-energia \u00b7 Fermi\u2013Dirac \u00b7 Neutrínó-oszcilláció \u00b7 Gell-Mann\u2013Nishijima \u00b7 Schwarzschild-sugár \u00b7 Friedmann-egyenletek \u00b7 Euler\u2013Bernoulli \u00b7 Castigliano \u00b7 Buckingham π-tétel \u00b7 Alag\u00fathat\u00e1s \u00b7 No-cloning \u00b7 Josephson \u00b7 Meissner \u00b7 Nernst-t\u00e9tel \u00b7 Maxwell\u2013Boltzmann \u00b7 Stefan\u2013Boltzmann \u00b7 Cserenkov \u00b7 M\u00fcon g-2 \u00b7 Ekvivalenciaelv \u00b7 Kerr-metrika \u00b7 Gravit\u00e1ci\u00f3s hull\u00e1mok \u00b7 Timoshenko \u00b7 Navier (rugalmass\u00e1gtan) \u00b7 Rayleigh\u2013Ritz \u00b7 Hooke-t\u00f6rv\u00e9ny \u00b7 Darcy-t\u00f6rv\u00e9ny \u00b7 Terzaghi-konszolid\u00e1ci\u00f3 \u00b7 Coriolis-er\u0151 \u00b7 Foucault-inga \u00b7 Euler-forg\u00e1segyenletek \u00b7 Van der Waals \u00b7 Joule\u2013Thomson \u00b7 Fourier-h\u0151vezet\u00e9s \u00b7 Nernst-egyenlet \u00b7 CKM-m\u00e1trix \u00b7 Aharonov\u2013Bohm \u00b7 Penrose\u2013Hawking \u00b7 Shapiro-k\u00e9sleltet\u00e9s \u00b7 Penrose-folyamat"
+    footerNames: "Maxwell \u00b7 Noether \u00b7 Schr\u00f6dinger \u00b7 Boltzmann \u00b7 Feynman \u00b7 Dirac \u00b7 Bekenstein\u2013Hawking \u00b7 Euler\u2013Lagrange \u00b7 E=mc\u00b2 \u00b7 Yang\u2013Mills \u00b7 Heisenberg \u00b7 Shannon \u00b7 Navier\u2013Stokes \u00b7 Planck \u00b7 Lorentz \u00b7 Hawking-h\u0151m\u00e9rs\u00e9klet \u00b7 Aszimptotikus szabads\u00e1g \u00b7 Peri\u00f3dusos rendszer \u00b7 Kepler \u00b7 Hamilton \u00b7 Lotka\u2013Volterra \u00b7 Hardy\u2013Weinberg \u00b7 Snellius\u2013Descartes \u00b7 Viri\u00e1lt\u00e9tel \u00b7 Hodgkin\u2013Huxley \u00b7 Arrhenius \u00b7 Le Chatelier \u00b7 Bell/CHSH \u00b7 Carnot \u00b7 Higgs \u00b7 Casimir \u00b7 Michaelis\u2013Menten \u00b7 Az id\u0151 nyila \u00b7 Kvarkbez\u00e1r\u00e1s \u00b7 Holografikus elv \u00b7 BCS-elm\u00e9let \u00b7 Drake-egyenlet \u00b7 Fick-t\u00f6rv\u00e9ny \u00b7 Einstein-mez\u0151egyenletek \u00b7 Faraday-indukci\u00f3 \u00b7 Wien-t\u00f6rv\u00e9ny \u00b7 Levinthal-paradoxon \u00b7 Doppler-effektus \u00b7 Bernoulli-egyenlet \u00b7 ATP-szint\u00e1z \u00b7 Homokiralit\u00e1s \u00b7 Hubble\u2013Lema\u00eetre \u00b7 Lorentz-er\u0151 \u00b7 Avogadro-\u00e1lland\u00f3 \u00b7 Compton-effektus \u00b7 Van 't Hoff \u00b7 Pauli-elv \u00b7 Hull\u00e1megyenlet \u00b7 Reynolds-sz\u00e1m \u00b7 Seebeck-effektus \u00b7 Chandrasekhar-hat\u00e1r \u00b7 Bose\u2013Einstein-kondenz\u00e1ci\u00f3 \u00b7 CPT-t\u00e9tel \u00b7 Onsager-reciprocit\u00e1s \u00b7 Landauer-elv \u00b7 Euler-kihajl\u00e1s \u00b7 Saint-Venant \u00b7 Mohr-k\u00f6r \u00b7 Betti-t\u00e9tel \u00b7 Clausius\u2013Clapeyron \u00b7 Gibbs-energia \u00b7 Fermi\u2013Dirac \u00b7 Neutrínó-oszcilláció \u00b7 Gell-Mann\u2013Nishijima \u00b7 Schwarzschild-sugár \u00b7 Friedmann-egyenletek \u00b7 Euler\u2013Bernoulli \u00b7 Castigliano \u00b7 Buckingham π-tétel \u00b7 Alag\u00fathat\u00e1s \u00b7 No-cloning \u00b7 Josephson \u00b7 Meissner \u00b7 Nernst-t\u00e9tel \u00b7 Maxwell\u2013Boltzmann \u00b7 Stefan\u2013Boltzmann \u00b7 Cserenkov \u00b7 M\u00fcon g-2 \u00b7 Ekvivalenciaelv \u00b7 Kerr-metrika \u00b7 Gravit\u00e1ci\u00f3s hull\u00e1mok \u00b7 Timoshenko \u00b7 Navier (rugalmass\u00e1gtan) \u00b7 Rayleigh\u2013Ritz \u00b7 Hooke-t\u00f6rv\u00e9ny \u00b7 Darcy-t\u00f6rv\u00e9ny \u00b7 Terzaghi-konszolid\u00e1ci\u00f3 \u00b7 Coriolis-er\u0151 \u00b7 Foucault-inga \u00b7 Euler-forg\u00e1segyenletek \u00b7 Van der Waals \u00b7 Joule\u2013Thomson \u00b7 Fourier-h\u0151vezet\u00e9s \u00b7 Nernst-egyenlet \u00b7 CKM-m\u00e1trix \u00b7 Aharonov\u2013Bohm \u00b7 Penrose\u2013Hawking \u00b7 Shapiro-k\u00e9sleltet\u00e9s \u00b7 Penrose-folyamat \u00b7 Watson\u2013Crick \u00b7 Griffith-t\u00f6r\u00e9smechanika \u00b7 Coulomb-s\u00fars\u00fbrl\u00f3d\u00e1s \u00b7 Elektrogyenge egyes\u00edt\u00e9s \u00b7 Rutherford-sz\u00f3r\u00e1s \u00b7 Kvantum-teleport\u00e1ci\u00f3 \u00b7 D'Alembert-elv \u00b7 Lense\u2013Thirring \u00b7 Kirchhoff-sug\u00e1rz\u00e1s \u00b7 Kvark-gluon plazma"
   }
 };
 
@@ -2193,10 +2450,20 @@ const footerCountEl = document.getElementById("footerCount");
 const footerNamesEl = document.getElementById("footerNames").querySelector("span");
 const grandTotalEl = document.getElementById("grandTotal");
 const domainSwitch = document.getElementById("domainSwitch");
+const searchBox = document.getElementById("searchBox");
+const searchClear = document.getElementById("searchClear");
+const viewSwitch = document.getElementById("viewSwitch");
 
 let activeDomain = "matek";
 let activeCategory = "all";
+let searchQuery = "";
+let viewMode = "rank";
 let rowElements = [];
+let headerElements = [];
+
+function stripHtml(str) {
+  return str.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+}
 
 function buildRow(entry, index) {
   const rank = entry.rank !== undefined ? entry.rank : index + 1;
@@ -2315,24 +2582,70 @@ function buildFilterBar(domainKey) {
   });
 }
 
+function renderGrid() {
+  const domain = DOMAINS[activeDomain];
+  grid.innerHTML = "";
+  headerElements = [];
+
+  if (viewMode === "rank") {
+    rowElements.forEach(r => grid.appendChild(r.el));
+  } else {
+    domain.categoryOrder.forEach(key => {
+      const rowsInCat = rowElements.filter(r => r.category === key);
+      if (rowsInCat.length === 0) return;
+      const header = document.createElement("div");
+      header.className = "category-header";
+      header.dataset.category = key;
+      header.innerHTML = `<span class="cat-name">${domain.categoryLabels[key]}</span><span class="cat-count">${rowsInCat.length} tétel</span>`;
+      grid.appendChild(header);
+      headerElements.push({el: header, category: key});
+      rowsInCat.forEach(r => grid.appendChild(r.el));
+    });
+  }
+  applyFilter();
+}
+
 function applyFilter() {
   const domain = DOMAINS[activeDomain];
+  const q = searchQuery.trim().toLowerCase();
   let visibleCount = 0;
-  rowElements.forEach(({el, category}) => {
-    const show = activeCategory === "all" || category === activeCategory;
+  const visibleCats = new Set();
+
+  rowElements.forEach(({el, category, searchText}) => {
+    const matchesCategory = activeCategory === "all" || category === activeCategory;
+    const matchesSearch = q === "" || searchText.includes(q);
+    const show = matchesCategory && matchesSearch;
     el.classList.toggle("hidden", !show);
-    if (show) visibleCount++;
+    if (show) { visibleCount++; visibleCats.add(category); }
   });
+
+  headerElements.forEach(({el, category}) => {
+    const matchesCategory = activeCategory === "all" || category === activeCategory;
+    el.classList.toggle("hidden", !(matchesCategory && visibleCats.has(category)));
+  });
+
   emptyState.style.display = visibleCount === 0 ? "block" : "none";
-  countDisplay.innerHTML = activeCategory === "all"
-    ? `<b>${domain.data.length}</b> tétel összesen`
-    : `<b>${visibleCount}</b> tétel a "${domain.categoryLabels[activeCategory]}" kategóriában`;
+
+  let label = activeCategory === "all"
+    ? `${domain.data.length} tétel összesen`
+    : `${visibleCount} tétel a "${domain.categoryLabels[activeCategory]}" kategóriában`;
+  if (q !== "") {
+    label = `<b>${visibleCount}</b> találat "${searchQuery.trim()}"-ra` + (activeCategory !== "all" ? ` a "${domain.categoryLabels[activeCategory]}" kategóriában` : "");
+  } else {
+    label = activeCategory === "all"
+      ? `<b>${domain.data.length}</b> tétel összesen`
+      : `<b>${visibleCount}</b> tétel a "${domain.categoryLabels[activeCategory]}" kategóriában`;
+  }
+  countDisplay.innerHTML = label;
 }
 
 function renderDomain(domainKey) {
   const domain = DOMAINS[domainKey];
   activeDomain = domainKey;
   activeCategory = "all";
+  searchQuery = "";
+  searchBox.value = "";
+  searchClear.classList.remove("visible");
 
   document.body.dataset.domain = domainKey;
   [...domainSwitch.children].forEach(b => b.classList.toggle("active", b.dataset.domain === domainKey));
@@ -2343,16 +2656,15 @@ function renderDomain(domainKey) {
   footerCountEl.textContent = `Szedés: KaTeX · ${domain.data.length} tétel`;
   footerNamesEl.textContent = domain.footerNames;
 
-  grid.innerHTML = "";
   rowElements = [];
   domain.data.forEach((d, i) => {
     const row = buildRow(d, i);
-    grid.appendChild(row);
-    rowElements.push({el: row, category: d.category});
+    const searchText = `${d.name} ${d.tag} ${stripHtml(d.why)}`.toLowerCase();
+    rowElements.push({el: row, category: d.category, searchText});
   });
 
   buildFilterBar(domainKey);
-  applyFilter();
+  renderGrid();
 }
 
 filterbar.addEventListener("click", (e) => {
@@ -2367,6 +2679,32 @@ domainSwitch.addEventListener("click", (e) => {
   const btn = e.target.closest(".dbtn");
   if (!btn || btn.dataset.domain === activeDomain) return;
   renderDomain(btn.dataset.domain);
+});
+
+viewSwitch.addEventListener("click", (e) => {
+  const btn = e.target.closest(".vbtn");
+  if (!btn || btn.dataset.view === viewMode) return;
+  viewMode = btn.dataset.view;
+  [...viewSwitch.children].forEach(b => b.classList.toggle("active", b === btn));
+  renderGrid();
+});
+
+let searchDebounce;
+searchBox.addEventListener("input", () => {
+  searchClear.classList.toggle("visible", searchBox.value.length > 0);
+  clearTimeout(searchDebounce);
+  searchDebounce = setTimeout(() => {
+    searchQuery = searchBox.value;
+    applyFilter();
+  }, 120);
+});
+
+searchClear.addEventListener("click", () => {
+  searchBox.value = "";
+  searchQuery = "";
+  searchClear.classList.remove("visible");
+  applyFilter();
+  searchBox.focus();
 });
 
 function init() {
