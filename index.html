@@ -8,7 +8,7 @@
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#eef1f7;
@@ -59,7 +59,7 @@
     overscroll-behavior:none;
     touch-action:pan-y;
   }
-  .wrap{max-width:1060px;margin:0 auto;}
+  .wrap{max-width:1060px;margin:0 auto;position:relative;z-index:1;}
 
   /* ---- Domain switcher ---- */
   .domain-switch{
@@ -79,6 +79,7 @@
   .dbtn.active{
     background:linear-gradient(135deg,var(--primary-bright),var(--primary));
     border-color:transparent;color:var(--ink);
+    box-shadow:0 6px 22px -8px var(--primary);
   }
   .grand-total{
     color:var(--muted);font-size:12.5px;margin:0 0 clamp(20px,4vw,32px);
@@ -101,7 +102,11 @@
     margin:0 0 16px;
     letter-spacing:-0.01em;
   }
-  h1 em{font-style:italic;color:var(--primary-bright);transition:color .5s ease;}
+  h1 em{
+    font-style:italic;color:var(--primary-bright);
+    text-shadow:0 0 26px var(--primary), 0 0 60px transparent;
+    transition:color .5s ease, text-shadow .5s ease;
+  }
   .sub{
     color:var(--muted);max-width:64ch;font-size:clamp(14px,1.6vw,16px);margin:0;
   }
@@ -109,6 +114,16 @@
     height:1px;margin:clamp(24px,4vw,36px) 0 0;
     background:linear-gradient(90deg,var(--primary),transparent 70%);
     transition:background .5s ease;
+    position:relative;
+  }
+  .rule::before{
+    content:"";
+    position:absolute;left:0;top:50%;
+    width:6px;height:6px;
+    background:var(--primary-bright);
+    transform:translateY(-50%) rotate(45deg);
+    box-shadow:0 0 10px var(--primary-bright);
+    transition:background .5s ease, box-shadow .5s ease;
   }
 
   /* ---- Toolbar: search + view switch ---- */
@@ -180,7 +195,54 @@
     transition:color .5s ease;
   }
   .category-header .cat-count{
-    font-size:11.5px;color:var(--muted);letter-spacing:.05em;
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px;color:var(--muted);letter-spacing:.02em;
+  }
+
+  /* ---- Ghost formula background (ambient signature) ---- */
+  .ghost-bg{
+    position:fixed;inset:0;
+    z-index:0;
+    overflow:hidden;
+    pointer-events:none;
+  }
+  .ghost-formula{
+    position:absolute;
+    color:var(--primary);
+    opacity:.045;
+    white-space:nowrap;
+    will-change:transform;
+    animation:ghostDrift 70s ease-in-out infinite alternate;
+    transition:color 1.1s ease;
+  }
+  .ghost-formula .katex{font-size:inherit;color:inherit;}
+  @keyframes ghostDrift{
+    0%{transform:translate(0,0) rotate(var(--gr,-3deg));}
+    100%{transform:translate(18px,-26px) rotate(calc(var(--gr,-3deg) * -1));}
+  }
+  @media(max-width:900px){
+    .ghost-bg{display:none;}
+  }
+
+  /* ---- Logo mark ---- */
+  .logo-mark{
+    position:fixed;
+    top:clamp(14px,3vw,26px);
+    right:clamp(14px,3vw,26px);
+    width:clamp(32px,4vw,46px);
+    height:clamp(32px,4vw,46px);
+    z-index:5;
+    pointer-events:none;
+    opacity:.92;
+    animation:logoBreathe 6.5s ease-in-out infinite;
+  }
+  .logo-mark svg{width:100%;height:100%;display:block;}
+  @keyframes logoBreathe{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.07);}
+  }
+  @media(max-width:640px){
+    .logo-mark{opacity:.55;width:26px;height:26px;}
   }
 
   /* ---- Filter bar ---- */
@@ -211,7 +273,8 @@
     font-weight:600;
   }
   .chip .count{
-    opacity:.65;font-size:11px;margin-left:5px;
+    font-family:"JetBrains Mono",monospace;
+    opacity:.65;font-size:10.5px;margin-left:5px;
   }
   .chip.active .count{opacity:.55;}
   .count-display{
@@ -223,7 +286,7 @@
   .grid{margin-top:8px;}
   .row{
     display:grid;
-    grid-template-columns:88px 1fr;
+    grid-template-columns:98px 1fr;
     gap:clamp(16px,3vw,34px);
     align-items:center;
     padding:clamp(22px,3.5vw,32px) 4px;
@@ -236,9 +299,21 @@
   .row:first-of-type{border-top:1px solid var(--line);}
   @keyframes rise{to{opacity:1;transform:none;}}
 
+  .rank-plate{
+    display:flex;flex-direction:column;align-items:center;gap:1px;
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:9px 2px 7px;
+    transition:border-color .5s ease;
+  }
+  .plate-label{
+    font-family:"JetBrains Mono",monospace;
+    font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--muted);
+  }
   .rank{
     font-family:"Fraunces",serif;
-    font-size:clamp(40px,6.4vw,64px);
+    font-size:clamp(30px,4.8vw,48px);
     font-weight:500;
     line-height:.9;
     color:transparent;
@@ -258,19 +333,24 @@
     border-bottom:1px solid var(--line);
   }
   .formula{
+    display:inline-block;
+    width:fit-content;
+    max-width:100%;
+    min-width:64px;
     background:linear-gradient(180deg,var(--panel),var(--ink-2));
     border:1px solid var(--line);
     border-radius:14px;
-    padding:clamp(15px,2.5vw,25px) clamp(14px,2.5vw,28px);
+    padding:clamp(13px,2.2vw,22px) clamp(16px,2.8vw,30px);
     margin-bottom:14px;
     overflow-x:auto;
     overflow-y:hidden;
     position:relative;
-    transition:background .5s ease, border-color .5s ease;
+    transition:background .5s ease, border-color .5s ease, box-shadow .25s ease, transform .25s ease;
     touch-action:pan-x pan-y;
   }
   .formula.multi{
     display:grid;
+    width:100%;
     grid-template-columns:1fr 1fr;
     gap:14px 24px;
     align-items:center;
@@ -278,6 +358,14 @@
   .formula::-webkit-scrollbar{height:6px;}
   .formula::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px;}
   .katex{color:var(--paper);font-size:clamp(1.03rem,2.4vw,1.58rem);}
+  .formula:hover{
+    border-color:var(--primary);
+    box-shadow:0 10px 28px -10px var(--primary);
+    transform:translateY(-2px);
+  }
+  @media(hover:none){
+    .formula:hover{transform:none;box-shadow:none;border-color:var(--line);}
+  }
 
   /* Badge / kiemelés (matek) */
   .badge{
@@ -295,7 +383,8 @@
     font-weight:500;
   }
   .tag{
-    font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    font-family:"JetBrains Mono",monospace;
+    font-size:10.5px;letter-spacing:.04em;text-transform:none;
     color:var(--tag-color);border:1px solid var(--tag-border);
     padding:3px 9px;border-radius:999px;white-space:nowrap;
     transition:color .5s ease, border-color .5s ease;
@@ -303,8 +392,21 @@
   .tag.special{
     color:var(--highlight);border-color:var(--highlight-border);
   }
-  .why{color:var(--muted);margin:6px 0 0;font-size:clamp(13.5px,1.7vw,15px);}
-  .why b{color:var(--primary-bright);font-weight:600;transition:color .5s ease;}
+  .why{color:var(--muted);margin:8px 0 0;font-size:clamp(13.5px,1.7vw,15px);}
+  .why b{
+    font-family:"Caveat",cursive;
+    font-weight:600;
+    font-size:1.34em;
+    line-height:1.5;
+    color:var(--ink);
+    background:var(--highlight);
+    -webkit-box-decoration-break:clone;
+    box-decoration-break:clone;
+    border-radius:4px;
+    padding:1px 5px;
+    margin-right:1px;
+    transition:color .5s ease, background .5s ease;
+  }
 
   .scroll-hint{
     font-size:11px;letter-spacing:.16em;text-transform:uppercase;
@@ -356,8 +458,10 @@
   footer span{color:var(--primary);transition:color .5s ease;}
 
   @media(max-width:560px){
-    .row{grid-template-columns:54px 1fr;gap:12px;}
-    .rank{font-size:34px;}
+    .row{grid-template-columns:62px 1fr;gap:12px;}
+    .rank{font-size:26px;}
+    .rank-plate{padding:5px 1px 4px;}
+    .plate-label{display:none;}
     .filterbar{gap:6px;}
     .chip{font-size:11.5px;padding:6px 11px;}
     .dbtn{font-size:12px;padding:8px 16px;}
@@ -368,10 +472,31 @@
   @media(prefers-reduced-motion:reduce){
     .row{animation:none;opacity:1;transform:none;}
     body,.tag,.formula,.rank,h1 em,.rule,.eyebrow,footer span,.why b{transition:none;}
+    .logo-mark{animation:none;}
+    .ghost-formula{animation:none;}
   }
 </style>
 </head>
 <body data-domain="matek">
+<div class="ghost-bg" id="ghostBg" aria-hidden="true"></div>
+
+<div class="logo-mark" id="logoMark" title="Halhatatlan tudományos szépségek" aria-hidden="true">
+  <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="32" cy="32" rx="27" ry="12" transform="rotate(28 32 32)" stroke="url(#logoGrad)" stroke-width="1.4" opacity="0.85"/>
+    <ellipse cx="32" cy="32" rx="27" ry="12" transform="rotate(-28 32 32)" stroke="url(#logoGrad)" stroke-width="1.4" opacity="0.85"/>
+    <ellipse cx="32" cy="32" rx="27" ry="12" stroke="url(#logoGrad)" stroke-width="1" opacity="0.4"/>
+    <circle cx="32" cy="32" r="3.4" fill="url(#logoGrad)"/>
+    <circle class="logo-electron" cx="32" cy="5" r="2" fill="url(#logoGrad)">
+      <animateTransform id="logoSpin" attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" dur="9s" repeatCount="indefinite"/>
+    </circle>
+    <defs>
+      <linearGradient id="logoGrad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="var(--primary-bright)"/>
+        <stop offset="1" stop-color="var(--primary)"/>
+      </linearGradient>
+    </defs>
+  </svg>
+</div>
 <div class="wrap">
 
   <div class="domain-switch" id="domainSwitch">
@@ -2417,7 +2542,8 @@ const DOMAINS = {
       "szamitastudomany-mernoki": "Számítástudomány & mérnöki"
     },
     categoryOrder: ["analizis","topologia","szamelmelet","logika-halmaz","valoszinuseg","kombinatorika-geometria","szamitastudomany-mernoki"],
-    footerNames: "Euler \u00b7 Fourier \u00b7 Ramanujan \u00b7 Gauss \u00b7 Riemann \u00b7 Cauchy \u00b7 Pitagorasz \u00b7 Stirling \u00b7 Basel \u00b7 Gauss\u2013Bonnet \u00b7 Euler-szorzat \u00b7 Stokes \u00b7 Fermat\u2013Wiles \u00b7 G\u00f6del \u00b7 Bayes \u00b7 Liouville \u00b7 Cayley \u00b7 Borsuk\u2013Ulam \u00b7 S\u00fcndiszn\u00f3 \u00b7 Cantor \u00b7 Aranymetsz\u00e9s \u00b7 Banach \u00b7 Brouwer \u00b7 Pr\u00edmsz\u00e1mt\u00e9tel \u00b7 CHT \u00b7 Pell \u00b7 Sylvester\u2013Gallai \u00b7 N\u00e9gysz\u00edn-t\u00e9tel \u00b7 Jordan \u00b7 Collatz \u00b7 Goldbach \u00b7 P vs NP \u00b7 Hilbert-sz\u00e1lloda \u00b7 Monty Hall \u00b7 Sz\u00fclet\u00e9snapi paradoxon \u00b7 Bell/CHSH \u00b7 Lagrange-n\u00e9gyzett\u00e9tel \u00b7 Erd\u0151s\u2013Ko\u2013Rado \u00b7 Banach\u2013Tarski \u00b7 Arrow \u00b7 Poincar\u00e9 \u00b7 Euler-poli\u00e9der \u00b7 Ramsey \u00b7 Szemer\u00e9di \u00b7 Green\u2013Tao \u00b7 Kontinuumhipot\u00e9zis \u00b7 Algebra alapt\u00e9tele \u00b7 Catalan\u2013Mihailescu \u00b7 Kalkulus alapt\u00e9tele \u00b7 Pi transzcendenci\u00e1ja \u00b7 Happy Ending \u00b7 Nash-egyenl\u0151s\u00e9g \u00b7 Kepler-sejt\u00e9s \u00b7 Pick-t\u00e9tel \u00b7 Goodstein-t\u00e9tel \u00b7 Riemann-lek\u00e9pez\u00e9s \u00b7 Korl\u00e1tos pr\u00edmr\u00e9s \u00b7 Cook\u2013Levin \u00b7 Meg\u00e1ll\u00e1si probl\u00e9ma \u00b7 Nagy sz\u00e1mok t\u00f6rv\u00e9nye \u00b7 Rogers\u2013Ramanujan \u00b7 Hardy\u2013Ramanujan \u00b7 Ramanujan \u03c4-f\u00fcggv\u00e9ny \u00b7 Chudnovsky \u00b7 Lax\u2013Milgram \u00b7 Nyquist\u2013Shannon \u00b7 Kalman-sz\u0171r\u0151 \u00b7 Wilson-tétel \u00b7 Brun-tétel \u00b7 Bertrand-posztulátum \u00b7 Hall-tétel \u00b7 Erdős\u2013Szekeres \u00b7 Helly-tétel \u00b7 Sperner-lemma \u00b7 Szimplex-módszer \u00b7 Perron\u2013Frobenius \u00b7 Gauss\u2013Markov \u00b7 Cauchy\u2013Schwarz \u00b7 Weierstrass-approximáció \u00b7 Picard\u2013Lindelöf \u00b7 Csebisev \u00b7 Kolmogorov 0-1 \u00b7 Markov-ergodikus \u00b7 Löwenheim\u2013Skolem \u00b7 Tarski \u00b7 Kruskal-fatétel \u00b7 Radon-tétel \u00b7 Nielsen\u2013Schreier \u00b7 Jones-polinom \u00b7 Church\u2013Turing \u00b7 Shannon-kapacitás \u00b7 FFT \u00b7 Lebesgue-konvergencia \u00b7 Fubini-t\u00e9tel \u00b7 Arzel\u00e0\u2013Ascoli \u00b7 Poisson-folyamat \u00b7 It\u014d-formula \u00b7 Erd\u0151s\u2013R\u00e9nyi \u00b7 Kolmogorov-komplexit\u00e1s \u00b7 L\u00f6b-t\u00e9tel \u00b7 Robertson\u2013Seymour \u00b7 Tur\u00e1n-t\u00e9tel \u00b7 Poincar\u00e9\u2013Bendixson \u00b7 Whitney-be\u00e1gyaz\u00e1s \u00b7 Lefschetz-fixpont \u00b7 Dijkstra \u00b7 Karmarkar \u00b7 Wald-azonoss\u00e1g \u00b7 Berry\u2013Esseen \u00b7 Banach\u2013Steinhaus \u00b7 Sobolev-be\u00e1gyaz\u00e1s \u00b7 Hopf-fibr\u00e1ci\u00f3 \u00b7 Van Kampen \u00b7 De Bruijn\u2013Erd\u0151s \u00b7 Borsuk-sejt\u00e9s \u00b7 Amdahl-t\u00f6rv\u00e9ny \u00b7 RSA"
+    footerNames: "Euler \u00b7 Fourier \u00b7 Ramanujan \u00b7 Gauss \u00b7 Riemann \u00b7 Cauchy \u00b7 Pitagorasz \u00b7 Stirling \u00b7 Basel \u00b7 Gauss\u2013Bonnet \u00b7 Euler-szorzat \u00b7 Stokes \u00b7 Fermat\u2013Wiles \u00b7 G\u00f6del \u00b7 Bayes \u00b7 Liouville \u00b7 Cayley \u00b7 Borsuk\u2013Ulam \u00b7 S\u00fcndiszn\u00f3 \u00b7 Cantor \u00b7 Aranymetsz\u00e9s \u00b7 Banach \u00b7 Brouwer \u00b7 Pr\u00edmsz\u00e1mt\u00e9tel \u00b7 CHT \u00b7 Pell \u00b7 Sylvester\u2013Gallai \u00b7 N\u00e9gysz\u00edn-t\u00e9tel \u00b7 Jordan \u00b7 Collatz \u00b7 Goldbach \u00b7 P vs NP \u00b7 Hilbert-sz\u00e1lloda \u00b7 Monty Hall \u00b7 Sz\u00fclet\u00e9snapi paradoxon \u00b7 Bell/CHSH \u00b7 Lagrange-n\u00e9gyzett\u00e9tel \u00b7 Erd\u0151s\u2013Ko\u2013Rado \u00b7 Banach\u2013Tarski \u00b7 Arrow \u00b7 Poincar\u00e9 \u00b7 Euler-poli\u00e9der \u00b7 Ramsey \u00b7 Szemer\u00e9di \u00b7 Green\u2013Tao \u00b7 Kontinuumhipot\u00e9zis \u00b7 Algebra alapt\u00e9tele \u00b7 Catalan\u2013Mihailescu \u00b7 Kalkulus alapt\u00e9tele \u00b7 Pi transzcendenci\u00e1ja \u00b7 Happy Ending \u00b7 Nash-egyenl\u0151s\u00e9g \u00b7 Kepler-sejt\u00e9s \u00b7 Pick-t\u00e9tel \u00b7 Goodstein-t\u00e9tel \u00b7 Riemann-lek\u00e9pez\u00e9s \u00b7 Korl\u00e1tos pr\u00edmr\u00e9s \u00b7 Cook\u2013Levin \u00b7 Meg\u00e1ll\u00e1si probl\u00e9ma \u00b7 Nagy sz\u00e1mok t\u00f6rv\u00e9nye \u00b7 Rogers\u2013Ramanujan \u00b7 Hardy\u2013Ramanujan \u00b7 Ramanujan \u03c4-f\u00fcggv\u00e9ny \u00b7 Chudnovsky \u00b7 Lax\u2013Milgram \u00b7 Nyquist\u2013Shannon \u00b7 Kalman-sz\u0171r\u0151 \u00b7 Wilson-tétel \u00b7 Brun-tétel \u00b7 Bertrand-posztulátum \u00b7 Hall-tétel \u00b7 Erdős\u2013Szekeres \u00b7 Helly-tétel \u00b7 Sperner-lemma \u00b7 Szimplex-módszer \u00b7 Perron\u2013Frobenius \u00b7 Gauss\u2013Markov \u00b7 Cauchy\u2013Schwarz \u00b7 Weierstrass-approximáció \u00b7 Picard\u2013Lindelöf \u00b7 Csebisev \u00b7 Kolmogorov 0-1 \u00b7 Markov-ergodikus \u00b7 Löwenheim\u2013Skolem \u00b7 Tarski \u00b7 Kruskal-fatétel \u00b7 Radon-tétel \u00b7 Nielsen\u2013Schreier \u00b7 Jones-polinom \u00b7 Church\u2013Turing \u00b7 Shannon-kapacitás \u00b7 FFT \u00b7 Lebesgue-konvergencia \u00b7 Fubini-t\u00e9tel \u00b7 Arzel\u00e0\u2013Ascoli \u00b7 Poisson-folyamat \u00b7 It\u014d-formula \u00b7 Erd\u0151s\u2013R\u00e9nyi \u00b7 Kolmogorov-komplexit\u00e1s \u00b7 L\u00f6b-t\u00e9tel \u00b7 Robertson\u2013Seymour \u00b7 Tur\u00e1n-t\u00e9tel \u00b7 Poincar\u00e9\u2013Bendixson \u00b7 Whitney-be\u00e1gyaz\u00e1s \u00b7 Lefschetz-fixpont \u00b7 Dijkstra \u00b7 Karmarkar \u00b7 Wald-azonoss\u00e1g \u00b7 Berry\u2013Esseen \u00b7 Banach\u2013Steinhaus \u00b7 Sobolev-be\u00e1gyaz\u00e1s \u00b7 Hopf-fibr\u00e1ci\u00f3 \u00b7 Van Kampen \u00b7 De Bruijn\u2013Erd\u0151s \u00b7 Borsuk-sejt\u00e9s \u00b7 Amdahl-t\u00f6rv\u00e9ny \u00b7 RSA",
+    ghostFormulas: ["e^{i\\pi}+1=0", "\\zeta(s)=\\sum_{n=1}^{\\infty}\\frac{1}{n^s}", "\\int_{-\\infty}^{\\infty} e^{-x^2}dx=\\sqrt{\\pi}", "\\forall\\varepsilon>0\\,\\exists\\delta", "\\aleph_0 < \\mathfrak{c}", "\\nabla^2\\phi=0"]
   },
   fizika: {
     label: "Fizika · Kémia · Biológia",
@@ -2435,7 +2561,8 @@ const DOMAINS = {
       "mernoki-alkalmazasok": "Mérnöki alkalmazások"
     },
     categoryOrder: ["klasszikus","kvantum","relativitas","reszecskefizika","termodinamika","kemia-biologia","mernoki-alkalmazasok"],
-    footerNames: "Maxwell \u00b7 Noether \u00b7 Schr\u00f6dinger \u00b7 Boltzmann \u00b7 Feynman \u00b7 Dirac \u00b7 Bekenstein\u2013Hawking \u00b7 Euler\u2013Lagrange \u00b7 E=mc\u00b2 \u00b7 Yang\u2013Mills \u00b7 Heisenberg \u00b7 Shannon \u00b7 Navier\u2013Stokes \u00b7 Planck \u00b7 Lorentz \u00b7 Hawking-h\u0151m\u00e9rs\u00e9klet \u00b7 Aszimptotikus szabads\u00e1g \u00b7 Peri\u00f3dusos rendszer \u00b7 Kepler \u00b7 Hamilton \u00b7 Lotka\u2013Volterra \u00b7 Hardy\u2013Weinberg \u00b7 Snellius\u2013Descartes \u00b7 Viri\u00e1lt\u00e9tel \u00b7 Hodgkin\u2013Huxley \u00b7 Arrhenius \u00b7 Le Chatelier \u00b7 Bell/CHSH \u00b7 Carnot \u00b7 Higgs \u00b7 Casimir \u00b7 Michaelis\u2013Menten \u00b7 Az id\u0151 nyila \u00b7 Kvarkbez\u00e1r\u00e1s \u00b7 Holografikus elv \u00b7 BCS-elm\u00e9let \u00b7 Drake-egyenlet \u00b7 Fick-t\u00f6rv\u00e9ny \u00b7 Einstein-mez\u0151egyenletek \u00b7 Faraday-indukci\u00f3 \u00b7 Wien-t\u00f6rv\u00e9ny \u00b7 Levinthal-paradoxon \u00b7 Doppler-effektus \u00b7 Bernoulli-egyenlet \u00b7 ATP-szint\u00e1z \u00b7 Homokiralit\u00e1s \u00b7 Hubble\u2013Lema\u00eetre \u00b7 Lorentz-er\u0151 \u00b7 Avogadro-\u00e1lland\u00f3 \u00b7 Compton-effektus \u00b7 Van 't Hoff \u00b7 Pauli-elv \u00b7 Hull\u00e1megyenlet \u00b7 Reynolds-sz\u00e1m \u00b7 Seebeck-effektus \u00b7 Chandrasekhar-hat\u00e1r \u00b7 Bose\u2013Einstein-kondenz\u00e1ci\u00f3 \u00b7 CPT-t\u00e9tel \u00b7 Onsager-reciprocit\u00e1s \u00b7 Landauer-elv \u00b7 Euler-kihajl\u00e1s \u00b7 Saint-Venant \u00b7 Mohr-k\u00f6r \u00b7 Betti-t\u00e9tel \u00b7 Clausius\u2013Clapeyron \u00b7 Gibbs-energia \u00b7 Fermi\u2013Dirac \u00b7 Neutrínó-oszcilláció \u00b7 Gell-Mann\u2013Nishijima \u00b7 Schwarzschild-sugár \u00b7 Friedmann-egyenletek \u00b7 Euler\u2013Bernoulli \u00b7 Castigliano \u00b7 Buckingham π-tétel \u00b7 Alag\u00fathat\u00e1s \u00b7 No-cloning \u00b7 Josephson \u00b7 Meissner \u00b7 Nernst-t\u00e9tel \u00b7 Maxwell\u2013Boltzmann \u00b7 Stefan\u2013Boltzmann \u00b7 Cserenkov \u00b7 M\u00fcon g-2 \u00b7 Ekvivalenciaelv \u00b7 Kerr-metrika \u00b7 Gravit\u00e1ci\u00f3s hull\u00e1mok \u00b7 Timoshenko \u00b7 Navier (rugalmass\u00e1gtan) \u00b7 Rayleigh\u2013Ritz \u00b7 Hooke-t\u00f6rv\u00e9ny \u00b7 Darcy-t\u00f6rv\u00e9ny \u00b7 Terzaghi-konszolid\u00e1ci\u00f3 \u00b7 Coriolis-er\u0151 \u00b7 Foucault-inga \u00b7 Euler-forg\u00e1segyenletek \u00b7 Van der Waals \u00b7 Joule\u2013Thomson \u00b7 Fourier-h\u0151vezet\u00e9s \u00b7 Nernst-egyenlet \u00b7 CKM-m\u00e1trix \u00b7 Aharonov\u2013Bohm \u00b7 Penrose\u2013Hawking \u00b7 Shapiro-k\u00e9sleltet\u00e9s \u00b7 Penrose-folyamat \u00b7 Watson\u2013Crick \u00b7 Griffith-t\u00f6r\u00e9smechanika \u00b7 Coulomb-s\u00fars\u00fbrl\u00f3d\u00e1s \u00b7 Elektrogyenge egyes\u00edt\u00e9s \u00b7 Rutherford-sz\u00f3r\u00e1s \u00b7 Kvantum-teleport\u00e1ci\u00f3 \u00b7 D'Alembert-elv \u00b7 Lense\u2013Thirring \u00b7 Kirchhoff-sug\u00e1rz\u00e1s \u00b7 Kvark-gluon plazma"
+    footerNames: "Maxwell \u00b7 Noether \u00b7 Schr\u00f6dinger \u00b7 Boltzmann \u00b7 Feynman \u00b7 Dirac \u00b7 Bekenstein\u2013Hawking \u00b7 Euler\u2013Lagrange \u00b7 E=mc\u00b2 \u00b7 Yang\u2013Mills \u00b7 Heisenberg \u00b7 Shannon \u00b7 Navier\u2013Stokes \u00b7 Planck \u00b7 Lorentz \u00b7 Hawking-h\u0151m\u00e9rs\u00e9klet \u00b7 Aszimptotikus szabads\u00e1g \u00b7 Peri\u00f3dusos rendszer \u00b7 Kepler \u00b7 Hamilton \u00b7 Lotka\u2013Volterra \u00b7 Hardy\u2013Weinberg \u00b7 Snellius\u2013Descartes \u00b7 Viri\u00e1lt\u00e9tel \u00b7 Hodgkin\u2013Huxley \u00b7 Arrhenius \u00b7 Le Chatelier \u00b7 Bell/CHSH \u00b7 Carnot \u00b7 Higgs \u00b7 Casimir \u00b7 Michaelis\u2013Menten \u00b7 Az id\u0151 nyila \u00b7 Kvarkbez\u00e1r\u00e1s \u00b7 Holografikus elv \u00b7 BCS-elm\u00e9let \u00b7 Drake-egyenlet \u00b7 Fick-t\u00f6rv\u00e9ny \u00b7 Einstein-mez\u0151egyenletek \u00b7 Faraday-indukci\u00f3 \u00b7 Wien-t\u00f6rv\u00e9ny \u00b7 Levinthal-paradoxon \u00b7 Doppler-effektus \u00b7 Bernoulli-egyenlet \u00b7 ATP-szint\u00e1z \u00b7 Homokiralit\u00e1s \u00b7 Hubble\u2013Lema\u00eetre \u00b7 Lorentz-er\u0151 \u00b7 Avogadro-\u00e1lland\u00f3 \u00b7 Compton-effektus \u00b7 Van 't Hoff \u00b7 Pauli-elv \u00b7 Hull\u00e1megyenlet \u00b7 Reynolds-sz\u00e1m \u00b7 Seebeck-effektus \u00b7 Chandrasekhar-hat\u00e1r \u00b7 Bose\u2013Einstein-kondenz\u00e1ci\u00f3 \u00b7 CPT-t\u00e9tel \u00b7 Onsager-reciprocit\u00e1s \u00b7 Landauer-elv \u00b7 Euler-kihajl\u00e1s \u00b7 Saint-Venant \u00b7 Mohr-k\u00f6r \u00b7 Betti-t\u00e9tel \u00b7 Clausius\u2013Clapeyron \u00b7 Gibbs-energia \u00b7 Fermi\u2013Dirac \u00b7 Neutrínó-oszcilláció \u00b7 Gell-Mann\u2013Nishijima \u00b7 Schwarzschild-sugár \u00b7 Friedmann-egyenletek \u00b7 Euler\u2013Bernoulli \u00b7 Castigliano \u00b7 Buckingham π-tétel \u00b7 Alag\u00fathat\u00e1s \u00b7 No-cloning \u00b7 Josephson \u00b7 Meissner \u00b7 Nernst-t\u00e9tel \u00b7 Maxwell\u2013Boltzmann \u00b7 Stefan\u2013Boltzmann \u00b7 Cserenkov \u00b7 M\u00fcon g-2 \u00b7 Ekvivalenciaelv \u00b7 Kerr-metrika \u00b7 Gravit\u00e1ci\u00f3s hull\u00e1mok \u00b7 Timoshenko \u00b7 Navier (rugalmass\u00e1gtan) \u00b7 Rayleigh\u2013Ritz \u00b7 Hooke-t\u00f6rv\u00e9ny \u00b7 Darcy-t\u00f6rv\u00e9ny \u00b7 Terzaghi-konszolid\u00e1ci\u00f3 \u00b7 Coriolis-er\u0151 \u00b7 Foucault-inga \u00b7 Euler-forg\u00e1segyenletek \u00b7 Van der Waals \u00b7 Joule\u2013Thomson \u00b7 Fourier-h\u0151vezet\u00e9s \u00b7 Nernst-egyenlet \u00b7 CKM-m\u00e1trix \u00b7 Aharonov\u2013Bohm \u00b7 Penrose\u2013Hawking \u00b7 Shapiro-k\u00e9sleltet\u00e9s \u00b7 Penrose-folyamat \u00b7 Watson\u2013Crick \u00b7 Griffith-t\u00f6r\u00e9smechanika \u00b7 Coulomb-s\u00fars\u00fbrl\u00f3d\u00e1s \u00b7 Elektrogyenge egyes\u00edt\u00e9s \u00b7 Rutherford-sz\u00f3r\u00e1s \u00b7 Kvantum-teleport\u00e1ci\u00f3 \u00b7 D'Alembert-elv \u00b7 Lense\u2013Thirring \u00b7 Kirchhoff-sug\u00e1rz\u00e1s \u00b7 Kvark-gluon plazma",
+    ghostFormulas: ["\\nabla\\times\\vec{E}=-\\frac{\\partial \\vec{B}}{\\partial t}", "E=mc^2", "\\hat{H}\\psi=i\\hbar\\frac{\\partial\\psi}{\\partial t}", "S=k_B\\ln\\Omega", "F=ma", "ds^2=g_{\\mu\\nu}dx^\\mu dx^\\nu"]
   }
 };
 
@@ -2453,6 +2580,7 @@ const domainSwitch = document.getElementById("domainSwitch");
 const searchBox = document.getElementById("searchBox");
 const searchClear = document.getElementById("searchClear");
 const viewSwitch = document.getElementById("viewSwitch");
+const ghostBg = document.getElementById("ghostBg");
 
 let activeDomain = "matek";
 let activeCategory = "all";
@@ -2475,6 +2603,15 @@ function buildRow(entry, index) {
   const rankEl = document.createElement("div");
   rankEl.className = "rank";
   rankEl.textContent = rank;
+
+  const plateLabel = document.createElement("span");
+  plateLabel.className = "plate-label";
+  plateLabel.textContent = "Tábla";
+
+  const rankPlate = document.createElement("div");
+  rankPlate.className = "rank-plate";
+  rankPlate.appendChild(plateLabel);
+  rankPlate.appendChild(rankEl);
 
   const body = document.createElement("div");
   body.className = "body";
@@ -2555,7 +2692,7 @@ function buildRow(entry, index) {
   why.innerHTML = entry.why;
   body.appendChild(why);
 
-  row.appendChild(rankEl);
+  row.appendChild(rankPlate);
   row.appendChild(body);
   return row;
 }
@@ -2639,6 +2776,36 @@ function applyFilter() {
   countDisplay.innerHTML = label;
 }
 
+const GHOST_POSITIONS = [
+  {top:"6%",  left:"3%",  size:"2.6rem", rot:"-6deg"},
+  {top:"16%", left:"84%", size:"2.1rem", rot:"5deg"},
+  {top:"38%", left:"1%",  size:"3.1rem", rot:"4deg"},
+  {top:"55%", left:"87%", size:"2.4rem", rot:"-4deg"},
+  {top:"74%", left:"4%",  size:"2rem",   rot:"7deg"},
+  {top:"88%", left:"80%", size:"2.8rem", rot:"-5deg"}
+];
+
+function renderGhostBg(domainKey) {
+  const domain = DOMAINS[domainKey];
+  ghostBg.innerHTML = "";
+  if (!domain.ghostFormulas || !window.katex) return;
+  domain.ghostFormulas.forEach((tex, i) => {
+    const pos = GHOST_POSITIONS[i % GHOST_POSITIONS.length];
+    const el = document.createElement("div");
+    el.className = "ghost-formula";
+    el.style.top = pos.top;
+    el.style.left = pos.left;
+    el.style.fontSize = pos.size;
+    el.style.setProperty("--gr", pos.rot);
+    el.style.animationDuration = (55 + i * 9) + "s";
+    el.style.animationDelay = (-i * 7) + "s";
+    try {
+      katex.render(tex, el, {throwOnError: false, displayMode: false});
+    } catch (e) { /* ignore ghost render failures */ }
+    ghostBg.appendChild(el);
+  });
+}
+
 function renderDomain(domainKey) {
   const domain = DOMAINS[domainKey];
   activeDomain = domainKey;
@@ -2665,6 +2832,7 @@ function renderDomain(domainKey) {
 
   buildFilterBar(domainKey);
   renderGrid();
+  renderGhostBg(domainKey);
 }
 
 filterbar.addEventListener("click", (e) => {
@@ -2711,6 +2879,13 @@ function init() {
   const total = MATEK_DATA.length + FIZIKA_DATA.length;
   grandTotalEl.innerHTML = `Összesen <b>${total}</b> halhatatlan tudományos szépség a két gyűjteményben`;
   renderDomain("matek");
+
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const spin = document.getElementById("logoSpin");
+    if (spin && spin.endElement) spin.endElement();
+    const electron = document.querySelector(".logo-electron");
+    if (electron) electron.removeAttribute("transform");
+  }
 }
 
 if (window.katex) {
