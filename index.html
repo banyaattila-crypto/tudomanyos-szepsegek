@@ -335,7 +335,7 @@
     align-items:center;
     padding:clamp(22px,3.5vw,32px) 4px clamp(22px,3.5vw,32px) 12px;
     border-bottom:1px solid var(--line);
-    border-left:3px solid transparent;
+    border-left:4px solid transparent;
     opacity:0;transform:translateY(14px);
     animation:rise .6s cubic-bezier(.2,.7,.2,1) forwards;
     transition:opacity .25s ease, max-height .25s ease, border-color .5s ease, background .6s ease;
@@ -443,6 +443,18 @@
   .tag.special{
     color:var(--highlight);border-color:var(--highlight-border);
   }
+  .year-badge{
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px;letter-spacing:.03em;
+    color:var(--primary);
+    white-space:nowrap;
+    transition:color .5s ease;
+  }
+  .row-cat-dot{
+    display:inline-block;width:7px;height:7px;border-radius:50%;
+    margin-right:6px;box-shadow:0 0 5px currentColor;
+    vertical-align:middle;
+  }
   .row-actions{
     display:inline-flex;gap:4px;margin-left:auto;
   }
@@ -473,19 +485,23 @@
     transition:color .5s ease, background .5s ease;
   }
   .related-chips{
-    margin-top:12px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;
+    margin-top:14px;padding-top:12px;
+    border-top:1px dashed var(--line);
+    display:flex;flex-wrap:wrap;gap:7px;align-items:center;
   }
   .related-label{
-    font-family:"JetBrains Mono",monospace;font-size:10px;
-    color:var(--muted);letter-spacing:.04em;margin-right:2px;
+    font-family:"JetBrains Mono",monospace;font-size:10.5px;
+    color:var(--primary);letter-spacing:.06em;margin-right:2px;
+    text-transform:uppercase;font-weight:600;
   }
   .related-chip{
-    font-family:"JetBrains Mono",monospace;font-size:10.5px;
-    padding:3px 10px;border-radius:999px;
-    border:1px solid var(--line);color:var(--muted);
+    font-family:"JetBrains Mono",monospace;font-size:11px;
+    padding:4px 12px;border-radius:999px;
+    border:1px solid var(--highlight-border);color:var(--highlight);
     background:none;cursor:pointer;transition:all .2s ease;
   }
-  .related-chip:hover{border-color:var(--primary);color:var(--primary-bright);}
+  .related-chip:hover{border-color:var(--primary);color:var(--primary-bright);background:var(--chip-bg);}
+  .related-chip::before{content:"→ ";opacity:.7;}
 
   .scroll-hint{
     font-size:11px;letter-spacing:.16em;text-transform:uppercase;
@@ -535,6 +551,25 @@
     display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
   }
   footer span{color:var(--primary);transition:color .5s ease;}
+
+  /* ---- Toast (rövid visszajelzés) ---- */
+  .toast{
+    position:fixed;
+    left:50%;bottom:28px;
+    transform:translate(-50%,20px);
+    background:linear-gradient(135deg,var(--primary-bright),var(--primary));
+    color:var(--ink);
+    font-family:"Inter",sans-serif;font-size:13px;font-weight:600;
+    padding:11px 22px;border-radius:999px;
+    box-shadow:0 12px 30px -8px rgba(0,0,0,.5);
+    opacity:0;pointer-events:none;
+    transition:opacity .25s ease, transform .25s ease;
+    z-index:60;
+    white-space:nowrap;
+  }
+  .toast.visible{
+    opacity:1;transform:translate(-50%,0);
+  }
 
   /* ---- Kurátori jegyzet modal ---- */
   .modal-overlay{
@@ -667,6 +702,8 @@
     <div id="footerNames"><span></span></div>
   </footer>
 </div>
+
+<div class="toast" id="toast"></div>
 
 <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
   <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
@@ -3049,17 +3086,52 @@ function toggleFavorite(key, btnEl) {
   if (onlyFavorites) applyFilter();
 }
 
+let toastTimeout;
+function showToast(msg) {
+  const toast = document.getElementById("toast");
+  toast.textContent = msg;
+  toast.classList.add("visible");
+  clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => toast.classList.remove("visible"), 2200);
+}
+
+function legacyCopy(text) {
+  try {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    const ok = document.execCommand("copy");
+    document.body.removeChild(ta);
+    return ok;
+  } catch (e) { return false; }
+}
+
 function copyRowLink(id, btnEl) {
   const url = location.origin + location.pathname + "#" + id;
   history.replaceState(null, "", "#" + id);
-  const done = () => {
+
+  const row = document.getElementById(id);
+  if (row) {
+    row.classList.remove("highlight-flash");
+    void row.offsetWidth;
+    row.classList.add("highlight-flash");
+    setTimeout(() => row.classList.remove("highlight-flash"), 2300);
+  }
+
+  const finish = (copied) => {
     btnEl.classList.add("copied");
     setTimeout(() => btnEl.classList.remove("copied"), 1500);
+    showToast(copied ? "Link másolva a vágólapra!" : "Ez a tétel linkje — másold a címsorból");
   };
+
   if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(url).then(done).catch(done);
+    navigator.clipboard.writeText(url).then(() => finish(true)).catch(() => finish(legacyCopy(url)));
   } else {
-    done();
+    finish(legacyCopy(url));
   }
 }
 
@@ -3074,6 +3146,7 @@ function goToRelated(rel) {
   [...filterbar.children].forEach(c => c.classList.toggle("active", c.dataset.cat === "all"));
   applyFilter();
   window.scrollTo({top: 0, behavior: "smooth"});
+  showToast(`Ugrás ide: „${rel.name}"`);
 }
 
 
@@ -3086,7 +3159,7 @@ function buildRow(entry, index, domainKey) {
   row.style.animationDelay = (Math.min(index, 14) * 0.06) + "s";
   row.dataset.category = entry.category;
   const catColor = DOMAINS[domainKey].categoryColors && DOMAINS[domainKey].categoryColors[entry.category];
-  if (catColor) row.style.borderLeftColor = catColor + "55";
+  if (catColor) row.style.borderLeftColor = catColor + "cc";
 
   const rankEl = document.createElement("div");
   rankEl.className = "rank";
@@ -3171,8 +3244,22 @@ function buildRow(entry, index, domainKey) {
   }
   const tagEl = document.createElement("span");
   tagEl.className = "tag" + ((entry.mega || entry.special) ? " special" : "");
-  tagEl.textContent = entry.tag;
+  if (catColor) {
+    const dot = document.createElement("span");
+    dot.className = "row-cat-dot";
+    dot.style.background = catColor;
+    dot.style.color = catColor;
+    dot.title = DOMAINS[domainKey].categoryLabels[entry.category];
+    tagEl.appendChild(dot);
+  }
+  tagEl.appendChild(document.createTextNode(entry.tag));
   meta.appendChild(tagEl);
+
+  const yearEl = document.createElement("span");
+  yearEl.className = "year-badge";
+  const yr = extractYear(entry);
+  yearEl.textContent = yr < 0 ? ("Kr. e. " + Math.abs(yr) + ".") : String(yr);
+  meta.appendChild(yearEl);
 
   const actions = document.createElement("div");
   actions.className = "row-actions";
