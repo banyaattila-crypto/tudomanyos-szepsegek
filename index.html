@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Halhatatlan tudományos szépségek — archívum</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0b0f1f">
+<link rel="icon" href="icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Tud. szépségek">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -62,9 +69,23 @@
   .wrap{max-width:1060px;margin:0 auto;position:relative;z-index:1;}
 
   /* ---- Domain switcher ---- */
+  .top-row{
+    display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
+  }
   .domain-switch{
     display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;
   }
+  .info-btn{
+    flex:0 0 auto;
+    width:30px;height:30px;border-radius:50%;
+    font-family:"Fraunces",serif;font-style:italic;font-size:15px;
+    color:var(--muted);
+    background:var(--chip-bg);
+    border:1px solid var(--chip-border);
+    cursor:pointer;transition:all .2s ease;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .info-btn:hover{color:var(--primary-bright);border-color:var(--chip-hover-border);}
   .dbtn{
     font-family:"Inter",sans-serif;
     font-size:13px;font-weight:600;letter-spacing:.02em;
@@ -181,6 +202,24 @@
     border-color:transparent;color:var(--ink);
   }
 
+  .fav-toggle{
+    display:flex;align-items:center;gap:6px;
+    font-family:"Inter",sans-serif;font-size:12px;font-weight:600;letter-spacing:.02em;
+    color:var(--muted);
+    background:var(--chip-bg);
+    border:1px solid var(--chip-border);
+    padding:9px 14px;border-radius:999px;
+    cursor:pointer;transition:all .2s ease;
+    white-space:nowrap;flex:0 0 auto;
+  }
+  .fav-toggle svg{transition:fill .2s ease, stroke .2s ease;}
+  .fav-toggle:hover{border-color:var(--chip-hover-border);color:var(--paper);}
+  .fav-toggle.active{
+    background:linear-gradient(135deg,var(--primary-bright),var(--primary));
+    border-color:transparent;color:var(--ink);
+  }
+  .fav-toggle.active svg{fill:var(--ink);stroke:var(--ink);}
+
   /* ---- Category headers (grouped view) ---- */
   .category-header{
     display:flex;align-items:baseline;gap:10px;
@@ -189,6 +228,11 @@
     border-bottom:1px solid var(--line);
   }
   .category-header:first-child{margin-top:8px;}
+  .cat-dot{
+    display:inline-block;width:9px;height:9px;border-radius:50%;
+    margin-right:2px;flex:0 0 auto;
+    box-shadow:0 0 6px currentColor;
+  }
   .category-header .cat-name{
     font-family:"Fraunces",serif;font-weight:500;font-style:italic;
     font-size:clamp(17px,2.2vw,21px);color:var(--primary-bright);
@@ -289,15 +333,22 @@
     grid-template-columns:98px 1fr;
     gap:clamp(16px,3vw,34px);
     align-items:center;
-    padding:clamp(22px,3.5vw,32px) 4px;
+    padding:clamp(22px,3.5vw,32px) 4px clamp(22px,3.5vw,32px) 12px;
     border-bottom:1px solid var(--line);
+    border-left:3px solid transparent;
     opacity:0;transform:translateY(14px);
     animation:rise .6s cubic-bezier(.2,.7,.2,1) forwards;
-    transition:opacity .25s ease, max-height .25s ease, border-color .5s ease;
+    transition:opacity .25s ease, max-height .25s ease, border-color .5s ease, background .6s ease;
   }
   .row.hidden{display:none;}
   .row:first-of-type{border-top:1px solid var(--line);}
   @keyframes rise{to{opacity:1;transform:none;}}
+  @keyframes flashHighlight{
+    0%{background:transparent;}
+    25%{background:color-mix(in srgb, var(--primary) 16%, transparent);}
+    100%{background:transparent;}
+  }
+  .row.highlight-flash{animation:flashHighlight 2.2s ease;}
 
   .rank-plate{
     display:flex;flex-direction:column;align-items:center;gap:1px;
@@ -392,6 +443,20 @@
   .tag.special{
     color:var(--highlight);border-color:var(--highlight-border);
   }
+  .row-actions{
+    display:inline-flex;gap:4px;margin-left:auto;
+  }
+  .icon-btn{
+    background:none;border:none;cursor:pointer;
+    color:var(--muted);padding:3px;border-radius:6px;
+    display:inline-flex;align-items:center;justify-content:center;
+    transition:color .2s ease, transform .15s ease;
+  }
+  .icon-btn:hover{color:var(--primary-bright);transform:scale(1.15);}
+  .icon-btn svg{width:15px;height:15px;}
+  .icon-btn.fav-star.active{color:var(--highlight);}
+  .icon-btn.fav-star.active svg{fill:var(--highlight);}
+  .icon-btn.link-btn.copied{color:var(--primary-bright);}
   .why{color:var(--muted);margin:8px 0 0;font-size:clamp(13.5px,1.7vw,15px);}
   .why b{
     font-family:"Caveat",cursive;
@@ -407,6 +472,20 @@
     margin-right:1px;
     transition:color .5s ease, background .5s ease;
   }
+  .related-chips{
+    margin-top:12px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;
+  }
+  .related-label{
+    font-family:"JetBrains Mono",monospace;font-size:10px;
+    color:var(--muted);letter-spacing:.04em;margin-right:2px;
+  }
+  .related-chip{
+    font-family:"JetBrains Mono",monospace;font-size:10.5px;
+    padding:3px 10px;border-radius:999px;
+    border:1px solid var(--line);color:var(--muted);
+    background:none;cursor:pointer;transition:all .2s ease;
+  }
+  .related-chip:hover{border-color:var(--primary);color:var(--primary-bright);}
 
   .scroll-hint{
     font-size:11px;letter-spacing:.16em;text-transform:uppercase;
@@ -457,6 +536,48 @@
   }
   footer span{color:var(--primary);transition:color .5s ease;}
 
+  /* ---- Kurátori jegyzet modal ---- */
+  .modal-overlay{
+    position:fixed;inset:0;z-index:50;
+    background:rgba(0,0,0,.6);
+    backdrop-filter:blur(3px);
+    display:none;
+    align-items:center;justify-content:center;
+    padding:20px;
+  }
+  .modal-overlay.visible{display:flex;}
+  .modal-panel{
+    position:relative;
+    max-width:520px;width:100%;
+    max-height:80vh;overflow-y:auto;
+    background:linear-gradient(180deg,var(--panel),var(--ink-2));
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:clamp(24px,4vw,36px);
+    box-shadow:0 24px 60px -20px rgba(0,0,0,.6);
+  }
+  .modal-close{
+    position:absolute;top:16px;right:16px;
+    width:28px;height:28px;border-radius:50%;
+    background:var(--chip-bg);border:1px solid var(--chip-border);
+    color:var(--muted);cursor:pointer;font-size:13px;
+    display:flex;align-items:center;justify-content:center;
+    transition:all .2s ease;
+  }
+  .modal-close:hover{color:var(--paper);border-color:var(--chip-hover-border);}
+  .modal-eyebrow{
+    font-size:11px;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--primary);font-weight:600;margin:0 0 10px;
+  }
+  .modal-panel h2{
+    font-family:"Fraunces",serif;font-weight:500;font-style:italic;
+    font-size:clamp(21px,3vw,27px);margin:0 0 16px;color:var(--primary-bright);
+  }
+  .modal-panel p{
+    color:var(--muted);font-size:14.5px;line-height:1.65;margin:0 0 12px;
+  }
+  .modal-panel p:last-child{margin-bottom:0;}
+
   @media(max-width:560px){
     .row{grid-template-columns:62px 1fr;gap:12px;}
     .rank{font-size:26px;}
@@ -467,7 +588,10 @@
     .dbtn{font-size:12px;padding:8px 16px;}
     .toolbar{flex-direction:column;align-items:stretch;}
     .search-wrap{flex:1 1 auto;}
-    .view-switch{align-self:flex-end;}
+    .fav-toggle{justify-content:center;}
+    .view-switch{align-self:stretch;justify-content:space-between;}
+    .vbtn{flex:1;text-align:center;padding:9px 6px;}
+    .row-actions{margin-left:0;}
   }
   @media(prefers-reduced-motion:reduce){
     .row{animation:none;opacity:1;transform:none;}
@@ -499,9 +623,12 @@
 </div>
 <div class="wrap">
 
-  <div class="domain-switch" id="domainSwitch">
-    <button type="button" class="dbtn active" data-domain="matek">Matematika</button>
-    <button type="button" class="dbtn" data-domain="fizika">Fizika · Kémia · Biológia</button>
+  <div class="top-row">
+    <div class="domain-switch" id="domainSwitch">
+      <button type="button" class="dbtn active" data-domain="matek">Matematika</button>
+      <button type="button" class="dbtn" data-domain="fizika">Fizika · Kémia · Biológia</button>
+    </div>
+    <button type="button" class="info-btn" id="infoBtn" aria-label="A gyűjteményről" title="A gyűjteményről">ℹ</button>
   </div>
   <p class="grand-total" id="grandTotal"></p>
 
@@ -518,9 +645,14 @@
       <input type="search" id="searchBox" class="search-box" placeholder="Keresés név vagy leírás alapján…" autocomplete="off">
       <button type="button" id="searchClear" class="search-clear" aria-label="Törlés">✕</button>
     </div>
+    <button type="button" class="fav-toggle" id="favToggle" aria-pressed="false" title="Csak a kedvenceim">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.3l-5.4 3.2 1.4-6.1-4.7-4.1 6.2-.5L12 4l2.5 5.8 6.2.5-4.7 4.1 1.4 6.1z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      Kedvencek
+    </button>
     <div class="view-switch" id="viewSwitch">
       <button type="button" class="vbtn active" data-view="rank">Rangsor</button>
       <button type="button" class="vbtn" data-view="grouped">Kategóriák</button>
+      <button type="button" class="vbtn" data-view="timeline">Idővonal</button>
     </div>
   </div>
 
@@ -536,6 +668,17 @@
   </footer>
 </div>
 
+<div class="modal-overlay" id="modalOverlay" aria-hidden="true">
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button type="button" class="modal-close" id="modalClose" aria-label="Bezárás">✕</button>
+    <p class="modal-eyebrow">Kurátori jegyzet</p>
+    <h2 id="modalTitle">Miért ez a 251(+) tétel?</h2>
+    <p>Ez a gyűjtemény egy folyamatosan bővülő, szubjektív válogatás — nem egy „legjobb” lista, hanem azoknak a pillanatoknak a leltára, amikor egy formula, tétel vagy törvény túlmutatott a puszta hasznosságán, és valami mélyebbet mutatott meg: egy váratlan kapcsolatot, egy elegáns egyszerűséget, vagy azt az érzést, hogy a világ néha meglepően rendezett.</p>
+    <p>Nincs objektív mérce arra, mi „szép” egy egyenletben. A rangsor sorrendje nem tudományos konszenzus, hanem személyes ízlés, mérnöki és esztétikai szemmel egyaránt nézve — máshogy is fel lehetne építeni, és idővel biztosan változni is fog.</p>
+    <p>Ha van kedvenc tételed, ami hiányzik innen, az nem véletlen mulasztás — egyszerűen még nem jutott el idáig a lista.</p>
+  </div>
+</div>
+
 <script>
 // ==== ADATOK: MATEMATIKA ====
 const MATEK_DATA = [
@@ -544,6 +687,7 @@ const MATEK_DATA = [
     badge: "A klasszikus győztes",
     tag: "Analízis · komplex számok",
     category: "analizis",
+    year: 1748,
     mega: true,
     tex: "e^{i\\pi} + 1 = 0",
     why: "<b>5 alapkonstans, 1 egyenlet.</b> e, i, π, 1, 0 — öt különböző matematikai világból jönnek, mégis ilyen egyszerűen összekapcsolódnak. Nem véletlen: struktúra."
@@ -552,13 +696,16 @@ const MATEK_DATA = [
     name: "Fourier-transzformált",
     tag: "Analízis · jelfeldolgozás",
     category: "analizis",
+    year: 1822,
     tex: "\\hat{f}(\\xi) = \\int_{-\\infty}^{\\infty} f(x)\\,e^{-2\\pi i x \\xi}\\,dx",
-    why: "<b>Bármely jel felbontható frekvenciakomponensekre.</b> Modern jelfeldolgozás, képkompresszió, FEM-analízis — mind erre épül. Időtartomány és frekvenciatartomány kettőssége."
+    why: "<b>Bármely jel felbontható frekvenciakomponensekre.</b> Modern jelfeldolgozás, képkompresszió, FEM-analízis — mind erre épül. Időtartomány és frekvenciatartomány kettőssége.",
+    related: [{name: "Heisenberg-féle határozatlansági reláció", domain: "fizika"}]
   },
   {
     name: "Ramanujan-sorozat",
     tag: "Számelmélet · π",
     category: "szamelmelet",
+    year: 1914,
     scrollHint: true,
     tex: "\\frac{1}{\\pi} = \\frac{2\\sqrt{2}}{9801}\\sum_{k=0}^{\\infty}\\frac{(4k)!\\,(1103+26390k)}{(k!)^4\\,396^{4k}}",
     why: "<b>Teljesen őrültnek tűnik — mégis igaz.</b> Ramanujan bizonyítás nélkül írta le. Hihetetlen konvergenciasebességgel közelíti π-t: minden tag ~8 új tizedesjegyet ad."
@@ -567,6 +714,7 @@ const MATEK_DATA = [
     name: "Gauss-féle integrál",
     tag: "Analízis · valószínűség",
     category: "analizis",
+    year: 1809,
     tex: "\\int_{-\\infty}^{\\infty} e^{-x^2}\\,dx = \\sqrt{\\pi}",
     why: "<b>Kör és exponenciális találkozása.</b> Egy haranggörbe alatti terület gyökében ott a π. Poláris koordinátákra váltva bukkan elő — a szimmetria kényszeríti ki."
   },
@@ -575,12 +723,14 @@ const MATEK_DATA = [
     tag: "Megoldatlan · 1859",
     category: "szamelmelet",
     tex: "\\zeta(s) = 0 \\;\\Rightarrow\\; \\operatorname{Re}(s) = \\tfrac{1}{2} \\;?",
-    why: "<b>Prímek és komplex analízis rejtélye.</b> 160+ éve megoldatlan. A zéta-függvény nemtriviális nullhelyei mind a ½ egyenesen fekszenek — mindenki hiszi, senki nem bizonyította."
+    why: "<b>Prímek és komplex analízis rejtélye.</b> 160+ éve megoldatlan. A zéta-függvény nemtriviális nullhelyei mind a ½ egyenesen fekszenek — mindenki hiszi, senki nem bizonyította.",
+    related: [{name: "Prímszámtétel", domain: "matek"}, {name: "Euler-szorzat", domain: "matek"}, {name: "Korlátos prímrés-tétel", domain: "matek"}]
   },
   {
     name: "Cauchy-integrálformula",
     tag: "Komplex analízis",
     category: "analizis",
+    year: 1825,
     tex: "f(z) = \\frac{1}{2\\pi i}\\oint_{\\gamma}\\frac{f(\\zeta)}{\\zeta - z}\\,d\\zeta",
     why: "<b>A perem meghatározza a belsőt.</b> Egy komplex függvény értéke a tartomány belsejében teljes egészében kiszámítható a határon felvett értékekből. FEM szempontból is mélyen releváns."
   },
@@ -588,6 +738,7 @@ const MATEK_DATA = [
     name: "Pitagorasz általánosítása",
     tag: "Geometria · trigonometria",
     category: "kombinatorika-geometria",
+    year: -300,
     tex: "c^2 = a^2 + b^2 - 2ab\\cos\\gamma",
     why: "<b>Az általánosabb tartalmazza a speciálist.</b> γ = 90° esetén visszakapjuk a Pitagorasz-tételt. Szép mert a struktúra hierarchikus — egy képlet leírja az egész síkgeometriát."
   },
@@ -595,6 +746,7 @@ const MATEK_DATA = [
     name: "Stirling-közelítés",
     tag: "Kombinatorika · aszimptotika",
     category: "kombinatorika-geometria",
+    year: 1730,
     tex: "n! \\approx \\sqrt{2\\pi n}\\left(\\frac{n}{e}\\right)^{n}",
     why: "<b>π és e együtt, ott ahol nem várod.</b> Nagy faktoriálisok közelítése — a √(2π) a Gauss-integrálból bukkan elő. Két nagy konstans kombinatorikai kontextusban."
   },
@@ -603,19 +755,23 @@ const MATEK_DATA = [
     tag: "Sorok · Euler · 1734",
     category: "analizis",
     tex: "\\sum_{n=1}^{\\infty}\\frac{1}{n^2} = \\frac{\\pi^2}{6}",
-    why: "<b>π ott, ahol semmi nem indokolná.</b> Pozitív egészek négyzetének reciprokösszege π²/6. Euler a szinuszfüggvény végtelen szorzatalakjából vezette le — az egyik legelegánsabb bizonyítás."
+    why: "<b>π ott, ahol semmi nem indokolná.</b> Pozitív egészek négyzetének reciprokösszege π²/6. Euler a szinuszfüggvény végtelen szorzatalakjából vezette le — az egyik legelegánsabb bizonyítás.",
+    related: [{name: "Euler-szorzat", domain: "matek"}, {name: "Wallis-szorzat", domain: "matek"}]
   },
   {
     name: "Gauss–Bonnet-tétel",
     tag: "Differenciálgeometria · topológia",
     category: "topologia",
+    year: 1848,
     tex: "\\int_M K\\,dA = 2\\pi\\,\\chi(M)",
-    why: "<b>Lokális görbület → globális topológia.</b> A teljes Gauss-görbület differenciálgeometriai, az Euler-karakterisztika tisztán topológiai — mégis egyenlők. Hajlíthatod a felületet ahogy akarod, a totális görbület megmarad. A poliéder-formula folytonos rokona."
+    why: "<b>Lokális görbület → globális topológia.</b> A teljes Gauss-görbület differenciálgeometriai, az Euler-karakterisztika tisztán topológiai — mégis egyenlők. Hajlíthatod a felületet ahogy akarod, a totális görbület megmarad. A poliéder-formula folytonos rokona.",
+    related: [{name: "Christoffel-szimbólumok", domain: "fizika"}, {name: "Einstein-féle mezőegyenletek", domain: "fizika"}]
   },
   {
     name: "Euler-szorzat",
     tag: "Számelmélet · prímek",
     category: "szamelmelet",
+    year: 1737,
     tex: "\\sum_{n=1}^{\\infty}\\frac{1}{n^s} = \\prod_{p\\,\\text{prím}}\\frac{1}{1-p^{-s}}",
     why: "<b>Összes egész = csak a prímek.</b> A számtan alaptétele (egyértelmű prímfelbontás) elég a levezetéshez. Ebből bizonyítható, hogy a prímek reciprokösszege divergál — túl Euklidészen. Ez a kapocs a Riemann-hipotézis felé."
   },
@@ -623,6 +779,7 @@ const MATEK_DATA = [
     name: "Általánosított Stokes-tétel",
     tag: "Differenciálformák · egyesítés",
     category: "analizis",
+    year: 1899,
     tex: "\\int_{M} d\\omega = \\int_{\\partial M} \\omega",
     why: "<b>Egyetlen tétel, amely sok mást magába olvaszt.</b> Speciális eseteként visszakapjuk az analízis alaptételét, a Green-, a Gauss- és a klasszikus Stokes-tételt. A lényeg: a külső derivált duálisa a peremnek. \"Csak a peremen lévő érték számít.\""
   },
@@ -638,7 +795,8 @@ const MATEK_DATA = [
     tag: "Matematikai logika · 1931",
     category: "logika-halmaz",
     tex: "\\exists\\, G:\\;\\; \\nvdash_{T} G \\;\\;\\text{és}\\;\\; \\nvdash_{T} \\lnot G",
-    why: "<b>A matematika nem tudja önmagát teljesen bizonyítani.</b> Minden elég erős, konzisztens formális rendszerben létezik igaz állítás, amely a rendszeren belül nem bizonyítható. Hilbert programját döntötte le egyetlen ütéssel — a matematika határainak felfedezése."
+    why: "<b>A matematika nem tudja önmagát teljesen bizonyítani.</b> Minden elég erős, konzisztens formális rendszerben létezik igaz állítás, amely a rendszeren belül nem bizonyítható. Hilbert programját döntötte le egyetlen ütéssel — a matematika határainak felfedezése.",
+    related: [{name: "Megállási probléma", domain: "matek"}, {name: "Kolmogorov-komplexitás", domain: "matek"}, {name: "Tarski igazságdefiníció-tétele", domain: "matek"}]
   },
   {
     name: "Bayes-tétel",
@@ -658,6 +816,7 @@ const MATEK_DATA = [
     name: "Cayley-formula",
     tag: "Kombinatorika · gráfelmélet",
     category: "kombinatorika-geometria",
+    year: 1889,
     tex: "n^{\\,n-2}",
     why: "<b>Egyetlen kifejezés, brutális egyszerűség.</b> Ennyi feszítőfa létezik n címkézett csúcsú teljes gráfon. A bizonyítás (Prüfer-kód) maga is gyönyörű bijekció a fák és sorozatok között."
   },
@@ -665,6 +824,7 @@ const MATEK_DATA = [
     name: "Borsuk–Ulam-tétel",
     tag: "Topológia · fixpont",
     category: "topologia",
+    year: 1933,
     tex: "\\forall f:S^n\\!\\to\\!\\mathbb{R}^n \\;\\exists x:\\, f(x)=f(-x)",
     why: "<b>A Föld bármely pillanatban két átellenes pontján egyenlő hőmérséklet és légnyomás van.</b> Folytonos leképzésnél a gömbön mindig található antipodális pontpár, ahol a függvényértékek megegyeznek — tiszta topológia, meglepő fizikai következménnyel."
   },
@@ -686,6 +846,7 @@ const MATEK_DATA = [
     name: "Aranymetszés",
     tag: "Számelmélet · Fibonacci",
     category: "szamelmelet",
+    year: -300,
     tex: "\\varphi = 1+\\frac{1}{1+\\frac{1}{1+\\frac{1}{1+\\ddots}}} = \\frac{1+\\sqrt{5}}{2}",
     why: "<b>A szám, amely a saját reciprokával egyezik meg (plusz 1).</b> A legegyszerűbb végtelen lánctört, amely mégis irracionális. A Fibonacci-sorozat szomszédos elemeinek aránya éppen ide konvergál — napraforgóktól a galaxisok karjaiig mindenhol felbukkan."
   },
@@ -701,7 +862,8 @@ const MATEK_DATA = [
     tag: "Topológia · 1911",
     category: "topologia",
     tex: "f:D^n\\!\\to\\!D^n \\;\\text{folytonos} \\;\\Rightarrow\\; \\exists x:\\,f(x)=x",
-    why: "<b>Bármilyen összekevert kávét visszakeversz — egy pont biztosan a helyén marad.</b> Egy korong önmagára vett folytonos leképzésének mindig van fixpontja. Tisztán egzisztenciális (nem mondja meg, hol), mégis a játékelmélet és közgazdaságtan (Nash-egyensúly) alapköve."
+    why: "<b>Bármilyen összekevert kávét visszakeversz — egy pont biztosan a helyén marad.</b> Egy korong önmagára vett folytonos leképzésének mindig van fixpontja. Tisztán egzisztenciális (nem mondja meg, hol), mégis a játékelmélet és közgazdaságtan (Nash-egyensúly) alapköve.",
+    related: [{name: "Sperner-lemma", domain: "matek"}, {name: "Borsuk–Ulam-tétel", domain: "matek"}]
   },
   {
     name: "Prímszámtétel",
@@ -714,6 +876,7 @@ const MATEK_DATA = [
     name: "Centrális határeloszlás-tétel",
     tag: "Valószínűségszámítás",
     category: "valoszinuseg",
+    year: 1810,
     tex: "\\frac{\\bar{X}_n - \\mu}{\\sigma/\\sqrt{n}} \\xrightarrow{d} \\mathcal{N}(0,1)",
     why: "<b>Bármiből, ha elég sokat összeadsz, harang alakú lesz.</b> Független, azonos eloszlású változók átlaga — bármi is volt az eredeti eloszlás — normális eloszláshoz tart. Ez magyarázza, miért bukkan fel a Gauss-görbe a természet és statisztika minden szegletében."
   },
@@ -721,6 +884,7 @@ const MATEK_DATA = [
     name: "Pell-egyenlet",
     tag: "Számelmélet · diofantikus",
     category: "szamelmelet",
+    year: 628,
     tex: "x^2 - Dy^2 = 1",
     why: "<b>Egyetlen négyzetes egyenlet, és a √D legjobb törtközelítései hullanak ki belőle.</b> A megoldások a √D lánctörtjének periodikus szerkezetéből adódnak. Brahmagupta már a 7. században tudta kombinálni a megoldásokat — az algebrai számelmélet egyik őse."
   },
@@ -749,6 +913,7 @@ const MATEK_DATA = [
     name: "Collatz-sejtés",
     tag: "Megoldatlan · számelmélet",
     category: "szamelmelet",
+    year: 1937,
     tex: "n \\to \\begin{cases} n/2 & \\text{ha páros} \\\\ 3n+1 & \\text{ha páratlan} \\end{cases} \\;\\Rightarrow\\; \\text{végül } 1\\text{-be jut}",
     why: "<b>Egy gyerek is megérti a szabályt — senki nem tudja bizonyítani.</b> Minden pozitív egész szám előbb-utóbb eljut 1-be ezzel a két egyszerű lépéssel. 2⁶⁰-nál nagyobb számokig ellenőrizve, ellenpélda nélkül. Erdős szerint 'a matematika még nem áll készen' rá."
   },
@@ -763,6 +928,7 @@ const MATEK_DATA = [
     name: "P vs NP probléma",
     tag: "Számítástudomány · millenniumi probléma",
     category: "logika-halmaz",
+    year: 1971,
     tex: "P \\;\\overset{?}{=}\\; NP",
     why: "<b>Ha könnyű ellenőrizni egy választ, könnyű is megtalálni?</b> A modern informatika legnagyobb nyitott kérdése. Ha P=NP, az kriptográfiát, optimalizálást és AI-t egyaránt felforgatna. A hét millenniumi probléma egyike, 1 millió dolláros díjjal."
   },
@@ -771,12 +937,14 @@ const MATEK_DATA = [
     tag: "Halmazelmélet · végtelen, 1924",
     category: "logika-halmaz",
     tex: "|\\mathbb{N}| = |\\mathbb{N}+1| = |2\\mathbb{N}|",
-    why: "<b>Egy teljesen tele szálloda mindig tud helyet szorítani.</b> Ha minden szoba foglalt, és új vendég jön, mindenkit eggyel arrébb mozgatva felszabadul az 1. szoba. Végtelenül sok új vendégnek is hely található. A megszámlálható végtelen elképesztő tulajdonsága — vizuálisan tanítja Cantor elméletét."
+    why: "<b>Egy teljesen tele szálloda mindig tud helyet szorítani.</b> Ha minden szoba foglalt, és új vendég jön, mindenkit eggyel arrébb mozgatva felszabadul az 1. szoba. Végtelenül sok új vendégnek is hely található. A megszámlálható végtelen elképesztő tulajdonsága — vizuálisan tanítja Cantor elméletét.",
+    related: [{name: "Kontinuumhipotézis függetlensége", domain: "matek"}, {name: "Cantor diagonális argumentuma", domain: "matek"}]
   },
   {
     name: "Monty Hall-probléma",
     tag: "Valószínűségszámítás · paradoxon",
     category: "valoszinuseg",
+    year: 1975,
     tex: "P(\\text{nyerés, ha váltasz}) = \\tfrac{2}{3} \\;>\\; P(\\text{nyerés, ha marad}) = \\tfrac{1}{3}",
     why: "<b>A józan ész téved, a matematika nem.</b> Három ajtó, egy díj, a műsorvezető felfed egy rossz ajtót — érdemes-e váltani? A legtöbb ember (matematikusok is) ragaszkodnak ahhoz, hogy nem számít. Pedig a váltás duplázza a nyerési esélyt — a feltételes valószínűség klasszikus csapdája."
   },
@@ -784,6 +952,7 @@ const MATEK_DATA = [
     name: "Születésnapi paradoxon",
     tag: "Valószínűségszámítás · kombinatorika",
     category: "valoszinuseg",
+    year: 1939,
     tex: "P(\\text{egyezés} \\mid n=23) > \\tfrac{1}{2}",
     why: "<b>Csak 23 ember kell egy szobába — és több mint 50% az esély, hogy kettőnek egyezik a születésnapja.</b> A józan ész 100+ embert sejtene. A trükk: nem azt kérdezzük, hogy VALAKINEK egyezik-e a tiéddel, hanem hogy BÁRMELY pár egyezik-e — a páros kombinációk száma négyzetesen nő."
   },
@@ -791,6 +960,7 @@ const MATEK_DATA = [
     name: "Bell-tétel / CHSH-egyenlőtlenség",
     tag: "Logika & valóság · határterület",
     category: "logika-halmaz",
+    year: 1964,
     tex: "|E(a,b) - E(a,b') + E(a',b) + E(a',b')| \\le 2",
     why: "<b>Tisztán matematikai egyenlőtlenség — és bebizonyítja, hogy a valóság nem lokális.</b> Bár fizikai jelentése óriási (lásd a fizikai listát), maga az egyenlőtlenség logikai-kombinatorikus tétel korrelációkról. A kvantummechanika ezt megsérti — ezt mérték meg Aspect kísérletei."
   },
@@ -840,6 +1010,7 @@ const MATEK_DATA = [
     name: "Ramsey-tétel",
     tag: "Kombinatorika · rendezetlenségből rend",
     category: "kombinatorika-geometria",
+    year: 1930,
     tex: "\\forall k,l \\; \\exists R(k,l): \\; n \\ge R(k,l) \\Rightarrow \\text{garantált monokromatikus klikk}",
     why: "<b>A teljes véletlenszerűségben is elkerülhetetlen a rend.</b> Bármilyen 2-színezésű, elég nagy teljes gráfban garantáltan található egyszínű részgráf. A 'tiszta rendezetlenség' matematikailag lehetetlen — ha elég nagy a rendszer, valamilyen struktúra biztosan felbukkan benne."
   },
@@ -868,6 +1039,7 @@ const MATEK_DATA = [
     name: "Algebra alaptétele",
     tag: "Komplex analízis · d'Alembert–Gauss",
     category: "analizis",
+    year: 1799,
     tex: "\\forall p(z) \\text{ nemkonstans polinom}: \\;\\exists z_0 \\in \\mathbb{C}, \\; p(z_0)=0",
     why: "<b>A komplex számok 'algebrailag zártak' — minden polinomnak van gyöke, kivétel nélkül.</b> Egy n-edfokú polinomnak pontosan n komplex gyöke van, multiplicitással számolva. Gauss adta az első teljesen rigorózus bizonyítást — legalább négy lényegesen különböző bizonyítási mód létezik, mindegyik más matematikai területből kölcsönöz eszközöket."
   },
@@ -882,6 +1054,7 @@ const MATEK_DATA = [
     name: "Kalkulus alaptétele",
     tag: "Analízis · Newton, Leibniz",
     category: "analizis",
+    year: 1670,
     tex: "\\int_a^b f'(x)\\,dx = f(b) - f(a)",
     why: "<b>A differenciálás és az integrálás egymás inverze — ez az egyetlen tény az egész kalkulus alapja.</b> Korábban a területszámítás és az érintő-meredekség számítása teljesen különböző problémának látszott. Newton és Leibniz egymástól függetlenül fedezték fel, hogy a kettő ugyanaz az érme két oldala — innen indult a modern fizika és mérnöki tudomány."
   },
@@ -925,7 +1098,8 @@ const MATEK_DATA = [
     tag: "Matematikai logika · 1944/1982",
     category: "logika-halmaz",
     tex: "\\text{minden Goodstein-sorozat véges sok lépésben eléri a 0-t}",
-    why: "<b>Egy egyszerű számsorozat-szabály, ami igaz — de a sima aritmetikán belül soha nem bizonyítható.</b> A sorozat eleinte hihetetlen sebességgel nő, mire végül 0-ba zuhan. Kirby és Paris 1982-ben mutatták meg, hogy ez Gödel nemteljességi tételének egy konkrét, 'kézzelfogható' számelméleti megnyilvánulása."
+    why: "<b>Egy egyszerű számsorozat-szabály, ami igaz — de a sima aritmetikán belül soha nem bizonyítható.</b> A sorozat eleinte hihetetlen sebességgel nő, mire végül 0-ba zuhan. Kirby és Paris 1982-ben mutatták meg, hogy ez Gödel nemteljességi tételének egy konkrét, 'kézzelfogható' számelméleti megnyilvánulása.",
+    related: [{name: "Kruskal-féle fatétel", domain: "matek"}, {name: "Gödel első nemteljességi tétele", domain: "matek"}]
   },
   {
     name: "Riemann-leképezési tétel",
@@ -953,7 +1127,8 @@ const MATEK_DATA = [
     tag: "Kiszámíthatóság-elmélet · Turing, 1936",
     category: "szamitastudomany-mernoki",
     tex: "\\nexists\\,\\text{algoritmus, amely minden } (P, x) \\text{ párra eldönti: } P(x) \\text{ leáll-e}",
-    why: "<b>Nincs olyan program, amely minden másik programról eldöntené, hogy lefagy-e — ez magában a számítás fogalmában rejlő korlát.</b> Turing önreferenciás diagonálargumentummal bizonyította: ha létezne ilyen 'megállás-orákulum', önmagára alkalmazva ellentmondásra vezetne. Ugyanaz a logikai mag, mint Gödel nemteljességi tétele — csak számítási nyelvre lefordítva."
+    why: "<b>Nincs olyan program, amely minden másik programról eldöntené, hogy lefagy-e — ez magában a számítás fogalmában rejlő korlát.</b> Turing önreferenciás diagonálargumentummal bizonyította: ha létezne ilyen 'megállás-orákulum', önmagára alkalmazva ellentmondásra vezetne. Ugyanaz a logikai mag, mint Gödel nemteljességi tétele — csak számítási nyelvre lefordítva.",
+    related: [{name: "Gödel első nemteljességi tétele", domain: "matek"}, {name: "Cook–Levin-tétel (NP-teljesség)", domain: "matek"}, {name: "Kolmogorov-komplexitás", domain: "matek"}]
   },
   {
     name: "Nagy számok törvénye",
@@ -1236,7 +1411,8 @@ const MATEK_DATA = [
     tag: "Algoritmikus információelmélet · 1965",
     category: "logika-halmaz",
     tex: "K(x) = \\min\\{|p| : U(p) = x\\}",
-    why: "<b>Egy sztring 'véletlenszerűsége' azzal mérhető, milyen rövid programmal lehet előállítani — minél rövidebb a leghatékonyabb leírás, annál kevésbé véletlen.</b> Kolmogorov, Chaitin és Solomonoff egymástól függetlenül jutottak el ehhez a fogalomhoz. Magának a komplexitásnak a kiszámíthatatlansága (nincs algoritmus, ami mindig megadja K(x)-et) mély kapcsolatban áll a Gödel-tétellel és a megállási problémával."
+    why: "<b>Egy sztring 'véletlenszerűsége' azzal mérhető, milyen rövid programmal lehet előállítani — minél rövidebb a leghatékonyabb leírás, annál kevésbé véletlen.</b> Kolmogorov, Chaitin és Solomonoff egymástól függetlenül jutottak el ehhez a fogalomhoz. Magának a komplexitásnak a kiszámíthatatlansága (nincs algoritmus, ami mindig megadja K(x)-et) mély kapcsolatban áll a Gödel-tétellel és a megállási problémával.",
+    related: [{name: "Boltzmann-entrópia", domain: "fizika"}, {name: "Shannon-entrópia", domain: "fizika"}]
   },
   {
     name: "Löb-tétel",
@@ -1424,6 +1600,7 @@ const FIZIKA_DATA = [
     name: "Maxwell-egyenletek",
     tag: "Elektrodinamika",
     category: "klasszikus",
+    year: 1865,
     special: false,
     type: "maxwell",
     equations: [
@@ -1440,6 +1617,7 @@ const FIZIKA_DATA = [
     name: "Noether-tétel",
     tag: "Szimmetria · mélység",
     category: "klasszikus",
+    year: 1918,
     special: true,
     type: "noether",
     quote: "Minden folytonos szimmetriához tartozik egy megmaradási tétel.",
@@ -1449,13 +1627,15 @@ const FIZIKA_DATA = [
       {sym:"↻ φ", arrow:"→", law:"Impulzusmomentum"},
       {sym:"⚡ U(1)", arrow:"→", law:"Töltésmegmaradás"},
     ],
-    why: "<b>A fizika törvényei nem véletlenek.</b> A szimmetriák kényszerítik ki a megmaradási tételeket. Emmy Noether 1915-ben bizonyította — ez a legmélyebb fizikai gondolat."
+    why: "<b>A fizika törvényei nem véletlenek.</b> A szimmetriák kényszerítik ki a megmaradási tételeket. Emmy Noether 1915-ben bizonyította — ez a legmélyebb fizikai gondolat.",
+    related: [{name: "Euler–Lagrange-egyenlet", domain: "fizika"}, {name: "Hamilton-egyenletek", domain: "fizika"}]
   },
   {
     rank: 3,
     name: "Schrödinger-egyenlet",
     tag: "Kvantummechanika",
     category: "kvantum",
+    year: 1926,
     special: false,
     type: "single",
     tex: "i\\hbar\\,\\frac{\\partial}{\\partial t}\\Psi = \\hat{H}\\Psi",
@@ -1466,16 +1646,19 @@ const FIZIKA_DATA = [
     name: "Boltzmann-entrópia",
     tag: "Termodinamika · stat. fizika",
     category: "termodinamika",
+    year: 1877,
     special: false,
     type: "single",
     tex: "S = k_{\\mathrm{B}} \\ln W",
-    why: "<b>Makro ↔ mikro kapcsolat.</b> Boltzmann sírján is ez áll. W a mikroállapotok száma — az entrópia mögött tisztán kombinatorika van."
+    why: "<b>Makro ↔ mikro kapcsolat.</b> Boltzmann sírján is ez áll. W a mikroállapotok száma — az entrópia mögött tisztán kombinatorika van.",
+    related: [{name: "Az idő nyila — entrópia", domain: "fizika"}, {name: "Shannon-entrópia", domain: "fizika"}, {name: "Landauer-elv", domain: "fizika"}]
   },
   {
     rank: 5,
     name: "Feynman útintegrál",
     tag: "Kvantumtérelmélet",
     category: "kvantum",
+    year: 1948,
     special: false,
     type: "single",
     tex: "\\langle x_f |\\, e^{-iHt/\\hbar}\\,| x_i \\rangle = \\int \\mathcal{D}[x(t)]\\; e^{\\,iS[x]/\\hbar}",
@@ -1486,6 +1669,7 @@ const FIZIKA_DATA = [
     name: "Dirac-egyenlet",
     tag: "Relativisztikus kvantummechanika",
     category: "reszecskefizika",
+    year: 1928,
     special: false,
     type: "single",
     tex: "(i\\hbar\\,\\gamma^{\\mu}\\partial_{\\mu} - mc)\\,\\psi = 0",
@@ -1496,6 +1680,7 @@ const FIZIKA_DATA = [
     name: "Bekenstein–Hawking-entrópia",
     tag: "Fekete lyukak · termodinamika",
     category: "relativitas",
+    year: 1973,
     special: true,
     type: "single",
     tex: "S = \\frac{k_{\\mathrm{B}}\\,c^3\\,A}{4\\,G\\,\\hbar}",
@@ -1506,6 +1691,7 @@ const FIZIKA_DATA = [
     name: "Euler–Lagrange-egyenlet",
     tag: "Variációszámítás · mechanika",
     category: "klasszikus",
+    year: 1755,
     special: false,
     type: "single",
     tex: "\\frac{d}{dt}\\frac{\\partial L}{\\partial \\dot{q}} - \\frac{\\partial L}{\\partial q} = 0",
@@ -1526,6 +1712,7 @@ const FIZIKA_DATA = [
     name: "Yang–Mills-hatás",
     tag: "Mértékelmélet · Standard Modell",
     category: "reszecskefizika",
+    year: 1954,
     special: true,
     type: "single",
     tex: "\\mathcal{L} = -\\tfrac{1}{4}\\,F^{a}_{\\mu\\nu}F_{a}^{\\mu\\nu}",
@@ -1539,7 +1726,8 @@ const FIZIKA_DATA = [
     special: false,
     type: "single",
     tex: "\\sigma_x\\,\\sigma_p \\;\\ge\\; \\frac{\\hbar}{2}",
-    why: "<b>Nem mérési hiba — a valóság szerkezete.</b> A pozíció és impulzus szórásának szorzata sosem lehet nulla. Nem azért, mert rossz a műszer, hanem mert a részecske hullámtermészete ezt eleve kizárja. A Fourier-transzformáltból egyenesen következik."
+    why: "<b>Nem mérési hiba — a valóság szerkezete.</b> A pozíció és impulzus szórásának szorzata sosem lehet nulla. Nem azért, mert rossz a műszer, hanem mert a részecske hullámtermészete ezt eleve kizárja. A Fourier-transzformáltból egyenesen következik.",
+    related: [{name: "Kvantum-alagúthatás", domain: "fizika"}, {name: "Fourier-transzformált", domain: "matek"}]
   },
   {
     rank: 12,
@@ -1556,6 +1744,7 @@ const FIZIKA_DATA = [
     name: "Navier–Stokes-egyenletek",
     tag: "Folyadékdinamika · millenniumi probléma",
     category: "klasszikus",
+    year: 1845,
     special: true,
     type: "single",
     tex: "\\rho\\left(\\frac{\\partial \\mathbf{v}}{\\partial t} + \\mathbf{v}\\cdot\\nabla\\mathbf{v}\\right) = -\\nabla p + \\mu\\nabla^2\\mathbf{v} + \\mathbf{f}",
@@ -1576,6 +1765,7 @@ const FIZIKA_DATA = [
     name: "Lorentz-transzformáció",
     tag: "Speciális relativitás",
     category: "relativitas",
+    year: 1904,
     special: false,
     type: "single",
     tex: "t' = \\gamma\\left(t - \\frac{vx}{c^2}\\right),\\quad x' = \\gamma(x - vt),\\quad \\gamma = \\frac{1}{\\sqrt{1-v^2/c^2}}",
@@ -1606,6 +1796,7 @@ const FIZIKA_DATA = [
     name: "Hidrogénatom Schrödinger-egyenlete",
     tag: "Kvantumkémia · a periódusos rendszer alapja",
     category: "kemia-biologia",
+    year: 1926,
     special: true,
     type: "single",
     tex: "-\\frac{\\hbar^2}{2m}\\nabla^2\\psi - \\frac{e^2}{4\\pi\\varepsilon_0 r}\\psi = E\\psi",
@@ -1626,6 +1817,7 @@ const FIZIKA_DATA = [
     name: "Hamilton-egyenletek",
     tag: "Klasszikus mechanika · fázistér",
     category: "klasszikus",
+    year: 1833,
     special: false,
     type: "single",
     tex: "\\dot{q} = \\frac{\\partial H}{\\partial p},\\quad \\dot{p} = -\\frac{\\partial H}{\\partial q}",
@@ -1656,6 +1848,7 @@ const FIZIKA_DATA = [
     name: "Snellius–Descartes-törvény",
     tag: "Optika · fénytörés",
     category: "klasszikus",
+    year: 1621,
     special: false,
     type: "single",
     tex: "n_1\\sin\\theta_1 = n_2\\sin\\theta_2",
@@ -1666,6 +1859,7 @@ const FIZIKA_DATA = [
     name: "Viriáltétel",
     tag: "Statisztikus mechanika · csillagászat",
     category: "klasszikus",
+    year: 1870,
     special: false,
     type: "single",
     tex: "2\\langle T \\rangle = -\\langle U \\rangle \\;\\;(\\text{1/r potenciálra})",
@@ -1729,7 +1923,8 @@ const FIZIKA_DATA = [
     special: true,
     type: "single",
     tex: "\\mathcal{L}_{\\text{Higgs}} = |D_\\mu \\phi|^2 - V(\\phi), \\quad V(\\phi) = \\mu^2|\\phi|^2 + \\lambda|\\phi|^4",
-    why: "<b>A tömeg nem tulajdonság — interakció egy mindenütt jelenlévő mezővel.</b> A spontán szimmetriasértés ad tömeget a W és Z bozonoknak, miközben a foton tömegtelen marad. Higgs 1964-ben jósolta meg, a CERN 2012-ben mérte meg a bozonját — fél évszázados várakozás után."
+    why: "<b>A tömeg nem tulajdonság — interakció egy mindenütt jelenlévő mezővel.</b> A spontán szimmetriasértés ad tömeget a W és Z bozonoknak, miközben a foton tömegtelen marad. Higgs 1964-ben jósolta meg, a CERN 2012-ben mérte meg a bozonját — fél évszázados várakozás után.",
+    related: [{name: "Elektrogyenge egyesítés", domain: "fizika"}, {name: "Yang–Mills-hatás", domain: "fizika"}]
   },
   {
     rank: 31,
@@ -1756,6 +1951,7 @@ const FIZIKA_DATA = [
     name: "Az idő nyila — entrópia",
     tag: "Statisztikus mechanika · második főtétel",
     category: "termodinamika",
+    year: 1850,
     special: true,
     type: "single",
     tex: "\\frac{dS_{\\text{univ}}}{dt} \\ge 0",
@@ -1766,6 +1962,7 @@ const FIZIKA_DATA = [
     name: "Kvarkbezárás (QCD)",
     tag: "Részecskefizika · erős kölcsönhatás",
     category: "reszecskefizika",
+    year: 1973,
     special: false,
     type: "single",
     tex: "V(r) \\sim \\sigma r \\;\\;(\\text{nagy } r\\text{-re, lineárisan nő})",
@@ -1776,6 +1973,7 @@ const FIZIKA_DATA = [
     name: "Holografikus elv",
     tag: "Kvantumgravitáció · 't Hooft, Susskind",
     category: "relativitas",
+    year: 1993,
     special: true,
     type: "single",
     tex: "S_{\\text{bulk}} \\le \\frac{A_{\\text{boundary}}}{4\\ell_P^2}",
@@ -1846,6 +2044,7 @@ const FIZIKA_DATA = [
     name: "Levinthal-paradoxon / Anfinsen-dogma",
     tag: "Fehérjehajtogatás · biofizika",
     category: "kemia-biologia",
+    year: 1969,
     special: true,
     type: "single",
     tex: "t_{\\text{valós}} \\sim \\text{másodperc} \\;\\ll\\; t_{\\text{brute-force}} \\sim 10^{52}\\,\\text{év}",
@@ -1876,6 +2075,7 @@ const FIZIKA_DATA = [
     name: "ATP-szintáz forgó motor",
     tag: "Bioenergetika · molekuláris biológia",
     category: "kemia-biologia",
+    year: 1997,
     special: true,
     type: "single",
     tex: "3H^+ \\rightarrow \\text{180° forgás} \\rightarrow \\text{1 ATP}",
@@ -1886,6 +2086,7 @@ const FIZIKA_DATA = [
     name: "Az élet homokiralitása",
     tag: "Prebiotikus kémia · megoldatlan rejtély",
     category: "kemia-biologia",
+    year: 1848,
     special: false,
     type: "single",
     tex: "\\text{aminosavak: csak L} \\;\\;|\\;\\; \\text{cukrok: csak D}",
@@ -1906,6 +2107,7 @@ const FIZIKA_DATA = [
     name: "Lorentz-erő",
     tag: "Elektromágnesesség · klasszikus",
     category: "klasszikus",
+    year: 1892,
     special: false,
     type: "single",
     tex: "\\vec{F} = q(\\vec{E} + \\vec{v}\\times\\vec{B})",
@@ -1916,6 +2118,7 @@ const FIZIKA_DATA = [
     name: "Avogadro-állandó és a mól",
     tag: "Kémia · alapfogalom",
     category: "kemia-biologia",
+    year: 1811,
     special: false,
     type: "single",
     tex: "N_A = 6.02214076 \\times 10^{23}\\,\\text{mol}^{-1}",
@@ -1956,6 +2159,7 @@ const FIZIKA_DATA = [
     name: "Hullámegyenlet",
     tag: "Klasszikus fizika · differenciálegyenlet",
     category: "klasszikus",
+    year: 1746,
     special: false,
     type: "single",
     tex: "\\frac{\\partial^2 u}{\\partial t^2} = c^2 \\nabla^2 u",
@@ -1999,7 +2203,8 @@ const FIZIKA_DATA = [
     special: false,
     type: "single",
     tex: "N_0 = N\\left[1-\\left(\\frac{T}{T_c}\\right)^{3/2}\\right]",
-    why: "<b>Kritikus hőmérséklet alatt az atomok tömegesen ugyanabba a kvantumállapotba 'zuhannak' — az anyag ötödik halmazállapota.</b> Bose és Einstein 1924-25-ben elméletben jósolták meg; kísérletileg csak 1995-ben (70 évvel később!) sikerült előállítani, lézeres hűtéssel néhány nanokelvinre. A Pauli-elvvel szemben itt a bozonok korlátlanul 'egymásra tornyozódhatnak' — ezért lehetséges a kondenzáció."
+    why: "<b>Kritikus hőmérséklet alatt az atomok tömegesen ugyanabba a kvantumállapotba 'zuhannak' — az anyag ötödik halmazállapota.</b> Bose és Einstein 1924-25-ben elméletben jósolták meg; kísérletileg csak 1995-ben (70 évvel később!) sikerült előállítani, lézeres hűtéssel néhány nanokelvinre. A Pauli-elvvel szemben itt a bozonok korlátlanul 'egymásra tornyozódhatnak' — ezért lehetséges a kondenzáció.",
+    related: [{name: "Fermi–Dirac-statisztika", domain: "fizika"}, {name: "Pauli-féle kizárási elv", domain: "fizika"}]
   },
   {
     rank: 58,
@@ -2039,7 +2244,8 @@ const FIZIKA_DATA = [
     special: true,
     type: "single",
     tex: "P_{cr} = \\frac{\\pi^2 EI}{(kL)^2}",
-    why: "<b>Egyetlen képlet dönti el, hogy egy karcsú oszlop teherbírás vagy kihajlás (instabilitás) miatt hibásodik-e meg.</b> Euler 1757-ben vezette le, jóval azelőtt, hogy a modern acélszerkezetek léteztek volna — mégis ez az alapja minden oszlopstabilitási számításnak ma is. A végtelenül egyszerű forma (π², rugalmassági modulus, inercianyomaték, kihajlási hossz) mögött a rugalmas szerkezetek stabilitáselméletének teljes gazdagsága rejlik."
+    why: "<b>Egyetlen képlet dönti el, hogy egy karcsú oszlop teherbírás vagy kihajlás (instabilitás) miatt hibásodik-e meg.</b> Euler 1757-ben vezette le, jóval azelőtt, hogy a modern acélszerkezetek léteztek volna — mégis ez az alapja minden oszlopstabilitási számításnak ma is. A végtelenül egyszerű forma (π², rugalmassági modulus, inercianyomaték, kihajlási hossz) mögött a rugalmas szerkezetek stabilitáselméletének teljes gazdagsága rejlik.",
+    related: [{name: "Euler–Bernoulli gerendaegyenlet", domain: "fizika"}, {name: "Timoshenko-gerendaelmélet", domain: "fizika"}, {name: "Rayleigh–Ritz módszer", domain: "fizika"}]
   },
   {
     rank: 62,
@@ -2069,7 +2275,8 @@ const FIZIKA_DATA = [
     special: false,
     type: "single",
     tex: "\\sum F_1 \\cdot \\delta_2 = \\sum F_2 \\cdot \\delta_1",
-    why: "<b>Egy rugalmas szerkezetben mindegy, melyik terhet rakod fel előbb — a munkák keresztbe mindig megegyeznek.</b> Ha az 1-es teherrendszer okozta elmozdulást a 2-es teher pontjában nézed, pontosan ugyanazt kapod, mint fordítva. Ez az elvi alapja a hatásábráknak (Müller-Breslau-elv) és a klasszikus erőmódszernek — máig alapkő minden statikus képzésében, a végeselem-módszer előtti korszak egyik legelegánsabb eredménye."
+    why: "<b>Egy rugalmas szerkezetben mindegy, melyik terhet rakod fel előbb — a munkák keresztbe mindig megegyeznek.</b> Ha az 1-es teherrendszer okozta elmozdulást a 2-es teher pontjában nézed, pontosan ugyanazt kapod, mint fordítva. Ez az elvi alapja a hatásábráknak (Müller-Breslau-elv) és a klasszikus erőmódszernek — máig alapkő minden statikus képzésében, a végeselem-módszer előtti korszak egyik legelegánsabb eredménye.",
+    related: [{name: "Castigliano-tétel", domain: "fizika"}]
   },
   {
     rank: 65,
@@ -2129,7 +2336,8 @@ const FIZIKA_DATA = [
     special: true,
     type: "single",
     tex: "r_s = \\frac{2GM}{c^2}",
-    why: "<b>Egyetlen sugár dönti el, mikor válik egy tömeg fekete lyukká.</b> Schwarzschild az első világháborús frontról, néhány héttel Einstein híres elmélete után küldte el az első egzakt megoldást a mezőegyenletekre. Ha egy tömeget ennél a sugárnál kisebb térfogatba zsúfolsz, a fény sem szökhet meg — ez az eseményhorizont, a fekete lyuk fogalmának matematikai születési helye."
+    why: "<b>Egyetlen sugár dönti el, mikor válik egy tömeg fekete lyukká.</b> Schwarzschild az első világháborús frontról, néhány héttel Einstein híres elmélete után küldte el az első egzakt megoldást a mezőegyenletekre. Ha egy tömeget ennél a sugárnál kisebb térfogatba zsúfolsz, a fény sem szökhet meg — ez az eseményhorizont, a fekete lyuk fogalmának matematikai születési helye.",
+    related: [{name: "Kerr-metrika", domain: "fizika"}, {name: "Penrose-folyamat", domain: "fizika"}, {name: "Bekenstein–Hawking-entrópia", domain: "fizika"}]
   },
   {
     rank: 71,
@@ -2139,7 +2347,8 @@ const FIZIKA_DATA = [
     special: false,
     type: "single",
     tex: "\\left(\\frac{\\dot{a}}{a}\\right)^2 = \\frac{8\\pi G}{3}\\rho - \\frac{kc^2}{a^2}",
-    why: "<b>Ez az egyenlet írja le, hogyan tágul (vagy húzódik össze) az egész univerzum.</b> Friedmann az Einstein-mezőegyenletekből vezette le, még mielőtt Hubble kísérletileg igazolta volna a tágulást — Einstein eleinte matematikai hibának hitte. Az egyenlet ma is a standard kozmológiai modell (ΛCDM) gerince: ebből számítjuk ki az univerzum korát, jövőjét és a sötét energia szerepét."
+    why: "<b>Ez az egyenlet írja le, hogyan tágul (vagy húzódik össze) az egész univerzum.</b> Friedmann az Einstein-mezőegyenletekből vezette le, még mielőtt Hubble kísérletileg igazolta volna a tágulást — Einstein eleinte matematikai hibának hitte. Az egyenlet ma is a standard kozmológiai modell (ΛCDM) gerince: ebből számítjuk ki az univerzum korát, jövőjét és a sötét energia szerepét.",
+    related: [{name: "Hubble–Lemaître-törvény", domain: "fizika"}, {name: "Einstein-féle mezőegyenletek", domain: "fizika"}]
   },
   {
     rank: 72,
@@ -2189,7 +2398,8 @@ const FIZIKA_DATA = [
     special: false,
     type: "single",
     tex: "\\nexists\\, U: \\; U|\\psi\\rangle|0\\rangle = |\\psi\\rangle|\\psi\\rangle \\;\\; \\forall|\\psi\\rangle",
-    why: "<b>Egy ismeretlen kvantumállapotot elvileg lehetetlen tökéletesen lemásolni.</b> Ez nem technikai korlát, hanem a kvantummechanika lineáris szerkezetéből fakadó matematikai szükségszerűség. A tétel adja a kvantumkriptográfia biztonságának elméleti alapját — ha valaki lehallgatna egy kvantumcsatornát, a másolási kísérlet szükségszerűen zavarná és lelepleződne az eredeti állapot."
+    why: "<b>Egy ismeretlen kvantumállapotot elvileg lehetetlen tökéletesen lemásolni.</b> Ez nem technikai korlát, hanem a kvantummechanika lineáris szerkezetéből fakadó matematikai szükségszerűség. A tétel adja a kvantumkriptográfia biztonságának elméleti alapját — ha valaki lehallgatna egy kvantumcsatornát, a másolási kísérlet szükségszerűen zavarná és lelepleződne az eredeti állapot.",
+    related: [{name: "Bell-tétel / CHSH-egyenlőtlenség", domain: "fizika"}, {name: "Kvantum-teleportáció", domain: "fizika"}]
   },
   {
     rank: 77,
@@ -2339,7 +2549,8 @@ const FIZIKA_DATA = [
     special: false,
     type: "single",
     tex: "q = -k\\,\\frac{dh}{dx}",
-    why: "<b>A porózus közegben (talajban, kőzetben) áramló víz sebessége egyenesen arányos a hidraulikus gradienssel — semmi bonyolultabb.</b> Henry Darcy egy dijoni szökőkútrendszer tervezésekor, homokszűrőkön végzett kísérletekből vezette le. Ma minden alapozási süllyedésszámítás, gátbiztonsági elemzés és talajvízmodellezés ebből az egyszerű lineáris törvényből indul ki — a geotechnika egyik alappillére."
+    why: "<b>A porózus közegben (talajban, kőzetben) áramló víz sebessége egyenesen arányos a hidraulikus gradienssel — semmi bonyolultabb.</b> Henry Darcy egy dijoni szökőkútrendszer tervezésekor, homokszűrőkön végzett kísérletekből vezette le. Ma minden alapozási süllyedésszámítás, gátbiztonsági elemzés és talajvízmodellezés ebből az egyszerű lineáris törvényből indul ki — a geotechnika egyik alappillére.",
+    related: [{name: "Terzaghi-féle konszolidációelmélet", domain: "fizika"}]
   },
   {
     rank: 92,
@@ -2616,6 +2827,7 @@ const FIZIKA_DATA = [
     name: "Lencsekészítő-egyenlet",
     tag: "Optika · Lensmaker's Equation, 17. század",
     category: "klasszikus",
+    year: 1650,
     special: false,
     type: "single",
     tex: "\\frac{1}{f} = (n-1)\\left(\\frac{1}{R_1}-\\frac{1}{R_2}\\right)",
@@ -2679,7 +2891,8 @@ const FIZIKA_DATA = [
     special: false,
     type: "single",
     tex: "\\Gamma^k_{ij} = \\frac{1}{2}g^{kl}\\left(\\frac{\\partial g_{il}}{\\partial x^j}+\\frac{\\partial g_{jl}}{\\partial x^i}-\\frac{\\partial g_{ij}}{\\partial x^l}\\right)",
-    why: "<b>Görbült térben nincs egyértelmű módja annak, hogy két különböző pontban lévő vektorokat összehasonlítsunk — a Christoffel-szimbólumok mondják meg, hogyan kell 'párhuzamosan eltolni' egy vektort a görbületen keresztül.</b> Ez a látszólag technikai apparátus adja a geodetikus egyenlet (a legrövidebb út görbült térben) és végső soron az Einstein-mezőegyenletek matematikai gerincét. Anélkül, hogy Christoffel tudott volna róla, ő rakta le az egyik legfontosabb kőkockát ahhoz az úthoz, ami fél évszázaddal később az általános relativitáselmélethez vezetett."
+    why: "<b>Görbült térben nincs egyértelmű módja annak, hogy két különböző pontban lévő vektorokat összehasonlítsunk — a Christoffel-szimbólumok mondják meg, hogyan kell 'párhuzamosan eltolni' egy vektort a görbületen keresztül.</b> Ez a látszólag technikai apparátus adja a geodetikus egyenlet (a legrövidebb út görbült térben) és végső soron az Einstein-mezőegyenletek matematikai gerincét. Anélkül, hogy Christoffel tudott volna róla, ő rakta le az egyik legfontosabb kőkockát ahhoz az úthoz, ami fél évszázaddal később az általános relativitáselmélethez vezetett.",
+    related: [{name: "Einstein-féle mezőegyenletek", domain: "fizika"}, {name: "Gauss–Bonnet-tétel", domain: "matek"}]
   },
   {
     rank: 126,
@@ -2722,6 +2935,15 @@ const DOMAINS = {
       "szamitastudomany-mernoki": "Számítástudomány & mérnöki"
     },
     categoryOrder: ["analizis","topologia","szamelmelet","logika-halmaz","valoszinuseg","kombinatorika-geometria","szamitastudomany-mernoki"],
+    categoryColors: {
+      analizis: "#e07a5f",
+      topologia: "#81b29a",
+      szamelmelet: "#f2cc8f",
+      "logika-halmaz": "#5b8dd9",
+      valoszinuseg: "#c86bfa",
+      "kombinatorika-geometria": "#4fb8c4",
+      "szamitastudomany-mernoki": "#e8a0bf"
+    },
     footerNames: "Euler \u00b7 Fourier \u00b7 Ramanujan \u00b7 Gauss \u00b7 Riemann \u00b7 Cauchy \u00b7 Pitagorasz \u00b7 Stirling \u00b7 Basel \u00b7 Gauss\u2013Bonnet \u00b7 Euler-szorzat \u00b7 Stokes \u00b7 Fermat\u2013Wiles \u00b7 G\u00f6del \u00b7 Bayes \u00b7 Liouville \u00b7 Cayley \u00b7 Borsuk\u2013Ulam \u00b7 S\u00fcndiszn\u00f3 \u00b7 Cantor \u00b7 Aranymetsz\u00e9s \u00b7 Banach \u00b7 Brouwer \u00b7 Pr\u00edmsz\u00e1mt\u00e9tel \u00b7 CHT \u00b7 Pell \u00b7 Sylvester\u2013Gallai \u00b7 N\u00e9gysz\u00edn-t\u00e9tel \u00b7 Jordan \u00b7 Collatz \u00b7 Goldbach \u00b7 P vs NP \u00b7 Hilbert-sz\u00e1lloda \u00b7 Monty Hall \u00b7 Sz\u00fclet\u00e9snapi paradoxon \u00b7 Bell/CHSH \u00b7 Lagrange-n\u00e9gyzett\u00e9tel \u00b7 Erd\u0151s\u2013Ko\u2013Rado \u00b7 Banach\u2013Tarski \u00b7 Arrow \u00b7 Poincar\u00e9 \u00b7 Euler-poli\u00e9der \u00b7 Ramsey \u00b7 Szemer\u00e9di \u00b7 Green\u2013Tao \u00b7 Kontinuumhipot\u00e9zis \u00b7 Algebra alapt\u00e9tele \u00b7 Catalan\u2013Mihailescu \u00b7 Kalkulus alapt\u00e9tele \u00b7 Pi transzcendenci\u00e1ja \u00b7 Happy Ending \u00b7 Nash-egyenl\u0151s\u00e9g \u00b7 Kepler-sejt\u00e9s \u00b7 Pick-t\u00e9tel \u00b7 Goodstein-t\u00e9tel \u00b7 Riemann-lek\u00e9pez\u00e9s \u00b7 Korl\u00e1tos pr\u00edmr\u00e9s \u00b7 Cook\u2013Levin \u00b7 Meg\u00e1ll\u00e1si probl\u00e9ma \u00b7 Nagy sz\u00e1mok t\u00f6rv\u00e9nye \u00b7 Rogers\u2013Ramanujan \u00b7 Hardy\u2013Ramanujan \u00b7 Ramanujan \u03c4-f\u00fcggv\u00e9ny \u00b7 Chudnovsky \u00b7 Lax\u2013Milgram \u00b7 Nyquist\u2013Shannon \u00b7 Kalman-sz\u0171r\u0151 \u00b7 Wilson-tétel \u00b7 Brun-tétel \u00b7 Bertrand-posztulátum \u00b7 Hall-tétel \u00b7 Erdős\u2013Szekeres \u00b7 Helly-tétel \u00b7 Sperner-lemma \u00b7 Szimplex-módszer \u00b7 Perron\u2013Frobenius \u00b7 Gauss\u2013Markov \u00b7 Cauchy\u2013Schwarz \u00b7 Weierstrass-approximáció \u00b7 Picard\u2013Lindelöf \u00b7 Csebisev \u00b7 Kolmogorov 0-1 \u00b7 Markov-ergodikus \u00b7 Löwenheim\u2013Skolem \u00b7 Tarski \u00b7 Kruskal-fatétel \u00b7 Radon-tétel \u00b7 Nielsen\u2013Schreier \u00b7 Jones-polinom \u00b7 Church\u2013Turing \u00b7 Shannon-kapacitás \u00b7 FFT \u00b7 Lebesgue-konvergencia \u00b7 Fubini-t\u00e9tel \u00b7 Arzel\u00e0\u2013Ascoli \u00b7 Poisson-folyamat \u00b7 It\u014d-formula \u00b7 Erd\u0151s\u2013R\u00e9nyi \u00b7 Kolmogorov-komplexit\u00e1s \u00b7 L\u00f6b-t\u00e9tel \u00b7 Robertson\u2013Seymour \u00b7 Tur\u00e1n-t\u00e9tel \u00b7 Poincar\u00e9\u2013Bendixson \u00b7 Whitney-be\u00e1gyaz\u00e1s \u00b7 Lefschetz-fixpont \u00b7 Dijkstra \u00b7 Karmarkar \u00b7 Wald-azonoss\u00e1g \u00b7 Berry\u2013Esseen \u00b7 Banach\u2013Steinhaus \u00b7 Sobolev-be\u00e1gyaz\u00e1s \u00b7 Hopf-fibr\u00e1ci\u00f3 \u00b7 Van Kampen \u00b7 De Bruijn\u2013Erd\u0151s \u00b7 Borsuk-sejt\u00e9s \u00b7 Amdahl-t\u00f6rv\u00e9ny \u00b7 RSA \u00b7 Hessian-D-teszt \u00b7 Green-tétel \u00b7 Gauss-divergenciatétel \u00b7 Cauchy\u2013Riemann \u00b7 Wallis-szorzat \u00b7 Mittag-Leffler \u00b7 Mandelbrot-halmaz",
     ghostFormulas: ["e^{i\\pi}+1=0", "\\zeta(s)=\\sum_{n=1}^{\\infty}\\frac{1}{n^s}", "\\int_{-\\infty}^{\\infty} e^{-x^2}dx=\\sqrt{\\pi}", "\\forall\\varepsilon>0\\,\\exists\\delta", "\\aleph_0 < \\mathfrak{c}", "\\nabla^2\\phi=0"]
   },
@@ -2741,6 +2963,15 @@ const DOMAINS = {
       "mernoki-alkalmazasok": "Mérnöki alkalmazások"
     },
     categoryOrder: ["klasszikus","kvantum","relativitas","reszecskefizika","termodinamika","kemia-biologia","mernoki-alkalmazasok"],
+    categoryColors: {
+      klasszikus: "#e07a5f",
+      kvantum: "#81b29a",
+      relativitas: "#f2cc8f",
+      reszecskefizika: "#5b8dd9",
+      termodinamika: "#c86bfa",
+      "kemia-biologia": "#4fb8c4",
+      "mernoki-alkalmazasok": "#e8a0bf"
+    },
     footerNames: "Maxwell \u00b7 Noether \u00b7 Schr\u00f6dinger \u00b7 Boltzmann \u00b7 Feynman \u00b7 Dirac \u00b7 Bekenstein\u2013Hawking \u00b7 Euler\u2013Lagrange \u00b7 E=mc\u00b2 \u00b7 Yang\u2013Mills \u00b7 Heisenberg \u00b7 Shannon \u00b7 Navier\u2013Stokes \u00b7 Planck \u00b7 Lorentz \u00b7 Hawking-h\u0151m\u00e9rs\u00e9klet \u00b7 Aszimptotikus szabads\u00e1g \u00b7 Peri\u00f3dusos rendszer \u00b7 Kepler \u00b7 Hamilton \u00b7 Lotka\u2013Volterra \u00b7 Hardy\u2013Weinberg \u00b7 Snellius\u2013Descartes \u00b7 Viri\u00e1lt\u00e9tel \u00b7 Hodgkin\u2013Huxley \u00b7 Arrhenius \u00b7 Le Chatelier \u00b7 Bell/CHSH \u00b7 Carnot \u00b7 Higgs \u00b7 Casimir \u00b7 Michaelis\u2013Menten \u00b7 Az id\u0151 nyila \u00b7 Kvarkbez\u00e1r\u00e1s \u00b7 Holografikus elv \u00b7 BCS-elm\u00e9let \u00b7 Drake-egyenlet \u00b7 Fick-t\u00f6rv\u00e9ny \u00b7 Einstein-mez\u0151egyenletek \u00b7 Faraday-indukci\u00f3 \u00b7 Wien-t\u00f6rv\u00e9ny \u00b7 Levinthal-paradoxon \u00b7 Doppler-effektus \u00b7 Bernoulli-egyenlet \u00b7 ATP-szint\u00e1z \u00b7 Homokiralit\u00e1s \u00b7 Hubble\u2013Lema\u00eetre \u00b7 Lorentz-er\u0151 \u00b7 Avogadro-\u00e1lland\u00f3 \u00b7 Compton-effektus \u00b7 Van 't Hoff \u00b7 Pauli-elv \u00b7 Hull\u00e1megyenlet \u00b7 Reynolds-sz\u00e1m \u00b7 Seebeck-effektus \u00b7 Chandrasekhar-hat\u00e1r \u00b7 Bose\u2013Einstein-kondenz\u00e1ci\u00f3 \u00b7 CPT-t\u00e9tel \u00b7 Onsager-reciprocit\u00e1s \u00b7 Landauer-elv \u00b7 Euler-kihajl\u00e1s \u00b7 Saint-Venant \u00b7 Mohr-k\u00f6r \u00b7 Betti-t\u00e9tel \u00b7 Clausius\u2013Clapeyron \u00b7 Gibbs-energia \u00b7 Fermi\u2013Dirac \u00b7 Neutrínó-oszcilláció \u00b7 Gell-Mann\u2013Nishijima \u00b7 Schwarzschild-sugár \u00b7 Friedmann-egyenletek \u00b7 Euler\u2013Bernoulli \u00b7 Castigliano \u00b7 Buckingham π-tétel \u00b7 Alag\u00fathat\u00e1s \u00b7 No-cloning \u00b7 Josephson \u00b7 Meissner \u00b7 Nernst-t\u00e9tel \u00b7 Maxwell\u2013Boltzmann \u00b7 Stefan\u2013Boltzmann \u00b7 Cserenkov \u00b7 M\u00fcon g-2 \u00b7 Ekvivalenciaelv \u00b7 Kerr-metrika \u00b7 Gravit\u00e1ci\u00f3s hull\u00e1mok \u00b7 Timoshenko \u00b7 Navier (rugalmass\u00e1gtan) \u00b7 Rayleigh\u2013Ritz \u00b7 Hooke-t\u00f6rv\u00e9ny \u00b7 Darcy-t\u00f6rv\u00e9ny \u00b7 Terzaghi-konszolid\u00e1ci\u00f3 \u00b7 Coriolis-er\u0151 \u00b7 Foucault-inga \u00b7 Euler-forg\u00e1segyenletek \u00b7 Van der Waals \u00b7 Joule\u2013Thomson \u00b7 Fourier-h\u0151vezet\u00e9s \u00b7 Nernst-egyenlet \u00b7 CKM-m\u00e1trix \u00b7 Aharonov\u2013Bohm \u00b7 Penrose\u2013Hawking \u00b7 Shapiro-k\u00e9sleltet\u00e9s \u00b7 Penrose-folyamat \u00b7 Watson\u2013Crick \u00b7 Griffith-t\u00f6r\u00e9smechanika \u00b7 Coulomb-s\u00fars\u00fbrl\u00f3d\u00e1s \u00b7 Elektrogyenge egyes\u00edt\u00e9s \u00b7 Rutherford-sz\u00f3r\u00e1s \u00b7 Kvantum-teleport\u00e1ci\u00f3 \u00b7 D'Alembert-elv \u00b7 Lense\u2013Thirring \u00b7 Kirchhoff-sug\u00e1rz\u00e1s \u00b7 Kvark-gluon plazma \u00b7 Rüchardt-módszer \u00b7 Saha-egyenlet \u00b7 Eddington\u2013Dirac nagy szám \u00b7 Bőrhatás \u00b7 Lencsekészítő-egyenlet \u00b7 Liouville-egyenlet \u00b7 Ideális gáztörvény \u00b7 Newton-gravitáció \u00b7 De Broglie \u00b7 Ehrenfest-tétel \u00b7 Christoffel-szimbólumok \u00b7 Planck-hossz \u00b7 Young\u2013Laplace",
     ghostFormulas: ["\\nabla\\times\\vec{E}=-\\frac{\\partial \\vec{B}}{\\partial t}", "E=mc^2", "\\hat{H}\\psi=i\\hbar\\frac{\\partial\\psi}{\\partial t}", "S=k_B\\ln\\Omega", "F=ma", "ds^2=g_{\\mu\\nu}dx^\\mu dx^\\nu"]
   }
@@ -2761,11 +2992,16 @@ const searchBox = document.getElementById("searchBox");
 const searchClear = document.getElementById("searchClear");
 const viewSwitch = document.getElementById("viewSwitch");
 const ghostBg = document.getElementById("ghostBg");
+const favToggle = document.getElementById("favToggle");
+const infoBtn = document.getElementById("infoBtn");
+const modalOverlay = document.getElementById("modalOverlay");
+const modalClose = document.getElementById("modalClose");
 
 let activeDomain = "matek";
 let activeCategory = "all";
 let searchQuery = "";
 let viewMode = "rank";
+let onlyFavorites = false;
 let rowElements = [];
 let headerElements = [];
 
@@ -2773,12 +3009,84 @@ function stripHtml(str) {
   return str.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
 }
 
-function buildRow(entry, index) {
+function slugify(str) {
+  return str.toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function extractYear(entry) {
+  if (entry.year !== undefined) return entry.year;
+  let m = entry.tag.match(/Kr\.e\.\s*(\d+)/i);
+  if (m) return -parseInt(m[1], 10);
+  m = entry.tag.match(/(\d{3,4})/);
+  if (m) return parseInt(m[1], 10);
+  return 9999;
+}
+
+function eraLabel(year) {
+  if (year < 0) return "Ókor (i. e.)";
+  const century = Math.floor((year - 1) / 100) + 1;
+  return century + ". század";
+}
+
+function loadFavorites() {
+  try {
+    const raw = localStorage.getItem("tsz_favorites_v1");
+    return raw ? new Set(JSON.parse(raw)) : new Set();
+  } catch (e) { return new Set(); }
+}
+function saveFavorites() {
+  try { localStorage.setItem("tsz_favorites_v1", JSON.stringify([...favorites])); } catch (e) {}
+}
+let favorites = loadFavorites();
+
+function toggleFavorite(key, btnEl) {
+  if (favorites.has(key)) { favorites.delete(key); btnEl.classList.remove("active"); }
+  else { favorites.add(key); btnEl.classList.add("active"); }
+  saveFavorites();
+  if (onlyFavorites) applyFilter();
+}
+
+function copyRowLink(id, btnEl) {
+  const url = location.origin + location.pathname + "#" + id;
+  history.replaceState(null, "", "#" + id);
+  const done = () => {
+    btnEl.classList.add("copied");
+    setTimeout(() => btnEl.classList.remove("copied"), 1500);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(done).catch(done);
+  } else {
+    done();
+  }
+}
+
+function goToRelated(rel) {
+  if (rel.domain !== activeDomain) {
+    renderDomain(rel.domain);
+  }
+  searchBox.value = rel.name;
+  searchQuery = rel.name;
+  searchClear.classList.add("visible");
+  activeCategory = "all";
+  [...filterbar.children].forEach(c => c.classList.toggle("active", c.dataset.cat === "all"));
+  applyFilter();
+  window.scrollTo({top: 0, behavior: "smooth"});
+}
+
+
+function buildRow(entry, index, domainKey) {
   const rank = entry.rank !== undefined ? entry.rank : index + 1;
+  const slug = slugify(entry.name);
   const row = document.createElement("div");
   row.className = "row";
+  row.id = `entry-${domainKey}-${slug}`;
   row.style.animationDelay = (Math.min(index, 14) * 0.06) + "s";
   row.dataset.category = entry.category;
+  const catColor = DOMAINS[domainKey].categoryColors && DOMAINS[domainKey].categoryColors[entry.category];
+  if (catColor) row.style.borderLeftColor = catColor + "55";
 
   const rankEl = document.createElement("div");
   rankEl.className = "rank";
@@ -2865,12 +3173,58 @@ function buildRow(entry, index) {
   tagEl.className = "tag" + ((entry.mega || entry.special) ? " special" : "");
   tagEl.textContent = entry.tag;
   meta.appendChild(tagEl);
+
+  const actions = document.createElement("div");
+  actions.className = "row-actions";
+
+  const favKey = domainKey + ":" + slug;
+  const favBtn = document.createElement("button");
+  favBtn.type = "button";
+  favBtn.className = "icon-btn fav-star" + (favorites.has(favKey) ? " active" : "");
+  favBtn.setAttribute("aria-label", "Kedvencekhez adás");
+  favBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.3l-5.4 3.2 1.4-6.1-4.7-4.1 6.2-.5L12 4l2.5 5.8 6.2.5-4.7 4.1 1.4 6.1z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>';
+  favBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    toggleFavorite(favKey, favBtn);
+  });
+  actions.appendChild(favBtn);
+
+  const linkBtn = document.createElement("button");
+  linkBtn.type = "button";
+  linkBtn.className = "icon-btn link-btn";
+  linkBtn.setAttribute("aria-label", "Link másolása");
+  linkBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 15l6-6M10 6l1-1a3.5 3.5 0 015 5l-1 1M14 18l-1 1a3.5 3.5 0 01-5-5l1-1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
+  linkBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    copyRowLink(row.id, linkBtn);
+  });
+  actions.appendChild(linkBtn);
+
+  meta.appendChild(actions);
   body.appendChild(meta);
 
   const why = document.createElement("p");
   why.className = "why";
   why.innerHTML = entry.why;
   body.appendChild(why);
+
+  if (entry.related && entry.related.length) {
+    const rc = document.createElement("div");
+    rc.className = "related-chips";
+    const label = document.createElement("span");
+    label.className = "related-label";
+    label.textContent = "Lásd még:";
+    rc.appendChild(label);
+    entry.related.forEach(rel => {
+      const chip = document.createElement("button");
+      chip.type = "button";
+      chip.className = "related-chip";
+      chip.textContent = rel.name;
+      chip.addEventListener("click", () => goToRelated(rel));
+      rc.appendChild(chip);
+    });
+    body.appendChild(rc);
+  }
 
   row.appendChild(rankPlate);
   row.appendChild(body);
@@ -2906,17 +3260,33 @@ function renderGrid() {
 
   if (viewMode === "rank") {
     rowElements.forEach(r => grid.appendChild(r.el));
-  } else {
+  } else if (viewMode === "grouped") {
     domain.categoryOrder.forEach(key => {
       const rowsInCat = rowElements.filter(r => r.category === key);
       if (rowsInCat.length === 0) return;
       const header = document.createElement("div");
       header.className = "category-header";
       header.dataset.category = key;
-      header.innerHTML = `<span class="cat-name">${domain.categoryLabels[key]}</span><span class="cat-count">${rowsInCat.length} tétel</span>`;
+      const color = domain.categoryColors ? domain.categoryColors[key] : null;
+      const dot = color ? `<span class="cat-dot" style="background:${color};color:${color};"></span>` : "";
+      header.innerHTML = `${dot}<span class="cat-name">${domain.categoryLabels[key]}</span><span class="cat-count">${rowsInCat.length} tétel</span>`;
       grid.appendChild(header);
-      headerElements.push({el: header, category: key});
+      headerElements.push({el: header, keyType: "category", key});
       rowsInCat.forEach(r => grid.appendChild(r.el));
+    });
+  } else if (viewMode === "timeline") {
+    const sorted = [...rowElements].sort((a, b) => a.year - b.year);
+    let lastEra = null;
+    sorted.forEach(r => {
+      if (r.era !== lastEra) {
+        const header = document.createElement("div");
+        header.className = "category-header era-header";
+        header.innerHTML = `<span class="cat-name">${r.era}</span>`;
+        grid.appendChild(header);
+        headerElements.push({el: header, keyType: "era", key: r.era});
+        lastEra = r.era;
+      }
+      grid.appendChild(r.el);
     });
   }
   applyFilter();
@@ -2927,27 +3297,37 @@ function applyFilter() {
   const q = searchQuery.trim().toLowerCase();
   let visibleCount = 0;
   const visibleCats = new Set();
+  const visibleEras = new Set();
 
-  rowElements.forEach(({el, category, searchText}) => {
-    const matchesCategory = activeCategory === "all" || category === activeCategory;
-    const matchesSearch = q === "" || searchText.includes(q);
-    const show = matchesCategory && matchesSearch;
-    el.classList.toggle("hidden", !show);
-    if (show) { visibleCount++; visibleCats.add(category); }
+  rowElements.forEach((r) => {
+    const matchesCategory = activeCategory === "all" || r.category === activeCategory;
+    const matchesSearch = q === "" || r.searchText.includes(q);
+    const matchesFav = !onlyFavorites || favorites.has(r.favKey);
+    const show = matchesCategory && matchesSearch && matchesFav;
+    r.el.classList.toggle("hidden", !show);
+    if (show) { visibleCount++; visibleCats.add(r.category); visibleEras.add(r.era); }
   });
 
-  headerElements.forEach(({el, category}) => {
-    const matchesCategory = activeCategory === "all" || category === activeCategory;
-    el.classList.toggle("hidden", !(matchesCategory && visibleCats.has(category)));
+  headerElements.forEach(({el, keyType, key}) => {
+    let visible;
+    if (keyType === "category") {
+      const matchesCategory = activeCategory === "all" || key === activeCategory;
+      visible = matchesCategory && visibleCats.has(key);
+    } else {
+      visible = visibleEras.has(key);
+    }
+    el.classList.toggle("hidden", !visible);
   });
 
   emptyState.style.display = visibleCount === 0 ? "block" : "none";
 
-  let label = activeCategory === "all"
-    ? `${domain.data.length} tétel összesen`
-    : `${visibleCount} tétel a "${domain.categoryLabels[activeCategory]}" kategóriában`;
+  let label;
   if (q !== "") {
-    label = `<b>${visibleCount}</b> találat "${searchQuery.trim()}"-ra` + (activeCategory !== "all" ? ` a "${domain.categoryLabels[activeCategory]}" kategóriában` : "");
+    label = `<b>${visibleCount}</b> találat "${searchQuery.trim()}"-ra`
+      + (activeCategory !== "all" ? ` a "${domain.categoryLabels[activeCategory]}" kategóriában` : "")
+      + (onlyFavorites ? " a kedvencek között" : "");
+  } else if (onlyFavorites) {
+    label = `<b>${visibleCount}</b> kedvenc tétel` + (activeCategory !== "all" ? ` a "${domain.categoryLabels[activeCategory]}" kategóriában` : "");
   } else {
     label = activeCategory === "all"
       ? `<b>${domain.data.length}</b> tétel összesen`
@@ -3005,9 +3385,18 @@ function renderDomain(domainKey) {
 
   rowElements = [];
   domain.data.forEach((d, i) => {
-    const row = buildRow(d, i);
+    const row = buildRow(d, i, domainKey);
     const searchText = `${d.name} ${d.tag} ${stripHtml(d.why)}`.toLowerCase();
-    rowElements.push({el: row, category: d.category, searchText});
+    const year = extractYear(d);
+    const slug = slugify(d.name);
+    rowElements.push({
+      el: row,
+      category: d.category,
+      searchText,
+      favKey: domainKey + ":" + slug,
+      year,
+      era: eraLabel(year)
+    });
   });
 
   buildFilterBar(domainKey);
@@ -3037,6 +3426,32 @@ viewSwitch.addEventListener("click", (e) => {
   renderGrid();
 });
 
+favToggle.addEventListener("click", () => {
+  onlyFavorites = !onlyFavorites;
+  favToggle.classList.toggle("active", onlyFavorites);
+  favToggle.setAttribute("aria-pressed", String(onlyFavorites));
+  applyFilter();
+});
+
+function openModal() {
+  modalOverlay.classList.add("visible");
+  modalOverlay.setAttribute("aria-hidden", "false");
+}
+function closeModal() {
+  modalOverlay.classList.remove("visible");
+  modalOverlay.setAttribute("aria-hidden", "true");
+}
+infoBtn.addEventListener("click", openModal);
+modalClose.addEventListener("click", closeModal);
+modalOverlay.addEventListener("click", (e) => { if (e.target === modalOverlay) closeModal(); });
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeModal();
+  if (e.key === "/" && document.activeElement !== searchBox && !modalOverlay.classList.contains("visible")) {
+    e.preventDefault();
+    searchBox.focus();
+  }
+});
+
 let searchDebounce;
 searchBox.addEventListener("input", () => {
   searchClear.classList.toggle("visible", searchBox.value.length > 0);
@@ -3055,10 +3470,31 @@ searchClear.addEventListener("click", () => {
   searchBox.focus();
 });
 
+function handleDeepLink() {
+  const hash = location.hash.replace(/^#/, "");
+  if (!hash.startsWith("entry-")) return;
+  const rest = hash.slice("entry-".length);
+  const m = rest.match(/^(matek|fizika)-(.+)$/);
+  if (!m) return;
+  const [, domainKey] = m;
+  if (domainKey !== activeDomain) {
+    renderDomain(domainKey);
+  }
+  requestAnimationFrame(() => {
+    const el = document.getElementById(hash);
+    if (el) {
+      el.scrollIntoView({behavior: "smooth", block: "center"});
+      el.classList.add("highlight-flash");
+      setTimeout(() => el.classList.remove("highlight-flash"), 2300);
+    }
+  });
+}
+
 function init() {
   const total = MATEK_DATA.length + FIZIKA_DATA.length;
   grandTotalEl.innerHTML = `Összesen <b>${total}</b> halhatatlan tudományos szépség a két gyűjteményben`;
   renderDomain("matek");
+  handleDeepLink();
 
   if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     const spin = document.getElementById("logoSpin");
@@ -3075,6 +3511,12 @@ if (window.katex) {
     const check = setInterval(() => {
       if (window.katex) { clearInterval(check); init(); }
     }, 50);
+  });
+}
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js").catch(() => {});
   });
 }
 
