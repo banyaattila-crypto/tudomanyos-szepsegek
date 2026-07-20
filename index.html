@@ -1364,6 +1364,56 @@ const MATEK_DATA = [
     category: "szamitastudomany-mernoki",
     tex: "c = m^e \\bmod n, \\quad m = c^d \\bmod n",
     why: "<b>Két nagy prímszám szorzatát könnyű kiszámítani, de a szorzatból visszafejteni a tényezőket gyakorlatilag lehetetlen — erre az aszimmetriára épül a teljes internetes titkosítás.</b> Rivest, Shamir és Adleman Fermat kistételét használták fel egy olyan rendszer megalkotásához, ahol a nyilvános kulcs bárki számára ismert lehet, mégsem törhető fel vele az üzenet. Minden HTTPS-kapcsolat, minden banki tranzakció ezen (vagy egy rokon algoritmuson) alapul — tiszta számelméletből született globális infrastruktúra."
+  },
+  {
+    name: "Hessian-mátrix és a D-teszt",
+    tag: "Analízis · többváltozós szélsőérték, Otto Hesse, 1857",
+    category: "analizis",
+    tex: "D = f_{xx}f_{yy} - f_{xy}^2",
+    why: "<b>Egyetlen szám dönti el, hogy egy többváltozós függvény egy kritikus pontja hegycsúcs, völgy vagy nyeregpont.</b> A második parciális deriváltakból épített mátrix determinánsa (D) és a fxx előjele együtt teljesen jellemzi a lokális viselkedést — pontosan úgy, ahogy egyváltozós esetben a második derivált teszi. Minden gépi tanulási optimalizáló algoritmus, ami többdimenziós felületen keres minimumot, hallgatólagosan erre a tesztre épít."
+  },
+  {
+    name: "Green-tétel",
+    tag: "Vektoranalízis · George Green, 1828",
+    category: "analizis",
+    tex: "\\oint_C (L\\,dx + M\\,dy) = \\iint_D \\left(\\frac{\\partial M}{\\partial x}-\\frac{\\partial L}{\\partial y}\\right)dA",
+    why: "<b>Egy zárt görbe menti vonalintegrál átalakítható a görbe által határolt terület kettős integráljává — a peremen történő és a belsejében történő 'történések' ekvivalensek.</b> Green önmagát tanított matematikusként, molnárként dolgozva alkotta meg ezt az eredményt, amit csak halála után fedeztek fel igazán. Ez a Stokes-tétel síkbeli speciális esete, és a modern vektoranalízis egyik alappillére — együtt Gauss divergenciatételével a 'nagy integrál-hármast' alkotja."
+  },
+  {
+    name: "Gauss-féle divergenciatétel",
+    tag: "Vektoranalízis · Carl Friedrich Gauss, 1813/1839",
+    category: "analizis",
+    tex: "\\oiint_S \\vec{F}\\cdot d\\vec{S} = \\iiint_V (\\nabla\\cdot\\vec{F})\\,dV",
+    why: "<b>Egy vektormező zárt felületen átfolyó teljes fluxusa pontosan megegyezik a divergenciájának a bezárt térfogaton vett integráljával.</b> Ha egy térfogat belsejében nincs forrás vagy nyelő, a be- és kiáramlás pontosan kiegyenlítődik — ez a fizikai intuíció mögötte. Gauss törvénye az elektrodinamikában (Maxwell-egyenletek egyike) és a folyadékok kontinuitási egyenlete is közvetlenül ebből a tételből következik."
+  },
+  {
+    name: "Cauchy–Riemann-egyenletek",
+    tag: "Komplex analízis · 1821/1851",
+    category: "analizis",
+    tex: "\\frac{\\partial u}{\\partial x} = \\frac{\\partial v}{\\partial y}, \\quad \\frac{\\partial u}{\\partial y} = -\\frac{\\partial v}{\\partial x}",
+    why: "<b>Két egyszerű parciális differenciálegyenlet dönti el, hogy egy komplex függvény 'igazán' deriválható-e — nem csak formálisan, hanem a komplex sík minden irányában egyszerre.</b> Ha egy függvény valós és képzetes része teljesíti ezeket az összefüggéseket, a függvény holomorf: végtelenül sokszor deriválható, és analitikus sorba fejthető. Ez a feltétel az, ami a komplex analízist ennyire merevvé és egyben gyönyörűvé teszi — Cauchy integrálformulája és Liouville tétele is erre épül."
+  },
+  {
+    name: "Wallis-szorzat",
+    tag: "Végtelen szorzat · John Wallis, 1656",
+    category: "szamelmelet",
+    tex: "\\frac{\\pi}{2} = \\prod_{n=1}^{\\infty} \\frac{2n}{2n-1}\\cdot\\frac{2n}{2n+1}",
+    why: "<b>Egy végtelen szorzat, kizárólag egész számokból, pontosan π felét adja — évszázadokkal Euler és a Basel-probléma előtt.</b> Wallis geometriai és interpolációs érveléssel jutott el ide, jóval azelőtt, hogy a kalkulus modern eszköztára rendelkezésre állt volna. Ez volt az egyik első jele annak, hogy π sokkal mélyebben kötődik a számelmélethez és az analízishez, mint azt bárki sejtette volna a kör egyszerű geometriájából."
+  },
+  {
+    name: "Mittag-Leffler-tétel",
+    tag: "Komplex analízis · meromorf függvények, 1876",
+    category: "analizis",
+    tex: "f(z) = \\sum_{k} \\left(\\frac{1}{z-a_k} + p_k(z)\\right) + g(z)",
+    why: "<b>Bármilyen előre megadott pólus-szerkezethez létezik olyan meromorf függvény, aminek pontosan azok a pólusai — a függvény szó szerint 'felépíthető' a szingularitásaiból.</b> Mittag-Leffler ezzel a konstruktív egzisztenciatétellel mutatta meg, hogy a komplex analízis nem csupán vizsgálja a függvényeket, hanem tervezni is lehet őket, mint egy mérnöki rendszert. A Weierstrass-féle szorzattétel testvérfogalma — az egyik a zérushelyekből, a másik a pólusokból épít."
+  },
+  {
+    name: "Mandelbrot-halmaz",
+    tag: "Komplex dinamika · fraktálgeometria, 1978/1980",
+    category: "topologia",
+    scrollHint: true,
+    tex: "z_{n+1} = z_n^2 + c, \\quad c\\in M \\iff \\sup_n |z_n| < \\infty",
+    why: "<b>Egyetlen, gyerekjáték-egyszerű iterációs szabály — négyzetre emelés és hozzáadás — végtelenül bonyolult, önhasonló határvonalat rajzol ki a komplex síkon.</b> Minden pontja egy teljes Julia-halmaz 'sorsát' kódolja: attól függően, hogy c benne van-e a halmazban, a hozzá tartozó iteráció korlátos marad vagy szétszalad a végtelenbe. A számítógépes grafika tette először láthatóvá — előtte senki nem sejtette, milyen barokkosan gazdag mintázat rejlik ebben az egyszerű képletben."
   }
 ];
 
@@ -2228,8 +2278,8 @@ const FIZIKA_DATA = [
     category: "relativitas",
     special: false,
     type: "single",
-    tex: "ds^2 = -\\left(1-\\frac{r_sr}{\\Sigma}\\right)dt^2 + \\ldots \\quad (\\text{forgó fekete lyuk})",
-    why: "<b>A valóságos fekete lyukak nem állnak — forognak, és ez alapvetően megváltoztatja a köréjük görbült téridő szerkezetét.</b> Roy Kerr új-zélandi matematikus 1963-ban találta meg az első egzakt megoldást forgó tömegekre — csaknem 50 évvel Einstein után. A forgás 'magával rántja' a téridőt (frame dragging), ami mérhető hatást gyakorol a fekete lyuk körüli anyagra — ezt látjuk az Event Horizon Telescope felvételein."
+    tex: "r_{\\pm} = \\frac{r_s}{2} \\pm \\sqrt{\\left(\\frac{r_s}{2}\\right)^2 - a^2}",
+    why: "<b>A valóságos fekete lyukak nem állnak — forognak, és ez alapvetően megváltoztatja a köréjük görbült téridő szerkezetét.</b> Roy Kerr új-zélandi matematikus 1963-ban találta meg az első egzakt megoldást forgó tömegekre — csaknem 50 évvel Einstein után. A forgás miatt a fekete lyuknak két eseményhorizontja is van (r₊ és r₋), és a téridő 'magával rántja' a körülötte lévő teret (frame dragging) — ezt látjuk az Event Horizon Telescope felvételein."
   },
   {
     rank: 86,
@@ -2520,6 +2570,136 @@ const FIZIKA_DATA = [
     type: "single",
     tex: "T_c \\approx 150\\text{--}170\\,\\text{MeV} \\quad \\text{(kvark-hadron átmenet)}",
     why: "<b>Kellően magas hőmérsékleten a kvarkok és gluonok kiszabadulnak a protonokból és neutronokból, és egy szabadon áramló 'ősleves' formájában léteznek — pontosan úgy, ahogy az univerzum a Nagy Bumm után mikroszekundumokkal nézett ki.</b> A CERN LHC és a Brookhaven RHIC nehézion-ütközésekkel (ólom- vagy aranyatommagokat ütköztetve fénysebesség közeli sebességgel) hozzák létre ezt az állapotot, bár csak billiomod-billiomod másodpercre. A kvarkbezárás (amit korábban a gyűjteményben már érintettünk) itt 'oldódik fel' — extrém körülmények között."
+  },
+  {
+    rank: 115,
+    name: "Rüchardt-módszer",
+    tag: "Termodinamika · fajhő-arány mérése, Hans Rüchardt, 1929",
+    category: "termodinamika",
+    special: false,
+    type: "single",
+    tex: "T = 2\\pi\\sqrt{\\frac{mV}{\\gamma A^2 P_0}}",
+    why: "<b>Egy fémgolyó lengéséből — ami egy üveggömb szűk csövében pattog fel-le — pontosan kimérhető egy gáz fajhő-aránya.</b> A módszer szépsége az egyszerűségében rejlik: nincs szükség hőmennyiség-mérésre, csak egy stopperre és a lengésidő megfigyelésére. A γ (cp/cv arány) innen adódik ki, és ez az érték árulja el, hogy a gáz molekulái egy-, két- vagy háromatomosak-e — egy mechanikai lengésből következtetünk a molekulák belső szerkezetére."
+  },
+  {
+    rank: 116,
+    name: "Saha-egyenlet",
+    tag: "Asztrofizikai kémia · ionizációs egyensúly, Meghnad Saha, 1920",
+    category: "kemia-biologia",
+    special: true,
+    type: "single",
+    tex: "\\frac{n_{i+1}n_e}{n_i} = \\frac{2}{\\Lambda^3}\\frac{g_{i+1}}{g_i}\\,e^{-\\chi_i/k_BT}",
+    why: "<b>Egyetlen egyenlet mondja meg, hogy egy csillag felszínén az atomok hány százaléka ionizált egy adott hőmérsékleten — ebből olvassuk le a csillagok színképtípusát.</b> Saha a sztatisztikus mechanikát alkalmazta a csillagászati plazmákra, és ezzel adta meg az elméleti hátteret a Harvard-féle csillagosztályozáshoz (O, B, A, F, G, K, M). Enélkül a Nap színképvonalai csupán rejtélyes csíkok maradtak volna — vele a csillagok hőmérsékletének és összetételének térképévé váltak."
+  },
+  {
+    rank: 117,
+    name: "Eddington–Dirac nagy szám hipotézis",
+    tag: "Kozmológia · numerikus egybeesés, 1937/1938",
+    category: "relativitas",
+    special: false,
+    type: "single",
+    tex: "\\frac{F_{\\text{elektromos}}}{F_{\\text{gravitációs}}} \\approx \\frac{c\\,t_{\\text{univerzum}}}{r_e} \\approx 10^{40}",
+    why: "<b>Néhány, egymástól teljesen független fizikai arány mind ugyanazt a hatalmas számot, kb. 10⁴⁰-et adja — és senki sem tudja biztosan, hogy ez véletlen egybeesés, vagy egy mélyebb törvény jele.</b> Dirac annyira komolyan vette ezt, hogy felvetette: talán a gravitációs állandó időben csökken, ahogy az univerzum tágul. A hipotézist a mai kísérletek nagyrészt cáfolják, mégis a fizikatörténet egyik legizgalmasabb 'mi van, ha' rejtélye maradt — egy számmisztikai megfigyelésből induló komoly elméleti fizikai program."
+  },
+  {
+    rank: 118,
+    name: "Bőrhatás (Skin Effect)",
+    tag: "Mérnöki alkalmazások · elektrotechnika, 1883",
+    category: "mernoki-alkalmazasok",
+    special: false,
+    type: "single",
+    tex: "\\delta = \\sqrt{\\frac{2\\rho}{\\omega\\mu}}",
+    why: "<b>Váltakozó áramnál a vezető belseje 'lusta lesz' — az áram a felszín közelébe szorul, és a vezető közepe elektromosan szinte használatlan marad.</b> Minél magasabb a frekvencia, annál vékonyabb ez a 'bőr' (δ), ezért használnak a nagyfeszültségű távvezetékek üreges vagy sodrott vezetőket, és ezért burkolják ezüsttel a rádiófrekvenciás antennák felszínét ahelyett, hogy tömör ezüstből készítenék őket. Tisztán elektrodinamikai jelenség, óriási gyakorlati (és anyagköltség-) következményekkel."
+  },
+  {
+    rank: 119,
+    name: "Lencsekészítő-egyenlet",
+    tag: "Optika · Lensmaker's Equation, 17. század",
+    category: "klasszikus",
+    special: false,
+    type: "single",
+    tex: "\\frac{1}{f} = (n-1)\\left(\\frac{1}{R_1}-\\frac{1}{R_2}\\right)",
+    why: "<b>Egy lencse fókusztávolsága kizárólag a törésmutatóból és a két felület görbületi sugarából számítható ki — mielőtt még egyetlen fénysugarat is átengednénk rajta.</b> Ez az egyenlet teszi lehetővé, hogy szemüveget, mikroszkópot, távcsövet és fényképezőgép-objektívet tisztán a geometriából tervezzenek meg, kísérletezés nélkül. Minden optikai műszer, amit valaha használtál, ezen a néhány változós összefüggésen alapul."
+  },
+  {
+    rank: 120,
+    name: "Liouville-egyenlet (fázistér)",
+    tag: "Statisztikus mechanika · Hamilton-dinamika, 1838",
+    category: "termodinamika",
+    special: false,
+    type: "single",
+    tex: "\\frac{d\\rho}{dt} = \\frac{\\partial\\rho}{\\partial t} + \\{\\rho, H\\} = 0",
+    why: "<b>Egy rendszer állapotainak valószínűségi 'sűrűsége' a fázistérben soha nem tömörödik és nem hígul — csak elfolyik, mint egy összenyomhatatlan folyadék.</b> Ez a tétel garantálja, hogy a klasszikus mechanika determinisztikus, időben visszafordítható törvényei összeegyeztethetők a statisztikus fizika valószínűségi leírásával. Fontos: ez a Joseph Liouville-ról elnevezett tétel teljesen más eredmény, mint a gyűjteményben már szereplő komplex analízisbeli Liouville-tétel — csak a névadó közös."
+  },
+  {
+    rank: 121,
+    name: "Ideális gáztörvény",
+    tag: "Termodinamika · Clapeyron, 1834",
+    category: "termodinamika",
+    special: true,
+    type: "single",
+    tex: "PV = nRT",
+    why: "<b>Négy egyszerű mennyiség — nyomás, térfogat, anyagmennyiség, hőmérséklet — egyetlen egyenletbe sűríti egy gáz teljes makroszkopikus viselkedését.</b> Clapeyron egyesítette benne Boyle, Charles, Gay-Lussac és Avogadro korábban külön-külön felfedezett törvényeit egyetlen, elegáns kifejezésbe. Minden bonyolultabb állapotegyenlet (mint a gyűjteményben már szereplő Van der Waals-egyenlet) ennek a korrekciója — ez a nulladik közelítés, amiből minden más kiindul."
+  },
+  {
+    rank: 122,
+    name: "Newton-féle gravitációs törvény",
+    tag: "Klasszikus mechanika · 1687",
+    category: "klasszikus",
+    special: true,
+    type: "single",
+    tex: "F = G\\,\\frac{m_1 m_2}{r^2}",
+    why: "<b>Egyetlen egyenlet magyarázza meg, miért esik le az alma, és miért kering a Hold a Föld körül — Newton nagy felismerése az volt, hogy ez ugyanaz a jelenség.</b> Ezzel egyesítette először a földi és az égi mechanikát, amelyeket addig teljesen különböző törvények uraltak. Bár Einstein általános relativitáselmélete (amit a gyűjteményben már érintettünk) pontosabb leírást ad, Newton törvénye ma is elég pontos ahhoz, hogy űrszondákat juttassunk a Naprendszer külső bolygóihoz."
+  },
+  {
+    rank: 123,
+    name: "De Broglie-hullámhossz",
+    tag: "Kvantummechanika · 1924",
+    category: "kvantum",
+    special: true,
+    type: "single",
+    tex: "\\lambda = \\frac{h}{p}",
+    why: "<b>Minden anyagi részecskének — elektronnak, protonnak, sőt elvben egy futballabdának is — van hullámhossza, ami a lendületétől függ.</b> De Broglie olyan merész ötlettel állt elő PhD-disszertációjában, hogy a bírálóbizottság Einsteinhez fordult tanácsért, mielőtt elfogadták volna. Einstein azonnal felismerte a jelentőségét — ez az ötlet vezetett közvetlenül Schrödinger hullámegyenletéhez néhány hónappal később."
+  },
+  {
+    rank: 124,
+    name: "Ehrenfest-tétel",
+    tag: "Kvantummechanika · 1927",
+    category: "kvantum",
+    special: false,
+    type: "single",
+    tex: "m\\,\\frac{d^2\\langle x\\rangle}{dt^2} = -\\langle\\nabla V(x)\\rangle",
+    why: "<b>A kvantummechanikai várható értékek pontosan Newton második törvényét követik — a klasszikus fizika 'kísértete' benne rejlik a kvantumformalizmusban.</b> Ez a tétel adja meg a precíz matematikai hidat aközött, amit a mikrovilágban (hullámfüggvények, operátorok) és amit a makrovilágban (pályák, erők) tapasztalunk. Ehrenfest bebizonyította: elég nagy rendszereknél, vagy elég koncentrált hullámcsomagoknál, a kvantummechanika automatikusan 'visszaadja' a klasszikus mechanikát."
+  },
+  {
+    rank: 125,
+    name: "Christoffel-szimbólumok",
+    tag: "Differenciálgeometria · Elwin Christoffel, 1869",
+    category: "relativitas",
+    special: false,
+    type: "single",
+    tex: "\\Gamma^k_{ij} = \\frac{1}{2}g^{kl}\\left(\\frac{\\partial g_{il}}{\\partial x^j}+\\frac{\\partial g_{jl}}{\\partial x^i}-\\frac{\\partial g_{ij}}{\\partial x^l}\\right)",
+    why: "<b>Görbült térben nincs egyértelmű módja annak, hogy két különböző pontban lévő vektorokat összehasonlítsunk — a Christoffel-szimbólumok mondják meg, hogyan kell 'párhuzamosan eltolni' egy vektort a görbületen keresztül.</b> Ez a látszólag technikai apparátus adja a geodetikus egyenlet (a legrövidebb út görbült térben) és végső soron az Einstein-mezőegyenletek matematikai gerincét. Anélkül, hogy Christoffel tudott volna róla, ő rakta le az egyik legfontosabb kőkockát ahhoz az úthoz, ami fél évszázaddal később az általános relativitáselmélethez vezetett."
+  },
+  {
+    rank: 126,
+    name: "Planck-hossz",
+    tag: "Kvantumgravitáció · természetes egységek, 1899",
+    category: "kvantum",
+    special: false,
+    type: "single",
+    tex: "\\ell_P = \\sqrt{\\frac{\\hbar G}{c^3}} \\approx 1.6\\times10^{-35}\\,\\text{m}",
+    why: "<b>Ez a legkisebb hosszúságskála, aminek fizikailag még van értelme — ez alatt a kvantummechanika és a gravitáció elméletei összeomlanak, és senki sem tudja pontosan, mi történik.</b> Planck három univerzális állandóból (ħ, G, c) építette fel — nem méréssel, hanem tiszta dimenzióanalízissel jósolta meg egy olyan skála létezését, amit azóta sem sikerült közvetlenül megfigyelni. A kvantumgravitáció-elméletek (húrelmélet, hurok-kvantumgravitáció) mind ezen a skálán próbálják megérteni a téridő 'szemcsés' szerkezetét."
+  },
+  {
+    rank: 127,
+    name: "Young–Laplace-egyenlet",
+    tag: "Felületi feszültség · Thomas Young & Pierre-Simon Laplace, 1805",
+    category: "mernoki-alkalmazasok",
+    special: false,
+    type: "single",
+    tex: "\\Delta P = \\gamma\\left(\\frac{1}{R_1}+\\frac{1}{R_2}\\right)",
+    why: "<b>Egy görbült folyadékfelület két oldala közötti nyomáskülönbség kizárólag a felületi feszültségtől és a görbület sugaraitól függ — minél kisebb a buborék, annál nagyobb a belső nyomása.</b> Ez magyarázza, miért olvadnak össze a kis szappanbuborékok a nagyobbakba (a kicsi mindig nagyobb nyomású), és ez a kiindulópontja minden kapilláris jelenségnek, porózus közegbeli folyadékáramlásnak és a modern mikrofluidikai chipek tervezésének."
   }
 ];
 
@@ -2542,7 +2722,7 @@ const DOMAINS = {
       "szamitastudomany-mernoki": "Számítástudomány & mérnöki"
     },
     categoryOrder: ["analizis","topologia","szamelmelet","logika-halmaz","valoszinuseg","kombinatorika-geometria","szamitastudomany-mernoki"],
-    footerNames: "Euler \u00b7 Fourier \u00b7 Ramanujan \u00b7 Gauss \u00b7 Riemann \u00b7 Cauchy \u00b7 Pitagorasz \u00b7 Stirling \u00b7 Basel \u00b7 Gauss\u2013Bonnet \u00b7 Euler-szorzat \u00b7 Stokes \u00b7 Fermat\u2013Wiles \u00b7 G\u00f6del \u00b7 Bayes \u00b7 Liouville \u00b7 Cayley \u00b7 Borsuk\u2013Ulam \u00b7 S\u00fcndiszn\u00f3 \u00b7 Cantor \u00b7 Aranymetsz\u00e9s \u00b7 Banach \u00b7 Brouwer \u00b7 Pr\u00edmsz\u00e1mt\u00e9tel \u00b7 CHT \u00b7 Pell \u00b7 Sylvester\u2013Gallai \u00b7 N\u00e9gysz\u00edn-t\u00e9tel \u00b7 Jordan \u00b7 Collatz \u00b7 Goldbach \u00b7 P vs NP \u00b7 Hilbert-sz\u00e1lloda \u00b7 Monty Hall \u00b7 Sz\u00fclet\u00e9snapi paradoxon \u00b7 Bell/CHSH \u00b7 Lagrange-n\u00e9gyzett\u00e9tel \u00b7 Erd\u0151s\u2013Ko\u2013Rado \u00b7 Banach\u2013Tarski \u00b7 Arrow \u00b7 Poincar\u00e9 \u00b7 Euler-poli\u00e9der \u00b7 Ramsey \u00b7 Szemer\u00e9di \u00b7 Green\u2013Tao \u00b7 Kontinuumhipot\u00e9zis \u00b7 Algebra alapt\u00e9tele \u00b7 Catalan\u2013Mihailescu \u00b7 Kalkulus alapt\u00e9tele \u00b7 Pi transzcendenci\u00e1ja \u00b7 Happy Ending \u00b7 Nash-egyenl\u0151s\u00e9g \u00b7 Kepler-sejt\u00e9s \u00b7 Pick-t\u00e9tel \u00b7 Goodstein-t\u00e9tel \u00b7 Riemann-lek\u00e9pez\u00e9s \u00b7 Korl\u00e1tos pr\u00edmr\u00e9s \u00b7 Cook\u2013Levin \u00b7 Meg\u00e1ll\u00e1si probl\u00e9ma \u00b7 Nagy sz\u00e1mok t\u00f6rv\u00e9nye \u00b7 Rogers\u2013Ramanujan \u00b7 Hardy\u2013Ramanujan \u00b7 Ramanujan \u03c4-f\u00fcggv\u00e9ny \u00b7 Chudnovsky \u00b7 Lax\u2013Milgram \u00b7 Nyquist\u2013Shannon \u00b7 Kalman-sz\u0171r\u0151 \u00b7 Wilson-tétel \u00b7 Brun-tétel \u00b7 Bertrand-posztulátum \u00b7 Hall-tétel \u00b7 Erdős\u2013Szekeres \u00b7 Helly-tétel \u00b7 Sperner-lemma \u00b7 Szimplex-módszer \u00b7 Perron\u2013Frobenius \u00b7 Gauss\u2013Markov \u00b7 Cauchy\u2013Schwarz \u00b7 Weierstrass-approximáció \u00b7 Picard\u2013Lindelöf \u00b7 Csebisev \u00b7 Kolmogorov 0-1 \u00b7 Markov-ergodikus \u00b7 Löwenheim\u2013Skolem \u00b7 Tarski \u00b7 Kruskal-fatétel \u00b7 Radon-tétel \u00b7 Nielsen\u2013Schreier \u00b7 Jones-polinom \u00b7 Church\u2013Turing \u00b7 Shannon-kapacitás \u00b7 FFT \u00b7 Lebesgue-konvergencia \u00b7 Fubini-t\u00e9tel \u00b7 Arzel\u00e0\u2013Ascoli \u00b7 Poisson-folyamat \u00b7 It\u014d-formula \u00b7 Erd\u0151s\u2013R\u00e9nyi \u00b7 Kolmogorov-komplexit\u00e1s \u00b7 L\u00f6b-t\u00e9tel \u00b7 Robertson\u2013Seymour \u00b7 Tur\u00e1n-t\u00e9tel \u00b7 Poincar\u00e9\u2013Bendixson \u00b7 Whitney-be\u00e1gyaz\u00e1s \u00b7 Lefschetz-fixpont \u00b7 Dijkstra \u00b7 Karmarkar \u00b7 Wald-azonoss\u00e1g \u00b7 Berry\u2013Esseen \u00b7 Banach\u2013Steinhaus \u00b7 Sobolev-be\u00e1gyaz\u00e1s \u00b7 Hopf-fibr\u00e1ci\u00f3 \u00b7 Van Kampen \u00b7 De Bruijn\u2013Erd\u0151s \u00b7 Borsuk-sejt\u00e9s \u00b7 Amdahl-t\u00f6rv\u00e9ny \u00b7 RSA",
+    footerNames: "Euler \u00b7 Fourier \u00b7 Ramanujan \u00b7 Gauss \u00b7 Riemann \u00b7 Cauchy \u00b7 Pitagorasz \u00b7 Stirling \u00b7 Basel \u00b7 Gauss\u2013Bonnet \u00b7 Euler-szorzat \u00b7 Stokes \u00b7 Fermat\u2013Wiles \u00b7 G\u00f6del \u00b7 Bayes \u00b7 Liouville \u00b7 Cayley \u00b7 Borsuk\u2013Ulam \u00b7 S\u00fcndiszn\u00f3 \u00b7 Cantor \u00b7 Aranymetsz\u00e9s \u00b7 Banach \u00b7 Brouwer \u00b7 Pr\u00edmsz\u00e1mt\u00e9tel \u00b7 CHT \u00b7 Pell \u00b7 Sylvester\u2013Gallai \u00b7 N\u00e9gysz\u00edn-t\u00e9tel \u00b7 Jordan \u00b7 Collatz \u00b7 Goldbach \u00b7 P vs NP \u00b7 Hilbert-sz\u00e1lloda \u00b7 Monty Hall \u00b7 Sz\u00fclet\u00e9snapi paradoxon \u00b7 Bell/CHSH \u00b7 Lagrange-n\u00e9gyzett\u00e9tel \u00b7 Erd\u0151s\u2013Ko\u2013Rado \u00b7 Banach\u2013Tarski \u00b7 Arrow \u00b7 Poincar\u00e9 \u00b7 Euler-poli\u00e9der \u00b7 Ramsey \u00b7 Szemer\u00e9di \u00b7 Green\u2013Tao \u00b7 Kontinuumhipot\u00e9zis \u00b7 Algebra alapt\u00e9tele \u00b7 Catalan\u2013Mihailescu \u00b7 Kalkulus alapt\u00e9tele \u00b7 Pi transzcendenci\u00e1ja \u00b7 Happy Ending \u00b7 Nash-egyenl\u0151s\u00e9g \u00b7 Kepler-sejt\u00e9s \u00b7 Pick-t\u00e9tel \u00b7 Goodstein-t\u00e9tel \u00b7 Riemann-lek\u00e9pez\u00e9s \u00b7 Korl\u00e1tos pr\u00edmr\u00e9s \u00b7 Cook\u2013Levin \u00b7 Meg\u00e1ll\u00e1si probl\u00e9ma \u00b7 Nagy sz\u00e1mok t\u00f6rv\u00e9nye \u00b7 Rogers\u2013Ramanujan \u00b7 Hardy\u2013Ramanujan \u00b7 Ramanujan \u03c4-f\u00fcggv\u00e9ny \u00b7 Chudnovsky \u00b7 Lax\u2013Milgram \u00b7 Nyquist\u2013Shannon \u00b7 Kalman-sz\u0171r\u0151 \u00b7 Wilson-tétel \u00b7 Brun-tétel \u00b7 Bertrand-posztulátum \u00b7 Hall-tétel \u00b7 Erdős\u2013Szekeres \u00b7 Helly-tétel \u00b7 Sperner-lemma \u00b7 Szimplex-módszer \u00b7 Perron\u2013Frobenius \u00b7 Gauss\u2013Markov \u00b7 Cauchy\u2013Schwarz \u00b7 Weierstrass-approximáció \u00b7 Picard\u2013Lindelöf \u00b7 Csebisev \u00b7 Kolmogorov 0-1 \u00b7 Markov-ergodikus \u00b7 Löwenheim\u2013Skolem \u00b7 Tarski \u00b7 Kruskal-fatétel \u00b7 Radon-tétel \u00b7 Nielsen\u2013Schreier \u00b7 Jones-polinom \u00b7 Church\u2013Turing \u00b7 Shannon-kapacitás \u00b7 FFT \u00b7 Lebesgue-konvergencia \u00b7 Fubini-t\u00e9tel \u00b7 Arzel\u00e0\u2013Ascoli \u00b7 Poisson-folyamat \u00b7 It\u014d-formula \u00b7 Erd\u0151s\u2013R\u00e9nyi \u00b7 Kolmogorov-komplexit\u00e1s \u00b7 L\u00f6b-t\u00e9tel \u00b7 Robertson\u2013Seymour \u00b7 Tur\u00e1n-t\u00e9tel \u00b7 Poincar\u00e9\u2013Bendixson \u00b7 Whitney-be\u00e1gyaz\u00e1s \u00b7 Lefschetz-fixpont \u00b7 Dijkstra \u00b7 Karmarkar \u00b7 Wald-azonoss\u00e1g \u00b7 Berry\u2013Esseen \u00b7 Banach\u2013Steinhaus \u00b7 Sobolev-be\u00e1gyaz\u00e1s \u00b7 Hopf-fibr\u00e1ci\u00f3 \u00b7 Van Kampen \u00b7 De Bruijn\u2013Erd\u0151s \u00b7 Borsuk-sejt\u00e9s \u00b7 Amdahl-t\u00f6rv\u00e9ny \u00b7 RSA \u00b7 Hessian-D-teszt \u00b7 Green-tétel \u00b7 Gauss-divergenciatétel \u00b7 Cauchy\u2013Riemann \u00b7 Wallis-szorzat \u00b7 Mittag-Leffler \u00b7 Mandelbrot-halmaz",
     ghostFormulas: ["e^{i\\pi}+1=0", "\\zeta(s)=\\sum_{n=1}^{\\infty}\\frac{1}{n^s}", "\\int_{-\\infty}^{\\infty} e^{-x^2}dx=\\sqrt{\\pi}", "\\forall\\varepsilon>0\\,\\exists\\delta", "\\aleph_0 < \\mathfrak{c}", "\\nabla^2\\phi=0"]
   },
   fizika: {
@@ -2561,7 +2741,7 @@ const DOMAINS = {
       "mernoki-alkalmazasok": "Mérnöki alkalmazások"
     },
     categoryOrder: ["klasszikus","kvantum","relativitas","reszecskefizika","termodinamika","kemia-biologia","mernoki-alkalmazasok"],
-    footerNames: "Maxwell \u00b7 Noether \u00b7 Schr\u00f6dinger \u00b7 Boltzmann \u00b7 Feynman \u00b7 Dirac \u00b7 Bekenstein\u2013Hawking \u00b7 Euler\u2013Lagrange \u00b7 E=mc\u00b2 \u00b7 Yang\u2013Mills \u00b7 Heisenberg \u00b7 Shannon \u00b7 Navier\u2013Stokes \u00b7 Planck \u00b7 Lorentz \u00b7 Hawking-h\u0151m\u00e9rs\u00e9klet \u00b7 Aszimptotikus szabads\u00e1g \u00b7 Peri\u00f3dusos rendszer \u00b7 Kepler \u00b7 Hamilton \u00b7 Lotka\u2013Volterra \u00b7 Hardy\u2013Weinberg \u00b7 Snellius\u2013Descartes \u00b7 Viri\u00e1lt\u00e9tel \u00b7 Hodgkin\u2013Huxley \u00b7 Arrhenius \u00b7 Le Chatelier \u00b7 Bell/CHSH \u00b7 Carnot \u00b7 Higgs \u00b7 Casimir \u00b7 Michaelis\u2013Menten \u00b7 Az id\u0151 nyila \u00b7 Kvarkbez\u00e1r\u00e1s \u00b7 Holografikus elv \u00b7 BCS-elm\u00e9let \u00b7 Drake-egyenlet \u00b7 Fick-t\u00f6rv\u00e9ny \u00b7 Einstein-mez\u0151egyenletek \u00b7 Faraday-indukci\u00f3 \u00b7 Wien-t\u00f6rv\u00e9ny \u00b7 Levinthal-paradoxon \u00b7 Doppler-effektus \u00b7 Bernoulli-egyenlet \u00b7 ATP-szint\u00e1z \u00b7 Homokiralit\u00e1s \u00b7 Hubble\u2013Lema\u00eetre \u00b7 Lorentz-er\u0151 \u00b7 Avogadro-\u00e1lland\u00f3 \u00b7 Compton-effektus \u00b7 Van 't Hoff \u00b7 Pauli-elv \u00b7 Hull\u00e1megyenlet \u00b7 Reynolds-sz\u00e1m \u00b7 Seebeck-effektus \u00b7 Chandrasekhar-hat\u00e1r \u00b7 Bose\u2013Einstein-kondenz\u00e1ci\u00f3 \u00b7 CPT-t\u00e9tel \u00b7 Onsager-reciprocit\u00e1s \u00b7 Landauer-elv \u00b7 Euler-kihajl\u00e1s \u00b7 Saint-Venant \u00b7 Mohr-k\u00f6r \u00b7 Betti-t\u00e9tel \u00b7 Clausius\u2013Clapeyron \u00b7 Gibbs-energia \u00b7 Fermi\u2013Dirac \u00b7 Neutrínó-oszcilláció \u00b7 Gell-Mann\u2013Nishijima \u00b7 Schwarzschild-sugár \u00b7 Friedmann-egyenletek \u00b7 Euler\u2013Bernoulli \u00b7 Castigliano \u00b7 Buckingham π-tétel \u00b7 Alag\u00fathat\u00e1s \u00b7 No-cloning \u00b7 Josephson \u00b7 Meissner \u00b7 Nernst-t\u00e9tel \u00b7 Maxwell\u2013Boltzmann \u00b7 Stefan\u2013Boltzmann \u00b7 Cserenkov \u00b7 M\u00fcon g-2 \u00b7 Ekvivalenciaelv \u00b7 Kerr-metrika \u00b7 Gravit\u00e1ci\u00f3s hull\u00e1mok \u00b7 Timoshenko \u00b7 Navier (rugalmass\u00e1gtan) \u00b7 Rayleigh\u2013Ritz \u00b7 Hooke-t\u00f6rv\u00e9ny \u00b7 Darcy-t\u00f6rv\u00e9ny \u00b7 Terzaghi-konszolid\u00e1ci\u00f3 \u00b7 Coriolis-er\u0151 \u00b7 Foucault-inga \u00b7 Euler-forg\u00e1segyenletek \u00b7 Van der Waals \u00b7 Joule\u2013Thomson \u00b7 Fourier-h\u0151vezet\u00e9s \u00b7 Nernst-egyenlet \u00b7 CKM-m\u00e1trix \u00b7 Aharonov\u2013Bohm \u00b7 Penrose\u2013Hawking \u00b7 Shapiro-k\u00e9sleltet\u00e9s \u00b7 Penrose-folyamat \u00b7 Watson\u2013Crick \u00b7 Griffith-t\u00f6r\u00e9smechanika \u00b7 Coulomb-s\u00fars\u00fbrl\u00f3d\u00e1s \u00b7 Elektrogyenge egyes\u00edt\u00e9s \u00b7 Rutherford-sz\u00f3r\u00e1s \u00b7 Kvantum-teleport\u00e1ci\u00f3 \u00b7 D'Alembert-elv \u00b7 Lense\u2013Thirring \u00b7 Kirchhoff-sug\u00e1rz\u00e1s \u00b7 Kvark-gluon plazma",
+    footerNames: "Maxwell \u00b7 Noether \u00b7 Schr\u00f6dinger \u00b7 Boltzmann \u00b7 Feynman \u00b7 Dirac \u00b7 Bekenstein\u2013Hawking \u00b7 Euler\u2013Lagrange \u00b7 E=mc\u00b2 \u00b7 Yang\u2013Mills \u00b7 Heisenberg \u00b7 Shannon \u00b7 Navier\u2013Stokes \u00b7 Planck \u00b7 Lorentz \u00b7 Hawking-h\u0151m\u00e9rs\u00e9klet \u00b7 Aszimptotikus szabads\u00e1g \u00b7 Peri\u00f3dusos rendszer \u00b7 Kepler \u00b7 Hamilton \u00b7 Lotka\u2013Volterra \u00b7 Hardy\u2013Weinberg \u00b7 Snellius\u2013Descartes \u00b7 Viri\u00e1lt\u00e9tel \u00b7 Hodgkin\u2013Huxley \u00b7 Arrhenius \u00b7 Le Chatelier \u00b7 Bell/CHSH \u00b7 Carnot \u00b7 Higgs \u00b7 Casimir \u00b7 Michaelis\u2013Menten \u00b7 Az id\u0151 nyila \u00b7 Kvarkbez\u00e1r\u00e1s \u00b7 Holografikus elv \u00b7 BCS-elm\u00e9let \u00b7 Drake-egyenlet \u00b7 Fick-t\u00f6rv\u00e9ny \u00b7 Einstein-mez\u0151egyenletek \u00b7 Faraday-indukci\u00f3 \u00b7 Wien-t\u00f6rv\u00e9ny \u00b7 Levinthal-paradoxon \u00b7 Doppler-effektus \u00b7 Bernoulli-egyenlet \u00b7 ATP-szint\u00e1z \u00b7 Homokiralit\u00e1s \u00b7 Hubble\u2013Lema\u00eetre \u00b7 Lorentz-er\u0151 \u00b7 Avogadro-\u00e1lland\u00f3 \u00b7 Compton-effektus \u00b7 Van 't Hoff \u00b7 Pauli-elv \u00b7 Hull\u00e1megyenlet \u00b7 Reynolds-sz\u00e1m \u00b7 Seebeck-effektus \u00b7 Chandrasekhar-hat\u00e1r \u00b7 Bose\u2013Einstein-kondenz\u00e1ci\u00f3 \u00b7 CPT-t\u00e9tel \u00b7 Onsager-reciprocit\u00e1s \u00b7 Landauer-elv \u00b7 Euler-kihajl\u00e1s \u00b7 Saint-Venant \u00b7 Mohr-k\u00f6r \u00b7 Betti-t\u00e9tel \u00b7 Clausius\u2013Clapeyron \u00b7 Gibbs-energia \u00b7 Fermi\u2013Dirac \u00b7 Neutrínó-oszcilláció \u00b7 Gell-Mann\u2013Nishijima \u00b7 Schwarzschild-sugár \u00b7 Friedmann-egyenletek \u00b7 Euler\u2013Bernoulli \u00b7 Castigliano \u00b7 Buckingham π-tétel \u00b7 Alag\u00fathat\u00e1s \u00b7 No-cloning \u00b7 Josephson \u00b7 Meissner \u00b7 Nernst-t\u00e9tel \u00b7 Maxwell\u2013Boltzmann \u00b7 Stefan\u2013Boltzmann \u00b7 Cserenkov \u00b7 M\u00fcon g-2 \u00b7 Ekvivalenciaelv \u00b7 Kerr-metrika \u00b7 Gravit\u00e1ci\u00f3s hull\u00e1mok \u00b7 Timoshenko \u00b7 Navier (rugalmass\u00e1gtan) \u00b7 Rayleigh\u2013Ritz \u00b7 Hooke-t\u00f6rv\u00e9ny \u00b7 Darcy-t\u00f6rv\u00e9ny \u00b7 Terzaghi-konszolid\u00e1ci\u00f3 \u00b7 Coriolis-er\u0151 \u00b7 Foucault-inga \u00b7 Euler-forg\u00e1segyenletek \u00b7 Van der Waals \u00b7 Joule\u2013Thomson \u00b7 Fourier-h\u0151vezet\u00e9s \u00b7 Nernst-egyenlet \u00b7 CKM-m\u00e1trix \u00b7 Aharonov\u2013Bohm \u00b7 Penrose\u2013Hawking \u00b7 Shapiro-k\u00e9sleltet\u00e9s \u00b7 Penrose-folyamat \u00b7 Watson\u2013Crick \u00b7 Griffith-t\u00f6r\u00e9smechanika \u00b7 Coulomb-s\u00fars\u00fbrl\u00f3d\u00e1s \u00b7 Elektrogyenge egyes\u00edt\u00e9s \u00b7 Rutherford-sz\u00f3r\u00e1s \u00b7 Kvantum-teleport\u00e1ci\u00f3 \u00b7 D'Alembert-elv \u00b7 Lense\u2013Thirring \u00b7 Kirchhoff-sug\u00e1rz\u00e1s \u00b7 Kvark-gluon plazma \u00b7 Rüchardt-módszer \u00b7 Saha-egyenlet \u00b7 Eddington\u2013Dirac nagy szám \u00b7 Bőrhatás \u00b7 Lencsekészítő-egyenlet \u00b7 Liouville-egyenlet \u00b7 Ideális gáztörvény \u00b7 Newton-gravitáció \u00b7 De Broglie \u00b7 Ehrenfest-tétel \u00b7 Christoffel-szimbólumok \u00b7 Planck-hossz \u00b7 Young\u2013Laplace",
     ghostFormulas: ["\\nabla\\times\\vec{E}=-\\frac{\\partial \\vec{B}}{\\partial t}", "E=mc^2", "\\hat{H}\\psi=i\\hbar\\frac{\\partial\\psi}{\\partial t}", "S=k_B\\ln\\Omega", "F=ma", "ds^2=g_{\\mu\\nu}dx^\\mu dx^\\nu"]
   }
 };
