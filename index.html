@@ -86,6 +86,7 @@
     display:flex;align-items:center;justify-content:center;
   }
   .info-btn:hover{color:var(--primary-bright);border-color:var(--chip-hover-border);}
+  .top-row-actions{display:flex;gap:8px;flex:0 0 auto;}
   .dbtn{
     font-family:"Inter",sans-serif;
     font-size:13px;font-weight:600;letter-spacing:.02em;
@@ -613,6 +614,71 @@
   }
   .modal-panel p:last-child{margin-bottom:0;}
 
+  /* ---- Képlet-nagyítás (lightbox) ---- */
+  .formula-clickable{cursor:zoom-in;}
+  .formula-lightbox{
+    position:fixed;inset:0;z-index:58;
+    background:rgba(0,0,0,.78);
+    backdrop-filter:blur(4px);
+    display:none;align-items:center;justify-content:center;
+    padding:24px;
+  }
+  .formula-lightbox.visible{display:flex;}
+  .lightbox-panel{
+    position:relative;
+    max-width:92vw;max-height:85vh;overflow:auto;
+    background:linear-gradient(180deg,var(--panel),var(--ink-2));
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:clamp(30px,6vw,56px);
+    box-shadow:0 24px 60px -20px rgba(0,0,0,.6);
+    text-align:center;
+    cursor:default;
+  }
+  .lightbox-close{position:absolute;top:14px;right:14px;}
+  .lightbox-title{
+    font-family:"Fraunces",serif;font-style:italic;font-weight:500;
+    font-size:clamp(16px,2.4vw,21px);color:var(--primary-bright);
+    margin:0 0 24px;
+  }
+  #lightboxContent .katex{
+    font-size:clamp(1.6rem,5vw,3rem)!important;
+    color:var(--paper);
+  }
+  #lightboxContent{overflow-x:auto;}
+
+  /* ---- Statisztika-panel ---- */
+  .stats-panel{max-width:560px;}
+  .stat-section-title{
+    font-family:"Fraunces",serif;font-style:italic;font-weight:500;
+    font-size:15px;color:var(--primary-bright);
+    margin:22px 0 12px;
+  }
+  .stat-row{
+    display:flex;align-items:center;gap:10px;margin-bottom:9px;
+  }
+  .stat-label{
+    width:170px;flex:0 0 auto;
+    font-size:11.5px;color:var(--muted);text-align:right;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
+  .stat-bar-track{
+    flex:1;height:9px;background:var(--chip-bg);border-radius:5px;overflow:hidden;
+  }
+  .stat-bar-fill{
+    height:100%;border-radius:5px;
+    transition:width .7s cubic-bezier(.2,.7,.2,1);
+    box-shadow:0 0 8px currentColor;
+  }
+  .stat-count{
+    width:26px;flex:0 0 auto;
+    font-family:"JetBrains Mono",monospace;font-size:11px;
+    color:var(--muted);text-align:right;
+  }
+  @media(max-width:560px){
+    .stat-label{width:110px;font-size:10.5px;}
+  }
+
   @media(max-width:560px){
     .row{grid-template-columns:62px 1fr;gap:12px;}
     .rank{font-size:26px;}
@@ -663,7 +729,10 @@
       <button type="button" class="dbtn active" data-domain="matek">Matematika</button>
       <button type="button" class="dbtn" data-domain="fizika">Fizika · Kémia · Biológia</button>
     </div>
-    <button type="button" class="info-btn" id="infoBtn" aria-label="A gyűjteményről" title="A gyűjteményről">ℹ</button>
+    <div class="top-row-actions">
+      <button type="button" class="info-btn" id="statsBtn" aria-label="Statisztika" title="Statisztika">📊</button>
+      <button type="button" class="info-btn" id="infoBtn" aria-label="A gyűjteményről" title="A gyűjteményről">ℹ</button>
+    </div>
   </div>
   <p class="grand-total" id="grandTotal"></p>
 
@@ -704,6 +773,25 @@
 </div>
 
 <div class="toast" id="toast"></div>
+
+<div class="formula-lightbox" id="formulaLightbox" aria-hidden="true">
+  <div class="lightbox-panel">
+    <button type="button" class="modal-close lightbox-close" id="lightboxClose" aria-label="Bezárás">✕</button>
+    <p class="lightbox-title" id="lightboxTitle"></p>
+    <div id="lightboxContent"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="statsOverlay" aria-hidden="true">
+  <div class="modal-panel stats-panel" role="dialog" aria-modal="true">
+    <button type="button" class="modal-close" id="statsClose" aria-label="Bezárás">✕</button>
+    <p class="modal-eyebrow">Statisztika</p>
+    <h2 id="statsTitle">Eloszlás</h2>
+    <div id="statsCategories"></div>
+    <p class="stat-section-title">Korszakok szerint</p>
+    <div id="statsEras"></div>
+  </div>
+</div>
 
 <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
   <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
@@ -3033,6 +3121,15 @@ const favToggle = document.getElementById("favToggle");
 const infoBtn = document.getElementById("infoBtn");
 const modalOverlay = document.getElementById("modalOverlay");
 const modalClose = document.getElementById("modalClose");
+const formulaLightbox = document.getElementById("formulaLightbox");
+const lightboxClose = document.getElementById("lightboxClose");
+const lightboxTitle = document.getElementById("lightboxTitle");
+const lightboxContent = document.getElementById("lightboxContent");
+const statsBtn = document.getElementById("statsBtn");
+const statsOverlay = document.getElementById("statsOverlay");
+const statsClose = document.getElementById("statsClose");
+const statsCategories = document.getElementById("statsCategories");
+const statsEras = document.getElementById("statsEras");
 
 let activeDomain = "matek";
 let activeCategory = "all";
@@ -3179,7 +3276,7 @@ function buildRow(entry, index, domainKey) {
 
   if (entry.type === "maxwell") {
     const fWrap = document.createElement("div");
-    fWrap.className = "formula multi";
+    fWrap.className = "formula multi formula-clickable";
     const label = document.createElement("div");
     label.className = "system-label";
     label.style.gridColumn = "1 / -1";
@@ -3190,6 +3287,7 @@ function buildRow(entry, index, domainKey) {
       fWrap.appendChild(span);
       katex.render(eq, span, {throwOnError: false, displayMode: true});
     });
+    fWrap.addEventListener("click", () => openFormulaLightbox(entry));
     body.appendChild(fWrap);
 
     const derBox = document.createElement("div");
@@ -3197,14 +3295,15 @@ function buildRow(entry, index, domainKey) {
     derBox.textContent = "ebből következik →";
     body.appendChild(derBox);
     const derF = document.createElement("div");
-    derF.className = "formula";
+    derF.className = "formula formula-clickable";
     derF.style.marginBottom = "14px";
     katex.render(entry.derived, derF, {throwOnError: false, displayMode: true});
+    derF.addEventListener("click", () => openFormulaLightbox({name: entry.name, type: "single", tex: entry.derived}));
     body.appendChild(derF);
 
   } else if (entry.type === "noether") {
     const box = document.createElement("div");
-    box.className = "noether-box";
+    box.className = "noether-box formula-clickable";
     box.innerHTML = `„${entry.quote}"`;
     const nt = document.createElement("div");
     nt.className = "noether-table";
@@ -3215,6 +3314,7 @@ function buildRow(entry, index, domainKey) {
       nt.appendChild(item);
     });
     box.appendChild(nt);
+    box.addEventListener("click", () => openFormulaLightbox(entry));
     body.appendChild(box);
 
   } else {
@@ -3225,8 +3325,9 @@ function buildRow(entry, index, domainKey) {
       body.appendChild(hint);
     }
     const fEl = document.createElement("div");
-    fEl.className = "formula";
+    fEl.className = "formula formula-clickable";
     katex.render(entry.tex, fEl, {throwOnError: false, displayMode: true});
+    fEl.addEventListener("click", () => openFormulaLightbox(entry));
     body.appendChild(fEl);
   }
 
@@ -3286,6 +3387,17 @@ function buildRow(entry, index, domainKey) {
     copyRowLink(row.id, linkBtn);
   });
   actions.appendChild(linkBtn);
+
+  const shareBtn = document.createElement("button");
+  shareBtn.type = "button";
+  shareBtn.className = "icon-btn share-btn";
+  shareBtn.setAttribute("aria-label", "Megosztható kártya letöltése");
+  shareBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 15V4M12 4l-4 4M12 4l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 15v3a2 2 0 002 2h10a2 2 0 002-2v-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
+  shareBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    generateShareCard(entry, domainKey, shareBtn);
+  });
+  actions.appendChild(shareBtn);
 
   meta.appendChild(actions);
   body.appendChild(meta);
@@ -3531,8 +3643,254 @@ function closeModal() {
 infoBtn.addEventListener("click", openModal);
 modalClose.addEventListener("click", closeModal);
 modalOverlay.addEventListener("click", (e) => { if (e.target === modalOverlay) closeModal(); });
+
+function openFormulaLightbox(entry) {
+  if (!window.katex) return;
+  lightboxTitle.textContent = entry.name;
+  lightboxContent.innerHTML = "";
+  try {
+    if (entry.type === "maxwell") {
+      const wrap = document.createElement("div");
+      wrap.style.cssText = "display:grid;gap:20px;";
+      entry.equations.forEach(eq => {
+        const div = document.createElement("div");
+        katex.render(eq, div, {throwOnError: false, displayMode: true});
+        wrap.appendChild(div);
+      });
+      lightboxContent.appendChild(wrap);
+    } else if (entry.type === "noether") {
+      const div = document.createElement("div");
+      div.style.cssText = "font-family:'Fraunces',serif;font-style:italic;font-size:clamp(1.2rem,3vw,1.7rem);color:var(--primary-bright);line-height:1.5;";
+      div.textContent = `„${entry.quote}"`;
+      lightboxContent.appendChild(div);
+    } else {
+      const div = document.createElement("div");
+      katex.render(entry.tex, div, {throwOnError: false, displayMode: true});
+      lightboxContent.appendChild(div);
+    }
+  } catch (e) { /* ignore render errors */ }
+  formulaLightbox.classList.add("visible");
+  formulaLightbox.setAttribute("aria-hidden", "false");
+}
+function closeLightbox() {
+  formulaLightbox.classList.remove("visible");
+  formulaLightbox.setAttribute("aria-hidden", "true");
+}
+lightboxClose.addEventListener("click", closeLightbox);
+formulaLightbox.addEventListener("click", (e) => { if (e.target === formulaLightbox) closeLightbox(); });
+
+function renderStats() {
+  const domain = DOMAINS[activeDomain];
+  const catCounts = {};
+  const eraCounts = {};
+  const eraOrder = [];
+  rowElements.forEach(r => {
+    catCounts[r.category] = (catCounts[r.category] || 0) + 1;
+    if (!(r.era in eraCounts)) eraOrder.push(r.era);
+    eraCounts[r.era] = (eraCounts[r.era] || 0) + 1;
+  });
+  const total = rowElements.length;
+  const maxCat = Math.max(...Object.values(catCounts));
+  const maxEra = Math.max(...Object.values(eraCounts));
+
+  statsCategories.innerHTML = "";
+  domain.categoryOrder.forEach(key => {
+    const count = catCounts[key] || 0;
+    if (!count) return;
+    const color = domain.categoryColors ? domain.categoryColors[key] : "var(--primary)";
+    const row = document.createElement("div");
+    row.className = "stat-row";
+    row.innerHTML = `<span class="stat-label">${domain.categoryLabels[key]}</span>
+      <span class="stat-bar-track"><span class="stat-bar-fill" style="width:0%;background:${color};color:${color}"></span></span>
+      <span class="stat-count">${count}</span>`;
+    statsCategories.appendChild(row);
+    requestAnimationFrame(() => {
+      row.querySelector(".stat-bar-fill").style.width = (count / maxCat * 100) + "%";
+    });
+  });
+
+  statsEras.innerHTML = "";
+  eraOrder.forEach(era => {
+    const count = eraCounts[era];
+    const row = document.createElement("div");
+    row.className = "stat-row";
+    row.innerHTML = `<span class="stat-label">${era}</span>
+      <span class="stat-bar-track"><span class="stat-bar-fill" style="width:0%;background:var(--primary);color:var(--primary)"></span></span>
+      <span class="stat-count">${count}</span>`;
+    statsEras.appendChild(row);
+    requestAnimationFrame(() => {
+      row.querySelector(".stat-bar-fill").style.width = (count / maxEra * 100) + "%";
+    });
+  });
+
+  document.getElementById("statsTitle").textContent = `${domain.label} · ${total} tétel eloszlása`;
+}
+statsBtn.addEventListener("click", () => {
+  renderStats();
+  statsOverlay.classList.add("visible");
+  statsOverlay.setAttribute("aria-hidden", "false");
+});
+statsClose.addEventListener("click", () => {
+  statsOverlay.classList.remove("visible");
+  statsOverlay.setAttribute("aria-hidden", "true");
+});
+statsOverlay.addEventListener("click", (e) => { if (e.target === statsOverlay) {
+  statsOverlay.classList.remove("visible");
+  statsOverlay.setAttribute("aria-hidden", "true");
+}});
+
+function wrapCanvasText(ctx, text, x, y, maxWidth, lineHeight, maxLines) {
+  const words = text.split(" ");
+  let line = "";
+  const lines = [];
+  for (const w of words) {
+    const test = line + w + " ";
+    if (ctx.measureText(test).width > maxWidth && line !== "") {
+      lines.push(line.trim());
+      line = w + " ";
+    } else {
+      line = test;
+    }
+  }
+  if (line.trim()) lines.push(line.trim());
+  const shown = lines.slice(0, maxLines);
+  shown.forEach((l, i) => ctx.fillText(l, x, y + i * lineHeight));
+  return shown.length;
+}
+
+function renderTexToImage(tex) {
+  return new Promise((resolve) => {
+    if (!tex || !window.katex) { resolve(null); return; }
+    const tempDiv = document.createElement("div");
+    tempDiv.style.cssText = "position:fixed;left:-9999px;top:-9999px;font-size:34px;color:#eef1f7;background:transparent;";
+    document.body.appendChild(tempDiv);
+    try {
+      katex.render(tex, tempDiv, {throwOnError: false, displayMode: true});
+    } catch (e) { document.body.removeChild(tempDiv); resolve(null); return; }
+
+    let cssText = "";
+    try {
+      for (const sheet of document.styleSheets) {
+        try {
+          if (sheet.href && sheet.href.indexOf("katex") !== -1) {
+            for (const rule of sheet.cssRules) cssText += rule.cssText + "\n";
+          }
+        } catch (e) { /* cross-origin sheet, skip */ }
+      }
+    } catch (e) {}
+
+    const w = Math.max(tempDiv.scrollWidth, 80);
+    const h = Math.max(tempDiv.scrollHeight, 50);
+    const innerHTML = tempDiv.innerHTML;
+    document.body.removeChild(tempDiv);
+
+    const svgString = `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}">
+      <foreignObject width="100%" height="100%">
+        <div xmlns="http://www.w3.org/1999/xhtml">
+          <style>${cssText}</style>
+          <div style="font-size:34px;color:#eef1f7;display:inline-block;">${innerHTML}</div>
+        </div>
+      </foreignObject>
+    </svg>`;
+
+    const blob = new Blob([svgString], {type: "image/svg+xml;charset=utf-8"});
+    const url = URL.createObjectURL(blob);
+    const img = new Image();
+    const timeout = setTimeout(() => { URL.revokeObjectURL(url); resolve(null); }, 1200);
+    img.onload = () => { clearTimeout(timeout); URL.revokeObjectURL(url); resolve(img); };
+    img.onerror = () => { clearTimeout(timeout); URL.revokeObjectURL(url); resolve(null); };
+    img.src = url;
+  });
+}
+
+async function generateShareCard(entry, domainKey, btnEl) {
+  if (btnEl) btnEl.classList.add("copied");
+  showToast("Kártya készítése…");
+
+  const palette = domainKey === "matek"
+    ? {ink: "#0b0f1f", ink2: "#121a33", primary: "#c9a24b", primaryBright: "#e9c877", paper: "#eef1f7", muted: "#9aa6c4"}
+    : {ink: "#080f1c", ink2: "#0c1526", primary: "#3eb8f0", primaryBright: "#7fd8ff", paper: "#e8f0fa", muted: "#7a9abc"};
+
+  const W = 1200, H = 630;
+  const canvas = document.createElement("canvas");
+  canvas.width = W; canvas.height = H;
+  const ctx = canvas.getContext("2d");
+
+  const grad = ctx.createLinearGradient(0, 0, W, H);
+  grad.addColorStop(0, palette.ink2);
+  grad.addColorStop(1, palette.ink);
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, W, H);
+
+  if (document.fonts && document.fonts.ready) { try { await document.fonts.ready; } catch (e) {} }
+
+  const domainLabel = DOMAINS[domainKey].label;
+  ctx.fillStyle = palette.primary;
+  ctx.font = "700 14px Inter, sans-serif";
+  ctx.fillText("HALHATATLAN TUDOMÁNYOS SZÉPSÉGEK · " + domainLabel.toUpperCase(), 64, 66);
+
+  ctx.strokeStyle = palette.primary;
+  ctx.globalAlpha = 0.55;
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(64, 82); ctx.lineTo(280, 82); ctx.stroke();
+  ctx.globalAlpha = 1;
+
+  ctx.fillStyle = palette.paper;
+  ctx.font = "italic 500 50px Fraunces, serif";
+  wrapCanvasText(ctx, entry.name, 64, 160, W - 560, 56, 2);
+
+  ctx.font = "500 15px 'JetBrains Mono', monospace";
+  ctx.fillStyle = palette.muted;
+  wrapCanvasText(ctx, entry.tag || "", 64, 280, W - 560, 20, 2);
+
+  const texSource = entry.type === "maxwell" ? entry.equations[0] : (entry.type === "noether" ? null : entry.tex);
+  let formulaBottom = 300;
+  if (texSource) {
+    try {
+      const img = await renderTexToImage(texSource);
+      if (img && img.width > 0) {
+        const maxW = 460, maxH = 150;
+        let iw = img.width, ih = img.height;
+        const scale = Math.min(maxW / iw, maxH / ih, 1.6);
+        iw *= scale; ih *= scale;
+        ctx.drawImage(img, W - iw - 64, 300 - ih / 2, iw, ih);
+      }
+    } catch (e) {}
+  }
+
+  const plain = stripHtml(entry.why || "").replace(/^<b>|<\/b>$/g, "");
+  ctx.font = "17px Inter, sans-serif";
+  ctx.fillStyle = palette.muted;
+  wrapCanvasText(ctx, plain, 64, 360, W - 560, 27, 6);
+
+  ctx.font = "12px 'JetBrains Mono', monospace";
+  ctx.fillStyle = palette.primary;
+  ctx.globalAlpha = 0.75;
+  ctx.fillText("tudomanyos-szepsegek", 64, H - 40);
+  ctx.globalAlpha = 1;
+
+  canvas.toBlob((blob) => {
+    if (btnEl) setTimeout(() => btnEl.classList.remove("copied"), 1200);
+    if (!blob) { showToast("A kártya generálása nem sikerült."); return; }
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = slugify(entry.name) + ".png";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 4000);
+    showToast("Kártya letöltve!");
+  }, "image/png");
+}
+
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeModal();
+  if (e.key === "Escape") {
+    closeModal();
+    closeLightbox();
+    statsOverlay.classList.remove("visible");
+    statsOverlay.setAttribute("aria-hidden", "true");
+  }
   if (e.key === "/" && document.activeElement !== searchBox && !modalOverlay.classList.contains("visible")) {
     e.preventDefault();
     searchBox.focus();
