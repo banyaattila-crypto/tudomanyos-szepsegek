@@ -288,7 +288,10 @@
     50%{transform:scale(1.07);}
   }
   @media(max-width:640px){
-    .logo-mark{opacity:.55;width:26px;height:26px;}
+    .logo-mark{
+      opacity:.5;width:24px;height:24px;
+      top:auto;bottom:16px;right:12px;
+    }
   }
 
   /* ---- Filter bar ---- */
@@ -746,8 +749,8 @@
       <button type="button" class="dbtn" data-domain="fizika">Fizika · Kémia · Biológia</button>
     </div>
     <div class="top-row-actions">
-      <button type="button" class="info-btn" id="statsBtn" aria-label="Statisztika" title="Statisztika">📊</button>
       <button type="button" class="info-btn" id="infoBtn" aria-label="A gyűjteményről" title="A gyűjteményről">ℹ</button>
+      <button type="button" class="info-btn" id="statsBtn" aria-label="Statisztika" title="Statisztika">📊</button>
     </div>
   </div>
   <p class="grand-total" id="grandTotal"></p>
