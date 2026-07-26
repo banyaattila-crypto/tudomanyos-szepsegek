@@ -1,4 +1,4 @@
-const CACHE_NAME = "tsz-cache-v1";
+const CACHE_NAME = "tsz-cache-v2";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -25,6 +25,26 @@ self.addEventListener("fetch", (event) => {
   const req = event.request;
   if (req.method !== "GET") return;
 
+  const isHTML = req.mode === "navigate" || (req.headers.get("accept") || "").includes("text/html");
+
+  if (isHTML) {
+    // Hálózat-elsőbbség: mindig a legfrissebb oldalt próbáljuk betölteni,
+    // a gyorsítótár csak akkor lép életbe, ha nincs internetkapcsolat.
+    event.respondWith(
+      fetch(req)
+        .then((networkRes) => {
+          if (networkRes && networkRes.status === 200) {
+            const clone = networkRes.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(req, clone)).catch(() => {});
+          }
+          return networkRes;
+        })
+        .catch(() => caches.match(req))
+    );
+    return;
+  }
+
+  // Egyéb erőforrásoknál (betűtípusok, ikonok): gyorsítótár-elsőbbség, háttérben frissítve.
   event.respondWith(
     caches.match(req).then((cached) => {
       const fetchPromise = fetch(req)
