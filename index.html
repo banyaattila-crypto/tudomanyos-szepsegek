@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE ht \u00b7 Paritássértés \u00b7 Antianyag/pozitron \u00b7 Neutrínó-detektálás \u00b7 Mendel-törvények \u00b7 Tömeghatás törvénye \u00b7 Henderson\u2013Hasselbalch \u00b7 Maxwell-démon \u00b7 Adiabatikus egyenlet \u00b7 Kármán-örvénysor \u00b7 Mohr\u2013Coulombml>
 <html lang="hu">
 <head>
 <meta charset="UTF-8">
@@ -84,6 +84,7 @@
     border:1px solid var(--chip-border);
     cursor:pointer;transition:all .2s ease;
     display:flex;align-items:center;justify-content:center;
+    touch-action:manipulation;
   }
   .info-btn:hover{color:var(--primary-bright);border-color:var(--chip-hover-border);}
   .top-row-actions{display:flex;gap:8px;flex:0 0 auto;}
@@ -464,6 +465,7 @@
     color:var(--muted);padding:3px;border-radius:6px;
     display:inline-flex;align-items:center;justify-content:center;
     transition:color .2s ease, transform .15s ease;
+    touch-action:manipulation;
   }
   .icon-btn:hover{color:var(--primary-bright);transform:scale(1.15);}
   .icon-btn svg{width:15px;height:15px;}
@@ -521,25 +523,39 @@
     font-style:italic;
     color:var(--primary-bright);
     line-height:1.45;
+    overflow-x:auto;
+    max-width:100%;
+    box-sizing:border-box;
   }
   .noether-table{
     margin-top:14px;
     display:grid;
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
     gap:8px;
     font-style:normal;
     font-family:"Inter",sans-serif;
     font-size:clamp(12px,1.4vw,13.5px);
+    min-width:0;
   }
   .nt-item{
-    display:flex;gap:8px;align-items:center;
+    display:flex;gap:8px;align-items:flex-start;
+    min-width:0;
     background:rgba(62,184,240,0.06);
     border-radius:8px;
     padding:8px 12px;
     color:var(--muted);
   }
-  .nt-sym{color:var(--primary-bright);font-weight:600;min-width:12px;}
-  .nt-arrow{color:var(--primary);opacity:.6;}
+  .nt-item span:last-child{
+    min-width:0;
+    overflow-wrap:break-word;
+    word-break:break-word;
+  }
+  .nt-sym{color:var(--primary-bright);font-weight:600;min-width:12px;flex:0 0 auto;}
+  .nt-arrow{color:var(--primary);opacity:.6;flex:0 0 auto;}
+
+  @media(max-width:520px){
+    .noether-table{grid-template-columns:minmax(0,1fr);}
+  }
 
   .empty-state{
     color:var(--muted);font-size:14px;padding:40px 4px;text-align:center;
@@ -585,7 +601,7 @@
   .modal-panel{
     position:relative;
     max-width:520px;width:100%;
-    max-height:80vh;overflow-y:auto;
+    max-height:80vh;max-height:80dvh;overflow-y:auto;
     background:linear-gradient(180deg,var(--panel),var(--ink-2));
     border:1px solid var(--line);
     border-radius:16px;
@@ -615,7 +631,7 @@
   .modal-panel p:last-child{margin-bottom:0;}
 
   /* ---- Képlet-nagyítás (lightbox) ---- */
-  .formula-clickable{cursor:zoom-in;}
+  .formula-clickable{cursor:pointer;touch-action:manipulation;}
   .formula-lightbox{
     position:fixed;inset:0;z-index:58;
     background:rgba(0,0,0,.78);
@@ -626,7 +642,7 @@
   .formula-lightbox.visible{display:flex;}
   .lightbox-panel{
     position:relative;
-    max-width:92vw;max-height:85vh;overflow:auto;
+    max-width:92vw;max-height:85vh;max-height:85dvh;overflow:auto;
     background:linear-gradient(180deg,var(--panel),var(--ink-2));
     border:1px solid var(--line);
     border-radius:16px;
@@ -1709,12 +1725,82 @@ const MATEK_DATA = [
     why: "<b>Bármilyen előre megadott pólus-szerkezethez létezik olyan meromorf függvény, aminek pontosan azok a pólusai — a függvény szó szerint 'felépíthető' a szingularitásaiból.</b> Mittag-Leffler ezzel a konstruktív egzisztenciatétellel mutatta meg, hogy a komplex analízis nem csupán vizsgálja a függvényeket, hanem tervezni is lehet őket, mint egy mérnöki rendszert. A Weierstrass-féle szorzattétel testvérfogalma — az egyik a zérushelyekből, a másik a pólusokból épít."
   },
   {
-    name: "Mandelbrot-halmaz",
+    name: "Mandelbrot-halmaz \u00b7 Zorn-lemma \u00b7 Gödel II. \u00b7 Kompaktsági tétel \u00b7 Kolmogorov-axiómák \u00b7 Borel\u2013Cantelli \u00b7 Nagy eltérések \u00b7 Dilworth-tétel \u00b7 Menger-tétel \u00b7 Catalan-számok \u00b7 Neumann-minimax",
     tag: "Komplex dinamika · fraktálgeometria, 1978/1980",
     category: "topologia",
     scrollHint: true,
     tex: "z_{n+1} = z_n^2 + c, \\quad c\\in M \\iff \\sup_n |z_n| < \\infty",
     why: "<b>Egyetlen, gyerekjáték-egyszerű iterációs szabály — négyzetre emelés és hozzáadás — végtelenül bonyolult, önhasonló határvonalat rajzol ki a komplex síkon.</b> Minden pontja egy teljes Julia-halmaz 'sorsát' kódolja: attól függően, hogy c benne van-e a halmazban, a hozzá tartozó iteráció korlátos marad vagy szétszalad a végtelenbe. A számítógépes grafika tette először láthatóvá — előtte senki nem sejtette, milyen barokkosan gazdag mintázat rejlik ebben az egyszerű képletben."
+  },
+  {
+    name: "Zorn-lemma",
+    tag: "Halmazelmélet · kiválasztási axióma ekvivalense, 1935",
+    category: "logika-halmaz",
+    tex: "\\text{minden lánc fölülről korlátos} \\;\\Longrightarrow\\; \\exists\\,\\text{maximális elem}",
+    why: "<b>Ha egy részbenrendezett halmazban minden láncnak van felső korlátja, akkor garantáltan létezik maximális elem — még ha a halmaz végtelen és 'megfoghatatlanul' bonyolult is.</b> A lemma bizonyíthatóan ekvivalens a kiválasztási axiómával, mégis sokkal gyakorlatiasabb formában: szinte minden algebrai struktúra (vektortér bázisa, ideál maximálissá bővítése) létezését ezzel bizonyítjuk, anélkül hogy explicit módon meg kellene konstruálnunk azt."
+  },
+  {
+    name: "Gödel második nemteljességi tétele",
+    tag: "Matematikai logika · 1931",
+    category: "logika-halmaz",
+    tex: "T \\nvdash \\text{Con}(T) \\quad \\text{(ha } T \\text{ konzisztens és elég erős)}",
+    why: "<b>Egy elég erős, konzisztens formális rendszer nem tudja bebizonyítani a saját ellentmondásmentességét — önmagában.</b> Ez az első nemteljességi tétel közvetlen, de sokkal nyugtalanítóbb következménye: nemcsak hogy vannak eldönthetetlen állítások, hanem maga a rendszer 'megbízhatóságának' bizonyítéka is kicsúszik a kezeink közül. Hilbert programja — hogy a matematika ellentmondásmentességét véges eszközökkel igazolják — pontosan emiatt bukott meg."
+  },
+  {
+    name: "Kompaktsági tétel",
+    tag: "Modellelmélet · elsőrendű logika, 1930",
+    category: "logika-halmaz",
+    tex: "\\text{minden véges részhalmaza kielégíthető} \\;\\Longrightarrow\\; \\Sigma \\text{ kielégíthető}",
+    why: "<b>Ha egy végtelen elméletnek minden véges darabja konzisztens, akkor maga a teljes végtelen elmélet is konzisztens — a végtelenség 'ingyen' következik a végesből.</b> Ez a meglepő átmenet teszi lehetővé olyan egzotikus struktúrák létezésének bizonyítását, mint a nemsztenderd valós számok (végtelenül kicsi és nagy elemekkel) — pusztán logikai eszközökkel, konkrét konstrukció nélkül."
+  },
+  {
+    name: "Kolmogorov-axiómák",
+    tag: "Valószínűségszámítás alapjai, 1933",
+    category: "valoszinuseg",
+    tex: "P(\\Omega)=1,\\;\\; P(A)\\ge 0,\\;\\; P\\Big(\\bigcup_i A_i\\Big)=\\sum_i P(A_i)\\;\\text{(diszjunkt)}",
+    why: "<b>Három egyszerű szabály — és a valószínűségszámítás egy évszázados, intuícióra épülő gyakorlata egyszerre válik szigorú matematikává.</b> Kolmogorov a mértékelméletet alkalmazta a véletlenre: a valószínűség nem más, mint egy speciális mérték. Ez az axiomatizálás tette lehetővé, hogy a valószínűségszámítás ugyanolyan biztos lábakon álljon, mint a geometria vagy az analízis — és hogy értelmet nyerjen a folytonos valószínűségi változók fogalma is."
+  },
+  {
+    name: "Borel–Cantelli-lemma",
+    tag: "Valószínűségszámítás · 1909/1917",
+    category: "valoszinuseg",
+    tex: "\\sum_n P(A_n) < \\infty \\;\\Longrightarrow\\; P(A_n \\text{ végtelen sokszor}) = 0",
+    why: "<b>Ha egy véletlen esemény bekövetkezési valószínűségeinek összege véges, akkor szinte biztos, hogy csak véges sokszor következik be — sosem végtelen sokszor.</b> Ez a meglepően egyszerű összefüggés a modern valószínűségszámítás egyik legtöbbet használt technikai eszköze: innen indul a nagy számok erős törvényének, a véletlen bolyongások és a sztochasztikus folyamatok hosszú távú viselkedésének vizsgálata."
+  },
+  {
+    name: "Nagy eltérések elmélete",
+    tag: "Valószínűségszámítás · Cramér, 1938",
+    category: "valoszinuseg",
+    tex: "P(\\overline{X}_n \\ge a) \\approx e^{-n\\,I(a)}",
+    why: "<b>Nem csak azt tudjuk, hogy a véletlen átlag konvergál a várható értékhez — azt is, milyen exponenciálisan valószínűtlen egy attól távoli kilengés.</b> Az 'sebesség-függvény' (I) pontosan megmondja, mennyire ritka egy adott mértékű eltérés — ez teszi lehetővé a biztosítási kockázatok, a hálózati torlódások és a statisztikus fizika fázisátmeneteinek precíz becslését. Cramér eredetileg biztosítási csőd-valószínűségeket vizsgált, amikor rábukkant az elméletre."
+  },
+  {
+    name: "Dilworth-tétel",
+    tag: "Rendezéselmélet · 1950",
+    category: "kombinatorika-geometria",
+    tex: "\\text{minimális láncfedés mérete} = \\text{maximális antilánc mérete}",
+    why: "<b>Egy részbenrendezett halmaz felbontható annyi láncra, ahány elemű a legnagyobb 'egymással össze nem hasonlítható' elemekből álló csoport — sem többre, sem kevesebbre.</b> Ez a dualitási tétel a gráfelmélet és a kombinatorikus optimalizálás egyik alappillére, közeli rokona a König-tételnek és a max-flow-min-cut tételnek — mindhárom ugyanazt a mély elvet fejezi ki más-más nyelven: a legnagyobb 'akadály' pontosan megegyezik a legkisebb 'megoldással'."
+  },
+  {
+    name: "Menger-tétel",
+    tag: "Gráfelmélet · összefüggőség, 1927",
+    category: "kombinatorika-geometria",
+    tex: "\\text{max. éldiszjunkt utak száma} = \\text{min. elvágó élhalmaz mérete}",
+    why: "<b>Két csúcs között annyi teljesen független útvonal létezik egy hálózatban, amennyi élt minimálisan el kell vágni ahhoz, hogy szétválasszuk őket.</b> Menger egyetemi szemináriumon vetette fel a kérdést, és a bizonyítás azóta a hálózati folyam-elmélet (max-flow-min-cut) egyik ősforrása lett. Minden internetes útvonalválasztási protokoll, ami a hálózat 'hibatűrését' méri, hallgatólagosan erre a tételre épül."
+  },
+  {
+    name: "Catalan-számok",
+    tag: "Kombinatorika · Eugène Catalan, 1838",
+    category: "kombinatorika-geometria",
+    tex: "C_n = \\frac{1}{n+1}\\binom{2n}{n}",
+    why: "<b>Egyetlen számsorozat számolja meg a helyesen zárójelezett kifejezéseket, a bináris fákat, a sokszög-háromszögeléseket és tucatnyi más, látszólag teljesen független kombinatorikus struktúrát.</b> A Catalan-számok az egyik legszebb példa arra, hogy a matematikában ugyanaz a mintázat váratlanul sok, egymástól függetlennek tűnő helyen bukkan fel — informatikusok a bináris fák számolásához, kombinatorikusok a zárójelezésekhez használják, és mindig ugyanazt a képletet kapják."
+  },
+  {
+    name: "Neumann-féle minimax-tétel",
+    tag: "Játékelmélet · Neumann János, 1928",
+    category: "szamitastudomany-mernoki",
+    tex: "\\max_x \\min_y f(x,y) = \\min_y \\max_x f(x,y)",
+    why: "<b>Egy kétszemélyes, zéróösszegű játékban mindig létezik olyan stratégia-pár, ahol egyik fél sem tud egyoldalúan javítani a helyzetén — a 'legjobb legrosszabb eset' pontosan megegyezik a 'legrosszabb legjobb esettel'.</b> Neumann János ezzel a tétellel alapította meg a modern játékelméletet, jóval Nash egyensúlyfogalma előtt. Katonai stratégiától a piaci árképzésig és a gépi tanulásbeli ellenséges hálózatokig (GAN-ok) mindenhol ez az elv húzódik meg a háttérben."
   }
 ];
 
@@ -3038,6 +3124,106 @@ const FIZIKA_DATA = [
     type: "single",
     tex: "\\Delta P = \\gamma\\left(\\frac{1}{R_1}+\\frac{1}{R_2}\\right)",
     why: "<b>Egy görbült folyadékfelület két oldala közötti nyomáskülönbség kizárólag a felületi feszültségtől és a görbület sugaraitól függ — minél kisebb a buborék, annál nagyobb a belső nyomása.</b> Ez magyarázza, miért olvadnak össze a kis szappanbuborékok a nagyobbakba (a kicsi mindig nagyobb nyomású), és ez a kiindulópontja minden kapilláris jelenségnek, porózus közegbeli folyadékáramlásnak és a modern mikrofluidikai chipek tervezésének."
+  },
+  {
+    rank: 128,
+    name: "Paritássértés (Wu-kísérlet)",
+    tag: "Részecskefizika · gyenge kölcsönhatás, 1956/1957",
+    category: "reszecskefizika",
+    special: true,
+    type: "single",
+    tex: "P[\\psi(\\vec{r})] \\ne \\psi(-\\vec{r}) \\quad \\text{gyenge bomlásoknál}",
+    why: "<b>A természet — legalábbis a gyenge kölcsönhatásban — megkülönbözteti a balt a jobbtól.</b> Évtizedekig magától értetődőnek tűnt, hogy a fizikai törvények tükörszimmetrikusak (paritás-invariánsak); Lee és Yang elméleti gyanúja alapján Chien-Shiung Wu kobalt-60 béta-bomlási kísérlete bebizonyította, hogy ez hamis. A felfedezés annyira megrázta a fizikus közösséget, hogy Pauli állítólag nem akarta elhinni — pedig ez volt az egyik legfontosabb 20. századi kísérleti eredmény."
+  },
+  {
+    rank: 129,
+    name: "Antianyag jóslata és a pozitron felfedezése",
+    tag: "Részecskefizika · Dirac, 1928 / Anderson, 1932",
+    category: "reszecskefizika",
+    special: false,
+    type: "single",
+    tex: "E^2 = (pc)^2 + (mc^2)^2 \\;\\Rightarrow\\; E = \\pm\\sqrt{\\cdots}",
+    why: "<b>Egy egyenlet negatív energiájú megoldásait Dirac nem hibaként, hanem új részecske jóslataként értelmezte — és négy évvel később meg is találták.</b> A Dirac-egyenlet (amit a gyűjteményben már érintettünk) negatív gyökei zavarba ejtették a fizikusokat, amíg Dirac fel nem ismerte: ezek egy addig ismeretlen, pozitív töltésű elektron-párra (pozitron) utalnak. Carl Anderson ködkamrás felvételen fedezte fel — ritka eset, hogy egy matematikai 'furcsaság' ilyen közvetlenül új fizikai valóságot jósol meg."
+  },
+  {
+    rank: 130,
+    name: "A neutrínó első kísérleti detektálása",
+    tag: "Részecskefizika · Cowan–Reines-kísérlet, 1956",
+    category: "reszecskefizika",
+    special: false,
+    type: "single",
+    tex: "\\bar{\\nu}_e + p \\rightarrow n + e^+",
+    why: "<b>Pauli 1930-ban egy 'kétségbeesett mentőötletként' jósolta meg a neutrínót, amit — saját szavaival — 'soha nem lehet kimutatni'.</b> 26 évvel később Cowan és Reines egy atomreaktor mellett, ezzel az egyszerű reakcióval mégis sikeresen kimutatták: az antineutrínó protonnal ütközve neutront és pozitront hoz létre, ami jellegzetes fényvillanás-párt kelt egy detektorban. Pauli táviratban gratulált — ez volt élete egyik legmeglepőbb fogadása, amit örömmel vesztett el."
+  },
+  {
+    rank: 131,
+    name: "Mendel-törvények",
+    tag: "Genetika · Gregor Mendel, 1865",
+    category: "kemia-biologia",
+    special: true,
+    type: "single",
+    tex: "3:1 \\quad \\text{(domináns : recesszív fenotípus-arány)}",
+    why: "<b>Egy morvaországi szerzetes borsónövényeket keresztezve fedezte fel az öröklődés matematikai szabályszerűségét — húsz évvel azelőtt, hogy bárki tudott volna a DNS létezéséről.</b> A domináns és recesszív allélek szétválása és független öröklődése olyan pontos, kiszámítható arányokat ad, mint egy fizikai törvény. Mendel eredményeit életében szinte senki nem vette észre — csak 1900-ban, három kutató egymástól függetlenül fedezte fel újra a munkáját, és ez indította el a modern genetikát."
+  },
+  {
+    rank: 132,
+    name: "Tömeghatás törvénye",
+    tag: "Kémiai egyensúly · Guldberg & Waage, 1864",
+    category: "kemia-biologia",
+    special: false,
+    type: "single",
+    tex: "K_{eq} = \\frac{[C]^c[D]^d}{[A]^a[B]^b}",
+    why: "<b>Egy kémiai reakció egyensúlyi állapotában a termékek és a kiindulási anyagok koncentrációi mindig ugyanazt a fix arányt veszik fel — függetlenül attól, honnan indultunk.</b> Guldberg és Waage ezzel a törvénnyel tették kvantitatívvá a kémiai egyensúly fogalmát, ami korábban csak kvalitatív megfigyelés volt. Minden ipari kémiai folyamat (műtrágyagyártás, kőolaj-finomítás) optimalizálása ezen az egyszerű arányon alapul — innen tudjuk, hogyan told el egy egyensúlyt a kívánt irányba."
+  },
+  {
+    rank: 133,
+    name: "Henderson–Hasselbalch-egyenlet",
+    tag: "Biokémia · pufferoldatok, 1908/1917",
+    category: "kemia-biologia",
+    special: false,
+    type: "single",
+    tex: "\\text{pH} = \\text{p}K_a + \\log\\frac{[A^-]}{[HA]}",
+    why: "<b>Egyetlen logaritmikus egyenlet mondja meg, hogyan tartja stabilan a pH-ját a vér, egy sejt belseje, vagy egy laboratóriumi pufferoldat, még ha savat vagy lúgot adunk is hozzá.</b> Az emberi vér pH-ja ennek az egyenletnek köszönhetően marad szűk, életkompatibilis tartományban (7,35–7,45) még jelentős anyagcsere-terhelés mellett is. Minden gyógyszertervezés, fermentációs folyamat és biokémiai laboratóriumi protokoll számol ezzel az összefüggéssel."
+  },
+  {
+    rank: 134,
+    name: "Maxwell-démon és feloldása",
+    tag: "Statisztikus mechanika · 1867 / Landauer, 1961",
+    category: "termodinamika",
+    special: true,
+    type: "single",
+    tex: "\\Delta S_{\\text{törlés}} \\ge k_B\\ln 2 \\quad \\text{(kompenzálja a démon 'ingyen' rendezését)}",
+    why: "<b>Maxwell kitalált egy parányi lényt, aki egyetlen ajtó nyitogatásával, munkavégzés nélkül csökkentené egy gáz entrópiáját — látszólag megsértve a termodinamika második főtételét.</b> Csaknem 100 évig megoldatlan paradoxon volt, amíg Landauer (akit a gyűjteményben már érintettünk) rá nem jött: a démonnak emlékeznie kell a molekulák sebességére, és ennek az információnak a törlése pontosan annyi entrópiát termel, amennyit a démon 'megspórolt'. Az egyik legszebb példa arra, hogyan olvad össze az információelmélet a termodinamikával."
+  },
+  {
+    rank: 135,
+    name: "Adiabatikus állapotváltozás egyenlete",
+    tag: "Termodinamika · hőcsere nélküli folyamat",
+    category: "termodinamika",
+    special: false,
+    type: "single",
+    tex: "PV^{\\gamma} = \\text{állandó}",
+    why: "<b>Ha egy gáz olyan gyorsan tágul vagy húzódik össze, hogy nincs ideje hőt cserélni a környezetével, a nyomás és térfogat kapcsolata többé nem az egyszerű fordított arányosság, hanem ennél meredekebb görbét követ.</b> Ez az egyenlet írja le, miért melegszik fel drasztikusan egy dízelmotor hengerében a sűrített levegő (öngyulladásig), és miért hűl le a felszálló légtömeg a légkörben — a felhőképződés és az időjárás egyik alapvető mozgatórugója."
+  },
+  {
+    rank: 136,
+    name: "Kármán-örvénysor",
+    tag: "Mérnöki alkalmazások · áramlástan, 1911",
+    category: "mernoki-alkalmazasok",
+    special: true,
+    type: "single",
+    tex: "St = \\frac{fD}{U} \\approx 0.2 \\quad \\text{(Strouhal-szám)}",
+    why: "<b>Egy áramlásba helyezett henger mögött a örvények szabályos, váltakozó ritmusban válnak le — és ez a lüktetés veszélyes rezgésbe hozhatja a hidakat, kéményeket és tornyokat.</b> A Strouhal-szám szinte állandó marad tág sebességtartományban, ami kiszámíthatóvá teszi a leválási frekvenciát. A jelenség hírhedt szereplője az 1940-es Tacoma Narrows-híd összeomlása — azóta minden karcsú szerkezet tervezésénél kötelező ellenőrizni, nem esik-e egybe az örvényleválási frekvencia a szerkezet sajátfrekvenciájával."
+  },
+  {
+    rank: 137,
+    name: "Mohr–Coulomb törésfeltétel",
+    tag: "Mérnöki alkalmazások · talajmechanika, 1900/1776",
+    category: "mernoki-alkalmazasok",
+    special: false,
+    type: "single",
+    tex: "\\tau = c + \\sigma_n \\tan\\varphi",
+    why: "<b>Egy talaj vagy kőzet akkor törik el nyírással, amikor a nyírófeszültség meghaladja a kohézió és a súrlódási ellenállás összegét — ez az egyenlet dönti el, mennyire meredek lehet egy rézsű, mielőtt megcsúszna.</b> Coulomb súrlódási törvényét (amit a gyűjteményben már érintettünk) Mohr terjesztette ki általános feszültségállapotokra, a Mohr-körrel (szintén szerepel már) kombinálva. Minden alapozás-tervezés, gátépítés és bevágás-stabilitási számítás ezen az egyszerű, két paraméteres (c, φ) modellen alapul."
   }
 ];
 
@@ -3806,6 +3992,7 @@ function renderTexToImage(tex) {
 async function generateShareCard(entry, domainKey, btnEl) {
   if (btnEl) btnEl.classList.add("copied");
   showToast("Kártya készítése…");
+  try {
 
   const palette = domainKey === "matek"
     ? {ink: "#0b0f1f", ink2: "#121a33", primary: "#c9a24b", primaryBright: "#e9c877", paper: "#eef1f7", muted: "#9aa6c4"}
@@ -3869,19 +4056,40 @@ async function generateShareCard(entry, domainKey, btnEl) {
   ctx.fillText("tudomanyos-szepsegek", 64, H - 40);
   ctx.globalAlpha = 1;
 
-  canvas.toBlob((blob) => {
+  canvas.toBlob(async (blob) => {
     if (btnEl) setTimeout(() => btnEl.classList.remove("copied"), 1200);
     if (!blob) { showToast("A kártya generálása nem sikerült."); return; }
+    const filename = slugify(entry.name) + ".png";
+
+    if (navigator.share && navigator.canShare) {
+      try {
+        const file = new File([blob], filename, {type: "image/png"});
+        if (navigator.canShare({files: [file]})) {
+          await navigator.share({files: [file], title: entry.name, text: "Halhatatlan tudományos szépségek"});
+          showToast("Megosztva!");
+          return;
+        }
+      } catch (e) {
+        if (e && e.name === "AbortError") { return; }
+        /* megosztás nem sikerült, letöltésre váltunk */
+      }
+    }
+
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = slugify(entry.name) + ".png";
+    a.download = filename;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
     setTimeout(() => URL.revokeObjectURL(url), 4000);
     showToast("Kártya letöltve!");
   }, "image/png");
+
+  } catch (err) {
+    if (btnEl) btnEl.classList.remove("copied");
+    showToast("Hiba történt a kártya elkészítésekor.");
+  }
 }
 
 document.addEventListener("keydown", (e) => {
