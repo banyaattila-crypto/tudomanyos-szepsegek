@@ -1875,6 +1875,112 @@ const MATEK_DATA = [
     category: "szamitastudomany-mernoki",
     tex: "L = \\sum_i p_i \\ell_i \\;\\; \\text{minimalizálva}",
     why: "<b>A leggyakoribb szimbólumoknak a legrövidebb kódot adva, majd lépésről lépésre összevonva a legritkábbakat, garantáltan a lehető legrövidebb átlagos kódhosszt kapjuk.</b> David Huffman ezt egy egyetemi szemináriumi feladatként oldotta meg — professzora, Fano éveken át kutatta a problémát, és a fiatal Huffman jobb megoldást talált, mint a mestere. Minden ZIP-fájl, JPEG-kép és a legtöbb tömörítési szabvány valahol a mélyben ezt az egyszerű, mohó fastruktúra-építést futtatja."
+  },
+  {
+    name: "Radon-transzformáció",
+    tag: "Integrálgeometria · a CT alapja, Johann Radon, 1917",
+    category: "analizis",
+    tex: "\\mathcal{R}f(\\theta,s) = \\int_{-\\infty}^{\\infty} f(\\vec{x})\\,\\delta(\\vec{x}\\cdot\\vec{n}_\\theta - s)\\,dl",
+    why: "<b>Egy test belsejének teljes szerkezete rekonstruálható pusztán abból, hogy sok különböző irányból megmérjük, mennyi sugárzás nyelődik el benne.</b> Radon 1917-ben tisztán absztrakt matematikai kíváncsiságból dolgozta ki a tételt — fél évszázaddal a CT-szkenner feltalálása előtt. Amikor Hounsfield és Cormack az 1970-es években megépítették az első komputertomográfot, kiderült, hogy a matematikai megoldás már ötven éve készen várta őket. Ma naponta több millió orvosi képalkotó vizsgálat fut ezen az inverz transzformáción."
+  },
+  {
+    name: "Lorenz-attraktor (pillangóhatás)",
+    tag: "Káoszelmélet · Edward Lorenz, 1963",
+    category: "analizis",
+    scrollHint: true,
+    tex: "\\dot{x}=\\sigma(y-x),\\quad \\dot{y}=x(\\rho-z)-y,\\quad \\dot{z}=xy-\\beta z",
+    why: "<b>Három egyszerű, determinisztikus egyenlet — mégis a megoldásuk örökre kiszámíthatatlan marad, mert a kezdőfeltételek milliomod részének megváltoztatása is teljesen más pályához vezet.</b> Lorenz véletlenül fedezte fel, amikor egy időjárás-szimulációt újraindított kerekített kezdőértékekkel, és teljesen más eredményt kapott. Ez a felismerés (a 'pillangóhatás') alapjaiban változtatta meg az időjárás-előrejelzésről, a hosszú távú tervezhetőségről és a determinizmusról alkotott képünket."
+  },
+  {
+    name: "Newton–Raphson-módszer",
+    tag: "Numerikus analízis · gyökkeresés, 1669/1690",
+    category: "szamitastudomany-mernoki",
+    tex: "x_{n+1} = x_n - \\frac{f(x_n)}{f'(x_n)}",
+    why: "<b>Egy egyenlet megoldásához nem kell zárt képlet — elég egy tipp, és az érintő mentén csúszva néhány lépésben elképesztő pontossággal megtaláljuk a gyököt.</b> A módszer kvadratikusan konvergál: minden lépésben nagyjából megduplázódik a helyes tizedesjegyek száma. Ma minden mérnöki szoftver, gépi tanulási optimalizáló és numerikus megoldó ezen (vagy egy leszármazottján) alapul — talán a legtöbbet futtatott numerikus algoritmus a történelemben."
+  },
+  {
+    name: "Monte Carlo-módszer",
+    tag: "Számítástudomány & mérnöki · Ulam & Neumann, 1946",
+    category: "szamitastudomany-mernoki",
+    tex: "I = \\int f(x)dx \\approx \\frac{V}{N}\\sum_{i=1}^{N} f(x_i), \\quad x_i \\sim U",
+    why: "<b>Bonyolult, sokdimenziós problémákat úgy oldunk meg, hogy nem kiszámoljuk, hanem véletlenszerűen 'lövöldözünk' rá, és megnézzük, mi jön ki átlagban.</b> Stanislaw Ulam betegen, pasziánszozás közben jött rá az ötletre; a Manhattan-projekt neutron-diffúziós számításaihoz fejlesztették ki Neumann Jánossal. Ma a pénzügyi kockázatelemzéstől a részecskefizikai szimulációkig és a modern AI-modellek mintavételezéséig mindenhol ez fut — a szisztematikus véletlen mint számítási eszköz."
+  },
+  {
+    name: "Bézier-görbék",
+    tag: "Számítógépes geometria · Pierre Bézier, 1962",
+    category: "szamitastudomany-mernoki",
+    tex: "B(t) = \\sum_{i=0}^{n}\\binom{n}{i}(1-t)^{n-i}t^i\\,P_i",
+    why: "<b>Néhány kontrollpont elegendő ahhoz, hogy tetszőlegesen sima, elegáns görbét definiáljunk — amit a számítógép pontosan és gyorsan ki tud rajzolni.</b> Bézier a Renault autókarosszériáinak tervezéséhez dolgozta ki (a rivális Citroënnél de Casteljau egymástól függetlenül ugyanezt). Ma minden betűtípus körvonala, minden vektorgrafikus rajz, minden animációs mozgásgörbe és CAD-modell ezekre a polinomokra épül — ritkán van ilyen közvetlen út az ipari tervezéstől a mindennapi digitális élményig."
+  },
+  {
+    name: "Hibavisszaterjesztés (backpropagation)",
+    tag: "Gépi tanulás · Rumelhart, Hinton & Williams, 1986",
+    category: "szamitastudomany-mernoki",
+    tex: "\\frac{\\partial E}{\\partial w_{ij}} = \\delta_j \\, o_i",
+    why: "<b>Egy sokrétegű neurális háló minden egyes súlyáról kiszámítható, mennyivel járult hozzá a hibához — a láncszabályt visszafelé alkalmazva a kimenettől a bemenet felé.</b> Az ötlet önmagában nem új (a láncszabály Leibniz óta ismert), de a felismerés, hogy ezzel gyakorlatban is taníthatók mély hálózatok, elindította a modern mesterséges intelligencia forradalmát. Minden ma használt AI-modell — a képfelismeréstől a nyelvi modellekig — ezen az egyetlen deriválási trükkön tanul."
+  },
+  {
+    name: "Diffie–Hellman-kulcscsere",
+    tag: "Kriptográfia · 1976",
+    category: "szamitastudomany-mernoki",
+    tex: "g^{ab} \\bmod p = (g^a)^b = (g^b)^a \\bmod p",
+    why: "<b>Két ember megegyezhet egy közös titkos kulcsban egy nyilvános, lehallgatott csatornán keresztül — anélkül, hogy a kulcs valaha is átmenne a vonalon.</b> Ez a lehetetlennek tűnő trükk (a diszkrét logaritmus nehézségén alapulva) teremtette meg a nyilvános kulcsú kriptográfiát, egy évvel az RSA (amit a gyűjteményben már érintettünk) előtt. Minden HTTPS-kapcsolat, minden VPN és titkosított üzenetküldő alkalmazás valamilyen formában ezt a kulcscserét hajtja végre a háttérben."
+  },
+  {
+    name: "Hamming-kód",
+    tag: "Hibajavító kódolás · Richard Hamming, 1950",
+    category: "szamitastudomany-mernoki",
+    tex: "2^r \\ge m + r + 1",
+    why: "<b>Néhány okosan elhelyezett paritásbit hozzáadásával egy üzenet nemcsak felismeri, de automatikusan ki is javítja a benne keletkezett hibát — anélkül, hogy újra kellene küldeni.</b> Hamming a Bell Labs-nál dühöngött, mert a hétvégi számítógépes futtatásai mindig elhaltak egyetlen bithibán — így megalkotta a hibajavító kódolás elméletét. Minden RAM-modul, műholdas adatátvitel, QR-kód és mélyűri szondaüzenet ezen az elven marad épségben a zajos csatornákon."
+  },
+  {
+    name: "Galois-elmélet",
+    tag: "Absztrakt algebra · Évariste Galois, 1832",
+    category: "szamelmelet",
+    tex: "\\text{Gal}(K/F) \\;\\longleftrightarrow\\; \\text{köztes testek}",
+    why: "<b>Egy polinomegyenlet gyökei akkor és csak akkor fejezhetők ki gyökjelekkel, ha a hozzá tartozó szimmetriacsoport 'feloldható' — ezzel dőlt el 300 év után, hogy az ötödfokú egyenletre nincs általános megoldóképlet.</b> Galois húszévesen, egy párbaj előtti éjszakán vetette papírra az elmélet vázlatát, majd másnap meghalt. Az általa megalkotott csoportelmélet ma az egész modern algebra alapja — a kriptográfiától a részecskefizika szimmetriáiig."
+  },
+  {
+    name: "Runge–Kutta-módszer",
+    tag: "Numerikus analízis · differenciálegyenletek, 1901",
+    category: "szamitastudomany-mernoki",
+    tex: "y_{n+1} = y_n + \\tfrac{h}{6}(k_1 + 2k_2 + 2k_3 + k_4)",
+    why: "<b>Egy differenciálegyenlet megoldását lépésről lépésre közelíthetjük úgy, hogy minden lépésben négy helyen 'megkóstoljuk' a meredekséget, és okosan súlyozva átlagoljuk őket.</b> A negyedrendű változat (RK4) az a pont, ahol a pontosság és a számítási költség aránya optimális — ezért lett belőle a numerikus szimuláció univerzális munkalova. Bolygópálya-számítástól a szerkezetek dinamikai válaszáig és a járványterjedési modellekig szinte minden szimuláció ezt futtatja."
+  },
+  {
+    name: "Logisztikus leképezés",
+    tag: "Káoszelmélet · Robert May, 1976",
+    category: "analizis",
+    tex: "x_{n+1} = r\\,x_n(1-x_n)",
+    why: "<b>Egyetlen paraméter fokozatos növelésével egy szimpla parabolikus szabály nyugodt egyensúlyból kettőződéseken át teljes káoszba zuhan — és mindezt egy sorban leírható képlet produkálja.</b> May populációdinamikai modellként vizsgálta, és megdöbbentette a felfedezés: nem kell bonyolult rendszer a kiszámíthatatlansághoz. A bifurkációs pontok arányában felbukkanó Feigenbaum-állandó (4,669...) univerzális — teljesen különböző fizikai rendszerekben is ugyanaz a szám jelenik meg."
+  },
+  {
+    name: "Gradiensmódszer (gradient descent)",
+    tag: "Optimalizálás · Cauchy, 1847",
+    category: "szamitastudomany-mernoki",
+    tex: "\\theta_{n+1} = \\theta_n - \\eta\\,\\nabla J(\\theta_n)",
+    why: "<b>A legmeredekebb lejtő irányába lépkedve bármilyen bonyolult, sokdimenziós 'tájon' megtalálhatjuk a legmélyebb pontot — anélkül, hogy látnánk az egészet.</b> Cauchy csillagászati számításokhoz alkotta meg, de igazi diadalát a gépi tanulásban éli: minden neurális háló tanítása lényegében ennek az egyszerű szabálynak a milliárdszoros ismétlése, több milliárd paraméterű térben. Az AI-forradalom hajtómotorja egy 175 éves ötlet."
+  },
+  {
+    name: "Bayes-hálózatok",
+    tag: "Valószínűségi következtetés · Judea Pearl, 1985",
+    category: "valoszinuseg",
+    tex: "P(X_1,\\ldots,X_n) = \\prod_i P(X_i \\mid \\text{Pa}(X_i))",
+    why: "<b>Egy bonyolult, sok változós valószínűségi rendszer hatalmas táblázata felbontható néhány kicsi, kezelhető feltételes valószínűségre — ha ismerjük, mi mitől függ közvetlenül.</b> Pearl gráfelméleti struktúrát adott a Bayes-tételnek (amit a gyűjteményben már érintettünk), és ezzel kiszámíthatóvá tette a bizonytalanság melletti következtetést. Orvosi diagnosztikai rendszerek, hibakeresés, kockázatelemzés és az okság modern matematikai elmélete mind erre épül — Pearl 2011-ben Turing-díjat kapott érte."
+  },
+  {
+    name: "Fast Fourier-transzformáció alkalmazása képtömörítésre (DCT)",
+    tag: "Jelfeldolgozás · diszkrét koszinusz-transzformáció, 1974",
+    category: "szamitastudomany-mernoki",
+    tex: "X_k = \\sum_{n=0}^{N-1} x_n \\cos\\left[\\frac{\\pi}{N}\\left(n+\\tfrac{1}{2}\\right)k\\right]",
+    why: "<b>Egy képet nem képpontonként tárolunk, hanem frekvenciakomponensekre bontva — és mivel a szemünk a finom részletekre kevésbé érzékeny, a magas frekvenciák nagy része egyszerűen eldobható.</b> Ez az egyszerű felismerés tette lehetővé, hogy egy fénykép a huszadára zsugorodjon észrevehető minőségromlás nélkül. Minden JPEG-kép, MP3-hangfájl és videostreaming ezen az elven működik — enélkül a mai internet, ahogy ismerjük, egyszerűen nem létezne."
+  },
+  {
+    name: "Simplex-módszer duális elmélete",
+    tag: "Optimalizálás · dualitás, Neumann János, 1947",
+    category: "szamitastudomany-mernoki",
+    tex: "\\max\\{c^Tx : Ax \\le b\\} = \\min\\{b^Ty : A^Ty \\ge c\\}",
+    why: "<b>Minden optimalizálási feladatnak van egy 'tükörképe' — és a két feladat optimuma pontosan megegyezik, ami egyszerre ad megoldást és bizonyítékot az optimalitásra.</b> Ez a dualitás nemcsak elméletileg elegáns: a duális megoldás értékei közgazdaságilag értelmezhetők árnyékárakként (mennyit ér egy egységnyi extra erőforrás). Minden ellátásilánc-optimalizálás, termeléstervezés és energiapiaci árazás ezen az elven számol."
   }
 ];
 
@@ -3398,6 +3504,156 @@ const FIZIKA_DATA = [
     type: "single",
     tex: "T_\\lambda \\approx 2.17\\,\\text{K}",
     why: "<b>2,17 kelvin alatt a folyékony hélium elveszti minden belső súrlódását — súrlódásmentesen kúszik fel egy pohár falán, és véget nem érő örvényekben áramolhat egy csőben.</b> Ez a makroszkopikus méretben megjelenő kvantumjelenség — a Bose–Einstein-kondenzációval (amit a gyűjteményben már érintettünk) rokon — mutatja meg a legszemléletesebben, hogy a kvantummechanika nem csak parányi részecskékre érvényes, hanem néha egy egész pohárnyi folyadék viselkedését is uralja."
+  },
+  {
+    rank: 148,
+    name: "Fotoelektromos hatás",
+    tag: "Kvantummechanika · Einstein, 1905",
+    category: "kvantum",
+    special: true,
+    type: "single",
+    tex: "E_{kin} = h\\nu - W",
+    why: "<b>A fény nem folytonos hullámként adja át energiáját, hanem diszkrét csomagokban — és ez az egyszerű egyenlet dönti el, kiszakad-e egy elektron a fémből.</b> Einstein ezért kapott Nobel-díjat (nem a relativitáselméletért!), mert ez volt az első meggyőző bizonyíték a fény kvantumos természetére. Minden napelem, digitális képérzékelő, fénymásoló és éjjellátó készülék közvetlenül ezen a jelenségen alapul — az egyik legnagyobb gazdasági hatású fizikai felfedezés."
+  },
+  {
+    rank: 149,
+    name: "Bohr-féle atommodell",
+    tag: "Kvantummechanika · Niels Bohr, 1913",
+    category: "kvantum",
+    special: true,
+    type: "single",
+    tex: "E_n = -\\frac{13.6\\,\\text{eV}}{n^2}",
+    why: "<b>Az elektronok nem tetszőleges pályákon keringenek, hanem csak meghatározott, kvantált energiaszinteken — és pontosan az ezek közti ugrások magyarázzák a hidrogén színképvonalait.</b> Bohr modellje ugyan később finomításra szorult, de ez volt az első alkalom, hogy egy atomi szintű elmélet pontos, számszerű jóslatot adott mérhető kísérleti eredményre. A színképelemzés azóta a csillagászat legfontosabb eszköze — így tudjuk meg, miből állnak a csillagok."
+  },
+  {
+    rank: 150,
+    name: "Ohm törvénye",
+    tag: "Elektrotechnika · Georg Ohm, 1827",
+    category: "mernoki-alkalmazasok",
+    special: true,
+    type: "single",
+    tex: "U = I \\cdot R",
+    why: "<b>Három mennyiség, egyetlen szorzás — és ezzel az egész elektrotechnika alapja a kezünkben van.</b> Ohm kortársai kezdetben elutasították és 'meddő spekulációnak' nevezték a munkáját; évekkel később ismerték csak el. Ma minden elektromos áramkör méretezése, minden vezeték-keresztmetszet számítása, minden biztosíték kiválasztása ezzel az egyenlettel kezdődik — talán a legtöbbször alkalmazott fizikai összefüggés a mérnöki gyakorlatban."
+  },
+  {
+    rank: 151,
+    name: "Kirchhoff-féle áramköri törvények",
+    tag: "Elektrotechnika · Gustav Kirchhoff, 1845",
+    category: "mernoki-alkalmazasok",
+    special: false,
+    type: "single",
+    tex: "\\sum I_{be} = \\sum I_{ki}, \\qquad \\sum_{\\text{hurok}} U = 0",
+    why: "<b>Két egyszerű megmaradási elv — a töltésé és az energiáé — elegendő ahhoz, hogy tetszőlegesen bonyolult áramkört egyenletrendszerré alakítsunk és megoldjunk.</b> Kirchhoff 21 évesen, még egyetemi hallgatóként fogalmazta meg őket. Minden áramkör-szimulációs szoftver (SPICE és leszármazottai), minden elektromos hálózattervezés ezt a két szabályt alkalmazza automatikusan, több millió csomópontra egyszerre."
+  },
+  {
+    rank: 152,
+    name: "Röntgen-diffrakció (Bragg-törvény)",
+    tag: "Kristálytan · W. H. & W. L. Bragg, 1913",
+    category: "kemia-biologia",
+    special: true,
+    type: "single",
+    tex: "n\\lambda = 2d\\sin\\theta",
+    why: "<b>Egyetlen egyenlet teszi lehetővé, hogy röntgensugarak visszaverődési szögéből kiszámítsuk egy kristály atomjainak pontos térbeli elrendeződését.</b> Ez a módszer tárta fel a DNS kettős spirálját (Rosalind Franklin felvételei), a penicillin, az inzulin és több tízezer fehérje szerkezetét. A fiatalabb Bragg 25 évesen kapott Nobel-díjat — a mai napig ő a legfiatalabb tudományos Nobel-díjas. Az egész modern szerkezeti biológia és anyagtudomány ebből nőtt ki."
+  },
+  {
+    rank: 153,
+    name: "Mágneses magrezonancia (NMR/MRI)",
+    tag: "Orvosi képalkotás · Rabi 1938 / Lauterbur & Mansfield, 1973",
+    category: "kemia-biologia",
+    special: true,
+    type: "single",
+    tex: "\\omega_0 = \\gamma B_0",
+    why: "<b>Egy erős mágneses térbe helyezett atommag pontosan meghatározott frekvencián 'zeng' — és ha a teret helyről helyre változtatjuk, ebből térbeli képet lehet alkotni.</b> A Larmor-frekvencia és a mágneses tér közti egyszerű lineáris kapcsolat tette lehetővé, hogy az emberi test belsejét sugárterhelés nélkül, lágy szöveteket is látva vizsgálhassuk. Az MRI ma a modern orvostudomány egyik legfontosabb diagnosztikai eszköze — egy tisztán kvantummechanikai jelenségből."
+  },
+  {
+    rank: 154,
+    name: "Stimulált emisszió (a lézer elve)",
+    tag: "Kvantumoptika · Einstein, 1917 / Maiman, 1960",
+    category: "kvantum",
+    special: true,
+    type: "single",
+    tex: "\\frac{B_{21}}{A_{21}} = \\frac{c^3}{8\\pi h\\nu^3}",
+    why: "<b>Egy gerjesztett atom nemcsak magától bocsát ki fotont, hanem egy arra járó foton 'rábeszélheti' — és az így keletkező második foton tökéletesen azonos az elsővel.</b> Einstein 1917-ben, tisztán termodinamikai megfontolásból jósolta meg a jelenséget, negyven évvel az első működő lézer előtt. Ma optikai adatátvitel, vonalkód-olvasó, szemműtét, ipari vágás, távolságmérés és a csillagászati adaptív optika — mind ezen az egy kvantumátmeneten alapul."
+  },
+  {
+    rank: 155,
+    name: "Tranzisztor-egyenlet (Shockley)",
+    tag: "Félvezetőfizika · Bardeen, Brattain & Shockley, 1947",
+    category: "mernoki-alkalmazasok",
+    special: true,
+    type: "single",
+    tex: "I_D = I_S\\left(e^{V_D/(nV_T)} - 1\\right)",
+    why: "<b>A p-n átmenet exponenciális áram-feszültség karakterisztikája teszi lehetővé, hogy egy apró jellel nagy áramot kapcsoljunk vagy erősítsünk — ez a digitális kor kapcsolóeleme.</b> A Bell Labs 1947-es felfedezése minden idők talán legnagyobb technológiai hatású találmánya: egyetlen modern processzor több tízmilliárd tranzisztort tartalmaz, mindegyik ezt az egyenletet követve. Enélkül nincs számítógép, nincs mobiltelefon, nincs internet."
+  },
+  {
+    rank: 156,
+    name: "Haber–Bosch-eljárás",
+    tag: "Ipari kémia · nitrogénmegkötés, 1909/1913",
+    category: "kemia-biologia",
+    special: true,
+    type: "single",
+    tex: "N_2 + 3H_2 \\rightleftharpoons 2NH_3 \\quad (\\Delta H = -92\\,\\text{kJ/mol})",
+    why: "<b>A levegő inert nitrogénjét ammóniává alakítva vált lehetővé a szintetikus műtrágya ipari gyártása — becslések szerint a ma élő emberek közel felének létezése ezen az egyetlen reakción múlik.</b> A Le Chatelier-elv (amit a gyűjteményben már érintettünk) gyakorlati diadala: nagy nyomás és katalizátor tolja a kívánt irányba az egyensúlyt. Talán az összes reakció közül ez változtatta meg legdrámaibban az emberiség történetét — a világ energiafogyasztásának 1-2%-át ma is ez emészti fel."
+  },
+  {
+    rank: 157,
+    name: "Polimeráz-láncreakció (PCR)",
+    tag: "Molekuláris biológia · Kary Mullis, 1983",
+    category: "kemia-biologia",
+    special: true,
+    type: "single",
+    tex: "N = N_0 \\cdot 2^n",
+    why: "<b>Egyetlen DNS-szakasz néhány óra alatt milliárdszorosára sokszorozható — ciklusonként egyszerű duplázással, hőmérséklet-változtatás vezérelve.</b> Mullis állítólag autóvezetés közben jött rá az ötletre; Nobel-díjat kapott érte. A PCR nélkül nem létezne modern törvényszéki genetika, örökletes betegségek diagnosztikája, ősi DNS kutatása, vagy — ahogy azt a világ 2020-ban megtapasztalta — gyors és megbízható járványügyi tesztelés."
+  },
+  {
+    rank: 158,
+    name: "CRISPR–Cas9 génszerkesztés",
+    tag: "Molekuláris biológia · Charpentier & Doudna, 2012",
+    category: "kemia-biologia",
+    special: true,
+    type: "single",
+    tex: "\\text{gRNS} + \\text{Cas9} \\;\\longrightarrow\\; \\text{célzott kettősszálú törés}",
+    why: "<b>Egy baktériumok vírusok elleni védekezéséből 'kölcsönvett' molekuláris olló pontosan oda vágja el a DNS-t, ahová egy programozható vezető-RNS irányítja.</b> A génszerkesztés korábban évekig tartó, drága és megbízhatatlan folyamat volt; a CRISPR néhány év alatt olcsóvá és rutinszerűvé tette. Charpentier és Doudna 2020-ban Nobel-díjat kapott — a technológia egyszerre hordozza a genetikai betegségek gyógyításának ígéretét és komoly etikai kérdéseket."
+  },
+  {
+    rank: 159,
+    name: "Fotoszintézis nettó egyenlete",
+    tag: "Biokémia · a bioszféra energiaforrása",
+    category: "kemia-biologia",
+    special: true,
+    type: "single",
+    tex: "6CO_2 + 6H_2O + \\text{fény} \\longrightarrow C_6H_{12}O_6 + 6O_2",
+    why: "<b>Napfényből, vízből és szén-dioxidból cukor és oxigén — ez az egyetlen reakció tartja fenn gyakorlatilag az egész földi élővilágot.</b> A légkör teljes oxigéntartalma ennek a folyamatnak a mellékterméke, felhalmozódva évmilliárdok alatt. Minden táplálék, minden fosszilis tüzelőanyag és minden lélegzetvételünk végső soron ezen az egyenleten keresztül a Napból származó energia — a legfontosabb kémiai reakció a bolygónkon."
+  },
+  {
+    rank: 160,
+    name: "Citrátkör (Krebs-ciklus)",
+    tag: "Biokémia · Hans Krebs, 1937",
+    category: "kemia-biologia",
+    special: false,
+    type: "single",
+    tex: "\\text{Acetil-CoA} \\rightarrow 2CO_2 + 3\\text{NADH} + \\text{FADH}_2 + \\text{GTP}",
+    why: "<b>Egy nyolclépéses, körkörös reakciólánc, amiben a molekulák visszatérnek a kiindulási állapotukba — miközben minden fordulat energiát szabadít fel a sejt számára.</b> Krebs eredeti cikkét a Nature elutasította; máshol publikálta, majd Nobel-díjat kapott érte. A ciklus szinte minden aerob élőlényben azonos formában működik — a baktériumoktól az emberig —, ami az egyik legerősebb bizonyíték a földi élet közös eredetére."
+  },
+  {
+    rank: 161,
+    name: "Ozmotikus nyomás (van 't Hoff-egyenlet)",
+    tag: "Fizikai kémia · 1887",
+    category: "kemia-biologia",
+    special: false,
+    type: "single",
+    tex: "\\Pi = i\\,cRT",
+    why: "<b>Egy oldat ozmotikus nyomása pontosan ugyanazt a formulát követi, mint egy gáz nyomása — mintha az oldott részecskék 'gázként' viselkednének a folyadékban.</b> Ez a meglepő analógia adja meg minden sejt vízháztartásának, a veseműködésnek, az infúziós oldatok koncentrációjának és a fordított ozmózisos víztisztításnak az alapját. Van 't Hoff az első kémiai Nobel-díjat kapta többek között ezért a felismerésért."
+  },
+  {
+    rank: 162,
+    name: "Fleming-féle penicillin-felfedezés",
+    tag: "Mikrobiológia · antibiotikumok, 1928",
+    category: "kemia-biologia",
+    special: true,
+    type: "single",
+    tex: "\\text{Penicillium} \\longrightarrow \\beta\\text{-laktám} \\dashv \\text{sejtfal-szintézis}",
+    why: "<b>Egy véletlenül szennyeződött Petri-csésze körül a baktériumok elpusztultak — és ez a megfigyelés több életet mentett meg, mint bármely más orvosi felfedezés a történelemben.</b> A β-laktám gyűrű a baktériumok sejtfalépítő enzimjét blokkolja, miközben az emberi sejteket érintetlenül hagyja — ez a szelektív toxicitás az antibiotikumok alapelve. Fleming Nobel-beszédében figyelmeztetett a rezisztencia veszélyére is: nyolcvan évvel később pontosan ez vált korunk egyik legnagyobb egészségügyi kihívásává."
   }
 ];
 
@@ -3429,7 +3685,7 @@ const DOMAINS = {
       "kombinatorika-geometria": "#4fb8c4",
       "szamitastudomany-mernoki": "#e8a0bf"
     },
-    footerNames: "Euler \u00b7 Fourier \u00b7 Ramanujan \u00b7 Gauss \u00b7 Riemann \u00b7 Cauchy \u00b7 Pitagorasz \u00b7 Stirling \u00b7 Basel \u00b7 Gauss\u2013Bonnet \u00b7 Euler-szorzat \u00b7 Stokes \u00b7 Fermat\u2013Wiles \u00b7 G\u00f6del \u00b7 Bayes \u00b7 Liouville \u00b7 Cayley \u00b7 Borsuk\u2013Ulam \u00b7 S\u00fcndiszn\u00f3 \u00b7 Cantor \u00b7 Aranymetsz\u00e9s \u00b7 Banach \u00b7 Brouwer \u00b7 Pr\u00edmsz\u00e1mt\u00e9tel \u00b7 CHT \u00b7 Pell \u00b7 Sylvester\u2013Gallai \u00b7 N\u00e9gysz\u00edn-t\u00e9tel \u00b7 Jordan \u00b7 Collatz \u00b7 Goldbach \u00b7 P vs NP \u00b7 Hilbert-sz\u00e1lloda \u00b7 Monty Hall \u00b7 Sz\u00fclet\u00e9snapi paradoxon \u00b7 Bell/CHSH \u00b7 Lagrange-n\u00e9gyzett\u00e9tel \u00b7 Erd\u0151s\u2013Ko\u2013Rado \u00b7 Banach\u2013Tarski \u00b7 Arrow \u00b7 Poincar\u00e9 \u00b7 Euler-poli\u00e9der \u00b7 Ramsey \u00b7 Szemer\u00e9di \u00b7 Green\u2013Tao \u00b7 Kontinuumhipot\u00e9zis \u00b7 Algebra alapt\u00e9tele \u00b7 Catalan\u2013Mihailescu \u00b7 Kalkulus alapt\u00e9tele \u00b7 Pi transzcendenci\u00e1ja \u00b7 Happy Ending \u00b7 Nash-egyenl\u0151s\u00e9g \u00b7 Kepler-sejt\u00e9s \u00b7 Pick-t\u00e9tel \u00b7 Goodstein-t\u00e9tel \u00b7 Riemann-lek\u00e9pez\u00e9s \u00b7 Korl\u00e1tos pr\u00edmr\u00e9s \u00b7 Cook\u2013Levin \u00b7 Meg\u00e1ll\u00e1si probl\u00e9ma \u00b7 Nagy sz\u00e1mok t\u00f6rv\u00e9nye \u00b7 Rogers\u2013Ramanujan \u00b7 Hardy\u2013Ramanujan \u00b7 Ramanujan \u03c4-f\u00fcggv\u00e9ny \u00b7 Chudnovsky \u00b7 Lax\u2013Milgram \u00b7 Nyquist\u2013Shannon \u00b7 Kalman-sz\u0171r\u0151 \u00b7 Wilson-tétel \u00b7 Brun-tétel \u00b7 Bertrand-posztulátum \u00b7 Hall-tétel \u00b7 Erdős\u2013Szekeres \u00b7 Helly-tétel \u00b7 Sperner-lemma \u00b7 Szimplex-módszer \u00b7 Perron\u2013Frobenius \u00b7 Gauss\u2013Markov \u00b7 Cauchy\u2013Schwarz \u00b7 Weierstrass-approximáció \u00b7 Picard\u2013Lindelöf \u00b7 Csebisev \u00b7 Kolmogorov 0-1 \u00b7 Markov-ergodikus \u00b7 Löwenheim\u2013Skolem \u00b7 Tarski \u00b7 Kruskal-fatétel \u00b7 Radon-tétel \u00b7 Nielsen\u2013Schreier \u00b7 Jones-polinom \u00b7 Church\u2013Turing \u00b7 Shannon-kapacitás \u00b7 FFT \u00b7 Lebesgue-konvergencia \u00b7 Fubini-t\u00e9tel \u00b7 Arzel\u00e0\u2013Ascoli \u00b7 Poisson-folyamat \u00b7 It\u014d-formula \u00b7 Erd\u0151s\u2013R\u00e9nyi \u00b7 Kolmogorov-komplexit\u00e1s \u00b7 L\u00f6b-t\u00e9tel \u00b7 Robertson\u2013Seymour \u00b7 Tur\u00e1n-t\u00e9tel \u00b7 Poincar\u00e9\u2013Bendixson \u00b7 Whitney-be\u00e1gyaz\u00e1s \u00b7 Lefschetz-fixpont \u00b7 Dijkstra \u00b7 Karmarkar \u00b7 Wald-azonoss\u00e1g \u00b7 Berry\u2013Esseen \u00b7 Banach\u2013Steinhaus \u00b7 Sobolev-be\u00e1gyaz\u00e1s \u00b7 Hopf-fibr\u00e1ci\u00f3 \u00b7 Van Kampen \u00b7 De Bruijn\u2013Erd\u0151s \u00b7 Borsuk-sejt\u00e9s \u00b7 Amdahl-t\u00f6rv\u00e9ny \u00b7 RSA \u00b7 Hessian-D-teszt \u00b7 Green-tétel \u00b7 Gauss-divergenciatétel \u00b7 Cauchy\u2013Riemann \u00b7 Wallis-szorzat \u00b7 Mittag-Leffler \u00b7 Mandelbrot-halmaz \u00b7 Zorn-lemma \u00b7 Gödel II. \u00b7 Kompaktsági tétel \u00b7 Kolmogorov-axiómák \u00b7 Borel\u2013Cantelli \u00b7 Nagy eltérések \u00b7 Dilworth-tétel \u00b7 Menger-tétel \u00b7 Catalan-számok \u00b7 Neumann-minimax \u00b7 Poincaré\u2013Hopf \u00b7 Jordan\u2013Brouwer \u00b7 Theorema Egregium \u00b7 Königsberg-hidak \u00b7 Skatulya-elv \u00b7 Valószínűségi módszer \u00b7 Markov-egyenlőtlenség \u00b7 Jensen-egyenlőtlenség \u00b7 Kruskal-algoritmus \u00b7 Huffman-kódolás",
+    footerNames: "Euler \u00b7 Fourier \u00b7 Ramanujan \u00b7 Gauss \u00b7 Riemann \u00b7 Cauchy \u00b7 Pitagorasz \u00b7 Stirling \u00b7 Basel \u00b7 Gauss\u2013Bonnet \u00b7 Euler-szorzat \u00b7 Stokes \u00b7 Fermat\u2013Wiles \u00b7 G\u00f6del \u00b7 Bayes \u00b7 Liouville \u00b7 Cayley \u00b7 Borsuk\u2013Ulam \u00b7 S\u00fcndiszn\u00f3 \u00b7 Cantor \u00b7 Aranymetsz\u00e9s \u00b7 Banach \u00b7 Brouwer \u00b7 Pr\u00edmsz\u00e1mt\u00e9tel \u00b7 CHT \u00b7 Pell \u00b7 Sylvester\u2013Gallai \u00b7 N\u00e9gysz\u00edn-t\u00e9tel \u00b7 Jordan \u00b7 Collatz \u00b7 Goldbach \u00b7 P vs NP \u00b7 Hilbert-sz\u00e1lloda \u00b7 Monty Hall \u00b7 Sz\u00fclet\u00e9snapi paradoxon \u00b7 Bell/CHSH \u00b7 Lagrange-n\u00e9gyzett\u00e9tel \u00b7 Erd\u0151s\u2013Ko\u2013Rado \u00b7 Banach\u2013Tarski \u00b7 Arrow \u00b7 Poincar\u00e9 \u00b7 Euler-poli\u00e9der \u00b7 Ramsey \u00b7 Szemer\u00e9di \u00b7 Green\u2013Tao \u00b7 Kontinuumhipot\u00e9zis \u00b7 Algebra alapt\u00e9tele \u00b7 Catalan\u2013Mihailescu \u00b7 Kalkulus alapt\u00e9tele \u00b7 Pi transzcendenci\u00e1ja \u00b7 Happy Ending \u00b7 Nash-egyenl\u0151s\u00e9g \u00b7 Kepler-sejt\u00e9s \u00b7 Pick-t\u00e9tel \u00b7 Goodstein-t\u00e9tel \u00b7 Riemann-lek\u00e9pez\u00e9s \u00b7 Korl\u00e1tos pr\u00edmr\u00e9s \u00b7 Cook\u2013Levin \u00b7 Meg\u00e1ll\u00e1si probl\u00e9ma \u00b7 Nagy sz\u00e1mok t\u00f6rv\u00e9nye \u00b7 Rogers\u2013Ramanujan \u00b7 Hardy\u2013Ramanujan \u00b7 Ramanujan \u03c4-f\u00fcggv\u00e9ny \u00b7 Chudnovsky \u00b7 Lax\u2013Milgram \u00b7 Nyquist\u2013Shannon \u00b7 Kalman-sz\u0171r\u0151 \u00b7 Wilson-tétel \u00b7 Brun-tétel \u00b7 Bertrand-posztulátum \u00b7 Hall-tétel \u00b7 Erdős\u2013Szekeres \u00b7 Helly-tétel \u00b7 Sperner-lemma \u00b7 Szimplex-módszer \u00b7 Perron\u2013Frobenius \u00b7 Gauss\u2013Markov \u00b7 Cauchy\u2013Schwarz \u00b7 Weierstrass-approximáció \u00b7 Picard\u2013Lindelöf \u00b7 Csebisev \u00b7 Kolmogorov 0-1 \u00b7 Markov-ergodikus \u00b7 Löwenheim\u2013Skolem \u00b7 Tarski \u00b7 Kruskal-fatétel \u00b7 Radon-tétel \u00b7 Nielsen\u2013Schreier \u00b7 Jones-polinom \u00b7 Church\u2013Turing \u00b7 Shannon-kapacitás \u00b7 FFT \u00b7 Lebesgue-konvergencia \u00b7 Fubini-t\u00e9tel \u00b7 Arzel\u00e0\u2013Ascoli \u00b7 Poisson-folyamat \u00b7 It\u014d-formula \u00b7 Erd\u0151s\u2013R\u00e9nyi \u00b7 Kolmogorov-komplexit\u00e1s \u00b7 L\u00f6b-t\u00e9tel \u00b7 Robertson\u2013Seymour \u00b7 Tur\u00e1n-t\u00e9tel \u00b7 Poincar\u00e9\u2013Bendixson \u00b7 Whitney-be\u00e1gyaz\u00e1s \u00b7 Lefschetz-fixpont \u00b7 Dijkstra \u00b7 Karmarkar \u00b7 Wald-azonoss\u00e1g \u00b7 Berry\u2013Esseen \u00b7 Banach\u2013Steinhaus \u00b7 Sobolev-be\u00e1gyaz\u00e1s \u00b7 Hopf-fibr\u00e1ci\u00f3 \u00b7 Van Kampen \u00b7 De Bruijn\u2013Erd\u0151s \u00b7 Borsuk-sejt\u00e9s \u00b7 Amdahl-t\u00f6rv\u00e9ny \u00b7 RSA \u00b7 Hessian-D-teszt \u00b7 Green-tétel \u00b7 Gauss-divergenciatétel \u00b7 Cauchy\u2013Riemann \u00b7 Wallis-szorzat \u00b7 Mittag-Leffler \u00b7 Mandelbrot-halmaz \u00b7 Zorn-lemma \u00b7 Gödel II. \u00b7 Kompaktsági tétel \u00b7 Kolmogorov-axiómák \u00b7 Borel\u2013Cantelli \u00b7 Nagy eltérések \u00b7 Dilworth-tétel \u00b7 Menger-tétel \u00b7 Catalan-számok \u00b7 Neumann-minimax \u00b7 Poincaré\u2013Hopf \u00b7 Jordan\u2013Brouwer \u00b7 Theorema Egregium \u00b7 Königsberg-hidak \u00b7 Skatulya-elv \u00b7 Valószínűségi módszer \u00b7 Markov-egyenlőtlenség \u00b7 Jensen-egyenlőtlenség \u00b7 Kruskal-algoritmus \u00b7 Huffman-kódolás \u00b7 Radon-transzformáció \u00b7 Lorenz-attraktor \u00b7 Newton\u2013Raphson \u00b7 Monte Carlo \u00b7 Bézier-görbék \u00b7 Backpropagation \u00b7 Diffie\u2013Hellman \u00b7 Hamming-kód \u00b7 Galois-elmélet \u00b7 Runge\u2013Kutta \u00b7 Logisztikus leképezés \u00b7 Gradiensmódszer \u00b7 Bayes-hálózatok \u00b7 DCT-képtömörítés \u00b7 LP-dualitás",
     ghostFormulas: ["e^{i\\pi}+1=0", "\\zeta(s)=\\sum_{n=1}^{\\infty}\\frac{1}{n^s}", "\\int_{-\\infty}^{\\infty} e^{-x^2}dx=\\sqrt{\\pi}", "\\forall\\varepsilon>0\\,\\exists\\delta", "\\aleph_0 < \\mathfrak{c}", "\\nabla^2\\phi=0"]
   },
   fizika: {
@@ -3457,7 +3713,7 @@ const DOMAINS = {
       "kemia-biologia": "#4fb8c4",
       "mernoki-alkalmazasok": "#e8a0bf"
     },
-    footerNames: "Maxwell \u00b7 Noether \u00b7 Schr\u00f6dinger \u00b7 Boltzmann \u00b7 Feynman \u00b7 Dirac \u00b7 Bekenstein\u2013Hawking \u00b7 Euler\u2013Lagrange \u00b7 E=mc\u00b2 \u00b7 Yang\u2013Mills \u00b7 Heisenberg \u00b7 Shannon \u00b7 Navier\u2013Stokes \u00b7 Planck \u00b7 Lorentz \u00b7 Hawking-h\u0151m\u00e9rs\u00e9klet \u00b7 Aszimptotikus szabads\u00e1g \u00b7 Peri\u00f3dusos rendszer \u00b7 Kepler \u00b7 Hamilton \u00b7 Lotka\u2013Volterra \u00b7 Hardy\u2013Weinberg \u00b7 Snellius\u2013Descartes \u00b7 Viri\u00e1lt\u00e9tel \u00b7 Hodgkin\u2013Huxley \u00b7 Arrhenius \u00b7 Le Chatelier \u00b7 Bell/CHSH \u00b7 Carnot \u00b7 Higgs \u00b7 Casimir \u00b7 Michaelis\u2013Menten \u00b7 Az id\u0151 nyila \u00b7 Kvarkbez\u00e1r\u00e1s \u00b7 Holografikus elv \u00b7 BCS-elm\u00e9let \u00b7 Drake-egyenlet \u00b7 Fick-t\u00f6rv\u00e9ny \u00b7 Einstein-mez\u0151egyenletek \u00b7 Faraday-indukci\u00f3 \u00b7 Wien-t\u00f6rv\u00e9ny \u00b7 Levinthal-paradoxon \u00b7 Doppler-effektus \u00b7 Bernoulli-egyenlet \u00b7 ATP-szint\u00e1z \u00b7 Homokiralit\u00e1s \u00b7 Hubble\u2013Lema\u00eetre \u00b7 Lorentz-er\u0151 \u00b7 Avogadro-\u00e1lland\u00f3 \u00b7 Compton-effektus \u00b7 Van 't Hoff \u00b7 Pauli-elv \u00b7 Hull\u00e1megyenlet \u00b7 Reynolds-sz\u00e1m \u00b7 Seebeck-effektus \u00b7 Chandrasekhar-hat\u00e1r \u00b7 Bose\u2013Einstein-kondenz\u00e1ci\u00f3 \u00b7 CPT-t\u00e9tel \u00b7 Onsager-reciprocit\u00e1s \u00b7 Landauer-elv \u00b7 Euler-kihajl\u00e1s \u00b7 Saint-Venant \u00b7 Mohr-k\u00f6r \u00b7 Betti-t\u00e9tel \u00b7 Clausius\u2013Clapeyron \u00b7 Gibbs-energia \u00b7 Fermi\u2013Dirac \u00b7 Neutrínó-oszcilláció \u00b7 Gell-Mann\u2013Nishijima \u00b7 Schwarzschild-sugár \u00b7 Friedmann-egyenletek \u00b7 Euler\u2013Bernoulli \u00b7 Castigliano \u00b7 Buckingham π-tétel \u00b7 Alag\u00fathat\u00e1s \u00b7 No-cloning \u00b7 Josephson \u00b7 Meissner \u00b7 Nernst-t\u00e9tel \u00b7 Maxwell\u2013Boltzmann \u00b7 Stefan\u2013Boltzmann \u00b7 Cserenkov \u00b7 M\u00fcon g-2 \u00b7 Ekvivalenciaelv \u00b7 Kerr-metrika \u00b7 Gravit\u00e1ci\u00f3s hull\u00e1mok \u00b7 Timoshenko \u00b7 Navier (rugalmass\u00e1gtan) \u00b7 Rayleigh\u2013Ritz \u00b7 Hooke-t\u00f6rv\u00e9ny \u00b7 Darcy-t\u00f6rv\u00e9ny \u00b7 Terzaghi-konszolid\u00e1ci\u00f3 \u00b7 Coriolis-er\u0151 \u00b7 Foucault-inga \u00b7 Euler-forg\u00e1segyenletek \u00b7 Van der Waals \u00b7 Joule\u2013Thomson \u00b7 Fourier-h\u0151vezet\u00e9s \u00b7 Nernst-egyenlet \u00b7 CKM-m\u00e1trix \u00b7 Aharonov\u2013Bohm \u00b7 Penrose\u2013Hawking \u00b7 Shapiro-k\u00e9sleltet\u00e9s \u00b7 Penrose-folyamat \u00b7 Watson\u2013Crick \u00b7 Griffith-t\u00f6r\u00e9smechanika \u00b7 Coulomb-s\u00fars\u00fbrl\u00f3d\u00e1s \u00b7 Elektrogyenge egyes\u00edt\u00e9s \u00b7 Rutherford-sz\u00f3r\u00e1s \u00b7 Kvantum-teleport\u00e1ci\u00f3 \u00b7 D'Alembert-elv \u00b7 Lense\u2013Thirring \u00b7 Kirchhoff-sug\u00e1rz\u00e1s \u00b7 Kvark-gluon plazma \u00b7 Rüchardt-módszer \u00b7 Saha-egyenlet \u00b7 Eddington\u2013Dirac nagy szám \u00b7 Bőrhatás \u00b7 Lencsekészítő-egyenlet \u00b7 Liouville-egyenlet \u00b7 Ideális gáztörvény \u00b7 Newton-gravitáció \u00b7 De Broglie \u00b7 Ehrenfest-tétel \u00b7 Christoffel-szimbólumok \u00b7 Planck-hossz \u00b7 Young\u2013Laplace \u00b7 Paritássértés \u00b7 Antianyag/pozitron \u00b7 Neutrínó-detektálás \u00b7 Mendel-törvények \u00b7 Tömeghatás törvénye \u00b7 Henderson\u2013Hasselbalch \u00b7 Maxwell-démon \u00b7 Adiabatikus egyenlet \u00b7 Kármán-örvénysor \u00b7 Mohr\u2013Coulomb \u00b7 Bjorken-skálázás \u00b7 CP-sértés kaonokban \u00b7 Gravitációs lencsehatás \u00b7 Sötét energia \u00b7 Tolman\u2013Oppenheimer\u2013Volkoff \u00b7 Fáradásos törés \u00b7 Boussinesq-eloszlás \u00b7 Kepler-egyenlet \u00b7 Lamb-eltolódás \u00b7 Szuperfolyékonyság",
+    footerNames: "Maxwell \u00b7 Noether \u00b7 Schr\u00f6dinger \u00b7 Boltzmann \u00b7 Feynman \u00b7 Dirac \u00b7 Bekenstein\u2013Hawking \u00b7 Euler\u2013Lagrange \u00b7 E=mc\u00b2 \u00b7 Yang\u2013Mills \u00b7 Heisenberg \u00b7 Shannon \u00b7 Navier\u2013Stokes \u00b7 Planck \u00b7 Lorentz \u00b7 Hawking-h\u0151m\u00e9rs\u00e9klet \u00b7 Aszimptotikus szabads\u00e1g \u00b7 Peri\u00f3dusos rendszer \u00b7 Kepler \u00b7 Hamilton \u00b7 Lotka\u2013Volterra \u00b7 Hardy\u2013Weinberg \u00b7 Snellius\u2013Descartes \u00b7 Viri\u00e1lt\u00e9tel \u00b7 Hodgkin\u2013Huxley \u00b7 Arrhenius \u00b7 Le Chatelier \u00b7 Bell/CHSH \u00b7 Carnot \u00b7 Higgs \u00b7 Casimir \u00b7 Michaelis\u2013Menten \u00b7 Az id\u0151 nyila \u00b7 Kvarkbez\u00e1r\u00e1s \u00b7 Holografikus elv \u00b7 BCS-elm\u00e9let \u00b7 Drake-egyenlet \u00b7 Fick-t\u00f6rv\u00e9ny \u00b7 Einstein-mez\u0151egyenletek \u00b7 Faraday-indukci\u00f3 \u00b7 Wien-t\u00f6rv\u00e9ny \u00b7 Levinthal-paradoxon \u00b7 Doppler-effektus \u00b7 Bernoulli-egyenlet \u00b7 ATP-szint\u00e1z \u00b7 Homokiralit\u00e1s \u00b7 Hubble\u2013Lema\u00eetre \u00b7 Lorentz-er\u0151 \u00b7 Avogadro-\u00e1lland\u00f3 \u00b7 Compton-effektus \u00b7 Van 't Hoff \u00b7 Pauli-elv \u00b7 Hull\u00e1megyenlet \u00b7 Reynolds-sz\u00e1m \u00b7 Seebeck-effektus \u00b7 Chandrasekhar-hat\u00e1r \u00b7 Bose\u2013Einstein-kondenz\u00e1ci\u00f3 \u00b7 CPT-t\u00e9tel \u00b7 Onsager-reciprocit\u00e1s \u00b7 Landauer-elv \u00b7 Euler-kihajl\u00e1s \u00b7 Saint-Venant \u00b7 Mohr-k\u00f6r \u00b7 Betti-t\u00e9tel \u00b7 Clausius\u2013Clapeyron \u00b7 Gibbs-energia \u00b7 Fermi\u2013Dirac \u00b7 Neutrínó-oszcilláció \u00b7 Gell-Mann\u2013Nishijima \u00b7 Schwarzschild-sugár \u00b7 Friedmann-egyenletek \u00b7 Euler\u2013Bernoulli \u00b7 Castigliano \u00b7 Buckingham π-tétel \u00b7 Alag\u00fathat\u00e1s \u00b7 No-cloning \u00b7 Josephson \u00b7 Meissner \u00b7 Nernst-t\u00e9tel \u00b7 Maxwell\u2013Boltzmann \u00b7 Stefan\u2013Boltzmann \u00b7 Cserenkov \u00b7 M\u00fcon g-2 \u00b7 Ekvivalenciaelv \u00b7 Kerr-metrika \u00b7 Gravit\u00e1ci\u00f3s hull\u00e1mok \u00b7 Timoshenko \u00b7 Navier (rugalmass\u00e1gtan) \u00b7 Rayleigh\u2013Ritz \u00b7 Hooke-t\u00f6rv\u00e9ny \u00b7 Darcy-t\u00f6rv\u00e9ny \u00b7 Terzaghi-konszolid\u00e1ci\u00f3 \u00b7 Coriolis-er\u0151 \u00b7 Foucault-inga \u00b7 Euler-forg\u00e1segyenletek \u00b7 Van der Waals \u00b7 Joule\u2013Thomson \u00b7 Fourier-h\u0151vezet\u00e9s \u00b7 Nernst-egyenlet \u00b7 CKM-m\u00e1trix \u00b7 Aharonov\u2013Bohm \u00b7 Penrose\u2013Hawking \u00b7 Shapiro-k\u00e9sleltet\u00e9s \u00b7 Penrose-folyamat \u00b7 Watson\u2013Crick \u00b7 Griffith-t\u00f6r\u00e9smechanika \u00b7 Coulomb-s\u00fars\u00fbrl\u00f3d\u00e1s \u00b7 Elektrogyenge egyes\u00edt\u00e9s \u00b7 Rutherford-sz\u00f3r\u00e1s \u00b7 Kvantum-teleport\u00e1ci\u00f3 \u00b7 D'Alembert-elv \u00b7 Lense\u2013Thirring \u00b7 Kirchhoff-sug\u00e1rz\u00e1s \u00b7 Kvark-gluon plazma \u00b7 Rüchardt-módszer \u00b7 Saha-egyenlet \u00b7 Eddington\u2013Dirac nagy szám \u00b7 Bőrhatás \u00b7 Lencsekészítő-egyenlet \u00b7 Liouville-egyenlet \u00b7 Ideális gáztörvény \u00b7 Newton-gravitáció \u00b7 De Broglie \u00b7 Ehrenfest-tétel \u00b7 Christoffel-szimbólumok \u00b7 Planck-hossz \u00b7 Young\u2013Laplace \u00b7 Paritássértés \u00b7 Antianyag/pozitron \u00b7 Neutrínó-detektálás \u00b7 Mendel-törvények \u00b7 Tömeghatás törvénye \u00b7 Henderson\u2013Hasselbalch \u00b7 Maxwell-démon \u00b7 Adiabatikus egyenlet \u00b7 Kármán-örvénysor \u00b7 Mohr\u2013Coulomb \u00b7 Bjorken-skálázás \u00b7 CP-sértés kaonokban \u00b7 Gravitációs lencsehatás \u00b7 Sötét energia \u00b7 Tolman\u2013Oppenheimer\u2013Volkoff \u00b7 Fáradásos törés \u00b7 Boussinesq-eloszlás \u00b7 Kepler-egyenlet \u00b7 Lamb-eltolódás \u00b7 Szuperfolyékonyság \u00b7 Fotoelektromos hatás \u00b7 Bohr-modell \u00b7 Ohm-törvény \u00b7 Kirchhoff-törvények \u00b7 Bragg-törvény \u00b7 NMR/MRI \u00b7 Stimulált emisszió \u00b7 Tranzisztor \u00b7 Haber\u2013Bosch \u00b7 PCR \u00b7 CRISPR\u2013Cas9 \u00b7 Fotoszintézis \u00b7 Citrátkör \u00b7 Ozmotikus nyomás \u00b7 Penicillin",
     ghostFormulas: ["\\nabla\\times\\vec{E}=-\\frac{\\partial \\vec{B}}{\\partial t}", "E=mc^2", "\\hat{H}\\psi=i\\hbar\\frac{\\partial\\psi}{\\partial t}", "S=k_B\\ln\\Omega", "F=ma", "ds^2=g_{\\mu\\nu}dx^\\mu dx^\\nu"]
   }
 };
