@@ -149,6 +149,87 @@
     transition:background .5s ease, box-shadow .5s ease;
   }
 
+  /* ---- A nap szépsége ---- */
+  .daily-card{
+    position:relative;
+    margin:clamp(20px,3.5vw,30px) 0 clamp(6px,1.5vw,12px);
+    padding:clamp(18px,3vw,26px) clamp(18px,3vw,30px);
+    border:1px solid var(--highlight-border);
+    border-radius:16px;
+    background:
+      radial-gradient(120% 140% at 100% 0%, color-mix(in srgb, var(--highlight) 9%, transparent), transparent 62%),
+      linear-gradient(180deg, var(--panel), var(--ink-2));
+    box-shadow:0 14px 40px -22px var(--highlight);
+    animation:dailyRise .7s cubic-bezier(.2,.7,.2,1) both;
+    overflow:hidden;
+  }
+  @keyframes dailyRise{
+    from{opacity:0;transform:translateY(10px);}
+    to{opacity:1;transform:none;}
+  }
+  .daily-head{
+    display:flex;align-items:center;gap:10px;
+    margin-bottom:14px;
+  }
+  .daily-eyebrow{
+    font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;
+    color:var(--highlight);font-weight:700;
+  }
+  .daily-date{
+    font-family:"JetBrains Mono",monospace;
+    font-size:10.5px;color:var(--muted);letter-spacing:.02em;
+  }
+  .daily-dismiss{
+    margin-left:auto;
+    background:none;border:none;color:var(--muted);
+    font-size:12px;cursor:pointer;padding:3px 5px;border-radius:6px;
+    transition:color .2s ease;touch-action:manipulation;
+  }
+  .daily-dismiss:hover{color:var(--paper);}
+  .daily-formula{
+    display:inline-block;width:fit-content;max-width:100%;
+    padding:clamp(12px,2vw,18px) clamp(14px,2.4vw,24px);
+    margin-bottom:14px;
+    border:1px solid var(--line);border-radius:12px;
+    background:linear-gradient(180deg,var(--ink-2),var(--ink));
+    overflow-x:auto;overflow-y:hidden;
+    cursor:pointer;touch-action:manipulation;
+    transition:border-color .25s ease, box-shadow .25s ease;
+  }
+  .daily-formula:hover{border-color:var(--highlight);box-shadow:0 8px 22px -12px var(--highlight);}
+  .daily-formula .katex{font-size:clamp(1.1rem,2.8vw,1.7rem);color:var(--paper);}
+  .daily-meta{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 12px;margin-bottom:8px;}
+  .daily-name{
+    font-family:"Fraunces",serif;font-weight:500;
+    font-size:clamp(17px,2.5vw,23px);color:var(--paper);
+  }
+  .daily-tag{
+    font-family:"JetBrains Mono",monospace;font-size:10.5px;
+    color:var(--muted);
+  }
+  .daily-why{
+    color:var(--muted);font-size:clamp(13px,1.6vw,14.5px);
+    margin:0 0 14px;line-height:1.6;
+  }
+  .daily-why b{
+    font-family:"Caveat",cursive;font-weight:600;font-size:1.3em;
+    line-height:1.5;color:var(--ink);background:var(--highlight);
+    -webkit-box-decoration-break:clone;box-decoration-break:clone;
+    border-radius:4px;padding:1px 5px;
+  }
+  .daily-jump{
+    font-family:"Inter",sans-serif;font-size:12px;font-weight:600;
+    color:var(--ink);
+    background:linear-gradient(135deg,var(--primary-bright),var(--primary));
+    border:none;padding:8px 18px;border-radius:999px;
+    cursor:pointer;transition:transform .2s ease, box-shadow .2s ease;
+    touch-action:manipulation;
+  }
+  .daily-jump:hover{transform:translateY(-1px);box-shadow:0 8px 20px -8px var(--primary);}
+  @media(max-width:560px){
+    .daily-why{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;}
+  }
+
   /* ---- Toolbar: search + view switch ---- */
   .toolbar{
     display:flex;flex-wrap:wrap;gap:10px;align-items:center;
@@ -230,6 +311,48 @@
     border-bottom:1px solid var(--line);
   }
   .category-header:first-child{margin-top:8px;}
+  .category-header.collapsible{
+    cursor:pointer;
+    touch-action:manipulation;
+    user-select:none;
+    transition:border-color .3s ease, background .2s ease;
+    border-radius:8px 8px 0 0;
+    padding-left:6px;
+  }
+  .category-header.collapsible:hover{
+    background:var(--chip-bg);
+    border-bottom-color:var(--primary);
+  }
+  .collapse-arrow{
+    display:inline-block;
+    color:var(--primary);
+    font-size:12px;
+    transition:transform .25s ease;
+    flex:0 0 auto;
+    width:14px;
+  }
+  .category-header.collapsed .collapse-arrow{
+    transform:rotate(-90deg);
+  }
+  .category-header.collapsed{
+    opacity:.82;
+  }
+  .group-controls{
+    display:none;
+    gap:8px;
+    margin:0 0 14px;
+  }
+  .group-btn{
+    font-family:"JetBrains Mono",monospace;
+    font-size:10.5px;letter-spacing:.04em;
+    color:var(--muted);
+    background:none;
+    border:1px solid var(--line);
+    padding:5px 12px;border-radius:999px;
+    cursor:pointer;transition:all .2s ease;
+    touch-action:manipulation;
+  }
+  .group-btn:hover{border-color:var(--primary);color:var(--primary-bright);}
   .cat-dot{
     display:inline-block;width:9px;height:9px;border-radius:50%;
     margin-right:2px;flex:0 0 auto;
@@ -763,6 +886,23 @@
     <div class="rule"></div>
   </header>
 
+  <section class="daily-card" id="dailyCard" hidden>
+    <div class="daily-head">
+      <span class="daily-eyebrow">A nap szépsége</span>
+      <span class="daily-date" id="dailyDate"></span>
+      <button type="button" class="daily-dismiss" id="dailyDismiss" aria-label="Elrejtés mára">✕</button>
+    </div>
+    <div class="daily-body">
+      <div class="daily-formula" id="dailyFormula"></div>
+      <div class="daily-meta">
+        <span class="daily-name" id="dailyName"></span>
+        <span class="daily-tag" id="dailyTag"></span>
+      </div>
+      <p class="daily-why" id="dailyWhy"></p>
+      <button type="button" class="daily-jump" id="dailyJump">Ugrás a tételhez →</button>
+    </div>
+  </section>
+
   <div class="toolbar">
     <div class="search-wrap">
       <svg class="search-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -781,6 +921,10 @@
   </div>
 
   <div class="filterbar" id="filterbar"></div>
+  <div class="group-controls" id="groupControls">
+    <button type="button" class="group-btn" id="expandAllBtn">Mind kinyit</button>
+    <button type="button" class="group-btn" id="collapseAllBtn">Mind becsuk</button>
+  </div>
   <p class="count-display" id="countDisplay"></p>
 
   <main class="grid" id="grid"></main>
@@ -3746,6 +3890,17 @@ const statsOverlay = document.getElementById("statsOverlay");
 const statsClose = document.getElementById("statsClose");
 const statsCategories = document.getElementById("statsCategories");
 const statsEras = document.getElementById("statsEras");
+const groupControls = document.getElementById("groupControls");
+const expandAllBtn = document.getElementById("expandAllBtn");
+const collapseAllBtn = document.getElementById("collapseAllBtn");
+const dailyCard = document.getElementById("dailyCard");
+const dailyDate = document.getElementById("dailyDate");
+const dailyFormula = document.getElementById("dailyFormula");
+const dailyName = document.getElementById("dailyName");
+const dailyTag = document.getElementById("dailyTag");
+const dailyWhy = document.getElementById("dailyWhy");
+const dailyJump = document.getElementById("dailyJump");
+const dailyDismiss = document.getElementById("dailyDismiss");
 
 let activeDomain = "matek";
 let activeCategory = "all";
@@ -3791,6 +3946,18 @@ function saveFavorites() {
   try { localStorage.setItem("tsz_favorites_v1", JSON.stringify([...favorites])); } catch (e) {}
 }
 let favorites = loadFavorites();
+
+function loadCollapsed() {
+  try {
+    const raw = localStorage.getItem("tsz_collapsed_v1");
+    return raw ? new Set(JSON.parse(raw)) : null;
+  } catch (e) { return null; }
+}
+function saveCollapsed() {
+  try { localStorage.setItem("tsz_collapsed_v1", JSON.stringify([...collapsedGroups])); } catch (e) {}
+}
+let collapsedGroups = loadCollapsed() || new Set();
+let collapsedInitialized = loadCollapsed() !== null;
 
 function toggleFavorite(key, btnEl) {
   if (favorites.has(key)) { favorites.delete(key); btnEl.classList.remove("active"); }
@@ -4080,30 +4247,65 @@ function renderGrid() {
       const rowsInCat = rowElements.filter(r => r.category === key);
       if (rowsInCat.length === 0) return;
       const header = document.createElement("div");
-      header.className = "category-header";
+      header.className = "category-header collapsible";
       header.dataset.category = key;
       const color = domain.categoryColors ? domain.categoryColors[key] : null;
       const dot = color ? `<span class="cat-dot" style="background:${color};color:${color};"></span>` : "";
-      header.innerHTML = `${dot}<span class="cat-name">${domain.categoryLabels[key]}</span><span class="cat-count">${rowsInCat.length} tétel</span>`;
+      const isCollapsed = collapsedGroups.has("cat:" + key);
+      header.innerHTML = `<span class="collapse-arrow">▾</span>${dot}<span class="cat-name">${domain.categoryLabels[key]}</span><span class="cat-count">${rowsInCat.length} tétel</span>`;
+      header.classList.toggle("collapsed", isCollapsed);
+      header.addEventListener("click", () => toggleGroup("cat:" + key, header));
       grid.appendChild(header);
-      headerElements.push({el: header, keyType: "category", key});
-      rowsInCat.forEach(r => grid.appendChild(r.el));
+      headerElements.push({el: header, keyType: "category", key, groupKey: "cat:" + key});
+      rowsInCat.forEach(r => {
+        r.groupKey = "cat:" + key;
+        grid.appendChild(r.el);
+      });
     });
   } else if (viewMode === "timeline") {
     const sorted = [...rowElements].sort((a, b) => a.year - b.year);
+    const eraCounts = {};
+    sorted.forEach(r => { eraCounts[r.era] = (eraCounts[r.era] || 0) + 1; });
     let lastEra = null;
     sorted.forEach(r => {
       if (r.era !== lastEra) {
         const header = document.createElement("div");
-        header.className = "category-header era-header";
-        header.innerHTML = `<span class="cat-name">${r.era}</span>`;
+        header.className = "category-header era-header collapsible";
+        const isCollapsed = collapsedGroups.has("era:" + r.era);
+        header.innerHTML = `<span class="collapse-arrow">▾</span><span class="cat-name">${r.era}</span><span class="cat-count">${eraCounts[r.era]} tétel</span>`;
+        header.classList.toggle("collapsed", isCollapsed);
+        const eraKey = "era:" + r.era;
+        header.addEventListener("click", () => toggleGroup(eraKey, header));
         grid.appendChild(header);
-        headerElements.push({el: header, keyType: "era", key: r.era});
+        headerElements.push({el: header, keyType: "era", key: r.era, groupKey: eraKey});
         lastEra = r.era;
       }
+      r.groupKey = "era:" + r.era;
       grid.appendChild(r.el);
     });
+  } else {
+    rowElements.forEach(r => { r.groupKey = null; grid.appendChild(r.el); });
   }
+  if (viewMode === "rank") rowElements.forEach(r => { r.groupKey = null; });
+  applyFilter();
+}
+
+function toggleGroup(groupKey, headerEl) {
+  if (collapsedGroups.has(groupKey)) collapsedGroups.delete(groupKey);
+  else collapsedGroups.add(groupKey);
+  headerEl.classList.toggle("collapsed", collapsedGroups.has(groupKey));
+  saveCollapsed();
+  applyFilter();
+}
+
+function setAllGroups(collapsed) {
+  headerElements.forEach(({el, groupKey}) => {
+    if (!groupKey) return;
+    if (collapsed) collapsedGroups.add(groupKey);
+    else collapsedGroups.delete(groupKey);
+    el.classList.toggle("collapsed", collapsed);
+  });
+  saveCollapsed();
   applyFilter();
 }
 
@@ -4113,17 +4315,22 @@ function applyFilter() {
   let visibleCount = 0;
   const visibleCats = new Set();
   const visibleEras = new Set();
+  // Keresés vagy kedvenc-szűrés közben mindig kinyitjuk a csoportokat,
+  // különben a találatok rejtve maradnának egy összecsukott fejléc alatt.
+  const forceExpand = q !== "" || onlyFavorites;
 
   rowElements.forEach((r) => {
     const matchesCategory = activeCategory === "all" || r.category === activeCategory;
     const matchesSearch = q === "" || r.searchText.includes(q);
     const matchesFav = !onlyFavorites || favorites.has(r.favKey);
-    const show = matchesCategory && matchesSearch && matchesFav;
+    const passesFilters = matchesCategory && matchesSearch && matchesFav;
+    const inCollapsedGroup = !forceExpand && r.groupKey && collapsedGroups.has(r.groupKey);
+    const show = passesFilters && !inCollapsedGroup;
     r.el.classList.toggle("hidden", !show);
-    if (show) { visibleCount++; visibleCats.add(r.category); visibleEras.add(r.era); }
+    if (passesFilters) { visibleCount++; visibleCats.add(r.category); visibleEras.add(r.era); }
   });
 
-  headerElements.forEach(({el, keyType, key}) => {
+  headerElements.forEach(({el, keyType, key, groupKey}) => {
     let visible;
     if (keyType === "category") {
       const matchesCategory = activeCategory === "all" || key === activeCategory;
@@ -4132,7 +4339,14 @@ function applyFilter() {
       visible = visibleEras.has(key);
     }
     el.classList.toggle("hidden", !visible);
+    if (groupKey) {
+      el.classList.toggle("collapsed", !forceExpand && collapsedGroups.has(groupKey));
+    }
   });
+
+  if (groupControls) {
+    groupControls.style.display = (viewMode === "grouped" || viewMode === "timeline") ? "flex" : "none";
+  }
 
   emptyState.style.display = visibleCount === 0 ? "block" : "none";
 
@@ -4238,8 +4452,19 @@ viewSwitch.addEventListener("click", (e) => {
   if (!btn || btn.dataset.view === viewMode) return;
   viewMode = btn.dataset.view;
   [...viewSwitch.children].forEach(b => b.classList.toggle("active", b === btn));
+  // Első alkalommal, amikor csoportos nézetre vált a felhasználó, alapból mindent
+  // becsukunk — így egy képernyőn átlátható a teljes szerkezet.
+  if (!collapsedInitialized && (viewMode === "grouped" || viewMode === "timeline")) {
+    collapsedInitialized = true;
+    renderGrid();
+    setAllGroups(true);
+    return;
+  }
   renderGrid();
 });
+
+expandAllBtn.addEventListener("click", () => setAllGroups(false));
+collapseAllBtn.addEventListener("click", () => setAllGroups(true));
 
 favToggle.addEventListener("click", () => {
   onlyFavorites = !onlyFavorites;
@@ -4566,17 +4791,100 @@ function handleDeepLink() {
   requestAnimationFrame(() => {
     const el = document.getElementById(hash);
     if (el) {
-      el.scrollIntoView({behavior: "smooth", block: "center"});
+      if (el.scrollIntoView) el.scrollIntoView({behavior: "smooth", block: "center"});
       el.classList.add("highlight-flash");
       setTimeout(() => el.classList.remove("highlight-flash"), 2300);
     }
   });
 }
 
+// ==== A NAP SZÉPSÉGE ====
+// Dátumból számolt, determinisztikus választás: mindenki ugyanazt látja
+// az adott napon, és éjfélkor magától vált.
+function dayKey(d) {
+  return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+}
+
+function dayIndex(d, modulo) {
+  // Napok száma egy fix kezdőponttól — stabil, időzónától független sorszám.
+  const utcDays = Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 86400000);
+  // Egy nagy prímmel szorozva jól "keverünk", hogy egymást követő napokon
+  // ne szomszédos tételek jöjjenek elő.
+  return ((utcDays * 7919) % modulo + modulo) % modulo;
+}
+
+function renderDailyFeature() {
+  const today = new Date();
+  const key = dayKey(today);
+
+  let dismissed = null;
+  try { dismissed = localStorage.getItem("tsz_daily_dismissed"); } catch (e) {}
+  if (dismissed === key) { dailyCard.hidden = true; return; }
+
+  const pool = [
+    ...MATEK_DATA.map((d, i) => ({entry: d, domain: "matek"})),
+    ...FIZIKA_DATA.map((d, i) => ({entry: d, domain: "fizika"}))
+  ];
+  if (!pool.length) return;
+
+  const pick = pool[dayIndex(today, pool.length)];
+  const entry = pick.entry;
+
+  dailyDate.textContent = today.toLocaleDateString("hu-HU", {year: "numeric", month: "long", day: "numeric"});
+  dailyName.textContent = entry.name;
+  dailyTag.textContent = entry.tag;
+  dailyWhy.innerHTML = entry.why;
+
+  dailyFormula.innerHTML = "";
+  const texSource = entry.type === "maxwell" ? entry.equations[0] : (entry.type === "noether" ? null : entry.tex);
+  if (texSource && window.katex) {
+    try {
+      katex.render(texSource, dailyFormula, {throwOnError: false, displayMode: true});
+      dailyFormula.style.display = "";
+    } catch (e) { dailyFormula.style.display = "none"; }
+  } else if (entry.type === "noether") {
+    dailyFormula.style.display = "";
+    dailyFormula.textContent = "„" + entry.quote + "\"";
+  } else {
+    dailyFormula.style.display = "none";
+  }
+
+  dailyFormula.onclick = () => openFormulaLightbox(entry);
+
+  dailyJump.onclick = () => {
+    if (pick.domain !== activeDomain) renderDomain(pick.domain);
+    const targetId = `entry-${pick.domain}-${slugify(entry.name)}`;
+    // Ha csoportos nézetben rejtve lenne egy összecsukott fejléc alatt,
+    // a keresőn keresztül biztosan láthatóvá tesszük.
+    searchBox.value = entry.name;
+    searchQuery = entry.name;
+    searchClear.classList.add("visible");
+    activeCategory = "all";
+    [...filterbar.children].forEach(c => c.classList.toggle("active", c.dataset.cat === "all"));
+    applyFilter();
+    requestAnimationFrame(() => {
+      const el = document.getElementById(targetId);
+      if (el) {
+        if (el.scrollIntoView) el.scrollIntoView({behavior: "smooth", block: "center"});
+        el.classList.add("highlight-flash");
+        setTimeout(() => el.classList.remove("highlight-flash"), 2300);
+      }
+    });
+  };
+
+  dailyDismiss.onclick = () => {
+    dailyCard.hidden = true;
+    try { localStorage.setItem("tsz_daily_dismissed", key); } catch (e) {}
+  };
+
+  dailyCard.hidden = false;
+}
+
 function init() {
   const total = MATEK_DATA.length + FIZIKA_DATA.length;
   grandTotalEl.innerHTML = `Összesen <b>${total}</b> halhatatlan tudományos szépség a két gyűjteményben`;
   renderDomain("matek");
+  renderDailyFeature();
   handleDeepLink();
 
   if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
