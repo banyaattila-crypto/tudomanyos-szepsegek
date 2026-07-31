@@ -696,6 +696,84 @@
   }
   footer span{color:var(--primary);transition:color .5s ease;}
 
+  /* ---- Tudás-gráf ---- */
+  .graph-overlay{
+    position:fixed;inset:0;z-index:70;
+    display:none;
+    background:var(--ink);
+  }
+  .graph-overlay.visible{display:block;}
+  #graphCanvas{
+    display:block;width:100%;height:100%;
+    cursor:grab;touch-action:none;
+  }
+  #graphCanvas.dragging{cursor:grabbing;}
+  .graph-topbar{
+    position:absolute;top:0;left:0;right:0;
+    display:flex;align-items:center;gap:14px;
+    padding:14px clamp(14px,3vw,26px);
+    background:linear-gradient(180deg, color-mix(in srgb, var(--ink) 92%, transparent), transparent);
+    pointer-events:none;
+  }
+  .graph-title{
+    font-family:"Fraunces",serif;font-style:italic;font-weight:500;
+    font-size:clamp(16px,2.4vw,21px);color:var(--primary-bright);
+  }
+  .graph-hint{
+    font-family:"JetBrains Mono",monospace;font-size:10.5px;
+    color:var(--muted);opacity:.85;
+  }
+  .graph-close{
+    margin-left:auto;pointer-events:auto;
+    width:30px;height:30px;border-radius:50%;
+    background:var(--chip-bg);border:1px solid var(--chip-border);
+    color:var(--muted);cursor:pointer;font-size:13px;
+    display:flex;align-items:center;justify-content:center;
+    transition:all .2s ease;touch-action:manipulation;
+  }
+  .graph-close:hover{color:var(--paper);border-color:var(--chip-hover-border);}
+  .graph-legend{
+    position:absolute;left:clamp(12px,3vw,26px);bottom:clamp(58px,9vw,72px);
+    display:flex;flex-direction:column;gap:5px;
+    pointer-events:none;
+  }
+  .graph-legend-item{
+    display:flex;align-items:center;gap:7px;
+    font-family:"JetBrains Mono",monospace;font-size:10px;
+    color:var(--muted);
+  }
+  .graph-legend-dot{
+    width:8px;height:8px;border-radius:50%;
+    box-shadow:0 0 6px currentColor;
+  }
+  .graph-tooltip{
+    position:absolute;pointer-events:none;
+    padding:8px 12px;border-radius:10px;
+    background:var(--panel);border:1px solid var(--primary);
+    box-shadow:0 10px 28px -12px rgba(0,0,0,.7);
+    font-size:12px;color:var(--paper);
+    max-width:260px;opacity:0;transition:opacity .15s ease;
+    z-index:3;
+  }
+  .graph-tooltip.visible{opacity:1;}
+  .graph-tooltip .gt-name{
+    font-family:"Fraunces",serif;font-weight:500;display:block;margin-bottom:3px;
+  }
+  .graph-tooltip .gt-tag{
+    font-family:"JetBrains Mono",monospace;font-size:9.5px;color:var(--muted);
+  }
+  .graph-controls{
+    position:absolute;bottom:clamp(14px,3vw,24px);left:clamp(12px,3vw,26px);
+    display:flex;gap:8px;
+  }
+  .graph-controls .group-btn{
+    pointer-events:auto;background:var(--chip-bg);
+  }
+  @media(max-width:640px){
+    .graph-hint{display:none;}
+    .graph-legend{font-size:9px;bottom:56px;}
+  }
+
   /* ---- Toast (rövid visszajelzés) ---- */
   .toast{
     position:fixed;
@@ -875,6 +953,7 @@
     <div class="top-row-actions">
       <button type="button" class="info-btn" id="infoBtn" aria-label="A gyűjteményről" title="A gyűjteményről">ℹ</button>
       <button type="button" class="info-btn" id="statsBtn" aria-label="Statisztika" title="Statisztika">📊</button>
+      <button type="button" class="info-btn" id="graphBtn" aria-label="Tudás-gráf" title="Tudás-gráf">🕸</button>
     </div>
   </div>
   <p class="grand-total" id="grandTotal"></p>
@@ -934,6 +1013,21 @@
     <div id="footerCount">Szedés: KaTeX</div>
     <div id="footerNames"><span></span></div>
   </footer>
+</div>
+
+<div class="graph-overlay" id="graphOverlay" aria-hidden="true">
+  <canvas id="graphCanvas"></canvas>
+  <div class="graph-topbar">
+    <span class="graph-title">Tudás-gráf</span>
+    <span class="graph-hint" id="graphHint">Húzd a mozgatáshoz · görgess a nagyításhoz · kattints egy pontra</span>
+    <button type="button" class="graph-close" id="graphClose" aria-label="Bezárás">✕</button>
+  </div>
+  <div class="graph-legend" id="graphLegend"></div>
+  <div class="graph-tooltip" id="graphTooltip"></div>
+  <div class="graph-controls">
+    <button type="button" class="group-btn" id="graphResetBtn">Nézet vissza</button>
+    <button type="button" class="group-btn" id="graphDomainBtn">Domain váltás</button>
+  </div>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -3901,6 +3995,14 @@ const dailyTag = document.getElementById("dailyTag");
 const dailyWhy = document.getElementById("dailyWhy");
 const dailyJump = document.getElementById("dailyJump");
 const dailyDismiss = document.getElementById("dailyDismiss");
+const graphBtn = document.getElementById("graphBtn");
+const graphOverlay = document.getElementById("graphOverlay");
+const graphCanvas = document.getElementById("graphCanvas");
+const graphClose = document.getElementById("graphClose");
+const graphLegend = document.getElementById("graphLegend");
+const graphTooltip = document.getElementById("graphTooltip");
+const graphResetBtn = document.getElementById("graphResetBtn");
+const graphDomainBtn = document.getElementById("graphDomainBtn");
 
 let activeDomain = "matek";
 let activeCategory = "all";
@@ -4751,6 +4853,7 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
     closeModal();
     closeLightbox();
+    closeGraph();
     statsOverlay.classList.remove("visible");
     statsOverlay.setAttribute("aria-hidden", "true");
   }
@@ -4797,6 +4900,286 @@ function handleDeepLink() {
     }
   });
 }
+
+// ==== TUDÁS-GRÁF ====
+const graphState = {
+  nodes: [], edges: [], catCenters: [],
+  scale: 1, offsetX: 0, offsetY: 0,
+  dragging: false, moved: false,
+  lastX: 0, lastY: 0,
+  hoverNode: null, domain: "matek",
+  raf: null, t: 0
+};
+
+function buildGraph(domainKey) {
+  const domain = DOMAINS[domainKey];
+  const data = domain.data;
+  const cats = domain.categoryOrder.filter(k => data.some(d => d.category === k));
+  const R = 320; // kategória-központok köre
+  graphState.catCenters = cats.map((key, i) => {
+    const ang = (i / cats.length) * Math.PI * 2 - Math.PI / 2;
+    return {
+      key,
+      label: domain.categoryLabels[key],
+      color: (domain.categoryColors && domain.categoryColors[key]) || "#c9a24b",
+      x: Math.cos(ang) * R,
+      y: Math.sin(ang) * R
+    };
+  });
+
+  const byName = {};
+  graphState.nodes = data.map((entry, idx) => {
+    const center = graphState.catCenters.find(c => c.key === entry.category) || {x: 0, y: 0, color: "#c9a24b"};
+    const inCat = data.filter(d => d.category === entry.category);
+    const localIdx = inCat.indexOf(entry);
+    // Phyllotaxis (aranyszög) elrendezés: egyenletes, természetes kitöltés
+    const golden = Math.PI * (3 - Math.sqrt(5));
+    const rad = 13 * Math.sqrt(localIdx + 0.6);
+    const ang = localIdx * golden;
+    const important = !!(entry.mega || entry.special);
+    const node = {
+      entry, domain: domainKey,
+      x: center.x + Math.cos(ang) * rad,
+      y: center.y + Math.sin(ang) * rad,
+      baseX: center.x + Math.cos(ang) * rad,
+      baseY: center.y + Math.sin(ang) * rad,
+      r: important ? 5.2 : 3.4,
+      color: center.color,
+      important,
+      phase: (idx % 17) / 17 * Math.PI * 2
+    };
+    byName[entry.name] = node;
+    return node;
+  });
+
+  graphState.edges = [];
+  data.forEach(entry => {
+    if (!entry.related) return;
+    const from = byName[entry.name];
+    if (!from) return;
+    entry.related.forEach(rel => {
+      if (rel.domain !== domainKey) return; // kereszt-domain élt itt nem rajzolunk
+      const to = byName[rel.name];
+      if (to && from !== to) graphState.edges.push({from, to});
+    });
+  });
+
+  // Jelmagyarázat
+  graphLegend.innerHTML = graphState.catCenters.map(c =>
+    `<span class="graph-legend-item"><span class="graph-legend-dot" style="background:${c.color};color:${c.color}"></span>${c.label}</span>`
+  ).join("");
+}
+
+function resetGraphView() {
+  const rect = graphCanvas.getBoundingClientRect();
+  const fit = Math.min(rect.width, rect.height) / 820;
+  graphState.scale = Math.max(0.35, Math.min(fit, 1.1));
+  graphState.offsetX = rect.width / 2;
+  graphState.offsetY = rect.height / 2;
+}
+
+function resizeGraphCanvas() {
+  const dpr = window.devicePixelRatio || 1;
+  const rect = graphCanvas.getBoundingClientRect();
+  graphCanvas.width = Math.max(1, Math.round(rect.width * dpr));
+  graphCanvas.height = Math.max(1, Math.round(rect.height * dpr));
+  const ctx = graphCanvas.getContext("2d");
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+
+function graphToScreen(x, y) {
+  return {
+    x: x * graphState.scale + graphState.offsetX,
+    y: y * graphState.scale + graphState.offsetY
+  };
+}
+
+function drawGraph() {
+  const ctx = graphCanvas.getContext("2d");
+  const rect = graphCanvas.getBoundingClientRect();
+  const styles = getComputedStyle(document.body);
+  const inkColor = styles.getPropertyValue("--ink").trim() || "#0b0f1f";
+  const mutedColor = styles.getPropertyValue("--muted").trim() || "#9aa6c4";
+  const paperColor = styles.getPropertyValue("--paper").trim() || "#eef1f7";
+
+  ctx.fillStyle = inkColor;
+  ctx.fillRect(0, 0, rect.width, rect.height);
+
+  graphState.t += 0.006;
+  // Lassú, finom lebegés — "él" a gráf
+  graphState.nodes.forEach(n => {
+    n.x = n.baseX + Math.sin(graphState.t + n.phase) * 2.6;
+    n.y = n.baseY + Math.cos(graphState.t * 0.85 + n.phase) * 2.6;
+  });
+
+  // Élek
+  ctx.lineWidth = Math.max(0.6, 1.1 * graphState.scale);
+  graphState.edges.forEach(e => {
+    const a = graphToScreen(e.from.x, e.from.y);
+    const b = graphToScreen(e.to.x, e.to.y);
+    const highlighted = graphState.hoverNode === e.from || graphState.hoverNode === e.to;
+    ctx.strokeStyle = highlighted ? e.from.color : mutedColor;
+    ctx.globalAlpha = highlighted ? 0.85 : 0.22;
+    // enyhe ív, hogy ne legyen mértani rideg
+    const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
+    const dx = b.x - a.x, dy = b.y - a.y;
+    ctx.beginPath();
+    ctx.moveTo(a.x, a.y);
+    ctx.quadraticCurveTo(mx - dy * 0.12, my + dx * 0.12, b.x, b.y);
+    ctx.stroke();
+  });
+  ctx.globalAlpha = 1;
+
+  // Kategória-címkék
+  ctx.textAlign = "center";
+  ctx.font = `600 ${Math.max(9, 12 * graphState.scale)}px Inter, sans-serif`;
+  graphState.catCenters.forEach(c => {
+    const p = graphToScreen(c.x, c.y - 78);
+    ctx.fillStyle = c.color;
+    ctx.globalAlpha = 0.85;
+    ctx.fillText(c.label, p.x, p.y);
+  });
+  ctx.globalAlpha = 1;
+
+  // Csomópontok
+  graphState.nodes.forEach(n => {
+    const p = graphToScreen(n.x, n.y);
+    const isHover = graphState.hoverNode === n;
+    const r = (isHover ? n.r * 1.9 : n.r) * Math.max(0.55, graphState.scale);
+    if (n.important || isHover) {
+      ctx.shadowColor = n.color;
+      ctx.shadowBlur = isHover ? 18 : 8;
+    } else {
+      ctx.shadowBlur = 0;
+    }
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+    ctx.fillStyle = isHover ? paperColor : n.color;
+    ctx.globalAlpha = isHover ? 1 : (n.important ? 0.95 : 0.7);
+    ctx.fill();
+  });
+  ctx.shadowBlur = 0;
+  ctx.globalAlpha = 1;
+
+  graphState.raf = requestAnimationFrame(drawGraph);
+}
+
+function findNodeAt(clientX, clientY) {
+  const rect = graphCanvas.getBoundingClientRect();
+  const mx = clientX - rect.left, my = clientY - rect.top;
+  let best = null, bestDist = 18;
+  graphState.nodes.forEach(n => {
+    const p = graphToScreen(n.x, n.y);
+    const d = Math.hypot(p.x - mx, p.y - my);
+    if (d < bestDist) { bestDist = d; best = n; }
+  });
+  return best;
+}
+
+function openGraph() {
+  graphState.domain = activeDomain;
+  graphOverlay.classList.add("visible");
+  graphOverlay.setAttribute("aria-hidden", "false");
+  requestAnimationFrame(() => {
+    resizeGraphCanvas();
+    buildGraph(graphState.domain);
+    resetGraphView();
+    if (graphState.raf) cancelAnimationFrame(graphState.raf);
+    drawGraph();
+  });
+}
+function closeGraph() {
+  graphOverlay.classList.remove("visible");
+  graphOverlay.setAttribute("aria-hidden", "true");
+  if (graphState.raf) { cancelAnimationFrame(graphState.raf); graphState.raf = null; }
+}
+
+graphBtn.addEventListener("click", openGraph);
+graphClose.addEventListener("click", closeGraph);
+graphResetBtn.addEventListener("click", resetGraphView);
+graphDomainBtn.addEventListener("click", () => {
+  graphState.domain = graphState.domain === "matek" ? "fizika" : "matek";
+  document.body.dataset.domain = graphState.domain;
+  buildGraph(graphState.domain);
+  resetGraphView();
+  showToast(DOMAINS[graphState.domain].label);
+});
+
+graphCanvas.addEventListener("pointerdown", (e) => {
+  graphState.dragging = true;
+  graphState.moved = false;
+  graphState.lastX = e.clientX;
+  graphState.lastY = e.clientY;
+  graphCanvas.classList.add("dragging");
+  if (graphCanvas.setPointerCapture) graphCanvas.setPointerCapture(e.pointerId);
+});
+graphCanvas.addEventListener("pointermove", (e) => {
+  if (graphState.dragging) {
+    const dx = e.clientX - graphState.lastX, dy = e.clientY - graphState.lastY;
+    if (Math.abs(dx) + Math.abs(dy) > 3) graphState.moved = true;
+    graphState.offsetX += dx;
+    graphState.offsetY += dy;
+    graphState.lastX = e.clientX;
+    graphState.lastY = e.clientY;
+    graphTooltip.classList.remove("visible");
+    return;
+  }
+  const node = findNodeAt(e.clientX, e.clientY);
+  graphState.hoverNode = node;
+  if (node) {
+    const rect = graphCanvas.getBoundingClientRect();
+    graphTooltip.innerHTML = `<span class="gt-name">${node.entry.name}</span><span class="gt-tag">${node.entry.tag}</span>`;
+    graphTooltip.style.left = Math.min(e.clientX - rect.left + 14, rect.width - 270) + "px";
+    graphTooltip.style.top = (e.clientY - rect.top + 14) + "px";
+    graphTooltip.classList.add("visible");
+  } else {
+    graphTooltip.classList.remove("visible");
+  }
+});
+graphCanvas.addEventListener("pointerup", (e) => {
+  graphState.dragging = false;
+  graphCanvas.classList.remove("dragging");
+  if (graphState.moved) return;
+  const node = findNodeAt(e.clientX, e.clientY);
+  if (!node) return;
+  closeGraph();
+  if (node.domain !== activeDomain) renderDomain(node.domain);
+  searchBox.value = node.entry.name;
+  searchQuery = node.entry.name;
+  searchClear.classList.add("visible");
+  activeCategory = "all";
+  [...filterbar.children].forEach(c => c.classList.toggle("active", c.dataset.cat === "all"));
+  applyFilter();
+  requestAnimationFrame(() => {
+    const el = document.getElementById(`entry-${node.domain}-${slugify(node.entry.name)}`);
+    if (el) {
+      if (el.scrollIntoView) el.scrollIntoView({behavior: "smooth", block: "center"});
+      el.classList.add("highlight-flash");
+      setTimeout(() => el.classList.remove("highlight-flash"), 2300);
+    }
+  });
+});
+graphCanvas.addEventListener("pointercancel", () => {
+  graphState.dragging = false;
+  graphCanvas.classList.remove("dragging");
+});
+graphCanvas.addEventListener("wheel", (e) => {
+  e.preventDefault();
+  const rect = graphCanvas.getBoundingClientRect();
+  const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+  const factor = e.deltaY < 0 ? 1.12 : 1 / 1.12;
+  const newScale = Math.max(0.2, Math.min(4, graphState.scale * factor));
+  // zoom a kurzor felé
+  graphState.offsetX = mx - (mx - graphState.offsetX) * (newScale / graphState.scale);
+  graphState.offsetY = my - (my - graphState.offsetY) * (newScale / graphState.scale);
+  graphState.scale = newScale;
+}, {passive: false});
+
+window.addEventListener("resize", () => {
+  if (!graphOverlay.classList.contains("visible")) return;
+  resizeGraphCanvas();
+  resetGraphView();
+});
 
 // ==== A NAP SZÉPSÉGE ====
 // Dátumból számolt, determinisztikus választás: mindenki ugyanazt látja
