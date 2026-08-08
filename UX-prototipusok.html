@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kezelhetőségi prototípusok — Tudományos szépségek</title>
+<style>
+  :root{
+    --bg:#05070d; --panel:#0d1426; --panel2:#111b33;
+    --ink:#f5f7fc; --muted:#9bb0d6; --line:rgba(140,170,255,.14);
+    --gold:#e9c877; --cyan:#5bd6ff; --violet:#b08cff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:
+      radial-gradient(1000px 700px at 80% -10%, rgba(91,214,255,.07), transparent 60%),
+      radial-gradient(900px 600px at -6% 110%, rgba(233,200,119,.05), transparent 55%),
+      linear-gradient(180deg,#060912,#02040a);
+    color:var(--ink);font-family:"Segoe UI",system-ui,sans-serif;line-height:1.5;padding:32px 18px 80px}
+  h1{font-family:Georgia,serif;font-weight:500;font-size:30px;margin:0 0 6px}
+  .sub{color:var(--muted);max-width:70ch;margin:0 0 26px}
+  section{margin:0 0 48px;max-width:980px;border-top:1px solid var(--line);padding-top:22px}
+  h2{font-family:Georgia,serif;font-weight:500;font-size:22px;margin:0 0 4px}
+  .tag{display:inline-block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+  p.desc{color:var(--muted);margin:0 0 18px;max-width:72ch}
+  .stage{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;min-height:260px;position:relative;overflow:hidden}
+
+  /* 1. DECK */
+  .deck{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center}
+  .deck .big{font-size:clamp(26px,5vw,46px);font-family:Georgia,serif}
+  .deck .formula{font-family:"Cambria Math",serif;font-style:italic;font-size:clamp(22px,4.5vw,40px);color:var(--gold);padding:14px 22px;border:1px solid var(--line);border-radius:12px;background:var(--panel2);min-height:60px;display:flex;align-items:center}
+  .deck .why{color:var(--muted);max-width:60ch;font-size:14px}
+  .deck .ctrls{display:flex;gap:10px;margin-top:6px}
+  .btn{background:var(--panel2);border:1px solid var(--line);color:var(--ink);padding:8px 16px;border-radius:999px;cursor:pointer;font-size:13px}
+  .btn.primary{background:linear-gradient(135deg,var(--gold),#c9a24b);color:#0b0f1f;border:none;font-weight:600}
+  .progress{font-family:monospace;font-size:12px;color:var(--muted)}
+
+  /* 2. DASHBOARD */
+  .grid-dash{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  .tile{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px;cursor:pointer;transition:.2s}
+  .tile:hover{border-color:var(--gold);transform:translateY(-2px)}
+  .tile .n{font-family:monospace;font-size:22px;color:var(--gold)}
+  .tile .t{font-size:13px;margin-top:4px}
+  .tile .mini{font-style:italic;color:var(--cyan);font-size:13px;margin-top:8px;font-family:"Cambria Math",serif}
+
+  /* 3. DASHBOARD + DECK */
+  .note{color:var(--violet);font-size:13px;font-style:italic}
+
+  /* 4. SMART INDEX */
+  .az{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .az a{width:30px;height:30px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:8px;color:var(--muted);text-decoration:none;font-size:13px}
+  .az a:hover{border-color:var(--gold);color:var(--ink)}
+  .row{display:flex;gap:14px;align-items:center;padding:10px 4px;border-bottom:1px solid var(--line)}
+  .rank{font-family:monospace;color:var(--gold);width:34px}
+  .name{flex:1;font-size:15px}
+  .cat{font-size:12px;color:var(--muted)}
+  .virtualhint{color:var(--violet);font-size:12px;font-style:italic;margin-top:10px}
+</style>
+</head>
+<body>
+<h1>Kezelhetőségi prototípusok</h1>
+<p class="sub">Négy irány, hogy 392 tételt frappánsan lehessen böngészni. Minden blokk egy működő mini-demó (saját, minimális adattal). A valós appban ugyanez a logika futna az eredeti 392 tételel.</p>
+
+<!-- 1. DECK -->
+<section>
+  <div class="tag">1 · mód</div>
+  <h2>Lapozó (deck) mód</h2>
+  <p class="desc">Egy tétel egyszerre, óriási képlettel középen. ←/→ vagy swipe lapoz, „véletlen" gomb, haladásjelző. A leghatékonyabb „egy szépség a figyelem középpontjában" élmény.</p>
+  <div class="stage">
+    <div class="deck">
+      <div class="big" id="dName">Euler-azonosság</div>
+      <div class="formula" id="dTex">e^{iπ} + 1 = 0</div>
+      <div class="why" id="dWhy">5 alapkonstans, 1 egyenlet. e, i, π, 1, 0 öt különböző világból jönnek, mégis így kapcsolódnak.</div>
+      <div class="ctrls">
+        <button class="btn" onclick="deck(-1)">← Előző</button>
+        <button class="btn primary" onclick="rand()">🎲 Véletlen</button>
+        <button class="btn" onclick="deck(1)">Következő →</button>
+      </div>
+      <div class="progress" id="dProg">1 / 6</div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. DASHBOARD -->
+<section>
+  <div class="tag">2 · mód</div>
+  <h2>Kategória-műszerfal</h2>
+  <p class="desc">Kezdőképernyő helyett kategóriakockák számlálóval és minta-képlettel. Kattintásra drilldown a tételekre. A mostani hosszú görgetést váltja ki.</p>
+  <div class="stage">
+    <div class="grid-dash">
+      <div class="tile"><div class="n">37</div><div class="t">Analízis</div><div class="mini">∫ e^{-x²}dx</div></div>
+      <div class="tile"><div class="n">29</div><div class="t">Topológia</div><div class="mini">χ = 2</div></div>
+      <div class="tile"><div class="n">41</div><div class="t">Számelmélet</div><div class="mini">∑ 1/p</div></div>
+      <div class="tile"><div class="n">22</div><div class="t">Kvantum</div><div class="mini">ĤΨ = iℏ∂Ψ</div></div>
+      <div class="tile"><div class="n">18</div><div class="t">Relativitás</div><div class="mini">E = mc²</div></div>
+      <div class="tile"><div class="n">15</div><div class="t">Kémia · biol.</div><div class="mini">F = C−P+2</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. BOTH -->
+<section>
+  <div class="tag">3 · mód</div>
+  <h2>Műszerfal + lapozó (egyben)</h2>
+  <p class="desc">A 2. módos kezdőképernyő, de egy kockára kattintva nem lista nyílik, hanem a 1. módos lapozó azon belül a kategóriában. Legteljesebb, de a legnagyobb munka.</p>
+  <div class="stage">
+    <div class="grid-dash">
+      <div class="tile"><div class="n">37</div><div class="t">Analízis</div><div class="mini">∫ e^{-x²}dx</div></div>
+      <div class="tile"><div class="n">22</div><div class="t">Kvantum</div><div class="mini">ĤΨ = iℏ∂Ψ</div></div>
+      <div class="tile"><div class="n">18</div><div class="t">Relativitás</div><div class="mini">E = mc²</div></div>
+    </div>
+    <p class="note">→ kattintásra: az adott kategória tételein végiglapozható deck mód nyílik</p>
+  </div>
+</section>
+
+<!-- 4. SMART INDEX -->
+<section>
+  <div class="tag">4 · mód</div>
+  <h2>Smart-index: A–Z ugró + virtuális lista</h2>
+  <p class="desc">Megtartjuk a görgetést, de egy A–Z sávval bármely betűre ugrik, alulról töltődik tovább a lista (virtuális/lusta lista, nem minden 392 egyszerre a DOM-ban).</p>
+  <div class="stage">
+    <div class="az">
+      <a href="#">A</a><a href="#">B</a><a href="#">C</a><a href="#">D</a><a href="#">E</a>
+      <a href="#">F</a><a href="#">G</a><a href="#">H</a><a href="#">I</a><a href="#">J</a>
+      <a href="#">K</a><a href="#">L</a><a href="#">M</a><a href="#">N</a><a href="#">O</a>
+      <a href="#">P</a><a href="#">R</a><a href="#">S</a><a href="#">T</a><a href="#">U</a><a href="#">V</a><a href="#">Z</a>
+    </div>
+    <div class="row"><span class="rank">1</span><span class="name">Abel–Ruffini-tétel</span><span class="cat">Algebra</span></div>
+    <div class="row"><span class="rank">2</span><span class="name">Ampère–Maxwell-törvény</span><span class="cat">Elektrodinamika</span></div>
+    <div class="row"><span class="rank">3</span><span class="name">Aranymetszés</span><span class="cat">Geometria</span></div>
+    <div class="row"><span class="rank">4</span><span class="name">Aszimptotikus szabadság</span><span class="cat">Kvantum</span></div>
+    <div class="virtualhint">↓ görgetésre a következő 20 tétel töltődik be (lazy render)</div>
+  </div>
+</section>
+
+<script>
+  const DATA = [
+    {n:"Euler-azonosság", t:"e^{iπ} + 1 = 0", w:"5 alapkonstans, 1 egyenlet. e, i, π, 1, 0 öt különböző világból jönnek, mégis így kapcsolódnak."},
+    {n:"Fourier-transzformált", t:"f̂(ξ)=∫ f(x)e^{-2πixξ}dx", w:"Bármely jel felbontható frekvenciakomponensekre. Jelfeldolgozás, tömörítés, FEM alapja."},
+    {n:"Ramanujan-sorozat", t:"1/π = (2√2/9801)∑...", w:"Teljesen őrültnek tűnik — mégis igaz. Gyors π-közelítés, 8 jegy/tag."},
+    {n:"Gauss-integrál", t:"∫ e^{-x²}dx = √π", w:"Kör és exponenciális találkozása. Poláris koordinátákkal bukkan elő a π."},
+    {n:"Cauchy-integrálformula", t:"f(z)=1/(2πi)∮ f(ζ)/(ζ−z)dζ", w:"A perem meghatározza a belsőt. Komplex függvény értéke a határból kiszámítható."},
+    {n:"Boltzmann-entrópia", t:"S = k_B ln W", w:"Makro ↔ mikro kapcsolat. Boltzmann sírján is ez áll."}
+  ];
+  let i = 0;
+  function render(){
+    document.getElementById('dName').textContent = DATA[i].n;
+    document.getElementById('dTex').textContent = DATA[i].t;
+    document.getElementById('dWhy').textContent = DATA[i].w;
+    document.getElementById('dProg').textContent = (i+1)+" / "+DATA.length;
+  }
+  function deck(d){ i=(i+d+DATA.length)%DATA.length; render(); }
+  function rand(){ i=Math.floor(Math.random()*DATA.length); render(); }
+  document.addEventListener('keydown',e=>{ if(e.key==='ArrowRight')deck(1); if(e.key==='ArrowLeft')deck(-1); });
+  render();
+</script>
+</body>
+</html>

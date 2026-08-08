@@ -36,11 +36,6 @@
       radial-gradient(900px 700px at -6% 114%, rgba(201,162,75,0.07), transparent 52%),
       radial-gradient(720px 520px at 50% 122%, rgba(96,128,210,0.05), transparent 60%),
       linear-gradient(180deg, #05080f 0%, #03060d 55%, #010308 100%);
-    --nebula:
-      radial-gradient(62% 58% at 12% 8%, color-mix(in srgb, var(--highlight) 13%, transparent), transparent 60%),
-      radial-gradient(55% 52% at 88% 14%, color-mix(in srgb, var(--primary) 11%, transparent), transparent 62%),
-      radial-gradient(70% 60% at 78% 92%, color-mix(in srgb, var(--primary) 9%, transparent), transparent 60%),
-      radial-gradient(50% 45% at 20% 95%, color-mix(in srgb, var(--highlight) 8%, transparent), transparent 60%);
   }
   /* ---- Domain: fizika/kémia/biológia (cián/arany) ---- */
   body[data-domain="fizika"]{
@@ -57,11 +52,6 @@
       radial-gradient(820px 560px at -6% 112%, rgba(62,184,240,0.06), transparent 52%),
       radial-gradient(700px 520px at 50% 122%, rgba(42,150,200,0.045), transparent 60%),
       linear-gradient(180deg, #04080e 0%, #02060d 55%, #010306 100%);
-    --nebula:
-      radial-gradient(62% 58% at 12% 8%, color-mix(in srgb, var(--highlight) 13%, transparent), transparent 60%),
-      radial-gradient(55% 52% at 88% 14%, color-mix(in srgb, var(--primary) 11%, transparent), transparent 62%),
-      radial-gradient(70% 60% at 78% 92%, color-mix(in srgb, var(--primary) 9%, transparent), transparent 60%),
-      radial-gradient(50% 45% at 20% 95%, color-mix(in srgb, var(--highlight) 8%, transparent), transparent 60%);
   }
   /* ---- Domain: informatika (zöld/púrpa) ---- */
   body[data-domain="informatika"]{
@@ -78,11 +68,6 @@
       radial-gradient(820px 560px at -6% 112%, rgba(176,140,255,0.06), transparent 52%),
       radial-gradient(700px 520px at 50% 122%, rgba(95,224,168,0.04), transparent 60%),
       linear-gradient(180deg, #04080e 0%, #03060d 55%, #010306 100%);
-    --nebula:
-      radial-gradient(62% 58% at 12% 8%, color-mix(in srgb, var(--highlight) 13%, transparent), transparent 60%),
-      radial-gradient(55% 52% at 88% 14%, color-mix(in srgb, var(--primary) 11%, transparent), transparent 62%),
-      radial-gradient(70% 60% at 78% 92%, color-mix(in srgb, var(--primary) 9%, transparent), transparent 60%),
-      radial-gradient(50% 45% at 20% 95%, color-mix(in srgb, var(--highlight) 8%, transparent), transparent 60%);
   }
 
   *{box-sizing:border-box;}
@@ -431,131 +416,18 @@
     background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22420%22%20height%3D%22420%22%3E%3Ccircle%20cx%3D%22137.4%22%20cy%3D%2266.1%22%20r%3D%221.32%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.49%22%2F%3E%3Ccircle%20cx%3D%22154.7%22%20cy%3D%2227.9%22%20r%3D%221.16%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.47%22%2F%3E%3Ccircle%20cx%3D%22176.3%22%20cy%3D%22103.2%22%20r%3D%221.21%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.48%22%2F%3E%3Ccircle%20cx%3D%22394.3%22%20cy%3D%22263.8%22%20r%3D%221.24%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.48%22%2F%3E%3Ccircle%20cx%3D%2224.4%22%20cy%3D%2295.1%22%20r%3D%221.21%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.52%22%2F%3E%3Ccircle%20cx%3D%2263.4%22%20cy%3D%2252.5%22%20r%3D%220.94%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.86%22%2F%3E%3Ccircle%20cx%3D%2246.5%22%20cy%3D%22239.3%22%20r%3D%220.81%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.5%22%2F%3E%3Ccircle%20cx%3D%22236.5%22%20cy%3D%22259.0%22%20r%3D%221.15%22%20fill%3D%22%23ffe9c2%22%20opacity%3D%220.72%22%2F%3E%3Ccircle%20cx%3D%22195.8%22%20cy%3D%22384.5%22%20r%3D%221.0%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.57%22%2F%3E%3Ccircle%20cx%3D%22292.0%22%20cy%3D%22104.6%22%20r%3D%221.23%22%20fill%3D%22%23ffe9c2%22%20opacity%3D%220.71%22%2F%3E%3Ccircle%20cx%3D%22304.5%22%20cy%3D%22122.6%22%20r%3D%221.68%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.51%22%2F%3E%3Ccircle%20cx%3D%2272.0%22%20cy%3D%22144.9%22%20r%3D%221.63%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.66%22%2F%3E%3Ccircle%20cx%3D%22319.0%22%20cy%3D%22240.1%22%20r%3D%221.56%22%20fill%3D%22%23ffe9c2%22%20opacity%3D%220.61%22%2F%3E%3Ccircle%20cx%3D%22248.9%22%20cy%3D%22242.9%22%20r%3D%221.1%22%20fill%3D%22%23ffe9c2%22%20opacity%3D%220.87%22%2F%3E%3Ccircle%20cx%3D%22199.3%22%20cy%3D%22277.6%22%20r%3D%220.67%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.8%22%2F%3E%3Ccircle%20cx%3D%22121.3%22%20cy%3D%22162.9%22%20r%3D%221.34%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.46%22%2F%3E%3Ccircle%20cx%3D%22150.5%22%20cy%3D%22255.7%22%20r%3D%221.14%22%20fill%3D%22%23ffe9c2%22%20opacity%3D%220.56%22%2F%3E%3Ccircle%20cx%3D%2257.3%22%20cy%3D%22106.0%22%20r%3D%221.03%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.89%22%2F%3E%3Ccircle%20cx%3D%2272.5%22%20cy%3D%22169.5%22%20r%3D%220.91%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.52%22%2F%3E%3Ccircle%20cx%3D%22360.0%22%20cy%3D%22118.7%22%20r%3D%221.06%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.63%22%2F%3E%3Ccircle%20cx%3D%22398.6%22%20cy%3D%2266.2%22%20r%3D%220.79%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.57%22%2F%3E%3Ccircle%20cx%3D%229.0%22%20cy%3D%22346.4%22%20r%3D%220.8%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.59%22%2F%3E%3Ccircle%20cx%3D%22176.6%22%20cy%3D%22156.1%22%20r%3D%221.22%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.93%22%2F%3E%3Ccircle%20cx%3D%22192.1%22%20cy%3D%22362.8%22%20r%3D%221.65%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.79%22%2F%3E%3Ccircle%20cx%3D%22168.0%22%20cy%3D%22166.4%22%20r%3D%221.13%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.65%22%2F%3E%3Ccircle%20cx%3D%2231.7%22%20cy%3D%2290.0%22%20r%3D%220.78%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.62%22%2F%3E%3Ccircle%20cx%3D%2246.2%22%20cy%3D%22237.5%22%20r%3D%221.19%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.92%22%2F%3E%3Ccircle%20cx%3D%2233.0%22%20cy%3D%2289.7%22%20r%3D%221.01%22%20fill%3D%22%23ffe9c2%22%20opacity%3D%220.77%22%2F%3E%3Ccircle%20cx%3D%22252.1%22%20cy%3D%22199.4%22%20r%3D%220.73%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.69%22%2F%3E%3Ccircle%20cx%3D%22201.9%22%20cy%3D%22132.5%22%20r%3D%220.76%22%20fill%3D%22%23ffe9c2%22%20opacity%3D%220.82%22%2F%3E%3Ccircle%20cx%3D%22201.2%22%20cy%3D%22289.1%22%20r%3D%221.17%22%20fill%3D%22%23ffe9c2%22%20opacity%3D%220.55%22%2F%3E%3Ccircle%20cx%3D%2264.4%22%20cy%3D%22227.8%22%20r%3D%220.63%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.71%22%2F%3E%3Ccircle%20cx%3D%22290.8%22%20cy%3D%22111.6%22%20r%3D%221.0%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.53%22%2F%3E%3Ccircle%20cx%3D%22223.4%22%20cy%3D%22325.0%22%20r%3D%220.96%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.56%22%2F%3E%3Ccircle%20cx%3D%22336.1%22%20cy%3D%22341.2%22%20r%3D%221.41%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.56%22%2F%3E%3Ccircle%20cx%3D%22150.5%22%20cy%3D%2215.9%22%20r%3D%220.63%22%20fill%3D%22%23ffe9c2%22%20opacity%3D%220.59%22%2F%3E%3Ccircle%20cx%3D%2283.8%22%20cy%3D%22253.3%22%20r%3D%220.98%22%20fill%3D%22%23ffe9c2%22%20opacity%3D%220.85%22%2F%3E%3Ccircle%20cx%3D%22397.5%22%20cy%3D%22154.2%22%20r%3D%220.84%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.56%22%2F%3E%3Ccircle%20cx%3D%22143.1%22%20cy%3D%22202.9%22%20r%3D%221.68%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.76%22%2F%3E%3Ccircle%20cx%3D%22201.5%22%20cy%3D%22273.0%22%20r%3D%221.48%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.49%22%2F%3E%3Ccircle%20cx%3D%22378.8%22%20cy%3D%22326.3%22%20r%3D%221.43%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.69%22%2F%3E%3Ccircle%20cx%3D%22182.8%22%20cy%3D%22266.0%22%20r%3D%220.7%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.92%22%2F%3E%3Ccircle%20cx%3D%22194.8%22%20cy%3D%22310.3%22%20r%3D%220.69%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.53%22%2F%3E%3Ccircle%20cx%3D%2215.4%22%20cy%3D%22247.4%22%20r%3D%221.11%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.78%22%2F%3E%3Ccircle%20cx%3D%22274.8%22%20cy%3D%22148.4%22%20r%3D%221.2%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.52%22%2F%3E%3Ccircle%20cx%3D%22333.3%22%20cy%3D%22303.3%22%20r%3D%220.71%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.82%22%2F%3E%3Ccircle%20cx%3D%22182.7%22%20cy%3D%22363.2%22%20r%3D%221.51%22%20fill%3D%22%23ffe9c2%22%20opacity%3D%220.56%22%2F%3E%3Ccircle%20cx%3D%2291.7%22%20cy%3D%22210.5%22%20r%3D%221.44%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.61%22%2F%3E%3Ccircle%20cx%3D%22347.7%22%20cy%3D%2229.1%22%20r%3D%221.41%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.9%22%2F%3E%3Ccircle%20cx%3D%22344.8%22%20cy%3D%22365.8%22%20r%3D%220.74%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.53%22%2F%3E%3Ccircle%20cx%3D%22363.6%22%20cy%3D%22323.9%22%20r%3D%221.27%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.84%22%2F%3E%3Ccircle%20cx%3D%2275.0%22%20cy%3D%22199.1%22%20r%3D%221.4%22%20fill%3D%22%23ffe9c2%22%20opacity%3D%220.73%22%2F%3E%3Ccircle%20cx%3D%22285.1%22%20cy%3D%22222.7%22%20r%3D%221.13%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.84%22%2F%3E%3Ccircle%20cx%3D%22106.4%22%20cy%3D%22118.1%22%20r%3D%221.45%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.7%22%2F%3E%3Ccircle%20cx%3D%22317.1%22%20cy%3D%22379.9%22%20r%3D%221.09%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.76%22%2F%3E%3Ccircle%20cx%3D%22289.4%22%20cy%3D%22190.4%22%20r%3D%221.19%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.69%22%2F%3E%3Ccircle%20cx%3D%22292.1%22%20cy%3D%22365.1%22%20r%3D%221.64%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.58%22%2F%3E%3Ccircle%20cx%3D%22350.1%22%20cy%3D%2260.5%22%20r%3D%220.73%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.67%22%2F%3E%3Ccircle%20cx%3D%22280.5%22%20cy%3D%22180.5%22%20r%3D%220.83%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.6%22%2F%3E%3Ccircle%20cx%3D%22373.6%22%20cy%3D%2267.6%22%20r%3D%221.39%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.78%22%2F%3E%3Ccircle%20cx%3D%22108.3%22%20cy%3D%2260.5%22%20r%3D%221.11%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.82%22%2F%3E%3Ccircle%20cx%3D%22168.1%22%20cy%3D%22204.8%22%20r%3D%221.69%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.87%22%2F%3E%3Ccircle%20cx%3D%22295.0%22%20cy%3D%22413.6%22%20r%3D%221.04%22%20fill%3D%22%23ffe9c2%22%20opacity%3D%220.66%22%2F%3E%3Ccircle%20cx%3D%22135.2%22%20cy%3D%22301.5%22%20r%3D%220.62%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.73%22%2F%3E%3Ccircle%20cx%3D%22293.7%22%20cy%3D%22162.3%22%20r%3D%221.17%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.6%22%2F%3E%3Ccircle%20cx%3D%2250.5%22%20cy%3D%22382.4%22%20r%3D%220.85%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.89%22%2F%3E%3Ccircle%20cx%3D%22113.4%22%20cy%3D%2220.3%22%20r%3D%221.46%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.59%22%2F%3E%3Ccircle%20cx%3D%22341.7%22%20cy%3D%22354.0%22%20r%3D%221.34%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.92%22%2F%3E%3Ccircle%20cx%3D%2265.5%22%20cy%3D%22382.7%22%20r%3D%221.23%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.8%22%2F%3E%3Ccircle%20cx%3D%22119.0%22%20cy%3D%22333.4%22%20r%3D%220.8%22%20fill%3D%22%23ffe9c2%22%20opacity%3D%220.9%22%2F%3E%3Ccircle%20cx%3D%22359.0%22%20cy%3D%22255.7%22%20r%3D%2272.1%22%20fill%3D%22%233a5a9a%22%20opacity%3D%220.05%22%2F%3E%3Ccircle%20cx%3D%2268.5%22%20cy%3D%22331.1%22%20r%3D%2242.7%22%20fill%3D%22%233a5a9a%22%20opacity%3D%220.05%22%2F%3E%3Ccircle%20cx%3D%22333.3%22%20cy%3D%22194.3%22%20r%3D%2253.6%22%20fill%3D%22%233a5a9a%22%20opacity%3D%220.05%22%2F%3E%3C%2Fsvg%3E");
     background-repeat:repeat;background-size:420px 420px;
     opacity:.8;
-    animation:starDrift 320s linear infinite, twinkle 7s ease-in-out infinite;
-  }
-  @keyframes twinkle{
-    0%,100%{opacity:.55;filter:brightness(.85);}
-    50%{opacity:.95;filter:brightness(1.15);}
+    animation:starDrift 320s linear infinite;
   }
   .nebula-bg{
     position:fixed;inset:0;z-index:0;pointer-events:none;
-    background:var(--nebula);
+    background:
+      radial-gradient(60% 55% at 12% 8%, rgba(91,140,255,0.10), transparent 60%),
+      radial-gradient(55% 50% at 88% 14%, rgba(176,140,255,0.09), transparent 62%),
+      radial-gradient(70% 60% at 78% 92%, rgba(62,184,240,0.07), transparent 60%),
+      radial-gradient(50% 45% at 20% 95%, rgba(233,200,119,0.05), transparent 60%);
     mix-blend-mode:screen;
   }
   @keyframes starDrift{from{background-position:0 0;}to{background-position:420px 840px;}}
-  /* ---- Aurora (északi fény) réteg ---- */
-  .aurora-bg{
-    position:fixed;inset:-20% -10% auto -10%;height:75vh;z-index:0;pointer-events:none;
-    mix-blend-mode:screen;opacity:.7;filter:blur(22px) saturate(1.4);
-    background:
-      radial-gradient(60% 120% at 20% 0%, rgba(80,255,190,0.32), transparent 60%),
-      radial-gradient(55% 130% at 55% 10%, rgba(120,170,255,0.30), transparent 62%),
-      radial-gradient(50% 120% at 82% 0%, rgba(190,140,255,0.34), transparent 60%),
-      radial-gradient(45% 110% at 38% 5%, rgba(255,210,120,0.18), transparent 58%);
-    animation:aurora 9s ease-in-out infinite alternate;
-    transform-origin:top center;
-  }
-  @keyframes aurora{
-    0%{transform:translateX(-6%) skewX(-6deg) scaleY(.92);opacity:.55;}
-    50%{transform:translateX(5%) skewX(5deg) scaleY(1.1);opacity:.85;}
-    100%{transform:translateX(-3%) skewX(-3deg) scaleY(1.0);opacity:.65;}
-  }
-  /* ---- Galaxis-köd (forgó) réteg ---- */
-  .galaxy-bg{
-    position:fixed;right:-22vw;bottom:-22vw;width:60vw;height:60vw;z-index:0;pointer-events:none;
-    mix-blend-mode:screen;opacity:.30;
-    background:
-      radial-gradient(circle at 50% 50%, rgba(120,160,255,0.18), transparent 42%),
-      radial-gradient(circle at 38% 60%, rgba(190,140,255,0.14), transparent 38%),
-      conic-gradient(from 0deg at 50% 50%, rgba(80,255,190,0.10), rgba(120,170,255,0.06), rgba(190,140,255,0.10), rgba(80,255,190,0.10));
-    border-radius:50%;
-    animation:galaxySpin 120s linear infinite;
-    filter:blur(8px);
-  }
-  @keyframes galaxySpin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
-  @media(max-width:700px){
-    .aurora-bg{opacity:.4;height:55vh;}
-    .galaxy-bg{width:90vw;height:90vw;right:-30vw;bottom:-30vw;opacity:.22;}
-  }
-  /* ---- Főcím arany pulzálás ---- */
-  .title-gold{
-    animation:goldPulse 5.5s ease-in-out infinite;
-  }
-  @keyframes goldPulse{
-    0%,100%{filter:drop-shadow(0 0 6px rgba(201,162,75,.35));}
-    50%{filter:drop-shadow(0 0 16px rgba(233,200,119,.65));}
-  }
-  /* ---- Tétel hover-glow ---- */
-  .row{transition:border-color .25s ease, box-shadow .25s ease, transform .25s ease;}
-  .row:hover{
-    border-color:var(--highlight-border);
-    box-shadow:0 0 0 1px var(--highlight-border), 0 10px 40px -18px var(--primary);
-    transform:translateY(-2px);
-  }
-  .deck-card{transition:box-shadow .3s ease, transform .3s ease;}
-  .deck-card:hover{
-    box-shadow:0 24px 70px -26px var(--highlight), 0 0 0 1px var(--highlight-border);
-    transform:translateY(-3px);
-  }
-  /* ===== Deck nézet elrendezése ===== */
-  .deck-view{
-    position:relative;            /* a confetti canvas absz. horgonya */
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    gap:22px; min-height:70vh; padding:30px 16px; z-index:1;
-  }
-  .deck-card{
-    position:relative; width:min(620px,100%);
-    background:linear-gradient(180deg, rgba(22,28,46,.94), rgba(14,18,32,.97));
-    border:1px solid rgba(120,150,220,.22); border-radius:20px;
-    padding:30px 28px 26px; text-align:center;
-    box-shadow:0 24px 70px -26px var(--highlight), 0 0 0 1px var(--highlight-border);
-  }
-  .deck-top{display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:10px;}
-  .deck-tag{font-size:13px; color:var(--tag-color); font-weight:600;}
-  .deck-year{font-size:13px; color:var(--muted); font-family:'JetBrains Mono',monospace;}
-  .deck-illu{display:flex; justify-content:center; margin:8px 0 12px; max-height:160px;}
-  .deck-illu svg{max-height:160px;}
-  .deck-name{font-family:Fraunces,serif; font-size:clamp(24px,4.5vw,34px); line-height:1.15; margin:4px 0 12px;}
-  .deck-formula{margin:6px 0 14px; min-height:20px; text-align:center; color:var(--paper); overflow-x:auto;}
-  .deck-formula .katex{font-size:clamp(1.2rem,3.2vw,1.9rem); color:var(--paper);}
-  .deck-formula .katex-display{margin:0.4em 0;}
-  .deck-why{font-size:15px; line-height:1.6; color:#dfe5f2; margin:0 0 18px;}
-  .deck-actions{display:flex; gap:10px; justify-content:center; align-items:center; flex-wrap:wrap;}
-  .deck-actions .icon-btn{
-    width:44px; height:44px; padding:0; border-radius:11px;
-    border:1px solid rgba(120,150,220,.28);
-    background:rgba(30,38,62,.9); color:var(--paper);
-    transition:transform .15s ease, border-color .2s ease, background .2s ease;
-  }
-  .deck-actions .icon-btn:hover{border-color:var(--highlight); background:rgba(40,52,84,.95); transform:translateY(-2px) scale(1.05); color:var(--paper);}
-  .deck-actions .icon-btn svg{width:20px; height:20px;}
-  .deck-jump{font-family:Fraunces,serif; font-size:15px; padding:9px 18px; border-radius:11px;
-    border:1px solid var(--highlight-border); background:transparent; color:var(--paper); cursor:pointer;}
-  .deck-jump:hover{background:rgba(232,176,106,.12);}
-  /* Nagy, könnyen kattintható navigációs gombok */
-  .deck-nav{display:flex; align-items:center; justify-content:center; gap:18px; margin-top:4px;}
-  .deck-navbtn, .deck-rand{
-    width:56px; height:56px; border-radius:50%;
-    font-size:26px; line-height:1; cursor:pointer;
-    background:linear-gradient(180deg, rgba(30,38,62,.95), rgba(18,24,42,.98));
-    border:1px solid rgba(120,150,220,.35); color:var(--paper);
-    display:flex; align-items:center; justify-content:center;
-    transition:transform .15s ease, box-shadow .2s ease, border-color .2s ease;
-    box-shadow:0 8px 24px -12px rgba(0,0,0,.7);
-  }
-  .deck-navbtn:hover, .deck-rand:hover{
-    transform:translateY(-2px) scale(1.05);
-    border-color:var(--highlight);
-    box-shadow:0 10px 30px -10px var(--highlight);
-  }
-  .deck-navbtn:active, .deck-rand:active{transform:scale(.96);}
-  .deck-rand{font-size:24px; background:linear-gradient(180deg, rgba(40,52,84,.95), rgba(24,30,54,.98));}
-  .deck-progress{font-family:'JetBrains Mono',monospace; font-size:15px; color:var(--muted); min-width:64px; text-align:center;}
-  .deck-progress span:first-child{color:var(--paper); font-size:18px;}
-  /* Confetti canvas a deck felett, de a gombok alatt */
-  .deck-confetti{position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:2; opacity:0;}
-  .deck-confetti.active{opacity:1;}
-
   @media(max-width:700px){.stardust-bg{opacity:.55;}}
 
 
@@ -765,20 +637,6 @@
   .icon-btn svg{width:15px;height:15px;}
   .icon-btn.fav-star.active{color:var(--highlight);}
   .icon-btn.fav-star.active svg{fill:var(--highlight);}
-  /* Fénycsóva a kedvenc gomb megnyomásakor */
-  .icon-btn.fav-star{position:relative;overflow:visible;}
-  .icon-btn.fav-star.burst::after{
-    content:"";position:absolute;left:50%;top:50%;width:8px;height:8px;border-radius:50%;
-    background:radial-gradient(circle, var(--highlight) 0%, rgba(255,255,255,.6) 40%, transparent 70%);
-    box-shadow:0 0 22px 10px var(--highlight);
-    transform:translate(-50%,-50%) scale(0);opacity:0;
-    animation:favBurst .55s ease-out forwards;pointer-events:none;
-  }
-  @keyframes favBurst{
-    0%{transform:translate(-50%,-50%) scale(0);opacity:.9;}
-    60%{opacity:.55;}
-    100%{transform:translate(-50%,-50%) scale(6);opacity:0;}
-  }
   .icon-btn.link-btn.copied{color:var(--primary-bright);}
   .why{color:var(--muted);margin:8px 0 0;font-size:clamp(13.5px,1.7vw,15px);}
   .why b{
@@ -1102,117 +960,12 @@
     .logo-mark{animation:none;}
     .ghost-formula{animation:none;}
   }
-
-  /* ===== JÁTÉK MÓD (Tippeld meg a képletet) ===== */
-  .quiz-overlay{
-    position:fixed; inset:0; z-index:60;
-    display:none; align-items:center; justify-content:center;
-    background:radial-gradient(ellipse at 50% 30%, rgba(40,52,84,.96), rgba(8,11,20,.985));
-    backdrop-filter:blur(6px); padding:24px; overflow:auto;
-  }
-  .quiz-overlay.visible{ display:flex; }
-  .quiz-panel{
-    width:min(680px,100%); margin:auto;
-    background:linear-gradient(180deg, rgba(22,28,46,.92), rgba(14,18,32,.96));
-    border:1px solid rgba(120,150,220,.22);
-    border-radius:20px; padding:28px 26px 30px;
-    box-shadow:0 24px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.02) inset;
-    color:var(--paper);
-  }
-  .quiz-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:6px; }
-  .quiz-title{ font-family:Fraunces, serif; font-size:22px; font-weight:600; color:var(--paper); }
-  .quiz-title b{ color:var(--accent,#e8b06a); }
-  .quiz-score{ font-family:'JetBrains Mono', monospace; font-size:14px; color:var(--muted); white-space:nowrap; }
-  .quiz-score b{ color:var(--accent,#e8b06a); font-size:18px; }
-  .quiz-round{ font-size:12px; color:var(--muted); margin-bottom:18px; letter-spacing:.04em; text-transform:uppercase; }
-  .quiz-name{ font-family:Fraunces, serif; font-size:30px; line-height:1.15; margin:4px 0 6px; }
-  .quiz-tag{ font-size:13px; color:var(--muted); margin-bottom:14px; }
-  .quiz-why{ font-size:15px; line-height:1.55; color:#dfe5f2; margin-bottom:16px; }
-  .quiz-illu{ display:flex; justify-content:center; margin:0 0 16px; max-height:150px; }
-  .quiz-illu svg{ max-height:150px; }
-  .quiz-formula-mystery{
-    font-family:'JetBrains Mono', monospace; font-size:30px; letter-spacing:.3em;
-    color:var(--muted); text-align:center; padding:18px; margin:6px 0 20px;
-    border:1px dashed rgba(140,160,220,.3); border-radius:14px; user-select:none;
-  }
-  .quiz-formula-mystery.revealed{ letter-spacing:normal; color:var(--paper); border-style:solid; border-color:rgba(120,200,140,.5); }
-  .quiz-options{ display:grid; gap:10px; }
-  .quiz-opt{
-    font-family:'JetBrains Mono', monospace; font-size:15px; text-align:left;
-    background:rgba(255,255,255,.04); color:var(--paper);
-    border:1px solid rgba(140,160,220,.22); border-radius:12px;
-    padding:14px 16px; cursor:pointer; transition:all .15s ease; line-height:1.4;
-  }
-  .quiz-opt:hover:not(:disabled){ border-color:var(--accent,#e8b06a); background:rgba(232,176,106,.08); transform:translateY(-1px); }
-  .quiz-opt:disabled{ cursor:default; }
-  .quiz-opt.correct{ border-color:#5fcf80; background:rgba(95,207,128,.16); }
-  .quiz-opt.wrong{ border-color:#e06a6a; background:rgba(224,106,106,.16); }
-  .quiz-feedback{ min-height:22px; margin:14px 0 4px; font-size:14px; text-align:center; }
-  .quiz-feedback.ok{ color:#5fcf80; }
-  .quiz-feedback.no{ color:#e08a8a; }
-  .quiz-foot{ display:flex; gap:10px; margin-top:14px; align-items:center; justify-content:space-between; }
-  .quiz-next{ font-family:Fraunces, serif; font-size:16px; padding:11px 22px; border-radius:12px;
-    border:1px solid var(--accent,#e8b06a); background:var(--accent,#e8b06a); color:#1a1206; cursor:pointer; font-weight:600; }
-  .quiz-next:hover{ filter:brightness(1.08); }
-  .quiz-quit{ font-size:13px; color:var(--muted); background:none; border:none; cursor:pointer; text-decoration:underline; }
-  .quiz-summary{ text-align:center; }
-  .quiz-summary h3{ font-family:Fraunces, serif; font-size:28px; margin:0 0 8px; }
-  .quiz-summary .big{ font-size:54px; font-family:'JetBrains Mono', monospace; color:var(--accent,#e8b06a); margin:10px 0; }
-  .quiz-summary p{ color:var(--muted); margin:0 0 18px; }
-
-  /* ===== SHARE MENU (oszd meg) ===== */
-  .share-menu{
-    position:fixed; z-index:70; min-width:200px;
-    background:linear-gradient(180deg, rgba(24,30,50,.98), rgba(14,18,32,.99));
-    border:1px solid rgba(120,150,220,.3); border-radius:14px; padding:8px;
-    box-shadow:0 18px 50px rgba(0,0,0,.6); display:none;
-  }
-  .share-menu.visible{ display:block; }
-  .share-menu a, .share-menu button{
-    display:flex; align-items:center; gap:10px; width:100%;
-    padding:10px 12px; border-radius:9px; border:none; background:none;
-    color:var(--paper); font-size:14px; text-decoration:none; cursor:pointer; text-align:left;
-    font-family:inherit;
-  }
-  .share-menu a:hover, .share-menu button:hover{ background:rgba(232,176,106,.12); }
-  .share-menu .sm-ico{ width:18px; height:18px; flex:0 0 18px; opacity:.85; }
-  .share-menu .sm-sep{ height:1px; background:rgba(140,160,220,.18); margin:5px 4px; }
-  .share-backdrop{ position:fixed; inset:0; z-index:65; display:none; }
-  .share-backdrop.visible{ display:block; }
-
-  /* ===== KONFITTI a deck váltásnál ===== */
-  .deck-confetti{
-    position:absolute; inset:0; width:100%; height:100%;
-    pointer-events:none; z-index:5; opacity:0;
-  }
-  .deck-confetti.active{ opacity:1; }
-
-  /* ===== Éjszakai égbolt — kedvencek csillagképe ===== */
-  .constellation-bg{
-    position:fixed; inset:0; z-index:0; pointer-events:none;
-    width:100%; height:100%; opacity:0; transition:opacity .8s ease;
-  }
-  .constellation-bg.on{ opacity:1; pointer-events:auto; }
-  #nightSkyBtn.active{ color:var(--highlight); border-color:var(--highlight); box-shadow:0 0 14px -2px var(--highlight); }
-  .constellation-label{
-    position:fixed; z-index:6; pointer-events:none; max-width:240px;
-    font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--paper);
-    background:rgba(10,14,26,.82); border:1px solid rgba(120,150,220,.3);
-    border-radius:8px; padding:7px 10px; transform:translate(-50%,-130%);
-    box-shadow:0 8px 24px -10px rgba(0,0,0,.7); opacity:0; transition:opacity .15s ease;
-    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-  }
-  .constellation-label.show{ opacity:1; }
-  .constellation-label .cl-formula{ display:block; margin-top:3px; color:var(--highlight); font-size:12px; }
 </style>
 </head>
 <body data-domain="matek">
-  <div class="aurora-bg" aria-hidden="true"></div>
-  <div class="stardust-bg" aria-hidden="true"></div>
-  <canvas class="constellation-bg" id="constellationBg" aria-hidden="true"></canvas>
-  <div class="nebula-bg" aria-hidden="true"></div>
-  <div class="galaxy-bg" aria-hidden="true"></div>
-  <div class="ghost-bg" id="ghostBg" aria-hidden="true"></div>
+<div class="stardust-bg" aria-hidden="true"></div>
+<div class="nebula-bg" aria-hidden="true"></div>
+<div class="ghost-bg" id="ghostBg" aria-hidden="true"></div>
 
 <div class="logo-mark" id="logoMark" title="Halhatatlan tudományos szépségek" aria-hidden="true">
   <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1240,7 +993,6 @@
       <button type="button" class="dbtn" data-domain="informatika">Informatika</button>
     </div>
     <div class="top-row-actions">
-      <button type="button" class="info-btn" id="nightSkyBtn" aria-pressed="false" title="Éjszakai égbolt — kedvenceid csillagképe" aria-label="Éjszakai égbolt">✨</button>
       <button type="button" class="info-btn" id="infoBtn" aria-label="A gyűjteményről" title="A gyűjteményről">ℹ</button>
       <button type="button" class="info-btn" id="statsBtn" aria-label="Statisztika" title="Statisztika">📊</button>
       <button type="button" class="info-btn" id="graphBtn" aria-label="Tudás-gráf" title="Tudás-gráf">🕸</button>
@@ -1287,7 +1039,6 @@
       <button type="button" class="vbtn" data-view="grouped">Kategóriák</button>
       <button type="button" class="vbtn" data-view="timeline">Idővonal</button>
       <button type="button" class="vbtn" data-view="deck">Lapozó</button>
-      <button type="button" class="vbtn" data-view="quiz">Játék</button>
     </div>
   </div>
 
@@ -1300,7 +1051,6 @@
 
   <main class="grid" id="grid"></main>
   <section class="deck-view" id="deckView" hidden aria-live="polite">
-    <canvas class="deck-confetti" id="deckConfetti" aria-hidden="true"></canvas>
     <div class="deck-card" id="deckCard">
       <div class="deck-top">
         <span class="deck-tag" id="deckTag"></span>
@@ -1312,6 +1062,7 @@
       <p class="deck-why" id="deckWhy"></p>
       <div class="deck-actions">
         <button type="button" class="icon-btn fav-star" id="deckFav" aria-label="Kedvencekhez adás"></button>
+        <button type="button" class="icon-btn share-btn" id="deckShare" aria-label="Megosztható kártya"></button>
         <button type="button" class="deck-jump" id="deckJump">Részletek</button>
       </div>
     </div>
@@ -1334,7 +1085,7 @@
   <canvas id="graphCanvas"></canvas>
   <div class="graph-topbar">
     <span class="graph-title">Tudás-gráf</span>
-    <span class="graph-hint" id="graphHint">Húzd az ujjal a mozgatáshoz · csípd össze a nagyításhoz · koppints egy pontra</span>
+    <span class="graph-hint" id="graphHint">Húzd a mozgatáshoz · görgess a nagyításhoz · kattints egy pontra</span>
     <button type="button" class="graph-close" id="graphClose" aria-label="Bezárás">✕</button>
   </div>
   <div class="graph-legend" id="graphLegend"></div>
@@ -1346,15 +1097,6 @@
 </div>
 
 <div class="toast" id="toast"></div>
-
-<!-- ===== Játék mód overlay ===== -->
-<div class="quiz-overlay" id="quizOverlay" aria-hidden="true">
-  <div class="quiz-panel" id="quizPanel"></div>
-</div>
-
-<!-- ===== Oszd meg menü ===== -->
-<div class="share-backdrop" id="shareBackdrop"></div>
-<div class="share-menu" id="shareMenu" role="menu" aria-label="Megosztás"></div>
 
 <div class="formula-lightbox" id="formulaLightbox" aria-hidden="true">
   <div class="lightbox-panel">
@@ -2966,7 +2708,7 @@ const MATEK_DATA = [
     why: "<b>Minden egész szám négy négyzet összege.</b> Egy egyszerű állítás, ami a reprezentációelmélet és a kvantumállapotok számolásánál is visszaköszön."
   },
   {
-    name: "Poincaré–Bendixson-tétel (mérnöki)",
+    name: "Poincaré–Bendixson-tétel",
     tag: "Dinamikai rendszerek",
     category: "szamitastudomany-mernoki",
     year: 1901,
@@ -2976,17 +2718,17 @@ const MATEK_DATA = [
     why: "<b>Síkbeli áramlások nem lehetnek káoszosak.</b> A kétdimenziós dynamika szegényebb: a hosszú távú viselkedés mindig ciklus vagy nyugalom — a káosz csak 3 dimenziótól kezdődik."
   },
   {
-    name: "Borsuk-sejtés (megcáfolva, geometria)",
+    name: "Borsuk-sejtés (megcáfolva)",
     tag: "Geometria · topológia",
     category: "kombinatorika-geometria",
     year: 1932,
     tex: "n\\text{ pont }d(n)\\le n+1\\text{ (hamis }n=1325)",
     wiki: "https://en.wikipedia.org/wiki/Borsuk%27s_conjecture",
     illustration: "spiral",
-    why: "<b>A látszólag nyilvánvaló téved.</b> Borsuk azt hitte, bármely ponthalmaz kisebb átmérőjű részekre osztható, mint ahány pontja van — Kahn és Kalai 1993-ban megcáfolta. A szépség néha a megdöntésben van."
+    why: "<b>A látszólag nyilvánvaló téved.</b> Borsuk azt hitte, bármely ponthalmaz kisebb átmérőjű részekre osztható, mint ahány pontja van — Kahn–Kalai 1993-ban megcáfolta. A szépség néha a megdöntésben van."
   },
   {
-    name: "QR-felbontás",
+    name: "Fejlettebb lineáris algebra: QR-felbontás",
     tag: "Lineáris algebra",
     category: "szamitastudomany-mernoki",
     year: 1954,
@@ -3003,10 +2745,10 @@ const MATEK_DATA = [
     tex: "\\text{planáris}\\iff\\neg K_5,\\neg K_{3,3}",
     wiki: "https://en.wikipedia.org/wiki/Planar_graph#Kuratowski%27s_theorem",
     illustration: "graph",
-    why: "<b>Egy gráf akkor rajzolható síkba, ha nincs benne K5 vagy K3,3.</b> A két tiltott alakzat maga a térképrajzolás esszenciája — és a chip-tervezés is erre épül."
+    why: "<b>Egy gráf akkor rajzolható síkba, ha nincs benne K₅ vagy K₃,₃.</b> A két tiltott alakzat maga a térképrajzolás esszenciája — és a chip-tervezés is erre épül."
   },
   {
-    name: "Markov-egyenlőtlenség (második alak)",
+    name: "Markov-egyenlőtlenség",
     tag: "Valószínűségelmélet",
     category: "valoszinuseg",
     year: 1959,
@@ -3034,219 +2776,6 @@ const MATEK_DATA = [
     wiki: "https://en.wikipedia.org/wiki/F%C3%A1ry%27s_theorem",
     illustration: "graph",
     why: "<b>Mindent planáris gráfot megrajzolhatunk háromszögekre osztva, egyetlen metszés nélkül.</b> Egy elegáns bizonyítás, ami a számítógépes grafikában és a hálózatok vizualizációjában hasznos."
-  },
-  {
-    name: "Stokes-tétel",
-    tag: "Vektormezők · analízis",
-    category: "analizis",
-    year: 1851,
-    tex: "\\oint_{\\partial S}\\mathbf{F}\\cdot d\\mathbf{r}=\\iint_S(\\nabla\\times\\mathbf{F})\\cdot d\\mathbf{S}",
-    wiki: "https://en.wikipedia.org/wiki/Stokes%27_theorem",
-    illustration: "graph",
-    why: "<b>A vonalintegrál a felületintegrálba csatlakozik.</b> A klasszikus Green-, Stokes- és Gauss-tételek egy kalap alatt: a határvonal körüli áramlás megmondja, mi zajlik a felületen belül."
-  },
-  {
-    name: "Sylow-tételek",
-    tag: "Csoportelmélet",
-    category: "algebra",
-    year: 1872,
-    tex: "n_p\\equiv 1\\pmod p,\\quad n_p\\mid |G|/p^k",
-    wiki: "https://en.wikipedia.org/wiki/Sylow_theorems",
-    illustration: "lattice",
-    why: "<b>A véges csoportokban pontosan annyi p-csoportos rész van, amennyit a számítás diktál.</b> A csoportok belső ritmusa — ezek nélkül a nagy csoportok osztályozása lehetetlen lenne."
-  },
-  {
-    name: "Csebisev-egyenlőtlenség (második alak)",
-    tag: "Valószínűségelmélet · statisztika",
-    category: "valoszinuseg",
-    year: 1867,
-    tex: "P(|X-\\mu|\\ge k\\sigma)\\le \\frac{1}{k^2}",
-    wiki: "https://en.wikipedia.org/wiki/Chebyshev%27s_inequality",
-    illustration: "wave",
-    why: "<b>A szórásnál messzebb ritkán találsz adatot.</b> Markov és Csebisev együtt teremtette meg a nagy számok törvényének modern bizonyítását — a statisztika alfája."
-  },
-  {
-    name: "Gauss–Lucas-tétel",
-    tag: "Komplex analízis",
-    category: "komplex",
-    year: 1836,
-    tex: "\\text{a derivált gyökei a polinom gyökeinek konvex burkán belül}",
-    wiki: "https://en.wikipedia.org/wiki/Gauss%E2%80%93Lucas_theorem",
-    illustration: "spiral",
-    why: "<b>Egy polinom deriváltjának gyökei a saját gyökei által kifeszített tartományban rejtőznek.</b> A komplex gyökök geometriája — egyszerű, mégis mély összefüggés."
-  },
-  {
-    name: "Radon–Nikodym-tétel",
-    tag: "Mértékelmélet",
-    category: "analizis",
-    year: 1930,
-    tex: "\\nu(A)=\\int_A f\\,d\\mu,\\quad f=\\frac{d\\nu}{d\\mu}",
-    wiki: "https://en.wikipedia.org/wiki/Radon%E2%80%93Nikodym_theorem",
-    illustration: "wave",
-    why: "<b>Egy mérték másikból származik, mint sűrűségfüggvény.</b> A valószínűségi sűrűségfogalom matematikai alapja — e nélkül nincs Bayes, nincs információelmélet."
-  },
-  {
-    name: "Pólya felismerési tétele",
-    tag: "Kombinatorika",
-    category: "kombinatorika-geometria",
-    year: 1918,
-    tex: "\\lim_{n\\to\\infty}(\\text{ismétléses arány})=1",
-    wiki: "https://en.wikipedia.org/wiki/P%C3%B3lya_enumeration_theorem",
-    illustration: "lattice",
-    why: "<b>A szimmetria miatt soknak hitt elrendezés valójában kevés.</b> Pólya módszere megszámolja a színváltásokat és mintákat úgy, hogy a tükrözést is beleszámolja — a kémiai izomerek számolásának eszköze."
-  },
-  {
-    name: "Nagy számok gyenge törvénye",
-    tag: "Valószínűségelmélet",
-    category: "valoszinuseg",
-    year: 1713,
-    tex: "\\bar X_n\\xrightarrow{P}\\mu\\quad(n\\to\\infty)",
-    wiki: "https://en.wikipedia.org/wiki/Law_of_large_numbers",
-    illustration: "wave",
-    why: "<b>Minél többet mérünk, annál közelebb az átlag az igazsághoz.</b> Bernoulli és Poisson tétele a biztosítás, a kockázat és a statisztikai gondolkodás alapköve."
-  },
-  {
-    name: "Riemann-féle leképezési tétel",
-    tag: "Komplex analízis",
-    category: "komplex",
-    year: 1851,
-    tex: "\\exists f:\\mathbb{D}\\xrightarrow{\\sim}\\Omega\\text{ konform}",
-    wiki: "https://en.wikipedia.org/wiki/Riemann_mapping_theorem",
-    illustration: "spiral",
-    why: "<b>Bármely egyszerű tartomány képe egy körképre torzításmentesen hajtható.</b> A konform leképezések univerzalitása — a folyadékáramlás és az elektrosztatika svájci bicskája."
-  },
-  {
-    name: "Desargues-tétel",
-    tag: "Projektív geometria",
-    category: "geometria",
-    year: 1639,
-    tex: "\\text{két háromszög perspektív}\\iff\\text{axiómák szerint}",
-    wiki: "https://en.wikipedia.org/wiki/Desargues%27s_theorem",
-    illustration: "graph",
-    why: "<b>Ha két háromszög csúcsai egy pontból látszanak, a megfelelő oldalak metszéspontjai egy egyenesen vannak.</b> A projektív geometria kapuja — a 3D-s látvány matematikája."
-  },
-  {
-    name: "Banach–Tarski-paradoxon (második alak)",
-    tag: "Geometria · halmazelmélet",
-    category: "halmazelmelet",
-    year: 1924,
-    tex: "\\text{gömb}=5\\text{ darab}\\mapsto 2\\text{ gömb (azonos méret)}",
-    wiki: "https://en.wikipedia.org/wiki/Banach%E2%80%93Tarski_paradox",
-    illustration: "spiral",
-    why: "<b>Egy gömböt 5 darabra vághatsz, és újraösszerakhatsz belőlük két azonos méretűt.</b> A kiválasztási axióma meglepő következménye — a végtelen nem úgy viselkedik, mint a véges."
-  },
-  {
-    name: "Leibniz-féle π-sor",
-    tag: "Analízis · sorok",
-    category: "analizis",
-    year: 1676,
-    tex: "\\frac{\\pi}{4} = 1 - \\frac{1}{3} + \\frac{1}{5} - \\frac{1}{7} + \\cdots",
-    wiki: "https://en.wikipedia.org/wiki/Leibniz_formula_for_%CF%80",
-    illustration: "spiral",
-    why: "<b>π kifejezve egy váltakozó törtsorként.</b> Lassú, de szép: a páratlan számok felváltva adják és kivonják a negyedkört. Madhava évszázaddal korábban már tudta Indiában."
-  },
-  {
-    name: "Machin-formula",
-    tag: "Analízis · π számítás",
-    category: "analizis",
-    year: 1706,
-    tex: "\\frac{\\pi}{4} = 4\\arctan\\frac{1}{5} - \\arctan\\frac{1}{239}",
-    wiki: "https://en.wikipedia.org/wiki/Machin-like_formula",
-    illustration: "spiral",
-    why: "<b>Az arctangens gyorsan konvergál — ezzel számolták π-t 600+ jegyig.</b> Machin 1706-ban döntötte meg a rekordot; a trükk: jól megválasztott törtargumentumok."
-  },
-  {
-    name: "Binet-képlet",
-    tag: "Számelmélet · Fibonacci",
-    category: "kombinatorika-geometria",
-    year: 1843,
-    tex: "F_n = \\frac{\\varphi^n - \\psi^n}{\\sqrt{5}},\\quad \\varphi=\\frac{1+\\sqrt{5}}{2}",
-    wiki: "https://en.wikipedia.org/wiki/Fibonacci_number#Closed-form_expression",
-    illustration: "spiral",
-    why: "<b>A Fibonacci-sorozat zárt alakban, azzal a φ-gyel.</b> Az aranymetszés és a gyök kettes kitevői adják az egész számsort — algebra a „természet spirálja” mögött."
-  },
-  {
-    name: "Cantor-féle átlóérv",
-    tag: "Halmazelmélet · megszámlálhatóság",
-    category: "logika-halmaz",
-    year: 1891,
-    tex: "\\mathbb{R} \\text{ nem megszámlálható}",
-    wiki: "https://en.wikipedia.org/wiki/Cantor%27s_diagonal_argument",
-    illustration: "lattice",
-    why: "<b>A valós számok „többek”, mint az egészek.</b> Cantor átlóelmével belátta: nincs köztük egy-az-egyhez megfeleltetés. Az végteleneknek is van mélységük."
-  },
-  {
-    name: "Dirichlet-közelítési tétele",
-    tag: "Számelmélet · diofantikus",
-    category: "szamelmelet",
-    year: 1842,
-    tex: "\\left|\\alpha - \\frac{p}{q}\\right| < \\frac{1}{q^2}",
-    wiki: "https://en.wikipedia.org/wiki/Dirichlet%27s_approximation_theorem",
-    illustration: "lattice",
-    why: "<b>Minden irracionális szám tetszőlegesen jól közelíthető törttel.</b> A racionális közelítések sűrűsége garantált — az elméleti számelmélet egyik kapuja."
-  },
-  {
-    name: "Minkowski-egyenlőtlenség",
-    tag: "Analízis · normák",
-    category: "analizis",
-    year: 1910,
-    tex: "\\|x+y\\|_p \\leq \\|x\\|_p + \\|y\\|_p",
-    wiki: "https://en.wikipedia.org/wiki/Minkowski_inequality",
-    illustration: "wave",
-    why: "<b>A „távolság” háromszög-egyenlőtlensége tetszőleges p-normára.</b> Minkowski általánosította a geometriát — az Lᵖ-terek alapja a funkcionálanalízisben."
-  },
-  {
-    name: "Viviani-tétel",
-    tag: "Geometria · szimmetria",
-    category: "kombinatorika-geometria",
-    year: 1692,
-    tex: "r_1+r_2+r_3 = \\text{állandó}",
-    wiki: "https://en.wikipedia.org/wiki/Viviani%27s_theorem",
-    illustration: "spiral",
-    why: "<b>Egy egyenlő oldalú háromszög belsejében bárhová rakott pont távolságainak összege a oldalmagasság.</b> Viviani elegáns szimmetriája — a három távolság összege állandó."
-  },
-  {
-    name: "Ham-szendvics tétel",
-    tag: "Topológia · felosztás",
-    category: "topologia",
-    year: 1942,
-    tex: "\\exists\\ \\text{vágósík}:\\ \\text{felez mindhárom testet}",
-    wiki: "https://en.wikipedia.org/wiki/Ham_sandwich_theorem",
-    illustration: "graph",
-    why: "<b>Egyetlen egyenes vágással felezhetsz három tárgyat egyszerre.</b> A „sonka-szendvics” tétel: bármely 3 dimenziós testhármas felezhető egy síkkal. A Borsuk–Ulam egyik legszórakoztatóbb következménye."
-  },
-  {
-    name: "Ikertprím-sejtés",
-    tag: "Számelmélet · nyitott probléma",
-    category: "szamelmelet",
-    year: 1849,
-    badge: "Megoldatlan",
-    tex: "\\pi_2(x) \\sim 2C_2\\frac{x}{(\\ln x)^2}",
-    wiki: "https://en.wikipedia.org/wiki/Twin_prime",
-    illustration: "lattice",
-    why: "<b>Végtelen sok prím van, amit csak 2 választ el?</b> Polignac 1849-es sejtése: végtelen sok (p, p+2) prímpár létezik. A '22-ben Zhang és Maynard bizonyította, hogy végtelen sok prímpár van, amit legfeljebb 246 választ el — de a „2” még nyitott."
-  },
-  {
-    name: "Hodge-sejtés",
-    tag: "Topológia · Millennium-probléma",
-    category: "topologia",
-    year: 1941,
-    badge: "Megoldatlan",
-    tex: "\\text{mindenegyes }H^{p,p}\\text{-osztály algebrai}\\\\\\text{ciklusból jön}",
-    wiki: "https://en.wikipedia.org/wiki/Hodge_conjecture",
-    illustration: "graph",
-    why: "<b>A komplex sokaságok „szép” alakzatai mindig algebrai görbékből származnak?</b> Hodge 1941-es sejtése a geometria és az algebra határán áll — a 7 Millennium-díjas probléma egyike, eddig csak speciális esetekben igazolták."
-  },
-  {
-    name: "Birch–Swinnerton-Dyer-sejtés",
-    tag: "Számelmélet · Millennium-probléma",
-    category: "szamelmelet",
-    year: 1965,
-    badge: "Megoldatlan",
-    tex: "\\text{rang}(E) = \\text{ord}_{s=1} L(E,s)",
-    wiki: "https://en.wikipedia.org/wiki/Birch_and_Swinnerton-Dyer_conjecture",
-    illustration: "spiral",
-    why: "<b>Egy elliptikus görbe racionális pontjainak száma összefügg az L-függvényével?</b> A sejtés a görbe „rangját” köti össze az L-függvény viselkedésével az s=1 pontban — a 7 Millennium-díjas probléma egyike, matematikai Nobel-díj (1 millió $) vár a megoldójára."
   }
 ];
 
@@ -5379,7 +4908,7 @@ const FIZIKA_DATA = [
     illustration: "graph",
   },
   {
-    name: "Casimir-effektus (második alak)",
+    name: "Casimir-effektus",
     tag: "Kvantumtérelmélet",
     category: "kvantum",
     year: 1948,
@@ -5387,7 +4916,7 @@ const FIZIKA_DATA = [
     tex: "F_c=\\frac{\\pi^2\\hbar c}{240}\\frac{A}{d^4}",
     wiki: "https://en.wikipedia.org/wiki/Casimir_effect",
     illustration: "wave",
-    why: "<b>A semmi is nyom.</b> Két fémlap között a vákuum-ingadozások kihagyják a tiltott hullámhosszokat, így kifelé nagyobb a nyomás, a lapok összébbősülnek. A legközvetlenebb bizonyíték, hogy a vákuum energiája valós."
+    why: "<b>A semmi is nyom.</b> Két fémlap között a vákuum-ingadozások „kihagyják" a tiltott hullámhosszokat, így kifelé nagyobb a nyomás, a lapok összébbősülnek. A legközvetlenebb bizonyíték, hogy a vákuum energiája valós."
   },
   {
     name: "Brewster-szög",
@@ -5412,7 +4941,7 @@ const FIZIKA_DATA = [
     why: "<b>A gravitációs és tehetetlen tömeg egyenlő.</b> Eötvös torziós ingája mikronos nagyságrenden bizonyította az ekvivalenciaelvet — Einstein ebből építette az általános relativitáselméletet."
   },
   {
-    name: "Lamb-eltolódás (második alak)",
+    name: "Lamb-eltolódás",
     tag: "Kvantumelektrodinamika",
     category: "kvantum",
     year: 1947,
@@ -5434,7 +4963,7 @@ const FIZIKA_DATA = [
     why: "<b>A valóságos fekete lyuk forgó.</b> Kerr megoldása az általános relativitáselméletben az első olyan exakt megoldás, ami forgást, energiakivonást (Penrose-folyamat) és az időutazás elvét is magában hordozza."
   },
   {
-    name: "Arrhenius-egyenlet (második alak)",
+    name: "Arrhenius-egyenlet",
     tag: "Kémiai kinetika",
     category: "kemia-biologia",
     year: 1889,
@@ -5445,7 +4974,7 @@ const FIZIKA_DATA = [
     why: "<b>A hőmérséklet exponenciálisan gyorsítja a reakciót.</b> Egyetlen exponenciális görbe magyarázza, miért nem romlik meg a tej hűtőben, de 100 fokon azonnal. Az ipari kémia alapképlete."
   },
   {
-    name: "Saha-egyenlet (csillagászat)",
+    name: "Saha-egyenlet",
     tag: "Asztrofizikai plazma",
     category: "kemia-biologia",
     year: 1920,
@@ -5464,10 +4993,10 @@ const FIZIKA_DATA = [
     tex: "\\nabla\\cdot\\mathbf{v}=0,\\quad\\frac{\\partial\\mathbf{v}}{\\partial t}+(\\mathbf{v}\\cdot\\nabla)\\mathbf{v}=-\\frac{1}{\\rho}\\nabla p",
     wiki: "https://en.wikipedia.org/wiki/Kelvin%E2%80%93Helmholtz_instability",
     illustration: "wave",
-    why: "<b>Ahol két sebességű réteg találkozik, ott örvények születnek.</b> A felhők lenyugvó peremétől a Jupiter övén át az atomrobbanásokig mindenütt ez az instabilitás uralkodik."
+    why: "<b>Ahol két sebességű réteg találkozik, ott örvények születnek.</b> A felhők „lenyugvó" peremétől a Jupiter övén át az atomrobbanásokig mindenütt ez az instabilitás uralkodik."
   },
   {
-    name: "Planck-féle sugárzási törvény (második alak)",
+    name: "Planck-féle sugárzási törvény",
     tag: "Kvantumstatisztika",
     category: "termodinamika",
     year: 1900,
@@ -5486,260 +5015,7 @@ const FIZIKA_DATA = [
     tex: "P_{\\text{túlélés}}=e^{-\\gamma t}\\to 1\\;(t\\to 0)",
     wiki: "https://en.wikipedia.org/wiki/Quantum_Zeno_effect",
     illustration: "spiral",
-    why: "<b>Ha folyton méred, nem változik.</b> Gyakori megfigyeléssel a rendszer beragad az állapotába — nem filozófiai tréfa, hanem a kvantum-számítógépek hibaigazításának egyik kulcsa."
-  },
-  {
-    name: "Stefan–Boltzmann-törvény (második alak)",
-    tag: "Termodinamika · sugárzás",
-    category: "termodinamika",
-    year: 1879,
-    type: "single",
-    tex: "P=\\sigma A T^4",
-    wiki: "https://en.wikipedia.org/wiki/Stefan%E2%80%93Boltzmann_law",
-    illustration: "wave",
-    why: "<b>A izzó test sugárzása a hőmérséklet negyedik hatványával nő.</b> Egyetlen T^4 írja le a csillagok fényét, a Föld sugárzási egyensúlyát és a klímamodellek alapját."
-  },
-  {
-    name: "Navier–Stokes-egyenletek (második alak)",
-    tag: "Folyadékdinamika",
-    category: "klasszikus",
-    year: 1822,
-    type: "single",
-    tex: "\\rho\\left(\\frac{\\partial\\mathbf{v}}{\\partial t}+\\mathbf{v}\\cdot\\nabla\\mathbf{v}\\right)=-\\nabla p+\\mu\\nabla^2\\mathbf{v}",
-    wiki: "https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_equations",
-    illustration: "wave",
-    why: "<b>A folyadék mozgásának millió dolláros egyenletei.</b> A repüléstől az időjárásig mindent írnak le — és még mindig nem tudjuk, mindig sima megoldásuk van-e (Millennium-díj)."
-  },
-  {
-    name: "Maha atman (fő számok tétele)",
-    tag: "Kvantummechanika",
-    category: "kvantum",
-    year: 1927,
-    type: "single",
-    tex: "[\\hat x,\\hat p]=i\\hbar",
-    wiki: "https://en.wikipedia.org/wiki/Canonical_commutation_relation",
-    illustration: "spiral",
-    why: "<b>A pozíció és az impulzus nem cserélhető fel.</b> A kommutátor i hbar az oka, hogy nem mérhetsz meg mindent egyszerre — az egész kvantummechanika szövete ebből a nem-commutativitásból szövődik."
-  },
-  {
-    name: "Wien-i eltolódási törvény",
-    tag: "Termodinamika",
-    category: "termodinamika",
-    year: 1893,
-    type: "single",
-    tex: "\\lambda_{\\max}T=b",
-    wiki: "https://en.wikipedia.org/wiki/Wien%27s_displacement_law",
-    illustration: "wave",
-    why: "<b>Minél forróbb a test, annál kékebb a legfényesebb színe.</b> A parázsfény vörösből kékre váltása és a csillagok szín-alapú hőmérsékletmérése ugyanazt a törvényt követi."
-  },
-  {
-    name: "Feynman-féle útvonal-integrál",
-    tag: "Kvantummechanika",
-    category: "kvantum",
-    year: 1948,
-    type: "single",
-    tex: "\\langle x_f|e^{-iHt/\\hbar}|x_i\\rangle=\\int\\mathcal{D}[x(t)]\\,e^{iS[x]/\\hbar}",
-    wiki: "https://en.wikipedia.org/wiki/Path_integral_formulation",
-    illustration: "graph",
-    why: "<b>A részecske az összes lehetséges úton egyszerre megy végig.</b> Feynman radikális újrafogalmazása a kvantummechanikának — a rengeteg elmélet és a modern részecskefizika nyelve."
-  },
-  {
-    name: "Biró-effektus (mágneses fluxus kvantálása)",
-    tag: "Szupervezetés · kvantum",
-    category: "kvantum",
-    year: 1931,
-    type: "single",
-    tex: "\\Phi=n\\Phi_0,\\quad\\Phi_0=\\frac{h}{2e}",
-    wiki: "https://en.wikipedia.org/wiki/Magnetic_flux_quantum",
-    illustration: "spiral",
-    why: "<b>A mágneses fluxus csak diszkrét adagokban létezhet egy szupervezető gyűrűben.</b> A kvantum makroszkopikus méretűvé válása — az SQUID mérőeszközök alapja."
-  },
-  {
-    name: "Einstein-egyenletek (általános relativitás)",
-    tag: "Gravitáció",
-    category: "relativitas",
-    year: 1915,
-    type: "single",
-    tex: "G_{\\mu\\nu}=\\frac{8\\pi G}{c^4}T_{\\mu\\nu}",
-    wiki: "https://en.wikipedia.org/wiki/Einstein_field_equations",
-    illustration: "spiral",
-    why: "<b>A téridő görbülete mondja meg, merre görbül az anyag.</b> Tíz egyenlet, ami a GPS pontosságától a fekete lyukakig mindent ural — a 20. század legmélyebb fizikai tétele."
-  },
-  {
-    name: "Eötvös-törvény (folyadékfelszín)",
-    tag: "Folyadékok · felületi feszültség",
-    category: "klasszikus",
-    year: 1886,
-    type: "single",
-    tex: "\\gamma=\\frac{\\rho g h^2}{2}",
-    wiki: "https://en.wikipedia.org/wiki/Surface_tension",
-    illustration: "wave",
-    why: "<b>A folyadék felszíne feszül, mint egy hártya.</b> A cseppforma, a hajszálcső-effektus és a rovarok vízen járása ugyanazt a feszítő erőt mutatja meg."
-  },
-  {
-    name: "Hubble-törvény",
-    tag: "Kozmológia",
-    category: "relativitas",
-    year: 1929,
-    type: "single",
-    tex: "v=H_0 d",
-    wiki: "https://en.wikipedia.org/wiki/Hubble%27s_law",
-    illustration: "spiral",
-    why: "<b>A galaxisok a távolságuk arányában távolodnak tőlünk.</b> A világegyetem tágulásának közvetlen bizonyítéka — ezen alapul az egész kozmológiai modell."
-  },
-  {
-    name: "Pauli-féle kizárási elv (második alak)",
-    tag: "Kvantummechanika · szilárdtest",
-    category: "kvantum",
-    year: 1925,
-    type: "single",
-    tex: "\\text{két fermion nem lehet azonos állapotban}",
-    wiki: "https://en.wikipedia.org/wiki/Pauli_exclusion_principle",
-    illustration: "lattice",
-    why: "<b>Két fermion nem foglalhatja el ugyanazt az állapotot.</b> Enélkül az anyag összeomlana, nem lenne vegyérték, nem lennének atomok — a teljes periódusos rendszer ezen áll."
-  },
-  {
-    name: "Young-kétréslassal",
-    tag: "Hullámoptika · interferencia",
-    category: "klasszikus",
-    year: 1801,
-    type: "single",
-    tex: "d\\sin\\theta = m\\lambda",
-    wiki: "https://en.wikipedia.org/wiki/Double-slit_experiment",
-    illustration: "wave",
-    why: "<b>A fény két résen átmenve csíkokat rajzol — hullámként viselkedik.</b> Young 1801-es kísérlete a hullám-természet döntő bizonyítéka, és a kvantum-kettősség előszobája."
-  },
-  {
-    name: "Malus-törvény",
-    tag: "Optika · polarizáció",
-    category: "klasszikus",
-    year: 1809,
-    type: "single",
-    tex: "I = I_0\\cos^2\\theta",
-    wiki: "https://en.wikipedia.org/wiki/Malus%27s_law",
-    illustration: "wave",
-    why: "<b>A polarizált fény intenzitása a szög koszinuszának négyzetével csökken.</b> A napszemüveg és az LCD-k mögötti egyszerű, de mély törvény."
-  },
-  {
-    name: "Lenz-törvénye",
-    tag: "Elektromágnesség · indukció",
-    category: "klasszikus",
-    year: 1834,
-    type: "single",
-    tex: "\\mathcal{E} = -\\frac{d\\Phi_B}{dt}",
-    wiki: "https://en.wikipedia.org/wiki/Lenz%27s_law",
-    illustration: "spiral",
-    why: "<b>A indukált áram mindig ellenáll a változásnak.</b> A mínuszjel a termodinamika őre: a mágneses fluxus változását az áram „visszanyomja”. Faraday törvényének irányított fele."
-  },
-  {
-    name: "Bose–Einstein-eloszlás",
-    tag: "Statisztikus fizika · kvantum",
-    category: "termodinamika",
-    year: 1924,
-    type: "single",
-    tex: "n_i = \\frac{1}{e^{(\\epsilon_i-\\mu)/kT}-1}",
-    wiki: "https://en.wikipedia.org/wiki/Bose%E2%80%93Einstein_statistics",
-    illustration: "lattice",
-    why: "<b>A bozonok szeretik egymást: többen állnak ugyanarra a szintre.</b> Ez adja a lézert, a szupravezetést és a kondenzált állapotot — a klasszikus statisztika nem ismeri ezt az együttműködést."
-  },
-  {
-    name: "Fermi–Dirac-eloszlás",
-    tag: "Statisztikus fizika · kvantum",
-    category: "termodinamika",
-    year: 1926,
-    type: "single",
-    tex: "f(E) = \\frac{1}{e^{(E-\\mu)/kT}+1}",
-    wiki: "https://en.wikipedia.org/wiki/Fermi%E2%80%93Dirac_statistics",
-    illustration: "lattice",
-    why: "<b>A fermionok nem osztoznak: egy szinten legfeljebb egy.</b> Ez a félvezetők, a tranzisztor és minden elektronikus eszköz működésének statisztikája."
-  },
-  {
-    name: "Egyenértékűségi elv (Eötvös)",
-    tag: "Relativitás · gravitáció",
-    category: "relativitas",
-    year: 1907,
-    type: "single",
-    tex: "m_{\\text{inertiális}} = m_{\\text{gravitációs}}",
-    wiki: "https://en.wikipedia.org/wiki/Equivalence_principle",
-    illustration: "spiral",
-    why: "<b>A tehetetlen és a gravitációs tömeg ugyanaz.</b> Eötvös milliárdos pontossággal mérte — Einstein ebből építette a generalizált relativitást: a gravitáció = görbült tér."
-  },
-  {
-    name: "Laplace-egyenlet",
-    tag: "Matematikai fizika · potenciál",
-    category: "klasszikus",
-    year: 1782,
-    type: "single",
-    tex: "\\nabla^2\\phi = 0",
-    wiki: "https://en.wikipedia.org/wiki/Laplace%27s_equation",
-    illustration: "wave",
-    why: "<b>A potenciál „simán” változik, ahol nincs töltés.</b> A gravitáció, az elektrosztatika és a hővezetés közös egyenlete — a klasszikus fizika legelegánsabb másodrendű parancsa."
-  },
-  {
-    name: "Poiseuille-törvény",
-    tag: "Folyadékdinamika · áramlás",
-    category: "mernoki-alkalmazasok",
-    year: 1840,
-    type: "single",
-    tex: "Q = \\frac{\\pi r^4 \\Delta P}{8\\eta L}",
-    wiki: "https://en.wikipedia.org/wiki/Poiseuille_law",
-    illustration: "spiral",
-    why: "<b>A csőben folyó folyadék térfogatárama az sugar negyedik hatványával nő.</b> Egyetlen r⁴ írja le az ereinkben a véráramlást és a hajszálcsövek fizikáját."
-  },
-  {
-    name: "Stokes-törvénye (folyadék)",
-    tag: "Folyadékdinamika · ellenállás",
-    category: "mernoki-alkalmazasok",
-    year: 1851,
-    type: "single",
-    tex: "F_d = 6\\pi\\eta r v",
-    wiki: "https://en.wikipedia.org/wiki/Stokes%27_law",
-    illustration: "spiral",
-    why: "<b>A lassú mozgó gömbre ható súrlódó erő arányos a sebességgel és a sugárral.</b> Millikan ezzel mérte az elektron töltését — az olajcsepp-kísérlet egyenlete."
-  },
-  {
-    name: "Michaelis–Menten-kinetika",
-    tag: "Kémia · biológia · enzimek",
-    category: "kemia-biologia",
-    year: 1913,
-    type: "single",
-    tex: "v = \\frac{V_{\\max}[S]}{K_m+[S]}",
-    wiki: "https://en.wikipedia.org/wiki/Michaelis%E2%80%93Menten_kinetics",
-    illustration: "graph",
-    why: "<b>Az enzim sebessége telítődik: sok szubsztrát mellett már nem gyorsul.</b> A biokémia alapképlete — minden gyógyszer és anyagcsere-reakció ezen a görbén ül."
-  },
-  {
-    name: "Navier–Stokes-létezés és simaság",
-    tag: "Folyadékdinamika · Millennium-probléma",
-    category: "klasszikus",
-    year: 1822,
-    badge: "Megoldatlan",
-    tex: "\\frac{\\partial \\mathbf{u}}{\\partial t} + (\\mathbf{u}\\cdot\\nabla)\\mathbf{u} = -\\frac{1}{\\rho}\\nabla p + \\nu\\nabla^2\\mathbf{u}",
-    wiki: "https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_existence_and_smoothness",
-    illustration: "spiral",
-    why: "<b>A folyadékokat leíró egyenletek mindig „jó” megoldása létezik?</b> A Navier–Stokes-egyenletek a légkört, az óceánt és a vért írják le — de senki sem tudja bizonyítani, hogy a megoldás soha nem „robban” végtelenbe. A 7 Millennium-díjas probléma egyike (1 millió $)."
-  },
-  {
-    name: "Yang–Mills-tömeghézag",
-    tag: "Kvantumtérelmélet · Millennium-probléma",
-    category: "reszecskefizika",
-    year: 1954,
-    badge: "Megoldatlan",
-    tex: "\\mathcal{L}_{YM} = -\\frac{1}{4}F_{\\mu\\nu}^a F^{a\\mu\\nu}",
-    wiki: "https://en.wikipedia.org/wiki/Yang%E2%80%93Mills_existence_and_mass_gap",
-    illustration: "lattice",
-    why: "<b>Miért van tömege a strong-kölcsönhatás részecskéinek, ha az elmélet szimmetrikus?</b> A Yang–Mills-elmélet a részecskefizika alapja, de a „tömeghézag” (mass gap) létezését és nagyságát még senki sem bizonyította kvantumtérelméleti alapon — a 7 Millennium-díjas probléma egyike."
-  },
-  {
-    name: "Sötét anyag problémája",
-    tag: "Kozmológia · nyitott probléma",
-    category: "reszecskefizika",
-    year: 1933,
-    badge: "Megoldatlan",
-    tex: "\\Omega_{DM} \\approx 0.27\\ (\\text{univerzum tömegéből})",
-    wiki: "https://en.wikipedia.org/wiki/Dark_matter",
-    illustration: "spiral",
-    why: "<b>A világegyetem 27%-a olyan anyag, amit soha nem láttunk?</b> Zwicky 1933-ban a galaxisok mozgásából következtette: láthatatlan tömeg tartja össze a klasztereket. Ma is csak gravitációval érzékeljük — mi az a részecske, még mindig rejtély."
+    why: "<b>Ha folyton méred, nem változik.</b> Gyakori megfigyeléssel a rendszer „beragad" az állapotába — nem filozófiai tréfa, hanem a kvantum-számítógépek hibaigazításának egyik kulcsa."
   }
 ];
 
@@ -5957,7 +5233,7 @@ const INFORMATIKA_DATA = [
     why: "<b>A kvantum számítás ígérete.</b> A Fourier-transzformáltot exponenciálisan gyorsabban csinálja meg — ezen alapul a Shor-algoritmus, ami feltörné az RSA-t."
   },
   {
-    name: "Hamming-kód (hibajavítás)",
+    name: "Redundáns bináris ábrázolás (Hamming)",
     tag: "Hibajavító kódok",
     category: "kriptografia",
     year: 1950,
@@ -5974,7 +5250,7 @@ const INFORMATIKA_DATA = [
     tex: "\\mathcal{C}\\text{ képes szimulálni }U",
     wiki: "https://en.wikipedia.org/wiki/Turing_completeness",
     illustration: "graph",
-    why: "<b>Ha egy rendszer tudja utánozni az univerzális gépet, akkor bármit kiszámolhat.</b> A hello world-től a sejtautomatákig minden nyelv ezen az elven osztozik — még a Minecraft is Turing-teljes."
+    why: "<b>Ha egy rendszer tudja utánozni az univerzális gépet, akkor bármit kiszámolhat.</b> A „hello world"-től a Cellular Automata-ig minden nyelv ezen az elven osztozik — még a Minecraft is Turing-teljes."
   },
   {
     name: "Conway: Élet játéka",
@@ -5984,7 +5260,7 @@ const INFORMATIKA_DATA = [
     tex: "A_{t+1}=f(A_t)\\text{ (3 szabály)}",
     wiki: "https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life",
     illustration: "graph",
-    why: "<b>Kétirányú szabályból komplex élet születik.</b> A B3/S23 szabályrendszer képes önreplikáló mintákra, számológépekre és univerzális számításra — mindezt egy négyzetrácsban."
+    why: "<b>Kétirányú szabályból komplex élet születik.</b> A „B3/S23" szabályrendszer képes önreplikáló mintákra, számológépekre és univerzális számításra — mindezt egy négyzetrácsban."
   },
   {
     name: "Ford–Fulkerson-algoritmus",
@@ -6004,10 +5280,10 @@ const INFORMATIKA_DATA = [
     tex: "\\text{2 of } \\{C,A,P\\}\\text{ választható}",
     wiki: "https://en.wikipedia.org/wiki/CAP_theorem",
     illustration: "lattice",
-    why: "<b>Meghibásodás esetén csak kettőt választhatsz: konzisztencia, rendelkezésre állás, partíció-tolerancia.</b> A felhőrendszerek építőinek napi morálja — a NoSQL vs SQL vita gyökere."
+    why: "<b>Meghibásodás esetén csak kettőt választhatsz: konzisztencia, rendelkezésre állás, partíció-tolerancia.</b> A felhőrendszerek építőinek napi morálja — a „NoSQL vs SQL" vita gyökere."
   },
   {
-    name: "Minimax (Neumann)",
+    name: "Simonyi-féle minimax",
     tag: "Játékelmélet",
     category: "mesterséges-intelligencia",
     year: 1928,
@@ -6017,14 +5293,14 @@ const INFORMATIKA_DATA = [
     why: "<b>Ellenfél ellen a legjobb lépés a legrosszabb esetre készült.</b> A sakk-játszó programok és az RL-ügynökök alapvető stratégiája — Neumann János egyik gyöngyszeme."
   },
   {
-    name: "Bloom-filter (adatstruktúra)",
+    name: "Bloom-filter",
     tag: "Adatstruktúrák",
     category: "adatstrukturak",
     year: 1970,
     tex: "P(\\text{hamis pozitív})\\approx (1-e^{-kn/m})^k",
     wiki: "https://en.wikipedia.org/wiki/Bloom_filter",
     illustration: "lattice",
-    why: "<b>Kevés hellyel megmondja: lehet, hogy benne van, vagy biztosan nincs bent.</b> A webes gyorsítótárak, a Chrome URL-ellenőrzése és a Bitcoin is ezt a csodálatos kompromisszumot használja."
+    why: "<b>Kevés hellyel megmondja: „lehet, hogy benne van", vagy „biztosan nincs bent".</b> A webes gyorsítótárak, a Chrome URL-ellenőrzése és a Bitcoin is ezt a csodálatos kompromisszumot használja."
   },
   {
     name: "Rendezési alsó korlát (Ω(n log n))",
@@ -6037,7 +5313,7 @@ const INFORMATIKA_DATA = [
     why: "<b>Összehasonlításon alapuló rendezésnél ennél gyorsabb nem lehetséges.</b> Az információelméleti korlát: a döntési fa magassága log(n!) ≈ n log n — az összes gyorsrendező az optimumot éri el."
   },
   {
-    name: "Backpropagation (háttérterjesztés)",
+    name: "Feed-forward neurális háló (backprop)",
     tag: "Mesterséges intelligencia",
     category: "mesterséges-intelligencia",
     year: 1986,
@@ -6055,146 +5331,13 @@ const INFORMATIKA_DATA = [
     wiki: "https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Welch",
     illustration: "lattice",
     why: "<b>A fájlban előforduló mintákat szótárba tesszük.</b> A GIF, a TIFF és a Unix compress mind ezen a Lempel–Ziv–Welch módszeren alapul — a web képeinek néma hőse."
-  },
-  {
-    name: "Big-O jelölés (formális)",
-    tag: "Algoritmusok",
-    category: "algoritmusok",
-    year: 1894,
-    tex: "f(n)=O(g(n))\\iff\\exists c,n_0:\\,f(n)\\le c\\,g(n)",
-    wiki: "https://en.wikipedia.org/wiki/Big_O_notation",
-    illustration: "spiral",
-    why: "<b>A növekedés rendje fontosabb a pontos számnál.</b> Bachmann és Landau jelölése nélkül az algoritmusok összehasonlítása lehetetlen — a számítástudomány anyanyelve."
-  },
-  {
-    name: "Königsbergi hidak problémája (Euler)",
-    tag: "Gráfelmélet",
-    category: "kombinatorika-geometria",
-    year: 1736,
-    tex: "\\text{pontosan 0 vagy 2 páratlan fokszámú csúcs}",
-    wiki: "https://en.wikipedia.org/wiki/Seven_Bridges_of_K%C3%B6nigsberg",
-    illustration: "graph",
-    why: "<b>A városban átsétálni úgy, hogy minden hídon egyszer menj át, csak akkor lehet, ha legfeljebb két csúcs páratlan fokú.</b> Ez volt az első gráfelméleti tétel — Euler 1736-ban megoldotta a rejtvényt."
-  },
-  {
-    name: "RSA-titkosítás (cryptosystem)",
-    tag: "Kriptográfia",
-    category: "kriptografia",
-    year: 1977,
-    tex: "c=m^e\\bmod n,\\quad m=c^d\\bmod n",
-    wiki: "https://en.wikipedia.org/wiki/RSA_(cryptosystem)",
-    illustration: "lattice",
-    why: "<b>A két nagy prím szorzata könnyen számítható, de szétbontani szinte lehetetlen.</b> A modern internet biztonságának alapja — a böngészés, a bankkártya, a messaging mind ezen nyugszik."
-  },
-  {
-    name: "Levenshtein-távolság (szerkesztési)",
-    tag: "Karakterláncok",
-    category: "adatstrukturak",
-    year: 1965,
-    tex: "D(i,j)=\\min\\begin{cases}D(i-1,j)+1\\\\D(i,j-1)+1\\\\D(i-1,j-1)+[a_i\\ne b_j]\\end{cases}",
-    wiki: "https://en.wikipedia.org/wiki/Levenshtein_distance",
-    illustration: "lattice",
-    why: "<b>Két szó között annyi a távolság, ahány betűt át kell írni.</b> A helyesírás-javítás, a keresés és a DNS-szekvenálás mind ezen a dinamikus programozáson alapul."
-  },
-  {
-    name: "Haladó gráfok: Dijkstra",
-    tag: "Algoritmusok",
-    category: "algoritmusok",
-    year: 1959,
-    tex: "d(v)=\\min_{u\\in N(v)}(d(u)+w(u,v))",
-    wiki: "https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm",
-    illustration: "graph",
-    why: "<b>A legrövidebb út a cél felé mindig a legközelebbi csúcs felé vezet.</i> Dijkstra mohó algoritmusa a GPS, a hálózati routing és a térképnavigáció motorja."
-  },
-  {
-    name: "Huffman-kódolás (kódolás)",
-    tag: "Tömörítés",
-    category: "kodolas",
-    year: 1952,
-    tex: "\\sum p_i\\,l_i\\to\\min\\quad(\\text{előrehaladó fa})",
-    wiki: "https://en.wikipedia.org/wiki/Huffman_coding",
-    illustration: "lattice",
-    why: "<b>A gyakori szimbólum rövid kódot kap, a ritka hosszút.</b> Huffman optimális prefix-kódja nélkül a ZIP, az MP3 és a JPEG nem létezne — a veszteségmentes tömörítés alfája."
-  },
-  {
-    name: "Bayes-tétel",
-    tag: "Valószínűség · ML",
-    category: "mesterséges-intelligencia",
-    year: 1763,
-    tex: "P(H|E)=\\frac{P(E|H)\\,P(H)}{P(E)}",
-    wiki: "https://en.wikipedia.org/wiki/Bayes%27_theorem",
-    illustration: "wave",
-    why: "<b>Az új bizonyíték fényében frissítjük a hipotézisünket.</b> Az orvosi diagnózistól a spamszűrőn át a mesterséges intelligencia tanulásáig minden Bayes-en működik."
-  },
-  {
-    name: "Turing-leállási probléma",
-    tag: "Számításelmélet",
-    category: "szamitasmodellek",
-    year: 1936,
-    tex: "\\nexists\\text{ univerzális leállás-teszt}",
-    wiki: "https://en.wikipedia.org/wiki/Halting_problem",
-    illustration: "graph",
-    why: "<b>Nincs olyan program, ami minden más programról megmondja, leáll-e.</b> Turing megmutatta a számítás határát — a döntési problémák egy része alapvetően megoldhatatlan."
-  },
-  {
-    name: "Nyquist–Shannon-mintavételezés (kódolás)",
-    tag: "Jelfeldolgozás",
-    category: "kodolas",
-    year: 1949,
-    tex: "f_s>2B\\quad(\\text{aliasing elkerülése})",
-    wiki: "https://en.wikipedia.org/wiki/Nyquist%E2%80%93Shannon_sampling_theorem",
-    illustration: "wave",
-    why: "<b>A jel pontos visszaállításához a duplájával kell mintavételezni a sávszélességnek.</b> A CD, az MP3, a rádió és a telefon mind erre az elvre épül — a digitális világ hallható alapja."
-  },
-  {
-    name: "Véges állapotgépek (Kleene)",
-    tag: "Automaták",
-    category: "szamitasmodellek",
-    year: 1951,
-    tex: "\\mathcal{L}=\\{w\\mid\\text{elfogadható automatával}\\}",
-    wiki: "https://en.wikipedia.org/wiki/Finite-state_machine",
-    illustration: "graph",
-    why: "<b>A szövegben a minták felismerése véges számú állapottal is megoldható.</b> Kleene tétele a regexek és a fordítóprogramok elméleti alapja — a szöveges keresés mögötti matematika."
-  },
-  {
-    name: "Utazó ügynök problémája (TSP)",
-    tag: "Algoritmusok · NP-nehéz",
-    category: "algoritmusok",
-    year: 1930,
-    badge: "Megoldatlan (optimalizálás)",
-    tex: "\\min \\sum_{i=1}^{n}\\sum_{j=1}^{n} c_{ij} x_{ij}",
-    wiki: "https://en.wikipedia.org/wiki/Travelling_salesman_problem",
-    illustration: "graph",
-    why: "<b>A legrövidebb út, ami érint minden várost pontosan egyszer?</b> A TSP NP-nehéz: 1000 városnál már több lehetőség van, mint atom a világegyetemben. Csak közelítő (heurisztikus) megoldások léteznek — a tökéletes algoritmus még várat magára."
-  },
-  {
-    name: "Gráf-izomorfizmus",
-    tag: "Algoritmusok · nyitott probléma",
-    category: "algoritmusok",
-    year: 1913,
-    badge: "Megoldatlan (osztályozás)",
-    tex: "\\exists\\ \\sigma:\\ G \\cong H\\ ?",
-    wiki: "https://en.wikipedia.org/wiki/Graph_isomorphism_problem",
-    illustration: "graph",
-    why: "<b>Két gráf ugyanaz a kapcsolatrendszer, csak máshogy rajzolva?</b> A probléma furcsa: NP-ben van, de nem tudjuk, P-e vagy sem — a „félig nehéz” zóna rejtélye. A kriptográfia egyik ígéretes egyirányú függvénye épülhet rá."
-  },
-  {
-    name: "Fehérje-hajtogatás problémája",
-    tag: "Mesterséges intelligencia · biológia",
-    category: "ml",
-    year: 1969,
-    badge: "Megoldatlan (predikció)",
-    tex: "\\min_{fold} \\Delta G(\\text{szekvencia})",
-    wiki: "https://en.wikipedia.org/wiki/Protein_folding",
-    illustration: "spiral",
-    why: "<b>Egy aminosav-sorozatból miért pont az a 3D alak lesz?</b> Anfinsen 1969-es tétele szerint a szekvencia meghatározza a szerkezetet, de a kiszámítása NP-nehéz. A DeepMind AlphaFoldja 2020-ban közelítette meg — de az általános megoldás még nyitott."
   }
 ];
 const DOMAINS = {
   matek: {
     label: "Matematika",
     eyebrowText: "Szubjektív rangsor · matematika",
-    titleHTML: "A <em class='title-gold'>legszebb</em> matematikai<br>egyenletek",
+    titleHTML: "A <em>legszebb</em> matematikai<br>egyenletek",
     subHTML: "A szépség közös mintája: minden tétel <b style=\"color:var(--paper)\">váratlan kapcsolatot</b> teremt két látszólag független terület között. Nem a számolás szép — a struktúra.",
     data: MATEK_DATA,
     categoryLabels: {
@@ -6222,7 +5365,7 @@ const DOMAINS = {
   fizika: {
     label: "Fizika · Kémia · Biológia",
     eyebrowText: "Szubjektív rangsor · fizika, kémia & biológia",
-    titleHTML: "A világ <em class='title-gold'>legszebb</em><br>fizikai egyenletei",
+    titleHTML: "A világ <em>legszebb</em><br>fizikai egyenletei",
     subHTML: "Kevés szóval sok valóság. Az igazi szépség ott van, ahol néhány szimbólum az univerzum egy teljes szeletét leírja — és még <b style=\"color:var(--paper)\">megjósol olyat is</b>, amit senki nem mért még.",
     data: FIZIKA_DATA,
     categoryLabels: {
@@ -6250,7 +5393,7 @@ const DOMAINS = {
   informatika: {
     label: "Informatika",
     eyebrowText: "Szubjektív rangsor · algoritmusok, kód, gépi ész",
-    titleHTML: "A <em class='title-gold'>legszebb</em><br>informatikai tételek",
+    titleHTML: "A <em>legszebb</em><br>informatikai tételek",
     subHTML: "Itt a szépség a <b style=\"color:var(--paper)\">struktúra és a korlát</b>: egy jó algoritmus nem erőlködik, hanem átlátja a problémát. A matek és a fizika után ez a harmadik nyelv, amivel a világot leírjuk.",
     data: INFORMATIKA_DATA,
     categoryLabels: {
@@ -6292,6 +5435,7 @@ const deckIllu = document.getElementById("deckIllu");
 const deckFormula = document.getElementById("deckFormula");
 const deckWhy = document.getElementById("deckWhy");
 const deckFav = document.getElementById("deckFav");
+const deckShare = document.getElementById("deckShare");
 const deckJump = document.getElementById("deckJump");
 const deckPrev = document.getElementById("deckPrev");
 const deckNext = document.getElementById("deckNext");
@@ -6303,6 +5447,7 @@ let deckIndex = 0;
 const FAV_SVG = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.3l-5.4 3.2 1.4-6.1-4.7-4.1 6.2-.5L12 4l2.5 5.8 6.2.5-4.7 4.1 1.4 6.1z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>';
 const SHARE_SVG = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 15V4M12 4l-4 4M12 4l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 15v3a2 2 0 002 2h10a2 2 0 002-2v-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
 deckFav.innerHTML = FAV_SVG;
+deckShare.innerHTML = SHARE_SVG;
 
 const filterbar = document.getElementById("filterbar");
 const countDisplay = document.getElementById("countDisplay");
@@ -6449,19 +5594,9 @@ let collapsedInitialized = loadCollapsed() !== null;
 
 function toggleFavorite(key, btnEl) {
   if (favorites.has(key)) { favorites.delete(key); btnEl.classList.remove("active"); }
-  else {
-    favorites.add(key); btnEl.classList.add("active");
-    // Fénycsóva a kedvenc gombnál
-    if (btnEl && btnEl.classList.contains("fav-star")) {
-      btnEl.classList.remove("burst");
-      void btnEl.offsetWidth;
-      btnEl.classList.add("burst");
-      setTimeout(() => btnEl.classList.remove("burst"), 600);
-    }
-  }
+  else { favorites.add(key); btnEl.classList.add("active"); }
   saveFavorites();
   if (onlyFavorites) applyFilter();
-  if (typeof rebuildConstellation === "function") rebuildConstellation();
 }
 
 let toastTimeout;
@@ -6680,24 +5815,13 @@ function buildRow(entry, index, domainKey) {
   const shareBtn = document.createElement("button");
   shareBtn.type = "button";
   shareBtn.className = "icon-btn share-btn";
-  shareBtn.setAttribute("aria-label", "Megosztás");
+  shareBtn.setAttribute("aria-label", "Megosztható kártya letöltése");
   shareBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 15V4M12 4l-4 4M12 4l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 15v3a2 2 0 002 2h10a2 2 0 002-2v-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
   shareBtn.addEventListener("click", (e) => {
     e.stopPropagation();
-    shareEntry(entry, domainKey, shareBtn);
+    generateShareCard(entry, domainKey, shareBtn);
   });
   actions.appendChild(shareBtn);
-
-  const cardBtn = document.createElement("button");
-  cardBtn.type = "button";
-  cardBtn.className = "icon-btn card-btn";
-  cardBtn.setAttribute("aria-label", "Kártya letöltése");
-  cardBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="16" height="16" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M4 9h16M8 4v16" stroke="currentColor" stroke-width="1.6"/></svg>';
-  cardBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    generateShareCard(entry, domainKey, cardBtn);
-  });
-  actions.appendChild(cardBtn);
 
   if (entry.wiki) {
     const wikiBtn = document.createElement("button");
@@ -6763,7 +5887,6 @@ function buildFilterBar(domainKey) {
 }
 
 function renderGrid() {
-  if (viewMode === "quiz") return; // játék módban a gridet nem rajzoljuk
   const domain = DOMAINS[activeDomain];
   grid.innerHTML = "";
   headerElements = [];
@@ -6991,20 +6114,12 @@ viewSwitch.addEventListener("click", (e) => {
   if (!btn || btn.dataset.view === viewMode) return;
   viewMode = btn.dataset.view;
   [...viewSwitch.children].forEach(b => b.classList.toggle("active", b === btn));
-  // Kilépés a játék módból (ha épp ott voltunk)
-  if (viewMode !== "quiz") closeQuiz();
   // Első alkalommal, amikor csoportos nézetre vált a felhasználó, alapból mindent
   // becsukunk — így egy képernyőn átlátható a teljes szerkezet.
   if (!collapsedInitialized && (viewMode === "grouped" || viewMode === "timeline")) {
     collapsedInitialized = true;
     renderGrid();
     setAllGroups(true);
-    return;
-  }
-  if (viewMode === "quiz") {
-    grid.hidden = true;
-    deckView.hidden = true;
-    openQuiz();
     return;
   }
   renderGrid();
@@ -7175,7 +6290,85 @@ function renderTexToImage(tex) {
     const svgString = `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}">
       <foreignObject width="100%" height="100%">
         <div xmlns="http://www.w3.org/1999/xhtml">
-          <style>${cssText}</style>
+          <style>${cssText}  /* ---- Deck (lapozó) mód ---- */
+  .deck-view{
+    display:none;
+    margin-top:clamp(20px,3.5vw,34px);
+    flex-direction:column;align-items:center;gap:18px;
+    animation:dailyRise .5s ease both;
+  }
+  .deck-view:not([hidden]){
+    display:flex;
+  }
+  .deck-card{
+    width:min(680px,100%);
+    background:linear-gradient(180deg,var(--panel),var(--ink-2));
+    border:1px solid var(--highlight-border);
+    border-radius:22px;
+    padding:clamp(24px,4vw,40px);
+    box-shadow:0 24px 70px -30px var(--highlight);
+    text-align:center;
+  }
+  .deck-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px;}
+  .deck-tag{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--tag-color);letter-spacing:.02em;text-align:left;}
+  .deck-year{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--muted);}
+  .deck-name{
+    font-family:"Fraunces",serif;font-weight:500;font-size:clamp(24px,4.4vw,40px);
+    line-height:1.05;margin:0 0 18px;color:var(--paper);
+  }
+  .deck-formula{
+    display:inline-block;width:fit-content;max-width:100%;
+    padding:clamp(18px,3vw,28px) clamp(20px,3.4vw,40px);
+    margin-bottom:18px;border:1px solid var(--line);border-radius:16px;
+    background:linear-gradient(180deg,var(--ink-2),var(--ink));
+    overflow-x:auto;overflow-y:hidden;cursor:pointer;
+  }
+  .deck-formula .katex{font-size:clamp(1.4rem,4.5vw,2.6rem);color:var(--paper);}
+  .deck-why{color:var(--muted);font-size:clamp(14px,1.7vw,16px);line-height:1.65;max-width:62ch;margin:0 auto 20px;}
+  .deck-why b{font-family:"Fraunces",serif;font-weight:600;font-size:1.05em;line-height:1.4;color:var(--ink);background:var(--highlight);-webkit-box-decoration-break:clone;box-decoration-break:clone;border-radius:4px;padding:1px 5px;}
+  .deck-actions{display:flex;align-items:center;justify-content:center;gap:12px;}
+  .deck-jump{
+    font-family:"Inter",sans-serif;font-size:12px;font-weight:600;color:var(--ink);
+    background:linear-gradient(135deg,var(--primary-bright),var(--primary));
+    border:none;padding:9px 20px;border-radius:999px;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease;
+  }
+  .deck-jump:hover{transform:translateY(-1px);box-shadow:0 8px 20px -8px var(--primary);}
+  .deck-nav{display:flex;align-items:center;gap:14px;}
+  .deck-navbtn{
+    width:46px;height:46px;border-radius:50%;font-size:24px;line-height:1;
+    color:var(--paper);background:var(--chip-bg);border:1px solid var(--chip-border);
+    cursor:pointer;transition:all .2s ease;display:flex;align-items:center;justify-content:center;
+  }
+  .deck-navbtn:hover{border-color:var(--chip-hover-border);color:var(--paper);background:var(--panel);}
+  .deck-progress{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--muted);min-width:64px;text-align:center;}
+  .deck-rand{
+    font-size:18px;width:46px;height:46px;border-radius:50%;
+    color:var(--paper);background:var(--chip-bg);border:1px solid var(--chip-border);
+    cursor:pointer;transition:all .2s ease;
+  }
+  .deck-rand:hover{border-color:var(--chip-hover-border);transform:rotate(-12deg);}
+  .deck-formula.swap{animation:deckSwap .35s ease;}
+  @keyframes deckSwap{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+  @media(max-width:560px){
+    .deck-why{display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden;}
+  }
+  /* ---- Illustration (deck/sor) ---- */
+  .deck-illu{
+    width:min(320px,80%);height:160px;margin:0 auto 18px;
+    border:1px solid var(--line);border-radius:14px;
+    background:linear-gradient(180deg,var(--ink-2),var(--ink));
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+  }
+  .deck-illu svg{width:100%;height:100%;}
+  .row-illu{
+    width:84px;height:84px;flex:0 0 auto;border-radius:12px;
+    background:linear-gradient(180deg,var(--ink-2),var(--ink));
+    border:1px solid var(--line);overflow:hidden;margin-right:4px;
+  }
+  .row-illu svg{width:100%;height:100%;}
+  .icon-btn.wiki-btn{color:var(--tag-color);}
+  .icon-btn.wiki-btn:hover{color:var(--primary-bright);border-color:var(--chip-hover-border);}
+</style>
           <div style="font-size:34px;color:#eef1f7;display:inline-block;">${innerHTML}</div>
         </div>
       </foreignObject>
@@ -7235,17 +6428,16 @@ async function generateShareCard(entry, domainKey, btnEl) {
   const texSource = entry.type === "maxwell" ? entry.equations[0] : (entry.type === "noether" ? null : entry.tex);
   let formulaBottom = 300;
   if (texSource) {
-    ctx.save();
-    ctx.fillStyle = palette.muted;
-    ctx.font = "500 17px 'JetBrains Mono', monospace";
-    ctx.textAlign = "right";
-    const fx = W - 64;
-    const fy = 300;
-    const maxLen = 38;
-    let texStr = texSource.replace(/\\/g, "").replace(/[{}]/g, "").replace(/\$/g, "");
-    if (texStr.length > maxLen) texStr = texStr.slice(0, maxLen) + "…";
-    ctx.fillText(texStr, fx, fy);
-    ctx.restore();
+    try {
+      const img = await renderTexToImage(texSource);
+      if (img && img.width > 0) {
+        const maxW = 460, maxH = 150;
+        let iw = img.width, ih = img.height;
+        const scale = Math.min(maxW / iw, maxH / ih, 1.6);
+        iw *= scale; ih *= scale;
+        ctx.drawImage(img, W - iw - 64, 300 - ih / 2, iw, ih);
+      }
+    } catch (e) {}
   }
 
   const plain = stripHtml(entry.why || "").replace(/^<b>|<\/b>$/g, "");
@@ -7291,8 +6483,7 @@ async function generateShareCard(entry, domainKey, btnEl) {
 
   } catch (err) {
     if (btnEl) btnEl.classList.remove("copied");
-    const msg = (err && err.message) ? err.message : String(err);
-    showToast("Hiba: " + msg.slice(0, 120));
+    showToast("Hiba történt a kártya elkészítésekor.");
   }
 }
 
@@ -7419,9 +6610,8 @@ function buildGraph(domainKey) {
 
 function resetGraphView() {
   const rect = graphCanvas.getBoundingClientRect();
-  // Mobilra (kis képernyő) nagyobb alap scale: az 820-as "világ" jobban kitölti a nézetet.
-  const fit = Math.min(rect.width, rect.height) / 560;
-  graphState.scale = Math.max(0.35, Math.min(fit, 1.6));
+  const fit = Math.min(rect.width, rect.height) / 820;
+  graphState.scale = Math.max(0.35, Math.min(fit, 1.1));
   graphState.offsetX = rect.width / 2;
   graphState.offsetY = rect.height / 2;
 }
@@ -7623,52 +6813,6 @@ graphCanvas.addEventListener("wheel", (e) => {
   graphState.scale = newScale;
 }, {passive: false});
 
-// === Pinch-zoom iPhone-on / érintőképernyőn (két ujj) ===
-let pinchPrevDist = 0;
-let pinchPrevMid = null;
-graphCanvas.addEventListener("touchstart", (e) => {
-  if (e.touches.length === 2) {
-    const dx = e.touches[0].clientX - e.touches[1].clientX;
-    const dy = e.touches[0].clientY - e.touches[1].clientY;
-    pinchPrevDist = Math.hypot(dx, dy);
-    pinchPrevMid = {
-      x: (e.touches[0].clientX + e.touches[1].clientX) / 2,
-      y: (e.touches[0].clientY + e.touches[1].clientY) / 2
-    };
-    graphState.dragging = false; // ne ütközzön a drag-vel
-  }
-}, {passive: false});
-graphCanvas.addEventListener("touchmove", (e) => {
-  if (e.touches.length === 2 && pinchPrevDist > 0) {
-    e.preventDefault(); // ne görgessen az oldal pinch közben
-    const dx = e.touches[0].clientX - e.touches[1].clientX;
-    const dy = e.touches[0].clientY - e.touches[1].clientY;
-    const dist = Math.hypot(dx, dy);
-    const mid = {
-      x: (e.touches[0].clientX + e.touches[1].clientX) / 2,
-      y: (e.touches[0].clientY + e.touches[1].clientY) / 2
-    };
-    const rect = graphCanvas.getBoundingClientRect();
-    const mx = mid.x - rect.left, my = mid.y - rect.top;
-    const factor = dist / pinchPrevDist;
-    const newScale = Math.max(0.2, Math.min(5, graphState.scale * factor));
-    graphState.offsetX = mx - (mx - graphState.offsetX) * (newScale / graphState.scale);
-    graphState.offsetY = my - (my - graphState.offsetY) * (newScale / graphState.scale);
-    graphState.scale = newScale;
-    // a két ujj mozgását is követjük (pánik a felezőponttal)
-    if (pinchPrevMid) {
-      graphState.offsetX += mid.x - pinchPrevMid.x;
-      graphState.offsetY += mid.y - pinchPrevMid.y;
-    }
-    pinchPrevDist = dist;
-    pinchPrevMid = mid;
-    drawGraph();
-  }
-}, {passive: false});
-graphCanvas.addEventListener("touchend", (e) => {
-  if (e.touches.length < 2) { pinchPrevDist = 0; pinchPrevMid = null; }
-}, {passive: false});
-
 window.addEventListener("resize", () => {
   if (!graphOverlay.classList.contains("visible")) return;
   resizeGraphCanvas();
@@ -7802,19 +6946,14 @@ function renderDeck() {
   deckFav.onclick = () => { toggleFavorite(favKey, deckFav); };
   deckFormula.innerHTML = "";
   const texSource = e.type === "maxwell" ? e.equations[0] : (e.type === "noether" ? null : e.tex);
-  if (texSource) {
-    // safeKatex már kezeli a KaTeX-hiányos fallbacket (nyers TeX szöveg)
+  if (texSource && window.katex) {
     try { safeKatex(texSource, deckFormula, {throwOnError: false, displayMode: true}); deckFormula.style.display = ""; }
-    catch (err) {
-      deckFormula.style.display = "";
-      deckFormula.textContent = texSource.replace(/\\/g, "").replace(/[{}]/g, "").replace(/\$/g, "");
-    }
+    catch (err) { deckFormula.style.display = "none"; }
   } else if (e.type === "noether") {
-    deckFormula.style.display = ""; deckFormula.textContent = "„" + e.quote + "”";
-  } else {
-    deckFormula.style.display = "none";
-  }
+    deckFormula.style.display = ""; deckFormula.textContent = "\u201e" + e.quote + "\u201d";
+  } else { deckFormula.style.display = "none"; }
   deckFormula.onclick = () => openFormulaLightbox(e);
+  deckShare.onclick = () => generateShareCard(e, activeDomain, deckShare);
   deckJump.onclick = () => {
     // vissza a rangsor nézetre, és odaugrik az elemre
     const targetId = "entry-" + activeDomain + "-" + slugify(e.name);
@@ -7834,75 +6973,10 @@ function deckStep(d) {
   if (deckItems.length === 0) return;
   deckIndex = (deckIndex + d + deckItems.length) % deckItems.length;
   renderDeck();
-  launchConfetti();
 }
 deckPrev.addEventListener("click", () => deckStep(-1));
 deckNext.addEventListener("click", () => deckStep(1));
-deckRand.addEventListener("click", () => { if (deckItems.length) { deckIndex = Math.floor(Math.random()*deckItems.length); renderDeck(); launchConfetti(); } });
-
-/* ===== Konfitti a deck váltásnál ===== */
-const confettiCanvas = document.getElementById("deckConfetti");
-let confettiParticles = [];
-let confettiRAF = null;
-
-function launchConfetti() {
-  if (!confettiCanvas) return;
-  const rect = confettiCanvas.getBoundingClientRect();
-  const dpr = window.devicePixelRatio || 1;
-  confettiCanvas.width = Math.max(1, rect.width * dpr);
-  confettiCanvas.height = Math.max(1, rect.height * dpr);
-  const ctx = confettiCanvas.getContext("2d");
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  // Domain színét követő paletta
-  const cs = getComputedStyle(document.documentElement);
-  const hl = cs.getPropertyValue("--highlight").trim() || "#e8b06a";
-  const pr = cs.getPropertyValue("--primary").trim() || "#5b8dd9";
-  const palette = [hl, pr, "#50ffbe", "#be8cff", "#f2cc8f"];
-  const w = rect.width, h = rect.height;
-  const cx = w / 2, cy = h * 0.42;
-  confettiParticles = [];
-  const count = 70;
-  for (let i = 0; i < count; i++) {
-    const ang = Math.random() * Math.PI * 2;
-    const speed = 4 + Math.random() * 7;
-    confettiParticles.push({
-      x: cx, y: cy,
-      vx: Math.cos(ang) * speed,
-      vy: Math.sin(ang) * speed - 3,
-      size: 4 + Math.random() * 5,
-      rot: Math.random() * Math.PI,
-      vr: (Math.random() - 0.5) * 0.4,
-      color: palette[Math.floor(Math.random() * palette.length)],
-      life: 1
-    });
-  }
-  confettiCanvas.classList.add("active");
-  if (confettiRAF) cancelAnimationFrame(confettiRAF);
-  const start = performance.now();
-  function frame(now) {
-    const t = now - start;
-    ctx.clearRect(0, 0, w, h);
-    let alive = false;
-    for (const p of confettiParticles) {
-      p.vy += 0.22;            // gravitáció
-      p.vx *= 0.99;
-      p.x += p.vx; p.y += p.vy;
-      p.rot += p.vr;
-      p.life = Math.max(0, 1 - t / 900);
-      if (p.life > 0 && p.y < h + 40) alive = true;
-      ctx.save();
-      ctx.globalAlpha = p.life;
-      ctx.translate(p.x, p.y);
-      ctx.rotate(p.rot);
-      ctx.fillStyle = p.color;
-      ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
-      ctx.restore();
-    }
-    if (alive && t < 1200) { confettiRAF = requestAnimationFrame(frame); }
-    else { ctx.clearRect(0, 0, w, h); confettiCanvas.classList.remove("active"); confettiRAF = null; }
-  }
-  confettiRAF = requestAnimationFrame(frame);
-}
+deckRand.addEventListener("click", () => { if (deckItems.length) { deckIndex = Math.floor(Math.random()*deckItems.length); renderDeck(); } });
 document.addEventListener("keydown", (e) => {
   if (deckView.hidden) return;
   if (e.key === "ArrowRight") deckStep(1);
@@ -7917,487 +6991,6 @@ deckCard.addEventListener("touchend", (e) => {
   deckTouchX = null;
 }, {passive:true});
 
-/* =========================================================
-   ÉJSZAKAI ÉGBOLT — kedvencek csillagképe
-   ========================================================= */
-const constellationCanvas = document.getElementById("constellationBg");
-const constellationLabel = (() => {
-  let el = document.getElementById("constellationLabel");
-  if (!el) {
-    el = document.createElement("div");
-    el.id = "constellationLabel";
-    el.className = "constellation-label";
-    document.body.appendChild(el);
-  }
-  return el;
-})();
-let constellationOn = false;
-let constellationStars = [];
-let constellationRAF = null;
-let constellationHover = -1;
-
-function loadNightSky() {
-  try { return localStorage.getItem("tsz_nightsky_v1") === "1"; } catch (e) { return false; }
-}
-function saveNightSky(v) {
-  try { localStorage.setItem("tsz_nightsky_v1", v ? "1" : "0"); } catch (e) {}
-}
-
-// Determinísztikus pozíció a kedvenc kulcsból (stabil, nem ugrál)
-function starHash(str) {
-  let h = 2166136261;
-  for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }
-  return (h >>> 0);
-}
-function starPos(key) {
-  const h = starHash(key);
-  const x = 6 + (h % 880) / 1000 * 88;   // 6% .. 94%
-  const y = 8 + ((h >> 11) % 880) / 1000 * 84; // 8% .. 92%
-  return { x, y };
-}
-
-function findEntryByKey(key) {
-  const idx = key.indexOf(":");
-  const domainKey = key.slice(0, idx);
-  const slug = key.slice(idx + 1);
-  const domain = DOMAINS[domainKey];
-  if (!domain) return null;
-  for (const d of domain.data) {
-    if (slugify(d.name) === slug) return { entry: d, domainKey };
-  }
-  return null;
-}
-
-function rebuildConstellation() {
-  if (!constellationCanvas) return;
-  constellationStars = [];
-  for (const key of favorites) {
-    const found = findEntryByKey(key);
-    if (!found) continue;
-    const p = starPos(key);
-    const tex = found.entry.type === "maxwell" ? (found.entry.equations && found.entry.equations[0]) :
-                (found.entry.type === "noether" ? null : found.entry.tex);
-    constellationStars.push({
-      key, x: p.x, y: p.y,
-      name: found.entry.name,
-      tex: tex ? tex.replace(/\\/g, "").replace(/[{}]/g, "").replace(/\$/g, "") : "",
-      phase: (starHash(key) % 100) / 100 * Math.PI * 2
-    });
-  }
-  if (constellationOn && constellationStars.length === 0) {
-    showToast("Még nincsenek kedvenceid — jelölj meg párat a csillaggal!");
-  }
-  if (constellationOn && !constellationRAF) drawConstellation();
-}
-
-function drawConstellation() {
-  if (!constellationCanvas) return;
-  const dpr = window.devicePixelRatio || 1;
-  const w = window.innerWidth, h = window.innerHeight;
-  if (constellationCanvas.width !== w * dpr || constellationCanvas.height !== h * dpr) {
-    constellationCanvas.width = w * dpr;
-    constellationCanvas.height = h * dpr;
-  }
-  const ctx = constellationCanvas.getContext("2d");
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  ctx.clearRect(0, 0, w, h);
-
-  // Auróra-szín a csillagképhez (domain színét követi a testen keresztül)
-  const cs = getComputedStyle(document.documentElement);
-  const hl = cs.getPropertyValue("--highlight").trim() || "#e8b06a";
-  const pr = cs.getPropertyValue("--primary").trim() || "#5b8dd9";
-
-  // Hullámos összekötő vonalak a csillagok között (konstelláció)
-  if (constellationStars.length > 1) {
-    ctx.save();
-    ctx.strokeStyle = "rgba(140,170,255,0.18)";
-    ctx.lineWidth = 1;
-    for (let i = 0; i < constellationStars.length - 1; i++) {
-      const a = constellationStars[i], b = constellationStars[i + 1];
-      const ax = a.x / 100 * w, ay = a.y / 100 * h;
-      const bx = b.x / 100 * w, by = b.y / 100 * h;
-      const mx = (ax + bx) / 2, my = (ay + by) / 2 - 26;
-      ctx.beginPath();
-      ctx.moveTo(ax, ay);
-      ctx.quadraticCurveTo(mx, my, bx, by);
-      ctx.stroke();
-    }
-    ctx.restore();
-  }
-
-  // Csillagok (pulzáló glow)
-  const t = performance.now() / 1000;
-  constellationStars.forEach((s, i) => {
-    const px = s.x / 100 * w, py = s.y / 100 * h;
-    const pulse = 0.6 + 0.4 * Math.sin(t * 1.6 + s.phase);
-    const r = 2.4 + pulse * 2.2;
-    const isHover = i === constellationHover;
-    const rr = isHover ? r + 4 : r;
-    const grad = ctx.createRadialGradient(px, py, 0, px, py, rr * 5);
-    grad.addColorStop(0, isHover ? hl : "rgba(235,240,255,0.95)");
-    grad.addColorStop(0.3, isHover ? hl : "rgba(160,190,255,0.55)");
-    grad.addColorStop(1, "rgba(120,150,220,0)");
-    ctx.fillStyle = grad;
-    ctx.beginPath();
-    ctx.arc(px, py, rr * 5, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = isHover ? "#fff" : "rgba(245,248,255,0.95)";
-    ctx.beginPath();
-    ctx.arc(px, py, isHover ? 3 : 2, 0, Math.PI * 2);
-    ctx.fill();
-  });
-
-  if (constellationOn) constellationRAF = requestAnimationFrame(drawConstellation);
-  else { ctx.clearRect(0, 0, w, h); constellationRAF = null; }
-}
-
-function scrollToEntry(domainKey, slug) {
-  // Domain váltás
-  if (domainKey !== activeDomain) {
-    const dbtn = [...domainSwitch.children].find(b => b.dataset.domain === domainKey);
-    if (dbtn) dbtn.click();
-  }
-  // Rangsor nézet
-  if (viewMode !== "rank") {
-    const vbtn = [...viewSwitch.children].find(b => b.dataset.view === "rank");
-    if (vbtn) vbtn.click();
-  }
-  requestAnimationFrame(() => {
-    const el = document.getElementById("entry-" + domainKey + "-" + slug);
-    if (el) {
-      if (el.scrollIntoView) el.scrollIntoView({behavior:"smooth", block:"center"});
-      el.classList.add("highlight-flash");
-      setTimeout(() => el.classList.remove("highlight-flash"), 2300);
-    }
-  });
-}
-
-function setNightSky(on) {
-  constellationOn = on;
-  saveNightSky(on);
-  constellationCanvas.classList.toggle("on", on);
-  document.getElementById("nightSkyBtn").classList.toggle("active", on);
-  document.getElementById("nightSkyBtn").setAttribute("aria-pressed", String(on));
-  if (on) { rebuildConstellation(); if (constellationStars.length) drawConstellation(); }
-  else { if (constellationRAF) { cancelAnimationFrame(constellationRAF); constellationRAF = null; } ctx_clear(); }
-}
-function ctx_clear() { if (constellationCanvas) { const c = constellationCanvas.getContext("2d"); c.clearRect(0,0,constellationCanvas.width,constellationCanvas.height); } }
-
-// Hover / kattintás a canvas-on
-if (constellationCanvas) {
-  constellationCanvas.addEventListener("mousemove", (e) => {
-    if (!constellationOn) return;
-    const w = window.innerWidth, h = window.innerHeight;
-    let hit = -1;
-    constellationStars.forEach((s, i) => {
-      const px = s.x / 100 * w, py = s.y / 100 * h;
-      if (Math.hypot(e.clientX - px, e.clientY - py) < 16) hit = i;
-    });
-    constellationHover = hit;
-    if (hit >= 0) {
-      const s = constellationStars[hit];
-      constellationLabel.innerHTML = s.name + (s.tex ? `<span class="cl-formula">${s.tex}</span>` : "");
-      constellationLabel.style.left = s.x / 100 * w + "px";
-      constellationLabel.style.top = s.y / 100 * h + "px";
-      constellationLabel.classList.add("show");
-      constellationCanvas.style.cursor = "pointer";
-    } else {
-      constellationLabel.classList.remove("show");
-      constellationCanvas.style.cursor = "default";
-    }
-  });
-  constellationCanvas.addEventListener("click", (e) => {
-    if (!constellationOn || constellationHover < 0) return;
-    const s = constellationStars[constellationHover];
-    const key = s.key;
-    const idx = key.indexOf(":");
-    scrollToEntry(key.slice(0, idx), key.slice(idx + 1));
-  });
-  constellationCanvas.addEventListener("mouseleave", () => {
-    constellationHover = -1;
-    constellationLabel.classList.remove("show");
-  });
-  window.addEventListener("resize", () => { if (constellationOn) drawConstellation(); });
-}
-
-document.getElementById("nightSkyBtn").addEventListener("click", () => {
-  setNightSky(!constellationOn);
-  if (constellationOn && constellationStars.length === 0) {
-    showToast("Még nincsenek kedvenceid — jelölj meg párat a ⭐ csillaggal!");
-  }
-});
-
-
-/* =========================================================
-   JÁTÉK MÓD — "Tippeld meg a képletet"
-   ========================================================= */
-const quizOverlay = document.getElementById("quizOverlay");
-const quizPanel = document.getElementById("quizPanel");
-let quizActive = false;
-let quizScore = 0;
-let quizRound = 0;
-const QUIZ_ROUNDS = 10;
-let quizCurrent = null;      // {entry, domainKey, options:[...], correctIndex}
-let quizAnswered = false;
-
-function texForEntry(e) {
-  if (e.type === "maxwell") return e.equations && e.equations[0] ? e.equations[0] : null;
-  if (e.type === "noether") return null; // idézet, nem képlet
-  return e.tex || null;
-}
-
-function quizPool() {
-  // Csak azok a tételek, amelyeknek van képletük (tex / equations)
-  const pool = [];
-  Object.keys(DOMAINS).forEach(dk => {
-    DOMAINS[dk].data.forEach(d => {
-      if (texForEntry(d)) pool.push({ entry: d, domainKey: dk });
-    });
-  });
-  return pool;
-}
-
-function shuffle(arr) {
-  const a = arr.slice();
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-
-function openQuiz() {
-  quizActive = true;
-  quizScore = 0;
-  quizRound = 0;
-  quizOverlay.classList.add("visible");
-  quizOverlay.setAttribute("aria-hidden", "false");
-  document.body.style.overflow = "hidden";
-  quizNextRound();
-}
-
-function closeQuiz() {
-  quizActive = false;
-  quizOverlay.classList.remove("visible");
-  quizOverlay.setAttribute("aria-hidden", "true");
-  document.body.style.overflow = "";
-}
-
-function quizNextRound() {
-  if (quizRound >= QUIZ_ROUNDS) { quizShowSummary(); return; }
-  const pool = quizPool();
-  if (pool.length < 4) { quizShowSummary(); return; }
-  const correct = pool[Math.floor(Math.random() * pool.length)];
-  // 3 ál-képlet ugyanarról a domainről ha lehet, különben bármely más tételről
-  const sameDomain = pool.filter(p => p.domainKey === correct.domainKey && p.entry !== correct.entry && texForEntry(p.entry));
-  const others = shuffle(sameDomain.length >= 3 ? sameDomain : pool.filter(p => p.entry !== correct.entry));
-  const distractors = others.slice(0, 3).map(p => ({ tex: texForEntry(p.entry), entry: p.entry }));
-  const options = shuffle([
-    { tex: texForEntry(correct.entry), entry: correct.entry, correct: true },
-    ...distractors.map(d => ({ ...d, correct: false }))
-  ]);
-  quizCurrent = { entry: correct.entry, domainKey: correct.domainKey, options, correctIndex: options.findIndex(o => o.correct) };
-  quizAnswered = false;
-  renderQuizQuestion();
-}
-
-function renderQuizQuestion() {
-  const e = quizCurrent.entry;
-  const domain = DOMAINS[quizCurrent.domainKey];
-  const catColor = domain.categoryColors ? domain.categoryColors[e.category] : null;
-  const illu = e.illustration ? `<div class="quiz-illu">${buildIllustration(e.illustration, catColor)}</div>` : "";
-  quizPanel.innerHTML = `
-    <div class="quiz-head">
-      <div class="quiz-title">Tippeld meg a <b>képletet</b></div>
-      <div class="quiz-score">Pont: <b id="quizScore">${quizScore}</b> / ${QUIZ_ROUNDS}</div>
-    </div>
-    <div class="quiz-round">${quizRound + 1}. kör / ${QUIZ_ROUNDS}</div>
-    <div class="quiz-name">${e.name}</div>
-    <div class="quiz-tag">${e.tag || ""}</div>
-    <div class="quiz-why">${e.why}</div>
-    ${illu}
-    <div class="quiz-formula-mystery" id="quizMystery">？ ？ ？</div>
-    <div class="quiz-options" id="quizOptions"></div>
-    <div class="quiz-feedback" id="quizFeedback"></div>
-    <div class="quiz-foot">
-      <button type="button" class="quiz-quit" id="quizQuit">Kilépés</button>
-      <button type="button" class="quiz-next" id="quizNext" hidden>Következő →</button>
-    </div>`;
-  const optsEl = document.getElementById("quizOptions");
-  quizCurrent.options.forEach((o, i) => {
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "quiz-opt";
-    btn.dataset.idx = i;
-    if (window.katex) {
-      const span = document.createElement("span");
-      safeKatex(o.tex, span, { throwOnError: false, displayMode: false });
-      btn.appendChild(span);
-    } else {
-      btn.textContent = o.tex.replace(/\\/g, "").replace(/[{}]/g, "").replace(/\$/g, "");
-    }
-    btn.addEventListener("click", () => quizAnswer(i));
-    optsEl.appendChild(btn);
-  });
-  document.getElementById("quizQuit").addEventListener("click", closeQuiz);
-  document.getElementById("quizNext").addEventListener("click", () => { quizRound++; quizNextRound(); });
-}
-
-function quizAnswer(idx) {
-  if (quizAnswered) return;
-  quizAnswered = true;
-  const opts = document.getElementById("quizOptions").children;
-  const correctIdx = quizCurrent.correctIndex;
-  for (let i = 0; i < opts.length; i++) {
-    opts[i].disabled = true;
-    if (i === correctIdx) opts[i].classList.add("correct");
-    else if (i === idx) opts[i].classList.add("wrong");
-  }
-  const mystery = document.getElementById("quizMystery");
-  // Képlet felfedése
-  if (window.katex) {
-    mystery.classList.add("revealed");
-    mystery.innerHTML = "";
-    safeKatex(quizCurrent.options[correctIdx].tex, mystery, { throwOnError: false, displayMode: true });
-  } else {
-    mystery.classList.add("revealed");
-    mystery.textContent = quizCurrent.options[correctIdx].tex.replace(/\\/g, "").replace(/[{}]/g, "").replace(/\$/g, "");
-  }
-  const fb = document.getElementById("quizFeedback");
-  if (idx === correctIdx) {
-    quizScore++;
-    document.getElementById("quizScore").textContent = quizScore;
-    fb.textContent = "✔ Helyes! +1 pont";
-    fb.className = "quiz-feedback ok";
-  } else {
-    fb.textContent = "✘ Nem talált — ez lett volna a helyes.";
-    fb.className = "quiz-feedback no";
-  }
-  document.getElementById("quizNext").hidden = false;
-}
-
-function quizShowSummary() {
-  const pct = Math.round((quizScore / QUIZ_ROUNDS) * 100);
-  let msg = "";
-  if (pct === 100) msg = "Tökéletes! Te vagy a tudományos szépségek mestere.";
-  else if (pct >= 70) msg = "Szép teljesítmény — látszik, hogy jártas vagy a szépségekben.";
-  else if (pct >= 40) msg = "Ígéretes. Nézz vissza a Lapozó módba, és próbáld újra!";
-  else msg = "Gyakorolj még — a Lapozó mód a barátod.";
-  quizPanel.innerHTML = `
-    <div class="quiz-summary">
-      <h3>Vége a menetnek!</h3>
-      <div class="big">${quizScore} / ${QUIZ_ROUNDS}</div>
-      <p>${msg}</p>
-      <div class="quiz-foot" style="justify-content:center;">
-        <button type="button" class="quiz-quit" id="quizQuit2">Bezárás</button>
-        <button type="button" class="quiz-next" id="quizAgain">Újra játszom</button>
-      </div>
-    </div>`;
-  document.getElementById("quizQuit2").addEventListener("click", closeQuiz);
-  document.getElementById("quizAgain").addEventListener("click", () => { quizScore = 0; quizRound = 0; quizNextRound(); });
-}
-
-// Kilépés a játékból Escape-szel, ha a quiz nyitva van (ne ütközzön a deck arrow-kkal)
-document.addEventListener("keydown", (e) => {
-  if (quizActive && e.key === "Escape") closeQuiz();
-});
-
-/* =========================================================
-   OSZD MEG — social share menü
-   ========================================================= */
-const shareBackdrop = document.getElementById("shareBackdrop");
-const shareMenu = document.getElementById("shareMenu");
-let shareMenuOpen = false;
-
-function shareText(entry, domainKey) {
-  const tex = texForEntry(entry);
-  const texPlain = tex ? tex.replace(/\\/g, "").replace(/[{}]/g, "").replace(/\$/g, "").trim() : "";
-  const base = `Halhatatlan tudományos szépség: ${entry.name}`;
-  const formula = texPlain ? ` — ${texPlain}` : "";
-  return `${base}${formula} · #TudomanyosSzepsegek`;
-}
-
-function shareUrl(entry) {
-  return entry.wiki || "https://en.wikipedia.org/wiki/List_of_scientific_equations_named_after_people";
-}
-
-function buildShareMenu(entry, domainKey, anchorEl) {
-  const text = encodeURIComponent(shareText(entry, domainKey));
-  const url = encodeURIComponent(shareUrl(entry));
-  const name = encodeURIComponent(entry.name);
-  const targets = [
-    { label: "X (Twitter)", icon: "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z", href: `https://twitter.com/intent/tweet?text=${text}&url=${url}` },
-    { label: "Facebook", icon: "M22 12a10 10 0 10-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0022 12z", href: `https://www.facebook.com/sharer/sharer.php?u=${url}` },
-    { label: "Reddit", icon: "M14 9.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM9 9.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM12 2a10 10 0 00-9.3 6.3c-.2.6.28 1.2.9 1.2h16.8c.62 0 1.1-.6.9-1.2A10 10 0 0012 2zm-.5 13.8l-1.6-1.5a3.4 3.4 0 01-1.9-1.2.8.8 0 011.3-.9 1.8 1.8 0 001 1.1l1.1 1a4 4 0 005 0l1.1-1a1.8 1.8 0 001 1.1.8.8 0 01.9 1.3 3.4 3.4 0 01-1.9 1.2l-1.6 1.5a1 1 0 01-1.4-1.4l.7-.7H11.2l.7.7a1 1 0 01-1.4 1.4z", href: `https://www.reddit.com/submit?url=${url}&title=${name}` },
-    { label: "WhatsApp", icon: "M17.5 14.4l-2.3-.6a.8.8 0 00-.8.2l-1 1a7 7 0 01-3.4-3.4l1-1a.8.8 0 00.2-.8l-.6-2.3a.8.8 0 00-.8-.6H7.7A3 3 0 004.7 14c1.4 3.4 4 6 7.4 7.4a3 3 0 003.6-2.9v-1.8a.8.8 0 00-.6-.8z", href: `https://api.whatsapp.com/send?text=${text}%20${url}` },
-  ];
-  shareMenu.innerHTML = "";
-  targets.forEach(t => {
-    const a = document.createElement("a");
-    a.href = t.href;
-    a.target = "_blank";
-    a.rel = "noopener";
-    a.setAttribute("role", "menuitem");
-    a.innerHTML = `<svg class="sm-ico" viewBox="0 0 24 24" fill="currentColor"><path d="${t.icon}"/></svg><span>${t.label}</span>`;
-    a.addEventListener("click", () => { closeShareMenu(); });
-    shareMenu.appendChild(a);
-  });
-  const sep = document.createElement("div");
-  sep.className = "sm-sep";
-  shareMenu.appendChild(sep);
-  const copyBtn = document.createElement("button");
-  copyBtn.type = "button";
-  copyBtn.setAttribute("role", "menuitem");
-  copyBtn.innerHTML = `<svg class="sm-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 15l6-6M10 6l1-1a3.5 3.5 0 015 5l-1 1M14 18l-1 1a3.5 3.5 0 01-5-5l1-1" stroke-linecap="round"/></svg><span>Link másolása</span>`;
-  copyBtn.addEventListener("click", () => {
-    const link = shareUrl(entry);
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(link).then(() => showToast("Link másolva!")).catch(() => showToast("Nem sikerült másolni."));
-    } else {
-      showToast(link);
-    }
-    closeShareMenu();
-  });
-  shareMenu.appendChild(copyBtn);
-
-  // Pozicionálás az anchor gomb alatt
-  shareMenu.classList.add("visible");
-  shareBackdrop.classList.add("visible");
-  const rect = anchorEl.getBoundingClientRect();
-  const mw = shareMenu.offsetWidth, mh = shareMenu.offsetHeight;
-  let left = rect.left;
-  if (left + mw > window.innerWidth - 8) left = window.innerWidth - mw - 8;
-  if (left < 8) left = 8;
-  let top = rect.bottom + 6;
-  if (top + mh > window.innerHeight - 8) top = rect.top - mh - 6;
-  shareMenu.style.left = left + "px";
-  shareMenu.style.top = top + "px";
-  shareMenuOpen = true;
-}
-
-function closeShareMenu() {
-  shareMenu.classList.remove("visible");
-  shareBackdrop.classList.remove("visible");
-  shareMenuOpen = false;
-}
-shareBackdrop.addEventListener("click", closeShareMenu);
-
-async function shareEntry(entry, domainKey, anchorEl) {
-  // Mobilon natív megosztás, ha elérhető
-  if (navigator.share) {
-    try {
-      const link = shareUrl(entry);
-      await navigator.share({ title: entry.name, text: shareText(entry, domainKey), url: link });
-      showToast("Megosztva!");
-      return;
-    } catch (e) {
-      if (e && e.name === "AbortError") return;
-      // natív nem sikerült → menu-re váltunk
-    }
-  }
-  buildShareMenu(entry, domainKey, anchorEl);
-}
-
 function init() {
   const total = MATEK_DATA.length + FIZIKA_DATA.length + INFORMATIKA_DATA.length;
   grandTotalEl.innerHTML = `Összesen <b>${total}</b> halhatatlan tudományos szépség a három gyűjteményben`;
@@ -8411,8 +7004,6 @@ function init() {
     const electron = document.querySelector(".logo-electron");
     if (electron) electron.removeAttribute("transform");
   }
-  // Éjszakai égbolt visszaállítása (ha korábban be volt kapcsolva)
-  if (loadNightSky()) setNightSky(true);
 }
 
 function boot() {
@@ -8429,23 +7020,6 @@ function boot() {
       }
     }, 80);
   }
-  // Kozmikus parallax: a háttérrétegek lassabban mozognak, mint a tartalom.
-  const pStars = document.querySelector(".stardust-bg");
-  const pNeb = document.querySelector(".nebula-bg");
-  const pGal = document.querySelector(".galaxy-bg");
-  const pAur = document.querySelector(".aurora-bg");
-  let pTicking = false;
-  function applyParallax() {
-    const y = window.scrollY || window.pageYOffset || 0;
-    if (pStars) pStars.style.transform = "translateY(" + (y * 0.25) + "px)";
-    if (pNeb) pNeb.style.transform = "translateY(" + (y * 0.12) + "px)";
-    if (pGal) pGal.style.transform = "translateY(" + (y * 0.06) + "px) rotate(" + (y * 0.01) + "deg)";
-    if (pAur) pAur.style.transform = "translateY(" + (y * 0.04) + "px)";
-    pTicking = false;
-  }
-  window.addEventListener("scroll", () => {
-    if (!pTicking) { pTicking = true; requestAnimationFrame(applyParallax); }
-  }, {passive: true});
 }
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", boot);

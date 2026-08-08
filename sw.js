@@ -1,10 +1,11 @@
-const CACHE_NAME = "tsz-cache-v2";
+const CACHE_NAME = "tsz-cache-v4";
 const APP_SHELL = [
   "./",
   "./index.html",
   "./manifest.json"
 ];
 
+// Telepítéskor azonnal át akarjuk venni az irányítást: skipWaiting.
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL)).catch(() => {})
@@ -12,13 +13,31 @@ self.addEventListener("install", (event) => {
   self.skipWaiting();
 });
 
+// Aktiváláskor töröljük a régi cache-eket, és azonnal átveszünk minden klienst.
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((names) =>
-      Promise.all(names.filter((n) => n !== CACHE_NAME).map((n) => caches.delete(n)))
-    )
+    Promise.all([
+      caches.keys().then((names) =>
+        Promise.all(names.filter((n) => n !== CACHE_NAME).map((n) => caches.delete(n)))
+      ),
+      self.clients.claim()
+    ])
   );
-  self.clients.claim();
+});
+
+// Ha új SW aktiválódott, szólunk a kliensnek, hogy töltsön újra (így mindig a friss verzió jön).
+self.addEventListener("activate", (event) => {
+  event.waitUntil(
+    self.clients.matchAll({ type: "window" }).then((clients) => {
+      clients.forEach((client) => client.postMessage({ type: "NEW_VERSION" }));
+    })
+  );
+});
+
+self.addEventListener("message", (event) => {
+  if (event.data && event.data.type === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
 });
 
 self.addEventListener("fetch", (event) => {
@@ -29,7 +48,7 @@ self.addEventListener("fetch", (event) => {
 
   if (isHTML) {
     // Hálózat-elsőbbség: mindig a legfrissebb oldalt próbáljuk betölteni,
-    // a gyorsítótár csak akkor lép életbe, ha nincs internetkapcsolat.
+    // a gyorsítótár csak offline esetén lép életbe.
     event.respondWith(
       fetch(req)
         .then((networkRes) => {
