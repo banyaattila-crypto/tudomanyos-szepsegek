@@ -1204,6 +1204,109 @@
   }
   .constellation-label.show{ opacity:1; }
   .constellation-label .cl-formula{ display:block; margin-top:3px; color:var(--highlight); font-size:12px; }
+  /* ---- Weekly Spotlight (Heti kiemelt) — lélegzetelállító hőskártya ---- */
+  .weekly-card{
+    position:relative;overflow:hidden;margin:0 0 22px;border-radius:22px;
+    padding:30px 26px 26px;color:var(--paper);
+    background:
+      radial-gradient(120% 140% at 12% -10%, color-mix(in srgb, var(--primary-bright, #e9c877) 22%, transparent), transparent 55%),
+      radial-gradient(110% 130% at 92% 0%, color-mix(in srgb, #7fd8ff 14%, transparent), transparent 52%),
+      linear-gradient(160deg, #0a1226 0%, #0c0f24 42%, #070a18 100%);
+    border:1px solid color-mix(in srgb, var(--primary, #c9a24b) 30%, transparent);
+    box-shadow:0 22px 60px -28px rgba(0,0,0,.75), inset 0 0 60px -20px color-mix(in srgb, var(--primary, #c9a24b) 22%, transparent);
+    isolation:isolate;
+  }
+  .weekly-card::before{ /* mozgó aurora fátyl */
+    content:"";position:absolute;inset:-30% -10% auto -10%;height:170%;z-index:-2;pointer-events:none;
+    background:
+      radial-gradient(40% 60% at 18% 20%, rgba(201,162,75,.30), transparent 60%),
+      radial-gradient(38% 55% at 72% 12%, rgba(125,163,255,.26), transparent 62%),
+      radial-gradient(45% 70% at 50% 60%, rgba(120,220,255,.16), transparent 60%);
+    animation:weeklyAurora 11s ease-in-out infinite alternate;filter:blur(14px);mix-blend-mode:screen;
+  }
+  .weekly-card::after{ /* gyöngyház csillagszóró */
+    content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.5;
+    background-image:
+      radial-gradient(1.4px 1.4px at 12% 30%, #fff, transparent),
+      radial-gradient(1.2px 1.2px at 28% 72%, #cfe0ff, transparent),
+      radial-gradient(1.6px 1.6px at 64% 22%, #fff, transparent),
+      radial-gradient(1.1px 1.1px at 82% 64%, #fff, transparent),
+      radial-gradient(1.3px 1.3px at 46% 48%, #ffe9b8, transparent);
+    animation:starTwinkle 6s ease-in-out infinite;
+  }
+  @keyframes weeklyAurora{
+    0%{transform:translateX(-7%) skewX(-7deg) scaleY(.9);opacity:.55;}
+    50%{transform:translateX(5%) skewX(5deg) scaleY(1.12);opacity:.92;}
+    100%{transform:translateX(-3%) skewX(2deg) scaleY(1.0);opacity:.7;}
+  }
+  @keyframes starTwinkle{0%,100%{opacity:.35;}50%{opacity:.7;}}
+  .weekly-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px;}
+  .weekly-badge{
+    display:inline-flex;align-items:center;gap:7px;font:600 12px/1 "Inter",sans-serif;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--primary-bright, #e9c877);
+    padding:7px 13px;border-radius:999px;
+    background:color-mix(in srgb, var(--primary, #c9a24b) 14%, transparent);
+    border:1px solid color-mix(in srgb, var(--primary, #c9a24b) 38%, transparent);
+    box-shadow:0 0 18px -4px color-mix(in srgb, var(--primary, #c9a24b) 60%, transparent);
+  }
+  .weekly-star{font-size:15px;filter:drop-shadow(0 0 7px rgba(233,200,119,.8));animation:starPop 3.4s ease-in-out infinite;}
+  @keyframes starPop{0%,100%{transform:scale(1) rotate(0);}50%{transform:scale(1.22) rotate(14deg);}}
+  .weekly-week{margin-left:auto;font:500 13px/1 "JetBrains Mono",monospace;color:var(--muted);letter-spacing:.04em;}
+  .weekly-name{
+    font:600 clamp(1.5rem, 4.6vw, 2.5rem)/1.05 "Fraunces",Georgia,serif;
+    margin:6px 0 2px;color:#fff;letter-spacing:-.01em;
+    text-shadow:0 2px 24px color-mix(in srgb, var(--primary, #c9a24b) 55%, transparent);
+  }
+  .weekly-tag{font:500 13.5px/1.3 "Inter",sans-serif;color:color-mix(in srgb, var(--paper, #eef1f7) 78%, transparent);}
+  .weekly-formula{
+    margin:18px 0 14px;padding:20px 16px;border-radius:16px;
+    background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+    text-align:center;overflow-x:auto;color:var(--paper, #eef1f7);
+  }
+  .weekly-formula .katex{font-size:clamp(1.3rem, 4.2vw, 2.2rem);color:#fff;}
+  .weekly-why{font:400 15px/1.55 "Inter",sans-serif;color:color-mix(in srgb, var(--paper, #eef1f7) 86%, transparent);max-width:62ch;}
+  .weekly-why b{color:var(--primary-bright, #e9c877);font-weight:600;}
+  .weekly-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
+  .weekly-jump{
+    font:600 14px/1 "Inter",sans-serif;color:#0a0f1f;cursor:pointer;
+    background:linear-gradient(180deg, var(--primary-bright, #e9c877), var(--primary, #c9a24b));
+    border:none;border-radius:12px;padding:12px 18px;
+    box-shadow:0 10px 26px -10px color-mix(in srgb, var(--primary, #c9a24b) 80%, transparent);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .weekly-jump:hover{transform:translateY(-2px);box-shadow:0 14px 32px -10px color-mix(in srgb, var(--primary, #c9a24b) 90%, transparent);}
+  .weekly-fav{
+    font:600 14px/1 "Inter",sans-serif;cursor:pointer;color:var(--paper, #eef1f7);
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:12px 16px;
+    display:inline-flex;align-items:center;gap:8px;transition:background .15s ease,border-color .15s ease;
+  }
+  .weekly-fav:hover{background:rgba(255,255,255,.12);border-color:color-mix(in srgb, var(--primary, #c9a24b) 50%, transparent);}
+  .weekly-fav.on{color:var(--primary-bright, #e9c877);border-color:color-mix(in srgb, var(--primary, #c9a24b) 55%, transparent);}
+  .weekly-dismiss{
+    position:absolute;top:14px;right:14px;width:30px;height:30px;border-radius:50%;cursor:pointer;
+    background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:var(--paper, #eef1f7);
+    font-size:14px;line-height:1;display:grid;place-items:center;transition:background .15s ease;
+  }
+  .weekly-dismiss:hover{background:rgba(255,255,255,.16);}
+  /* Globális meteor-zápor */
+  .weekly-meteor{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:0;transition:opacity .6s ease;}
+  .weekly-meteor.on{opacity:1;}
+  .weekly-banner{
+    position:fixed;left:50%;top:18px;transform:translateX(-50%) translateY(-160%);
+    z-index:61;pointer-events:none;padding:11px 22px;border-radius:999px;
+    font:600 14px/1 "Inter",sans-serif;color:#0a0f1f;white-space:nowrap;
+    background:linear-gradient(180deg, var(--primary-bright, #e9c877), var(--primary, #c9a24b));
+    box-shadow:0 12px 34px -10px color-mix(in srgb, var(--primary, #c9a24b) 85%, transparent);
+    transition:transform .7s cubic-bezier(.2,1.3,.4,1);
+  }
+  .weekly-banner.show{transform:translateX(-50%) translateY(0);}
+  @media(max-width:640px){
+    .weekly-card{padding:24px 18px 20px;}
+    .weekly-week{width:100%;margin-left:0;}
+  }
+  @media(prefers-reduced-motion: reduce){
+    .weekly-card::before,.weekly-star,.weekly-card::after{animation:none;}
+  }
 </style>
 </head>
 <body data-domain="matek">
@@ -1212,6 +1315,22 @@
   <canvas class="constellation-bg" id="constellationBg" aria-hidden="true"></canvas>
   <div class="nebula-bg" aria-hidden="true"></div>
   <div class="galaxy-bg" aria-hidden="true"></div>
+
+  <section class="weekly-card" id="weeklyCard" hidden>
+    <button type="button" class="weekly-dismiss" id="weeklyDismiss" aria-label="Elrejtés erre a hétre">✕</button>
+    <div class="weekly-head">
+      <span class="weekly-badge"><span class="weekly-star">✦</span> Heti kiemelt</span>
+      <span class="weekly-week" id="weeklyWeek"></span>
+    </div>
+    <h2 class="weekly-name" id="weeklyName"></h2>
+    <span class="weekly-tag" id="weeklyTag"></span>
+    <div class="weekly-formula" id="weeklyFormula"></div>
+    <p class="weekly-why" id="weeklyWhy"></p>
+    <div class="weekly-actions">
+      <button type="button" class="weekly-jump" id="weeklyJump">Ugrás a tételhez →</button>
+      <button type="button" class="weekly-fav" id="weeklyFav">☆ Kedvenc</button>
+    </div>
+  </section>
   <div class="ghost-bg" id="ghostBg" aria-hidden="true"></div>
 
 <div class="logo-mark" id="logoMark" title="Halhatatlan tudományos szépségek" aria-hidden="true">
@@ -5881,7 +6000,7 @@ const INFORMATIKA_DATA = [
     tag: "Adatszerkezetek",
     category: "algoritmusok",
     year: 1970,
-    tex: "\\text{k hash}\\;\\to\\;\\text{bit tömb}\\;\\to\\;\\text{tagadhatatlan}\\\\;\\nexist\\text{ellentmondás}",
+    tex: "\\text{Bloom-filter}:\\; k\\text{ hash}\\to m\\text{ bit t\\\"omb}",
     wiki: "https://hu.wikipedia.org/wiki/Bloom-filter",
     illustration: "lattice",
     why: "<b>„Nincs benne\" — ezt sosem téveszti el.</b> A „benne van” esetleg téved (false positive), de a hiány tévedhetetlen. Egy tömbnyi bittel milliárd elemet szűr meg, fillérekért."
@@ -5921,7 +6040,7 @@ const INFORMATIKA_DATA = [
     tag: "Valószínűség · mintavétel",
     category: "infoelmelet",
     year: 1733,
-    tex: "\\bar X \\xrightarrow{d} \\mathcal{N}\\!\\left(\\mu,\\,\\tfrac{\\sigma^2}{n}\\right)",
+    tex: "\\bar X \\xrightarrow{d} \\mathcal{N}\\left(\\mu,\\,\\tfrac{\\sigma^2}{n}\\right)",
     wiki: "https://hu.wikipedia.org/wiki/K%C3%B6zponti_hat%C3%A9reloszl%C3%A1s-t%C3%A9tel",
     illustration: "wave",
     why: "<b>A véletlen kiszámíthatóvá válik sokaságban.</b> Függetlenül a kiinduló eloszlástól, az átlaguk normális lesz. Ezen nyugszik a statisztika, az A/B teszt, a biztosítás."
@@ -6189,7 +6308,207 @@ const INFORMATIKA_DATA = [
     illustration: "spiral",
     why: "<b>Egy aminosav-sorozatból miért pont az a 3D alak lesz?</b> Anfinsen 1969-es tétele szerint a szekvencia meghatározza a szerkezetet, de a kiszámítása NP-nehéz. A DeepMind AlphaFoldja 2020-ban közelítette meg — de az általános megoldás még nyitott."
   }
-];
+,
+  {
+    name: "Savitch-tétel",
+    tag: "Komplexitáselmélet · tér",
+    category: "komplexitas",
+    year: 1970,
+    tex: "\text{NSPACE}(s(n)) \subseteq \text{DSPACE}(s(n)^2)",
+    wiki: "https://en.wikipedia.org/wiki/Savitch%27s_theorem",
+    illustration: "spiral",
+    why: "<b>A nemdeterminizmus nem sokkal erősebb, ha csak a tér számít.</b> Bármely nemdeterminisztikus gép által s² tárral megoldható feladatot egy determinisztikus gép is megoldja s² tárral. Meglepő, mert időben a különbség óriási lehet — itt viszont a négyzetes korlát szoros."
+  },
+  {
+    name: "Hierarchia-tételek (idő és tér)",
+    tag: "Komplexitáselmélet · hierarchia",
+    category: "komplexitas",
+    year: 1965,
+    tex: "\text{TIME}(f) \subsetneq \text{TIME}(f\log f),\quad \text{SPACE}(f) \subsetneq \text{SPACE}(f\log f)",
+    wiki: "https://en.wikipedia.org/wiki/Time_hierarchy_theorem",
+    illustration: "wave",
+    why: "<b>Több erőforrás → több megoldható probléma.</b> Aki több időt vagy teret kap, szigorúan több nyelvet ismer fel. A hierarchia-tételek bizonyítják, hogy a komplexitásosztályok valóban rétegeződnek — nincs „legnehezebb” feladat."
+  },
+  {
+    name: "Immerman–Szelepcsényi-tétel",
+    tag: "Komplexitáselmélet · zártság",
+    category: "komplexitas",
+    year: 1987,
+    tex: "\text{NL} = \text{coNL}",
+    wiki: "https://en.wikipedia.org/wiki/Immerman%E2%80%93Szelepcs%C3%A9nyi_theorem",
+    illustration: "lattice",
+    why: "<b>A nemdeterminisztikus log-space önmagának a komplementere.</b> Egy NL-beli „nem létezik” állítás is bizonyítható NL-ben. Az Immerman és Szelepcsényi által (függetlenül) bizonyított tétel forradalmasította a komplexitáselméletet — és Savitch tétele nélkül lehetetlen lett volna."
+  },
+  {
+    name: "Rice-tétel",
+    tag: "Számításelmélet · dönthetetlenség",
+    category: "szamelmelet-it",
+    year: 1951,
+    tex: "\forall S\neq\emptyset,\Sigma^*:\; S\text{ szemantikai} \Rightarrow S\text{ dönthetetlen}",
+    wiki: "https://en.wikipedia.org/wiki/Rice%27s_theorem",
+    illustration: "wave",
+    why: "<b>A programok viselkedéséről lehetetlen általánosan dönteni.</b> Bármely nemtriviális kérdés („terminál?”, „ugyanazt csinálja?”) eldönthetetlen. A fordítóprogramok és a statikus kódelemzők kemény korlátai innen erednek."
+  },
+  {
+    name: "Gödel-tétel (nemteljesség)",
+    tag: "Számításelmélet · alapok",
+    category: "szamelmelet-it",
+    year: 1931,
+    tex: "\\vdash \\text{Igaz} \\;\\nrightarrow\\; \\vdash \\text{Bizonyítható}",
+    wiki: "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems",
+    illustration: "spiral",
+    why: "<b>Minden elég erős rendszer vakfoltos.</b> Bármely ellentmondásmentes formális rendszerben van igaz állítás, amit nem lehet belülről bizonyítani. A matematika és a számítás határköve — és közvetlen rokona a megállási problémának."
+  },
+  {
+    name: "Shannon csatorna-kapacitási tétele",
+    tag: "Információelmélet · csatorna",
+    category: "infoelmelet",
+    year: 1948,
+    tex: "C = B \\log_2\\left(1 + \\frac{S}{N}\\right)",
+    wiki: "https://en.wikipedia.org/wiki/Shannon%E2%80%93Hartley_theorem",
+    illustration: "wave",
+    why: "<b>A zajos csatorna maximális sebessége.</b> Egy adott sávszélességen és zajszinten nem küldhetsz el akármennyi információt hiba nélkül — de a határig elérhető a tökéletes átvitel. Minden WiFi, 5G és kábel mögött ez a formula van."
+  },
+  {
+    name: "Kraft–McMillan-egyenlőtlenség",
+    tag: "Információelmélet · kódolás",
+    category: "infoelmelet",
+    year: 1949,
+    tex: "\sum_i 2^{-l_i} \le 1",
+    wiki: "https://en.wikipedia.org/wiki/Kraft%E2%80%93McMillan_inequality",
+    illustration: "lattice",
+    why: "<b>A prefix-kódok lehetséges hosszai.</b> Csak akkor építhetsz ütközésmentes (prefix-mentes) kódot, ha a szóhosszak teljesítik ezt az egyenlőtlenséget. A ZIP, a Huffman- és az összes tömörítő mögött ez a feltétel áll."
+  },
+  {
+    name: "Max-flow min-cut tétele",
+    tag: "Algoritmusok · gráfok",
+    category: "algoritmusok",
+    year: 1956,
+    tex: "\max\text{ flow} = \min\text{ cut}",
+    wiki: "https://en.wikipedia.org/wiki/Max-flow_min-cut_theorem",
+    illustration: "graph",
+    why: "<b>A legnagyobb áramlat = a legszűkebb keresztmetszet.</b> Bármely hálózatban (úthálózat, adatfolyam, áramkör) a forrástól a nyelőig küldhető maximális mennyiség pontosan a legkisebb vágás kapacitása. Mély összefüggés a gráfelméletben."
+  },
+  {
+    name: "Floyd–Warshall-algoritmus",
+    tag: "Algoritmusok · gráfok",
+    category: "algoritmusok",
+    year: 1962,
+    tex: "d_{ij}^{(k)} = \min(d_{ij}^{(k-1)},\, d_{ik}^{(k-1)}+d_{kj}^{(k-1)})",
+    wiki: "https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm",
+    illustration: "graph",
+    why: "<b>Minden pontközti legrövidebb út, egyetlen táblázatban.</b> Egy háromszoros ciklus dinamikus programozással kiszámolja az összes pár közötti optimális utat. Az útvonaltervező és térképészeti rendszerek működési alapja."
+  },
+  {
+    name: "Karatsuba-algoritmus",
+    tag: "Algoritmusok · szorzás",
+    category: "algoritmusok",
+    year: 1960,
+    tex: "T(n) = 3T(n/2)+O(n) = O(n^{\log_2 3})",
+    wiki: "https://en.wikipedia.org/wiki/Karatsuba_algorithm",
+    illustration: "spiral",
+    why: "<b>Az iskolai szorzás nem a leggyorsabb.</b> Okos osztással és összeadással a Karatsuba-algoritmus kevesebb mint n² művelettel szoroz — az első jel, hogy az „nyilvánvaló” megoldásokat le lehet győzni. A gyors Fourier-szorzás őse."
+  },
+  {
+    name: "Utótagtömb (suffix array)",
+    tag: "Algoritmusok · adatstruktúra",
+    category: "algoritmusok",
+    year: 1990,
+    tex: "\text{SA}[i] = \text{az } i\text{. utótag rangja}",
+    wiki: "https://en.wikipedia.org/wiki/Suffix_array",
+    illustration: "lattice",
+    why: "<b>A szövegkeresés sebessége egyetlen sorrendbe rendezett index.</b> Egy szöveg összes utótagjának betűrendbe állítása lehetővé teszi a mintaillesztést gyakorlatilag konstans időben. A genomikai keresés és a keresőmotorok motorja."
+  },
+  {
+    name: "Zero-knowledge bizonyítások",
+    tag: "Kriptográfia · bizonyítás",
+    category: "kripto",
+    year: 1985,
+    tex: "\text{Ismerem } x,\; \text{de nem árulom el } x",
+    wiki: "https://en.wikipedia.org/wiki/Zero-knowledge_proof",
+    illustration: "spiral",
+    why: "<b>Bizonyíthatod, hogy tudsz valamit, anélkül hogy elárulnád.</b> Egy ZKP után a másik meggyőződik róla, hogy igazad van, de egyetlen bitnyi extra információt sem kap. A blokkláncok és a hitelesítés forradalma."
+  },
+  {
+    name: "Miller–Rabin-prímteszt",
+    tag: "Kriptográfia · prímek",
+    category: "kripto",
+    year: 1980,
+    tex: "a^{n-1} \equiv 1 \pmod n\;?\;(\text{valószínűségi})",
+    wiki: "https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test",
+    illustration: "lattice",
+    why: "<b>Prímet találni villámgyorsan.</b> A Miller–Rabin néhány vizsgálattal mondja meg, hogy egy hatalmas szám nagy valószínűséggel prím-e — nem biztosan, de a hiba esélye tetszőlegesen lecsökkenthető. Az RSA kulcsgenerálása ezen áll."
+  },
+  {
+    name: "VC-dimenzió (Vapnik–Chervonenkis)",
+    tag: "Mesterséges intelligencia · elmélet",
+    category: "ml",
+    year: 1971,
+    tex: "\text{VCdim}(\mathcal{H}) = \max\{n: \mathcal{H}\text{ szétválaszt}\}",
+    wiki: "https://en.wikipedia.org/wiki/VC_dimension",
+    illustration: "wave",
+    why: "<b>Miért tanul általánosan egy modell?</b> A VC-dimenzió megadja, mekkora adathalmazt képes egy hipotézisosztály „elrontás nélkül” megtanulni. A statisztikai tanuláselmélet sarokköve: a túl komplex modell túltanul (overfitting)."
+  },
+  {
+    name: "Transformer / figyelem-mechanizmus",
+    tag: "Mesterséges intelligencia · mélytanulás",
+    category: "ml",
+    year: 2017,
+    tex: "\\text{Attention}(Q,K,V) = \\text{softmax}\\left(\\frac{QK^{T}}{\\sqrt{d_k}}\\right)V",
+    wiki: "https://en.wikipedia.org/wiki/Attention_(machine_learning)",
+    illustration: "graph",
+    why: "<b>Az, ami a modern AI-forradalmat élteti.</b> A figyelem-mechanizmus (attention) lehetővé teszi, hogy a modell bármely két szó között közvetlenül „összekössön”, függetlenül a távolságtól. A GPT, a fordítók és a beszédfelismerés mind erre épül."
+  },
+  {
+    name: "Grover-algoritmus",
+    tag: "Kvantumszámítás · keresés",
+    category: "kvantum-it",
+    year: 1996,
+    tex: "O(\sqrt N)\text{ lépés egy } N\text{ elemű tárban}",
+    wiki: "https://en.wikipedia.org/wiki/Grover%27s_algorithm",
+    illustration: "wave",
+    why: "<b>A négyzetes gyorsítás kvantumon.</b> Ahol a klasszikus keresés N/2 lépés, a Grover-algoritmus √N -nel megtalálja a tűt a szénakazalban. Nem exponenciális, de univerzális gyorsítás — és a kvantum-keresés alapja."
+  },
+  {
+    name: "Shor-algoritmus",
+    tag: "Kvantumszámítás · faktorizáció",
+    category: "kvantum-it",
+    year: 1994,
+    tex: "N\text{ faktorizálása: }O((\log N)^3)",
+    wiki: "https://en.wikipedia.org/wiki/Shor%27s_algorithm",
+    illustration: "spiral",
+    why: "<b>A kvantum számítógép fenyegetése és ígérete.</b> Shor polinom időben faktorizálja a nagy számokat — ami az RSA titkosítását törékennyé tenné egy elég nagy kvantumgépen. Egyben a kvantum-hatékonyság legerősebb bizonyítéka."
+  },
+  {
+    name: "Paxos-algoritmus",
+    tag: "Elosztott rendszerek · konszenzus",
+    category: "elosztott",
+    year: 1989,
+    tex: "\text{ Safety } \wedge \text{ Liveness } \Rightarrow \text{ konszenzus}",
+    wiki: "https://en.wikipedia.org/wiki/Paxos_(computer_science)",
+    illustration: "graph",
+    why: "<b>Hogyan értenek egyet gépek, amelyek közül bármelyik leállhat?</b> A Paxos biztosítja, hogy egy elosztott rendszer stabil konszenzusra jusson még hibák és hálózati késések közepette. A modern adatbázisok és felhőrendszerek szívverése."
+  },
+  {
+    name: "Byzantine Generális",
+    tag: "Elosztott rendszerek · hibatűrés",
+    category: "elosztott",
+    year: 1982,
+    tex: "n \ge 3f+1\text{ csomópont kell a }f\text{ rosszhiszemű ellenére}",
+    wiki: "https://en.wikipedia.org/wiki/Byzantine_fault",
+    illustration: "lattice",
+    why: "<b>A bizánci tábornokok problémája.</b> Ha a csomópontok egy része hazudik vagy szabotál, a rendszernek mégis egyezségre kell jutnia. A blokkláncok és a kritikus infrastruktúrák hibatűrésének elméleti alapja."
+  },
+  {
+    name: "Kőnig-tétel",
+    tag: "Hálózatok & gráfok · párosítás",
+    category: "halozatok",
+    year: 1931,
+    tex: "\text{max párosítás} = \text{min lefogó halmaz}",
+    wiki: "https://en.wikipedia.org/wiki/K%C5%91nig%27s_theorem",
+    illustration: "graph",
+    why: "<b>A legnagyobb párosítás = a legkisebb lefogó.</b> Páros gráfokban a maximálisan párosítható élek száma pontosan a legkisebb csúcslefogó halmaz mérete. A Max-flow min-cut tételel rokon mélység — és az ütemezés, a párosítás, a forgalomelmélet alapja."
+  }];
 const DOMAINS = {
   matek: {
     label: "Matematika",
@@ -6342,6 +6661,17 @@ const dailyTag = document.getElementById("dailyTag");
 const dailyWhy = document.getElementById("dailyWhy");
 const dailyJump = document.getElementById("dailyJump");
 const dailyDismiss = document.getElementById("dailyDismiss");
+const weeklyCard = document.getElementById("weeklyCard");
+const weeklyWeek = document.getElementById("weeklyWeek");
+const weeklyName = document.getElementById("weeklyName");
+const weeklyTag = document.getElementById("weeklyTag");
+const weeklyFormula = document.getElementById("weeklyFormula");
+const weeklyWhy = document.getElementById("weeklyWhy");
+const weeklyJump = document.getElementById("weeklyJump");
+const weeklyFav = document.getElementById("weeklyFav");
+const weeklyDismiss = document.getElementById("weeklyDismiss");
+const weeklyMeteor = document.getElementById("weeklyMeteor");
+const weeklyBanner = document.getElementById("weeklyBanner");
 const graphBtn = document.getElementById("graphBtn");
 const graphOverlay = document.getElementById("graphOverlay");
 const graphCanvas = document.getElementById("graphCanvas");
@@ -8398,6 +8728,146 @@ async function shareEntry(entry, domainKey, anchorEl) {
   buildShareMenu(entry, domainKey, anchorEl);
 }
 
+/* ===== Heti kiemelt (Weekly Spotlight) — lélegzetelállító hőskártya ===== */
+function isoWeekKey(d) {
+  // Hétfőtől kezdődő ISO-hét azonosító: pl. "2026-W32"
+  const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  const dayNum = (date.getUTCDay() + 6) % 7; // hétfő = 0
+  date.setUTCDate(date.getUTCDate() - dayNum + 3); // az adott hét csütörtöke
+  const firstThursday = new Date(Date.UTC(date.getUTCFullYear(), 0, 4));
+  const firstDayNum = (firstThursday.getUTCDay() + 6) % 7;
+  firstThursday.setUTCDate(firstThursday.getUTCDate() - firstDayNum + 3);
+  const week = 1 + Math.round((date - firstThursday) / (7 * 24 * 3600 * 1000));
+  return date.getUTCFullYear() + "-W" + String(week).padStart(2, "0");
+}
+
+let weeklyCurrent = null; // { entry, domain }
+
+function renderWeeklySpotlight() {
+  if (!weeklyCard) return;
+  const today = new Date();
+  const wk = isoWeekKey(today);
+  let dismissed = null;
+  try { dismissed = localStorage.getItem("tsz_weekly_dismissed"); } catch (e) {}
+  if (dismissed === wk) { weeklyCard.hidden = true; return; }
+
+  const pool = [
+    ...MATEK_DATA.map(e => ({ entry: e, domain: "matek" })),
+    ...FIZIKA_DATA.map(e => ({ entry: e, domain: "fizika" })),
+    ...INFORMATIKA_DATA.map(e => ({ entry: e, domain: "info" }))
+  ];
+  if (!pool.length) return;
+
+  // Determináz: ISO-hétszám -> stabil index (minden felhasználó ugyanazt látja a héten)
+  const weekNum = parseInt(wk.split("-W")[1], 10);
+  const pick = pool[(weekNum * 7 + today.getFullYear()) % pool.length];
+  weeklyCurrent = pick;
+  const entry = pick.entry;
+
+  weeklyWeek.textContent = "🗓 " + wk.replace("-", " ").toUpperCase();
+  weeklyName.textContent = entry.name;
+  weeklyTag.textContent = entry.tag || "";
+  weeklyWhy.innerHTML = entry.why || "";
+
+  // Képlet (ugyanaz a logika, mint a daily-nél)
+  weeklyFormula.innerHTML = "";
+  const texSource = entry.type === "maxwell" ? entry.equations[0] : (entry.type === "noether" ? null : entry.tex);
+  if (texSource && window.katex) {
+    try { safeKatex(texSource, weeklyFormula, { throwOnError: false, displayMode: true }); weeklyFormula.style.display = ""; }
+    catch (e) { weeklyFormula.style.display = "none"; }
+  } else if (entry.type === "noether") {
+    weeklyFormula.style.display = ""; weeklyFormula.textContent = "„" + entry.quote + "\"";
+  } else {
+    weeklyFormula.style.display = "none";
+  }
+
+  // Kedvenc állapot
+  const favKey = pick.domain + ":" + slugify(entry.name);
+  weeklyFav.classList.toggle("on", favorites.has(favKey));
+  weeklyFav.textContent = favorites.has(favKey) ? "★ Kedvenc" : "☆ Kedvenc";
+
+  weeklyCard.hidden = false;
+  // Ünnepi meteor-zápor + banner (csak ha nem ma hétfőnként már látta)
+  launchWeeklyMeteors();
+}
+
+function launchWeeklyMeteors() {
+  if (!weeklyMeteor) return;
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const canvas = weeklyMeteor;
+  const ctx = canvas.getContext("2d");
+  function resize() { canvas.width = window.innerWidth * (window.devicePixelRatio || 1); canvas.height = window.innerHeight * (window.devicePixelRatio || 1); }
+  resize();
+  window.addEventListener("resize", resize);
+
+  const meteors = [];
+  const N = 26;
+  for (let i = 0; i < N; i++) meteors.push(spawnMeteor(canvas, true));
+  canvas.classList.add("on");
+  if (weeklyBanner) { weeklyBanner.classList.add("show"); setTimeout(() => weeklyBanner.classList.remove("show"), 3200); }
+
+  let raf = null, startT = performance.now();
+  function frame(t) {
+    const w = canvas.width, h = canvas.height;
+    ctx.clearRect(0, 0, w, h);
+    let alive = 0;
+    for (const m of meteors) {
+      m.x += m.vx; m.y += m.vy; m.life -= 1;
+      if (m.life <= 0 || m.y > h + 50 || m.x > w + 50) { Object.assign(m, spawnMeteor(canvas, false)); continue; }
+      alive++;
+      const grad = ctx.createLinearGradient(m.x, m.y, m.x - m.trail * m.dx, m.y - m.trail * m.dy);
+      grad.addColorStop(0, "rgba(255,255,255,0.95)");
+      grad.addColorStop(0.4, "rgba(233,200,119,0.6)");
+      grad.addColorStop(1, "rgba(233,200,119,0)");
+      ctx.strokeStyle = grad; ctx.lineWidth = m.size; ctx.lineCap = "round";
+      ctx.beginPath(); ctx.moveTo(m.x, m.y); ctx.lineTo(m.x - m.trail * m.dx, m.y - m.trail * m.dy); ctx.stroke();
+      ctx.fillStyle = "rgba(255,255,255,0.95)";
+      ctx.beginPath(); ctx.arc(m.x, m.y, m.size * 0.6, 0, Math.PI * 2); ctx.fill();
+    }
+    if (alive > 0 && t - startT < 4000) raf = requestAnimationFrame(frame);
+    else { canvas.classList.remove("on"); ctx.clearRect(0, 0, w, h); }
+  }
+  if (raf) cancelAnimationFrame(raf);
+  raf = requestAnimationFrame(frame);
+}
+
+function spawnMeteor(canvas, initial) {
+  const w = canvas.width, h = canvas.height;
+  const startX = Math.random() * w * 0.9;
+  const startY = initial ? Math.random() * h * -0.5 : Math.random() * h * -0.3;
+  const ang = (Math.PI / 6) + (Math.random() - 0.5) * 0.5; // ~30°-os lejtés
+  const speed = 6 + Math.random() * 8;
+  const dx = Math.cos(ang), dy = Math.sin(ang);
+  return {
+    x: startX, y: startY,
+    vx: dx * speed, vy: dy * speed,
+    dx, dy, size: 1.2 + Math.random() * 1.8,
+    trail: 14 + Math.random() * 16,
+    life: 60 + Math.random() * 60
+  };
+}
+
+if (weeklyJump) weeklyJump.addEventListener("click", () => {
+  if (!weeklyCurrent) return;
+  scrollToEntry(weeklyCurrent.domain, slugify(weeklyCurrent.entry.name));
+});
+if (weeklyFav) weeklyFav.addEventListener("click", () => {
+  if (!weeklyCurrent) return;
+  const key = weeklyCurrent.domain + ":" + slugify(weeklyCurrent.entry.name);
+  // Helyi gomb frissítése (a toggleFavorite a grid gombokat is kezeli)
+  const fakeBtn = { classList: { add(){}, remove(){} } };
+  const wasFav = favorites.has(key);
+  toggleFavorite(key, fakeBtn);
+  const nowFav = favorites.has(key);
+  weeklyFav.classList.toggle("on", nowFav);
+  weeklyFav.textContent = nowFav ? "★ Kedvenc" : "☆ Kedvenc";
+  if (typeof rebuildConstellation === "function") rebuildConstellation();
+});
+if (weeklyDismiss) weeklyDismiss.addEventListener("click", () => {
+  weeklyCard.hidden = true;
+  try { localStorage.setItem("tsz_weekly_dismissed", isoWeekKey(new Date())); } catch (e) {}
+});
+
 function init() {
   const total = MATEK_DATA.length + FIZIKA_DATA.length + INFORMATIKA_DATA.length;
   grandTotalEl.innerHTML = `Összesen <b>${total}</b> halhatatlan tudományos szépség a három gyűjteményben`;
@@ -8413,6 +8883,8 @@ function init() {
   }
   // Éjszakai égbolt visszaállítása (ha korábban be volt kapcsolva)
   if (loadNightSky()) setNightSky(true);
+  // Heti kiemelt hőskártya (új hét → új tudományos szépség)
+  if (typeof renderWeeklySpotlight === "function") renderWeeklySpotlight();
 }
 
 function boot() {
@@ -8426,6 +8898,7 @@ function boot() {
         if (typeof renderGrid === "function") renderGrid();
         if (typeof renderDailyFeature === "function") renderDailyFeature();
         if (typeof renderDeck === "function" && deckItems && deckItems.length) renderDeck();
+        if (typeof renderWeeklySpotlight === "function") renderWeeklySpotlight();
       }
     }, 80);
   }
@@ -8458,6 +8931,7 @@ if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("sw.js").catch(() => {});
   });
 }
+
 
 </script>
 </body>
