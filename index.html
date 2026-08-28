@@ -9270,6 +9270,16 @@ function starMapHitTest(mx, my) {
   return -1;
 }
 
+function handleStarTap(mx, my) {
+  const i = starMapHitTest(mx, my);
+  if (i < 0) return;
+  const s = starMapStars[i];
+  hideStarLabel();
+  starMapView.hidden = true;        // térkép elrejtése, rangsor nézetbe ugrik
+  if (starMapRAF) { cancelAnimationFrame(starMapRAF); starMapRAF = null; }
+  scrollToEntry(s.domain, s.slug);
+}
+
 function showStarLabel(i, mx, my) {
   const s = starMapStars[i];
   starMapLabel.innerHTML = `<span class="sl-name">${s.name}</span>` + (s.tex ? `<span class="sl-tex">${s.tex}</span>` : "");
@@ -9303,16 +9313,8 @@ if (starMapCanvas) {
   });
   window.addEventListener("mouseup", () => { smDrag = null; });
   starMapCanvas.addEventListener("click", (e) => {
-    if (smMoved) return;
     const rect = starMapCanvas.getBoundingClientRect();
-    const i = starMapHitTest(e.clientX - rect.left, e.clientY - rect.top);
-    if (i >= 0) {
-      const s = starMapStars[i];
-      hideStarLabel();
-      starMapView.hidden = true;        // térkép elrejtése, rangsor nézetbe ugrik
-      if (starMapRAF) { cancelAnimationFrame(starMapRAF); starMapRAF = null; }
-      scrollToEntry(s.domain, s.slug);
-    }
+    handleStarTap(e.clientX - rect.left, e.clientY - rect.top);
   });
   starMapCanvas.addEventListener("wheel", (e) => {
     e.preventDefault();
@@ -9346,7 +9348,7 @@ if (starMapCanvas) {
       const t0 = e.touches[0];
       smView.x = touchStart.ox + (t0.clientX - touchStart.x);
       smView.y = touchStart.oy + (t0.clientY - touchStart.y);
-      if (Math.abs(t0.clientX - touchStart.x) + Math.abs(t0.clientY - touchStart.y) > 6) smMoved = true;
+      if (Math.abs(t0.clientX - touchStart.x) + Math.abs(t0.clientY - touchStart.y) > 10) smMoved = true;
     } else if (touchMode === "zoom" && e.touches.length === 2) {
       const d = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
       const factor = d / Math.max(1, pinchDist);
@@ -9358,14 +9360,7 @@ if (starMapCanvas) {
     if (touchMode === "pan" && !smMoved && e.changedTouches.length) {
       const rect = starMapCanvas.getBoundingClientRect();
       const mx = e.changedTouches[0].clientX - rect.left, my = e.changedTouches[0].clientY - rect.top;
-      const i = starMapHitTest(mx, my);
-      if (i >= 0) {
-        const s = starMapStars[i];
-        hideStarLabel();
-        starMapView.hidden = true;
-        if (starMapRAF) { cancelAnimationFrame(starMapRAF); starMapRAF = null; }
-        scrollToEntry(s.domain, s.slug);
-      }
+      handleStarTap(mx, my);
     }
     touchMode = null;
   });
