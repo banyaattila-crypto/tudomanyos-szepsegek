@@ -645,7 +645,45 @@
     color:var(--highlight);
     font-weight:600;
   }
+
+  /* ---- Univerzum-térkép (star map) ---- */
+  .starmap-view{
+    position:fixed;inset:0;z-index:5;
+    background:
+      radial-gradient(ellipse at 20% 15%, rgba(91,141,217,0.10), transparent 55%),
+      radial-gradient(ellipse at 80% 85%, rgba(232,176,106,0.08), transparent 55%),
+      var(--bg);
+    overflow:hidden;touch-action:none;
   }
+  .starmap-view[hidden]{display:none;}
+  #starMapCanvas{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab;}
+  #starMapCanvas:active{cursor:grabbing;}
+  .starmap-hint{
+    position:absolute;left:50%;bottom:22px;transform:translateX(-50%);
+    font-family:"Inter",sans-serif;font-size:12px;letter-spacing:.06em;
+    color:var(--muted);background:rgba(10,14,24,.55);border:1px solid var(--chip-border);
+    padding:7px 16px;border-radius:999px;backdrop-filter:blur(8px);pointer-events:none;
+    transition:opacity .6s ease;opacity:.85;
+  }
+  .starmap-hint.fade{opacity:0;}
+  .starmap-label{
+    position:absolute;pointer-events:none;z-index:6;max-width:240px;
+    font-family:"JetBrains Mono",monospace;font-size:12px;line-height:1.45;
+    color:var(--paper);background:rgba(10,14,24,.82);
+    border:1px solid var(--highlight-border);border-radius:10px;
+    padding:8px 12px;box-shadow:0 6px 30px rgba(0,0,0,.45);
+    transform:translate(-50%,calc(-100% - 14px));white-space:normal;
+  }
+  .starmap-label .sl-name{color:var(--highlight);font-weight:600;display:block;margin-bottom:2px;}
+  .starmap-label .sl-tex{color:var(--muted);font-size:11px;opacity:.85;}
+  .starmap-reset{
+    position:absolute;top:18px;right:18px;z-index:6;
+    width:42px;height:42px;border-radius:50%;cursor:pointer;
+    background:rgba(10,14,24,.6);border:1px solid var(--chip-border);
+    color:var(--paper);font-size:18px;line-height:1;backdrop-filter:blur(8px);
+    transition:all .2s ease;
+  }
+  .starmap-reset:hover{border-color:var(--highlight-border);color:var(--highlight);}
   .count-display b{color:var(--primary-bright);font-weight:600;}
 
   /* ---- Rows ---- */
@@ -1423,7 +1461,14 @@
   </section>
   <div class="ghost-bg" id="ghostBg" aria-hidden="true"></div>
 
-<div class="logo-mark" id="logoMark" title="Halhatatlan tudományos szépségek" aria-hidden="true">
+  <section class="starmap-view" id="starMapView" hidden aria-live="polite">
+    <canvas id="starMapCanvas" aria-hidden="true"></canvas>
+    <div class="starmap-hint" id="starMapHint">Húzd a térképet · görgővel nagyíts · kattints egy csillagra</div>
+    <div class="starmap-label" id="starMapLabel" hidden></div>
+    <button type="button" class="starmap-reset" id="starMapReset" title="Visszaállítás">⌂</button>
+  </section>
+
+  <div class="logo-mark" id="logoMark" title="Halhatatlan tudományos szépségek" aria-hidden="true">
   <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
     <ellipse cx="32" cy="32" rx="27" ry="12" transform="rotate(28 32 32)" stroke="url(#logoGrad)" stroke-width="1.4" opacity="0.85"/>
     <ellipse cx="32" cy="32" rx="27" ry="12" transform="rotate(-28 32 32)" stroke="url(#logoGrad)" stroke-width="1.4" opacity="0.85"/>
@@ -1497,6 +1542,7 @@
       <button type="button" class="vbtn" data-view="timeline">Idővonal</button>
       <button type="button" class="vbtn" data-view="deck">Lapozó</button>
       <button type="button" class="vbtn" data-view="quiz">Játék</button>
+      <button type="button" class="vbtn" data-view="map">Térkép</button>
     </div>
   </div>
 
@@ -7982,6 +8028,8 @@ viewSwitch.addEventListener("click", (e) => {
   [...viewSwitch.children].forEach(b => b.classList.toggle("active", b === btn));
   // Kilépés a játék módból (ha épp ott voltunk)
   if (viewMode !== "quiz") closeQuiz();
+  // Térkép nézetből kilépés (ha épp ott voltunk)
+  if (viewMode !== "map") closeStarMap();
   // Első alkalommal, amikor csoportos nézetre vált a felhasználó, alapból mindent
   // becsukunk — így egy képernyőn átlátható a teljes szerkezet.
   if (!collapsedInitialized && (viewMode === "grouped" || viewMode === "timeline")) {
@@ -7994,6 +8042,10 @@ viewSwitch.addEventListener("click", (e) => {
     grid.hidden = true;
     deckView.hidden = true;
     openQuiz();
+    return;
+  }
+  if (viewMode === "map") {
+    openStarMap();
     return;
   }
   renderGrid();
@@ -9076,6 +9128,266 @@ function scrollToEntry(domainKey, slug) {
       setTimeout(() => el.classList.remove("highlight-flash"), 2300);
     }
   });
+}
+
+/* ================= Univerzum-térkép (star map) ================= */
+const starMapView = document.getElementById("starMapView");
+const starMapCanvas = document.getElementById("starMapCanvas");
+const starMapLabel = document.getElementById("starMapLabel");
+const starMapHint = document.getElementById("starMapHint");
+const starMapReset = document.getElementById("starMapReset");
+let starMapRAF = null;
+let starMapStars = [];      // {key,domain,slug,x,y,r,color,name,tex,phase}
+let starMapLinks = [];      // [i,j] indexek a starMapStars-ban
+let smView = { x: 0, y: 0, scale: 1 };   // pan/zoom state (world->screen)
+let smHover = -1;
+let smDrag = null;          // {sx,sy,ox,oy}
+let smMoved = false;
+
+// determinisztikus pseudo-random a csillagok helyéhez (stabil elrendezés)
+function smRand(seed) {
+  let s = seed % 2147483647;
+  if (s <= 0) s += 2147483646;
+  return () => { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; };
+}
+
+function buildStarMap() {
+  if (!starMapCanvas) return;
+  starMapStars = [];
+  starMapLinks = [];
+  const domains = [
+    { key: "matek",   cx: 0.22, cy: 0.50, hue: "primary" },
+    { key: "fizika",  cx: 0.50, cy: 0.42, hue: "highlight" },
+    { key: "info",    cx: 0.78, cy: 0.54, hue: "secondary" }
+  ];
+  const colorByCat = {};
+  // gyűjtjük a kategória-színeket domainenként
+  let gi = 0;
+  for (const d of domains) {
+    const dom = DOMAINS[d.key];
+    for (const cat of dom.categoryOrder) {
+      colorByCat[d.key + ":" + cat] = dom.categoryColors[cat] || "#9fb4ff";
+    }
+    const total = dom.data.length;
+    const rng = smRand(1000 + gi * 7);
+    dom.data.forEach((entry, idx) => {
+      const rankFrac = idx / Math.max(1, total - 1);   // 0 (legjobb) .. 1
+      const ang = rng() * Math.PI * 2;
+      const rad = (0.10 + 0.30 * rng()) * (1 - 0.5 * rankFrac);
+      const x = d.cx + Math.cos(ang) * rad;
+      const y = d.cy + Math.sin(ang) * rad * 0.85;
+      const r = 1.8 + (1 - rankFrac) * 3.4;            // rang szerinti méret
+      const tex = entry.type === "maxwell" ? (entry.equations && entry.equations[0]) : entry.tex;
+      starMapStars.push({
+        key: d.key + ":" + entry.slug, domain: d.key, slug: entry.slug,
+        x: x * 100, y: y * 100, r,
+        color: colorByCat[d.key + ":" + entry.category] || "#9fb4ff",
+        name: entry.name,
+        tex: tex ? tex.replace(/\\/g,"").replace(/[{}]/g,"").replace(/\$/g,"") : "",
+        phase: rng() * Math.PI * 2
+      });
+    });
+    gi++;
+  }
+  // related linkek (csak ugyanazon a domainen belül, hogy ne legyen áttekinthetetlen)
+  const keyToIdx = {};
+  starMapStars.forEach((s, i) => { keyToIdx[s.key] = i; });
+  starMapStars.forEach((s, i) => {
+    const entry = findEntryByKey(s.key);
+    if (!entry || !entry.related) return;
+    entry.related.forEach(rel => {
+      if (rel.domain !== s.domain) return;
+      const j = keyToIdx[rel.domain + ":" + slugify(rel.name)];
+      if (j !== undefined && j > i) starMapLinks.push([i, j]);
+    });
+  });
+
+  // kezdeti nézet: minden látszódjon
+  const cv = starMapCanvas;
+  const w = cv.clientWidth || window.innerWidth, h = cv.clientHeight || window.innerHeight;
+  smView = { x: 0, y: 0, scale: Math.min(w, h) / 100 * 0.92 };
+  smHover = -1;
+  if (!starMapRAF) drawStarMap();
+}
+
+function drawStarMap() {
+  if (!starMapCanvas || starMapView.hidden) return;
+  const dpr = window.devicePixelRatio || 1;
+  const w = starMapCanvas.clientWidth || window.innerWidth;
+  const h = starMapCanvas.clientHeight || window.innerHeight;
+  if (starMapCanvas.width !== w * dpr || starMapCanvas.height !== h * dpr) {
+    starMapCanvas.width = w * dpr; starMapCanvas.height = h * dpr;
+  }
+  const ctx = starMapCanvas.getContext("2d");
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, w, h);
+
+  const t = performance.now() / 1000;
+  const toScreen = (wx, wy) => ({ x: w/2 + (wx/100 - 50) * smView.scale + smView.x, y: h/2 + (wy/100 - 50) * smView.scale + smView.y });
+
+  // related vonalak (fátyol)
+  ctx.lineWidth = 1;
+  starMapLinks.forEach(([i, j]) => {
+    const a = toScreen(starMapStars[i].x, starMapStars[i].y);
+    const b = toScreen(starMapStars[j].x, starMapStars[j].y);
+    const hl = (i === smHover || j === smHover);
+    ctx.strokeStyle = hl ? "rgba(232,176,106,0.5)" : "rgba(140,170,255,0.06)";
+    ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+  });
+
+  // csillagok
+  starMapStars.forEach((s, i) => {
+    const p = toScreen(s.x, s.y);
+    if (p.x < -40 || p.x > w + 40 || p.y < -40 || p.y > h + 40) return;
+    const pulse = 0.65 + 0.35 * Math.sin(t * 1.4 + s.phase);
+    const isHover = (i === smHover);
+    const baseR = s.r * (isHover ? 1.6 : 1) * (0.85 + 0.3 * pulse);
+    const glow = baseR * (isHover ? 6 : 3.2);
+    const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, glow);
+    grad.addColorStop(0, isHover ? "#fff" : s.color);
+    grad.addColorStop(0.35, s.color + (isHover ? "" : "88"));
+    grad.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = grad;
+    ctx.beginPath(); ctx.arc(p.x, p.y, glow, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = isHover ? "#fff" : s.color;
+    ctx.beginPath(); ctx.arc(p.x, p.y, isHover ? 2.6 : 1.6, 0, Math.PI * 2); ctx.fill();
+  });
+
+  starMapRAF = requestAnimationFrame(drawStarMap);
+}
+
+function starMapHitTest(mx, my) {
+  const w = starMapCanvas.clientWidth || window.innerWidth;
+  const h = starMapCanvas.clientHeight || window.innerHeight;
+  const toScreen = (wx, wy) => ({ x: w/2 + (wx/100 - 50) * smView.scale + smView.x, y: h/2 + (wy/100 - 50) * smView.scale + smView.y });
+  for (let i = starMapStars.length - 1; i >= 0; i--) {
+    const s = starMapStars[i];
+    const p = toScreen(s.x, s.y);
+    const rr = Math.max(8, s.r * smView.scale * 0.6 + 6);
+    if ((mx - p.x) ** 2 + (my - p.y) ** 2 <= rr * rr) return i;
+  }
+  return -1;
+}
+
+function showStarLabel(i, mx, my) {
+  const s = starMapStars[i];
+  starMapLabel.innerHTML = `<span class="sl-name">${s.name}</span>` + (s.tex ? `<span class="sl-tex">${s.tex}</span>` : "");
+  starMapLabel.style.left = mx + "px";
+  starMapLabel.style.top = my + "px";
+  starMapLabel.hidden = false;
+}
+function hideStarLabel() { starMapLabel.hidden = true; }
+
+if (starMapCanvas) {
+  starMapCanvas.addEventListener("mousedown", (e) => {
+    smDrag = { sx: e.clientX, sy: e.clientY, ox: smView.x, oy: smView.y };
+    smMoved = false;
+  });
+  window.addEventListener("mousemove", (e) => {
+    if (!starMapView || starMapView.hidden) return;
+    if (smDrag) {
+      smView.x = smDrag.ox + (e.clientX - smDrag.sx);
+      smView.y = smDrag.oy + (e.clientY - smDrag.sy);
+      if (Math.abs(e.clientX - smDrag.sx) + Math.abs(e.clientY - smDrag.sy) > 4) smMoved = true;
+      return;
+    }
+    const rect = starMapCanvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+    const i = starMapHitTest(mx, my);
+    if (i !== smHover) {
+      smHover = i;
+      starMapCanvas.style.cursor = i >= 0 ? "pointer" : "grab";
+    }
+    if (i >= 0) showStarLabel(i, mx, my); else hideStarLabel();
+  });
+  window.addEventListener("mouseup", () => { smDrag = null; });
+  starMapCanvas.addEventListener("click", (e) => {
+    if (smMoved) return;
+    const rect = starMapCanvas.getBoundingClientRect();
+    const i = starMapHitTest(e.clientX - rect.left, e.clientY - rect.top);
+    if (i >= 0) {
+      const s = starMapStars[i];
+      hideStarLabel();
+      starMapView.hidden = true;        // térkép elrejtése, rangsor nézetbe ugrik
+      if (starMapRAF) { cancelAnimationFrame(starMapRAF); starMapRAF = null; }
+      scrollToEntry(s.domain, s.slug);
+    }
+  });
+  starMapCanvas.addEventListener("wheel", (e) => {
+    e.preventDefault();
+    const rect = starMapCanvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+    const factor = e.deltaY < 0 ? 1.12 : 0.89;
+    const newScale = Math.max(0.3, Math.min(8, smView.scale * factor));
+    // zoom az egérpont körül
+    const w = rect.width, h = rect.height;
+    const wx = (mx - w/2 - smView.x) / smView.scale + 50;
+    const wy = (my - h/2 - smView.y) / smView.scale + 50;
+    smView.x = mx - w/2 - (wx - 50) * newScale;
+    smView.y = my - h/2 - (wy - 50) * newScale;
+    smView.scale = newScale;
+  }, { passive: false });
+  // touch (egy ujjal húz, két ujjal zoom)
+  let touchMode = null, touchStart = null, pinchDist = 0;
+  starMapCanvas.addEventListener("touchstart", (e) => {
+    if (e.touches.length === 1) {
+      touchMode = "pan";
+      touchStart = { x: e.touches[0].clientX, y: e.touches[0].clientY, ox: smView.x, oy: smView.y };
+      smMoved = false;
+    } else if (e.touches.length === 2) {
+      touchMode = "zoom";
+      pinchDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+    }
+  }, { passive: false });
+  starMapCanvas.addEventListener("touchmove", (e) => {
+    e.preventDefault();
+    if (touchMode === "pan" && e.touches.length === 1) {
+      const t0 = e.touches[0];
+      smView.x = touchStart.ox + (t0.clientX - touchStart.x);
+      smView.y = touchStart.oy + (t0.clientY - touchStart.y);
+      if (Math.abs(t0.clientX - touchStart.x) + Math.abs(t0.clientY - touchStart.y) > 6) smMoved = true;
+    } else if (touchMode === "zoom" && e.touches.length === 2) {
+      const d = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+      const factor = d / Math.max(1, pinchDist);
+      smView.scale = Math.max(0.3, Math.min(8, smView.scale * factor));
+      pinchDist = d;
+    }
+  }, { passive: false });
+  starMapCanvas.addEventListener("touchend", (e) => {
+    if (touchMode === "pan" && !smMoved && e.changedTouches.length) {
+      const rect = starMapCanvas.getBoundingClientRect();
+      const mx = e.changedTouches[0].clientX - rect.left, my = e.changedTouches[0].clientY - rect.top;
+      const i = starMapHitTest(mx, my);
+      if (i >= 0) {
+        const s = starMapStars[i];
+        hideStarLabel();
+        starMapView.hidden = true;
+        if (starMapRAF) { cancelAnimationFrame(starMapRAF); starMapRAF = null; }
+        scrollToEntry(s.domain, s.slug);
+      }
+    }
+    touchMode = null;
+  });
+  starMapReset.addEventListener("click", () => {
+    const w = starMapCanvas.clientWidth || window.innerWidth, h = starMapCanvas.clientHeight || window.innerHeight;
+    smView = { x: 0, y: 0, scale: Math.min(w, h) / 100 * 0.92 };
+  });
+}
+
+function openStarMap() {
+  starMapView.hidden = false;
+  grid.hidden = true;
+  deckView.hidden = true;
+  closeQuiz && closeQuiz();
+  hideStarLabel();
+  if (starMapHint) starMapHint.classList.remove("fade");
+  setTimeout(() => { if (starMapHint) starMapHint.classList.add("fade"); }, 4200);
+  buildStarMap();
+}
+function closeStarMap() {
+  starMapView.hidden = true;
+  if (starMapRAF) { cancelAnimationFrame(starMapRAF); starMapRAF = null; }
+  hideStarLabel();
 }
 
 function setNightSky(on) {
