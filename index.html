@@ -619,6 +619,33 @@
   .count-display{
     color:var(--muted);font-size:13px;margin:0 0 4px;
   }
+
+  /* ---- Tag cloud (téma szűrő) ---- */
+  .tagcloud{
+    display:flex;flex-wrap:wrap;gap:6px;align-items:center;
+    margin:0 0 clamp(16px,2.5vw,24px);
+  }
+  .tagcloud .tc-label{
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--muted);opacity:.6;margin-right:2px;font-family:"Inter",sans-serif;
+  }
+  .tchip{
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px;letter-spacing:.01em;
+    color:var(--muted);
+    background:transparent;
+    border:1px solid var(--chip-border);
+    padding:4px 10px;border-radius:999px;
+    cursor:pointer;transition:all .18s ease;user-select:none;white-space:nowrap;
+  }
+  .tchip:hover{border-color:var(--chip-hover-border);color:var(--paper);}
+  .tchip.active{
+    background:rgba(127,127,127,.18);
+    border-color:var(--highlight-border);
+    color:var(--highlight);
+    font-weight:600;
+  }
+  }
   .count-display b{color:var(--primary-bright);font-weight:600;}
 
   /* ---- Rows ---- */
@@ -1474,6 +1501,7 @@
   </div>
 
   <div class="filterbar" id="filterbar"></div>
+  <div class="tagcloud" id="tagcloud" aria-label="Téma szűrő"></div>
   <div class="group-controls" id="groupControls">
     <button type="button" class="group-btn" id="expandAllBtn">Mind kinyit</button>
     <button type="button" class="group-btn" id="collapseAllBtn">Mind becsuk</button>
@@ -7160,6 +7188,7 @@ const SHARE_SVG = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org
 deckFav.innerHTML = FAV_SVG;
 
 const filterbar = document.getElementById("filterbar");
+const tagcloud = document.getElementById("tagcloud");
 const countDisplay = document.getElementById("countDisplay");
 const emptyState = document.getElementById("emptyState");
 const eyebrowEl = document.getElementById("eyebrow");
@@ -7219,6 +7248,7 @@ const graphDomainBtn = document.getElementById("graphDomainBtn");
 
 let activeDomain = "matek";
 let activeCategory = "all";
+let activeTagFilter = null;   // téma-szűrő (tag cloud) — a keresőmezőt is meghajtja
 let searchQuery = "";
 let viewMode = "rank";
 let onlyFavorites = false;
@@ -7385,9 +7415,11 @@ function goToRelated(rel) {
   }
   searchBox.value = rel.name;
   searchQuery = rel.name;
+  activeTagFilter = null;
   searchClear.classList.add("visible");
   activeCategory = "all";
   [...filterbar.children].forEach(c => c.classList.toggle("active", c.dataset.cat === "all"));
+  [...tagcloud.children].forEach(c => { if (c.classList.contains("tchip")) c.classList.remove("active"); });
   applyFilter();
   window.scrollTo({top: 0, behavior: "smooth"});
   showToast(`Ugrás ide: „${rel.name}"`);
@@ -7648,6 +7680,72 @@ function buildFilterBar(domainKey) {
   });
 }
 
+// Téma-kulcsszavak kinyerése a tag mezőkből (· és , mentén bontva, év/szerző szűrve)
+function buildTagCloud(domainKey) {
+  const domain = DOMAINS[domainKey];
+  tagcloud.innerHTML = "";
+  const freq = {};
+  const catLabelsLower = new Set(Object.values(domain.categoryLabels).map(s => s.toLowerCase()));
+  domain.data.forEach(d => {
+    if (!d.tag) return;
+    // minden · és , mentén bontunk, aztán a részeket tovább daraboljuk szóköz/perjellel
+    const parts = d.tag.split(/[·,]/).flatMap(p => p.split(/\s+\/\s+|\s+/));
+    parts.forEach(raw => {
+      const t = raw.trim().replace(/[.\u00b7]+$/, "").trim();
+      if (!t) return;
+      if (/^\d{3,4}$/.test(t)) return;            // évszám
+      if (/(Kr\.?\s*e\.?|i\.?\s*e\.?)/i.test(t)) return; // időszámítás maradvány
+      if (t.toLowerCase() === "megoldatlan") return;
+      if (catLabelsLower.has(t.toLowerCase())) return;  // maga a kategória neve
+      if (t.length < 3) return;
+      const key = t.toLowerCase();
+      freq[key] = freq[key] || { label: t, n: 0 };
+      freq[key].n++;
+    });
+  });
+  const top = Object.values(freq)
+    .filter(f => f.n >= 2)
+    .sort((a, b) => b.n - a.n || a.label.localeCompare(b.label))
+    .slice(0, 16);
+
+  const label = document.createElement("span");
+  label.className = "tc-label";
+  label.textContent = "Téma:";
+  tagcloud.appendChild(label);
+
+  top.forEach(f => {
+    const chip = document.createElement("button");
+    chip.type = "button";
+    chip.className = "tchip";
+    chip.dataset.tag = f.label;
+    chip.textContent = f.label;
+    if (activeTagFilter && activeTagFilter.toLowerCase() === f.label.toLowerCase()) {
+      chip.classList.add("active");
+    }
+    chip.addEventListener("click", () => toggleTagFilter(f.label));
+    tagcloud.appendChild(chip);
+  });
+  tagcloud.style.display = top.length ? "flex" : "none";
+}
+
+function toggleTagFilter(tagLabel) {
+  if (activeTagFilter && activeTagFilter.toLowerCase() === tagLabel.toLowerCase()) {
+    activeTagFilter = null;            // ki
+  } else {
+    activeTagFilter = tagLabel;        // be
+  }
+  // tükrözzük a keresőmezőre, hogy a meglévő applyFilter() is találjon
+  searchQuery = activeTagFilter ? activeTagFilter : "";
+  searchBox.value = searchQuery;
+  searchClear.classList.toggle("visible", !!activeTagFilter);
+  // chip-ek állapota
+  [...tagcloud.children].forEach(c => {
+    if (c.classList.contains("tchip")) c.classList.toggle("active",
+      activeTagFilter && activeTagFilter.toLowerCase() === c.dataset.tag.toLowerCase());
+  });
+  applyFilter();
+}
+
 function renderGrid() {
   if (viewMode === "quiz") return; // játék módban a gridet nem rajzoljuk
   const domain = DOMAINS[activeDomain];
@@ -7776,10 +7874,13 @@ function applyFilter() {
   let label;
   if (q !== "") {
     label = `<b>${visibleCount}</b> találat "${searchQuery.trim()}"-ra`
+      + (activeTagFilter ? ` · téma: ${activeTagFilter}` : "")
       + (activeCategory !== "all" ? ` a "${domain.categoryLabels[activeCategory]}" kategóriában` : "")
       + (onlyFavorites ? " a kedvencek között" : "");
   } else if (onlyFavorites) {
     label = `<b>${visibleCount}</b> kedvenc tétel` + (activeCategory !== "all" ? ` a "${domain.categoryLabels[activeCategory]}" kategóriában` : "");
+  } else if (activeTagFilter) {
+    label = `<b>${visibleCount}</b> tétel · téma: ${activeTagFilter}`;
   } else {
     label = activeCategory === "all"
       ? `<b>${domain.data.length}</b> tétel összesen`
@@ -7823,6 +7924,7 @@ function renderDomain(domainKey) {
   const domain = DOMAINS[domainKey];
   activeDomain = domainKey;
   activeCategory = "all";
+  activeTagFilter = null;     // téma-szűrő törlése domain-váltáskor
   searchQuery = "";
   searchBox.value = "";
   searchClear.classList.remove("visible");
@@ -7854,6 +7956,7 @@ function renderDomain(domainKey) {
   });
 
   buildFilterBar(domainKey);
+  buildTagCloud(domainKey);
   renderGrid();
   renderGhostBg(domainKey);
 }
@@ -8199,6 +8302,11 @@ document.addEventListener("keydown", (e) => {
 let searchDebounce;
 searchBox.addEventListener("input", () => {
   searchClear.classList.toggle("visible", searchBox.value.length > 0);
+  // ha a felhasználó kézzel gépel, a téma-szűrő (tag cloud) kikapcsol
+  if (activeTagFilter) {
+    activeTagFilter = null;
+    [...tagcloud.children].forEach(c => { if (c.classList.contains("tchip")) c.classList.remove("active"); });
+  }
   clearTimeout(searchDebounce);
   searchDebounce = setTimeout(() => {
     searchQuery = searchBox.value;
@@ -8209,7 +8317,9 @@ searchBox.addEventListener("input", () => {
 searchClear.addEventListener("click", () => {
   searchBox.value = "";
   searchQuery = "";
+  activeTagFilter = null;
   searchClear.classList.remove("visible");
+  [...tagcloud.children].forEach(c => { if (c.classList.contains("tchip")) c.classList.remove("active"); });
   applyFilter();
   searchBox.focus();
 });
