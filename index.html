@@ -9204,19 +9204,20 @@ function buildStarMap() {
 
   // kezdeti nézet: minden látszódjon
   const cv = starMapCanvas;
-  const w = cv.clientWidth || window.innerWidth, h = cv.clientHeight || window.innerHeight;
+  const w = window.innerWidth || cv.clientWidth || 800, h = window.innerHeight || cv.clientHeight || 600;
   smView = { x: 0, y: 0, scale: Math.min(w, h) / 100 * 0.92 };
   smHover = -1;
-  if (!starMapRAF) drawStarMap();
+  if (!starMapRAF) requestAnimationFrame(drawStarMap);
 }
 
 function drawStarMap() {
   if (!starMapCanvas || starMapView.hidden) return;
   const dpr = window.devicePixelRatio || 1;
-  const w = starMapCanvas.clientWidth || window.innerWidth;
-  const h = starMapCanvas.clientHeight || window.innerHeight;
-  if (starMapCanvas.width !== w * dpr || starMapCanvas.height !== h * dpr) {
-    starMapCanvas.width = w * dpr; starMapCanvas.height = h * dpr;
+  const w = window.innerWidth || starMapCanvas.clientWidth || 800;
+  const h = window.innerHeight || starMapCanvas.clientHeight || 600;
+  if (w === 0 || h === 0) { starMapRAF = requestAnimationFrame(drawStarMap); return; }
+  if (starMapCanvas.width !== Math.floor(w * dpr) || starMapCanvas.height !== Math.floor(h * dpr)) {
+    starMapCanvas.width = Math.floor(w * dpr); starMapCanvas.height = Math.floor(h * dpr);
   }
   const ctx = starMapCanvas.getContext("2d");
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
