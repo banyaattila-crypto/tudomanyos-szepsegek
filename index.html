@@ -9258,8 +9258,8 @@ function drawStarMap() {
 }
 
 function starMapHitTest(mx, my) {
-  const w = starMapCanvas.clientWidth || window.innerWidth;
-  const h = starMapCanvas.clientHeight || window.innerHeight;
+  const w = window.innerWidth || starMapCanvas.clientWidth;
+  const h = window.innerHeight || starMapCanvas.clientHeight;
   const toScreen = (wx, wy) => ({ x: w/2 + (wx - 50) * smView.scale + smView.x, y: h/2 + (wy - 50) * smView.scale + smView.y });
   for (let i = starMapStars.length - 1; i >= 0; i--) {
     const s = starMapStars[i];
