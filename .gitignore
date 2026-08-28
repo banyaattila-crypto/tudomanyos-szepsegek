@@ -1,0 +1,8 @@
+# Backup / scratch files — never commit
+backups/
+*.bak
+index_backup_*.html
+sw-old.js
+tudomanyos-szepsegek.html
+UX-prototipusok.html
+.DS_Store
