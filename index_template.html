@@ -1,0 +1,4099 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Halhatatlan tudományos szépségek — archívum</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0b0f1f">
+<link rel="icon" href="icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Tud. szépségek">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js">
+// ===== EDITOR LOGIC =====
+(function() {
+  var DOMAIN_KEYS = ['matek','fizika','informatika'];
+  var DOMAIN_LABELS = {matek:'Matek',fizika:'Fizika',informatika:'Info'};
+  var currentDomain = 'matek';
+  var currentEntryIdx = -1;
+  var filterText = '';
+
+  var toggle = document.getElementById('editorToggle');
+  var panel = document.getElementById('editorPanel');
+  var listEl = document.getElementById('editorList');
+  var formEl = document.getElementById('editorForm');
+  var actionsEl = document.getElementById('editorActions');
+  var searchInput = document.getElementById('editorSearch');
+  var statusText = document.getElementById('editorStatusText');
+  var onlineStatus = document.getElementById('editorOnlineStatus');
+  var toast = document.getElementById('editorToast');
+
+  function esc(s) {
+    return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;').replace(/>/g,'&gt;');
+  }
+
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toast._timer);
+    toast._timer = setTimeout(function(){ toast.classList.remove('show'); }, 2000);
+  }
+
+  function getData() {
+    return {matek:MATEK_DATA,fizika:FIZIKA_DATA,informatika:INFORMATIKA_DATA}[currentDomain];
+  }
+
+  function waitForData() {
+    return new Promise(function(resolve) {
+      if (typeof MATEK_DATA !== 'undefined' && MATEK_DATA.length > 0) { resolve(); return; }
+      var tries = 0;
+      var iv = setInterval(function() {
+        tries++;
+        if ((typeof MATEK_DATA !== 'undefined' && MATEK_DATA.length > 0) || tries > 50) {
+          clearInterval(iv);
+          resolve();
+        }
+      }, 200);
+    });
+  }
+
+  function renderList() {
+    var data = getData();
+    var query = filterText.toLowerCase();
+    listEl.innerHTML = '';
+    data.forEach(function(entry, idx) {
+      if (query && entry.name.toLowerCase().indexOf(query) < 0 &&
+          entry.tag.toLowerCase().indexOf(query) < 0 &&
+          entry.category.toLowerCase().indexOf(query) < 0) return;
+      var div = document.createElement('div');
+      div.className = 'editor-entry' + (idx === currentEntryIdx ? ' active' : '');
+      div.innerHTML = '<span class="editor-entry-name">' + esc(entry.name) + '</span>' +
+        '<span class="editor-entry-year">' + (entry.year || '?') + '</span>';
+      div.addEventListener('click', function() { selectEntry(idx); });
+      listEl.appendChild(div);
+    });
+  }
+
+  function selectEntry(idx) {
+    currentEntryIdx = idx;
+    renderList();
+    renderForm();
+  }
+
+  function renderForm() {
+    var data = getData();
+    var entry = currentEntryIdx >= 0 ? data[currentEntryIdx] : null;
+
+    if (!entry) { formEl.style.display = 'none'; actionsEl.style.display = 'none'; return; }
+    formEl.style.display = 'block';
+    actionsEl.style.display = 'flex';
+
+    var html = '';
+    html += '<label>Név</label><input id="ef_name" value="' + esc(entry.name) + '">';
+    html += '<label>Címke</label><input id="ef_tag" value="' + esc(entry.tag) + '">';
+    html += '<label>Kategória</label><input id="ef_category" value="' + esc(entry.category) + '">';
+    html += '<div class="field-row"><div><label>Év</label><input id="ef_year" type="number" value="' + (entry.year||'') + '"></div>';
+    html += '<div><label>Illustration</label><select id="ef_illus">';
+    ['wave','lattice','graph','spiral'].forEach(function(v) {
+      html += '<option value="' + v + '"' + (entry.illustration===v?' selected':'') + '>' + v + '</option>';
+    });
+    html += '</select></div></div>';
+    html += '<label>Wiki URL</label><input id="ef_wiki" value="' + esc(entry.wiki||'') + '">';
+    html += '<label>TeX / Képlet</label><textarea id="ef_tex">' + esc(entry.tex||'') + '</textarea>';
+    html += '<label>Miért szép? (why)</label><textarea id="ef_why">' + esc(entry.why||'') + '</textarea>';
+    html += '<label>Bővebb (whyMore)</label><textarea id="ef_whyMore">' + esc(entry.whyMore||'') + '</textarea>';
+    if (entry.badge) html += '<label>Badge</label><input id="ef_badge" value="' + esc(entry.badge) + '">';
+    if (entry.type) html += '<label>Type</label><input id="ef_type" value="' + esc(entry.type) + '">';
+    if (entry.pairs) html += '<label>Pairs (JSON)</label><textarea id="ef_pairs">' + esc(JSON.stringify(entry.pairs)) + '</textarea>';
+    if (entry.equations) html += '<label>Equations (JSON)</label><textarea id="ef_equations">' + esc(JSON.stringify(entry.equations)) + '</textarea>';
+    if (entry.special !== undefined) html += '<label><input type="checkbox" id="ef_special"' + (entry.special?' checked':'') + '> special</label>';
+    if (entry.mega !== undefined) html += '<label><input type="checkbox" id="ef_mega"' + (entry.mega?' checked':'') + '> mega</label>';
+    if (entry.scrollHint !== undefined) html += '<label><input type="checkbox" id="ef_scrollHint"' + (entry.scrollHint?' checked':'') + '> scrollHint</label>';
+    if (entry.quote) html += '<label>Quote</label><input id="ef_quote" value="' + esc(entry.quote) + '">';
+    if (entry.derived) html += '<label>Derived</label><input id="ef_derived" value="' + esc(entry.derived) + '">';
+
+    formEl.innerHTML = html;
+  }
+
+  function readForm(entry) {
+    entry.name = document.getElementById('ef_name').value;
+    entry.tag = document.getElementById('ef_tag').value;
+    entry.category = document.getElementById('ef_category').value;
+    var y = document.getElementById('ef_year').value;
+    entry.year = y ? parseInt(y) : null;
+    entry.illustration = document.getElementById('ef_illus').value;
+    entry.wiki = document.getElementById('ef_wiki').value;
+    entry.tex = document.getElementById('ef_tex').value;
+    entry.why = document.getElementById('ef_why').value;
+    entry.whyMore = document.getElementById('ef_whyMore').value;
+    var badge = document.getElementById('ef_badge');
+    if (badge) entry.badge = badge.value;
+    var type = document.getElementById('ef_type');
+    if (type) entry.type = type.value;
+    var pairs = document.getElementById('ef_pairs');
+    if (pairs) { try { entry.pairs = JSON.parse(pairs.value); } catch(e) {} }
+    var equations = document.getElementById('ef_equations');
+    if (equations) { try { entry.equations = JSON.parse(equations.value); } catch(e) {} }
+    var special = document.getElementById('ef_special');
+    if (special) entry.special = special.checked;
+    var mega = document.getElementById('ef_mega');
+    if (mega) entry.mega = mega.checked;
+    var scrollHint = document.getElementById('ef_scrollHint');
+    if (scrollHint) entry.scrollHint = scrollHint.checked;
+    var quote = document.getElementById('ef_quote');
+    if (quote) entry.quote = quote.value;
+    var derived = document.getElementById('ef_derived');
+    if (derived) entry.derived = derived.value;
+  }
+
+  function saveEntry() {
+    var data = getData();
+    if (currentEntryIdx < 0) return;
+    readForm(data[currentEntryIdx]);
+    persistDomain(currentDomain);
+    renderList();
+    showToast('Mentve: ' + data[currentEntryIdx].name);
+  }
+
+  function addEntry() {
+    var data = getData();
+    var newEntry = { name:'Új tétel', tag:'', category:data[0]?data[0].category:'', year:null, tex:'', wiki:'', illustration:'wave', why:'', whyMore:'' };
+    data.push(newEntry);
+    currentEntryIdx = data.length - 1;
+    renderList();
+    renderForm();
+    showToast('Új tétel hozzáadva');
+  }
+
+  function deleteEntry() {
+    var data = getData();
+    if (currentEntryIdx < 0) return;
+    if (!confirm('Töröd: ' + data[currentEntryIdx].name + '?')) return;
+    data.splice(currentEntryIdx, 1);
+    currentEntryIdx = -1;
+    persistDomain(currentDomain);
+    renderList();
+    renderForm();
+    showToast('Törölve');
+  }
+
+  function persistDomain(domain) {
+    try {
+      var key = 'tsz_editor_' + domain;
+      var arr = {matek:MATEK_DATA,fizika:FIZIKA_DATA,informatika:INFORMATIKA_DATA}[domain];
+      localStorage.setItem(key, JSON.stringify(arr));
+    } catch(e) {}
+  }
+
+  function exportJSON() {
+    var domains = {matek:MATEK_DATA,fizika:FIZIKA_DATA,informatika:INFORMATIKA_DATA};
+    Object.keys(domains).forEach(function(key) {
+      var arr = domains[key];
+      var blob = new Blob([JSON.stringify(arr, null, 2)], {type:'application/json'});
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'data/' + key + '.json';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+    showToast('JSON export letöltve');
+  }
+
+  function mergeEditorToData() {
+    // Merge localStorage editor data back into main arrays (for offline edits)
+    DOMAIN_KEYS.forEach(function(domain) {
+      try {
+        var saved = localStorage.getItem('tsz_editor_' + domain);
+        if (saved) {
+          var parsed = JSON.parse(saved);
+          var target = {matek:MATEK_DATA,fizika:FIZIKA_DATA,informatika:INFORMATIKA_DATA}[domain];
+          if (target && parsed && parsed.length === target.length) {
+            parsed.forEach(function(entry, idx) {
+              target[idx] = entry;
+            });
+          }
+        }
+      } catch(e) {}
+    });
+  }
+
+  // Events
+  toggle.addEventListener('click', function() {
+    panel.classList.toggle('open');
+    toggle.textContent = panel.classList.contains('open') ? '✕' : '✏️';
+  });
+  document.querySelector('.editor-close').addEventListener('click', function() {
+    panel.classList.remove('open');
+    toggle.textContent = '✏️';
+  });
+  document.querySelectorAll('.editor-domain-tabs button').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.editor-domain-tabs button').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      currentDomain = btn.dataset.domain;
+      currentEntryIdx = -1;
+      filterText = '';
+      searchInput.value = '';
+      renderList();
+      renderForm();
+    });
+  });
+  searchInput.addEventListener('input', function() {
+    filterText = searchInput.value;
+    renderList();
+  });
+  document.getElementById('editorSave').addEventListener('click', saveEntry);
+  document.getElementById('editorAdd').addEventListener('click', addEntry);
+  document.getElementById('editorDelete').addEventListener('click', deleteEntry);
+  document.getElementById('editorExport').addEventListener('click', exportJSON);
+
+  // Online/offline
+  function updateOnline() {
+    onlineStatus.textContent = navigator.onLine ? '🟢 Online' : '🔴 Offline';
+    onlineStatus.className = navigator.onLine ? 'online' : 'offline';
+    toggle.classList.toggle('offline', !navigator.onLine);
+  }
+  window.addEventListener('online', updateOnline);
+  window.addEventListener('offline', updateOnline);
+  updateOnline();
+
+  // Init
+  waitForData().then(function() {
+    mergeEditorToData();
+    statusText.textContent = 'OK — ' + DOMAIN_LABELS[currentDomain];
+    statusText.className = 'online';
+    renderList();
+  }).catch(function() {
+    statusText.textContent = 'Hiba: adat nem érhető el';
+    statusText.className = 'offline';
+  });
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#eef1f7;
+    --muted:#9aa6c4;
+  }
+  /* ---- Domain: matematika (arany/kék) ---- */
+  body[data-domain="matek"]{
+    --ink:#0b0f1f; --ink-2:#121a33; --panel:#0f1730;
+    --line:rgba(196,168,103,0.18);
+    --primary:#c9a24b; --primary-bright:#e9c877; --rank-dark:#8a6f2e;
+    --highlight:#c9a24b; --highlight-border:rgba(201,162,75,.35);
+    --tag-color:#7da3ff; --tag-border:rgba(125,163,255,.28);
+    --chip-bg:rgba(125,163,255,0.05); --chip-border:rgba(125,163,255,.22);
+    --chip-hover-border:rgba(201,162,75,.45);
+    --paper:#fbfcff; --muted:#c4d0ec;
+    --bg:
+      radial-gradient(1100px 820px at 78% -14%, rgba(125,163,255,0.10), transparent 58%),
+      radial-gradient(900px 700px at -6% 114%, rgba(201,162,75,0.07), transparent 52%),
+      radial-gradient(720px 520px at 50% 122%, rgba(96,128,210,0.05), transparent 60%),
+      linear-gradient(180deg, #05080f 0%, #03060d 55%, #010308 100%);
+    --nebula:
+      radial-gradient(62% 58% at 12% 8%, color-mix(in srgb, var(--highlight) 13%, transparent), transparent 60%),
+      radial-gradient(55% 52% at 88% 14%, color-mix(in srgb, var(--primary) 11%, transparent), transparent 62%),
+      radial-gradient(70% 60% at 78% 92%, color-mix(in srgb, var(--primary) 9%, transparent), transparent 60%),
+      radial-gradient(50% 45% at 20% 95%, color-mix(in srgb, var(--highlight) 8%, transparent), transparent 60%);
+  }
+  /* ---- Domain: fizika/kémia/biológia (cián/arany) ---- */
+  body[data-domain="fizika"]{
+    --ink:#080f1c; --ink-2:#0c1526; --panel:#0d1828;
+    --line:rgba(100,210,255,0.13);
+    --primary:#3eb8f0; --primary-bright:#7fd8ff; --rank-dark:#1a7aaa;
+    --highlight:#e0b44a; --highlight-border:rgba(224,180,74,.3);
+    --tag-color:#3eb8f0; --tag-border:rgba(62,184,240,.3);
+    --chip-bg:rgba(62,184,240,0.05); --chip-border:rgba(62,184,240,.22);
+    --chip-hover-border:rgba(224,180,74,.45);
+    --paper:#f3f8ff; --muted:#a8bdd9;
+    --bg:
+      radial-gradient(1100px 760px at 82% -10%, rgba(62,184,240,0.09), transparent 58%),
+      radial-gradient(820px 560px at -6% 112%, rgba(62,184,240,0.06), transparent 52%),
+      radial-gradient(700px 520px at 50% 122%, rgba(42,150,200,0.045), transparent 60%),
+      linear-gradient(180deg, #04080e 0%, #02060d 55%, #010306 100%);
+    --nebula:
+      radial-gradient(62% 58% at 12% 8%, color-mix(in srgb, var(--highlight) 13%, transparent), transparent 60%),
+      radial-gradient(55% 52% at 88% 14%, color-mix(in srgb, var(--primary) 11%, transparent), transparent 62%),
+      radial-gradient(70% 60% at 78% 92%, color-mix(in srgb, var(--primary) 9%, transparent), transparent 60%),
+      radial-gradient(50% 45% at 20% 95%, color-mix(in srgb, var(--highlight) 8%, transparent), transparent 60%);
+  }
+  /* ---- Domain: informatika (zöld/púrpa) ---- */
+  body[data-domain="informatika"]{
+    --ink:#07120c; --ink-2:#0a1a13; --panel:#0b1c15;
+    --line:rgba(95,224,168,0.14);
+    --primary:#4fd6a0; --primary-bright:#8af0c4; --rank-dark:#1c7a5a;
+    --highlight:#b08cff; --highlight-border:rgba(176,140,255,.32);
+    --tag-color:#4fd6a0; --tag-border:rgba(95,224,168,.3);
+    --chip-bg:rgba(95,224,168,0.05); --chip-border:rgba(95,224,168,.22);
+    --chip-hover-border:rgba(176,140,255,.45);
+    --paper:#eefbf4; --muted:#9fc7b6;
+    --bg:
+      radial-gradient(1100px 760px at 82% -10%, rgba(95,224,168,0.09), transparent 58%),
+      radial-gradient(820px 560px at -6% 112%, rgba(176,140,255,0.06), transparent 52%),
+      radial-gradient(700px 520px at 50% 122%, rgba(95,224,168,0.04), transparent 60%),
+      linear-gradient(180deg, #04080e 0%, #03060d 55%, #010306 100%);
+    --nebula:
+      radial-gradient(62% 58% at 12% 8%, color-mix(in srgb, var(--highlight) 13%, transparent), transparent 60%),
+      radial-gradient(55% 52% at 88% 14%, color-mix(in srgb, var(--primary) 11%, transparent), transparent 62%),
+      radial-gradient(70% 60% at 78% 92%, color-mix(in srgb, var(--primary) 9%, transparent), transparent 60%),
+      radial-gradient(50% 45% at 20% 95%, color-mix(in srgb, var(--highlight) 8%, transparent), transparent 60%);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%; overscroll-behavior:none; touch-action:pan-y;}
+  body{
+    margin:0;
+    font-family:"Inter",system-ui,sans-serif;
+    color:var(--paper);
+    background:var(--bg);
+    min-height:100vh;
+    padding:clamp(20px,5vw,64px) clamp(16px,5vw,48px);
+    line-height:1.5;
+    transition:background 1.1s ease, color .5s ease;
+    overscroll-behavior:none;
+    touch-action:pan-y;
+  }
+  .wrap{max-width:1060px;margin:0 auto;position:relative;z-index:1;}
+
+  /* ---- Domain switcher ---- */
+  .top-row{
+    display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
+  }
+  .domain-switch{
+    display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;
+  }
+  .info-btn{
+    flex:0 0 auto;
+    width:30px;height:30px;border-radius:50%;
+    font-family:"Fraunces",serif;font-style:italic;font-size:15px;
+    color:var(--muted);
+    background:var(--chip-bg);
+    border:1px solid var(--chip-border);
+    cursor:pointer;transition:all .2s ease;
+    display:flex;align-items:center;justify-content:center;
+    touch-action:manipulation;
+  }
+  .info-btn:hover{color:var(--primary-bright);border-color:var(--chip-hover-border);}
+  .top-row-actions{display:flex;gap:8px;flex:0 0 auto;}
+  .dbtn{
+    font-family:"Inter",sans-serif;
+    font-size:13px;font-weight:600;letter-spacing:.02em;
+    color:var(--muted);
+    background:var(--chip-bg);
+    border:1px solid var(--chip-border);
+    padding:10px 20px;border-radius:999px;
+    cursor:pointer;transition:all .25s ease;
+    user-select:none;
+  }
+  .dbtn:hover{border-color:var(--chip-hover-border);color:var(--paper);}
+  .dbtn.active{
+    background:linear-gradient(135deg,var(--primary-bright),var(--primary));
+    border-color:transparent;color:var(--ink);
+    box-shadow:0 6px 22px -8px var(--primary);
+  }
+  .grand-total{
+    color:var(--muted);font-size:12.5px;margin:0 0 clamp(20px,4vw,32px);
+    letter-spacing:.02em;
+  }
+  .grand-total b{color:var(--highlight);font-weight:600;}
+
+  /* ---- Header ---- */
+  header{margin-bottom:clamp(20px,4vw,36px);}
+  .eyebrow{
+    font-size:12px;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--primary);font-weight:600;margin:0 0 14px;
+    transition:color .5s ease;
+  }
+  h1{
+    font-family:"Fraunces",serif;
+    font-weight:500;
+    font-size:clamp(32px,6vw,58px);
+    line-height:1.04;
+    margin:0 0 16px;
+    letter-spacing:-0.01em;
+  }
+  h1 em{
+    font-style:italic;color:var(--primary-bright);
+    text-shadow:0 0 26px var(--primary), 0 0 60px transparent;
+    transition:color .5s ease, text-shadow .5s ease;
+  }
+  .sub{
+    color:var(--muted);max-width:64ch;font-size:clamp(14px,1.6vw,16px);margin:0;
+  }
+  .rule{
+    height:1px;margin:clamp(24px,4vw,36px) 0 0;
+    background:linear-gradient(90deg,var(--primary),transparent 70%);
+    transition:background .5s ease;
+    position:relative;
+  }
+  .rule::before{
+    content:"";
+    position:absolute;left:0;top:50%;
+    width:6px;height:6px;
+    background:var(--primary-bright);
+    transform:translateY(-50%) rotate(45deg);
+    box-shadow:0 0 10px var(--primary-bright);
+    transition:background .5s ease, box-shadow .5s ease;
+  }
+
+  /* ---- A nap szépsége ---- */
+  .daily-card{
+    position:relative;
+    margin:clamp(20px,3.5vw,30px) 0 clamp(6px,1.5vw,12px);
+    padding:clamp(18px,3vw,26px) clamp(18px,3vw,30px);
+    border:1px solid var(--highlight-border);
+    border-radius:16px;
+    background:
+      radial-gradient(120% 140% at 100% 0%, color-mix(in srgb, var(--highlight) 9%, transparent), transparent 62%),
+      linear-gradient(180deg, var(--panel), var(--ink-2));
+    box-shadow:0 14px 40px -22px var(--highlight);
+    animation:dailyRise .7s cubic-bezier(.2,.7,.2,1) both;
+    overflow:hidden;
+  }
+  @keyframes dailyRise{
+    from{opacity:0;transform:translateY(10px);}
+    to{opacity:1;transform:none;}
+  }
+  .daily-head{
+    display:flex;align-items:center;gap:10px;
+    margin-bottom:14px;
+  }
+  .daily-eyebrow{
+    font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;
+    color:var(--highlight);font-weight:700;
+  }
+  .daily-date{
+    font-family:"JetBrains Mono",monospace;
+    font-size:10.5px;color:var(--muted);letter-spacing:.02em;
+  }
+  .daily-dismiss{
+    margin-left:auto;
+    background:none;border:none;color:var(--muted);
+    font-size:12px;cursor:pointer;padding:3px 5px;border-radius:6px;
+    transition:color .2s ease;touch-action:manipulation;
+  }
+  .daily-dismiss:hover{color:var(--paper);}
+  .daily-formula{
+    display:inline-block;width:fit-content;max-width:100%;
+    padding:clamp(12px,2vw,18px) clamp(14px,2.4vw,24px);
+    margin-bottom:14px;
+    border:1px solid var(--line);border-radius:12px;
+    background:linear-gradient(180deg,var(--ink-2),var(--ink));
+    overflow-x:auto;overflow-y:hidden;
+    cursor:pointer;touch-action:manipulation;
+    transition:border-color .25s ease, box-shadow .25s ease;
+  }
+  .daily-formula:hover{border-color:var(--highlight);box-shadow:0 8px 22px -12px var(--highlight);}
+  .daily-formula .katex{font-size:clamp(1.1rem,2.8vw,1.7rem);color:var(--paper);}
+  .daily-meta{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 12px;margin-bottom:8px;}
+  .daily-name{
+    font-family:"Fraunces",serif;font-weight:500;
+    font-size:clamp(17px,2.5vw,23px);color:var(--paper);
+  }
+  .daily-tag{
+    font-family:"JetBrains Mono",monospace;font-size:10.5px;
+    color:var(--muted);
+  }
+  .daily-why{
+    color:var(--muted);font-size:clamp(13px,1.6vw,14.5px);
+    margin:0 0 14px;line-height:1.6;
+  }
+  .daily-why b{
+    font-family:"Caveat",cursive;font-weight:600;font-size:1.3em;
+    line-height:1.5;color:var(--ink);background:var(--highlight);
+    -webkit-box-decoration-break:clone;box-decoration-break:clone;
+    border-radius:4px;padding:1px 5px;
+  }
+  .daily-jump{
+    font-family:"Inter",sans-serif;font-size:12px;font-weight:600;
+    color:var(--ink);
+    background:linear-gradient(135deg,var(--primary-bright),var(--primary));
+    border:none;padding:8px 18px;border-radius:999px;
+    cursor:pointer;transition:transform .2s ease, box-shadow .2s ease;
+    touch-action:manipulation;
+  }
+  .daily-jump:hover{transform:translateY(-1px);box-shadow:0 8px 20px -8px var(--primary);}
+  @media(max-width:560px){
+    .daily-why{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;}
+  }
+
+  /* ---- Toolbar: search + view switch ---- */
+  .toolbar{
+    display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+    margin:clamp(18px,3vw,26px) 0 0;
+  }
+  .search-wrap{
+    position:relative;flex:1 1 240px;min-width:200px;
+  }
+  .search-icon{
+    position:absolute;left:12px;top:50%;transform:translateY(-50%);
+    width:15px;height:15px;color:var(--muted);pointer-events:none;
+  }
+  .search-box{
+    width:100%;
+    font-family:"Inter",sans-serif;font-size:13.5px;
+    color:var(--paper);
+    background:var(--chip-bg);
+    border:1px solid var(--chip-border);
+    border-radius:999px;
+    padding:9px 34px 9px 34px;
+    outline:none;
+    transition:border-color .2s ease, background .5s ease;
+    -webkit-appearance:none;
+  }
+  .search-box::placeholder{color:var(--muted);}
+  .search-box:focus{border-color:var(--primary);}
+  .search-box::-webkit-search-cancel-button{display:none;}
+  .search-clear{
+    position:absolute;right:8px;top:50%;transform:translateY(-50%);
+    width:20px;height:20px;border-radius:50%;
+    background:none;border:none;color:var(--muted);
+    font-size:11px;cursor:pointer;display:none;
+    align-items:center;justify-content:center;
+    transition:color .2s ease;
+  }
+  .search-clear:hover{color:var(--paper);}
+  .search-clear.visible{display:flex;}
+  .view-switch{
+    display:flex;gap:6px;flex:0 0 auto;
+  }
+  .vbtn{
+    font-family:"Inter",sans-serif;font-size:12px;font-weight:600;letter-spacing:.02em;
+    color:var(--muted);
+    background:var(--chip-bg);
+    border:1px solid var(--chip-border);
+    padding:9px 16px;border-radius:999px;
+    cursor:pointer;transition:all .2s ease;
+    white-space:nowrap;
+  }
+  .vbtn:hover{border-color:var(--chip-hover-border);color:var(--paper);}
+  .vbtn.active{
+    background:linear-gradient(135deg,var(--primary-bright),var(--primary));
+    border-color:transparent;color:var(--ink);
+  }
+
+  .fav-toggle{
+    display:flex;align-items:center;gap:6px;
+    font-family:"Inter",sans-serif;font-size:12px;font-weight:600;letter-spacing:.02em;
+    color:var(--muted);
+    background:var(--chip-bg);
+    border:1px solid var(--chip-border);
+    padding:9px 14px;border-radius:999px;
+    cursor:pointer;transition:all .2s ease;
+    white-space:nowrap;flex:0 0 auto;
+  }
+  .fav-toggle svg{transition:fill .2s ease, stroke .2s ease;}
+  .fav-toggle:hover{border-color:var(--chip-hover-border);color:var(--paper);}
+  .fav-toggle.active{
+    background:linear-gradient(135deg,var(--primary-bright),var(--primary));
+    border-color:transparent;color:var(--ink);
+  }
+  .fav-toggle.active svg{fill:var(--ink);stroke:var(--ink);}
+
+  /* ---- Category headers (grouped view) ---- */
+  .category-header{
+    display:flex;align-items:baseline;gap:10px;
+    margin:clamp(28px,4vw,40px) 0 4px;
+    padding-bottom:8px;
+    border-bottom:1px solid var(--line);
+  }
+  .category-header:first-child{margin-top:8px;}
+  .category-header.collapsible{
+    cursor:pointer;
+    touch-action:manipulation;
+    user-select:none;
+    transition:border-color .3s ease, background .2s ease;
+    border-radius:8px 8px 0 0;
+    padding-left:6px;
+  }
+  .category-header.collapsible:hover{
+    background:var(--chip-bg);
+    border-bottom-color:var(--primary);
+  }
+  .collapse-arrow{
+    display:inline-block;
+    color:var(--primary);
+    font-size:12px;
+    transition:transform .25s ease;
+    flex:0 0 auto;
+    width:14px;
+  }
+  .category-header.collapsed .collapse-arrow{
+    transform:rotate(-90deg);
+  }
+  .category-header.collapsed{
+    opacity:.82;
+  }
+  .group-controls{
+    display:none;
+    gap:8px;
+    margin:0 0 14px;
+  }
+  .group-btn{
+    font-family:"JetBrains Mono",monospace;
+    font-size:10.5px;letter-spacing:.04em;
+    color:var(--muted);
+    background:none;
+    border:1px solid var(--line);
+    padding:5px 12px;border-radius:999px;
+    cursor:pointer;transition:all .2s ease;
+    touch-action:manipulation;
+  }
+  .group-btn:hover{border-color:var(--primary);color:var(--primary-bright);}
+  .cat-dot{
+    display:inline-block;width:9px;height:9px;border-radius:50%;
+    margin-right:2px;flex:0 0 auto;
+    box-shadow:0 0 6px currentColor;
+  }
+  .category-header .cat-name{
+    font-family:"Fraunces",serif;font-weight:500;font-style:italic;
+    font-size:clamp(17px,2.2vw,21px);color:var(--primary-bright);
+    transition:color .5s ease;
+  }
+  .category-header .cat-count{
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px;color:var(--muted);letter-spacing:.02em;
+  }
+
+  /* ---- Ghost formula background (ambient signature) ---- */
+  .ghost-bg{
+    position:fixed;inset:0;
+    z-index:0;
+    overflow:hidden;
+    pointer-events:none;
+  }
+  .ghost-formula{
+    position:absolute;
+    color:var(--primary);
+    opacity:.045;
+    white-space:nowrap;
+    will-change:transform;
+    animation:ghostDrift 70s ease-in-out infinite alternate;
+    transition:color 1.1s ease;
+  }
+  .ghost-formula .katex{font-size:inherit;color:inherit;}
+  @keyframes ghostDrift{
+    0%{transform:translate(0,0) rotate(var(--gr,-3deg));}
+    100%{transform:translate(18px,-26px) rotate(calc(var(--gr,-3deg) * -1));}
+  }
+  @media(max-width:900px){
+    .ghost-bg{display:none;}
+  }
+  /* ---- Starfield (obszervatórium) ---- */
+  .stardust-bg{
+    position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+    background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22420%22%20height%3D%22420%22%3E%3Ccircle%20cx%3D%22137.4%22%20cy%3D%2266.1%22%20r%3D%221.32%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.49%22%2F%3E%3Ccircle%20cx%3D%22154.7%22%20cy%3D%2227.9%22%20r%3D%221.16%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.47%22%2F%3E%3Ccircle%20cx%3D%22176.3%22%20cy%3D%22103.2%22%20r%3D%221.21%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.48%22%2F%3E%3Ccircle%20cx%3D%22394.3%22%20cy%3D%22263.8%22%20r%3D%221.24%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.48%22%2F%3E%3Ccircle%20cx%3D%2224.4%22%20cy%3D%2295.1%22%20r%3D%221.21%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.52%22%2F%3E%3Ccircle%20cx%3D%2263.4%22%20cy%3D%2252.5%22%20r%3D%220.94%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.86%22%2F%3E%3Ccircle%20cx%3D%2246.5%22%20cy%3D%22239.3%22%20r%3D%220.81%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.5%22%2F%3E%3Ccircle%20cx%3D%22236.5%22%20cy%3D%22259.0%22%20r%3D%221.15%22%20fill%3D%22%23ffe9c2%22%20opacity%3D%220.72%22%2F%3E%3Ccircle%20cx%3D%22195.8%22%20cy%3D%22384.5%22%20r%3D%221.0%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.57%22%2F%3E%3Ccircle%20cx%3D%22292.0%22%20cy%3D%22104.6%22%20r%3D%221.23%22%20fill%3D%22%23ffe9c2%22%20opacity%3D%220.71%22%2F%3E%3Ccircle%20cx%3D%22304.5%22%20cy%3D%22122.6%22%20r%3D%221.68%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.51%22%2F%3E%3Ccircle%20cx%3D%2272.0%22%20cy%3D%22144.9%22%20r%3D%221.63%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.66%22%2F%3E%3Ccircle%20cx%3D%22319.0%22%20cy%3D%22240.1%22%20r%3D%221.56%22%20fill%3D%22%23ffe9c2%22%20opacity%3D%220.61%22%2F%3E%3Ccircle%20cx%3D%22248.9%22%20cy%3D%22242.9%22%20r%3D%221.1%22%20fill%3D%22%23ffe9c2%22%20opacity%3D%220.87%22%2F%3E%3Ccircle%20cx%3D%22199.3%22%20cy%3D%22277.6%22%20r%3D%220.67%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.8%22%2F%3E%3Ccircle%20cx%3D%22121.3%22%20cy%3D%22162.9%22%20r%3D%221.34%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.46%22%2F%3E%3Ccircle%20cx%3D%22150.5%22%20cy%3D%22255.7%22%20r%3D%221.14%22%20fill%3D%22%23ffe9c2%22%20opacity%3D%220.56%22%2F%3E%3Ccircle%20cx%3D%2257.3%22%20cy%3D%22106.0%22%20r%3D%221.03%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.89%22%2F%3E%3Ccircle%20cx%3D%2272.5%22%20cy%3D%22169.5%22%20r%3D%220.91%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.52%22%2F%3E%3Ccircle%20cx%3D%22360.0%22%20cy%3D%22118.7%22%20r%3D%221.06%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.63%22%2F%3E%3Ccircle%20cx%3D%22398.6%22%20cy%3D%2266.2%22%20r%3D%220.79%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.57%22%2F%3E%3Ccircle%20cx%3D%229.0%22%20cy%3D%22346.4%22%20r%3D%220.8%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.59%22%2F%3E%3Ccircle%20cx%3D%22176.6%22%20cy%3D%22156.1%22%20r%3D%221.22%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.93%22%2F%3E%3Ccircle%20cx%3D%22192.1%22%20cy%3D%22362.8%22%20r%3D%221.65%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.79%22%2F%3E%3Ccircle%20cx%3D%22168.0%22%20cy%3D%22166.4%22%20r%3D%221.13%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.65%22%2F%3E%3Ccircle%20cx%3D%2231.7%22%20cy%3D%2290.0%22%20r%3D%220.78%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.62%22%2F%3E%3Ccircle%20cx%3D%2246.2%22%20cy%3D%22237.5%22%20r%3D%221.19%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.92%22%2F%3E%3Ccircle%20cx%3D%2233.0%22%20cy%3D%2289.7%22%20r%3D%221.01%22%20fill%3D%22%23ffe9c2%22%20opacity%3D%220.77%22%2F%3E%3Ccircle%20cx%3D%22252.1%22%20cy%3D%22199.4%22%20r%3D%220.73%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.69%22%2F%3E%3Ccircle%20cx%3D%22201.9%22%20cy%3D%22132.5%22%20r%3D%220.76%22%20fill%3D%22%23ffe9c2%22%20opacity%3D%220.82%22%2F%3E%3Ccircle%20cx%3D%22201.2%22%20cy%3D%22289.1%22%20r%3D%221.17%22%20fill%3D%22%23ffe9c2%22%20opacity%3D%220.55%22%2F%3E%3Ccircle%20cx%3D%2264.4%22%20cy%3D%22227.8%22%20r%3D%220.63%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.71%22%2F%3E%3Ccircle%20cx%3D%22290.8%22%20cy%3D%22111.6%22%20r%3D%221.0%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.53%22%2F%3E%3Ccircle%20cx%3D%22223.4%22%20cy%3D%22325.0%22%20r%3D%220.96%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.56%22%2F%3E%3Ccircle%20cx%3D%22336.1%22%20cy%3D%22341.2%22%20r%3D%221.41%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.56%22%2F%3E%3Ccircle%20cx%3D%22150.5%22%20cy%3D%2215.9%22%20r%3D%220.63%22%20fill%3D%22%23ffe9c2%22%20opacity%3D%220.59%22%2F%3E%3Ccircle%20cx%3D%2283.8%22%20cy%3D%22253.3%22%20r%3D%220.98%22%20fill%3D%22%23ffe9c2%22%20opacity%3D%220.85%22%2F%3E%3Ccircle%20cx%3D%22397.5%22%20cy%3D%22154.2%22%20r%3D%220.84%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.56%22%2F%3E%3Ccircle%20cx%3D%22143.1%22%20cy%3D%22202.9%22%20r%3D%221.68%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.76%22%2F%3E%3Ccircle%20cx%3D%22201.5%22%20cy%3D%22273.0%22%20r%3D%221.48%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.49%22%2F%3E%3Ccircle%20cx%3D%22378.8%22%20cy%3D%22326.3%22%20r%3D%221.43%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.69%22%2F%3E%3Ccircle%20cx%3D%22182.8%22%20cy%3D%22266.0%22%20r%3D%220.7%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.92%22%2F%3E%3Ccircle%20cx%3D%22194.8%22%20cy%3D%22310.3%22%20r%3D%220.69%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.53%22%2F%3E%3Ccircle%20cx%3D%2215.4%22%20cy%3D%22247.4%22%20r%3D%221.11%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.78%22%2F%3E%3Ccircle%20cx%3D%22274.8%22%20cy%3D%22148.4%22%20r%3D%221.2%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.52%22%2F%3E%3Ccircle%20cx%3D%22333.3%22%20cy%3D%22303.3%22%20r%3D%220.71%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.82%22%2F%3E%3Ccircle%20cx%3D%22182.7%22%20cy%3D%22363.2%22%20r%3D%221.51%22%20fill%3D%22%23ffe9c2%22%20opacity%3D%220.56%22%2F%3E%3Ccircle%20cx%3D%2291.7%22%20cy%3D%22210.5%22%20r%3D%221.44%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.61%22%2F%3E%3Ccircle%20cx%3D%22347.7%22%20cy%3D%2229.1%22%20r%3D%221.41%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.9%22%2F%3E%3Ccircle%20cx%3D%22344.8%22%20cy%3D%22365.8%22%20r%3D%220.74%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.53%22%2F%3E%3Ccircle%20cx%3D%22363.6%22%20cy%3D%22323.9%22%20r%3D%221.27%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.84%22%2F%3E%3Ccircle%20cx%3D%2275.0%22%20cy%3D%22199.1%22%20r%3D%221.4%22%20fill%3D%22%23ffe9c2%22%20opacity%3D%220.73%22%2F%3E%3Ccircle%20cx%3D%22285.1%22%20cy%3D%22222.7%22%20r%3D%221.13%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.84%22%2F%3E%3Ccircle%20cx%3D%22106.4%22%20cy%3D%22118.1%22%20r%3D%221.45%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.7%22%2F%3E%3Ccircle%20cx%3D%22317.1%22%20cy%3D%22379.9%22%20r%3D%221.09%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.76%22%2F%3E%3Ccircle%20cx%3D%22289.4%22%20cy%3D%22190.4%22%20r%3D%221.19%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.69%22%2F%3E%3Ccircle%20cx%3D%22292.1%22%20cy%3D%22365.1%22%20r%3D%221.64%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.58%22%2F%3E%3Ccircle%20cx%3D%22350.1%22%20cy%3D%2260.5%22%20r%3D%220.73%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.67%22%2F%3E%3Ccircle%20cx%3D%22280.5%22%20cy%3D%22180.5%22%20r%3D%220.83%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.6%22%2F%3E%3Ccircle%20cx%3D%22373.6%22%20cy%3D%2267.6%22%20r%3D%221.39%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.78%22%2F%3E%3Ccircle%20cx%3D%22108.3%22%20cy%3D%2260.5%22%20r%3D%221.11%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.82%22%2F%3E%3Ccircle%20cx%3D%22168.1%22%20cy%3D%22204.8%22%20r%3D%221.69%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.87%22%2F%3E%3Ccircle%20cx%3D%22295.0%22%20cy%3D%22413.6%22%20r%3D%221.04%22%20fill%3D%22%23ffe9c2%22%20opacity%3D%220.66%22%2F%3E%3Ccircle%20cx%3D%22135.2%22%20cy%3D%22301.5%22%20r%3D%220.62%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.73%22%2F%3E%3Ccircle%20cx%3D%22293.7%22%20cy%3D%22162.3%22%20r%3D%221.17%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.6%22%2F%3E%3Ccircle%20cx%3D%2250.5%22%20cy%3D%22382.4%22%20r%3D%220.85%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.89%22%2F%3E%3Ccircle%20cx%3D%22113.4%22%20cy%3D%2220.3%22%20r%3D%221.46%22%20fill%3D%22%23cfe0ff%22%20opacity%3D%220.59%22%2F%3E%3Ccircle%20cx%3D%22341.7%22%20cy%3D%22354.0%22%20r%3D%221.34%22%20fill%3D%22%23bcd0ff%22%20opacity%3D%220.92%22%2F%3E%3Ccircle%20cx%3D%2265.5%22%20cy%3D%22382.7%22%20r%3D%221.23%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.8%22%2F%3E%3Ccircle%20cx%3D%22119.0%22%20cy%3D%22333.4%22%20r%3D%220.8%22%20fill%3D%22%23ffe9c2%22%20opacity%3D%220.9%22%2F%3E%3Ccircle%20cx%3D%22359.0%22%20cy%3D%22255.7%22%20r%3D%2272.1%22%20fill%3D%22%233a5a9a%22%20opacity%3D%220.05%22%2F%3E%3Ccircle%20cx%3D%2268.5%22%20cy%3D%22331.1%22%20r%3D%2242.7%22%20fill%3D%22%233a5a9a%22%20opacity%3D%220.05%22%2F%3E%3Ccircle%20cx%3D%22333.3%22%20cy%3D%22194.3%22%20r%3D%2253.6%22%20fill%3D%22%233a5a9a%22%20opacity%3D%220.05%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat:repeat;background-size:420px 420px;
+    opacity:.8;
+    animation:starDrift 320s linear infinite, twinkle 7s ease-in-out infinite;
+  }
+  @keyframes twinkle{
+    0%,100%{opacity:.55;filter:brightness(.85);}
+    50%{opacity:.95;filter:brightness(1.15);}
+  }
+  .nebula-bg{
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:var(--nebula);
+    mix-blend-mode:screen;
+  }
+  @keyframes starDrift{from{background-position:0 0;}to{background-position:420px 840px;}}
+  /* ---- Aurora (északi fény) réteg ---- */
+  .aurora-bg{
+    position:fixed;inset:-20% -10% auto -10%;height:75vh;z-index:0;pointer-events:none;
+    mix-blend-mode:screen;opacity:.7;filter:blur(22px) saturate(1.4);
+    background:
+      radial-gradient(60% 120% at 20% 0%, rgba(80,255,190,0.32), transparent 60%),
+      radial-gradient(55% 130% at 55% 10%, rgba(120,170,255,0.30), transparent 62%),
+      radial-gradient(50% 120% at 82% 0%, rgba(190,140,255,0.34), transparent 60%),
+      radial-gradient(45% 110% at 38% 5%, rgba(255,210,120,0.18), transparent 58%);
+    animation:aurora 9s ease-in-out infinite alternate;
+    transform-origin:top center;
+  }
+  @keyframes aurora{
+    0%{transform:translateX(-6%) skewX(-6deg) scaleY(.92);opacity:.55;}
+    50%{transform:translateX(5%) skewX(5deg) scaleY(1.1);opacity:.85;}
+    100%{transform:translateX(-3%) skewX(-3deg) scaleY(1.0);opacity:.65;}
+  }
+  /* ---- Galaxis-köd (forgó) réteg ---- */
+  .galaxy-bg{
+    position:fixed;right:-22vw;bottom:-22vw;width:60vw;height:60vw;z-index:0;pointer-events:none;
+    mix-blend-mode:screen;opacity:.30;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(120,160,255,0.18), transparent 42%),
+      radial-gradient(circle at 38% 60%, rgba(190,140,255,0.14), transparent 38%),
+      conic-gradient(from 0deg at 50% 50%, rgba(80,255,190,0.10), rgba(120,170,255,0.06), rgba(190,140,255,0.10), rgba(80,255,190,0.10));
+    border-radius:50%;
+    animation:galaxySpin 120s linear infinite;
+    filter:blur(8px);
+  }
+  @keyframes galaxySpin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+  @media(max-width:700px){
+    .aurora-bg{opacity:.4;height:55vh;}
+    .galaxy-bg{width:90vw;height:90vw;right:-30vw;bottom:-30vw;opacity:.22;}
+  }
+  /* ---- Főcím arany pulzálás ---- */
+  .title-gold{
+    animation:goldPulse 5.5s ease-in-out infinite;
+  }
+  @keyframes goldPulse{
+    0%,100%{filter:drop-shadow(0 0 6px rgba(201,162,75,.35));}
+    50%{filter:drop-shadow(0 0 16px rgba(233,200,119,.65));}
+  }
+  /* ---- Tétel hover-glow ---- */
+  .row{transition:border-color .25s ease, box-shadow .25s ease, transform .25s ease;}
+  .row:hover{
+    border-color:var(--highlight-border);
+    box-shadow:0 0 0 1px var(--highlight-border), 0 10px 40px -18px var(--primary);
+    transform:translateY(-2px);
+  }
+  .deck-card{transition:box-shadow .3s ease, transform .3s ease;}
+  .deck-card:hover{
+    box-shadow:0 24px 70px -26px var(--highlight), 0 0 0 1px var(--highlight-border);
+    transform:translateY(-3px);
+  }
+  /* ===== Deck nézet elrendezése ===== */
+  .deck-view{
+    position:relative;            /* a confetti canvas absz. horgonya */
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:22px; min-height:70vh; padding:30px 16px; z-index:1;
+  }
+  .deck-card{
+    position:relative; width:min(620px,100%);
+    background:linear-gradient(180deg, rgba(22,28,46,.94), rgba(14,18,32,.97));
+    border:1px solid rgba(120,150,220,.22); border-radius:20px;
+    padding:30px 28px 26px; text-align:center;
+    box-shadow:0 24px 70px -26px var(--highlight), 0 0 0 1px var(--highlight-border);
+  }
+  .deck-top{display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:10px;}
+  .deck-tag{font-size:13px; color:var(--tag-color); font-weight:600;}
+  .deck-year{font-size:13px; color:var(--muted); font-family:'JetBrains Mono',monospace;}
+  .deck-illu{display:flex; justify-content:center; margin:8px 0 12px; max-height:160px;}
+  .deck-illu svg{max-height:160px;}
+  .deck-name{font-family:Fraunces,serif; font-size:clamp(24px,4.5vw,34px); line-height:1.15; margin:4px 0 12px;}
+  .deck-formula{margin:6px 0 14px; min-height:20px; text-align:center; color:var(--paper); overflow-x:auto;}
+  .deck-formula .katex{font-size:clamp(1.2rem,3.2vw,1.9rem); color:var(--paper);}
+  .deck-formula .katex-display{margin:0.4em 0;}
+  .deck-why{font-size:15px; line-height:1.6; color:#dfe5f2; margin:0 0 18px;}
+  .deck-actions{display:flex; gap:10px; justify-content:center; align-items:center; flex-wrap:wrap;}
+  .deck-actions .icon-btn{
+    width:44px; height:44px; padding:0; border-radius:11px;
+    border:1px solid rgba(120,150,220,.28);
+    background:rgba(30,38,62,.9); color:var(--paper);
+    transition:transform .15s ease, border-color .2s ease, background .2s ease;
+  }
+  .deck-actions .icon-btn:hover{border-color:var(--highlight); background:rgba(40,52,84,.95); transform:translateY(-2px) scale(1.05); color:var(--paper);}
+  .deck-actions .icon-btn svg{width:20px; height:20px;}
+  .deck-jump{font-family:Fraunces,serif; font-size:15px; padding:9px 18px; border-radius:11px;
+    border:1px solid var(--highlight-border); background:transparent; color:var(--paper); cursor:pointer;}
+  .deck-jump:hover{background:rgba(232,176,106,.12);}
+  /* Nagy, könnyen kattintható navigációs gombok */
+  .deck-nav{display:flex; align-items:center; justify-content:center; gap:18px; margin-top:4px;}
+  .deck-navbtn, .deck-rand{
+    width:56px; height:56px; border-radius:50%;
+    font-size:26px; line-height:1; cursor:pointer;
+    background:linear-gradient(180deg, rgba(30,38,62,.95), rgba(18,24,42,.98));
+    border:1px solid rgba(120,150,220,.35); color:var(--paper);
+    display:flex; align-items:center; justify-content:center;
+    transition:transform .15s ease, box-shadow .2s ease, border-color .2s ease;
+    box-shadow:0 8px 24px -12px rgba(0,0,0,.7);
+  }
+  .deck-navbtn:hover, .deck-rand:hover{
+    transform:translateY(-2px) scale(1.05);
+    border-color:var(--highlight);
+    box-shadow:0 10px 30px -10px var(--highlight);
+  }
+  .deck-navbtn:active, .deck-rand:active{transform:scale(.96);}
+  .deck-rand{font-size:24px; background:linear-gradient(180deg, rgba(40,52,84,.95), rgba(24,30,54,.98));}
+  .deck-progress{font-family:'JetBrains Mono',monospace; font-size:15px; color:var(--muted); min-width:64px; text-align:center;}
+  .deck-progress span:first-child{color:var(--paper); font-size:18px;}
+  /* Confetti canvas a deck felett, de a gombok alatt */
+  .deck-confetti{position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:2; opacity:0;}
+  .deck-confetti.active{opacity:1;}
+
+  @media(max-width:700px){.stardust-bg{opacity:.55;}}
+
+
+  /* ---- Logo mark ---- */
+  .logo-mark{
+    position:fixed;
+    top:clamp(14px,3vw,26px);
+    right:clamp(14px,3vw,26px);
+    width:clamp(32px,4vw,46px);
+    height:clamp(32px,4vw,46px);
+    z-index:5;
+    pointer-events:none;
+    opacity:.92;
+    animation:logoBreathe 6.5s ease-in-out infinite;
+  }
+  .logo-mark svg{width:100%;height:100%;display:block;}
+  @keyframes logoBreathe{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.07);}
+  }
+  @media(max-width:640px){
+    .logo-mark{
+      opacity:.5;width:20px;height:20px;
+      top:10px;right:10px;
+    }
+    .top-row-actions{margin-right:36px;}
+  }
+
+  /* ---- Filter bar ---- */
+  .filterbar{
+    display:flex;flex-wrap:wrap;gap:8px;
+    margin:clamp(18px,3vw,28px) 0 clamp(20px,3.5vw,32px);
+  }
+  .chip{
+    font-family:"Inter",sans-serif;
+    font-size:12.5px;letter-spacing:.02em;
+    color:var(--muted);
+    background:var(--chip-bg);
+    border:1px solid var(--chip-border);
+    padding:7px 14px;border-radius:999px;
+    cursor:pointer;
+    transition:all .2s ease;
+    user-select:none;
+    white-space:nowrap;
+  }
+  .chip:hover{
+    border-color:var(--chip-hover-border);
+    color:var(--paper);
+  }
+  .chip.active{
+    background:linear-gradient(135deg,var(--primary-bright),var(--primary));
+    border-color:transparent;
+    color:var(--ink);
+    font-weight:600;
+  }
+  .chip .count{
+    font-family:"JetBrains Mono",monospace;
+    opacity:.65;font-size:10.5px;margin-left:5px;
+  }
+  .chip.active .count{opacity:.55;}
+  .count-display{
+    color:var(--muted);font-size:13px;margin:0 0 4px;
+  }
+
+  /* ---- Tag cloud (téma szűrő) ---- */
+  .tagcloud{
+    display:flex;flex-wrap:wrap;gap:6px;align-items:center;
+    margin:0 0 clamp(16px,2.5vw,24px);
+  }
+  .tagcloud .tc-label{
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--muted);opacity:.6;margin-right:2px;font-family:"Inter",sans-serif;
+  }
+  .tchip{
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px;letter-spacing:.01em;
+    color:var(--muted);
+    background:transparent;
+    border:1px solid var(--chip-border);
+    padding:4px 10px;border-radius:999px;
+    cursor:pointer;transition:all .18s ease;user-select:none;white-space:nowrap;
+  }
+  .tchip:hover{border-color:var(--chip-hover-border);color:var(--paper);}
+  .tchip.active{
+    background:rgba(127,127,127,.18);
+    border-color:var(--highlight-border);
+    color:var(--highlight);
+    font-weight:600;
+  }
+
+  /* ---- Univerzum-térkép (star map) ---- */
+  .starmap-view{
+    position:fixed;inset:0;z-index:5;
+    background:
+      radial-gradient(ellipse at 20% 15%, rgba(91,141,217,0.10), transparent 55%),
+      radial-gradient(ellipse at 80% 85%, rgba(232,176,106,0.08), transparent 55%),
+      var(--bg);
+    overflow:hidden;touch-action:none;
+  }
+  .starmap-view[hidden]{display:none;}
+  #starMapCanvas{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab;}
+  #starMapCanvas:active{cursor:grabbing;}
+  .starmap-hint{
+    position:absolute;left:50%;bottom:22px;transform:translateX(-50%);
+    font-family:"Inter",sans-serif;font-size:12px;letter-spacing:.06em;
+    color:var(--muted);background:rgba(10,14,24,.55);border:1px solid var(--chip-border);
+    padding:7px 16px;border-radius:999px;backdrop-filter:blur(8px);pointer-events:none;
+    transition:opacity .6s ease;opacity:.85;
+  }
+  .starmap-hint.fade{opacity:0;}
+  .starmap-label{
+    position:absolute;pointer-events:none;z-index:6;max-width:240px;
+    font-family:"JetBrains Mono",monospace;font-size:12px;line-height:1.45;
+    color:var(--paper);background:rgba(10,14,24,.82);
+    border:1px solid var(--highlight-border);border-radius:10px;
+    padding:8px 12px;box-shadow:0 6px 30px rgba(0,0,0,.45);
+    transform:translate(-50%,calc(-100% - 14px));white-space:normal;
+  }
+  .starmap-label .sl-name{color:var(--highlight);font-weight:600;display:block;margin-bottom:2px;}
+  .starmap-label .sl-tex{color:var(--muted);font-size:11px;opacity:.85;}
+  .starmap-reset{
+    position:absolute;top:18px;right:18px;z-index:6;
+    width:42px;height:42px;border-radius:50%;cursor:pointer;
+    background:rgba(10,14,24,.6);border:1px solid var(--chip-border);
+    color:var(--paper);font-size:18px;line-height:1;backdrop-filter:blur(8px);
+    transition:all .2s ease;
+  }
+  .starmap-reset:hover{border-color:var(--highlight-border);color:var(--highlight);}
+  .count-display b{color:var(--primary-bright);font-weight:600;}
+
+  /* ---- Rows ---- */
+  .grid{margin-top:8px;}
+  .grid[hidden]{display:none;}
+  .row{
+    display:grid;
+    grid-template-columns:98px 1fr;
+    gap:clamp(16px,3vw,34px);
+    align-items:center;
+    padding:clamp(22px,3.5vw,32px) 4px clamp(22px,3.5vw,32px) 12px;
+    border-bottom:1px solid var(--line);
+    border-left:4px solid transparent;
+    opacity:0;transform:translateY(14px);
+    animation:rise .6s cubic-bezier(.2,.7,.2,1) forwards;
+    transition:opacity .25s ease, max-height .25s ease, border-color .5s ease, background .6s ease;
+  }
+  .row.hidden{display:none;}
+  .row:first-of-type{border-top:1px solid var(--line);}
+  @keyframes rise{to{opacity:1;transform:none;}}
+  @keyframes flashHighlight{
+    0%{background:transparent;}
+    25%{background:color-mix(in srgb, var(--primary) 16%, transparent);}
+    100%{background:transparent;}
+  }
+  .row.highlight-flash{animation:flashHighlight 2.2s ease;}
+
+  .rank-plate{
+    display:flex;flex-direction:column;align-items:center;gap:1px;
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:9px 2px 7px;
+    transition:border-color .5s ease;
+  }
+  .plate-label{
+    font-family:"JetBrains Mono",monospace;
+    font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--muted);
+  }
+  .rank{
+    font-family:"Fraunces",serif;
+    font-size:clamp(30px,4.8vw,48px);
+    font-weight:500;
+    line-height:.9;
+    color:transparent;
+    background:linear-gradient(160deg,var(--primary-bright),var(--primary) 55%,var(--rank-dark));
+    -webkit-background-clip:text;background-clip:text;
+    text-align:center;
+    font-variant-numeric:lining-nums;
+    transition:background .5s ease;
+  }
+
+  .body{min-width:0;}
+
+  .system-label{
+    font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--primary);font-weight:600;margin-bottom:2px;
+    padding:0 0 4px;
+    border-bottom:1px solid var(--line);
+  }
+  .formula{
+    display:inline-block;
+    width:fit-content;
+    max-width:100%;
+    min-width:64px;
+    background:linear-gradient(180deg,var(--panel),var(--ink-2));
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:clamp(13px,2.2vw,22px) clamp(16px,2.8vw,30px);
+    margin-bottom:14px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    position:relative;
+    transition:background .5s ease, border-color .5s ease, box-shadow .25s ease, transform .25s ease;
+    touch-action:pan-x pan-y;
+  }
+  .formula.multi{
+    display:grid;
+    width:100%;
+    grid-template-columns:1fr 1fr;
+    gap:14px 24px;
+    align-items:center;
+  }
+  .formula::-webkit-scrollbar{height:6px;}
+  .formula::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px;}
+  .katex{color:var(--paper);font-size:clamp(1.03rem,2.4vw,1.58rem);}
+  .formula:hover{
+    border-color:var(--primary);
+    box-shadow:0 10px 28px -10px var(--primary);
+    transform:translateY(-2px);
+  }
+  @media(hover:none){
+    .formula:hover{transform:none;box-shadow:none;border-color:var(--line);}
+  }
+
+  /* Badge / kiemelés (matek) */
+  .badge{
+    display:inline-block;
+    font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--ink);background:linear-gradient(135deg,var(--primary-bright),var(--primary));
+    padding:3px 10px;border-radius:999px;font-weight:700;margin-left:2px;
+    vertical-align:middle;
+  }
+
+  .meta{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px;}
+  .name{
+    font-family:"Fraunces",serif;
+    font-size:clamp(18px,2.6vw,24px);
+    font-weight:500;
+  }
+  .tag{
+    font-family:"JetBrains Mono",monospace;
+    font-size:10.5px;letter-spacing:.04em;text-transform:none;
+    color:var(--tag-color);border:1px solid var(--tag-border);
+    padding:3px 9px;border-radius:999px;white-space:nowrap;
+    transition:color .5s ease, border-color .5s ease;
+  }
+  .tag.special{
+    color:var(--highlight);border-color:var(--highlight-border);
+  }
+  .year-badge{
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px;letter-spacing:.03em;
+    color:var(--primary);
+    white-space:nowrap;
+    transition:color .5s ease;
+  }
+  .row-cat-dot{
+    display:inline-block;width:7px;height:7px;border-radius:50%;
+    margin-right:6px;box-shadow:0 0 5px currentColor;
+    vertical-align:middle;
+  }
+  .row-actions{
+    display:inline-flex;gap:4px;margin-left:auto;
+  }
+  .icon-btn{
+    background:none;border:none;cursor:pointer;
+    color:var(--muted);padding:3px;border-radius:6px;
+    display:inline-flex;align-items:center;justify-content:center;
+    transition:color .2s ease, transform .15s ease;
+    touch-action:manipulation;
+  }
+  .icon-btn:hover{color:var(--primary-bright);transform:scale(1.15);}
+  .icon-btn svg{width:15px;height:15px;}
+  .icon-btn.fav-star.active{color:var(--highlight);}
+  .icon-btn.fav-star.active svg{fill:var(--highlight);}
+  /* Fénycsóva a kedvenc gomb megnyomásakor */
+  .icon-btn.fav-star{position:relative;overflow:visible;}
+  .icon-btn.fav-star.burst::after{
+    content:"";position:absolute;left:50%;top:50%;width:8px;height:8px;border-radius:50%;
+    background:radial-gradient(circle, var(--highlight) 0%, rgba(255,255,255,.6) 40%, transparent 70%);
+    box-shadow:0 0 22px 10px var(--highlight);
+    transform:translate(-50%,-50%) scale(0);opacity:0;
+    animation:favBurst .55s ease-out forwards;pointer-events:none;
+  }
+  @keyframes favBurst{
+    0%{transform:translate(-50%,-50%) scale(0);opacity:.9;}
+    60%{opacity:.55;}
+    100%{transform:translate(-50%,-50%) scale(6);opacity:0;}
+  }
+  .icon-btn.link-btn.copied{color:var(--primary-bright);}
+  .why{color:var(--muted);margin:8px 0 0;font-size:clamp(13.5px,1.7vw,15px);}
+  .why b{
+    font-family:"Fraunces",serif;
+    font-weight:600;
+    font-size:1.08em;
+    line-height:1.5;
+    color:var(--ink);
+    background:var(--highlight);
+    -webkit-box-decoration-break:clone;
+    box-decoration-break:clone;
+    border-radius:4px;
+    padding:1px 5px;
+    margin-right:1px;
+    transition:color .5s ease, background .5s ease;
+  }
+  /* === Kinyitható why (rákattintás -> nyílik, fókusz elvesztés -> záródik) === */
+  .why-expand{
+    position:relative;
+    margin:8px 0 0;
+    font-size:clamp(13.5px,1.7vw,15px);
+    color:var(--muted);
+    cursor:pointer;
+    outline:none;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .why-expand .why-head{
+    display:block;
+  }
+  .why-expand .why-head b{
+    font-family:"Fraunces",serif;
+    font-weight:600;
+    font-size:1.08em;
+    line-height:1.5;
+    color:var(--ink);
+    background:var(--highlight);
+    -webkit-box-decoration-break:clone;
+    box-decoration-break:clone;
+    border-radius:4px;
+    padding:1px 5px;
+    margin-right:1px;
+    transition:color .5s ease, background .5s ease;
+  }
+  /* A bővített (képlet-magyarázó) rész alapból rejtett, csonkolt */
+  .why-expand .why-more{
+    display:-webkit-box;
+    -webkit-line-clamp:0;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+    max-height:0;
+    opacity:0;
+    margin-top:0;
+    transition:max-height .35s ease, opacity .3s ease, margin-top .35s ease;
+  }
+  .why-expand .why-more b{
+    font-family:"Fraunces",serif;font-weight:600;color:var(--ink);
+    background:var(--highlight);border-radius:4px;padding:1px 5px;margin-right:1px;
+    -webkit-box-decoration-break:clone;box-decoration-break:clone;
+  }
+  .why-expand:focus{ outline:none; }
+  .why-expand.why-open .why-more{
+    max-height:1200px;
+    opacity:1;
+    margin-top:10px;
+  }
+  .why-expand .why-chevron{
+    display:inline-block;margin-left:6px;color:var(--primary);
+    transition:transform .3s ease;font-size:.85em;opacity:.7;
+    -webkit-user-select:none;user-select:none;
+  }
+  .why-expand.why-open .why-chevron{ transform:rotate(180deg); }
+  .why-expand:focus-visible{ box-shadow:0 0 0 2px var(--primary); border-radius:6px; }
+  @media(prefers-reduced-motion:reduce){
+    .why-expand .why-more{ transition:none; }
+    .why-expand .why-chevron{ transition:none; }
+  }
+  /* Deck nézetben is azonos stílus */
+  .deck-why.why-expand{ font-size:clamp(15px,2.4vw,17px); }
+  .deck-why.why-expand .why-more{ color:var(--paper); }
+  .related-chips{
+    margin-top:14px;padding-top:12px;
+    border-top:1px dashed var(--line);
+    display:flex;flex-wrap:wrap;gap:7px;align-items:center;
+  }
+  .related-label{
+    font-family:"JetBrains Mono",monospace;font-size:10.5px;
+    color:var(--primary);letter-spacing:.06em;margin-right:2px;
+    text-transform:uppercase;font-weight:600;
+  }
+  .related-chip{
+    font-family:"JetBrains Mono",monospace;font-size:11px;
+    padding:4px 12px;border-radius:999px;
+    border:1px solid var(--highlight-border);color:var(--highlight);
+    background:none;cursor:pointer;transition:all .2s ease;
+  }
+  .related-chip:hover{border-color:var(--primary);color:var(--primary-bright);background:var(--chip-bg);}
+  .related-chip::before{content:"→ ";opacity:.7;}
+
+  .scroll-hint{
+    font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--primary);opacity:.6;margin:-8px 0 6px;
+  }
+
+  /* Noether speciális kártya (fizika) */
+  .noether-box{
+    background:linear-gradient(135deg,rgba(62,184,240,0.07),rgba(62,184,240,0.02));
+    border:1px solid rgba(62,184,240,0.22);
+    border-radius:14px;
+    padding:clamp(16px,2.6vw,24px) clamp(14px,2.6vw,26px);
+    margin-bottom:14px;
+    font-family:"Fraunces",serif;
+    font-size:clamp(16px,2.4vw,21px);
+    font-style:italic;
+    color:var(--primary-bright);
+    line-height:1.45;
+    overflow-x:auto;
+    max-width:100%;
+    box-sizing:border-box;
+  }
+  .noether-table{
+    margin-top:14px;
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    gap:8px;
+    font-style:normal;
+    font-family:"Inter",sans-serif;
+    font-size:clamp(12px,1.4vw,13.5px);
+    min-width:0;
+  }
+  .nt-item{
+    display:flex;gap:8px;align-items:flex-start;
+    min-width:0;
+    background:rgba(62,184,240,0.06);
+    border-radius:8px;
+    padding:8px 12px;
+    color:var(--muted);
+  }
+  .nt-item span:last-child{
+    min-width:0;
+    overflow-wrap:break-word;
+    word-break:break-word;
+  }
+  .nt-sym{color:var(--primary-bright);font-weight:600;min-width:12px;flex:0 0 auto;}
+  .nt-arrow{color:var(--primary);opacity:.6;flex:0 0 auto;}
+
+  @media(max-width:520px){
+    .noether-table{grid-template-columns:minmax(0,1fr);}
+  }
+
+  .empty-state{
+    color:var(--muted);font-size:14px;padding:40px 4px;text-align:center;
+    display:none;
+  }
+
+  footer{
+    margin-top:clamp(30px,5vw,52px);
+    color:var(--muted);font-size:13px;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+  }
+  footer span{color:var(--primary);transition:color .5s ease;}
+
+  /* ---- Tudás-gráf ---- */
+  .graph-overlay{
+    position:fixed;inset:0;z-index:70;
+    display:none;
+    background:var(--ink);
+  }
+  .graph-overlay.visible{display:block;}
+  #graphCanvas{
+    display:block;width:100%;height:100%;
+    cursor:grab;touch-action:none;
+  }
+  #graphCanvas.dragging{cursor:grabbing;}
+  .graph-topbar{
+    position:absolute;top:0;left:0;right:0;
+    display:flex;align-items:center;gap:14px;
+    padding:14px clamp(14px,3vw,26px);
+    background:linear-gradient(180deg, color-mix(in srgb, var(--ink) 92%, transparent), transparent);
+    pointer-events:none;
+  }
+  .graph-title{
+    font-family:"Fraunces",serif;font-style:italic;font-weight:500;
+    font-size:clamp(16px,2.4vw,21px);color:var(--primary-bright);
+  }
+  .graph-hint{
+    font-family:"JetBrains Mono",monospace;font-size:10.5px;
+    color:var(--muted);opacity:.85;
+  }
+  .graph-close{
+    margin-left:auto;pointer-events:auto;
+    width:30px;height:30px;border-radius:50%;
+    background:var(--chip-bg);border:1px solid var(--chip-border);
+    color:var(--muted);cursor:pointer;font-size:13px;
+    display:flex;align-items:center;justify-content:center;
+    transition:all .2s ease;touch-action:manipulation;
+  }
+  .graph-close:hover{color:var(--paper);border-color:var(--chip-hover-border);}
+  .graph-legend{
+    position:absolute;left:clamp(12px,3vw,26px);bottom:clamp(58px,9vw,72px);
+    display:flex;flex-direction:column;gap:5px;
+    pointer-events:none;
+  }
+  .graph-legend-item{
+    display:flex;align-items:center;gap:7px;
+    font-family:"JetBrains Mono",monospace;font-size:10px;
+    color:var(--muted);
+  }
+  .graph-legend-dot{
+    width:8px;height:8px;border-radius:50%;
+    box-shadow:0 0 6px currentColor;
+  }
+  .graph-tooltip{
+    position:absolute;pointer-events:none;
+    padding:8px 12px;border-radius:10px;
+    background:var(--panel);border:1px solid var(--primary);
+    box-shadow:0 10px 28px -12px rgba(0,0,0,.7);
+    font-size:12px;color:var(--paper);
+    max-width:260px;opacity:0;transition:opacity .15s ease;
+    z-index:3;
+  }
+  .graph-tooltip.visible{opacity:1;}
+  .graph-tooltip .gt-name{
+    font-family:"Fraunces",serif;font-weight:500;display:block;margin-bottom:3px;
+  }
+  .graph-tooltip .gt-tag{
+    font-family:"JetBrains Mono",monospace;font-size:9.5px;color:var(--muted);
+  }
+  .graph-controls{
+    position:absolute;bottom:clamp(14px,3vw,24px);left:clamp(12px,3vw,26px);
+    display:flex;gap:8px;
+  }
+  .graph-controls .group-btn{
+    pointer-events:auto;background:var(--chip-bg);
+  }
+  @media(max-width:640px){
+    .graph-hint{display:none;}
+    .graph-legend{font-size:9px;bottom:56px;}
+  }
+
+  /* ---- Toast (rövid visszajelzés) ---- */
+  .toast{
+    position:fixed;
+    left:50%;bottom:28px;
+    transform:translate(-50%,20px);
+    background:linear-gradient(135deg,var(--primary-bright),var(--primary));
+    color:var(--ink);
+    font-family:"Inter",sans-serif;font-size:13px;font-weight:600;
+    padding:11px 22px;border-radius:999px;
+    box-shadow:0 12px 30px -8px rgba(0,0,0,.5);
+    opacity:0;pointer-events:none;
+    transition:opacity .25s ease, transform .25s ease;
+    z-index:60;
+    white-space:nowrap;
+  }
+  .toast.visible{
+    opacity:1;transform:translate(-50%,0);
+  }
+
+  /* ---- Kurátori jegyzet modal ---- */
+  .modal-overlay{
+    position:fixed;inset:0;z-index:50;
+    background:rgba(0,0,0,.6);
+    backdrop-filter:blur(3px);
+    display:none;
+    align-items:center;justify-content:center;
+    padding:20px;
+  }
+  .modal-overlay.visible{display:flex;}
+  .modal-panel{
+    position:relative;
+    max-width:520px;width:100%;
+    max-height:80vh;max-height:80dvh;overflow-y:auto;
+    background:linear-gradient(180deg,var(--panel),var(--ink-2));
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:clamp(24px,4vw,36px);
+    box-shadow:0 24px 60px -20px rgba(0,0,0,.6);
+  }
+  .modal-close{
+    position:absolute;top:16px;right:16px;
+    width:28px;height:28px;border-radius:50%;
+    background:var(--chip-bg);border:1px solid var(--chip-border);
+    color:var(--muted);cursor:pointer;font-size:13px;
+    display:flex;align-items:center;justify-content:center;
+    transition:all .2s ease;
+  }
+  .modal-close:hover{color:var(--paper);border-color:var(--chip-hover-border);}
+  .modal-eyebrow{
+    font-size:11px;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--primary);font-weight:600;margin:0 0 10px;
+  }
+  .modal-panel h2{
+    font-family:"Fraunces",serif;font-weight:500;font-style:italic;
+    font-size:clamp(21px,3vw,27px);margin:0 0 16px;color:var(--primary-bright);
+  }
+  .modal-panel p{
+    color:var(--muted);font-size:14.5px;line-height:1.65;margin:0 0 12px;
+  }
+  .modal-panel p:last-child{margin-bottom:0;}
+
+  /* ---- Képlet-nagyítás (lightbox) ---- */
+  .formula-clickable{cursor:pointer;touch-action:manipulation;}
+  .formula-lightbox{
+    position:fixed;inset:0;z-index:58;
+    background:rgba(0,0,0,.78);
+    backdrop-filter:blur(4px);
+    display:none;align-items:center;justify-content:center;
+    padding:24px;
+  }
+  .formula-lightbox.visible{display:flex;}
+  .lightbox-panel{
+    position:relative;
+    max-width:92vw;max-height:85vh;max-height:85dvh;overflow:auto;
+    background:linear-gradient(180deg,var(--panel),var(--ink-2));
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:clamp(30px,6vw,56px);
+    box-shadow:0 24px 60px -20px rgba(0,0,0,.6);
+    text-align:center;
+    cursor:default;
+  }
+  .lightbox-close{position:absolute;top:14px;right:14px;}
+  .lightbox-title{
+    font-family:"Fraunces",serif;font-style:italic;font-weight:500;
+    font-size:clamp(16px,2.4vw,21px);color:var(--primary-bright);
+    margin:0 0 24px;
+  }
+  #lightboxContent .katex{
+    font-size:clamp(1.6rem,5vw,3rem)!important;
+    color:var(--paper);
+  }
+  #lightboxContent{overflow-x:auto;}
+
+  /* ---- Statisztika-panel ---- */
+  .stats-panel{max-width:560px;}
+  .stat-section-title{
+    font-family:"Fraunces",serif;font-style:italic;font-weight:500;
+    font-size:15px;color:var(--primary-bright);
+    margin:22px 0 12px;
+  }
+  .stat-row{
+    display:flex;align-items:center;gap:10px;margin-bottom:9px;
+  }
+  .stat-label{
+    width:170px;flex:0 0 auto;
+    font-size:11.5px;color:var(--muted);text-align:right;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
+  .stat-bar-track{
+    flex:1;height:9px;background:var(--chip-bg);border-radius:5px;overflow:hidden;
+  }
+  .stat-bar-fill{
+    height:100%;border-radius:5px;
+    transition:width .7s cubic-bezier(.2,.7,.2,1);
+    box-shadow:0 0 8px currentColor;
+  }
+  .stat-count{
+    width:26px;flex:0 0 auto;
+    font-family:"JetBrains Mono",monospace;font-size:11px;
+    color:var(--muted);text-align:right;
+  }
+  @media(max-width:560px){
+    .stat-label{width:110px;font-size:10.5px;}
+  }
+
+  @media(max-width:560px){
+    .row{grid-template-columns:62px 1fr;gap:12px;}
+    .rank{font-size:26px;}
+    .rank-plate{padding:5px 1px 4px;}
+    .plate-label{display:none;}
+    .filterbar{gap:6px;}
+    .chip{font-size:11.5px;padding:6px 11px;}
+    .dbtn{font-size:12px;padding:8px 16px;}
+    .toolbar{flex-direction:column;align-items:stretch;}
+    .search-wrap{flex:1 1 auto;}
+    .fav-toggle{justify-content:center;}
+    .view-switch{align-self:stretch;justify-content:space-between;}
+    .vbtn{flex:1;text-align:center;padding:9px 6px;}
+    .row-actions{margin-left:0;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .row{animation:none;opacity:1;transform:none;}
+    body,.tag,.formula,.rank,h1 em,.rule,.eyebrow,footer span,.why b{transition:none;}
+    .logo-mark{animation:none;}
+    .ghost-formula{animation:none;}
+  }
+
+  /* ===== JÁTÉK MÓD (Tippeld meg a képletet) ===== */
+  .quiz-overlay{
+    position:fixed; inset:0; z-index:60;
+    display:none; align-items:center; justify-content:center;
+    background:radial-gradient(ellipse at 50% 30%, rgba(40,52,84,.96), rgba(8,11,20,.985));
+    backdrop-filter:blur(6px); padding:24px; overflow:auto;
+  }
+  .quiz-overlay.visible{ display:flex; }
+  .quiz-panel{
+    width:min(680px,100%); margin:auto;
+    background:linear-gradient(180deg, rgba(22,28,46,.92), rgba(14,18,32,.96));
+    border:1px solid rgba(120,150,220,.22);
+    border-radius:20px; padding:28px 26px 30px;
+    box-shadow:0 24px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.02) inset;
+    color:var(--paper);
+  }
+  .quiz-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:6px; }
+  .quiz-title{ font-family:Fraunces, serif; font-size:22px; font-weight:600; color:var(--paper); }
+  .quiz-title b{ color:var(--accent,#e8b06a); }
+  .quiz-score{ font-family:'JetBrains Mono', monospace; font-size:14px; color:var(--muted); white-space:nowrap; }
+  .quiz-score b{ color:var(--accent,#e8b06a); font-size:18px; }
+  .quiz-round{ font-size:12px; color:var(--muted); margin-bottom:18px; letter-spacing:.04em; text-transform:uppercase; }
+  .quiz-name{ font-family:Fraunces, serif; font-size:30px; line-height:1.15; margin:4px 0 6px; }
+  .quiz-tag{ font-size:13px; color:var(--muted); margin-bottom:14px; }
+  .quiz-why{ font-size:15px; line-height:1.55; color:#dfe5f2; margin-bottom:16px; }
+  .quiz-illu{ display:flex; justify-content:center; margin:0 0 16px; max-height:150px; }
+  .quiz-illu svg{ max-height:150px; }
+  .quiz-formula-mystery{
+    font-family:'JetBrains Mono', monospace; font-size:30px; letter-spacing:.3em;
+    color:var(--muted); text-align:center; padding:18px; margin:6px 0 20px;
+    border:1px dashed rgba(140,160,220,.3); border-radius:14px; user-select:none;
+  }
+  .quiz-formula-mystery.revealed{ letter-spacing:normal; color:var(--paper); border-style:solid; border-color:rgba(120,200,140,.5); }
+  .quiz-options{ display:grid; gap:10px; }
+  .quiz-opt{
+    font-family:'JetBrains Mono', monospace; font-size:15px; text-align:left;
+    background:rgba(255,255,255,.04); color:var(--paper);
+    border:1px solid rgba(140,160,220,.22); border-radius:12px;
+    padding:14px 16px; cursor:pointer; transition:all .15s ease; line-height:1.4;
+  }
+  .quiz-opt:hover:not(:disabled){ border-color:var(--accent,#e8b06a); background:rgba(232,176,106,.08); transform:translateY(-1px); }
+  .quiz-opt:disabled{ cursor:default; }
+  .quiz-opt.correct{ border-color:#5fcf80; background:rgba(95,207,128,.16); }
+  .quiz-opt.wrong{ border-color:#e06a6a; background:rgba(224,106,106,.16); }
+  .quiz-feedback{ min-height:22px; margin:14px 0 4px; font-size:14px; text-align:center; }
+  .quiz-feedback.ok{ color:#5fcf80; }
+  .quiz-feedback.no{ color:#e08a8a; }
+  .quiz-foot{ display:flex; gap:10px; margin-top:14px; align-items:center; justify-content:space-between; }
+  .quiz-next{ font-family:Fraunces, serif; font-size:16px; padding:11px 22px; border-radius:12px;
+    border:1px solid var(--accent,#e8b06a); background:var(--accent,#e8b06a); color:#1a1206; cursor:pointer; font-weight:600; }
+  .quiz-next:hover{ filter:brightness(1.08); }
+  .quiz-quit{ font-size:13px; color:var(--muted); background:none; border:none; cursor:pointer; text-decoration:underline; }
+  .quiz-summary{ text-align:center; }
+  .quiz-summary h3{ font-family:Fraunces, serif; font-size:28px; margin:0 0 8px; }
+  .quiz-summary .big{ font-size:54px; font-family:'JetBrains Mono', monospace; color:var(--accent,#e8b06a); margin:10px 0; }
+  .quiz-summary p{ color:var(--muted); margin:0 0 18px; }
+
+  /* ===== SHARE MENU (oszd meg) ===== */
+  .share-menu{
+    position:fixed; z-index:70; min-width:200px;
+    background:linear-gradient(180deg, rgba(24,30,50,.98), rgba(14,18,32,.99));
+    border:1px solid rgba(120,150,220,.3); border-radius:14px; padding:8px;
+    box-shadow:0 18px 50px rgba(0,0,0,.6); display:none;
+  }
+  .share-menu.visible{ display:block; }
+  .share-menu a, .share-menu button{
+    display:flex; align-items:center; gap:10px; width:100%;
+    padding:10px 12px; border-radius:9px; border:none; background:none;
+    color:var(--paper); font-size:14px; text-decoration:none; cursor:pointer; text-align:left;
+    font-family:inherit;
+  }
+  .share-menu a:hover, .share-menu button:hover{ background:rgba(232,176,106,.12); }
+  .share-menu .sm-ico{ width:18px; height:18px; flex:0 0 18px; opacity:.85; }
+  .share-menu .sm-sep{ height:1px; background:rgba(140,160,220,.18); margin:5px 4px; }
+  .share-backdrop{ position:fixed; inset:0; z-index:65; display:none; }
+  .share-backdrop.visible{ display:block; }
+
+  /* ===== KONFITTI a deck váltásnál ===== */
+  .deck-confetti{
+    position:absolute; inset:0; width:100%; height:100%;
+    pointer-events:none; z-index:5; opacity:0;
+  }
+  .deck-confetti.active{ opacity:1; }
+
+  /* ===== Éjszakai égbolt — kedvencek csillagképe ===== */
+  .constellation-bg{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    width:100%; height:100%; opacity:0; transition:opacity .8s ease;
+  }
+  .constellation-bg.on{ opacity:1; pointer-events:auto; }
+  #nightSkyBtn.active{ color:var(--highlight); border-color:var(--highlight); box-shadow:0 0 14px -2px var(--highlight); }
+  .constellation-label{
+    position:fixed; z-index:6; pointer-events:none; max-width:240px;
+    font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--paper);
+    background:rgba(10,14,26,.82); border:1px solid rgba(120,150,220,.3);
+    border-radius:8px; padding:7px 10px; transform:translate(-50%,-130%);
+    box-shadow:0 8px 24px -10px rgba(0,0,0,.7); opacity:0; transition:opacity .15s ease;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .constellation-label.show{ opacity:1; }
+  .constellation-label .cl-formula{ display:block; margin-top:3px; color:var(--highlight); font-size:12px; }
+  /* ---- Weekly Spotlight (Heti kiemelt) — lélegzetelállító hőskártya ---- */
+  .weekly-card{
+    position:relative;overflow:hidden;margin:0 0 22px;border-radius:22px;
+    padding:30px 26px 26px;color:var(--paper);
+    background:
+      radial-gradient(120% 140% at 12% -10%, color-mix(in srgb, var(--primary-bright, #e9c877) 22%, transparent), transparent 55%),
+      radial-gradient(110% 130% at 92% 0%, color-mix(in srgb, #7fd8ff 14%, transparent), transparent 52%),
+      linear-gradient(160deg, #0a1226 0%, #0c0f24 42%, #070a18 100%);
+    border:1px solid color-mix(in srgb, var(--primary, #c9a24b) 30%, transparent);
+    box-shadow:0 22px 60px -28px rgba(0,0,0,.75), inset 0 0 60px -20px color-mix(in srgb, var(--primary, #c9a24b) 22%, transparent);
+    isolation:isolate;
+  }
+  .weekly-card::before{ /* mozgó aurora fátyl */
+    content:"";position:absolute;inset:-30% -10% auto -10%;height:170%;z-index:-2;pointer-events:none;
+    background:
+      radial-gradient(40% 60% at 18% 20%, rgba(201,162,75,.30), transparent 60%),
+      radial-gradient(38% 55% at 72% 12%, rgba(125,163,255,.26), transparent 62%),
+      radial-gradient(45% 70% at 50% 60%, rgba(120,220,255,.16), transparent 60%);
+    animation:weeklyAurora 11s ease-in-out infinite alternate;filter:blur(14px);mix-blend-mode:screen;
+  }
+  .weekly-card::after{ /* gyöngyház csillagszóró */
+    content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.5;
+    background-image:
+      radial-gradient(1.4px 1.4px at 12% 30%, #fff, transparent),
+      radial-gradient(1.2px 1.2px at 28% 72%, #cfe0ff, transparent),
+      radial-gradient(1.6px 1.6px at 64% 22%, #fff, transparent),
+      radial-gradient(1.1px 1.1px at 82% 64%, #fff, transparent),
+      radial-gradient(1.3px 1.3px at 46% 48%, #ffe9b8, transparent);
+    animation:starTwinkle 6s ease-in-out infinite;
+  }
+  @keyframes weeklyAurora{
+    0%{transform:translateX(-7%) skewX(-7deg) scaleY(.9);opacity:.55;}
+    50%{transform:translateX(5%) skewX(5deg) scaleY(1.12);opacity:.92;}
+    100%{transform:translateX(-3%) skewX(2deg) scaleY(1.0);opacity:.7;}
+  }
+  @keyframes starTwinkle{0%,100%{opacity:.35;}50%{opacity:.7;}}
+  .weekly-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px;}
+  .weekly-badge{
+    display:inline-flex;align-items:center;gap:7px;font:600 12px/1 "Inter",sans-serif;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--primary-bright, #e9c877);
+    padding:7px 13px;border-radius:999px;
+    background:color-mix(in srgb, var(--primary, #c9a24b) 14%, transparent);
+    border:1px solid color-mix(in srgb, var(--primary, #c9a24b) 38%, transparent);
+    box-shadow:0 0 18px -4px color-mix(in srgb, var(--primary, #c9a24b) 60%, transparent);
+  }
+  .weekly-star{font-size:15px;filter:drop-shadow(0 0 7px rgba(233,200,119,.8));animation:starPop 3.4s ease-in-out infinite;}
+  @keyframes starPop{0%,100%{transform:scale(1) rotate(0);}50%{transform:scale(1.22) rotate(14deg);}}
+  .weekly-week{margin-left:auto;font:500 13px/1 "JetBrains Mono",monospace;color:var(--muted);letter-spacing:.04em;}
+  .weekly-name{
+    font:600 clamp(1.5rem, 4.6vw, 2.5rem)/1.05 "Fraunces",Georgia,serif;
+    margin:6px 0 2px;color:#fff;letter-spacing:-.01em;
+    text-shadow:0 2px 24px color-mix(in srgb, var(--primary, #c9a24b) 55%, transparent);
+  }
+  .weekly-tag{font:500 13.5px/1.3 "Inter",sans-serif;color:color-mix(in srgb, var(--paper, #eef1f7) 78%, transparent);}
+  .weekly-formula{
+    margin:18px 0 14px;padding:20px 16px;border-radius:16px;
+    background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+    text-align:center;overflow-x:auto;color:var(--paper, #eef1f7);
+  }
+  .weekly-formula .katex{font-size:clamp(1.3rem, 4.2vw, 2.2rem);color:#fff;}
+  .weekly-why{font:400 15px/1.55 "Inter",sans-serif;color:color-mix(in srgb, var(--paper, #eef1f7) 86%, transparent);max-width:62ch;}
+  .weekly-why b{color:var(--primary-bright, #e9c877);font-weight:600;}
+  .weekly-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
+  .weekly-jump{
+    font:600 14px/1 "Inter",sans-serif;color:#0a0f1f;cursor:pointer;
+    background:linear-gradient(180deg, var(--primary-bright, #e9c877), var(--primary, #c9a24b));
+    border:none;border-radius:12px;padding:12px 18px;
+    box-shadow:0 10px 26px -10px color-mix(in srgb, var(--primary, #c9a24b) 80%, transparent);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .weekly-jump:hover{transform:translateY(-2px);box-shadow:0 14px 32px -10px color-mix(in srgb, var(--primary, #c9a24b) 90%, transparent);}
+  .weekly-fav{
+    font:600 14px/1 "Inter",sans-serif;cursor:pointer;color:var(--paper, #eef1f7);
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:12px 16px;
+    display:inline-flex;align-items:center;gap:8px;transition:background .15s ease,border-color .15s ease;
+  }
+  .weekly-fav:hover{background:rgba(255,255,255,.12);border-color:color-mix(in srgb, var(--primary, #c9a24b) 50%, transparent);}
+  .weekly-fav.on{color:var(--primary-bright, #e9c877);border-color:color-mix(in srgb, var(--primary, #c9a24b) 55%, transparent);}
+  .weekly-dismiss{
+    position:absolute;top:14px;right:14px;width:30px;height:30px;border-radius:50%;cursor:pointer;
+    background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:var(--paper, #eef1f7);
+    font-size:14px;line-height:1;display:grid;place-items:center;transition:background .15s ease;
+  }
+  .weekly-dismiss:hover{background:rgba(255,255,255,.16);}
+  /* Globális meteor-zápor */
+  .weekly-meteor{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:0;transition:opacity .6s ease;}
+  .weekly-meteor.on{opacity:1;}
+  .weekly-banner{
+    position:fixed;left:50%;top:18px;transform:translateX(-50%) translateY(-160%);
+    z-index:61;pointer-events:none;padding:11px 22px;border-radius:999px;
+    font:600 14px/1 "Inter",sans-serif;color:#0a0f1f;white-space:nowrap;
+    background:linear-gradient(180deg, var(--primary-bright, #e9c877), var(--primary, #c9a24b));
+    box-shadow:0 12px 34px -10px color-mix(in srgb, var(--primary, #c9a24b) 85%, transparent);
+    transition:transform .7s cubic-bezier(.2,1.3,.4,1);
+  }
+  .weekly-banner.show{transform:translateX(-50%) translateY(0);}
+  @media(max-width:640px){
+    .weekly-card{padding:24px 18px 20px;}
+    .weekly-week{width:100%;margin-left:0;}
+  }
+  @media(prefers-reduced-motion: reduce){
+    .weekly-card::before,.weekly-star,.weekly-card::after{animation:none;}
+  }
+</style>
+
+/* ===== EDITOR PANEL ===== */
+#editorToggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10000;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--accent, #f0a500);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 22px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .2s;
+}
+#editorToggle:hover { transform: scale(1.1); }
+#editorToggle.offline { background: #888; }
+#editorPanel {
+  position: fixed;
+  top: 0;
+  right: -440px;
+  width: 420px;
+  height: 100vh;
+  z-index: 9999;
+  background: #1a1a2e;
+  color: #e0e0e0;
+  overflow-y: auto;
+  transition: right .3s ease;
+  box-shadow: -4px 0 24px rgba(0,0,0,.5);
+  font-size: 14px;
+}
+#editorPanel.open { right: 0; }
+.editor-header {
+  padding: 14px 16px;
+  background: #16213e;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+.editor-header h3 { margin: 0; font-size: 16px; color: var(--accent, #f0a500); }
+.editor-close { background: none; border: none; color: #aaa; font-size: 20px; cursor: pointer; }
+.editor-domain-tabs {
+  display: flex;
+  border-bottom: 1px solid #333;
+  position: sticky;
+  top: 52px;
+  background: #1a1a2e;
+  z-index: 1;
+}
+.editor-domain-tabs button {
+  flex: 1;
+  padding: 10px;
+  background: none;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+  font-size: 13px;
+  border-bottom: 2px solid transparent;
+}
+.editor-domain-tabs button.active { color: var(--accent, #f0a500); border-bottom-color: var(--accent, #f0a500); }
+.editor-search { padding: 10px 16px; border-bottom: 1px solid #333; }
+.editor-search input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background: #16213e;
+  color: #e0e0e0;
+  font-size: 13px;
+  box-sizing: border-box;
+}
+.editor-entry {
+  padding: 10px 16px;
+  border-bottom: 1px solid #222;
+  cursor: pointer;
+  font-size: 13px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.editor-entry:hover { background: #16213e; }
+.editor-entry.active { background: #16213e; border-left: 3px solid var(--accent, #f0a500); }
+.editor-entry-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.editor-entry-year { color: #888; font-size: 12px; margin-left: 8px; }
+.editor-form { padding: 16px; }
+.editor-form label { display: block; margin-top: 10px; font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: .5px; }
+.editor-form input, .editor-form textarea, .editor-form select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #444;
+  border-radius: 4px;
+  background: #16213e;
+  color: #e0e0e0;
+  font-size: 13px;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+.editor-form textarea { min-height: 80px; resize: vertical; }
+.editor-form .field-row { display: flex; gap: 10px; }
+.editor-form .field-row > * { flex: 1; }
+.editor-actions {
+  padding: 16px;
+  border-top: 1px solid #333;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  position: sticky;
+  bottom: 0;
+  background: #1a1a2e;
+}
+.editor-actions button {
+  padding: 8px 14px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background: #16213e;
+  color: #e0e0e0;
+  cursor: pointer;
+  font-size: 12px;
+}
+.editor-actions .btn-danger { border-color: #c44; color: #f66; }
+.editor-actions .btn-primary { background: var(--accent, #f0a500); color: #000; border-color: var(--accent, #f0a500); font-weight: bold; }
+.editor-status {
+  padding: 8px 16px;
+  font-size: 11px;
+  color: #888;
+  border-bottom: 1px solid #333;
+  display: flex;
+  justify-content: space-between;
+}
+.editor-status .online { color: #4f4; }
+.editor-status .offline { color: #f66; }
+.editor-toast {
+  position: fixed;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-size: 13px;
+  z-index: 20000;
+  opacity: 0;
+  transition: opacity .3s;
+  pointer-events: none;
+}
+.editor-toast.show { opacity: 1; }
+
+</head>
+<body data-domain="matek">
+  <div class="aurora-bg" aria-hidden="true"></div>
+  <div class="stardust-bg" aria-hidden="true"></div>
+  <canvas class="constellation-bg" id="constellationBg" aria-hidden="true"></canvas>
+  <div class="nebula-bg" aria-hidden="true"></div>
+  <div class="galaxy-bg" aria-hidden="true"></div>
+
+  <section class="weekly-card" id="weeklyCard" hidden>
+    <button type="button" class="weekly-dismiss" id="weeklyDismiss" aria-label="Elrejtés erre a hétre">✕</button>
+    <div class="weekly-head">
+      <span class="weekly-badge"><span class="weekly-star">✦</span> Heti kiemelt</span>
+      <span class="weekly-week" id="weeklyWeek"></span>
+    </div>
+    <h2 class="weekly-name" id="weeklyName"></h2>
+    <span class="weekly-tag" id="weeklyTag"></span>
+    <div class="weekly-formula" id="weeklyFormula"></div>
+    <p class="weekly-why" id="weeklyWhy"></p>
+    <div class="weekly-actions">
+      <button type="button" class="weekly-jump" id="weeklyJump">Ugrás a tételhez →</button>
+      <button type="button" class="weekly-fav" id="weeklyFav">☆ Kedvenc</button>
+    </div>
+  </section>
+  <div class="ghost-bg" id="ghostBg" aria-hidden="true"></div>
+
+  <section class="starmap-view" id="starMapView" hidden aria-live="polite">
+    <canvas id="starMapCanvas" aria-hidden="true"></canvas>
+    <div class="starmap-hint" id="starMapHint">Húzd a térképet · görgővel nagyíts · kattints egy csillagra</div>
+    <div class="starmap-label" id="starMapLabel" hidden></div>
+    <button type="button" class="starmap-reset" id="starMapReset" title="Visszaállítás">⌂</button>
+  </section>
+
+  <div class="logo-mark" id="logoMark" title="Halhatatlan tudományos szépségek" aria-hidden="true">
+  <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="32" cy="32" rx="27" ry="12" transform="rotate(28 32 32)" stroke="url(#logoGrad)" stroke-width="1.4" opacity="0.85"/>
+    <ellipse cx="32" cy="32" rx="27" ry="12" transform="rotate(-28 32 32)" stroke="url(#logoGrad)" stroke-width="1.4" opacity="0.85"/>
+    <ellipse cx="32" cy="32" rx="27" ry="12" stroke="url(#logoGrad)" stroke-width="1" opacity="0.4"/>
+    <circle cx="32" cy="32" r="3.4" fill="url(#logoGrad)"/>
+    <circle class="logo-electron" cx="32" cy="5" r="2" fill="url(#logoGrad)">
+      <animateTransform id="logoSpin" attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" dur="9s" repeatCount="indefinite"/>
+    </circle>
+    <defs>
+      <linearGradient id="logoGrad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="var(--primary-bright)"/>
+        <stop offset="1" stop-color="var(--primary)"/>
+      </linearGradient>
+    </defs>
+  </svg>
+</div>
+<div class="wrap">
+
+  <div class="top-row">
+    <div class="domain-switch" id="domainSwitch">
+      <button type="button" class="dbtn active" data-domain="matek">Matematika</button>
+      <button type="button" class="dbtn" data-domain="fizika">Fizika · Kémia · Biológia</button>
+      <button type="button" class="dbtn" data-domain="informatika">Informatika</button>
+    </div>
+    <div class="top-row-actions">
+      <button type="button" class="info-btn" id="nightSkyBtn" aria-pressed="false" title="Éjszakai égbolt — kedvenceid csillagképe" aria-label="Éjszakai égbolt">✨</button>
+      <button type="button" class="info-btn" id="infoBtn" aria-label="A gyűjteményről" title="A gyűjteményről">ℹ</button>
+      <button type="button" class="info-btn" id="statsBtn" aria-label="Statisztika" title="Statisztika">📊</button>
+      <button type="button" class="info-btn" id="graphBtn" aria-label="Tudás-gráf" title="Tudás-gráf">🕸</button>
+    </div>
+  </div>
+  <p class="grand-total" id="grandTotal"></p>
+
+  <header>
+    <p class="eyebrow" id="eyebrow"></p>
+    <h1 id="title"></h1>
+    <p class="sub" id="subtitle"></p>
+    <div class="rule"></div>
+  </header>
+
+  <section class="daily-card" id="dailyCard" hidden>
+    <div class="daily-head">
+      <span class="daily-eyebrow">A nap szépsége</span>
+      <span class="daily-date" id="dailyDate"></span>
+      <button type="button" class="daily-dismiss" id="dailyDismiss" aria-label="Elrejtés mára">✕</button>
+    </div>
+    <div class="daily-body">
+      <div class="daily-formula" id="dailyFormula"></div>
+      <div class="daily-meta">
+        <span class="daily-name" id="dailyName"></span>
+        <span class="daily-tag" id="dailyTag"></span>
+      </div>
+      <p class="daily-why" id="dailyWhy"></p>
+      <button type="button" class="daily-jump" id="dailyJump">Ugrás a tételhez →</button>
+    </div>
+  </section>
+
+  <div class="toolbar">
+    <div class="search-wrap">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input type="search" id="searchBox" class="search-box" placeholder="Keresés név vagy leírás alapján…" autocomplete="off">
+      <button type="button" id="searchClear" class="search-clear" aria-label="Törlés">✕</button>
+    </div>
+    <button type="button" class="fav-toggle" id="favToggle" aria-pressed="false" title="Csak a kedvenceim">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.3l-5.4 3.2 1.4-6.1-4.7-4.1 6.2-.5L12 4l2.5 5.8 6.2.5-4.7 4.1 1.4 6.1z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      Kedvencek
+    </button>
+    <div class="view-switch" id="viewSwitch">
+      <button type="button" class="vbtn active" data-view="rank">Rangsor</button>
+      <button type="button" class="vbtn" data-view="grouped">Kategóriák</button>
+      <button type="button" class="vbtn" data-view="timeline">Idővonal</button>
+      <button type="button" class="vbtn" data-view="deck">Lapozó</button>
+      <button type="button" class="vbtn" data-view="quiz">Játék</button>
+      <button type="button" class="vbtn" data-view="map">Térkép</button>
+    </div>
+  </div>
+
+  <div class="filterbar" id="filterbar"></div>
+  <div class="tagcloud" id="tagcloud" aria-label="Téma szűrő"></div>
+  <div class="group-controls" id="groupControls">
+    <button type="button" class="group-btn" id="expandAllBtn">Mind kinyit</button>
+    <button type="button" class="group-btn" id="collapseAllBtn">Mind becsuk</button>
+  </div>
+  <p class="count-display" id="countDisplay"></p>
+
+  <main class="grid" id="grid"></main>
+  <section class="deck-view" id="deckView" hidden aria-live="polite">
+    <canvas class="deck-confetti" id="deckConfetti" aria-hidden="true"></canvas>
+    <div class="deck-card" id="deckCard">
+      <div class="deck-top">
+        <span class="deck-tag" id="deckTag"></span>
+        <span class="deck-year" id="deckYear"></span>
+      </div>
+      <div class="deck-illu" id="deckIllu"></div>
+      <h2 class="deck-name" id="deckName"></h2>
+      <div class="deck-formula" id="deckFormula"></div>
+      <p class="deck-why" id="deckWhy"></p>
+      <div class="deck-actions">
+        <button type="button" class="icon-btn fav-star" id="deckFav" aria-label="Kedvencekhez adás"></button>
+        <button type="button" class="deck-jump" id="deckJump">Részletek</button>
+      </div>
+    </div>
+    <div class="deck-nav">
+      <button type="button" class="deck-navbtn" id="deckPrev" aria-label="Előző">‹</button>
+      <div class="deck-progress"><span id="deckPos">0</span> / <span id="deckTotal">0</span></div>
+      <button type="button" class="deck-navbtn" id="deckNext" aria-label="Következő">›</button>
+      <button type="button" class="deck-rand" id="deckRand" aria-label="Véletlen">🎲</button>
+    </div>
+  </section>
+  <p class="empty-state" id="emptyState">Nincs találat.</p>
+
+  <footer>
+    <div id="footerCount">Szedés: KaTeX</div>
+    <div id="footerNames"><span></span></div>
+  </footer>
+</div>
+
+<div class="graph-overlay" id="graphOverlay" aria-hidden="true">
+  <canvas id="graphCanvas"></canvas>
+  <div class="graph-topbar">
+    <span class="graph-title">Tudás-gráf</span>
+    <span class="graph-hint" id="graphHint">Húzd az ujjal a mozgatáshoz · csípd össze a nagyításhoz · koppints egy pontra</span>
+    <button type="button" class="graph-close" id="graphClose" aria-label="Bezárás">✕</button>
+  </div>
+  <div class="graph-legend" id="graphLegend"></div>
+  <div class="graph-tooltip" id="graphTooltip"></div>
+  <div class="graph-controls">
+    <button type="button" class="group-btn" id="graphResetBtn">Nézet vissza</button>
+    <button type="button" class="group-btn" id="graphDomainBtn">Domain váltás</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- ===== Játék mód overlay ===== -->
+<div class="quiz-overlay" id="quizOverlay" aria-hidden="true">
+  <div class="quiz-panel" id="quizPanel"></div>
+</div>
+
+<!-- ===== Oszd meg menü ===== -->
+<div class="share-backdrop" id="shareBackdrop"></div>
+<div class="share-menu" id="shareMenu" role="menu" aria-label="Megosztás"></div>
+
+<div class="formula-lightbox" id="formulaLightbox" aria-hidden="true">
+  <div class="lightbox-panel">
+    <button type="button" class="modal-close lightbox-close" id="lightboxClose" aria-label="Bezárás">✕</button>
+    <p class="lightbox-title" id="lightboxTitle"></p>
+    <div id="lightboxContent"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="statsOverlay" aria-hidden="true">
+  <div class="modal-panel stats-panel" role="dialog" aria-modal="true">
+    <button type="button" class="modal-close" id="statsClose" aria-label="Bezárás">✕</button>
+    <p class="modal-eyebrow">Statisztika</p>
+    <h2 id="statsTitle">Eloszlás</h2>
+    <div id="statsCategories"></div>
+    <p class="stat-section-title">Korszakok szerint</p>
+    <div id="statsEras"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay" aria-hidden="true">
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button type="button" class="modal-close" id="modalClose" aria-label="Bezárás">✕</button>
+    <p class="modal-eyebrow">Kurátori jegyzet</p>
+    <h2 id="modalTitle">Miért ez a 251(+) tétel?</h2>
+    <p>Ez a gyűjtemény egy folyamatosan bővülő, szubjektív válogatás — nem egy „legjobb” lista, hanem azoknak a pillanatoknak a leltára, amikor egy formula, tétel vagy törvény túlmutatott a puszta hasznosságán, és valami mélyebbet mutatott meg: egy váratlan kapcsolatot, egy elegáns egyszerűséget, vagy azt az érzést, hogy a világ néha meglepően rendezett.</p>
+    <p>Nincs objektív mérce arra, mi „szép” egy egyenletben. A rangsor sorrendje nem tudományos konszenzus, hanem személyes ízlés, mérnöki és esztétikai szemmel egyaránt nézve — máshogy is fel lehetne építeni, és idővel biztosan változni is fog.</p>
+    <p>Ha van kedvenc tételed, ami hiányzik innen, az nem véletlen mulasztás — egyszerűen még nem jutott el idáig a lista.</p>
+  </div>
+</div>
+
+<script>
+// ==== ADATOK: MATEMATIKA ====
+// ==== ADATOK: Dinamikus betöltés (dev mode) ====
+const MATEK_DATA = [];
+const FIZIKA_DATA = [];
+const INFORMATIKA_DATA = [];
+
+async function loadData() {
+  try {
+    const [m, f, i] = await Promise.all([
+      fetch('data/matek.json').then(r => r.json()),
+      fetch('data/fizika.json').then(r => r.json()),
+      fetch('data/informatika.json').then(r => r.json())
+    ]);
+    MATEK_DATA.push(...m);
+    FIZIKA_DATA.push(...f);
+    INFORMATIKA_DATA.push(...i);
+  } catch(e) {
+    console.warn('Adatfájlok nem elérhetők, üres adatok.', e);
+  }
+  initApp();
+}
+loadData();
+
+// ==== ADATOK: FIZIKA, KÉMIA & BIOLÓGIA ====
+
+
+// ==== VEZÉRLŐ LOGIKA ====
+
+
+
+function renderGhostBg(domainKey) {
+  const domain = DOMAINS[domainKey];
+  ghostBg.innerHTML = "";
+  if (!domain.ghostFormulas || !window.katex) return;
+  domain.ghostFormulas.forEach((tex, i) => {
+    const pos = GHOST_POSITIONS[i % GHOST_POSITIONS.length];
+    const el = document.createElement("div");
+    el.className = "ghost-formula";
+    el.style.top = pos.top;
+    el.style.left = pos.left;
+    el.style.fontSize = pos.size;
+    el.style.setProperty("--gr", pos.rot);
+    el.style.animationDuration = (55 + i * 9) + "s";
+    el.style.animationDelay = (-i * 7) + "s";
+    try {
+      safeKatex(tex, el, {throwOnError: false, displayMode: false});
+    } catch (e) { /* ignore ghost render failures */ }
+    ghostBg.appendChild(el);
+  });
+}
+
+function renderDomain(domainKey) {
+  const domain = DOMAINS[domainKey];
+  activeDomain = domainKey;
+  activeCategory = "all";
+  activeTagFilter = null;     // téma-szűrő törlése domain-váltáskor
+  searchQuery = "";
+  searchBox.value = "";
+  searchClear.classList.remove("visible");
+
+  document.body.dataset.domain = domainKey;
+  [...domainSwitch.children].forEach(b => b.classList.toggle("active", b.dataset.domain === domainKey));
+
+  eyebrowEl.textContent = `${domain.eyebrowText} · ${domain.data.length} tétel`;
+  titleEl.innerHTML = domain.titleHTML;
+  subtitleEl.innerHTML = domain.subHTML;
+  footerCountEl.textContent = `Szedés: KaTeX · ${domain.data.length} tétel`;
+  footerNamesEl.textContent = domain.footerNames;
+
+  rowElements = [];
+  domain.data.forEach((d, i) => {
+    const row = buildRow(d, i, domainKey);
+    const searchText = `${d.name} ${d.tag} ${stripHtml(d.why)}`.toLowerCase();
+    const year = extractYear(d);
+    const slug = slugify(d.name);
+    rowElements.push({
+      el: row,
+      entry: d,
+      category: d.category,
+      searchText,
+      favKey: domainKey + ":" + slug,
+      year,
+      era: eraLabel(year)
+    });
+  });
+
+  buildFilterBar(domainKey);
+  buildTagCloud(domainKey);
+  renderGrid();
+  renderGhostBg(domainKey);
+}
+
+filterbar.addEventListener("click", (e) => {
+  const chip = e.target.closest(".chip");
+  if (!chip) return;
+  activeCategory = chip.dataset.cat;
+  [...filterbar.children].forEach(c => c.classList.toggle("active", c === chip));
+  applyFilter();
+});
+
+domainSwitch.addEventListener("click", (e) => {
+  const btn = e.target.closest(".dbtn");
+  if (!btn || btn.dataset.domain === activeDomain) return;
+  renderDomain(btn.dataset.domain);
+});
+
+viewSwitch.addEventListener("click", (e) => {
+  const btn = e.target.closest(".vbtn");
+  if (!btn || btn.dataset.view === viewMode) return;
+  viewMode = btn.dataset.view;
+  [...viewSwitch.children].forEach(b => b.classList.toggle("active", b === btn));
+  // Kilépés a játék módból (ha épp ott voltunk)
+  if (viewMode !== "quiz") closeQuiz();
+  // Térkép nézetből kilépés (ha épp ott voltunk)
+  if (viewMode !== "map") closeStarMap();
+  // Első alkalommal, amikor csoportos nézetre vált a felhasználó, alapból mindent
+  // becsukunk — így egy képernyőn átlátható a teljes szerkezet.
+  if (!collapsedInitialized && (viewMode === "grouped" || viewMode === "timeline")) {
+    collapsedInitialized = true;
+    renderGrid();
+    setAllGroups(true);
+    return;
+  }
+  if (viewMode === "quiz") {
+    grid.hidden = true;
+    deckView.hidden = true;
+    openQuiz();
+    return;
+  }
+  if (viewMode === "map") {
+    openStarMap();
+    return;
+  }
+  renderGrid();
+});
+
+expandAllBtn.addEventListener("click", () => setAllGroups(false));
+collapseAllBtn.addEventListener("click", () => setAllGroups(true));
+
+favToggle.addEventListener("click", () => {
+  onlyFavorites = !onlyFavorites;
+  favToggle.classList.toggle("active", onlyFavorites);
+  favToggle.setAttribute("aria-pressed", String(onlyFavorites));
+  applyFilter();
+});
+
+function openModal() {
+  modalOverlay.classList.add("visible");
+  modalOverlay.setAttribute("aria-hidden", "false");
+}
+function closeModal() {
+  modalOverlay.classList.remove("visible");
+  modalOverlay.setAttribute("aria-hidden", "true");
+}
+infoBtn.addEventListener("click", openModal);
+modalClose.addEventListener("click", closeModal);
+modalOverlay.addEventListener("click", (e) => { if (e.target === modalOverlay) closeModal(); });
+
+function openFormulaLightbox(entry) {
+  if (!window.katex) return;
+  lightboxTitle.textContent = entry.name;
+  lightboxContent.innerHTML = "";
+  try {
+    if (entry.type === "maxwell") {
+      const wrap = document.createElement("div");
+      wrap.style.cssText = "display:grid;gap:20px;";
+      entry.equations.forEach(eq => {
+        const div = document.createElement("div");
+        safeKatex(eq, div, {throwOnError: false, displayMode: true});
+        wrap.appendChild(div);
+      });
+      lightboxContent.appendChild(wrap);
+    } else if (entry.type === "noether") {
+      const div = document.createElement("div");
+      div.style.cssText = "font-family:'Fraunces',serif;font-style:italic;font-size:clamp(1.2rem,3vw,1.7rem);color:var(--primary-bright);line-height:1.5;";
+      div.textContent = `„${entry.quote}"`;
+      lightboxContent.appendChild(div);
+    } else {
+      const div = document.createElement("div");
+      safeKatex(entry.tex, div, {throwOnError: false, displayMode: true});
+      lightboxContent.appendChild(div);
+    }
+  } catch (e) { /* ignore render errors */ }
+  formulaLightbox.classList.add("visible");
+  formulaLightbox.setAttribute("aria-hidden", "false");
+}
+function closeLightbox() {
+  formulaLightbox.classList.remove("visible");
+  formulaLightbox.setAttribute("aria-hidden", "true");
+}
+lightboxClose.addEventListener("click", closeLightbox);
+formulaLightbox.addEventListener("click", (e) => { if (e.target === formulaLightbox) closeLightbox(); });
+
+function renderStats() {
+  const domain = DOMAINS[activeDomain];
+  const catCounts = {};
+  const eraCounts = {};
+  const eraOrder = [];
+  rowElements.forEach(r => {
+    catCounts[r.category] = (catCounts[r.category] || 0) + 1;
+    if (!(r.era in eraCounts)) eraOrder.push(r.era);
+    eraCounts[r.era] = (eraCounts[r.era] || 0) + 1;
+  });
+  const total = rowElements.length;
+  const maxCat = Math.max(...Object.values(catCounts));
+  const maxEra = Math.max(...Object.values(eraCounts));
+
+  statsCategories.innerHTML = "";
+  domain.categoryOrder.forEach(key => {
+    const count = catCounts[key] || 0;
+    if (!count) return;
+    const color = domain.categoryColors ? domain.categoryColors[key] : "var(--primary)";
+    const row = document.createElement("div");
+    row.className = "stat-row";
+    row.innerHTML = `<span class="stat-label">${domain.categoryLabels[key]}</span>
+      <span class="stat-bar-track"><span class="stat-bar-fill" style="width:0%;background:${color};color:${color}"></span></span>
+      <span class="stat-count">${count}</span>`;
+    statsCategories.appendChild(row);
+    requestAnimationFrame(() => {
+      row.querySelector(".stat-bar-fill").style.width = (count / maxCat * 100) + "%";
+    });
+  });
+
+  statsEras.innerHTML = "";
+  eraOrder.forEach(era => {
+    const count = eraCounts[era];
+    const row = document.createElement("div");
+    row.className = "stat-row";
+    row.innerHTML = `<span class="stat-label">${era}</span>
+      <span class="stat-bar-track"><span class="stat-bar-fill" style="width:0%;background:var(--primary);color:var(--primary)"></span></span>
+      <span class="stat-count">${count}</span>`;
+    statsEras.appendChild(row);
+    requestAnimationFrame(() => {
+      row.querySelector(".stat-bar-fill").style.width = (count / maxEra * 100) + "%";
+    });
+  });
+
+  document.getElementById("statsTitle").textContent = `${domain.label} · ${total} tétel eloszlása`;
+}
+statsBtn.addEventListener("click", () => {
+  renderStats();
+  statsOverlay.classList.add("visible");
+  statsOverlay.setAttribute("aria-hidden", "false");
+});
+statsClose.addEventListener("click", () => {
+  statsOverlay.classList.remove("visible");
+  statsOverlay.setAttribute("aria-hidden", "true");
+});
+statsOverlay.addEventListener("click", (e) => { if (e.target === statsOverlay) {
+  statsOverlay.classList.remove("visible");
+  statsOverlay.setAttribute("aria-hidden", "true");
+}});
+
+function wrapCanvasText(ctx, text, x, y, maxWidth, lineHeight, maxLines) {
+  const words = text.split(" ");
+  let line = "";
+  const lines = [];
+  for (const w of words) {
+    const test = line + w + " ";
+    if (ctx.measureText(test).width > maxWidth && line !== "") {
+      lines.push(line.trim());
+      line = w + " ";
+    } else {
+      line = test;
+    }
+  }
+  if (line.trim()) lines.push(line.trim());
+  const shown = lines.slice(0, maxLines);
+  shown.forEach((l, i) => ctx.fillText(l, x, y + i * lineHeight));
+  return shown.length;
+}
+
+function renderTexToImage(tex) {
+  return new Promise((resolve) => {
+    if (!tex || !window.katex) { resolve(null); return; }
+    const tempDiv = document.createElement("div");
+    tempDiv.style.cssText = "position:fixed;left:-9999px;top:-9999px;font-size:34px;color:#eef1f7;background:transparent;";
+    document.body.appendChild(tempDiv);
+    try {
+      safeKatex(tex, tempDiv, {throwOnError: false, displayMode: true});
+    } catch (e) { document.body.removeChild(tempDiv); resolve(null); return; }
+
+    let cssText = "";
+    try {
+      for (const sheet of document.styleSheets) {
+        try {
+          if (sheet.href && sheet.href.indexOf("katex") !== -1) {
+            for (const rule of sheet.cssRules) cssText += rule.cssText + "\n";
+          }
+        } catch (e) { /* cross-origin sheet, skip */ }
+      }
+    } catch (e) {}
+
+    const w = Math.max(tempDiv.scrollWidth, 80);
+    const h = Math.max(tempDiv.scrollHeight, 50);
+    const innerHTML = tempDiv.innerHTML;
+    document.body.removeChild(tempDiv);
+
+    const svgString = `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}">
+      <foreignObject width="100%" height="100%">
+        <div xmlns="http://www.w3.org/1999/xhtml">
+          <style>${cssText}</style>
+          <div style="font-size:34px;color:#eef1f7;display:inline-block;">${innerHTML}</div>
+        </div>
+      </foreignObject>
+    </svg>`;
+
+    const blob = new Blob([svgString], {type: "image/svg+xml;charset=utf-8"});
+    const url = URL.createObjectURL(blob);
+    const img = new Image();
+    const timeout = setTimeout(() => { URL.revokeObjectURL(url); resolve(null); }, 1200);
+    img.onload = () => { clearTimeout(timeout); URL.revokeObjectURL(url); resolve(img); };
+    img.onerror = () => { clearTimeout(timeout); URL.revokeObjectURL(url); resolve(null); };
+    img.src = url;
+  });
+}
+
+async function generateShareCard(entry, domainKey, btnEl) {
+  if (btnEl) btnEl.classList.add("copied");
+  showToast("Kártya készítése…");
+  try {
+
+  const palette = domainKey === "matek"
+    ? {ink: "#0b0f1f", ink2: "#121a33", primary: "#c9a24b", primaryBright: "#e9c877", paper: "#eef1f7", muted: "#9aa6c4"}
+    : {ink: "#080f1c", ink2: "#0c1526", primary: "#3eb8f0", primaryBright: "#7fd8ff", paper: "#e8f0fa", muted: "#7a9abc"};
+
+  const W = 1200, H = 630;
+  const canvas = document.createElement("canvas");
+  canvas.width = W; canvas.height = H;
+  const ctx = canvas.getContext("2d");
+
+  const grad = ctx.createLinearGradient(0, 0, W, H);
+  grad.addColorStop(0, palette.ink2);
+  grad.addColorStop(1, palette.ink);
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, W, H);
+
+  if (document.fonts && document.fonts.ready) { try { await document.fonts.ready; } catch (e) {} }
+
+  const domainLabel = DOMAINS[domainKey].label;
+  ctx.fillStyle = palette.primary;
+  ctx.font = "700 14px Inter, sans-serif";
+  ctx.fillText("HALHATATLAN TUDOMÁNYOS SZÉPSÉGEK · " + domainLabel.toUpperCase(), 64, 66);
+
+  ctx.strokeStyle = palette.primary;
+  ctx.globalAlpha = 0.55;
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(64, 82); ctx.lineTo(280, 82); ctx.stroke();
+  ctx.globalAlpha = 1;
+
+  ctx.fillStyle = palette.paper;
+  ctx.font = "italic 500 50px Fraunces, serif";
+  wrapCanvasText(ctx, entry.name, 64, 160, W - 560, 56, 2);
+
+  ctx.font = "500 15px 'JetBrains Mono', monospace";
+  ctx.fillStyle = palette.muted;
+  wrapCanvasText(ctx, entry.tag || "", 64, 280, W - 560, 20, 2);
+
+  const texSource = entry.type === "maxwell" ? entry.equations[0] : (entry.type === "noether" ? null : entry.tex);
+  let formulaBottom = 300;
+  if (texSource) {
+    ctx.save();
+    ctx.fillStyle = palette.muted;
+    ctx.font = "500 17px 'JetBrains Mono', monospace";
+    ctx.textAlign = "right";
+    const fx = W - 64;
+    const fy = 300;
+    const maxLen = 38;
+    let texStr = texSource.replace(/\\/g, "").replace(/[{}]/g, "").replace(/\$/g, "");
+    if (texStr.length > maxLen) texStr = texStr.slice(0, maxLen) + "…";
+    ctx.fillText(texStr, fx, fy);
+    ctx.restore();
+  }
+
+  const plain = stripHtml(entry.why || "").replace(/^<b>|<\/b>$/g, "");
+  ctx.font = "17px Inter, sans-serif";
+  ctx.fillStyle = palette.muted;
+  wrapCanvasText(ctx, plain, 64, 360, W - 560, 27, 6);
+
+  ctx.font = "12px 'JetBrains Mono', monospace";
+  ctx.fillStyle = palette.primary;
+  ctx.globalAlpha = 0.75;
+  ctx.fillText("tudomanyos-szepsegek", 64, H - 40);
+  ctx.globalAlpha = 1;
+
+  canvas.toBlob(async (blob) => {
+    if (btnEl) setTimeout(() => btnEl.classList.remove("copied"), 1200);
+    if (!blob) { showToast("A kártya generálása nem sikerült."); return; }
+    const filename = slugify(entry.name) + ".png";
+
+    if (navigator.share && navigator.canShare) {
+      try {
+        const file = new File([blob], filename, {type: "image/png"});
+        if (navigator.canShare({files: [file]})) {
+          await navigator.share({files: [file], title: entry.name, text: "Halhatatlan tudományos szépségek"});
+          showToast("Megosztva!");
+          return;
+        }
+      } catch (e) {
+        if (e && e.name === "AbortError") { return; }
+        /* megosztás nem sikerült, letöltésre váltunk */
+      }
+    }
+
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 4000);
+    showToast("Kártya letöltve!");
+  }, "image/png");
+
+  } catch (err) {
+    if (btnEl) btnEl.classList.remove("copied");
+    const msg = (err && err.message) ? err.message : String(err);
+    showToast("Hiba: " + msg.slice(0, 120));
+  }
+}
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    closeModal();
+    closeLightbox();
+    closeGraph();
+    statsOverlay.classList.remove("visible");
+    statsOverlay.setAttribute("aria-hidden", "true");
+  }
+  if (e.key === "/" && document.activeElement !== searchBox && !modalOverlay.classList.contains("visible")) {
+    e.preventDefault();
+    searchBox.focus();
+  }
+});
+
+let searchDebounce;
+searchBox.addEventListener("input", () => {
+  searchClear.classList.toggle("visible", searchBox.value.length > 0);
+  // ha a felhasználó kézzel gépel, a téma-szűrő (tag cloud) kikapcsol
+  if (activeTagFilter) {
+    activeTagFilter = null;
+    [...tagcloud.children].forEach(c => { if (c.classList.contains("tchip")) c.classList.remove("active"); });
+  }
+  clearTimeout(searchDebounce);
+  searchDebounce = setTimeout(() => {
+    searchQuery = searchBox.value;
+    applyFilter();
+  }, 120);
+});
+
+searchClear.addEventListener("click", () => {
+  searchBox.value = "";
+  searchQuery = "";
+  activeTagFilter = null;
+  searchClear.classList.remove("visible");
+  [...tagcloud.children].forEach(c => { if (c.classList.contains("tchip")) c.classList.remove("active"); });
+  applyFilter();
+  searchBox.focus();
+});
+
+function handleDeepLink() {
+  const hash = location.hash.replace(/^#/, "");
+  if (!hash.startsWith("entry-")) return;
+  const rest = hash.slice("entry-".length);
+  const m = rest.match(/^(matek|fizika)-(.+)$/);
+  if (!m) return;
+  const [, domainKey] = m;
+  if (domainKey !== activeDomain) {
+    renderDomain(domainKey);
+  }
+  requestAnimationFrame(() => {
+    const el = document.getElementById(hash);
+    if (el) {
+      if (el.scrollIntoView) el.scrollIntoView({behavior: "smooth", block: "center"});
+      el.classList.add("highlight-flash");
+      setTimeout(() => el.classList.remove("highlight-flash"), 2300);
+    }
+  });
+}
+
+// ==== TUDÁS-GRÁF ====
+const graphState = {
+  nodes: [], edges: [], catCenters: [],
+  scale: 1, offsetX: 0, offsetY: 0,
+  dragging: false, moved: false,
+  lastX: 0, lastY: 0,
+  hoverNode: null, domain: "matek",
+  raf: null, t: 0
+};
+
+function buildGraph(domainKey) {
+  const domain = DOMAINS[domainKey];
+  const data = domain.data;
+  const cats = domain.categoryOrder.filter(k => data.some(d => d.category === k));
+  const R = 320; // kategória-központok köre
+  graphState.catCenters = cats.map((key, i) => {
+    const ang = (i / cats.length) * Math.PI * 2 - Math.PI / 2;
+    return {
+      key,
+      label: domain.categoryLabels[key],
+      color: (domain.categoryColors && domain.categoryColors[key]) || "#c9a24b",
+      x: Math.cos(ang) * R,
+      y: Math.sin(ang) * R
+    };
+  });
+
+  const byName = {};
+  graphState.nodes = data.map((entry, idx) => {
+    const center = graphState.catCenters.find(c => c.key === entry.category) || {x: 0, y: 0, color: "#c9a24b"};
+    const inCat = data.filter(d => d.category === entry.category);
+    const localIdx = inCat.indexOf(entry);
+    // Phyllotaxis (aranyszög) elrendezés: egyenletes, természetes kitöltés
+    const golden = Math.PI * (3 - Math.sqrt(5));
+    const rad = 13 * Math.sqrt(localIdx + 0.6);
+    const ang = localIdx * golden;
+    const important = !!(entry.mega || entry.special);
+    const node = {
+      entry, domain: domainKey,
+      x: center.x + Math.cos(ang) * rad,
+      y: center.y + Math.sin(ang) * rad,
+      baseX: center.x + Math.cos(ang) * rad,
+      baseY: center.y + Math.sin(ang) * rad,
+      r: important ? 5.2 : 3.4,
+      color: center.color,
+      important,
+      phase: (idx % 17) / 17 * Math.PI * 2
+    };
+    byName[entry.name] = node;
+    return node;
+  });
+
+  graphState.edges = [];
+  data.forEach(entry => {
+    if (!entry.related) return;
+    const from = byName[entry.name];
+    if (!from) return;
+    entry.related.forEach(rel => {
+      if (rel.domain !== domainKey) return; // kereszt-domain élt itt nem rajzolunk
+      const to = byName[rel.name];
+      if (to && from !== to) graphState.edges.push({from, to});
+    });
+  });
+
+  // Jelmagyarázat
+  graphLegend.innerHTML = graphState.catCenters.map(c =>
+    `<span class="graph-legend-item"><span class="graph-legend-dot" style="background:${c.color};color:${c.color}"></span>${c.label}</span>`
+  ).join("");
+}
+
+function resetGraphView() {
+  const rect = graphCanvas.getBoundingClientRect();
+  // Mobilra (kis képernyő) nagyobb alap scale: az 820-as "világ" jobban kitölti a nézetet.
+  const fit = Math.min(rect.width, rect.height) / 560;
+  graphState.scale = Math.max(0.35, Math.min(fit, 1.6));
+  graphState.offsetX = rect.width / 2;
+  graphState.offsetY = rect.height / 2;
+}
+
+function resizeGraphCanvas() {
+  const dpr = window.devicePixelRatio || 1;
+  const rect = graphCanvas.getBoundingClientRect();
+  graphCanvas.width = Math.max(1, Math.round(rect.width * dpr));
+  graphCanvas.height = Math.max(1, Math.round(rect.height * dpr));
+  const ctx = graphCanvas.getContext("2d");
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+
+function graphToScreen(x, y) {
+  return {
+    x: x * graphState.scale + graphState.offsetX,
+    y: y * graphState.scale + graphState.offsetY
+  };
+}
+
+function drawGraph() {
+  const ctx = graphCanvas.getContext("2d");
+  const rect = graphCanvas.getBoundingClientRect();
+  const styles = getComputedStyle(document.body);
+  const inkColor = styles.getPropertyValue("--ink").trim() || "#0b0f1f";
+  const mutedColor = styles.getPropertyValue("--muted").trim() || "#9aa6c4";
+  const paperColor = styles.getPropertyValue("--paper").trim() || "#eef1f7";
+
+  ctx.fillStyle = inkColor;
+  ctx.fillRect(0, 0, rect.width, rect.height);
+
+  graphState.t += 0.006;
+  // Lassú, finom lebegés — "él" a gráf
+  graphState.nodes.forEach(n => {
+    n.x = n.baseX + Math.sin(graphState.t + n.phase) * 2.6;
+    n.y = n.baseY + Math.cos(graphState.t * 0.85 + n.phase) * 2.6;
+  });
+
+  // Élek
+  ctx.lineWidth = Math.max(0.6, 1.1 * graphState.scale);
+  graphState.edges.forEach(e => {
+    const a = graphToScreen(e.from.x, e.from.y);
+    const b = graphToScreen(e.to.x, e.to.y);
+    const highlighted = graphState.hoverNode === e.from || graphState.hoverNode === e.to;
+    ctx.strokeStyle = highlighted ? e.from.color : mutedColor;
+    ctx.globalAlpha = highlighted ? 0.85 : 0.22;
+    // enyhe ív, hogy ne legyen mértani rideg
+    const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
+    const dx = b.x - a.x, dy = b.y - a.y;
+    ctx.beginPath();
+    ctx.moveTo(a.x, a.y);
+    ctx.quadraticCurveTo(mx - dy * 0.12, my + dx * 0.12, b.x, b.y);
+    ctx.stroke();
+  });
+  ctx.globalAlpha = 1;
+
+  // Kategória-címkék
+  ctx.textAlign = "center";
+  ctx.font = `600 ${Math.max(9, 12 * graphState.scale)}px Inter, sans-serif`;
+  graphState.catCenters.forEach(c => {
+    const p = graphToScreen(c.x, c.y - 78);
+    ctx.fillStyle = c.color;
+    ctx.globalAlpha = 0.85;
+    ctx.fillText(c.label, p.x, p.y);
+  });
+  ctx.globalAlpha = 1;
+
+  // Csomópontok
+  graphState.nodes.forEach(n => {
+    const p = graphToScreen(n.x, n.y);
+    const isHover = graphState.hoverNode === n;
+    const r = (isHover ? n.r * 1.9 : n.r) * Math.max(0.55, graphState.scale);
+    if (n.important || isHover) {
+      ctx.shadowColor = n.color;
+      ctx.shadowBlur = isHover ? 18 : 8;
+    } else {
+      ctx.shadowBlur = 0;
+    }
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+    ctx.fillStyle = isHover ? paperColor : n.color;
+    ctx.globalAlpha = isHover ? 1 : (n.important ? 0.95 : 0.7);
+    ctx.fill();
+  });
+  ctx.shadowBlur = 0;
+  ctx.globalAlpha = 1;
+
+  graphState.raf = requestAnimationFrame(drawGraph);
+}
+
+function findNodeAt(clientX, clientY) {
+  const rect = graphCanvas.getBoundingClientRect();
+  const mx = clientX - rect.left, my = clientY - rect.top;
+  let best = null, bestDist = 18;
+  graphState.nodes.forEach(n => {
+    const p = graphToScreen(n.x, n.y);
+    const d = Math.hypot(p.x - mx, p.y - my);
+    if (d < bestDist) { bestDist = d; best = n; }
+  });
+  return best;
+}
+
+function openGraph() {
+  graphState.domain = activeDomain;
+  graphOverlay.classList.add("visible");
+  graphOverlay.setAttribute("aria-hidden", "false");
+  requestAnimationFrame(() => {
+    resizeGraphCanvas();
+    buildGraph(graphState.domain);
+    resetGraphView();
+    if (graphState.raf) cancelAnimationFrame(graphState.raf);
+    drawGraph();
+  });
+}
+function closeGraph() {
+  graphOverlay.classList.remove("visible");
+  graphOverlay.setAttribute("aria-hidden", "true");
+  if (graphState.raf) { cancelAnimationFrame(graphState.raf); graphState.raf = null; }
+}
+
+graphBtn.addEventListener("click", openGraph);
+graphClose.addEventListener("click", closeGraph);
+graphResetBtn.addEventListener("click", resetGraphView);
+graphDomainBtn.addEventListener("click", () => {
+  graphState.domain = graphState.domain === "matek" ? "fizika" : "matek";
+  document.body.dataset.domain = graphState.domain;
+  buildGraph(graphState.domain);
+  resetGraphView();
+  showToast(DOMAINS[graphState.domain].label);
+});
+
+graphCanvas.addEventListener("pointerdown", (e) => {
+  graphState.dragging = true;
+  graphState.moved = false;
+  graphState.lastX = e.clientX;
+  graphState.lastY = e.clientY;
+  graphCanvas.classList.add("dragging");
+  if (graphCanvas.setPointerCapture) graphCanvas.setPointerCapture(e.pointerId);
+});
+graphCanvas.addEventListener("pointermove", (e) => {
+  if (graphState.dragging) {
+    const dx = e.clientX - graphState.lastX, dy = e.clientY - graphState.lastY;
+    if (Math.abs(dx) + Math.abs(dy) > 3) graphState.moved = true;
+    graphState.offsetX += dx;
+    graphState.offsetY += dy;
+    graphState.lastX = e.clientX;
+    graphState.lastY = e.clientY;
+    graphTooltip.classList.remove("visible");
+    return;
+  }
+  const node = findNodeAt(e.clientX, e.clientY);
+  graphState.hoverNode = node;
+  if (node) {
+    const rect = graphCanvas.getBoundingClientRect();
+    graphTooltip.innerHTML = `<span class="gt-name">${node.entry.name}</span><span class="gt-tag">${node.entry.tag}</span>`;
+    graphTooltip.style.left = Math.min(e.clientX - rect.left + 14, rect.width - 270) + "px";
+    graphTooltip.style.top = (e.clientY - rect.top + 14) + "px";
+    graphTooltip.classList.add("visible");
+  } else {
+    graphTooltip.classList.remove("visible");
+  }
+});
+graphCanvas.addEventListener("pointerup", (e) => {
+  graphState.dragging = false;
+  graphCanvas.classList.remove("dragging");
+  if (graphState.moved) return;
+  const node = findNodeAt(e.clientX, e.clientY);
+  if (!node) return;
+  closeGraph();
+  if (node.domain !== activeDomain) renderDomain(node.domain);
+  searchBox.value = node.entry.name;
+  searchQuery = node.entry.name;
+  searchClear.classList.add("visible");
+  activeCategory = "all";
+  [...filterbar.children].forEach(c => c.classList.toggle("active", c.dataset.cat === "all"));
+  applyFilter();
+  requestAnimationFrame(() => {
+    const el = document.getElementById(`entry-${node.domain}-${slugify(node.entry.name)}`);
+    if (el) {
+      if (el.scrollIntoView) el.scrollIntoView({behavior: "smooth", block: "center"});
+      el.classList.add("highlight-flash");
+      setTimeout(() => el.classList.remove("highlight-flash"), 2300);
+    }
+  });
+});
+graphCanvas.addEventListener("pointercancel", () => {
+  graphState.dragging = false;
+  graphCanvas.classList.remove("dragging");
+});
+graphCanvas.addEventListener("wheel", (e) => {
+  e.preventDefault();
+  const rect = graphCanvas.getBoundingClientRect();
+  const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+  const factor = e.deltaY < 0 ? 1.12 : 1 / 1.12;
+  const newScale = Math.max(0.2, Math.min(4, graphState.scale * factor));
+  // zoom a kurzor felé
+  graphState.offsetX = mx - (mx - graphState.offsetX) * (newScale / graphState.scale);
+  graphState.offsetY = my - (my - graphState.offsetY) * (newScale / graphState.scale);
+  graphState.scale = newScale;
+}, {passive: false});
+
+// === Pinch-zoom iPhone-on / érintőképernyőn (két ujj) ===
+let pinchPrevDist = 0;
+let pinchPrevMid = null;
+graphCanvas.addEventListener("touchstart", (e) => {
+  if (e.touches.length === 2) {
+    const dx = e.touches[0].clientX - e.touches[1].clientX;
+    const dy = e.touches[0].clientY - e.touches[1].clientY;
+    pinchPrevDist = Math.hypot(dx, dy);
+    pinchPrevMid = {
+      x: (e.touches[0].clientX + e.touches[1].clientX) / 2,
+      y: (e.touches[0].clientY + e.touches[1].clientY) / 2
+    };
+    graphState.dragging = false; // ne ütközzön a drag-vel
+  }
+}, {passive: false});
+graphCanvas.addEventListener("touchmove", (e) => {
+  if (e.touches.length === 2 && pinchPrevDist > 0) {
+    e.preventDefault(); // ne görgessen az oldal pinch közben
+    const dx = e.touches[0].clientX - e.touches[1].clientX;
+    const dy = e.touches[0].clientY - e.touches[1].clientY;
+    const dist = Math.hypot(dx, dy);
+    const mid = {
+      x: (e.touches[0].clientX + e.touches[1].clientX) / 2,
+      y: (e.touches[0].clientY + e.touches[1].clientY) / 2
+    };
+    const rect = graphCanvas.getBoundingClientRect();
+    const mx = mid.x - rect.left, my = mid.y - rect.top;
+    const factor = dist / pinchPrevDist;
+    const newScale = Math.max(0.2, Math.min(5, graphState.scale * factor));
+    graphState.offsetX = mx - (mx - graphState.offsetX) * (newScale / graphState.scale);
+    graphState.offsetY = my - (my - graphState.offsetY) * (newScale / graphState.scale);
+    graphState.scale = newScale;
+    // a két ujj mozgását is követjük (pánik a felezőponttal)
+    if (pinchPrevMid) {
+      graphState.offsetX += mid.x - pinchPrevMid.x;
+      graphState.offsetY += mid.y - pinchPrevMid.y;
+    }
+    pinchPrevDist = dist;
+    pinchPrevMid = mid;
+    drawGraph();
+  }
+}, {passive: false});
+graphCanvas.addEventListener("touchend", (e) => {
+  if (e.touches.length < 2) { pinchPrevDist = 0; pinchPrevMid = null; }
+}, {passive: false});
+
+window.addEventListener("resize", () => {
+  if (!graphOverlay.classList.contains("visible")) return;
+  resizeGraphCanvas();
+  resetGraphView();
+});
+
+// ==== A NAP SZÉPSÉGE ====
+// Dátumból számolt, determinisztikus választás: mindenki ugyanazt látja
+// az adott napon, és éjfélkor magától vált.
+function dayKey(d) {
+  return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+}
+
+function dayIndex(d, modulo) {
+  // Napok száma egy fix kezdőponttól — stabil, időzónától független sorszám.
+  const utcDays = Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 86400000);
+  // Egy nagy prímmel szorozva jól "keverünk", hogy egymást követő napokon
+  // ne szomszédos tételek jöjjenek elő.
+  return ((utcDays * 7919) % modulo + modulo) % modulo;
+}
+
+function renderDailyFeature() {
+  const today = new Date();
+  const key = dayKey(today);
+
+  let dismissed = null;
+  try { dismissed = localStorage.getItem("tsz_daily_dismissed"); } catch (e) {}
+  if (dismissed === key) { dailyCard.hidden = true; return; }
+
+  const pool = [
+    ...MATEK_DATA.map((d, i) => ({entry: d, domain: "matek"})),
+    ...FIZIKA_DATA.map((d, i) => ({entry: d, domain: "fizika"}))
+  ];
+  if (!pool.length) return;
+
+  const pick = pool[dayIndex(today, pool.length)];
+  const entry = pick.entry;
+
+  dailyDate.textContent = today.toLocaleDateString("hu-HU", {year: "numeric", month: "long", day: "numeric"});
+  dailyName.textContent = entry.name;
+  dailyTag.textContent = entry.tag;
+  dailyWhy.innerHTML = entry.why;
+
+  dailyFormula.innerHTML = "";
+  const texSource = entry.type === "maxwell" ? entry.equations[0] : (entry.type === "noether" ? null : entry.tex);
+  if (texSource && window.katex) {
+    try {
+      safeKatex(texSource, dailyFormula, {throwOnError: false, displayMode: true});
+      dailyFormula.style.display = "";
+    } catch (e) { dailyFormula.style.display = "none"; }
+  } else if (entry.type === "noether") {
+    dailyFormula.style.display = "";
+    dailyFormula.textContent = "„" + entry.quote + "\"";
+  } else {
+    dailyFormula.style.display = "none";
+  }
+
+  dailyFormula.onclick = () => openFormulaLightbox(entry);
+
+  dailyJump.onclick = () => {
+    if (pick.domain !== activeDomain) renderDomain(pick.domain);
+    const targetId = `entry-${pick.domain}-${slugify(entry.name)}`;
+    // Ha csoportos nézetben rejtve lenne egy összecsukott fejléc alatt,
+    // a keresőn keresztül biztosan láthatóvá tesszük.
+    searchBox.value = entry.name;
+    searchQuery = entry.name;
+    searchClear.classList.add("visible");
+    activeCategory = "all";
+    [...filterbar.children].forEach(c => c.classList.toggle("active", c.dataset.cat === "all"));
+    applyFilter();
+    requestAnimationFrame(() => {
+      const el = document.getElementById(targetId);
+      if (el) {
+        if (el.scrollIntoView) el.scrollIntoView({behavior: "smooth", block: "center"});
+        el.classList.add("highlight-flash");
+        setTimeout(() => el.classList.remove("highlight-flash"), 2300);
+      }
+    });
+  };
+
+  dailyDismiss.onclick = () => {
+    dailyCard.hidden = true;
+    try { localStorage.setItem("tsz_daily_dismissed", key); } catch (e) {}
+  };
+
+  dailyCard.hidden = false;
+}
+
+function getFilteredEntries() {
+  return rowElements.filter(r => !r.el.classList.contains("hidden"));
+}
+function renderDeck() {
+  deckItems = getFilteredEntries();
+  deckTotal.textContent = deckItems.length;
+  if (deckItems.length === 0) {
+    deckName.textContent = "Nincs találat";
+    deckTag.textContent = ""; deckYear.textContent = ""; deckFormula.innerHTML = ""; deckWhy.textContent = "";
+    deckPos.textContent = 0; deckPrev.disabled = true; deckNext.disabled = true; return;
+  }
+  deckPrev.disabled = false; deckNext.disabled = false;
+  if (deckIndex >= deckItems.length) deckIndex = deckItems.length - 1;
+  if (deckIndex < 0) deckIndex = 0;
+  const r = deckItems[deckIndex];
+  const entry = r.entry || (r.el && r._entry);
+  // az entry-t a rowElements-ben tároljuk
+  const e = r.entry;
+  const domain = DOMAINS[activeDomain];
+  const catColor = domain.categoryColors ? domain.categoryColors[e.category] : null;
+  deckTag.textContent = e.tag;
+  deckTag.style.color = catColor || "var(--tag-color)";
+  const yr = extractYear(e);
+  deckYear.textContent = yr < 0 ? ("Kr. e. " + Math.abs(yr) + ".") : String(yr);
+  deckName.textContent = e.name;
+  if (e.whyMore) {
+    deckWhy.className = "why why-expand";
+    deckWhy.tabIndex = 0;
+    deckWhy.setAttribute("role", "button");
+    deckWhy.setAttribute("aria-expanded", "false");
+    deckWhy.innerHTML = '<span class="why-head">' + e.why + '</span><span class="why-more">' + e.whyMore + '</span><span class="why-hint">kattints a képlet magyarázatáért</span>';
+    setupExpandableWhy(deckWhy);
+  } else {
+    deckWhy.className = "why";
+    deckWhy.innerHTML = e.why;
+  }
+  if (e.illustration) {
+    deckIllu.style.display = "flex";
+    deckIllu.innerHTML = buildIllustration(e.illustration, catColor);
+  } else {
+    deckIllu.style.display = "none";
+    deckIllu.innerHTML = "";
+  }
+  // Wiki gomb a decken
+  let dw = document.getElementById("deckWiki");
+  if (e.wiki) {
+    if (!dw) { dw = document.createElement("button"); dw.id="deckWiki"; dw.className="icon-btn wiki-btn"; dw.setAttribute("aria-label","Tudj meg többet"); dw.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 11v5M12 7.5v.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>'; deckCard.querySelector(".deck-actions").appendChild(dw); }
+    dw.style.display = "inline-flex";
+    dw.onclick = () => window.open(e.wiki, "_blank", "noopener");
+  } else if (dw) { dw.style.display = "none"; }
+  const favKey = activeDomain + ":" + slugify(e.name);
+  deckFav.classList.toggle("active", favorites.has(favKey));
+  deckFav.onclick = () => { toggleFavorite(favKey, deckFav); };
+  deckFormula.innerHTML = "";
+  const texSource = e.type === "maxwell" ? e.equations[0] : (e.type === "noether" ? null : e.tex);
+  if (texSource) {
+    // safeKatex már kezeli a KaTeX-hiányos fallbacket (nyers TeX szöveg)
+    try { safeKatex(texSource, deckFormula, {throwOnError: false, displayMode: true}); deckFormula.style.display = ""; }
+    catch (err) {
+      deckFormula.style.display = "";
+      deckFormula.textContent = texSource.replace(/\\/g, "").replace(/[{}]/g, "").replace(/\$/g, "");
+    }
+  } else if (e.type === "noether") {
+    deckFormula.style.display = ""; deckFormula.textContent = "„" + e.quote + "”";
+  } else {
+    deckFormula.style.display = "none";
+  }
+  deckFormula.onclick = () => openFormulaLightbox(e);
+  deckJump.onclick = () => {
+    // vissza a rangsor nézetre, és odaugrik az elemre
+    const targetId = "entry-" + activeDomain + "-" + slugify(e.name);
+    viewMode = "rank";
+    [...viewSwitch.children].forEach(b => b.classList.toggle("active", b.dataset.view === "rank"));
+    grid.hidden = false; deckView.hidden = true;
+    renderGrid();
+    requestAnimationFrame(() => {
+      const el = document.getElementById(targetId);
+      if (el) { if (el.scrollIntoView) el.scrollIntoView({behavior:"smooth", block:"center"}); el.classList.add("highlight-flash"); setTimeout(() => el.classList.remove("highlight-flash"), 2300); }
+    });
+  };
+  deckPos.textContent = deckIndex + 1;
+  deckCard.classList.remove("swap"); void deckCard.offsetWidth; deckCard.classList.add("swap");
+}
+function deckStep(d) {
+  if (deckItems.length === 0) return;
+  deckIndex = (deckIndex + d + deckItems.length) % deckItems.length;
+  renderDeck();
+  launchConfetti();
+}
+deckPrev.addEventListener("click", () => deckStep(-1));
+deckNext.addEventListener("click", () => deckStep(1));
+deckRand.addEventListener("click", () => { if (deckItems.length) { deckIndex = Math.floor(Math.random()*deckItems.length); renderDeck(); launchConfetti(); } });
+
+/* ===== Konfitti a deck váltásnál ===== */
+const confettiCanvas = document.getElementById("deckConfetti");
+let confettiParticles = [];
+let confettiRAF = null;
+
+function launchConfetti() {
+  if (!confettiCanvas) return;
+  const rect = confettiCanvas.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+  confettiCanvas.width = Math.max(1, rect.width * dpr);
+  confettiCanvas.height = Math.max(1, rect.height * dpr);
+  const ctx = confettiCanvas.getContext("2d");
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  // Domain színét követő paletta
+  const cs = getComputedStyle(document.documentElement);
+  const hl = cs.getPropertyValue("--highlight").trim() || "#e8b06a";
+  const pr = cs.getPropertyValue("--primary").trim() || "#5b8dd9";
+  const palette = [hl, pr, "#50ffbe", "#be8cff", "#f2cc8f"];
+  const w = rect.width, h = rect.height;
+  const cx = w / 2, cy = h * 0.42;
+  confettiParticles = [];
+  const count = 70;
+  for (let i = 0; i < count; i++) {
+    const ang = Math.random() * Math.PI * 2;
+    const speed = 4 + Math.random() * 7;
+    confettiParticles.push({
+      x: cx, y: cy,
+      vx: Math.cos(ang) * speed,
+      vy: Math.sin(ang) * speed - 3,
+      size: 4 + Math.random() * 5,
+      rot: Math.random() * Math.PI,
+      vr: (Math.random() - 0.5) * 0.4,
+      color: palette[Math.floor(Math.random() * palette.length)],
+      life: 1
+    });
+  }
+  confettiCanvas.classList.add("active");
+  if (confettiRAF) cancelAnimationFrame(confettiRAF);
+  const start = performance.now();
+  function frame(now) {
+    const t = now - start;
+    ctx.clearRect(0, 0, w, h);
+    let alive = false;
+    for (const p of confettiParticles) {
+      p.vy += 0.22;            // gravitáció
+      p.vx *= 0.99;
+      p.x += p.vx; p.y += p.vy;
+      p.rot += p.vr;
+      p.life = Math.max(0, 1 - t / 900);
+      if (p.life > 0 && p.y < h + 40) alive = true;
+      ctx.save();
+      ctx.globalAlpha = p.life;
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
+      ctx.restore();
+    }
+    if (alive && t < 1200) { confettiRAF = requestAnimationFrame(frame); }
+    else { ctx.clearRect(0, 0, w, h); confettiCanvas.classList.remove("active"); confettiRAF = null; }
+  }
+  confettiRAF = requestAnimationFrame(frame);
+}
+document.addEventListener("keydown", (e) => {
+  if (deckView.hidden) return;
+  if (e.key === "ArrowRight") deckStep(1);
+  else if (e.key === "ArrowLeft") deckStep(-1);
+});
+let deckTouchX = null;
+deckCard.addEventListener("touchstart", (e) => { deckTouchX = e.changedTouches[0].clientX; }, {passive:true});
+deckCard.addEventListener("touchend", (e) => {
+  if (deckTouchX === null) return;
+  const dx = e.changedTouches[0].clientX - deckTouchX;
+  if (Math.abs(dx) > 40) deckStep(dx < 0 ? 1 : -1);
+  deckTouchX = null;
+}, {passive:true});
+
+/* =========================================================
+   ÉJSZAKAI ÉGBOLT — kedvencek csillagképe
+   ========================================================= */
+const constellationCanvas = document.getElementById("constellationBg");
+const constellationLabel = (() => {
+  let el = document.getElementById("constellationLabel");
+  if (!el) {
+    el = document.createElement("div");
+    el.id = "constellationLabel";
+    el.className = "constellation-label";
+    document.body.appendChild(el);
+  }
+  return el;
+})();
+let constellationOn = false;
+let constellationStars = [];
+let constellationRAF = null;
+let constellationHover = -1;
+
+function loadNightSky() {
+  try { return localStorage.getItem("tsz_nightsky_v1") === "1"; } catch (e) { return false; }
+}
+function saveNightSky(v) {
+  try { localStorage.setItem("tsz_nightsky_v1", v ? "1" : "0"); } catch (e) {}
+}
+
+// Determinísztikus pozíció a kedvenc kulcsból (stabil, nem ugrál)
+function starHash(str) {
+  let h = 2166136261;
+  for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return (h >>> 0);
+}
+function starPos(key) {
+  const h = starHash(key);
+  const x = 6 + (h % 880) / 1000 * 88;   // 6% .. 94%
+  const y = 8 + ((h >> 11) % 880) / 1000 * 84; // 8% .. 92%
+  return { x, y };
+}
+
+function findEntryByKey(key) {
+  const idx = key.indexOf(":");
+  const domainKey = key.slice(0, idx);
+  const slug = key.slice(idx + 1);
+  const domain = DOMAINS[domainKey];
+  if (!domain) return null;
+  for (const d of domain.data) {
+    if (slugify(d.name) === slug) return { entry: d, domainKey };
+  }
+  return null;
+}
+
+function rebuildConstellation() {
+  if (!constellationCanvas) return;
+  constellationStars = [];
+  for (const key of favorites) {
+    const found = findEntryByKey(key);
+    if (!found) continue;
+    const p = starPos(key);
+    const tex = found.entry.type === "maxwell" ? (found.entry.equations && found.entry.equations[0]) :
+                (found.entry.type === "noether" ? null : found.entry.tex);
+    constellationStars.push({
+      key, x: p.x, y: p.y,
+      name: found.entry.name,
+      tex: tex ? tex.replace(/\\/g, "").replace(/[{}]/g, "").replace(/\$/g, "") : "",
+      phase: (starHash(key) % 100) / 100 * Math.PI * 2
+    });
+  }
+  if (constellationOn && constellationStars.length === 0) {
+    showToast("Még nincsenek kedvenceid — jelölj meg párat a csillaggal!");
+  }
+  if (constellationOn && !constellationRAF) drawConstellation();
+}
+
+function drawConstellation() {
+  if (!constellationCanvas) return;
+  const dpr = window.devicePixelRatio || 1;
+  const w = window.innerWidth, h = window.innerHeight;
+  if (constellationCanvas.width !== w * dpr || constellationCanvas.height !== h * dpr) {
+    constellationCanvas.width = w * dpr;
+    constellationCanvas.height = h * dpr;
+  }
+  const ctx = constellationCanvas.getContext("2d");
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, w, h);
+
+  // Auróra-szín a csillagképhez (domain színét követi a testen keresztül)
+  const cs = getComputedStyle(document.documentElement);
+  const hl = cs.getPropertyValue("--highlight").trim() || "#e8b06a";
+  const pr = cs.getPropertyValue("--primary").trim() || "#5b8dd9";
+
+  // Hullámos összekötő vonalak a csillagok között (konstelláció)
+  if (constellationStars.length > 1) {
+    ctx.save();
+    ctx.strokeStyle = "rgba(140,170,255,0.18)";
+    ctx.lineWidth = 1;
+    for (let i = 0; i < constellationStars.length - 1; i++) {
+      const a = constellationStars[i], b = constellationStars[i + 1];
+      const ax = a.x / 100 * w, ay = a.y / 100 * h;
+      const bx = b.x / 100 * w, by = b.y / 100 * h;
+      const mx = (ax + bx) / 2, my = (ay + by) / 2 - 26;
+      ctx.beginPath();
+      ctx.moveTo(ax, ay);
+      ctx.quadraticCurveTo(mx, my, bx, by);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  // Csillagok (pulzáló glow)
+  const t = performance.now() / 1000;
+  constellationStars.forEach((s, i) => {
+    const px = s.x / 100 * w, py = s.y / 100 * h;
+    const pulse = 0.6 + 0.4 * Math.sin(t * 1.6 + s.phase);
+    const r = 2.4 + pulse * 2.2;
+    const isHover = i === constellationHover;
+    const rr = isHover ? r + 4 : r;
+    const grad = ctx.createRadialGradient(px, py, 0, px, py, rr * 5);
+    grad.addColorStop(0, isHover ? hl : "rgba(235,240,255,0.95)");
+    grad.addColorStop(0.3, isHover ? hl : "rgba(160,190,255,0.55)");
+    grad.addColorStop(1, "rgba(120,150,220,0)");
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(px, py, rr * 5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = isHover ? "#fff" : "rgba(245,248,255,0.95)";
+    ctx.beginPath();
+    ctx.arc(px, py, isHover ? 3 : 2, 0, Math.PI * 2);
+    ctx.fill();
+  });
+
+  if (constellationOn) constellationRAF = requestAnimationFrame(drawConstellation);
+  else { ctx.clearRect(0, 0, w, h); constellationRAF = null; }
+}
+
+function scrollToEntry(domainKey, slug) {
+  // Domain váltás
+  if (domainKey !== activeDomain) {
+    const dbtn = [...domainSwitch.children].find(b => b.dataset.domain === domainKey);
+    if (dbtn) dbtn.click();
+  }
+  // Rangsor nézet
+  if (viewMode !== "rank") {
+    const vbtn = [...viewSwitch.children].find(b => b.dataset.view === "rank");
+    if (vbtn) vbtn.click();
+  }
+  requestAnimationFrame(() => {
+    const el = document.getElementById("entry-" + domainKey + "-" + slug);
+    if (el) {
+      if (el.scrollIntoView) el.scrollIntoView({behavior:"smooth", block:"center"});
+      el.classList.add("highlight-flash");
+      setTimeout(() => el.classList.remove("highlight-flash"), 2300);
+    }
+  });
+}
+
+/* ================= Univerzum-térkép (star map) ================= */
+const starMapView = document.getElementById("starMapView");
+const starMapCanvas = document.getElementById("starMapCanvas");
+const starMapLabel = document.getElementById("starMapLabel");
+const starMapHint = document.getElementById("starMapHint");
+const starMapReset = document.getElementById("starMapReset");
+let starMapRAF = null;
+let starMapStars = [];      // {key,domain,slug,x,y,r,color,name,tex,phase}
+let starMapLinks = [];      // [i,j] indexek a starMapStars-ban
+let smView = { x: 0, y: 0, scale: 1 };   // pan/zoom state (world->screen)
+let smHover = -1;
+let smDrag = null;          // {sx,sy,ox,oy}
+let smMoved = false;
+
+// determinisztikus pseudo-random a csillagok helyéhez (stabil elrendezés)
+function smRand(seed) {
+  let s = seed % 2147483647;
+  if (s <= 0) s += 2147483646;
+  return () => { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; };
+}
+
+function buildStarMap() {
+  if (!starMapCanvas) return;
+  starMapStars = [];
+  starMapLinks = [];
+  const domains = [
+    { key: "matek",     cx: 0.22, cy: 0.50, hue: "primary" },
+    { key: "fizika",    cx: 0.50, cy: 0.42, hue: "highlight" },
+    { key: "informatika", cx: 0.78, cy: 0.54, hue: "secondary" }
+  ];
+  const colorByCat = {};
+  // gyűjtjük a kategória-színeket domainenként
+  let gi = 0;
+  for (const d of domains) {
+    const dom = DOMAINS[d.key];
+    for (const cat of dom.categoryOrder) {
+      colorByCat[d.key + ":" + cat] = dom.categoryColors[cat] || "#9fb4ff";
+    }
+    const total = dom.data.length;
+    const rng = smRand(1000 + gi * 7);
+    dom.data.forEach((entry, idx) => {
+      const rankFrac = idx / Math.max(1, total - 1);   // 0 (legjobb) .. 1
+      const ang = rng() * Math.PI * 2;
+      const rad = (0.10 + 0.30 * rng()) * (1 - 0.5 * rankFrac);
+      const x = d.cx + Math.cos(ang) * rad;
+      const y = d.cy + Math.sin(ang) * rad * 0.85;
+      const r = 1.8 + (1 - rankFrac) * 3.4;            // rang szerinti méret
+      const tex = entry.type === "maxwell" ? (entry.equations && entry.equations[0]) : entry.tex;
+      starMapStars.push({
+        key: d.key + ":" + entry.slug, domain: d.key, slug: entry.slug,
+        x: x * 100, y: y * 100, r,
+        color: colorByCat[d.key + ":" + entry.category] || "#9fb4ff",
+        name: entry.name,
+        tex: tex ? tex.replace(/\\/g,"").replace(/[{}]/g,"").replace(/\$/g,"") : "",
+        phase: rng() * Math.PI * 2
+      });
+    });
+    gi++;
+  }
+  // related linkek (csak ugyanazon a domainen belül, hogy ne legyen áttekinthetetlen)
+  const keyToIdx = {};
+  starMapStars.forEach((s, i) => { keyToIdx[s.key] = i; });
+  starMapStars.forEach((s, i) => {
+    const entry = findEntryByKey(s.key);
+    if (!entry || !entry.related) return;
+    entry.related.forEach(rel => {
+      if (rel.domain !== s.domain) return;
+      const j = keyToIdx[rel.domain + ":" + slugify(rel.name)];
+      if (j !== undefined && j > i) starMapLinks.push([i, j]);
+    });
+  });
+
+  // kezdeti nézet: minden látszódjon
+  const cv = starMapCanvas;
+  const w = window.innerWidth || cv.clientWidth || 800, h = window.innerHeight || cv.clientHeight || 600;
+  smView = { x: 0, y: 0, scale: Math.min(w, h) / 100 * 0.92 };
+  smHover = -1;
+  if (!starMapRAF) requestAnimationFrame(drawStarMap);
+}
+
+function drawStarMap() {
+  if (!starMapCanvas || starMapView.hidden) return;
+  const dpr = window.devicePixelRatio || 1;
+  const w = window.innerWidth || starMapCanvas.clientWidth || 800;
+  const h = window.innerHeight || starMapCanvas.clientHeight || 600;
+  if (w === 0 || h === 0) { starMapRAF = requestAnimationFrame(drawStarMap); return; }
+  if (starMapCanvas.width !== Math.floor(w * dpr) || starMapCanvas.height !== Math.floor(h * dpr)) {
+    starMapCanvas.width = Math.floor(w * dpr); starMapCanvas.height = Math.floor(h * dpr);
+  }
+  const ctx = starMapCanvas.getContext("2d");
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, w, h);
+
+  const t = performance.now() / 1000;
+  const toScreen = (wx, wy) => ({ x: w/2 + (wx - 50) * smView.scale + smView.x, y: h/2 + (wy - 50) * smView.scale + smView.y });
+
+  // related vonalak (fátyol)
+  ctx.lineWidth = 1;
+  starMapLinks.forEach(([i, j]) => {
+    const a = toScreen(starMapStars[i].x, starMapStars[i].y);
+    const b = toScreen(starMapStars[j].x, starMapStars[j].y);
+    const hl = (i === smHover || j === smHover);
+    ctx.strokeStyle = hl ? "rgba(232,176,106,0.5)" : "rgba(140,170,255,0.06)";
+    ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+  });
+
+  // csillagok
+  starMapStars.forEach((s, i) => {
+    const p = toScreen(s.x, s.y);
+    if (p.x < -40 || p.x > w + 40 || p.y < -40 || p.y > h + 40) return;
+    const pulse = 0.65 + 0.35 * Math.sin(t * 1.4 + s.phase);
+    const isHover = (i === smHover);
+    const baseR = s.r * (isHover ? 1.6 : 1) * (0.85 + 0.3 * pulse);
+    const glow = baseR * (isHover ? 6 : 3.2);
+    const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, glow);
+    grad.addColorStop(0, isHover ? "#fff" : s.color);
+    grad.addColorStop(0.35, s.color + (isHover ? "" : "88"));
+    grad.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = grad;
+    ctx.beginPath(); ctx.arc(p.x, p.y, glow, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = isHover ? "#fff" : s.color;
+    ctx.beginPath(); ctx.arc(p.x, p.y, isHover ? 2.6 : 1.6, 0, Math.PI * 2); ctx.fill();
+  });
+
+  starMapRAF = requestAnimationFrame(drawStarMap);
+}
+
+function starMapHitTest(mx, my) {
+  const w = window.innerWidth || starMapCanvas.clientWidth;
+  const h = window.innerHeight || starMapCanvas.clientHeight;
+  const toScreen = (wx, wy) => ({ x: w/2 + (wx - 50) * smView.scale + smView.x, y: h/2 + (wy - 50) * smView.scale + smView.y });
+  for (let i = starMapStars.length - 1; i >= 0; i--) {
+    const s = starMapStars[i];
+    const p = toScreen(s.x, s.y);
+    const rr = Math.max(8, s.r * smView.scale * 0.6 + 6);
+    if ((mx - p.x) ** 2 + (my - p.y) ** 2 <= rr * rr) return i;
+  }
+  return -1;
+}
+
+function handleStarTap(mx, my) {
+  const i = starMapHitTest(mx, my);
+  if (i < 0) return;
+  const s = starMapStars[i];
+  hideStarLabel();
+  starMapView.hidden = true;        // térkép elrejtése, rangsor nézetbe ugrik
+  if (starMapRAF) { cancelAnimationFrame(starMapRAF); starMapRAF = null; }
+  scrollToEntry(s.domain, s.slug);
+}
+
+function showStarLabel(i, mx, my) {
+  const s = starMapStars[i];
+  starMapLabel.innerHTML = `<span class="sl-name">${s.name}</span>` + (s.tex ? `<span class="sl-tex">${s.tex}</span>` : "");
+  starMapLabel.style.left = mx + "px";
+  starMapLabel.style.top = my + "px";
+  starMapLabel.hidden = false;
+}
+function hideStarLabel() { starMapLabel.hidden = true; }
+
+if (starMapCanvas) {
+  starMapCanvas.addEventListener("mousedown", (e) => {
+    smDrag = { sx: e.clientX, sy: e.clientY, ox: smView.x, oy: smView.y };
+    smMoved = false;
+  });
+  window.addEventListener("mousemove", (e) => {
+    if (!starMapView || starMapView.hidden) return;
+    if (smDrag) {
+      smView.x = smDrag.ox + (e.clientX - smDrag.sx);
+      smView.y = smDrag.oy + (e.clientY - smDrag.sy);
+      if (Math.abs(e.clientX - smDrag.sx) + Math.abs(e.clientY - smDrag.sy) > 4) smMoved = true;
+      return;
+    }
+    const rect = starMapCanvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+    const i = starMapHitTest(mx, my);
+    if (i !== smHover) {
+      smHover = i;
+      starMapCanvas.style.cursor = i >= 0 ? "pointer" : "grab";
+    }
+    if (i >= 0) showStarLabel(i, mx, my); else hideStarLabel();
+  });
+  window.addEventListener("mouseup", () => { smDrag = null; });
+  starMapCanvas.addEventListener("click", (e) => {
+    const rect = starMapCanvas.getBoundingClientRect();
+    handleStarTap(e.clientX - rect.left, e.clientY - rect.top);
+  });
+  starMapCanvas.addEventListener("wheel", (e) => {
+    e.preventDefault();
+    const rect = starMapCanvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+    const factor = e.deltaY < 0 ? 1.12 : 0.89;
+    const newScale = Math.max(0.3, Math.min(8, smView.scale * factor));
+    // zoom az egérpont körül
+    const w = rect.width, h = rect.height;
+    const wx = (mx - w/2 - smView.x) / smView.scale + 50;
+    const wy = (my - h/2 - smView.y) / smView.scale + 50;
+    smView.x = mx - w/2 - (wx - 50) * newScale;
+    smView.y = my - h/2 - (wy - 50) * newScale;
+    smView.scale = newScale;
+  }, { passive: false });
+  // touch (egy ujjal húz, két ujjal zoom)
+  let touchMode = null, touchStart = null, pinchDist = 0;
+  starMapCanvas.addEventListener("touchstart", (e) => {
+    if (e.touches.length === 1) {
+      touchMode = "pan";
+      touchStart = { x: e.touches[0].clientX, y: e.touches[0].clientY, ox: smView.x, oy: smView.y };
+      smMoved = false;
+    } else if (e.touches.length === 2) {
+      touchMode = "zoom";
+      pinchDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+    }
+  }, { passive: false });
+  starMapCanvas.addEventListener("touchmove", (e) => {
+    e.preventDefault();
+    if (touchMode === "pan" && e.touches.length === 1) {
+      const t0 = e.touches[0];
+      smView.x = touchStart.ox + (t0.clientX - touchStart.x);
+      smView.y = touchStart.oy + (t0.clientY - touchStart.y);
+      if (Math.abs(t0.clientX - touchStart.x) + Math.abs(t0.clientY - touchStart.y) > 10) smMoved = true;
+    } else if (touchMode === "zoom" && e.touches.length === 2) {
+      const d = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+      const factor = d / Math.max(1, pinchDist);
+      smView.scale = Math.max(0.3, Math.min(8, smView.scale * factor));
+      pinchDist = d;
+    }
+  }, { passive: false });
+  starMapCanvas.addEventListener("touchend", (e) => {
+    if (touchMode === "pan" && !smMoved && e.changedTouches.length) {
+      const rect = starMapCanvas.getBoundingClientRect();
+      const mx = e.changedTouches[0].clientX - rect.left, my = e.changedTouches[0].clientY - rect.top;
+      handleStarTap(mx, my);
+    }
+    touchMode = null;
+  });
+  starMapReset.addEventListener("click", () => {
+    const w = starMapCanvas.clientWidth || window.innerWidth, h = starMapCanvas.clientHeight || window.innerHeight;
+    smView = { x: 0, y: 0, scale: Math.min(w, h) / 100 * 0.92 };
+  });
+}
+
+function openStarMap() {
+  starMapView.hidden = false;
+  grid.hidden = true;
+  deckView.hidden = true;
+  closeQuiz && closeQuiz();
+  hideStarLabel();
+  if (starMapHint) starMapHint.classList.remove("fade");
+  setTimeout(() => { if (starMapHint) starMapHint.classList.add("fade"); }, 4200);
+  buildStarMap();
+}
+function closeStarMap() {
+  starMapView.hidden = true;
+  if (starMapRAF) { cancelAnimationFrame(starMapRAF); starMapRAF = null; }
+  hideStarLabel();
+}
+
+function setNightSky(on) {
+  constellationOn = on;
+  saveNightSky(on);
+  constellationCanvas.classList.toggle("on", on);
+  document.getElementById("nightSkyBtn").classList.toggle("active", on);
+  document.getElementById("nightSkyBtn").setAttribute("aria-pressed", String(on));
+  if (on) { rebuildConstellation(); if (constellationStars.length) drawConstellation(); }
+  else { if (constellationRAF) { cancelAnimationFrame(constellationRAF); constellationRAF = null; } ctx_clear(); }
+}
+function ctx_clear() { if (constellationCanvas) { const c = constellationCanvas.getContext("2d"); c.clearRect(0,0,constellationCanvas.width,constellationCanvas.height); } }
+
+// Hover / kattintás a canvas-on
+if (constellationCanvas) {
+  constellationCanvas.addEventListener("mousemove", (e) => {
+    if (!constellationOn) return;
+    const w = window.innerWidth, h = window.innerHeight;
+    let hit = -1;
+    constellationStars.forEach((s, i) => {
+      const px = s.x / 100 * w, py = s.y / 100 * h;
+      if (Math.hypot(e.clientX - px, e.clientY - py) < 16) hit = i;
+    });
+    constellationHover = hit;
+    if (hit >= 0) {
+      const s = constellationStars[hit];
+      constellationLabel.innerHTML = s.name + (s.tex ? `<span class="cl-formula">${s.tex}</span>` : "");
+      constellationLabel.style.left = s.x / 100 * w + "px";
+      constellationLabel.style.top = s.y / 100 * h + "px";
+      constellationLabel.classList.add("show");
+      constellationCanvas.style.cursor = "pointer";
+    } else {
+      constellationLabel.classList.remove("show");
+      constellationCanvas.style.cursor = "default";
+    }
+  });
+  constellationCanvas.addEventListener("click", (e) => {
+    if (!constellationOn || constellationHover < 0) return;
+    const s = constellationStars[constellationHover];
+    const key = s.key;
+    const idx = key.indexOf(":");
+    scrollToEntry(key.slice(0, idx), key.slice(idx + 1));
+  });
+  constellationCanvas.addEventListener("mouseleave", () => {
+    constellationHover = -1;
+    constellationLabel.classList.remove("show");
+  });
+  window.addEventListener("resize", () => { if (constellationOn) drawConstellation(); });
+}
+
+document.getElementById("nightSkyBtn").addEventListener("click", () => {
+  setNightSky(!constellationOn);
+  if (constellationOn && constellationStars.length === 0) {
+    showToast("Még nincsenek kedvenceid — jelölj meg párat a ⭐ csillaggal!");
+  }
+});
+
+
+/* =========================================================
+   JÁTÉK MÓD — "Tippeld meg a képletet"
+   ========================================================= */
+const quizOverlay = document.getElementById("quizOverlay");
+const quizPanel = document.getElementById("quizPanel");
+let quizActive = false;
+let quizScore = 0;
+let quizRound = 0;
+const QUIZ_ROUNDS = 10;
+let quizCurrent = null;      // {entry, domainKey, options:[...], correctIndex}
+let quizAnswered = false;
+
+function texForEntry(e) {
+  if (e.type === "maxwell") return e.equations && e.equations[0] ? e.equations[0] : null;
+  if (e.type === "noether") return null; // idézet, nem képlet
+  return e.tex || null;
+}
+
+function quizPool() {
+  // Csak azok a tételek, amelyeknek van képletük (tex / equations)
+  const pool = [];
+  Object.keys(DOMAINS).forEach(dk => {
+    DOMAINS[dk].data.forEach(d => {
+      if (texForEntry(d)) pool.push({ entry: d, domainKey: dk });
+    });
+  });
+  return pool;
+}
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function openQuiz() {
+  quizActive = true;
+  quizScore = 0;
+  quizRound = 0;
+  quizOverlay.classList.add("visible");
+  quizOverlay.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+  quizNextRound();
+}
+
+function closeQuiz() {
+  quizActive = false;
+  quizOverlay.classList.remove("visible");
+  quizOverlay.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+}
+
+function quizNextRound() {
+  if (quizRound >= QUIZ_ROUNDS) { quizShowSummary(); return; }
+  const pool = quizPool();
+  if (pool.length < 4) { quizShowSummary(); return; }
+  const correct = pool[Math.floor(Math.random() * pool.length)];
+  // 3 ál-képlet ugyanarról a domainről ha lehet, különben bármely más tételről
+  const sameDomain = pool.filter(p => p.domainKey === correct.domainKey && p.entry !== correct.entry && texForEntry(p.entry));
+  const others = shuffle(sameDomain.length >= 3 ? sameDomain : pool.filter(p => p.entry !== correct.entry));
+  const distractors = others.slice(0, 3).map(p => ({ tex: texForEntry(p.entry), entry: p.entry }));
+  const options = shuffle([
+    { tex: texForEntry(correct.entry), entry: correct.entry, correct: true },
+    ...distractors.map(d => ({ ...d, correct: false }))
+  ]);
+  quizCurrent = { entry: correct.entry, domainKey: correct.domainKey, options, correctIndex: options.findIndex(o => o.correct) };
+  quizAnswered = false;
+  renderQuizQuestion();
+}
+
+function renderQuizQuestion() {
+  const e = quizCurrent.entry;
+  const domain = DOMAINS[quizCurrent.domainKey];
+  const catColor = domain.categoryColors ? domain.categoryColors[e.category] : null;
+  const illu = e.illustration ? `<div class="quiz-illu">${buildIllustration(e.illustration, catColor)}</div>` : "";
+  quizPanel.innerHTML = `
+    <div class="quiz-head">
+      <div class="quiz-title">Tippeld meg a <b>képletet</b></div>
+      <div class="quiz-score">Pont: <b id="quizScore">${quizScore}</b> / ${QUIZ_ROUNDS}</div>
+    </div>
+    <div class="quiz-round">${quizRound + 1}. kör / ${QUIZ_ROUNDS}</div>
+    <div class="quiz-name">${e.name}</div>
+    <div class="quiz-tag">${e.tag || ""}</div>
+    <div class="quiz-why">${e.why}</div>
+    ${illu}
+    <div class="quiz-formula-mystery" id="quizMystery">？ ？ ？</div>
+    <div class="quiz-options" id="quizOptions"></div>
+    <div class="quiz-feedback" id="quizFeedback"></div>
+    <div class="quiz-foot">
+      <button type="button" class="quiz-quit" id="quizQuit">Kilépés</button>
+      <button type="button" class="quiz-next" id="quizNext" hidden>Következő →</button>
+    </div>`;
+  const optsEl = document.getElementById("quizOptions");
+  quizCurrent.options.forEach((o, i) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "quiz-opt";
+    btn.dataset.idx = i;
+    if (window.katex) {
+      const span = document.createElement("span");
+      safeKatex(o.tex, span, { throwOnError: false, displayMode: false });
+      btn.appendChild(span);
+    } else {
+      btn.textContent = o.tex.replace(/\\/g, "").replace(/[{}]/g, "").replace(/\$/g, "");
+    }
+    btn.addEventListener("click", () => quizAnswer(i));
+    optsEl.appendChild(btn);
+  });
+  document.getElementById("quizQuit").addEventListener("click", closeQuiz);
+  document.getElementById("quizNext").addEventListener("click", () => { quizRound++; quizNextRound(); });
+}
+
+function quizAnswer(idx) {
+  if (quizAnswered) return;
+  quizAnswered = true;
+  const opts = document.getElementById("quizOptions").children;
+  const correctIdx = quizCurrent.correctIndex;
+  for (let i = 0; i < opts.length; i++) {
+    opts[i].disabled = true;
+    if (i === correctIdx) opts[i].classList.add("correct");
+    else if (i === idx) opts[i].classList.add("wrong");
+  }
+  const mystery = document.getElementById("quizMystery");
+  // Képlet felfedése
+  if (window.katex) {
+    mystery.classList.add("revealed");
+    mystery.innerHTML = "";
+    safeKatex(quizCurrent.options[correctIdx].tex, mystery, { throwOnError: false, displayMode: true });
+  } else {
+    mystery.classList.add("revealed");
+    mystery.textContent = quizCurrent.options[correctIdx].tex.replace(/\\/g, "").replace(/[{}]/g, "").replace(/\$/g, "");
+  }
+  const fb = document.getElementById("quizFeedback");
+  if (idx === correctIdx) {
+    quizScore++;
+    document.getElementById("quizScore").textContent = quizScore;
+    fb.textContent = "✔ Helyes! +1 pont";
+    fb.className = "quiz-feedback ok";
+  } else {
+    fb.textContent = "✘ Nem talált — ez lett volna a helyes.";
+    fb.className = "quiz-feedback no";
+  }
+  document.getElementById("quizNext").hidden = false;
+}
+
+function quizShowSummary() {
+  const pct = Math.round((quizScore / QUIZ_ROUNDS) * 100);
+  let msg = "";
+  if (pct === 100) msg = "Tökéletes! Te vagy a tudományos szépségek mestere.";
+  else if (pct >= 70) msg = "Szép teljesítmény — látszik, hogy jártas vagy a szépségekben.";
+  else if (pct >= 40) msg = "Ígéretes. Nézz vissza a Lapozó módba, és próbáld újra!";
+  else msg = "Gyakorolj még — a Lapozó mód a barátod.";
+  quizPanel.innerHTML = `
+    <div class="quiz-summary">
+      <h3>Vége a menetnek!</h3>
+      <div class="big">${quizScore} / ${QUIZ_ROUNDS}</div>
+      <p>${msg}</p>
+      <div class="quiz-foot" style="justify-content:center;">
+        <button type="button" class="quiz-quit" id="quizQuit2">Bezárás</button>
+        <button type="button" class="quiz-next" id="quizAgain">Újra játszom</button>
+      </div>
+    </div>`;
+  document.getElementById("quizQuit2").addEventListener("click", closeQuiz);
+  document.getElementById("quizAgain").addEventListener("click", () => { quizScore = 0; quizRound = 0; quizNextRound(); });
+}
+
+// Kilépés a játékból Escape-szel, ha a quiz nyitva van (ne ütközzön a deck arrow-kkal)
+document.addEventListener("keydown", (e) => {
+  if (quizActive && e.key === "Escape") closeQuiz();
+});
+
+/* =========================================================
+   OSZD MEG — social share menü
+   ========================================================= */
+const shareBackdrop = document.getElementById("shareBackdrop");
+const shareMenu = document.getElementById("shareMenu");
+let shareMenuOpen = false;
+
+function shareText(entry, domainKey) {
+  const tex = texForEntry(entry);
+  const texPlain = tex ? tex.replace(/\\/g, "").replace(/[{}]/g, "").replace(/\$/g, "").trim() : "";
+  const base = `Halhatatlan tudományos szépség: ${entry.name}`;
+  const formula = texPlain ? ` — ${texPlain}` : "";
+  return `${base}${formula} · #TudomanyosSzepsegek`;
+}
+
+function shareUrl(entry) {
+  return entry.wiki || "https://en.wikipedia.org/wiki/List_of_scientific_equations_named_after_people";
+}
+
+function buildShareMenu(entry, domainKey, anchorEl) {
+  const text = encodeURIComponent(shareText(entry, domainKey));
+  const url = encodeURIComponent(shareUrl(entry));
+  const name = encodeURIComponent(entry.name);
+  const targets = [
+    { label: "X (Twitter)", icon: "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z", href: `https://twitter.com/intent/tweet?text=${text}&url=${url}` },
+    { label: "Facebook", icon: "M22 12a10 10 0 10-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0022 12z", href: `https://www.facebook.com/sharer/sharer.php?u=${url}` },
+    { label: "Reddit", icon: "M14 9.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM9 9.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM12 2a10 10 0 00-9.3 6.3c-.2.6.28 1.2.9 1.2h16.8c.62 0 1.1-.6.9-1.2A10 10 0 0012 2zm-.5 13.8l-1.6-1.5a3.4 3.4 0 01-1.9-1.2.8.8 0 011.3-.9 1.8 1.8 0 001 1.1l1.1 1a4 4 0 005 0l1.1-1a1.8 1.8 0 001 1.1.8.8 0 01.9 1.3 3.4 3.4 0 01-1.9 1.2l-1.6 1.5a1 1 0 01-1.4-1.4l.7-.7H11.2l.7.7a1 1 0 01-1.4 1.4z", href: `https://www.reddit.com/submit?url=${url}&title=${name}` },
+    { label: "WhatsApp", icon: "M17.5 14.4l-2.3-.6a.8.8 0 00-.8.2l-1 1a7 7 0 01-3.4-3.4l1-1a.8.8 0 00.2-.8l-.6-2.3a.8.8 0 00-.8-.6H7.7A3 3 0 004.7 14c1.4 3.4 4 6 7.4 7.4a3 3 0 003.6-2.9v-1.8a.8.8 0 00-.6-.8z", href: `https://api.whatsapp.com/send?text=${text}%20${url}` },
+  ];
+  shareMenu.innerHTML = "";
+  targets.forEach(t => {
+    const a = document.createElement("a");
+    a.href = t.href;
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.setAttribute("role", "menuitem");
+    a.innerHTML = `<svg class="sm-ico" viewBox="0 0 24 24" fill="currentColor"><path d="${t.icon}"/></svg><span>${t.label}</span>`;
+    a.addEventListener("click", () => { closeShareMenu(); });
+    shareMenu.appendChild(a);
+  });
+  const sep = document.createElement("div");
+  sep.className = "sm-sep";
+  shareMenu.appendChild(sep);
+  const copyBtn = document.createElement("button");
+  copyBtn.type = "button";
+  copyBtn.setAttribute("role", "menuitem");
+  copyBtn.innerHTML = `<svg class="sm-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 15l6-6M10 6l1-1a3.5 3.5 0 015 5l-1 1M14 18l-1 1a3.5 3.5 0 01-5-5l1-1" stroke-linecap="round"/></svg><span>Link másolása</span>`;
+  copyBtn.addEventListener("click", () => {
+    const link = shareUrl(entry);
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(link).then(() => showToast("Link másolva!")).catch(() => showToast("Nem sikerült másolni."));
+    } else {
+      showToast(link);
+    }
+    closeShareMenu();
+  });
+  shareMenu.appendChild(copyBtn);
+
+  // Pozicionálás az anchor gomb alatt
+  shareMenu.classList.add("visible");
+  shareBackdrop.classList.add("visible");
+  const rect = anchorEl.getBoundingClientRect();
+  const mw = shareMenu.offsetWidth, mh = shareMenu.offsetHeight;
+  let left = rect.left;
+  if (left + mw > window.innerWidth - 8) left = window.innerWidth - mw - 8;
+  if (left < 8) left = 8;
+  let top = rect.bottom + 6;
+  if (top + mh > window.innerHeight - 8) top = rect.top - mh - 6;
+  shareMenu.style.left = left + "px";
+  shareMenu.style.top = top + "px";
+  shareMenuOpen = true;
+}
+
+function closeShareMenu() {
+  shareMenu.classList.remove("visible");
+  shareBackdrop.classList.remove("visible");
+  shareMenuOpen = false;
+}
+shareBackdrop.addEventListener("click", closeShareMenu);
+
+async function shareEntry(entry, domainKey, anchorEl) {
+  // Mobilon natív megosztás, ha elérhető
+  if (navigator.share) {
+    try {
+      const link = shareUrl(entry);
+      await navigator.share({ title: entry.name, text: shareText(entry, domainKey), url: link });
+      showToast("Megosztva!");
+      return;
+    } catch (e) {
+      if (e && e.name === "AbortError") return;
+      // natív nem sikerült → menu-re váltunk
+    }
+  }
+  buildShareMenu(entry, domainKey, anchorEl);
+}
+
+/* ===== Heti kiemelt (Weekly Spotlight) — lélegzetelállító hőskártya ===== */
+function isoWeekKey(d) {
+  // Hétfőtől kezdődő ISO-hét azonosító: pl. "2026-W32"
+  const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  const dayNum = (date.getUTCDay() + 6) % 7; // hétfő = 0
+  date.setUTCDate(date.getUTCDate() - dayNum + 3); // az adott hét csütörtöke
+  const firstThursday = new Date(Date.UTC(date.getUTCFullYear(), 0, 4));
+  const firstDayNum = (firstThursday.getUTCDay() + 6) % 7;
+  firstThursday.setUTCDate(firstThursday.getUTCDate() - firstDayNum + 3);
+  const week = 1 + Math.round((date - firstThursday) / (7 * 24 * 3600 * 1000));
+  return date.getUTCFullYear() + "-W" + String(week).padStart(2, "0");
+}
+
+let weeklyCurrent = null; // { entry, domain }
+
+function renderWeeklySpotlight() {
+  if (!weeklyCard) return;
+  const today = new Date();
+  const wk = isoWeekKey(today);
+  let dismissed = null;
+  try { dismissed = localStorage.getItem("tsz_weekly_dismissed"); } catch (e) {}
+  if (dismissed === wk) { weeklyCard.hidden = true; return; }
+
+  const pool = [
+    ...MATEK_DATA.map(e => ({ entry: e, domain: "matek" })),
+    ...FIZIKA_DATA.map(e => ({ entry: e, domain: "fizika" })),
+    ...INFORMATIKA_DATA.map(e => ({ entry: e, domain: "info" }))
+  ];
+  if (!pool.length) return;
+
+  // Determináz: ISO-hétszám -> stabil index (minden felhasználó ugyanazt látja a héten)
+  const weekNum = parseInt(wk.split("-W")[1], 10);
+  const pick = pool[(weekNum * 7 + today.getFullYear()) % pool.length];
+  weeklyCurrent = pick;
+  const entry = pick.entry;
+
+  weeklyWeek.textContent = "🗓 " + wk.replace("-", " ").toUpperCase();
+  weeklyName.textContent = entry.name;
+  weeklyTag.textContent = entry.tag || "";
+  weeklyWhy.innerHTML = entry.why || "";
+
+  // Képlet (ugyanaz a logika, mint a daily-nél)
+  weeklyFormula.innerHTML = "";
+  const texSource = entry.type === "maxwell" ? entry.equations[0] : (entry.type === "noether" ? null : entry.tex);
+  if (texSource && window.katex) {
+    try { safeKatex(texSource, weeklyFormula, { throwOnError: false, displayMode: true }); weeklyFormula.style.display = ""; }
+    catch (e) { weeklyFormula.style.display = "none"; }
+  } else if (entry.type === "noether") {
+    weeklyFormula.style.display = ""; weeklyFormula.textContent = "„" + entry.quote + "\"";
+  } else {
+    weeklyFormula.style.display = "none";
+  }
+
+  // Kedvenc állapot
+  const favKey = pick.domain + ":" + slugify(entry.name);
+  weeklyFav.classList.toggle("on", favorites.has(favKey));
+  weeklyFav.textContent = favorites.has(favKey) ? "★ Kedvenc" : "☆ Kedvenc";
+
+  weeklyCard.hidden = false;
+  // Ünnepi meteor-zápor + banner (csak ha nem ma hétfőnként már látta)
+  launchWeeklyMeteors();
+}
+
+function launchWeeklyMeteors() {
+  if (!weeklyMeteor) return;
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const canvas = weeklyMeteor;
+  const ctx = canvas.getContext("2d");
+  function resize() { canvas.width = window.innerWidth * (window.devicePixelRatio || 1); canvas.height = window.innerHeight * (window.devicePixelRatio || 1); }
+  resize();
+  window.addEventListener("resize", resize);
+
+  const meteors = [];
+  const N = 26;
+  for (let i = 0; i < N; i++) meteors.push(spawnMeteor(canvas, true));
+  canvas.classList.add("on");
+  if (weeklyBanner) { weeklyBanner.classList.add("show"); setTimeout(() => weeklyBanner.classList.remove("show"), 3200); }
+
+  let raf = null, startT = performance.now();
+  function frame(t) {
+    const w = canvas.width, h = canvas.height;
+    ctx.clearRect(0, 0, w, h);
+    let alive = 0;
+    for (const m of meteors) {
+      m.x += m.vx; m.y += m.vy; m.life -= 1;
+      if (m.life <= 0 || m.y > h + 50 || m.x > w + 50) { Object.assign(m, spawnMeteor(canvas, false)); continue; }
+      alive++;
+      const grad = ctx.createLinearGradient(m.x, m.y, m.x - m.trail * m.dx, m.y - m.trail * m.dy);
+      grad.addColorStop(0, "rgba(255,255,255,0.95)");
+      grad.addColorStop(0.4, "rgba(233,200,119,0.6)");
+      grad.addColorStop(1, "rgba(233,200,119,0)");
+      ctx.strokeStyle = grad; ctx.lineWidth = m.size; ctx.lineCap = "round";
+      ctx.beginPath(); ctx.moveTo(m.x, m.y); ctx.lineTo(m.x - m.trail * m.dx, m.y - m.trail * m.dy); ctx.stroke();
+      ctx.fillStyle = "rgba(255,255,255,0.95)";
+      ctx.beginPath(); ctx.arc(m.x, m.y, m.size * 0.6, 0, Math.PI * 2); ctx.fill();
+    }
+    if (alive > 0 && t - startT < 4000) raf = requestAnimationFrame(frame);
+    else { canvas.classList.remove("on"); ctx.clearRect(0, 0, w, h); }
+  }
+  if (raf) cancelAnimationFrame(raf);
+  raf = requestAnimationFrame(frame);
+}
+
+function spawnMeteor(canvas, initial) {
+  const w = canvas.width, h = canvas.height;
+  const startX = Math.random() * w * 0.9;
+  const startY = initial ? Math.random() * h * -0.5 : Math.random() * h * -0.3;
+  const ang = (Math.PI / 6) + (Math.random() - 0.5) * 0.5; // ~30°-os lejtés
+  const speed = 6 + Math.random() * 8;
+  const dx = Math.cos(ang), dy = Math.sin(ang);
+  return {
+    x: startX, y: startY,
+    vx: dx * speed, vy: dy * speed,
+    dx, dy, size: 1.2 + Math.random() * 1.8,
+    trail: 14 + Math.random() * 16,
+    life: 60 + Math.random() * 60
+  };
+}
+
+if (weeklyJump) weeklyJump.addEventListener("click", () => {
+  if (!weeklyCurrent) return;
+  scrollToEntry(weeklyCurrent.domain, slugify(weeklyCurrent.entry.name));
+});
+if (weeklyFav) weeklyFav.addEventListener("click", () => {
+  if (!weeklyCurrent) return;
+  const key = weeklyCurrent.domain + ":" + slugify(weeklyCurrent.entry.name);
+  // Helyi gomb frissítése (a toggleFavorite a grid gombokat is kezeli)
+  const fakeBtn = { classList: { add(){}, remove(){} } };
+  const wasFav = favorites.has(key);
+  toggleFavorite(key, fakeBtn);
+  const nowFav = favorites.has(key);
+  weeklyFav.classList.toggle("on", nowFav);
+  weeklyFav.textContent = nowFav ? "★ Kedvenc" : "☆ Kedvenc";
+  if (typeof rebuildConstellation === "function") rebuildConstellation();
+});
+if (weeklyDismiss) weeklyDismiss.addEventListener("click", () => {
+  weeklyCard.hidden = true;
+  try { localStorage.setItem("tsz_weekly_dismissed", isoWeekKey(new Date())); } catch (e) {}
+});
+
+function init() {
+  const total = MATEK_DATA.length + FIZIKA_DATA.length + INFORMATIKA_DATA.length;
+  grandTotalEl.innerHTML = `Összesen <b>${total}</b> halhatatlan tudományos szépség a három gyűjteményben`;
+  renderDomain("matek");
+  renderDailyFeature();
+  handleDeepLink();
+
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const spin = document.getElementById("logoSpin");
+    if (spin && spin.endElement) spin.endElement();
+    const electron = document.querySelector(".logo-electron");
+    if (electron) electron.removeAttribute("transform");
+  }
+  // Éjszakai égbolt visszaállítása (ha korábban be volt kapcsolva)
+  if (loadNightSky()) setNightSky(true);
+  // Heti kiemelt hőskártya (új hét → új tudományos szépség)
+  if (typeof renderWeeklySpotlight === "function") renderWeeklySpotlight();
+}
+
+function boot() {
+  // App starts immediately, regardless of whether KaTeX CDN loaded.
+  init();
+  // If KaTeX arrives later (slow CDN / offline-then-online), re-render formulas.
+  if (!window.katex) {
+    const check = setInterval(() => {
+      if (window.katex) {
+        clearInterval(check);
+        if (typeof renderGrid === "function") renderGrid();
+        if (typeof renderDailyFeature === "function") renderDailyFeature();
+        if (typeof renderDeck === "function" && deckItems && deckItems.length) renderDeck();
+        if (typeof renderWeeklySpotlight === "function") renderWeeklySpotlight();
+      }
+    }, 80);
+  }
+  // Kozmikus parallax: a háttérrétegek lassabban mozognak, mint a tartalom.
+  const pStars = document.querySelector(".stardust-bg");
+  const pNeb = document.querySelector(".nebula-bg");
+  const pGal = document.querySelector(".galaxy-bg");
+  const pAur = document.querySelector(".aurora-bg");
+  let pTicking = false;
+  function applyParallax() {
+    const y = window.scrollY || window.pageYOffset || 0;
+    if (pStars) pStars.style.transform = "translateY(" + (y * 0.25) + "px)";
+    if (pNeb) pNeb.style.transform = "translateY(" + (y * 0.12) + "px)";
+    if (pGal) pGal.style.transform = "translateY(" + (y * 0.06) + "px) rotate(" + (y * 0.01) + "deg)";
+    if (pAur) pAur.style.transform = "translateY(" + (y * 0.04) + "px)";
+    pTicking = false;
+  }
+  window.addEventListener("scroll", () => {
+    if (!pTicking) { pTicking = true; requestAnimationFrame(applyParallax); }
+  }, {passive: true});
+}
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", boot);
+} else {
+  boot();
+}
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js").catch(() => {});
+  });
+}
+
+
+</script>
+
+<button id="editorToggle" title="Szerkesztő">✏️</button>
+<div id="editorPanel">
+  <div class="editor-header">
+    <h3>✏️ Szerkesztő</h3>
+    <button class="editor-close">✕</button>
+  </div>
+  <div class="editor-status">
+    <span id="editorStatusText">Betöltés…</span>
+    <span id="editorOnlineStatus"></span>
+  </div>
+  <div class="editor-domain-tabs">
+    <button data-domain="matek" class="active">Matek</button>
+    <button data-domain="fizika">Fizika</button>
+    <button data-domain="informatika">Info</button>
+  </div>
+  <div class="editor-search">
+    <input type="search" id="editorSearch" placeholder="Keresés név/címke alapján…" autocomplete="off">
+  </div>
+  <div class="editor-list" id="editorList"></div>
+  <div class="editor-form" id="editorForm" style="display:none;"></div>
+  <div class="editor-actions" id="editorActions" style="display:none;">
+    <button class="btn-primary" id="editorSave">💾 Mentés</button>
+    <button id="editorAdd">➕ Új</button>
+    <button class="btn-danger" id="editorDelete">🗑 Töröl</button>
+    <button id="editorExport">📥 JSON export</button>
+  </div>
+</div>
+<div class="editor-toast" id="editorToast"></div>
+
+</body>
+</html>

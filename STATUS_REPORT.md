@@ -1,29 +1,31 @@
 # STATUS_REPORT — Halhatatlan tudományos szépségek (PWA)
 
 **Projekt:** Telepíthető webapp (PWA) — szubjektív rangsor a legszebb matematikai, fizikai és informatikai tételekről.
-**Hely:** `/home/attila-ubuntu/Dokumentumok/Tudományos szépségek v1.01/`
-**Utolsó frissítés:** 2026. augusztus 8.
-**Fő fájl:** `index.html` (448 KB, egyetlen önálló fájl — nincs build step, közvetlenül megnyitható).
+**Hely:** `/home/ubuntu/tudomanyos-szepsegek/`
+**Utolsó frissítés:** 2026. szeptember 26.
+**Fő fájl:** `dist/index.html` (689 KB, build-elt, adatok beszúrva) + `index_template.html` (sablon) + `data/*.json` (tartalom).
 
 ---
 
 ## 1. JELENLEGI ÁLLAPOT — ÖSSZEFOGLALÓ
 
-A PWA **teljesen működőképes**, production-ready állapotban van. Összesen **450 tétel** (3 domain, 5 nézet, wiki linkekkel és helyben generált illusztrációkkal), obszervatóriumi "Kozmikus aurora" dizájnnak, deck móddal, "Tippeld meg a képletet" játékkal, kártyakészítővel (a rangsor sorokban), Éjszakai égbolt móddal és offline-tűrő architektúrával.
+A PWA **teljesen működőképes**, production-ready állapotban van. Összesen **473 tétel** (3 domain, 5 nézet + szerkesztőpanel, wiki linkekkel és helyben generált illusztrációkkal), obszervatóriumi "Kozmikus aurora" dizájn, deck móddal, "Tippeld meg a képletet" játékkal, kártyakészítővel, Éjszakai égbolt móddal, **beépített szerkesztővel** és offline-tűrő architektúrával.
 
 | Metrika | Érték |
 |---|---|
-| Tételek összesen | **453 (minden slug egyedi, 0 duplikátum-ütközés)** |
+| Tételek összesen | **473 (minden slug egyedi, 0 duplikátum-ütközés)** |
 | — Matematika | 202 |
 | — Fizika · Kémia · Biológia | 207 |
-| — Informatika | 44 |
+| — Informatika | 64 |
 | Domainek | 3 (matek / fizika / informatika) |
 | Nézetek | 5 (Rangsor / Kategória / Idővonal / Lapozó / Játék) |
-| Wiki linkek | minden tételnél (en.wikipedia.org) |
-| SVG illusztrációk | 318 (matek 123, fizika 194, info 41) |
-| PWA telepíthető | igen (manifest.json + sw.js v4) |
-| Offline tűrés | igen (SW cache + KaTeX-független boot) |
-| Script szintaxis | Node --check: OK, brace balance 0/0/0 |
+| Szerkesztő panel | ✅ új (edit, add, delete, export, offline) |
+| Wiki linkek | minden tételnél (en/hu.wikipedia.org) |
+| SVG illusztrációk | 318+ (matek 123, fizika 194, info 41) |
+| PWA telepíthető | igen (manifest.json + sw.js v5) |
+| Offline tűrés | igen (SW cache + KaTeX-független boot + data JSON cache) |
+| Build step | `python3 build.py` (JSON → beágyazott HTML) |
+| Script szintaxis | Node --check: OK |
 
 ---
 
@@ -66,14 +68,18 @@ A PWA **teljesen működőképes**, production-ready állapotban van. Összesen 
 
 ---
 
-## 3. ARCHITEKTÚRA
+## 3. ARCHITEKTÚRA (frissítve 2026-09-26)
 
-- **Egyetlen fájl:** `index.html` — HTML + CSS (`<style>`) + adatok + JS (`<script>`) egyben. Nincs build, nincs függőség telepítése.
-- **Adatok:** `MATEK_DATA`, `FIZIKA_DATA`, `INFORMATIKA_DATA` tömbök a `<script>` elején.
-- **DOMAINS:** a 3 domain konfigurációja (label, titleHTML, subHTML, data, categoryLabels, categoryColors, illustration témák).
-- **Render:** `renderGrid()`, `renderDeck()`, `renderDailyFeature()` — a szűrők és nézetek szerint rajzolják a DOM-ot.
-- **Háttérrétegek:** `.aurora-bg`, `.stardust-bg`, `.nebula-bg`, `.galaxy-bg`, `.ghost-bg` — `position:fixed`, `pointer-events:none`, `mix-blend-mode:screen`.
-- **Service Worker:** `sw.js` (v4) — precache az app shell-re, network-first a HTML-re, cache minden GET kérést (így egyszeri online után offline is működik).
+- **Adatkülönítés:** `data/*.json` (matek/fizika/informatika) — egyszerű szövegfájlok, git-diff-barát
+- **Sablon:** `index_template.html` — HTML + CSS + JS, helyholder az adatoknak
+- **Build:** `python3 build.py` — JSON beágyazás → `dist/index.html` (egyetlen deploy-olható fájl)
+- **Editor panel:** beépített ✏️ gomb, domain tab, lista, edit form, add/delete/export, localStorage backup
+- **Adatok:** `MATEK_DATA`, `FIZIKA_DATA`, `INFORMATIKA_DATA` tömbök (build-time beágyazva)
+- **DOMAINS:** a 3 domain konfigurációja (label, titleHTML, subHTML, data, categoryLabels, categoryColors, illustration témák)
+- **Render:** `renderGrid()`, `renderDeck()`, `renderDailyFeature()` — a szűrők és nézetek szerint rajzolják a DOM-ot
+- **Háttérrétegek:** `.aurora-bg`, `.stardust-bg`, `.nebula-bg`, `.galaxy-bg`, `.ghost-bg` — `position:fixed`, `pointer-events:none`, `mix-blend-mode:screen`
+- **Service Worker:** `sw.js` (v5) — precache app shell + data/*.json, network-first HTML, auto-reload új verzióra
+- **Editor adat:** `localStorage` (`tsz_editor_*`) — offline szerkesztés, export JSON-ra
 
 ### Fájlok
 | Fájl | Méret | Szerep |
@@ -168,22 +174,45 @@ A "szét esve" hiba óta a headless screenshot **nem** megbízható egyedüli bi
 
 ## 7. TEENDŐK (prioritási sorrendben, ha folytatjuk)
 
-1. **D) 13 — Rendrakás** (legalacsonyabb kockázat, tisztaság): `files.zip` újrazippelése az új `index.html` -lel, `tudomanyos-szepsegek.html` + `sw-old.js` törlése, `.bak` fájlok archiválása/külön mappába.
-2. **B) 4–7 — Deck UX** (legtöbb felhasználói érték): kategória-szűrő a decken, keresés a decken, billentyűparancsok láthatósága, kedvencek lista.
-3. **C) 10 — Nyomtatható A4** (design): egy kattintásra letölthető/nyomtatható tételkártya.
-4. *(E14–15 játék + oszd-meg, WOW finomítások, deck-javítások: **KÉSZ**, lásd 5. fejezet.)*
+### Kész 2026-09-26 ✅
+- Adatok szétválasztása: `data/*.json` (473 tétel, 3 domain)
+- `index_template.html` + `build.py` — build pipeline
+- **Szerkesztő panel** az oldalon belül (✏️ gomb, domain tab, lista, edit form, add/delete, JSON export, offline localStorage backup)
+- SW v5 — data/*.json cache
+- Validáció: `build.py --validate-only` (wiki URL, year range, TeX/equations/pairs, duplikátum)
+
+### Nyitva (⬜)
+- B) 4–7 — Deck UX (kategória-szűrő decken, keresés decken, billentyűparancsok, kedvencek lista)
+- C) 10 — Nyomtatható A4 lap minden tételről
+- 48 matek tétel illusztrációjának pótlása
+- `.bak` fájlok archiválása, `files.zip` újrazippelése
 
 ---
 
-## 8. GYORS HASZNÁLATI ÚTMUTATÓ (felhasználónak)
+## 8. GYORS HASZNÁLATI ÚTMUTATÓ
 
-- **Megnyitás:** `index.html` double-click (file://) vagy feltöltés webszerverre. Telepítés: böngésző "Telepítés" / "Add to home screen".
-- **Nézetek:** felső ikonsor (Rangsor / Kategória / Idővonal / Lapozó).
-- **Domainek:** felső gombsor (Matematika / Fizika / Informatika) — a háttér színe követi.
-- **Kedvenc:** a csillag ikon a sorban/deckben.
-- **Wiki:** az ℹ ikon a sorban/deckben.
-- **Kártya letöltése (PNG):** a rangsor nézetben a sorokban lévő kártya ikon (🖼) → PNG letöltés. *(A deck nézetből a felhasználó kérésére kivéve.)*
-- **Oszd meg:** a rangsor nézetben a sorokban lévő megosztás ikon → natív megosztó / social menü (X, Facebook, Reddit, WhatsApp, link másolása).
-- **Játék mód:** felső ikonsor "Játék" gomb → "Tippeld meg a képletet" kvíz (10 kör, pontszám).
-- **Éjszakai égbolt:** a felső ✨ gomb → a kedvenc tételeid csillagképként rajzolódnak ki a háttérben (pulzáló csillagok, hullámos összekötések); rájuk húzva a név+képlet, kattintásra odagörget a tételhez. Állapota megmarad kilépés után is.
-- **Frissítés:** ha új verzió érkezik, a SW automatikusan újratölti (vagy Ctrl+Shift+R hard reload).
+### Szerkesztő (előállítva)
+- Oldal megnyitása → jobb alsó sarok **✏️** gomb → szerkesztő panel
+- Domain váltás (Matek/Fizika/Info), keresés, kattints szerkesztéshez
+- **Mentés** → localStorage (offline is működik)
+- **📥 JSON export** → letölti a 3 `data/*.json` fájlt
+- **➕ Új** / **🗑 Töröl** — tétel kezelés
+- Online/offline indikátor a panel fejlécében
+
+### Build (telepítés)
+```bash
+cd /home/ubuntu/tudomanyos-szepsegek
+python3 build.py              # → dist/index.html (production)
+python3 build.py --validate-only  # csak ellenőrzés, nem ír
+```
+
+### Online elérés
+```bash
+cd /home/ubuntu/tudomanyos-szepsegek
+python3 -m http.server 8000
+# http://localhost:8000/dist/index.html
+```
+
+### Fejlesztés (dev mode)
+- `index_template.html` + `data/*.json` → böngészőben `file://` nem működik (fetch CORS)
+- Egyszerűség kedvéért használd a `dist/index.html`-t (adat beágyazva)
