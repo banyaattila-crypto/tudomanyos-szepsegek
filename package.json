@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "build": "python3 build.py",
+    "dev": "python3 -m http.server 8000"
+  }
+}
