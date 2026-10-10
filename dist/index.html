@@ -1616,6 +1616,8 @@
       <button type="button" class="weekly-fav" id="weeklyFav">☆ Kedvenc</button>
     </div>
   </section>
+  <canvas class="weekly-meteor" id="weeklyMeteor" aria-hidden="true"></canvas>
+  <div class="weekly-banner" id="weeklyBanner" aria-hidden="true">☄️ Heti kiemelt tétel — csillaghullás!</div>
   <div class="ghost-bg" id="ghostBg" aria-hidden="true"></div>
 
   <section class="starmap-view" id="starMapView" hidden aria-live="polite">
@@ -8766,7 +8768,7 @@ function handleDeepLink() {
   const hash = location.hash.replace(/^#/, "");
   if (!hash.startsWith("entry-")) return;
   const rest = hash.slice("entry-".length);
-  const m = rest.match(/^(matek|fizika)-(.+)$/);
+  const m = rest.match(/^(matek|fizika|informatika)-(.+)$/);
   if (!m) return;
   const [, domainKey] = m;
   if (domainKey !== activeDomain) {
@@ -9564,8 +9566,9 @@ function buildStarMap() {
       const y = d.cy + Math.sin(ang) * rad * 0.85;
       const r = 1.8 + (1 - rankFrac) * 3.4;            // rang szerinti méret
       const tex = entry.type === "maxwell" ? (entry.equations && entry.equations[0]) : entry.tex;
+      const slug = slugify(entry.name); // a JSON-okban nincs slug mező → slugify kell, különben minden kulcs "undefined" lenne
       starMapStars.push({
-        key: d.key + ":" + entry.slug, domain: d.key, slug: entry.slug,
+        key: d.key + ":" + slug, domain: d.key, slug: slug,
         x: x * 100, y: y * 100, r,
         color: colorByCat[d.key + ":" + entry.category] || "#9fb4ff",
         name: entry.name,
@@ -10124,7 +10127,7 @@ function renderWeeklySpotlight() {
   const pool = [
     ...MATEK_DATA.map(e => ({ entry: e, domain: "matek" })),
     ...FIZIKA_DATA.map(e => ({ entry: e, domain: "fizika" })),
-    ...INFORMATIKA_DATA.map(e => ({ entry: e, domain: "info" }))
+    ...INFORMATIKA_DATA.map(e => ({ entry: e, domain: "informatika" })) // "informatika" = a DOMAINS/grid kulcs; a "info" fantomkedvencet és elcsúszó ugrást okozott
   ];
   if (!pool.length) return;
 
@@ -10486,6 +10489,7 @@ if ("serviceWorker" in navigator) {
     var newEntry = { name:'Új tétel', tag:'', category:data[0]?data[0].category:'', year:null, tex:'', wiki:'', illustration:'wave', why:'', whyMore:'' };
     data.push(newEntry);
     currentEntryIdx = data.length - 1;
+    persistDomain(currentDomain); // azonnal mentsük, hogy ne vesszen el bezárásnál
     renderList();
     renderForm();
     showToast('Új tétel hozzáadva');
@@ -10536,10 +10540,17 @@ if ("serviceWorker" in navigator) {
         if (saved) {
           var parsed = JSON.parse(saved);
           var target = {matek:MATEK_DATA,fizika:FIZIKA_DATA,informatika:INFORMATIKA_DATA}[domain];
-          if (target && parsed && parsed.length === target.length) {
-            parsed.forEach(function(entry, idx) {
-              target[idx] = entry;
-            });
+          if (target && Array.isArray(parsed)) {
+            if (parsed.length === target.length) {
+              parsed.forEach(function(entry, idx) {
+                target[idx] = entry;
+              });
+            } else {
+              // Hossz-eltérés (hozzáadás/törlés a szerkesztőben): a mentett
+              // állapot nyer, különben a felhasználó szerkesztése elveszne.
+              target.length = 0;
+              parsed.forEach(function(entry) { target.push(entry); });
+            }
           }
         }
       } catch(e) {}
