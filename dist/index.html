@@ -552,6 +552,23 @@
   .deck-rand{font-size:24px; background:linear-gradient(180deg, rgba(40,52,84,.95), rgba(24,30,54,.98));}
   .deck-progress{font-family:'JetBrains Mono',monospace; font-size:15px; color:var(--muted); min-width:64px; text-align:center;}
   .deck-progress span:first-child{color:var(--paper); font-size:18px;}
+  /* ===== Deck vezérlősáv (B4–B6): kategória-chipek, keresés, billentyűparancsok ===== */
+  .deck-toolbar{display:flex; flex-direction:column; gap:12px; align-items:center; width:min(620px,100%);}
+  .deck-cats{display:flex; flex-wrap:wrap; gap:8px; justify-content:center;}
+  .deck-search{
+    width:min(320px,100%); padding:9px 16px; border-radius:999px;
+    border:1px solid var(--chip-border); background:var(--chip-bg);
+    color:var(--paper); font-family:"Inter",sans-serif; font-size:13px;
+  }
+  .deck-search::placeholder{color:var(--muted);}
+  .deck-search:focus{outline:none; border-color:var(--primary);}
+  .deck-search::-webkit-search-cancel-button{display:none;}
+  .deck-keys{display:flex; gap:16px; flex-wrap:wrap; justify-content:center; font-size:12px; color:var(--muted);}
+  .deck-keys kbd{
+    font-family:'JetBrains Mono',monospace; font-size:11px; padding:2px 7px;
+    border-radius:6px; border:1px solid var(--chip-border); background:var(--chip-bg);
+    color:var(--paper); margin-right:4px;
+  }
   /* Confetti canvas a deck felett, de a gombok alatt */
   .deck-confetti{position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:2; opacity:0;}
   .deck-confetti.active{opacity:1;}
@@ -1702,6 +1719,7 @@
       <button type="button" class="vbtn" data-view="deck">Lapozó</button>
       <button type="button" class="vbtn" data-view="quiz">Játék</button>
       <button type="button" class="vbtn" data-view="map">Térkép</button>
+      <button type="button" class="vbtn" data-view="fav">Kedvencek</button>
     </div>
   </div>
 
@@ -1716,6 +1734,10 @@
   <main class="grid" id="grid"></main>
   <section class="deck-view" id="deckView" hidden aria-live="polite">
     <canvas class="deck-confetti" id="deckConfetti" aria-hidden="true"></canvas>
+    <div class="deck-toolbar">
+      <div class="deck-cats" id="deckCats" aria-label="Kategória szűrő a lapozóban"></div>
+      <input type="search" id="deckSearch" class="deck-search" placeholder="Keresés a pakliban…" autocomplete="off">
+    </div>
     <div class="deck-card" id="deckCard">
       <div class="deck-top">
         <span class="deck-tag" id="deckTag"></span>
@@ -1735,6 +1757,11 @@
       <div class="deck-progress"><span id="deckPos">0</span> / <span id="deckTotal">0</span></div>
       <button type="button" class="deck-navbtn" id="deckNext" aria-label="Következő">›</button>
       <button type="button" class="deck-rand" id="deckRand" aria-label="Véletlen">🎲</button>
+    </div>
+    <div class="deck-keys" aria-hidden="true">
+      <span><kbd>←</kbd><kbd>→</kbd>lapozás</span>
+      <span><kbd>F</kbd>kedvenc</span>
+      <span><kbd>R</kbd>véletlen</span>
     </div>
   </section>
   <p class="empty-state" id="emptyState">Nincs találat.</p>
@@ -7617,6 +7644,8 @@ const deckPos = document.getElementById("deckPos");
 const deckTotal = document.getElementById("deckTotal");
 let deckItems = [];
 let deckIndex = 0;
+const deckCats = document.getElementById("deckCats");
+const deckSearch = document.getElementById("deckSearch");
 const FAV_SVG = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.3l-5.4 3.2 1.4-6.1-4.7-4.1 6.2-.5L12 4l2.5 5.8 6.2.5-4.7 4.1 1.4 6.1z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>';
 const SHARE_SVG = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 15V4M12 4l-4 4M12 4l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 15v3a2 2 0 002 2h10a2 2 0 002-2v-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
 deckFav.innerHTML = FAV_SVG;
@@ -7852,7 +7881,7 @@ function goToRelated(rel) {
   activeTagFilter = null;
   searchClear.classList.add("visible");
   activeCategory = "all";
-  [...filterbar.children].forEach(c => c.classList.toggle("active", c.dataset.cat === "all"));
+  syncCategoryChips();
   [...tagcloud.children].forEach(c => { if (c.classList.contains("tchip")) c.classList.remove("active"); });
   applyFilter();
   window.scrollTo({top: 0, behavior: "smooth"});
@@ -8114,6 +8143,52 @@ function buildFilterBar(domainKey) {
   });
 }
 
+/* B4: kategória-szűrő a lapozó (deck) nézetben is — ugyanazt az activeCategory
+   állapotot kezeli, mint a fejléc filterbar, így a kettő mindig szinkronban van. */
+function buildDeckCats(domainKey) {
+  const domain = DOMAINS[domainKey];
+  deckCats.innerHTML = "";
+  const counts = {};
+  domain.data.forEach(d => { counts[d.category] = (counts[d.category] || 0) + 1; });
+
+  const mkChip = (cat, label, count) => {
+    const chip = document.createElement("button");
+    chip.type = "button";
+    chip.className = "chip" + (activeCategory === cat ? " active" : "");
+    chip.dataset.cat = cat;
+    chip.innerHTML = `${label}<span class="count">${count}</span>`;
+    chip.addEventListener("click", () => setCategory(cat));
+    return chip;
+  };
+  deckCats.appendChild(mkChip("all", "Összes", domain.data.length));
+  domain.categoryOrder.forEach(key => {
+    if (!counts[key]) return;
+    deckCats.appendChild(mkChip(key, domain.categoryLabels[key], counts[key]));
+  });
+}
+
+function setCategory(cat) {
+  activeCategory = cat;
+  syncCategoryChips();
+  applyFilter();
+}
+
+function syncCategoryChips() {
+  [...filterbar.children].forEach(c => c.classList.toggle("active", c.dataset.cat === activeCategory));
+  [...deckCats.children].forEach(c => c.classList.toggle("active", c.dataset.cat === activeCategory));
+}
+
+/* B4: a lapozóban meglátogatott lap száma domain-önként megjegyezzük */
+function saveDeckPos() {
+  try { localStorage.setItem("tsz_deck_pos_" + activeDomain, String(deckIndex)); } catch (e) {}
+}
+function loadDeckPos() {
+  try {
+    const v = parseInt(localStorage.getItem("tsz_deck_pos_" + activeDomain), 10);
+    return Number.isFinite(v) && v >= 0 ? v : 0;
+  } catch (e) { return 0; }
+}
+
 // Téma-kulcsszavak kinyerése a tag mezőkből (· és , mentén bontva, év/szerző szűrve)
 function buildTagCloud(domainKey) {
   const domain = DOMAINS[domainKey];
@@ -8186,7 +8261,7 @@ function renderGrid() {
   grid.innerHTML = "";
   headerElements = [];
 
-  if (viewMode === "rank") {
+  if (viewMode === "rank" || viewMode === "fav") {
     rowElements.forEach(r => grid.appendChild(r.el));
   } else if (viewMode === "grouped") {
     domain.categoryOrder.forEach(key => {
@@ -8267,6 +8342,8 @@ function setAllGroups(collapsed) {
 function applyFilter() {
   const domain = DOMAINS[activeDomain];
   const q = searchQuery.trim().toLowerCase();
+  // B5: a deck-kereső és a fejléc-kereső ugyanazt a searchQuery-t tükrözi
+  if (deckSearch && deckSearch.value !== searchQuery) deckSearch.value = searchQuery;
   let visibleCount = 0;
   const visibleCats = new Set();
   const visibleEras = new Set();
@@ -8324,6 +8401,18 @@ function applyFilter() {
   if (viewMode === "deck") renderDeck();
 }
 
+/* B5: keresés közvetlenül a lapozó nézetben is */
+let deckSearchDebounce;
+deckSearch.addEventListener("input", () => {
+  clearTimeout(deckSearchDebounce);
+  deckSearchDebounce = setTimeout(() => {
+    searchQuery = deckSearch.value;
+    searchBox.value = deckSearch.value;
+    searchClear.classList.toggle("visible", deckSearch.value.length > 0);
+    applyFilter();
+  }, 120);
+});
+
 const GHOST_POSITIONS = [
   {top:"6%",  left:"3%",  size:"2.6rem", rot:"-6deg"},
   {top:"16%", left:"84%", size:"2.1rem", rot:"5deg"},
@@ -8361,6 +8450,7 @@ function renderDomain(domainKey) {
   activeTagFilter = null;     // téma-szűrő törlése domain-váltáskor
   searchQuery = "";
   searchBox.value = "";
+  if (deckSearch) deckSearch.value = "";
   searchClear.classList.remove("visible");
 
   document.body.dataset.domain = domainKey;
@@ -8372,6 +8462,7 @@ function renderDomain(domainKey) {
   footerCountEl.textContent = `Szedés: KaTeX · ${domain.data.length} tétel`;
   footerNamesEl.textContent = domain.footerNames;
 
+  deckIndex = loadDeckPos(); // B4: visszatérve a domainre ott folytatjuk, ahol abbahagytuk
   rowElements = [];
   domain.data.forEach((d, i) => {
     const row = buildRow(d, i, domainKey);
@@ -8390,6 +8481,7 @@ function renderDomain(domainKey) {
   });
 
   buildFilterBar(domainKey);
+  buildDeckCats(domainKey);
   buildTagCloud(domainKey);
   renderGrid();
   renderGhostBg(domainKey);
@@ -8398,9 +8490,7 @@ function renderDomain(domainKey) {
 filterbar.addEventListener("click", (e) => {
   const chip = e.target.closest(".chip");
   if (!chip) return;
-  activeCategory = chip.dataset.cat;
-  [...filterbar.children].forEach(c => c.classList.toggle("active", c === chip));
-  applyFilter();
+  setCategory(chip.dataset.cat);
 });
 
 domainSwitch.addEventListener("click", (e) => {
@@ -8412,8 +8502,14 @@ domainSwitch.addEventListener("click", (e) => {
 viewSwitch.addEventListener("click", (e) => {
   const btn = e.target.closest(".vbtn");
   if (!btn || btn.dataset.view === viewMode) return;
+  const prevView = viewMode;
   viewMode = btn.dataset.view;
   [...viewSwitch.children].forEach(b => b.classList.toggle("active", b === btn));
+  // B7: a Kedvencek fül belépéskor kedvenc-szűrőt kapcsol, kilépéskor feloldja
+  if (viewMode === "fav") onlyFavorites = true;
+  else if (prevView === "fav") onlyFavorites = false;
+  favToggle.classList.toggle("active", onlyFavorites);
+  favToggle.setAttribute("aria-pressed", String(onlyFavorites));
   // Kilépés a játék módból (ha épp ott voltunk)
   if (viewMode !== "quiz") closeQuiz();
   // Térkép nézetből kilépés (ha épp ott voltunk)
@@ -8446,6 +8542,12 @@ favToggle.addEventListener("click", () => {
   onlyFavorites = !onlyFavorites;
   favToggle.classList.toggle("active", onlyFavorites);
   favToggle.setAttribute("aria-pressed", String(onlyFavorites));
+  // Ha a Kedvencek nézetből kapcsoljuk ki a szűrőt, térjünk vissza a rangsorra
+  if (!onlyFavorites && viewMode === "fav") {
+    viewMode = "rank";
+    [...viewSwitch.children].forEach(b => b.classList.toggle("active", b.dataset.view === "rank"));
+    renderGrid();
+  }
   applyFilter();
 });
 
@@ -9032,7 +9134,7 @@ graphCanvas.addEventListener("pointerup", (e) => {
   searchQuery = node.entry.name;
   searchClear.classList.add("visible");
   activeCategory = "all";
-  [...filterbar.children].forEach(c => c.classList.toggle("active", c.dataset.cat === "all"));
+  syncCategoryChips();
   applyFilter();
   requestAnimationFrame(() => {
     const el = document.getElementById(`entry-${node.domain}-${slugify(node.entry.name)}`);
@@ -9173,7 +9275,7 @@ function renderDailyFeature() {
     searchQuery = entry.name;
     searchClear.classList.add("visible");
     activeCategory = "all";
-    [...filterbar.children].forEach(c => c.classList.toggle("active", c.dataset.cat === "all"));
+    syncCategoryChips();
     applyFilter();
     requestAnimationFrame(() => {
       const el = document.getElementById(targetId);
@@ -9274,6 +9376,7 @@ function renderDeck() {
     });
   };
   deckPos.textContent = deckIndex + 1;
+  saveDeckPos();
   deckCard.classList.remove("swap"); void deckCard.offsetWidth; deckCard.classList.add("swap");
 }
 function deckStep(d) {
@@ -9350,9 +9453,13 @@ function launchConfetti() {
   confettiRAF = requestAnimationFrame(frame);
 }
 document.addEventListener("keydown", (e) => {
-  if (deckView.hidden) return;
-  if (e.key === "ArrowRight") deckStep(1);
-  else if (e.key === "ArrowLeft") deckStep(-1);
+  if (deckView.hidden || deckItems.length === 0) return;
+  // gépelés közben (keresőmező) ne lapozzon a billentyű
+  const typing = e.target && (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA" || e.target.isContentEditable);
+  if (e.key === "ArrowRight") { if (!typing) deckStep(1); }
+  else if (e.key === "ArrowLeft") { if (!typing) deckStep(-1); }
+  else if (e.key === "f" || e.key === "F") { if (!typing) { e.preventDefault(); deckFav.click(); } }
+  else if (e.key === "r" || e.key === "R") { if (!typing) { e.preventDefault(); deckRand.click(); } }
 });
 let deckTouchX = null;
 deckCard.addEventListener("touchstart", (e) => { deckTouchX = e.changedTouches[0].clientX; }, {passive:true});
