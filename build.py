@@ -9,7 +9,7 @@ Használat:
     python3 build.py --validate-only  # csak validáció, nem ír fájlt
 """
 
-import json, re, sys
+import json, re, sys, shutil, subprocess, tempfile
 from pathlib import Path
 
 BASE = Path(__file__).parent
@@ -336,6 +336,50 @@ def main():
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     with open(OUTPUT, "w", encoding="utf-8") as f:
         f.write(tmpl)
+
+    # ==== SMOKE GUARD: szemantikus ellenőrzés a kilőtt fájlon ====
+    # A szintaktikailag valid build is lehet üres/törött (pl. ha a sablonból
+    # kimarad a core szekció). Itt konkrét szimbólumok jelenlétét kérjük számon.
+    with open(OUTPUT, encoding="utf-8") as f:
+        out = f.read()
+    required_markers = [
+        "const DOMAINS",
+        "function safeKatex",
+        "function buildRow",
+        "function renderGrid",
+        "function applyFilter",
+        "function toggleFavorite",
+        "const grandTotalEl",
+        "function boot(",
+    ]
+    missing = [m for m in required_markers if m not in out]
+    if missing:
+        print("\n✗ SMOKE GUARD: a kilőtt dist/index.html HIBÁS — hiányzó szimbólumok:")
+        for m in missing:
+            print(f"  ✗ {m}")
+        print("  (valószínűleg a sablon core szekciója sérült — a fájl NEM adható ki)")
+        sys.exit(1)
+
+    # node --check a beágyazott inline scripteken (ha van node a gépen)
+    node = shutil.which("node")
+    if node:
+        scripts = re.findall(r"<script>\n(.*?)\n</script>", out, re.DOTALL)
+        if not scripts:
+            print("\n✗ SMOKE GUARD: nincs inline <script> a kimenetben")
+            sys.exit(1)
+        for idx, s in enumerate(scripts):
+            with tempfile.NamedTemporaryFile("w", suffix=".js", delete=False, encoding="utf-8") as tf:
+                tf.write(s)
+                tmp = tf.name
+            r = subprocess.run([node, "--check", tmp], capture_output=True, text=True)
+            Path(tmp).unlink(missing_ok=True)
+            if r.returncode != 0:
+                print(f"\n✗ SMOKE GUARD: node --check hiba (script #{idx}):")
+                print(r.stderr[:2000])
+                sys.exit(1)
+        print(f"Smoke guard OK: {len(required_markers)} marker + node --check ({len(scripts)} script) ✔")
+    else:
+        print("Smoke guard OK: szimbólum-ellenőrzés ✔ (node nincs, a szintaxis-ellenőrzés kimaradt)")
 
     final_size = len(tmpl)
     print(f"\n{'='*50}")

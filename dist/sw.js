@@ -1,11 +1,11 @@
-const CACHE_NAME = "tsz-cache-v5";
+const CACHE_NAME = "tsz-cache-v6";
+// Csak a dist/ -ben TÉNYLEG meglévő fájlokat precacheljük:
+// a buildelt index.html tartalmazza az adatokat, data/ könyvtár nincs a dist-ben
+// (a data/*.json 404 lenne, és az atomic addAll miatt SEMMIT nem tenne a precache-be).
 const APP_SHELL = [
   "./",
   "./index.html",
-  "./manifest.json",
-  "./data/matek.json",
-  "./data/fizika.json",
-  "./data/informatika.json"
+  "./manifest.json"
 ];
 
 // Telepítéskor azonnal át akarjuk venni az irányítást: skipWaiting.
