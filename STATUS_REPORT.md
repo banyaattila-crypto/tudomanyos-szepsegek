@@ -22,7 +22,7 @@ A PWA **teljesen működőképes**, production-ready állapotban van. Összesen 
 | Nézetek | 7 fül: Rangsor / Kategóriák / Idővonal / Lapozó / Játék / Térkép / Kedvencek |
 | Szerkesztő panel | ✅ új (edit, add, delete, export, offline) |
 | Wiki linkek | minden tételnél (en/hu.wikipedia.org) |
-| SVG illusztrációk | 318+ (matek 123, fizika 194, info 41) |
+| SVG illusztrációk | **mind a 473 tételnél** (202 + 207 + 64), 4 téma: wave / lattice / graph / spiral |
 | PWA telepíthető | igen (manifest.json + sw.js **v7**) |
 | Offline tűrés | igen (SW precache: index.html + app.css + app.js + editor.js + KaTeX-független boot) |
 | Forrás fájlszerkezet | **4 fájl** (nem monolit): `index_template.html` + `app.css` + `app.js` + `editor.js` |
@@ -37,7 +37,7 @@ A PWA **teljesen működőképes**, production-ready állapotban van. Összesen 
 - [x] **3 domain** (Matematika, Fizika·Kémia·Biológia, Informatika) — dedikált színvilág, cím, alcím
 - [x] **473 tétel** (202 matek + 207 fizika + 64 info) — minden tétel: `name`, `tag`, `category`, `year`, `tex`/`equations`, `why`, `wiki`, `illustration`
 - [x] **Wikipedia gombok** — minden tételnél ℹ ikon, angol wiki cikkre nyit új fület
-- [x] **Helyben generált SVG illusztrációk** — 4 téma (wave / lattice / graph / spiral), offline működőképes
+- [x] **Helyben generált SVG illusztrációk** — 4 téma (wave / lattice / graph / spiral), **mind a 473 tételnél**, offline működőképes
 
 ### Nézetek
 - [x] **Rangsor** (grid, kedvenc/ugrás/wiki gombokkal)
@@ -135,7 +135,7 @@ A PWA **teljesen működőképes**, production-ready állapotban van. Összesen 
 
 ### Ismert korlátok
 - **Offeline KaTeX nincs beágyazva** — a képletek KaTeX CDN-ről jönnek; ha sosem volt net, a képletek nyers TeX szövegként jelennek meg (nem formázottan). A SW cache miatt egyszeri online után offline is formázott marad. (A teljes beágyazást a felhasználó nem kérte — "nem játszunk ezzel, marad így".)
-- **48 matek tételnek nincs illusztrációja** — ezeknek a kategóriája nincs a `CATEGORY_THEME` térképben, szó csak a rank-plate látszik. Esztétikai, nem funkcionális.
+- **48 matek tételnek nem volt illusztrációja (JAVÍTVA 2026-10-11)** — az ok **nem** a `CATEGORY_THEME` térkép volt (ilyen nincs is a kódban), hanem hogy a `data/matek.json` 48 tételéből hiányzott az `illustration` mező (`logika-halmaz` 17 + `szamitastudomany-mernoki` 31), a render pedig csak `if (entry.illustration)` feltétellel rajzolt. Javítva: mind a 48 kapott tartalmilag választott témát (wave 11 / lattice 17 / graph 12 / spiral 8 — pl. Megállási probléma → spiral, Dijkstra → graph, SVD → lattice, FFT → wave), a JSON-formázás érintetlen (diff: csak `wiki` záró vessző + 48 `illustration` sor, 0 idegen sor). Bizonyíték: `--validate-only` **0 db „hiányzik 'illustration'” figyelmeztetés**, build exit 0, headless Chrome DOM: **202/202 sorban `row-illu` + `svg`**, a 48 név egyenként **48/48**, kattintásos nézetváltás: deck 6 lapozás + quiz → illusztráció mindenütt.
 - **Deck nézet CSS hiánya (JAVÍTVA 2026-08-08)** — a Lapozó módnak nem volt dedikált CSS-e: a kártya átlátszó/elszórt volt, a `‹/›` és `🎲` gombok a böngésző apró alapértelmezett `<button>` méretében jelentek meg, így szinte kattinthatatlanok voltak. Javítva: `.deck-view` (középre zárt flex elrendezés), `.deck-card` (620px széles, sötét keretes panel), `.deck-navbtn`/`.deck-rand` (56×56px körök), `.deck-actions .icon-btn` (44×44px), `.deck-confetti` canvas helyes pozicionálása (`z-index:2`, `pointer-events:none`). Bizonyíték: Node --check OK, CSS szabályok jelen, renderGrid deck ág + viewSwitch handler érintetlenül működik.
 - **Deck képlet nem jelenik meg (JAVÍTVA 2026-08-08)** — a `renderDeck` képlet-blokkja `if (texSource && window.katex)` feltétellel csak akkor rajzolta a képletet, ha a KaTeX CDN már betöltődött; offline/lassú hálózaton a `deckFormula.style.display="none"` miatt a képlet **teljesen eltűnt**. Javítva: a `safeKatex` mindig meghívódik (az már tartalmazza a nyers-TeX fallbacket), és a `.deck-formula`-nak kifejezett `text-align:center` + `color:var(--paper)` + `.katex` méret stílust adtam, így a képlet középen, világos színnel, olvashatóan jelenik meg KaTeX jelenlététől függetlenül. Bizonyíték: Node --check OK, a `window.katex` feltétel eltávolítva a képlet-ágból.
 - **Deck akció-gombok leegyszerűsítése (2026-08-08)** — a felhasználó kérésére a Lapozó nézetből kivettük a "kártya letöltése" (PNG) és az "oszd meg" gombokat; a deckben csak a **kedvenc (⭐)** és a **Részletek** gomb maradt. A `shareEntry`/`generateShareCard` függvények és a grid sorokban lévő kártya/oszd-meg gombok érintetlenül megmaradtak. Eltávolított elemek: `deckShare`, `deckCardBtn` DOM + JS ref, `CARD_SVG`, a hozzájuk tartozó `onclick` handlerek és SVG init. Bizonyíték: Node --check OK, nincs árva `deckShare`/`deckCardBtn`/`CARD_SVG` referencia, deck-actions HTML minimalizálva.
@@ -180,13 +180,13 @@ A korábban felvázolt 15 javaslatból (A/B/C/D/E) és a menet közben felmerül
 - C) 10. Nyomtatható A4 lap minden tételről
 - D) 12. Offline teljes működés (KaTeX + fontok beágyazása) — **ELVETVE** (felhasználó döntése)
 - D) 13. `files.zip` újrazippelése/törlése + gyökér `index.html` (elavult monolit) törlése — **még nem** (a `tudomanyos-szepsegek.html`, `sw-old.js` és `.bak` fájlok már nincsenek a repóban)
-- 48 matek tétel illusztrációjának pótlása — **még nem** (tartalmi munka, külön vállalható)
+- ~~48 matek tétel illusztrációjának pótlása~~ → **kész 2026-10-11** (lásd a 4. szekcióban)
 
 ### Korábbi "wow" ötletek (mind kész, lásd fent)
 - ~~Fénycsóva a kedvenc gombnál~~ → kész
 - ~~Konfitti a deck váltásnál~~ → kész
 - ~~Intenzívebb aurora~~ → kész
-- 48 hiányzó matek illusztráció pótlása → még nem
+- 48 hiányzó matek illusztráció pótlása → **kész 2026-10-11**
 
 ---
 
@@ -218,10 +218,10 @@ A "szét esve" hiba óta a headless screenshot **nem** megbízható egyedüli bi
 - **B) 4–7 Deck UX** — lapozó kategória-szűrő, keresés, billentyűparancsok, Kedvencek fül (`0e4aa41`)
 - **Moduláris fájlszerkezet** — `app.css` + `app.js` + `editor.js` külön fájlokban, forrásban ÉS a `dist/`-ben; SW v7 precache (`8602dc7`)
 - **Verifikáció** — build smoke guard + headless Chrome e2e 23/23 prod és dev módban
+- **48 hiányzó illusztráció pótlása** — a mező nélküli 48 matek tétel (logika-halmaz 17 + számítástudomány-mérnöki 31) kapott `illustration` témát; validate-only 0 figyelmeztetés, DOM 202/202 sor illusztrációval, deck + quiz kattintásos ellenőrzés zöld
 
 ### Nyitva (⬜)
 - C) 10 — Nyomtatható A4 lap minden tételről
-- 48 matek tétel illusztrációjának pótlása
 - Takarítás: gyökér `index.html` (elavult monolit) és `files.zip` törlése/újrazippelése
 - **Push a GitHub-ra** — 4 commit vár a hitelesítésre (`b985791`…`8602dc7`)
 - **Docs** — `README.md` frissítése az új fájlszerkezetre (még a régieket írja)
