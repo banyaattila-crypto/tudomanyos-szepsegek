@@ -1,10 +1,13 @@
-const CACHE_NAME = "tsz-cache-v6";
+const CACHE_NAME = "tsz-cache-v7";
 // Csak a dist/ -ben TÉNYLEG meglévő fájlokat precacheljük:
-// a buildelt index.html tartalmazza az adatokat, data/ könyvtár nincs a dist-ben
-// (a data/*.json 404 lenne, és az atomic addAll miatt SEMMIT nem tenne a precache-be).
+// a moduláris szerkezet (index.html + app.css + app.js + editor.js) elemei,
+// ahol az app.js tartalmazza a beágyazott adatokat is.
 const APP_SHELL = [
   "./",
   "./index.html",
+  "./app.css",
+  "./app.js",
+  "./editor.js",
   "./manifest.json"
 ];
 

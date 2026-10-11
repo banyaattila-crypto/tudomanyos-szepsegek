@@ -9,7 +9,7 @@ Használat:
     python3 build.py --validate-only  # csak validáció, nem ír fájlt
 """
 
-import json, re, sys, shutil, subprocess, tempfile
+import json, re, sys, shutil, subprocess
 from pathlib import Path
 
 BASE = Path(__file__).parent
@@ -136,212 +136,83 @@ def main():
         print("\n✅ Validáció lefutott, nincs hiba.")
         return
 
-    # 3. Sablon + beágyazás
-    if not TEMPLATE.exists():
-        print(f"Hiányzik a sablon: {TEMPLATE}")
-        sys.exit(1)
+    # 3. Forrásfájlok (moduláris szerkezet: app.css + app.js + editor.js)
+    APP_CSS = BASE / "app.css"
+    APP_JS = BASE / "app.js"
+    EDITOR_JS = BASE / "editor.js"
+    for p in (TEMPLATE, APP_CSS, APP_JS, EDITOR_JS):
+        if not p.exists():
+            print(f"Hiányzik a forrásfájl: {p}")
+            sys.exit(1)
 
-    with open(TEMPLATE, encoding="utf-8") as f:
-        tmpl = f.read()
+    with open(APP_JS, encoding="utf-8") as f:
+        app_js = f.read()
 
-    # Cseréljük ki a dev bootstrap-t a beágyazott adattal
-    for domain in DOMAIN_MAP:
-        const_name = f"{domain.upper()}_DATA"
-        entries = data[domain]
-        js_array = json.dumps(entries, ensure_ascii=False, indent=2)
-
-        # A sablonban a fetch bootstrap így kezdődik:
-        #   // ==== ADATOK: Dinamikus betöltés (dev mode) ====
-        #   const MATEK_DATA = [];
-        #   ...
-        #   loadData();
-        # Be kell cserélni a teljes blokkra:
-        #   const MATEK_DATA = [...];
-        #   const FIZIKA_DATA = [...];
-        #   const INFORMATIKA_DATA = [...];
-        #   // initApp() hívás marad
-
-        # Keressük a "const X_DATA = [];" sort és az utána következő loadData() hívást
-        # Egyszerre cseréljük mindháromöt
-        pass  # lásd lent
-
-    # Egyszerűbb approach: cseréljük ki a dev bootstrap részt
-    # A sablonban a placeholder helyett most a dev bootstrap van
-    # A dev bootstrap kezdődik: // ==== ADATOK: Dinamikus betöltés (dev mode) ====
-    # És végződik: loadData();
-
-    # Keresd meg a dev bootstrap blokkot és cseréld
+    # A dev bootstrap konstansait cseréljük a beágyazott adatra
     dev_bootstrap_start = "// ==== ADATOK: Dinamikus betöltés (dev mode) ===="
-    if dev_bootstrap_start not in tmpl:
-        print("❌ Sablon nem tartalmaz dev bootstrapot!")
+    if dev_bootstrap_start not in app_js:
+        print("❌ app.js nem tartalmaz dev bootstrapot!")
         sys.exit(1)
-
-    # A dev bootstrap a MATEK_DATA const = []; -tól kezdődik
-    # és a loadData(); hívással ér véget
-    # Nahát, inkább cseréljük ki soronként a const tömböket
-
-    # Új approach: a sablonban a három const = []; legyen, és azt cseréljük ki
-    # A dev bootstrap-ban:
-    #   const MATEK_DATA = [];
-    #   const FIZIKA_DATA = [];
-    #   const INFORMATIKA_DATA = [];
-    # Ezeket cseréljük ki a valódi adattal
 
     for domain in DOMAIN_MAP:
         const_name = f"{domain.upper()}_DATA"
         entries = data[domain]
         js_array = json.dumps(entries, ensure_ascii=False, indent=2)
-
-        # Cseréljük: const X_DATA = []; → const X_DATA = <json>;
         old = f"const {const_name} = [];"
         new = f"const {const_name} = {js_array};"
-        if old in tmpl:
-            tmpl = tmpl.replace(old, new, 1)
+        if old in app_js:
+            app_js = app_js.replace(old, new, 1)
             print(f"  Beágyazva: {const_name} ({len(entries)} tétel)")
         else:
             print(f"  ❌ Nem találtam: {old}")
             sys.exit(1)
 
-    # Töröljük a loadData() hívást és az async function blokkot
-    # A dev bootstrap eredetileg:
-    #   async function loadData() { ... }
-    #   loadData();
-    # Ezt cseréljük ki üresre (az initApp() hívás marad)
-
-    # Távolítsuk el a loadData definiálást és hívást
-    # A sablonban a loadData() egy async function, aztán loadData();
-    # Egyszerűen cseréljük ki a teljes dev bootstrap részt
-
-    # Keressük az egész dev bootstrap részt
-    # Kezdődik: // ==== ADATOK: Dinamikus betöltés (dev mode) ====
-    # Végződik: loadData();
-
-    # Inkább csak a fetch és loadData törlése maradjon, mert az initApp() kell
-    # A sablon így néz ki:
-    #   // ==== ADATOK: Dinamikus betöltés (dev mode) ====
-    #   const MATEK_DATA = [...];  ← beépített
-    #   const FIZIKA_DATA = [...];
-    #   const INFORMATIKA_DATA = [...];
-    #   async function loadData() { ... }  ← törölni
-    #   loadData();  ← törölni, helyette initApp(); hívás kell
-    #
-    # De az initApp() hívás akkor jön, ha a loadData() async...
-    # Rendben, cseréljük le: loadData() helyett közvetlenül hívjuk az initApp()-ot
-
-    # Töröljük a loadData definíciót és hívást, az initApp hívás marad
-    # A sablonban a loadData() az async function, aztán loadData(); a fájl elején vagy végén
-
-    # Keresd meg és töröld a teljes dev bootstrap részt
-    # A dev bootstrap:
-    #   // ==== ADATOK: Dinamikus betöltés (dev mode) ====
-    #   const MATEK_DATA = [...];
-    #   const FIZIKA_DATA = [...];
-    #   const INFORMATIKA_DATA = [...];
-    #   async function loadData() { ... }
-    #   loadData();
-    #   ← itt kezdődik a DOMAINS és az app logika
-
-    # Egyszerűbben: a loadData() hívást cseréljük initApp()-ra
-    # és töröljük az async function loadData() definíciót
-
-    # Töröljük az async function loadData() {...} részt
-    # A sablonban ez így néz ki:
-    #   async function loadData() {
-    #     try {
-    #       const [m, f, i] = await Promise.all([...]);
-    #       MATEK_DATA.push(...m);
-    #       ...
-    #     } catch(e) { ... }
-    #     initApp();
-    #   }
-    #   loadData();
-
-    # Egy egyszerű regex nem elég a csúszós {...} tartalomhoz.
-    # Inkább írjuk át manuálisan: cseréljük ki a teljes blokkot.
-
-    # Keressük a blokkot: "async function loadData()" és az "{ ... } loadData();"
-    # Használjunk regex-et az async function loadData() {...} loadData(); match-olására
-
+    # Töröljük a dev loadData() bootstrapot (a beágyazott adat nem async)
     pattern = r"async function loadData\(\) \{.*?loadData\(\);\s*\n"
-    match = re.search(pattern, tmpl, re.DOTALL)
+    match = re.search(pattern, app_js, re.DOTALL)
     if match:
-        tmpl = tmpl[:match.start()] + tmpl[match.end():]
+        app_js = app_js[:match.start()] + app_js[match.end():]
         print("  Törölve: dev bootstrap (loadData)")
     else:
-        print("  ⚠ loadData blokk nem találatos, hagyjuk")
+        print("  ⚠ loadData blokk nem található")
 
-    # Az initApp() hívás akkor fusson el, miután az adatok betöltődtek
-    # A sablonban az initApp() egy DOMContentLoaded eventben vagy közvetlenül hívódik
-    # Nézzük meg hol hívják az initApp()-ot
-
-    # A sablon jelenleg nincs benne initApp() hívás — a loadData() vége hívta
-    # Miután a loadData() törlődött, az initApp()-ot közvetlenül kell hívni
-    # Az initApp() definiálása a DOMAINS után van a fájlban
-    # Tehát az initApp() hívását az adatok után kell tenni
-
-    # Most az initApp() definíciója van a fájlban, de nincs hívása
-    # Adjunk hozzá egy initApp() hívást az adatok után
-
-    # Keressük a "// ==== VEZÉRLŐ LOGIKA ====" sort és tegyük az utási első sortra a initApp();
-    # Vagy még egyszerűbb: az első "const DOMAINS =" sort megelőző üres sorra
-
-    # Valójában a DOMAINS konstans az adat után jön, és az initApp() is ott van definiálva
-    # Az initApp() az app logika része, amit az adatok betöltése után kell hívni
-    # Mivel most sincsen async, az initApp() közvetlenül hívható
-
-    # Az initApp() meghívása az adatok beágyazása után
-    # A DOMAINS const után tegyük
-
-    # Keresd meg az "const DOMAINS = {" sort és tegyük az utáni sorra az initApp();
-    # De csak ha nincs még initApp() hívás
-
-    if "initApp()" not in tmpl:
-        # Az initApp meghívását az első DOMAINS után tesszük
-        # de nem találtunk initApp() hívást → nem kell hozzáadni
-        # Az initApp() csak akkor kell, ha az app logika függvénye
-        pass
-
-    # Ellenőrizzük, hogy initApp() hívás van-e
-    if "initApp();" not in tmpl and "initApp (" not in tmpl:
-        # Nincs initApp() hívás. Az app logika az initApp() függvényben van,
-        # amit kell hívni az adatok betöltése után.
-        # Az initApp() definíciója a DOMAINS után van.
-        # Tegyük az initApp(); hívást a DOMAINS konstans definition utáni első üres sorra
-        # (vagyis az első render/init függvényhívás elé)
-
-        # A sablon szerkezete:
-        #   const DOMAINS = { ... };
-        #   ← itt az app logika kezdődik
-        #   const grid = document.getElementById(...)
-        #   ...
-        # A kezdeti loadData() az initApp()-ot hívta a data betöltés után
-        # Most, mivel nincs async, közvetlenül hívhatjuk
-
-        # Az initApp() függvény nem látszik a sablonban — valószínűleg nincs külön függvény
-        # Az app logika azonnal fut (DOMContentLoaded vagy fő script elején)
-        # Tehát nincs initApp() hívás — az oldal az elején betölti az adatokat és renderel
-        # A fetch-based bootstrap az initApp()-ot hívta a data betöltése után
-        # Most, mivel nincs async, az initApp()-ot a DOMContentLoaded-nél kell hívni
-        # Vagy egyszerűbben: az app logika végén hívjuk az initApp()-ot
-
-        # Valójában, a sablonban az app logika azonnal fut (nem függvényben)
-        # Tehát nincs initApp() — az oldal simán betölti az adatokat és megjeleníti őket
-        # A loadData() az initApp()-ot hívta, miután a fetch befejeződött
-        # Most a build.py embedded adatokkal dolgozik, nincs szükség async-ra
-        # Az initApp() helyett elegendő, ha a fájl elején betöltődnek az adatok
-        # (amikor a script betöltődik, az adatok már ott vannak)
-        pass
-
-    # OUTPUT
+    # 4. dist/ összeállítása
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+    with open(TEMPLATE, encoding="utf-8") as f:
+        tmpl = f.read()
     with open(OUTPUT, "w", encoding="utf-8") as f:
         f.write(tmpl)
+    with open(OUTPUT.parent / "app.js", "w", encoding="utf-8") as f:
+        f.write(app_js)
 
-    # ==== SMOKE GUARD: szemantikus ellenőrzés a kilőtt fájlon ====
-    # A szintaktikailag valid build is lehet üres/törött (pl. ha a sablonból
-    # kimarad a core szekció). Itt konkrét szimbólumok jelenlétét kérjük számon.
+    # statikus fájlok átmásolása (app.css, editor.js, sw.js, manifest, ikonok)
+    for extra in ("app.css", "editor.js", "sw.js", "manifest.json",
+                  "icon-192.png", "icon-512.png", "icon-512-maskable.png"):
+        src_path = BASE / extra
+        if src_path.exists():
+            shutil.copy2(src_path, OUTPUT.parent / extra)
+            print(f"  Másolva: dist/{extra}")
+        elif extra in ("app.css", "editor.js"):
+            print(f"  ❌ Hiányzik: {src_path}")
+            sys.exit(1)
+
+    # ==== SMOKE GUARD: szemantikus ellenőrzés a kilőtt fájlokon ====
     with open(OUTPUT, encoding="utf-8") as f:
-        out = f.read()
+        out_html = f.read()
+    with open(OUTPUT.parent / "app.js", encoding="utf-8") as f:
+        out_js = f.read()
+    with open(OUTPUT.parent / "editor.js", encoding="utf-8") as f:
+        out_editor = f.read()
+
+    # A sablon hivatkozzon a külön fájlokra
+    ref_missing = [r for r in ('href="app.css"', 'src="app.js"', 'src="editor.js"')
+                   if r not in out_html]
+    if ref_missing:
+        print("\n✗ SMOKE GUARD: dist/index.html nem hivatkozza a külön fájlokat:")
+        for r in ref_missing:
+            print(f"  ✗ {r}")
+        sys.exit(1)
+
     required_markers = [
         "const DOMAINS",
         "function safeKatex",
@@ -352,39 +223,38 @@ def main():
         "const grandTotalEl",
         "function boot(",
     ]
-    missing = [m for m in required_markers if m not in out]
+    missing = [m for m in required_markers if m not in out_js]
     if missing:
-        print("\n✗ SMOKE GUARD: a kilőtt dist/index.html HIBÁS — hiányzó szimbólumok:")
+        print("\n✗ SMOKE GUARD: a kilőtt dist/app.js HIBÁS — hiányzó szimbólumok:")
         for m in missing:
             print(f"  ✗ {m}")
-        print("  (valószínűleg a sablon core szekciója sérült — a fájl NEM adható ki)")
+        print("  (valószínűleg a core szekció sérült — a fájl NEM adható ki)")
+        sys.exit(1)
+    if "EDITOR LOGIC" not in out_editor:
+        print("\n✗ SMOKE GUARD: dist/editor.js hibás — nincs EDITOR LOGIC blokk")
         sys.exit(1)
 
-    # node --check a beágyazott inline scripteken (ha van node a gépen)
+    # node --check a kilőtt JS fájlokon (ha van node a gépen)
     node = shutil.which("node")
     if node:
-        scripts = re.findall(r"<script>\n(.*?)\n</script>", out, re.DOTALL)
-        if not scripts:
-            print("\n✗ SMOKE GUARD: nincs inline <script> a kimenetben")
-            sys.exit(1)
-        for idx, s in enumerate(scripts):
-            with tempfile.NamedTemporaryFile("w", suffix=".js", delete=False, encoding="utf-8") as tf:
-                tf.write(s)
-                tmp = tf.name
-            r = subprocess.run([node, "--check", tmp], capture_output=True, text=True)
-            Path(tmp).unlink(missing_ok=True)
+        for jsfile in (OUTPUT.parent / "app.js", OUTPUT.parent / "editor.js"):
+            r = subprocess.run([node, "--check", str(jsfile)], capture_output=True, text=True)
             if r.returncode != 0:
-                print(f"\n✗ SMOKE GUARD: node --check hiba (script #{idx}):")
+                print(f"\n✗ SMOKE GUARD: node --check hiba ({jsfile.name}):")
                 print(r.stderr[:2000])
                 sys.exit(1)
-        print(f"Smoke guard OK: {len(required_markers)} marker + node --check ({len(scripts)} script) ✔")
+        print(f"Smoke guard OK: {len(required_markers)} marker + fájlhivatkozások + node --check (2 JS) ✔")
     else:
         print("Smoke guard OK: szimbólum-ellenőrzés ✔ (node nincs, a szintaxis-ellenőrzés kimaradt)")
 
-    final_size = len(tmpl)
+    dist_files = ("index.html", "app.css", "app.js", "editor.js")
+    sizes = {n: (OUTPUT.parent / n).stat().st_size for n in dist_files}
+    total_size = sum(sizes.values())
     print(f"\n{'='*50}")
-    print(f"✅ BUILD KESZ: {OUTPUT}")
-    print(f"   Méret: {final_size:,} bytes ({final_size//1024} KB)")
+    print(f"✅ BUILD KESZ: dist/ ({len(dist_files)} fájl)")
+    for n in dist_files:
+        print(f"   {n}: {sizes[n]:,} bytes")
+    print(f"   Összesen: {total_size:,} bytes ({total_size//1024} KB)")
     print(f"   Tételek: {total} ({', '.join(f'{v} {k}' for k,v in stats.items())})")
 
 if __name__ == "__main__":
