@@ -182,6 +182,8 @@ def main():
         tmpl = f.read()
     with open(OUTPUT, "w", encoding="utf-8") as f:
         f.write(tmpl)
+    with open(OUTPUT.parent / "index.htm", "w", encoding="utf-8") as f:
+        f.write(tmpl)
     with open(OUTPUT.parent / "app.js", "w", encoding="utf-8") as f:
         f.write(app_js)
 
