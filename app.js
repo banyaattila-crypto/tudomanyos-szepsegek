@@ -204,6 +204,27 @@ const graphTooltip = document.getElementById("graphTooltip");
 const graphResetBtn = document.getElementById("graphResetBtn");
 const graphDomainBtn = document.getElementById("graphDomainBtn");
 
+const simLabBtn = document.getElementById("simLabBtn");
+const simOverlay = document.getElementById("simOverlay");
+const simClose = document.getElementById("simClose");
+const simTitle = document.getElementById("simTitle");
+const simTabs = document.getElementById("simTabs");
+const simCanvas = document.getElementById("simCanvas");
+const simControls = document.getElementById("simControls");
+const simInfo = document.getElementById("simInfo");
+
+const SIMULATION_TARGETS = {
+  "lorentz-transzformacio": "lorentz",
+  "kvantum-alaguthatas": "tunnel",
+  "schrodinger-egyenlet": "tunnel",
+  "hidrogenatom-schrodinger-egyenlete": "tunnel",
+  "mandelbrot-halmaz": "mandelbrot",
+  "fourier-transzformalt": "fourier",
+  "gyors-fourier-transzformacio-fft": "fourier",
+  "fast-fourier-transzformacio-alkalmazasa-keptomoritesre-dct": "fourier",
+  "conway-elet-jateka": "conway"
+};
+
 let activeDomain = "matek";
 let activeCategory = "all";
 let activeTagFilter = null;   // téma-szűrő (tag cloud) — a keresőmezőt is meghajtja
@@ -563,6 +584,21 @@ function buildRow(entry, index, domainKey) {
     generateShareCard(entry, domainKey, cardBtn);
   });
   actions.appendChild(cardBtn);
+
+  if (SIMULATION_TARGETS[slug]) {
+    const simKey = SIMULATION_TARGETS[slug];
+    const simBtn = document.createElement("button");
+    simBtn.type = "button";
+    simBtn.className = "icon-btn sim-btn";
+    simBtn.setAttribute("aria-label", "Interaktív szimuláció");
+    simBtn.title = "Interaktív szimuláció indítása";
+    simBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="6" width="18" height="12" rx="3.5" stroke="currentColor" stroke-width="1.6"/><circle cx="8" cy="12" r="1.8" fill="currentColor"/><path d="M14 10v4M12 12h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
+    simBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      openSimulation(simKey);
+    });
+    actions.appendChild(simBtn);
+  }
 
   if (entry.wiki) {
     const wikiBtn = document.createElement("button");
@@ -1327,6 +1363,7 @@ document.addEventListener("keydown", (e) => {
     closeModal();
     closeLightbox();
     closeGraph();
+    closeSimulation();
     statsOverlay.classList.remove("visible");
     statsOverlay.setAttribute("aria-hidden", "true");
   }
@@ -1840,6 +1877,26 @@ function renderDeck() {
     dw.style.display = "inline-flex";
     dw.onclick = () => window.open(e.wiki, "_blank", "noopener");
   } else if (dw) { dw.style.display = "none"; }
+
+  // Szimuláció gomb a decken
+  let dSim = document.getElementById("deckSim");
+  const deckSlug = slugify(e.name);
+  if (SIMULATION_TARGETS[deckSlug]) {
+    const simKey = SIMULATION_TARGETS[deckSlug];
+    if (!dSim) {
+      dSim = document.createElement("button");
+      dSim.id = "deckSim";
+      dSim.className = "icon-btn sim-btn";
+      dSim.setAttribute("aria-label", "Interaktív szimuláció");
+      dSim.title = "Interaktív szimuláció indítása";
+      dSim.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="6" width="18" height="12" rx="3.5" stroke="currentColor" stroke-width="1.6"/><circle cx="8" cy="12" r="1.8" fill="currentColor"/><path d="M14 10v4M12 12h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
+      deckCard.querySelector(".deck-actions").appendChild(dSim);
+    }
+    dSim.style.display = "inline-flex";
+    dSim.onclick = () => openSimulation(simKey);
+  } else if (dSim) {
+    dSim.style.display = "none";
+  }
   const favKey = activeDomain + ":" + slugify(e.name);
   deckFav.classList.toggle("active", favorites.has(favKey));
   deckFav.onclick = () => { toggleFavorite(favKey, deckFav); };
@@ -2841,6 +2898,1025 @@ if (weeklyFav) weeklyFav.addEventListener("click", () => {
 if (weeklyDismiss) weeklyDismiss.addEventListener("click", () => {
   weeklyCard.hidden = true;
   try { localStorage.setItem("tsz_weekly_dismissed", isoWeekKey(new Date())); } catch (e) {}
+});
+
+// ============================================================================
+// ==== INTERAKTÍV TUDOMÁNYOS LABORATÓRIUM (SZIMULÁCIÓK) =======================
+// ============================================================================
+
+let currentSimId = "lorentz";
+let simRaf = null;
+let simCtx = null;
+let simActive = false;
+
+const SIM_TITLES = {
+  lorentz: "⚡ Lorentz-transzformáció és Idődilatáció",
+  tunnel: "🌊 Kvantum-alagúthatás (Schrödinger-egyenlet)",
+  mandelbrot: "🌀 Mandelbrot-halmaz és Komplex fraktálok",
+  fourier: "🎼 Fourier-sorfejtés és Epiciklikus szintézis",
+  conway: "👾 Conway: Élet játéka (Sejtautomata)"
+};
+
+// 1. Lorentz állapot
+const simLorentz = {
+  beta: 0.70,
+  running: true,
+  tau: 0,
+  t: 0,
+  xMoving: 100,
+  lightRestY: 0,
+  lightRestDir: 1,
+  lightMovY: 0,
+  lightMovDir: 1,
+  trail: []
+};
+
+// 2. Kvantum-alagút állapot
+const simTunnel = {
+  E: 3.0,
+  V0: 4.8,
+  barrierWidth: 46,
+  running: true,
+  t: 0
+};
+
+// 3. Mandelbrot állapot
+const simMandelbrot = {
+  cx: -0.7,
+  cy: 0.0,
+  zoom: 1.0,
+  maxIter: 64,
+  palette: "aurora",
+  needsRedraw: true
+};
+let mandelbrotOffscreen = null;
+
+// 4. Fourier állapot
+const simFourier = {
+  waveType: "square",
+  harmonics: 5,
+  speed: 1.0,
+  running: true,
+  time: 0,
+  waveHistory: []
+};
+
+// 5. Conway állapot
+const simConway = {
+  cols: 64,
+  rows: 36,
+  grid: null,
+  nextGrid: null,
+  cellAge: null,
+  running: true,
+  lastStep: 0,
+  speedMs: 100,
+  generation: 0
+};
+
+function drawLorentz(ctx, width, height) {
+  const L0 = 120;
+  const H = 70;
+  const c = 2.4;
+  const beta = simLorentz.beta;
+  const gamma = 1 / Math.sqrt(Math.max(0.001, 1 - beta * beta));
+  const L = L0 / gamma;
+
+  if (simLorentz.running) {
+    simLorentz.tau += 0.04;
+    simLorentz.t += 0.04 * gamma;
+
+    simLorentz.lightRestY += simLorentz.lightRestDir * c;
+    if (simLorentz.lightRestY >= H) {
+      simLorentz.lightRestY = H;
+      simLorentz.lightRestDir = -1;
+    } else if (simLorentz.lightRestY <= 0) {
+      simLorentz.lightRestY = 0;
+      simLorentz.lightRestDir = 1;
+    }
+
+    simLorentz.xMoving += beta * c * 1.3;
+    const maxX = width - 40;
+    const minX = 40;
+    if (simLorentz.xMoving > maxX) {
+      simLorentz.xMoving = minX;
+      simLorentz.trail = [];
+    }
+
+    simLorentz.lightMovY += simLorentz.lightMovDir * (c / gamma);
+    if (simLorentz.lightMovY >= H) {
+      simLorentz.lightMovY = H;
+      simLorentz.lightMovDir = -1;
+    } else if (simLorentz.lightMovY <= 0) {
+      simLorentz.lightMovY = 0;
+      simLorentz.lightMovDir = 1;
+    }
+
+    simLorentz.trail.push({ x: simLorentz.xMoving, y: 220 + simLorentz.lightMovY });
+    if (simLorentz.trail.length > 70) simLorentz.trail.shift();
+  }
+
+  ctx.fillStyle = "#050813";
+  ctx.fillRect(0, 0, width, height);
+
+  ctx.strokeStyle = "rgba(125, 163, 255, 0.07)";
+  ctx.lineWidth = 1;
+  for (let x = 0; x < width; x += 40) {
+    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, height); ctx.stroke();
+  }
+  ctx.beginPath(); ctx.moveTo(0, 160); ctx.lineTo(width, 160); ctx.stroke();
+
+  // Felső: Nyugalmi rendszer
+  ctx.font = "600 12px Inter, sans-serif";
+  ctx.fillStyle = "#9aa6c4";
+  ctx.fillText("NYUGALMI RENDSZER (FÖLD) — v = 0, sajátidő (τ)", 20, 26);
+
+  const restX = 80;
+  const restY = 48;
+  ctx.strokeStyle = "rgba(201, 162, 75, 0.6)";
+  ctx.lineWidth = 4;
+  ctx.beginPath(); ctx.moveTo(restX, restY); ctx.lineTo(restX + L0, restY); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(restX, restY + H); ctx.lineTo(restX + L0, restY + H); ctx.stroke();
+
+  ctx.strokeStyle = "rgba(201, 162, 75, 0.25)";
+  ctx.lineWidth = 1.5;
+  ctx.strokeRect(restX, restY, L0, H);
+
+  ctx.strokeStyle = "rgba(255, 230, 120, 0.3)";
+  ctx.setLineDash([3, 3]);
+  ctx.beginPath(); ctx.moveTo(restX + L0 / 2, restY); ctx.lineTo(restX + L0 / 2, restY + H); ctx.stroke();
+  ctx.setLineDash([]);
+
+  ctx.fillStyle = "#ffe066";
+  ctx.shadowColor = "#ffe066";
+  ctx.shadowBlur = 10;
+  ctx.beginPath();
+  ctx.arc(restX + L0 / 2, restY + simLorentz.lightRestY, 4.5, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.shadowBlur = 0;
+
+  ctx.font = "500 12px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#e9c877";
+  ctx.fillText(`τ = ${simLorentz.tau.toFixed(1)} s (1.00×)`, restX + L0 + 25, restY + H / 2 + 4);
+
+  // Alsó: Mozgó rendszer
+  ctx.font = "600 12px Inter, sans-serif";
+  ctx.fillStyle = "#9aa6c4";
+  ctx.fillText(`MOZGÓ RENDSZER — v = ${beta.toFixed(2)}c, Lorentz-faktor γ = ${gamma.toFixed(2)}`, 20, 185);
+
+  const movY = 220;
+  if (simLorentz.trail.length > 1) {
+    ctx.beginPath();
+    ctx.strokeStyle = "rgba(62, 184, 240, 0.4)";
+    ctx.lineWidth = 2;
+    for (let i = 0; i < simLorentz.trail.length; i++) {
+      const p = simLorentz.trail[i];
+      if (i === 0) ctx.moveTo(p.x, p.y);
+      else ctx.lineTo(p.x, p.y);
+    }
+    ctx.stroke();
+  }
+
+  const mx = simLorentz.xMoving - L / 2;
+  ctx.strokeStyle = "rgba(62, 184, 240, 0.7)";
+  ctx.lineWidth = 4;
+  ctx.beginPath(); ctx.moveTo(mx, movY); ctx.lineTo(mx + L, movY); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(mx, movY + H); ctx.lineTo(mx + L, movY + H); ctx.stroke();
+
+  ctx.strokeStyle = "rgba(62, 184, 240, 0.35)";
+  ctx.lineWidth = 1.5;
+  ctx.strokeRect(mx, movY, L, H);
+
+  ctx.fillStyle = "#7fd8ff";
+  ctx.shadowColor = "#7fd8ff";
+  ctx.shadowBlur = 12;
+  ctx.beginPath();
+  ctx.arc(simLorentz.xMoving, movY + simLorentz.lightMovY, 4.5, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.shadowBlur = 0;
+
+  ctx.font = "500 12px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#7fd8ff";
+  ctx.fillText(`t' = ${simLorentz.t.toFixed(1)} s (${gamma.toFixed(2)}× lassabb)`, 20, movY + H + 30);
+}
+
+function drawTunnel(ctx, width, height) {
+  const { E, V0, barrierWidth } = simTunnel;
+  const baseLine = 250;
+  const scaleV = 16;
+  const scaleE = 16;
+
+  ctx.fillStyle = "#050813";
+  ctx.fillRect(0, 0, width, height);
+
+  const bx1 = width / 2 - barrierWidth / 2;
+  const bx2 = width / 2 + barrierWidth / 2;
+  const bHeight = V0 * scaleV;
+  const eHeight = E * scaleE;
+
+  const grad = ctx.createLinearGradient(0, baseLine - bHeight, 0, baseLine);
+  grad.addColorStop(0, "rgba(233, 110, 60, 0.5)");
+  grad.addColorStop(1, "rgba(233, 110, 60, 0.08)");
+  ctx.fillStyle = grad;
+  ctx.fillRect(bx1, baseLine - bHeight, barrierWidth, bHeight);
+
+  ctx.strokeStyle = "#e97244";
+  ctx.lineWidth = 2;
+  ctx.strokeRect(bx1, baseLine - bHeight, barrierWidth, bHeight);
+
+  ctx.font = "500 11px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#e97244";
+  ctx.fillText(`V₀ = ${V0.toFixed(1)} eV`, bx1 + 4, baseLine - bHeight - 8);
+
+  ctx.strokeStyle = "rgba(125, 163, 255, 0.6)";
+  ctx.setLineDash([4, 4]);
+  ctx.beginPath();
+  ctx.moveTo(20, baseLine - eHeight);
+  ctx.lineTo(width - 20, baseLine - eHeight);
+  ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = "#7da3ff";
+  ctx.fillText(`E = ${E.toFixed(1)} eV`, 24, baseLine - eHeight - 6);
+
+  let T = 0;
+  if (E < V0) {
+    const kappa = Math.sqrt(Math.max(0.01, 2 * (V0 - E))) * 0.07;
+    const sinhVal = Math.sinh(kappa * barrierWidth);
+    T = 1 / (1 + (V0 * V0 * sinhVal * sinhVal) / (4 * E * (V0 - E)));
+  } else {
+    const k1 = Math.sqrt(Math.max(0.01, 2 * (E - V0))) * 0.07;
+    const sinVal = Math.sin(k1 * barrierWidth);
+    T = 1 / (1 + (V0 * V0 * sinVal * sinVal) / (4 * E * (E - V0)));
+  }
+  T = Math.min(1, Math.max(0, T));
+  const R = 1 - T;
+
+  if (simTunnel.running) {
+    simTunnel.t += 0.06;
+  }
+
+  const k0 = Math.sqrt(2 * E) * 0.12;
+  const cycle = (simTunnel.t * 30) % (width + 200);
+  const packetCenter = cycle - 100;
+
+  ctx.beginPath();
+  ctx.strokeStyle = "#4fd6a0";
+  ctx.lineWidth = 2;
+
+  for (let x = 20; x < width - 20; x += 2) {
+    let amp = 0;
+    const sigma = 35;
+    if (x < bx1) {
+      const inc = Math.exp(-Math.pow(x - packetCenter, 2) / (2 * sigma * sigma));
+      const refDist = bx1 + (bx1 - packetCenter);
+      const ref = Math.sqrt(R) * Math.exp(-Math.pow(x - refDist, 2) / (2 * sigma * sigma));
+      amp = (inc * Math.cos(k0 * x - simTunnel.t * 4) + ref * Math.cos(-k0 * x - simTunnel.t * 4)) * 36;
+    } else if (x >= bx1 && x <= bx2) {
+      const decay = Math.exp(-0.06 * Math.sqrt(Math.max(0.1, V0 - E)) * (x - bx1));
+      const atEntry = Math.exp(-Math.pow(bx1 - packetCenter, 2) / (2 * sigma * sigma));
+      amp = atEntry * decay * Math.sqrt(T) * Math.cos(k0 * x - simTunnel.t * 4) * 36;
+    } else {
+      const transCenter = packetCenter;
+      const trans = Math.sqrt(T) * Math.exp(-Math.pow(x - transCenter, 2) / (2 * sigma * sigma));
+      amp = trans * Math.cos(k0 * x - simTunnel.t * 4) * 36;
+    }
+
+    const y = baseLine - amp;
+    if (x === 20) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  ctx.stroke();
+
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.15)";
+  ctx.beginPath(); ctx.moveTo(10, baseLine); ctx.lineTo(width - 10, baseLine); ctx.stroke();
+
+  ctx.font = "600 12px Inter, sans-serif";
+  ctx.fillStyle = "#9aa6c4";
+  ctx.fillText("SCHRÖDINGER KVANTUM-ALAGÚTHATÁS SZIMULÁCIÓ", 20, 26);
+
+  ctx.font = "500 12px 'JetBrains Mono', monospace";
+  ctx.fillStyle = T > 0.05 ? "#4fd6a0" : "#9aa6c4";
+  ctx.fillText(`Áthaladás (T): ${(T * 100).toFixed(2)}% | Visszaverődés (R): ${(R * 100).toFixed(2)}%`, 20, height - 16);
+}
+
+function drawMandelbrot(ctx, width, height) {
+  if (!simMandelbrot.needsRedraw && mandelbrotOffscreen) {
+    ctx.drawImage(mandelbrotOffscreen, 0, 0, width, height);
+    return;
+  }
+
+  const renderW = Math.floor(width / 2);
+  const renderH = Math.floor(height / 2);
+  if (!mandelbrotOffscreen || mandelbrotOffscreen.width !== renderW || mandelbrotOffscreen.height !== renderH) {
+    mandelbrotOffscreen = document.createElement("canvas");
+    mandelbrotOffscreen.width = renderW;
+    mandelbrotOffscreen.height = renderH;
+  }
+  const offCtx = mandelbrotOffscreen.getContext("2d");
+  const imgData = offCtx.createImageData(renderW, renderH);
+  const data = imgData.data;
+
+  const { cx, cy, zoom, maxIter, palette } = simMandelbrot;
+  const aspect = renderW / renderH;
+  const rx = 1.4 / zoom;
+  const ry = rx / aspect;
+
+  for (let py = 0; py < renderH; py++) {
+    const y0 = cy + (py / renderH - 0.5) * ry * 2;
+    for (let px = 0; px < renderW; px++) {
+      const x0 = cx + (px / renderW - 0.5) * rx * 2;
+      let x = 0.0;
+      let y = 0.0;
+      let iter = 0;
+      while (x * x + y * y <= 4 && iter < maxIter) {
+        const xTemp = x * x - y * y + x0;
+        y = 2 * x * y + y0;
+        x = xTemp;
+        iter++;
+      }
+
+      const idx = (py * renderW + px) * 4;
+      if (iter === maxIter) {
+        data[idx] = 4;
+        data[idx + 1] = 6;
+        data[idx + 2] = 16;
+        data[idx + 3] = 255;
+      } else {
+        const mu = iter + 1 - Math.log(Math.max(1, Math.log(x * x + y * y))) / Math.LN2;
+        const norm = Math.max(0, mu / maxIter);
+
+        if (palette === "fire") {
+          data[idx] = Math.min(255, Math.floor(norm * 450));
+          data[idx + 1] = Math.min(255, Math.floor(norm * norm * 350));
+          data[idx + 2] = Math.min(255, Math.floor(norm * norm * norm * 200));
+        } else if (palette === "neon") {
+          data[idx] = Math.min(255, Math.floor(norm * 60));
+          data[idx + 1] = Math.min(255, Math.floor(norm * 320));
+          data[idx + 2] = Math.min(255, Math.floor(norm * 240));
+        } else {
+          data[idx] = Math.min(255, Math.floor(Math.sin(norm * 6.28) * 80 + 100));
+          data[idx + 1] = Math.min(255, Math.floor(Math.sin(norm * 6.28 + 2.0) * 90 + 140));
+          data[idx + 2] = Math.min(255, Math.floor(Math.sin(norm * 6.28 + 4.0) * 80 + 160));
+        }
+        data[idx + 3] = 255;
+      }
+    }
+  }
+
+  offCtx.putImageData(imgData, 0, 0);
+  ctx.imageSmoothingEnabled = true;
+  ctx.drawImage(mandelbrotOffscreen, 0, 0, width, height);
+
+  simMandelbrot.needsRedraw = false;
+
+  ctx.font = "500 12px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#e9c877";
+  ctx.fillText(`Zoom: ${zoom.toFixed(1)}× | Re: ${cx.toFixed(4)}, Im: ${cy.toFixed(4)} (Kattints a nagyításhoz!)`, 20, height - 16);
+}
+
+function drawFourier(ctx, width, height) {
+  const { waveType, harmonics, speed } = simFourier;
+  const centerY = height / 2;
+  const centerX = 140;
+  const baseRadius = 55;
+
+  if (simFourier.running) {
+    simFourier.time += 0.025 * speed;
+  }
+
+  ctx.fillStyle = "#050813";
+  ctx.fillRect(0, 0, width, height);
+
+  let x = centerX;
+  let y = centerY;
+
+  for (let i = 0; i < harmonics; i++) {
+    const prevX = x;
+    const prevY = y;
+    let n = 1;
+    let radius = 0;
+
+    if (waveType === "square") {
+      n = i * 2 + 1;
+      radius = baseRadius * (4 / (n * Math.PI));
+    } else if (waveType === "sawtooth") {
+      n = i + 1;
+      radius = baseRadius * (2 / (n * Math.PI)) * (i % 2 === 0 ? 1 : -1);
+    } else if (waveType === "triangle") {
+      n = i * 2 + 1;
+      const sign = (i % 2 === 0) ? 1 : -1;
+      radius = baseRadius * (8 / (n * n * Math.PI * Math.PI)) * sign;
+    }
+
+    x += radius * Math.cos(n * simFourier.time);
+    y += radius * Math.sin(n * simFourier.time);
+
+    ctx.strokeStyle = "rgba(125, 163, 255, 0.22)";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.arc(prevX, prevY, Math.abs(radius), 0, Math.PI * 2);
+    ctx.stroke();
+
+    ctx.strokeStyle = "rgba(201, 162, 75, 0.6)";
+    ctx.beginPath();
+    ctx.moveTo(prevX, prevY);
+    ctx.lineTo(x, y);
+    ctx.stroke();
+
+    ctx.fillStyle = "#e9c877";
+    ctx.beginPath();
+    ctx.arc(x, y, 2, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  if (simFourier.running) {
+    simFourier.waveHistory.unshift(y);
+    if (simFourier.waveHistory.length > width - 280) {
+      simFourier.waveHistory.pop();
+    }
+  }
+
+  ctx.strokeStyle = "rgba(79, 214, 160, 0.4)";
+  ctx.setLineDash([3, 3]);
+  ctx.beginPath();
+  ctx.moveTo(x, y);
+  ctx.lineTo(280, y);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  ctx.strokeStyle = "#4fd6a0";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  for (let i = 0; i < simFourier.waveHistory.length; i++) {
+    const wx = 280 + i;
+    const wy = simFourier.waveHistory[i];
+    if (i === 0) ctx.moveTo(wx, wy);
+    else ctx.lineTo(wx, wy);
+  }
+  ctx.stroke();
+
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+  ctx.beginPath(); ctx.moveTo(280, centerY); ctx.lineTo(width - 20, centerY); ctx.stroke();
+
+  ctx.font = "600 12px Inter, sans-serif";
+  ctx.fillStyle = "#9aa6c4";
+  ctx.fillText(`FOURIER-SORFEJTÉS: ${harmonics} HARMONIKUS (EPICIKLUSOK)`, 20, 26);
+
+  ctx.font = "500 12px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#4fd6a0";
+  ctx.fillText(`Típus: ${waveType.toUpperCase()} | Gibbs-jelenség az éleknél`, 280, height - 16);
+}
+
+function initConwayGrid() {
+  const { cols, rows } = simConway;
+  simConway.grid = new Uint8Array(cols * rows);
+  simConway.nextGrid = new Uint8Array(cols * rows);
+  simConway.cellAge = new Uint8Array(cols * rows);
+  simConway.generation = 0;
+  loadConwayPreset("glider");
+}
+
+function loadConwayPreset(name) {
+  if (!simConway.grid) initConwayGrid();
+  simConway.grid.fill(0);
+  simConway.cellAge.fill(0);
+  simConway.generation = 0;
+  const { cols, rows, grid } = simConway;
+  const midX = Math.floor(cols / 2);
+  const midY = Math.floor(rows / 2);
+
+  if (name === "glider") {
+    const coords = [[0, -1], [1, 0], [-1, 1], [0, 1], [1, 1]];
+    coords.forEach(([dx, dy]) => {
+      const x = (midX + dx + cols) % cols;
+      const y = (midY + dy + rows) % rows;
+      grid[y * cols + x] = 1;
+    });
+  } else if (name === "pulsar") {
+    const p = [-6, -1, 1, 6];
+    const q = [-4, -3, -2, 2, 3, 4];
+    p.forEach(x => q.forEach(y => {
+      grid[((midY + y + rows) % rows) * cols + ((midX + x + cols) % cols)] = 1;
+      grid[((midY + x + rows) % rows) * cols + ((midX + y + cols) % cols)] = 1;
+    }));
+  } else if (name === "lwss") {
+    const coords = [[-2, -1], [1, -1], [2, 0], [-2, 1], [2, 1], [-1, 2], [0, 2], [1, 2], [2, 2]];
+    coords.forEach(([dx, dy]) => {
+      const x = (midX + dx + cols) % cols;
+      const y = (midY + dy + rows) % rows;
+      grid[y * cols + x] = 1;
+    });
+  } else if (name === "random") {
+    for (let i = 0; i < grid.length; i++) {
+      grid[i] = Math.random() < 0.22 ? 1 : 0;
+    }
+  }
+}
+
+function stepConway() {
+  const { cols, rows, grid, nextGrid, cellAge } = simConway;
+  if (!grid) return;
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      let neighbors = 0;
+      for (let dy = -1; dy <= 1; dy++) {
+        for (let dx = -1; dx <= 1; dx++) {
+          if (dx === 0 && dy === 0) continue;
+          const nx = (x + dx + cols) % cols;
+          const ny = (y + dy + rows) % rows;
+          if (grid[ny * cols + nx]) neighbors++;
+        }
+      }
+      const idx = y * cols + x;
+      const alive = grid[idx];
+      if (alive) {
+        if (neighbors === 2 || neighbors === 3) {
+          nextGrid[idx] = 1;
+          cellAge[idx] = Math.min(255, cellAge[idx] + 1);
+        } else {
+          nextGrid[idx] = 0;
+          cellAge[idx] = 0;
+        }
+      } else {
+        if (neighbors === 3) {
+          nextGrid[idx] = 1;
+          cellAge[idx] = 1;
+        } else {
+          nextGrid[idx] = 0;
+          cellAge[idx] = 0;
+        }
+      }
+    }
+  }
+  grid.set(nextGrid);
+  simConway.generation++;
+}
+
+function drawConway(ctx, width, height) {
+  if (!simConway.grid) initConwayGrid();
+
+  const now = performance.now();
+  if (simConway.running && now - simConway.lastStep > simConway.speedMs) {
+    stepConway();
+    simConway.lastStep = now;
+  }
+
+  const { cols, rows, grid, cellAge } = simConway;
+  const cellW = width / cols;
+  const cellH = height / rows;
+
+  ctx.fillStyle = "#050813";
+  ctx.fillRect(0, 0, width, height);
+
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.04)";
+  ctx.lineWidth = 0.5;
+  for (let x = 0; x <= cols; x++) {
+    ctx.beginPath(); ctx.moveTo(x * cellW, 0); ctx.lineTo(x * cellW, height); ctx.stroke();
+  }
+  for (let y = 0; y <= rows; y++) {
+    ctx.beginPath(); ctx.moveTo(0, y * cellH); ctx.lineTo(width, y * cellH); ctx.stroke();
+  }
+
+  let aliveCount = 0;
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      const idx = y * cols + x;
+      if (grid[idx]) {
+        aliveCount++;
+        const age = cellAge[idx];
+        if (age === 1) ctx.fillStyle = "#7fd8ff";
+        else if (age < 6) ctx.fillStyle = "#4fd6a0";
+        else ctx.fillStyle = "#e9c877";
+
+        ctx.fillRect(x * cellW + 1, y * cellH + 1, cellW - 2, cellH - 2);
+      }
+    }
+  }
+
+  ctx.font = "600 12px Inter, sans-serif";
+  ctx.fillStyle = "#9aa6c4";
+  ctx.fillText("CONWAY: ÉLET JÁTÉKA — B3/S23 (Kattints a sejtekre rajzoláshoz!)", 20, 24);
+
+  ctx.font = "500 12px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#4fd6a0";
+  ctx.fillText(`Generáció: ${simConway.generation} | Élő sejtek: ${aliveCount}`, 20, height - 14);
+}
+
+function renderSimControls(simId) {
+  if (!simControls) return;
+  simControls.innerHTML = "";
+
+  if (simId === "lorentz") {
+    simControls.innerHTML = `
+      <div class="sim-row">
+        <span class="sim-label">Sebesség: <b>v = ${(simLorentz.beta * 100).toFixed(0)}% c</b></span>
+        <div class="sim-slider-wrap">
+          <input type="range" class="sim-slider" id="simBetaSlider" min="0" max="0.98" step="0.01" value="${simLorentz.beta}">
+          <span class="sim-val" id="simBetaVal">${simLorentz.beta.toFixed(2)}c</span>
+        </div>
+        <div class="sim-btn-group">
+          <button type="button" class="sim-ctrl-btn" id="simLorentzPlay">${simLorentz.running ? "⏸ Szünet" : "▶ Indítás"}</button>
+          <button type="button" class="sim-ctrl-btn" id="simLorentzReset">↺ Visszaállítás</button>
+        </div>
+      </div>
+      <div class="sim-hud">
+        <div class="sim-hud-item">Lorentz-faktor (γ)<b id="simHudGamma">1.40</b></div>
+        <div class="sim-hud-item">Hosszkontrakció<b id="simHudLength">71.4%</b></div>
+        <div class="sim-hud-item">Idődilatáció<b id="simHudDilation">1.40×</b></div>
+      </div>
+    `;
+
+    const slider = document.getElementById("simBetaSlider");
+    const valLabel = document.getElementById("simBetaVal");
+    const playBtn = document.getElementById("simLorentzPlay");
+    const resetBtn = document.getElementById("simLorentzReset");
+    const hudGamma = document.getElementById("simHudGamma");
+    const hudLength = document.getElementById("simHudLength");
+    const hudDilation = document.getElementById("simHudDilation");
+
+    function updateLorentzHud() {
+      const g = 1 / Math.sqrt(Math.max(0.001, 1 - simLorentz.beta * simLorentz.beta));
+      if (hudGamma) hudGamma.textContent = g.toFixed(3);
+      if (hudLength) hudLength.textContent = ((1 / g) * 100).toFixed(1) + "%";
+      if (hudDilation) hudDilation.textContent = g.toFixed(2) + "×";
+    }
+    updateLorentzHud();
+
+    if (slider) slider.addEventListener("input", (e) => {
+      simLorentz.beta = parseFloat(e.target.value);
+      if (valLabel) valLabel.textContent = simLorentz.beta.toFixed(2) + "c";
+      updateLorentzHud();
+    });
+    if (playBtn) playBtn.addEventListener("click", () => {
+      simLorentz.running = !simLorentz.running;
+      playBtn.textContent = simLorentz.running ? "⏸ Szünet" : "▶ Indítás";
+    });
+    if (resetBtn) resetBtn.addEventListener("click", () => {
+      simLorentz.tau = 0;
+      simLorentz.t = 0;
+      simLorentz.trail = [];
+    });
+
+  } else if (simId === "tunnel") {
+    simControls.innerHTML = `
+      <div class="sim-row">
+        <span class="sim-label">Részecske E: <b>${simTunnel.E.toFixed(1)} eV</b></span>
+        <div class="sim-slider-wrap">
+          <input type="range" class="sim-slider" id="simESlider" min="0.5" max="8.0" step="0.1" value="${simTunnel.E}">
+          <span class="sim-val" id="simEVal">${simTunnel.E.toFixed(1)} eV</span>
+        </div>
+        <span class="sim-label">Gát V₀: <b>${simTunnel.V0.toFixed(1)} eV</b></span>
+        <div class="sim-slider-wrap">
+          <input type="range" class="sim-slider" id="simV0Slider" min="1.0" max="10.0" step="0.1" value="${simTunnel.V0}">
+          <span class="sim-val" id="simV0Val">${simTunnel.V0.toFixed(1)} eV</span>
+        </div>
+      </div>
+      <div class="sim-row">
+        <span class="sim-label">Gát szélesség (a): <b>${simTunnel.barrierWidth} px</b></span>
+        <div class="sim-slider-wrap">
+          <input type="range" class="sim-slider" id="simBarrierSlider" min="15" max="90" step="1" value="${simTunnel.barrierWidth}">
+          <span class="sim-val" id="simBarrierVal">${simTunnel.barrierWidth} px</span>
+        </div>
+        <div class="sim-btn-group">
+          <button type="button" class="sim-ctrl-btn" id="simTunnelRestart">↺ Újraindítás</button>
+        </div>
+      </div>
+    `;
+
+    const eSlider = document.getElementById("simESlider");
+    const vSlider = document.getElementById("simV0Slider");
+    const bSlider = document.getElementById("simBarrierSlider");
+    const eVal = document.getElementById("simEVal");
+    const vVal = document.getElementById("simV0Val");
+    const bVal = document.getElementById("simBarrierVal");
+    const restartBtn = document.getElementById("simTunnelRestart");
+
+    if (eSlider) eSlider.addEventListener("input", (e) => {
+      simTunnel.E = parseFloat(e.target.value);
+      if (eVal) eVal.textContent = simTunnel.E.toFixed(1) + " eV";
+    });
+    if (vSlider) vSlider.addEventListener("input", (e) => {
+      simTunnel.V0 = parseFloat(e.target.value);
+      if (vVal) vVal.textContent = simTunnel.V0.toFixed(1) + " eV";
+    });
+    if (bSlider) bSlider.addEventListener("input", (e) => {
+      simTunnel.barrierWidth = parseInt(e.target.value, 10);
+      if (bVal) bVal.textContent = simTunnel.barrierWidth + " px";
+    });
+    if (restartBtn) restartBtn.addEventListener("click", () => {
+      simTunnel.t = 0;
+    });
+
+  } else if (simId === "mandelbrot") {
+    simControls.innerHTML = `
+      <div class="sim-row">
+        <span class="sim-label">Max. iteráció: <b>${simMandelbrot.maxIter}</b></span>
+        <div class="sim-slider-wrap">
+          <input type="range" class="sim-slider" id="simMandelIterSlider" min="24" max="192" step="4" value="${simMandelbrot.maxIter}">
+          <span class="sim-val" id="simMandelIterVal">${simMandelbrot.maxIter}</span>
+        </div>
+        <span class="sim-label">Paletta:</span>
+        <select class="sim-select" id="simMandelPalette">
+          <option value="aurora" ${simMandelbrot.palette === "aurora" ? "selected" : ""}>🌌 Kozmikus Aurora</option>
+          <option value="fire" ${simMandelbrot.palette === "fire" ? "selected" : ""}>🔥 Napkitörés</option>
+          <option value="neon" ${simMandelbrot.palette === "neon" ? "selected" : ""}>⚡ Elektromos Neon</option>
+        </select>
+        <div class="sim-btn-group">
+          <button type="button" class="sim-ctrl-btn" id="simMandelZoomIn">🔍 Nagyítás (+)</button>
+          <button type="button" class="sim-ctrl-btn" id="simMandelZoomOut">🔍 Kicsinyítés (-)</button>
+          <button type="button" class="sim-ctrl-btn" id="simMandelReset">↺ Alaphelyzet</button>
+        </div>
+      </div>
+    `;
+
+    const iterSlider = document.getElementById("simMandelIterSlider");
+    const iterVal = document.getElementById("simMandelIterVal");
+    const palSelect = document.getElementById("simMandelPalette");
+    const zIn = document.getElementById("simMandelZoomIn");
+    const zOut = document.getElementById("simMandelZoomOut");
+    const reset = document.getElementById("simMandelReset");
+
+    if (iterSlider) iterSlider.addEventListener("input", (e) => {
+      simMandelbrot.maxIter = parseInt(e.target.value, 10);
+      if (iterVal) iterVal.textContent = simMandelbrot.maxIter;
+      simMandelbrot.needsRedraw = true;
+    });
+    if (palSelect) palSelect.addEventListener("change", (e) => {
+      simMandelbrot.palette = e.target.value;
+      simMandelbrot.needsRedraw = true;
+    });
+    if (zIn) zIn.addEventListener("click", () => {
+      simMandelbrot.zoom *= 1.8;
+      simMandelbrot.needsRedraw = true;
+    });
+    if (zOut) zOut.addEventListener("click", () => {
+      simMandelbrot.zoom = Math.max(0.4, simMandelbrot.zoom / 1.8);
+      simMandelbrot.needsRedraw = true;
+    });
+    if (reset) reset.addEventListener("click", () => {
+      simMandelbrot.cx = -0.7;
+      simMandelbrot.cy = 0.0;
+      simMandelbrot.zoom = 1.0;
+      simMandelbrot.needsRedraw = true;
+    });
+
+  } else if (simId === "fourier") {
+    simControls.innerHTML = `
+      <div class="sim-row">
+        <span class="sim-label">Hullámforma:</span>
+        <select class="sim-select" id="simFourierWave">
+          <option value="square" ${simFourier.waveType === "square" ? "selected" : ""}>Négyszögjel (Square)</option>
+          <option value="sawtooth" ${simFourier.waveType === "sawtooth" ? "selected" : ""}>Fűrészfog (Sawtooth)</option>
+          <option value="triangle" ${simFourier.waveType === "triangle" ? "selected" : ""}>Háromszögjel (Triangle)</option>
+        </select>
+        <span class="sim-label">Harmónikusok (N): <b>${simFourier.harmonics}</b></span>
+        <div class="sim-slider-wrap">
+          <input type="range" class="sim-slider" id="simFourierHarmSlider" min="1" max="25" step="1" value="${simFourier.harmonics}">
+          <span class="sim-val" id="simFourierHarmVal">${simFourier.harmonics}</span>
+        </div>
+        <div class="sim-btn-group">
+          <button type="button" class="sim-ctrl-btn" id="simFourierPlay">${simFourier.running ? "⏸ Szünet" : "▶ Indítás"}</button>
+          <button type="button" class="sim-ctrl-btn" id="simFourierClear">↺ Törlés</button>
+        </div>
+      </div>
+    `;
+
+    const waveSel = document.getElementById("simFourierWave");
+    const harmSlider = document.getElementById("simFourierHarmSlider");
+    const harmVal = document.getElementById("simFourierHarmVal");
+    const playBtn = document.getElementById("simFourierPlay");
+    const clearBtn = document.getElementById("simFourierClear");
+
+    if (waveSel) waveSel.addEventListener("change", (e) => {
+      simFourier.waveType = e.target.value;
+      simFourier.waveHistory = [];
+    });
+    if (harmSlider) harmSlider.addEventListener("input", (e) => {
+      simFourier.harmonics = parseInt(e.target.value, 10);
+      if (harmVal) harmVal.textContent = simFourier.harmonics;
+      simFourier.waveHistory = [];
+    });
+    if (playBtn) playBtn.addEventListener("click", () => {
+      simFourier.running = !simFourier.running;
+      playBtn.textContent = simFourier.running ? "⏸ Szünet" : "▶ Indítás";
+    });
+    if (clearBtn) clearBtn.addEventListener("click", () => {
+      simFourier.time = 0;
+      simFourier.waveHistory = [];
+    });
+
+  } else if (simId === "conway") {
+    simControls.innerHTML = `
+      <div class="sim-row">
+        <div class="sim-btn-group">
+          <button type="button" class="sim-ctrl-btn" id="simConwayPlay">${simConway.running ? "⏸ Szünet" : "▶ Indítás"}</button>
+          <button type="button" class="sim-ctrl-btn" id="simConwayStep">⏭ 1 lépés</button>
+          <button type="button" class="sim-ctrl-btn" id="simConwayRandom">🎲 Véletlen</button>
+          <button type="button" class="sim-ctrl-btn" id="simConwayClear">🗑 Törlés</button>
+        </div>
+        <span class="sim-label">Sablonok:</span>
+        <select class="sim-select" id="simConwayPreset">
+          <option value="glider">Sikló (Glider)</option>
+          <option value="pulsar">Pulzár (Pulsar)</option>
+          <option value="lwss">Űrhajó (LWSS)</option>
+        </select>
+      </div>
+    `;
+
+    const playBtn = document.getElementById("simConwayPlay");
+    const stepBtn = document.getElementById("simConwayStep");
+    const randBtn = document.getElementById("simConwayRandom");
+    const clearBtn = document.getElementById("simConwayClear");
+    const presetSel = document.getElementById("simConwayPreset");
+
+    if (playBtn) playBtn.addEventListener("click", () => {
+      simConway.running = !simConway.running;
+      playBtn.textContent = simConway.running ? "⏸ Szünet" : "▶ Indítás";
+    });
+    if (stepBtn) stepBtn.addEventListener("click", () => {
+      simConway.running = false;
+      if (playBtn) playBtn.textContent = "▶ Indítás";
+      stepConway();
+    });
+    if (randBtn) randBtn.addEventListener("click", () => {
+      loadConwayPreset("random");
+    });
+    if (clearBtn) clearBtn.addEventListener("click", () => {
+      if (simConway.grid) simConway.grid.fill(0);
+      if (simConway.cellAge) simConway.cellAge.fill(0);
+      simConway.generation = 0;
+    });
+    if (presetSel) presetSel.addEventListener("change", (e) => {
+      loadConwayPreset(e.target.value);
+    });
+  }
+}
+
+function renderSimInfo(simId) {
+  if (!simInfo) return;
+  if (simId === "lorentz") {
+    simInfo.innerHTML = `
+      <p><b>A tétel lényege:</b> Albert Einstein speciális relativitáselméletének alappillére: a vákuumbeli fénysebesség (<i>c</i>) minden inerciarendszerben azonos. Ebből következik, hogy a mozgó megfigyelő számára a fényórában a foton hosszabb, átlós utat jár be — emiatt <b>a mozgó óra lassabban jár</b> (idődilatáció), a mozgó test hossza pedig a mozgás irányában <b>megrövidül</b> (Lorentz-kontrakció: <i>L = L₀ / γ</i>).</p>
+      <p><b>Mit látsz a szimuláción?</b> A felső fényóra nyugalomban van (Föld). Az alsó óra <i>v</i> sebességgel halad. Állítsd a sebességet 0.90c fölé, és figyeld meg az űrhajó radikális összenyomódását és az órák közötti szétcsúszást!</p>
+    `;
+  } else if (simId === "tunnel") {
+    simInfo.innerHTML = `
+      <p><b>A tétel lényege:</b> A klasszikus fizikában a részecske nem képes átjutni egy nála magasabb energiaszintű gáton (<i>E &lt; V₀</i>). A Schrödinger-egyenlet szerint azonban a kvantumrészecske hullámcsomagja nem vész el hirtelen a falnál, hanem exponenciálisan lecsengve áthatol rajta. Véges vastagságú gát esetén véges valószínűséggel (<i>T &gt; 0</i>) megjelenik a túlsó oldalon.</p>
+      <p><b>Mit látsz a szimuláción?</b> A zöld hullámcsomag megközelíti a narancs potenciálfalat. Figyeld meg, hogy még akkor is átjut egy kisebb hullámcsomag (kvantum-alagutazás), amikor a részecske energiája (kék vonal) alacsonyabb, mint a gát magassága!</p>
+    `;
+  } else if (simId === "mandelbrot") {
+    simInfo.innerHTML = `
+      <p><b>A tétel lényege:</b> A <i>zₙ₊₁ = zₙ² + c</i> iteráció azon komplex <i>c</i> paramétereinek halmaza, amelyekre a sorozat korlátos marad (|zₙ| ≤ 2). A határvonal végtelen komplexitású fraktál: bármeddig nagyítod, soha nem ismétlődik tökéletesen, mégis végtelenül önhasonló struktúrák, mini-Mandelbrotok és spirálok bukkannak fel belőle.</p>
+      <p><b>Interakció:</b> Kattints a képre bárhol az egérrel a <b>2.5× nagyításhoz</b>! A Shift-kattintás kicsinyít. Növeld az iterációk számát a finomabb határvonal-részletekért.</p>
+    `;
+  } else if (simId === "fourier") {
+    simInfo.innerHTML = `
+      <p><b>A tétel lényege:</b> Joseph Fourier korszakalkotó tétele: minden periodikus függvény felbontható különböző frekvenciájú szinuszos harmonikusok összegére. Geometriai formában ezek egymáshoz láncolt forgó körök (epiciklusok), melyek csúcsa kirajzolja a hullámot.</p>
+      <p><b>Mit látsz a szimuláción?</b> Négyszögjel esetén figyelhető meg a leglátványosabban a <b>Gibbs-jelenség</b>: a sarkoknál a szintézis enyhén túllövi a célértéket, de a harmónikusok számának (N) növelésével a hullám egyre tökéletesebben felveszi a formát.</p>
+    `;
+  } else if (simId === "conway") {
+    simInfo.innerHTML = `
+      <p><b>A tétel lényege:</b> John Conway 1970-es sejt-automatája az emergens komplexitás legszebb példája. Csupán 4 egyszerű helyi szabályból (alulnépesedés, túlnépesedés, túlélés, születés) intelligens viselkedésnek tűnő, vándorló és pulzáló struktúrák születnek. A rendszer bizonyítottan <b>Turing-teljes</b>.</p>
+      <p><b>Interakció:</b> Kattints vagy húzd az egeret a rácson a saját sejtek felrajzolásához! Válassz a sablonok közül (Sikló, Pulzár, Űrhajó) a klasszikus minták megtekintéséhez.</p>
+    `;
+  }
+}
+
+function simLoop() {
+  if (!simActive) return;
+  if (simCanvas && simCtx) {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const rect = simCanvas.getBoundingClientRect();
+    const w = rect.width || 640;
+    const h = rect.height || 360;
+    if (simCanvas.width !== Math.floor(w * dpr) || simCanvas.height !== Math.floor(h * dpr)) {
+      simCanvas.width = Math.floor(w * dpr);
+      simCanvas.height = Math.floor(h * dpr);
+      if (currentSimId === "mandelbrot") simMandelbrot.needsRedraw = true;
+    }
+    simCtx.save();
+    simCtx.scale(dpr, dpr);
+    if (currentSimId === "lorentz") drawLorentz(simCtx, w, h);
+    else if (currentSimId === "tunnel") drawTunnel(simCtx, w, h);
+    else if (currentSimId === "mandelbrot") drawMandelbrot(simCtx, w, h);
+    else if (currentSimId === "fourier") drawFourier(simCtx, w, h);
+    else if (currentSimId === "conway") drawConway(simCtx, w, h);
+    simCtx.restore();
+  }
+  simRaf = requestAnimationFrame(simLoop);
+}
+
+function switchSimulation(simId) {
+  currentSimId = simId;
+  if (simTabs) {
+    [...simTabs.children].forEach(tab => {
+      tab.classList.toggle("active", tab.dataset.sim === simId);
+    });
+  }
+  if (simTitle && SIM_TITLES[simId]) {
+    simTitle.textContent = SIM_TITLES[simId];
+  }
+  renderSimControls(simId);
+  renderSimInfo(simId);
+
+  if (simId === "mandelbrot") {
+    simMandelbrot.needsRedraw = true;
+  }
+  if (simId === "conway" && !simConway.grid) {
+    initConwayGrid();
+  }
+}
+
+function openSimulation(simId) {
+  if (simId) currentSimId = simId;
+  if (!simOverlay) return;
+
+  simActive = true;
+  simOverlay.classList.add("visible");
+  simOverlay.setAttribute("aria-hidden", "false");
+
+  if (!simCtx && simCanvas) {
+    simCtx = simCanvas.getContext("2d");
+  }
+
+  switchSimulation(currentSimId);
+
+  if (simRaf) cancelAnimationFrame(simRaf);
+  simRaf = requestAnimationFrame(simLoop);
+}
+
+function closeSimulation() {
+  simActive = false;
+  if (simOverlay) {
+    simOverlay.classList.remove("visible");
+    simOverlay.setAttribute("aria-hidden", "true");
+  }
+  if (simRaf) {
+    cancelAnimationFrame(simRaf);
+    simRaf = null;
+  }
+}
+
+// Canvas interakciók (Mandelbrot zoom + Conway rajzolás)
+if (simCanvas) {
+  let isDrawingConway = false;
+
+  simCanvas.addEventListener("click", (e) => {
+    if (currentSimId === "mandelbrot") {
+      const rect = simCanvas.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const clickY = e.clientY - rect.top;
+      const aspect = rect.width / rect.height;
+      const rx = 1.4 / simMandelbrot.zoom;
+      const ry = rx / aspect;
+
+      simMandelbrot.cx = simMandelbrot.cx + (clickX / rect.width - 0.5) * rx * 2;
+      simMandelbrot.cy = simMandelbrot.cy + (clickY / rect.height - 0.5) * ry * 2;
+      simMandelbrot.zoom *= 2.2;
+      simMandelbrot.needsRedraw = true;
+    }
+  });
+
+  simCanvas.addEventListener("contextmenu", (e) => {
+    if (currentSimId === "mandelbrot") {
+      e.preventDefault();
+      simMandelbrot.zoom = Math.max(0.4, simMandelbrot.zoom / 2.2);
+      simMandelbrot.needsRedraw = true;
+    }
+  });
+
+  function handleConwayDraw(e) {
+    if (currentSimId !== "conway" || !simConway.grid) return;
+    const rect = simCanvas.getBoundingClientRect();
+    const x = Math.floor(((e.clientX - rect.left) / rect.width) * simConway.cols);
+    const y = Math.floor(((e.clientY - rect.top) / rect.height) * simConway.rows);
+    if (x >= 0 && x < simConway.cols && y >= 0 && y < simConway.rows) {
+      const idx = y * simConway.cols + x;
+      simConway.grid[idx] = 1;
+      simConway.cellAge[idx] = 1;
+    }
+  }
+
+  simCanvas.addEventListener("mousedown", (e) => {
+    if (currentSimId === "conway") {
+      isDrawingConway = true;
+      handleConwayDraw(e);
+    }
+  });
+  window.addEventListener("mousemove", (e) => {
+    if (isDrawingConway && currentSimId === "conway") handleConwayDraw(e);
+  });
+  window.addEventListener("mouseup", () => { isDrawingConway = false; });
+}
+
+if (simLabBtn) simLabBtn.addEventListener("click", () => openSimulation());
+if (simClose) simClose.addEventListener("click", closeSimulation);
+if (simOverlay) simOverlay.addEventListener("click", (e) => {
+  if (e.target === simOverlay) closeSimulation();
+});
+if (simTabs) simTabs.addEventListener("click", (e) => {
+  const tab = e.target.closest(".sim-tab");
+  if (tab && tab.dataset.sim) switchSimulation(tab.dataset.sim);
 });
 
 function init() {

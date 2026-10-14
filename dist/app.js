@@ -76,7 +76,8 @@ const MATEK_DATA = [
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/Riemann-hipot%C3%A9zis",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1859
   },
   {
     "name": "Cauchy-integrálformula",
@@ -129,7 +130,8 @@ const MATEK_DATA = [
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/Basel-probl%C3%A9ma",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1734
   },
   {
     "name": "Gauss–Bonnet-tétel",
@@ -182,7 +184,8 @@ const MATEK_DATA = [
     "why": "<b>358 év a margótól a bizonyításig.</b> Fermat azt írta, csodás bizonyítása van, de a margó túl szűk. Andrew Wiles 1994-ben oldotta meg — moduláris formák és elliptikus görbék összekapcsolásával. A leghosszabb nyitott rejtély, ami valaha lezárult.",
     "whyMore": "x^n+y^n=z^n. n=2-re van megoldás (Pitagorasz), de n>2-re állítólag nincs. Wiles moduláris formákkal bizonyította: ha lenne megoldás, egy elliptikus görbe (Frey-görbe) sértené a moduláris tételeket — ellentmondás.",
     "wiki": "https://en.wikipedia.org/wiki/Fermat%E2%80%93Wiles-t%C3%A9tel",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1637
   },
   {
     "name": "Gödel első nemteljességi tétele",
@@ -206,7 +209,8 @@ const MATEK_DATA = [
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/G%C3%B6del_els%C5%91_nemteljess%C3%A9gi_t%C3%A9tele",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1931
   },
   {
     "name": "Bayes-tétel",
@@ -216,7 +220,8 @@ const MATEK_DATA = [
     "why": "<b>Hogyan frissítsd a hiteidet bizonyíték alapján.</b> Egyetlen törtből az egész modern statisztika, gépi tanulás és tudományos következtetés kiindul. Egyszerű algebra — mégis ez a racionális gondolkodás matematikai magja.",
     "whyMore": "P(A|B) = miután láttuk B-t, mekkora A esélye. Számláló: P(B|A)·P(A) = 'A igaz volt ÉS B-t produkált' valószínűsége. Nevező P(B) = az összes lehetséges ok együttes valószínűsége (normalizálás). Így frissítjük a hitet új adat fényében.",
     "wiki": "https://en.wikipedia.org/wiki/Bayes-t%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1763
   },
   {
     "name": "Liouville-tétel",
@@ -226,7 +231,8 @@ const MATEK_DATA = [
     "why": "<b>A korlátosság megöli a változást.</b> Ha egy egész függvény a teljes síkon korlátos, kénytelen állandó lenni — nincs kompromisszum. Ebből pár sorban levezethető az algebra alaptétele: minden nemkonstans polinomnak van komplex gyöke.",
     "whyMore": "Egész függvény = komplex analitikus mindenütt. Ha korlátos (|f|≤M), a Liouville-tétel szerint kötelezően konstans. A bizonyítás: a Cauchy-formula szerint f'(z)=0 mindenhol → f konstans.",
     "wiki": "https://en.wikipedia.org/wiki/Liouville-t%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1844
   },
   {
     "name": "Cayley-formula",
@@ -258,7 +264,8 @@ const MATEK_DATA = [
     "why": "<b>Nem lehet a sündisznót simára fésülni.</b> Bármilyen folytonos, eltűnés-mentes érintő vektormezőt próbálsz a gömbön definiálni, mindig marad egy 'kobak' (zérushely). A tóruszon viszont igen — mert ott az Euler-karakterisztika nulla. Ebből következik: a Földön mindig van egy pont, ahol nem fúj a szél.",
     "whyMore": "χ(S²)=2≠0, ezért nincs sehol-zérus érintő vektormező a gömbon. A 'kobak' ahol a mező eltűnik. Tóruszon χ=0, ott lehet (pl. forgás). Fizikai következmény: gömbfelületen mindig van szélmentes pont.",
     "wiki": "https://en.wikipedia.org/wiki/S%C3%BCndiszn%C3%B3-t%C3%A9tel",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1885
   },
   {
     "name": "Cantor diagonális argumentuma",
@@ -268,7 +275,8 @@ const MATEK_DATA = [
     "why": "<b>Nem minden végtelen egyforma méretű.</b> Cantor egy elképesztően egyszerű trükkel — átlós konstrukcióval — bizonyította, hogy a valós számok 'több' mint a természetes számok, miközben mindkét halmaz végtelen. Ez a technika később Gödel és Turing bizonyításainak is alapja lett.",
     "whyMore": "|R|>|N| azt jelenti, nincs bijekció a valós és természetes számok között. A diagonális trükk: feltételezzük van lista, majd az n-edik szám n-edik jegyét megváltoztatva készítünk egy új valósat, ami nincs a listában — ellentmondás.",
     "wiki": "https://en.wikipedia.org/wiki/Cantor_diagon%C3%A1lis_argumentuma",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1891
   },
   {
     "name": "Aranymetszés",
@@ -289,7 +297,8 @@ const MATEK_DATA = [
     "why": "<b>Nem csak létezik — meg is lehet találni.</b> Banach kontrakciós leképzés-tétele konstruktív: az iteráció maga a megoldó algoritmus. Differenciálegyenletek egzisztenciabizonyításának, numerikus módszereknek és gazdasági egyensúly-modelleknek a magja.",
     "whyMore": "T kontrakció: távolságot szorozza q<1-gyel. Iteráció: x_{k+1}=Tx_k. A sorozat egyre sűrűbben közelít egyetlen x*-hoz, ahol Tx*=x*. A tétel garancia + algoritmus egyszerre.",
     "wiki": "https://en.wikipedia.org/wiki/Banach-f%C3%A9le_fixpontt%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1922
   },
   {
     "name": "Brouwer-féle fixponttétel",
@@ -309,7 +318,8 @@ const MATEK_DATA = [
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/Brouwer-f%C3%A9le_fixpontt%C3%A9tel",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1911
   },
   {
     "name": "Prímszámtétel",
@@ -319,7 +329,8 @@ const MATEK_DATA = [
     "why": "<b>A prímek 'átlagos' sűrűsége egyetlen logaritmusban.</b> A prímszámok kaotikusnak tűnnek egyenként, de aszimptotikusan ilyen szabályosan ritkulnak. Hadamard és de la Vallée Poussin Riemann zéta-függvényének tulajdonságaiból vezette le — a rend a látszólagos rendezetlenség mögött.",
     "whyMore": "π(x) = prímek száma x-ig. Az asymptotikus: π(x) ~ x/ln x, azaz x alatti prímek sűrűsége ≈ 1/ln x. Minél nagyobb x, annál ritkábbak — de a ritkulás pontosan a logaritmus törvényét követi.",
     "wiki": "https://en.wikipedia.org/wiki/Pr%C3%ADmsz%C3%A1mt%C3%A9tel",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1896
   },
   {
     "name": "Centrális határeloszlás-tétel",
@@ -351,7 +362,8 @@ const MATEK_DATA = [
     "why": "<b>Bármilyen pontfelhőben, ha nincs minden egy vonalban, mindig van 'magányos pár'.</b> Bármely nem-kollineáris ponthalmazban létezik olyan egyenes, amely pontosan két pontot tartalmaz. Melchior bizonyítása az Euler-formulára épül — geometria és topológia újra összefonódik.",
     "whyMore": "Pontosan 2 pontos egyenes = olyan egyenes, ami csak két pontot érint a halmazból. Az állítás: nem-kollineáris ponthalmazban mindig van ilyen. Melchior bizonyítása: Euler-formula (V−E+F) a síkgráfra.",
     "wiki": "https://en.wikipedia.org/wiki/Sylvester%E2%80%93Gallai-t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1893
   },
   {
     "name": "Négyszín-tétel",
@@ -361,7 +373,8 @@ const MATEK_DATA = [
     "why": "<b>Bármilyen térkép kiszínezhető 4 színnel úgy, hogy szomszédos országok ne legyenek egyformák.</b> Az első jelentős tétel, amit számítógéppel bizonyítottak — emberi kéz nem tudta ellenőrizni. Vita folyt róla: bizonyítás-e az, amit nem lehet kézzel átolvasni?",
     "whyMore": "χ(G) a gráf kromatikus száma (legkevesebb szín a szomszédok különbözőre). Síkbeli gráfra χ≤4. Azaz bármely térképet 4 színnel kiszínezhetünk anélkül, hogy két szomszédos ország egyforma lenne.",
     "wiki": "https://en.wikipedia.org/wiki/N%C3%A9gysz%C3%ADn-t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1976
   },
   {
     "name": "Jordan-féle görbetétel",
@@ -371,7 +384,8 @@ const MATEK_DATA = [
     "why": "<b>'Nyilvánvaló', de rendkívül nehéz bizonyítani.</b> Minden egyszerű zárt görbe a síkot pontosan két részre osztja — belsőre és külsőre. Annyira intuitív, hogy generációk hagyták ki a bizonyítást, miközben a teljesen rigorózus verzió csak évtizedekkel később, számítógéppel ellenőrzött formában készült el.",
     "whyMore": "J egyszerű zárt görbe (nem metszi magát) a síkban. R²J = a görbén kívüli ponthalmaz, ami pont két összefüggő komponensre esik szét: belső (korlátos) és külső (korlátlan).",
     "wiki": "https://en.wikipedia.org/wiki/Jordan-f%C3%A9le_g%C3%B6rbet%C3%A9tel",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1887
   },
   {
     "name": "Collatz-sejtés",
@@ -392,7 +406,8 @@ const MATEK_DATA = [
     "why": "<b>Minden páros szám 2 prím összege — csak bizonyítani nem lehet.</b> 280 éve nyitott, miközben minden ellenőrzött számra (kvadrillió nagyságrendig) igaznak bizonyult. A legegyszerűbben megfogalmazható, mégis legkitartóbban ellenálló sejtés.",
     "whyMore": "Minden páros n>2 felírható két prím összegeként: n=p₁+p₂. Példa: 28=11+17. A sejtés: növekvő n-re egyre több ilyen felbontás van, de egyetlen ellenpélda sincs — mégis hiányzik a bizonyítás.",
     "wiki": "https://en.wikipedia.org/wiki/Goldbach-sejt%C3%A9s",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1742
   },
   {
     "name": "P vs NP probléma",
@@ -423,7 +438,8 @@ const MATEK_DATA = [
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/Hilbert-sz%C3%A1lloda_paradoxon",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1924
   },
   {
     "name": "Monty Hall-probléma",
@@ -466,7 +482,8 @@ const MATEK_DATA = [
     "why": "<b>Bármely természetes szám négy négyzetszám összege.</b> Lagrange négyzettétele: nincs kivétel, soha. Fermat már tudta, de nem publikálta a bizonyítást — Lagrange véglegesítette. Az egész szám-elméleti additív struktúra egyik alappillére.",
     "whyMore": "Minden n természetes szám = a²+b²+c²+d² négy négyzetszám összege. Pl. 7=4+1+1+1. Nincs kivétel; a bizonyítás a négyzetalakú számok azonosságain és a kettős-négyzet azonosságon alapul.",
     "wiki": "https://en.wikipedia.org/wiki/N%C3%A9gyzetsz%C3%A1mok_n%C3%A9gyzet%C3%B6sszege",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1770
   },
   {
     "name": "Erdős–Ko–Rado-tétel",
@@ -476,7 +493,8 @@ const MATEK_DATA = [
     "why": "<b>Ha minden halmazpárnak van közös eleme, korlátozott, mennyi lehet belőlük.</b> 23 évig váratott magára a publikálással, mire felismerték a jelentőségét — mára az extremál kombinatorika egyik alaptétele, számtalan általánosítással.",
     "whyMore": "F egy k-elemű halmazok családja, ahol minden két halmaz metszi egymást (van közös elemük). Ha n elég nagy k-hoz (n≥2k), akkor max |F| = C(n−1,k−1): az összes halmaz, ami egy fix pontot tartalmaz.",
     "wiki": "https://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93Ko%E2%80%93Rado-t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1938
   },
   {
     "name": "Banach–Tarski-paradoxon",
@@ -486,7 +504,8 @@ const MATEK_DATA = [
     "why": "<b>Egy gömböt feldarabolsz, összerakod — és két ugyanolyan méretű gömböt kapsz.</b> A kiválasztási axióma legdöbbenetesebb következménye: a darabok annyira 'szaggatottak', hogy nincs jól definiált térfogatuk. Tisztán matematikai jelenség — a fizikai anyagra nem alkalmazható, de a mértékelmélet alapjait rengeti meg.",
     "whyMore": "B³ a gömb. A '~' jelentése: felbontható véges sok részre, amik szétcsúsztatva/forgatva két teljes gömböt adnak. A darabok nem mérhetők (nincs térfogatuk) — a kiválasztási axióma 'szaggatott' halmazai miatt.",
     "wiki": "https://en.wikipedia.org/wiki/Banach%E2%80%93Tarski-paradoxon",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1924
   },
   {
     "name": "Arrow-lehetetlenségi tétel",
@@ -496,7 +515,8 @@ const MATEK_DATA = [
     "why": "<b>Nincs tökéletes szavazási rendszer — ez bizonyított tétel, nem politikai vélemény.</b> Ha legalább 3 jelölt van, minden aggregáló módszer megsérti legalább egy alapvető igazságossági feltételt. Közgazdasági Nobel-díjat kapott érte Arrow — a demokrácia matematikai korlátja.",
     "whyMore": "f a szavazatokból kimenet (győztes) leképezése. A tétel: ha ≥3 jelölt, NINCS olyan f, ami egyszerre: (1) monoton, (2) független a releváns alternatíváktól, (3) nem-diktatórikus. Valamelyik feltétel sérül.",
     "wiki": "https://en.wikipedia.org/wiki/Arrow-lehetetlens%C3%A9gi_t%C3%A9tel",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1951
   },
   {
     "name": "Poincaré-sejtés",
@@ -506,7 +526,8 @@ const MATEK_DATA = [
     "why": "<b>Az egyetlen millenniumi probléma, amit megoldottak — és a megoldó visszautasította a milliót.</b> Minden egyszeresen összefüggő, korlátos 3-dimenziós sokaság topológiailag a 3-gömb. Perelman a Ricci-folyás technikájával bizonyította, majd visszautasította mind a Fields-érmet, mind az 1 millió dolláros Clay-díjat.",
     "whyMore": "A feltétel π₁(M³)=0 azt jelenti, hogy a 3-sokaság egyszeresen összefüggő: bármely rajta futó hurkot összehúzhatunk egy ponttá. Az állítás szerint egy ilyen zárt, kompakt 3-sokaság topológiailag azonos a 3-dimenziós gömbbel (S³). Perelman a Ricci-folyamot használta: a görbületet szétfőtte, miközben a sokaság fokozatosan gömbre deformálódott, a folyamat során kiszakadó nyakakat és buborékokat pedig szigorú analízissel kezelte. Ez volt az egyetlen megoldott Clay millenniumi probléma — Perelman a 2006-os Fields-érmet és az 1 millió dolláros díjat is visszautasította.",
     "wiki": "https://en.wikipedia.org/wiki/Poincar%C3%A9-sejt%C3%A9s",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 2002
   },
   {
     "name": "Euler-féle poliédertétel",
@@ -516,7 +537,8 @@ const MATEK_DATA = [
     "why": "<b>Csúcsok mínusz élek plusz lapok — mindig 2, bármilyen konvex poliéderre.</b> Kockára, piramisra, dodekaéderre egyaránt igaz. Ez az egyszerű invariáns nyitotta meg a topológia tudományát — az Euler-karakterisztika általánosítása minden felületre kiterjed, a Möbius-szalagtól a tóruszig.",
     "whyMore": "V a csúcsok (sarkok), E az élek (a csúcsokat összekötő vonalak), F a lapok (síkbeli oldalak) száma egy konvex poliéderen. A V−E+F különbség, az Euler-karakterisztika, bármely konvex poliéderre pontosan 2 — ezt úgy láthatjuk be, hogy a testet egy lapjáról kiterítjük a síkra, ahol a csúcs−él+lap (a végtelen külső tartománnyal együtt) mindig 2-t ad. Általánosabban bármely felületre V−E+F = 2−2g, ahol g a lyukak száma: a tórusznál (egy lyuk) ez 0, a Möbius-szalagnál 1. Így a formula a topológia legősibb invariánsa — ugyanaz marad, ha a testet tetszőlegesen deformáljuk, amíg a lyukak száma nem változik.",
     "wiki": "https://en.wikipedia.org/wiki/Euler-f%C3%A9le_poli%C3%A9dert%C3%A9tel",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1750
   },
   {
     "name": "Ramsey-tétel",
@@ -537,7 +559,8 @@ const MATEK_DATA = [
     "why": "<b>Ha egy számhalmaz 'elég sűrű', garantáltan tartalmaz tetszőlegesen hosszú számtani sorozatot.</b> Szemerédi bizonyítása kombinatorikus tour de force volt; később Furstenberg ergodelmélettel, Gowers Fourier-analízissel adott új bizonyítást — egy tétel, négy teljesen különböző matematikai nyelven.",
     "whyMore": "A \\bar{d}(A) a halmaz felső aszimptotikus sűrűsége, vagyis az A∩{1,…,N} arányának felső határa N→∞ mentén, és ha ez pozitív, akkor A-ben bármilyen hosszúságú számtani sorozat található. Az intuíció: egy pozitív sűrűségű részhalmaz „túl sűrű\", semhogy elkerülhetné a periodikus mintázatokat — Furstenberg ergodikus bizonyításában ez a tény a dinamikai rendszerek visszatérési tételének megfelelőjeként jelenik meg. A prímek esetében a Green–Tao-szűrő teszi lehetővé, hogy a prímek egy elég sűrű pszeudovéletlen rendszerhez hasonlóan viselkedjenek.",
     "wiki": "https://en.wikipedia.org/wiki/Szemer%C3%A9di-t%C3%A9tel",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1975
   },
   {
     "name": "Green–Tao-tétel",
@@ -547,7 +570,8 @@ const MATEK_DATA = [
     "why": "<b>A prímszámok — a matematika legrendezetlenebb objektumai — mégis szabályos mintázatokat rejtenek.</b> A prímek között tetszőlegesen hosszú, egyenlő különbségű sorozatok találhatók. Szemerédi tételét és ergodelméleti technikákat ötvözve bizonyították — 2004-ben, váratlan áttörésként.",
     "whyMore": "A tétel azt állítja, hogy a prímek halmaza P „számtani sorozat-gazdag\": bármely k hosszúsághoz található k prím egyenlő különbséggel. A bizonyítás kulcsa a Szemerédi-tétel átvitele a prímekre egy pszeudovéletlen mérték, a „prímek szűrője\" segítségével, ami azt mutatja, hogy a prímek eloszlása elég „véletlenszerűen sűrű\" a kombinatorikus garanciához. Ez azért meglepő, mert a prímek hosszú távon ritkulnak (1/ln n sűrűségűek), mégis hordoznak tetszőlegesen hosszú szabályos mintákat.",
     "wiki": "https://en.wikipedia.org/wiki/Green%E2%80%93Tao-t%C3%A9tel",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 2004
   },
   {
     "name": "Kontinuumhipotézis függetlensége",
@@ -557,7 +581,8 @@ const MATEK_DATA = [
     "why": "<b>Van egy matematikai kérdés, amire SOHA nem lesz válasz — és ezt is bizonyították.</b> A kontinuumhipotézis sem nem bizonyítható, sem nem cáfolható a halmazelmélet szokásos axiómáiból. Gödel és Cohen két fele alkotja a 20. század egyik legmélyebb logikai felfedezését — a matematika határainak feltárása.",
     "whyMore": "A formula azt jelenti, hogy a halmazelmélet szokásos ZFC-axiómáiból sem a kontinuumhipotézés (CH: nincs a megszámlálható és a kontinuum közti számosság), sem annak tagadása nem vezethető le. Gödel 1940-ben a belső modellel (L) mutatta meg, hogy CH nem cáfolható, Cohen 1963-ban az erőszakos átnevezéssel (forcing) pedig azt, hogy nem is bizonyítható — így a CH a ZFC „semleges\" tétele. Ez azt jelenti, hogy a ZFC axiómái nem határozzák meg egyértelműen a valós számok számosságának sorsát.",
     "wiki": "https://en.wikipedia.org/wiki/Kontinuumhipot%C3%A9zis_f%C3%BCggetlens%C3%A9ge",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1938
   },
   {
     "name": "Algebra alaptétele",
@@ -578,7 +603,8 @@ const MATEK_DATA = [
     "why": "<b>8 és 9 az egyetlen két szomszédos 'tiszta hatvány' egész szám — minden más esetben bizonyítottan nincs ilyen pár.</b> 158 évig nyitott kérdés volt, mire Mihailescu ciklotomikus testek elméletével bezárta. Egyetlen ember, egyetlen dolgozat, egy 19. századi sejtés véglegesen lezárva.",
     "whyMore": "A formula azt írja le, hogy az x^p − y^q = 1 egyenlet egész megoldásai közül az egyetlen, ahol x,y,p,q > 1, a (3,2,2,3) négyes: 3² − 2³ = 9 − 8 = 1. Mihailescu 2002-ben ciklotomikus testek és a Catalan–Mihailescu-féle oszthatósági tételek segítségével zárta le, megmutatva, hogy két egymást követő „tiszta hatvány\" másképp nem létezik. Az 1 és a két hatvány közti különbség elemzése a p és q prím esetre vezethető vissza, ahol a ciklotomikus maradékosztályok korlátozzák a lehetőségeket egyetlen megoldásra.",
     "wiki": "https://en.wikipedia.org/wiki/Catalan-sejt%C3%A9s_/_Mihailescu-t%C3%A9tel",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1844
   },
   {
     "name": "Kalkulus alaptétele",
@@ -599,7 +625,8 @@ const MATEK_DATA = [
     "why": "<b>2000 éves geometriai probléma — végleg lezárva egy számelméleti ténnyel.</b> A π nem gyöke semmilyen racionális együtthatós polinomnak, ezért körző-vonalzóval sosem szerkeszthető meg vele egyenlő területű négyzet. Lindemann bizonyítása Euler azonosságát (e^iπ+1=0) használja fel a lehetetlenség igazolására — a két legszebb tétel összekapcsolódik.",
     "whyMore": "A formula azt rögzíti, hogy π nem algebrai szám (nem gyöke semmilyen racionális együtthatós polinomnak), hanem transzcendens — ebből következik, hogy a kör négyzetesítése körzővel és vonalzóval lehetetlen. Lindemann 1882-es bizonyítása az e^{iπ}+1=0 azonosságból indul ki: ha π algebrai lenne, akkor iπ is az volna, és a Lindemann–Weierstrass-tétel szerint e^{iπ}=−1 transzcendens lenne, ellentmondás. Ez lezárja az ókori görögök 2000 éves kérdését arról, hogy szerkeszthető-e egyenlő területű négyzet a körből.",
     "wiki": "https://en.wikipedia.org/wiki/Pi_transzcendenci%C3%A1ja",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1882
   },
   {
     "name": "Happy Ending probléma",
@@ -609,7 +636,8 @@ const MATEK_DATA = [
     "why": "<b>A bizonyítás végén a két társszerző összeházasodott — innen a név.</b> Bármely 5 pont (nincs 3 egy vonalban) közül mindig kiválasztható 4, ami konvex négyszöget alkot. A probléma általánosítása máig is nyitott: pontosan hány pont garantál egy konvex n-szöget — Erdős 500 dolláros díjat ajánlott a megoldásért.",
     "whyMore": "A képlet azt mondja ki, hogy a síkon tetszőlegesen elhelyezett 5 pont (amelyek közül nincs hármat egy egyenesen) közül mindig kiválasztható 4, amely konvex négyszöget alkot. Az intuíció: ha a pontok konvex burka 5, 4 vagy 3 csúcsú, akkor könnyen találunk ilyen négyest; a 3 csúcsú (háromszög) esetben a belső pont és a három csúcs konvex négyszöget ad. Az általános kérdés — hány pont garantál egy konvex n-szöget — máig nyitott (Erdős–Szekeres-sejtés).",
     "wiki": "https://en.wikipedia.org/wiki/Happy_Ending_probl%C3%A9ma",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1935
   },
   {
     "name": "Nash-egyenlőség létezése",
@@ -619,7 +647,8 @@ const MATEK_DATA = [
     "why": "<b>Bármilyen véges játéknak van egyensúlyi pontja — ez köti össze a matematikát a közgazdasággal.</b> Nash a Kakutani-féle fixponttételt használta a bizonyításra, később a Brouwer-tétellel egyszerűsítette. A 21 éves matematikus egylapos disszertációja alapozta meg a modern játékelméletet — végül Nobel-díjat kapott érte.",
     "whyMore": "A formula azt jelenti, hogy minden véges szereplős, véges stratégiájú játéknak létezik kevert stratégiájú Nash-egyensúlya, ahol egyik játékosnak sem éri meg egyoldalúan eltérnie. Nash a Kakutani-féle fixponttételt használta: a „legjobb válasz\" leképezésnek a Brouwer-féle fixponttétel szerint van fixpontja, ami pont az egyensúly. A kevert stratégiák (valószínűségi eloszlások a tiszta lépések fölött) bevezetése teszi lehetővé, hogy még a „kő–papír–olló\" típusú játékoknak is legyen stabil pontja.",
     "wiki": "https://en.wikipedia.org/wiki/Nash-egyenl%C5%91s%C3%A9g_l%C3%A9tez%C3%A9se",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1950
   },
   {
     "name": "Kepler-sejtés",
@@ -629,7 +658,8 @@ const MATEK_DATA = [
     "why": "<b>A zöldségesnél látott narancshalmozás bizonyítottan a legsűrűbb lehetséges elrendezés.</b> Kepler 1611-ben sejtette meg, de csak 1998-ban, számítógépes esetszétválasztással bizonyította Hales — 250 oldal és tömeges számítás. A formális, gépileg ellenőrzött bizonyítás csak 2014-re készült el véglegesen.",
     "whyMore": "A ρ_max a legnagyobb lehetséges térkitöltési sűrűség gömbök esetén, és az érték π/(3√2) ≈ 0,7405 a köbcentrikus (FCC) pakolásé, azaz a gyümölcsös rekeszes elrendezésé. Kepler 1611-ben sejtette, hogy ez a maximum, Hales 1998-ban bizonyította be számítógépes esetszétválasztással, végül 2014-re készült el a formális, gépileg ellenőrzött bizonyítás. A tény azt jelenti, hogy gömbök nem tölthetnek be több mint ~74%-át a térnek, bármilyen elrendezést választunk.",
     "wiki": "https://en.wikipedia.org/wiki/Kepler-sejt%C3%A9s",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1611
   },
   {
     "name": "Pick-tétel",
@@ -639,7 +669,8 @@ const MATEK_DATA = [
     "why": "<b>Egy rácspontokra rajzolt sokszög területét pusztán a pontok megszámolásával kapod meg — integrálás nélkül.</b> I a belső, B a határon lévő rácspontok száma. Pick maga koncentrációs táborban halt meg a háborúban, és csak évtizedekkel később vált híressé saját felfedezése — Steinhaus népszerűsítette újra.",
     "whyMore": "A képlet szerint egy rácspontokra illesztett egyszerű sokszög területe A = I + B/2 − 1, ahol I a belső és B a határon lévő rácspontok száma. Az intuíció: minden egységnégyzet a rácsvonalakra bontva pontosan 1 területet ad, a határpontok fele (mert két szomszédos sokszög megosztja őket) és a −1 a konvexitási/összefüggőségi korrekció. A tétel a sokszöget elemi háromszögekre bontva, a háromszögekre felírva és összeadva adódik.",
     "wiki": "https://en.wikipedia.org/wiki/Pick-t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1899
   },
   {
     "name": "Goodstein-tétel",
@@ -659,7 +690,8 @@ const MATEK_DATA = [
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/Goodstein-t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1944
   },
   {
     "name": "Riemann-leképezési tétel",
@@ -669,7 +701,8 @@ const MATEK_DATA = [
     "why": "<b>Minden 'lyuk nélküli' alakzat — bármilyen bizarr is — konform módon ugyanaz, mint egy egyszerű kör.</b> Bármely egyszeresen összefüggő, valódi komplex síkbeli részhalmaz szögtartó módon leképezhető az egységkörre. Riemann eredeti bizonyítása hibás volt; a teljesen rigorózus változat csak évtizedekkel később készült el.",
     "whyMore": "A formula azt jelenti, hogy bármely egyszeresen összefüggő, nem üres és nem az egész sík U komplex tartomány konform (szögtartó) leképezéssel képekre hozható az egységkörre ℝ. A konformitás garantálja, hogy a leképezés sehol sem torzítja a szögeket, így a tartomány „alakja\" megőrződik — ezért a lyuk nélküli tartományok topológiailag és konform értelemben mind azonosak a körrel. Riemann 1851-es eredeti bizonyítása hibás volt (a Dirichlet-elv helytelen használata miatt), a rigorózus változatot később többen, köztük Hilbert javította meg.",
     "wiki": "https://en.wikipedia.org/wiki/Riemann-lek%C3%A9pez%C3%A9si_t%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1851
   },
   {
     "name": "Korlátos prímrés-tétel",
@@ -679,7 +712,8 @@ const MATEK_DATA = [
     "why": "<b>Egy ismeretlen vidéki oktató, aki korábban Subway szendvicsboltban dolgozott, áttörést hozott egy 70+ éves problémában.</b> Zhang bebizonyította, hogy a szomszédos prímek közti különbség infinit sokszor korlátos marad — ez közelebb hozta a több évszázados ikerprím-sejtést. A korlátot azóta 246-ra csökkentették a Polymath-projekt csoportos erőfeszítésével.",
     "whyMore": "A formula azt állítja, hogy a szomszédos prímek különbségének alsó határértéke (liminf) kisebb mint 7·10^7, azaz végtelen sokszor a két egymást követő prím távolsága legfeljebb 70 millió. Zhang 2013-ban bizonyította ezt egy szűrő-elemzéssel, ami a prímek közti lyukak eloszlását vizsgálja a számelméleti függvények segítségével. Azóta a Polymath-projekt a korlátot 246-ra szorította, ami egy lépés az ikerprím-sejtés (végtelen sok 2-különbségű prímpár) felé.",
     "wiki": "https://en.wikipedia.org/wiki/Korl%C3%A1tos_pr%C3%ADmr%C3%A9s-t%C3%A9tel",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 2013
   },
   {
     "name": "Cook–Levin-tétel (NP-teljesség)",
@@ -689,7 +723,8 @@ const MATEK_DATA = [
     "why": "<b>Egyetlen probléma, amire ha gyors megoldást találnál, minden NP-probléma egy csapásra megoldódna.</b> A Cook–Levin-tétel megalapozta a teljes NP-teljesség elméletét: ha a Boole-kielégíthetőség polinom időben megoldható, akkor a P=NP kérdés is eldöntött lenne. Karp 21 további klasszikus problémát (hátizsák, Hamilton-kör) vezetett rá vissza.",
     "whyMore": "A SAT (Boole-kielégíthetőség) azt kérdezi, létezik-e olyan igaz/hamis értékadás a változókra, amelyre a megadott logikai kifejezés igaz lesz. Egy probléma akkor NP-teljes, ha minden olyan probléma, amelynél a javasolt megoldás polinom időben ellenőrizhető, polinom időben visszavezethető rá — tehát egyetlen gyors megoldója az összes többi ilyen problémát is egy csapásra megoldja. A Cook–Levin-tétel ezt a visszavezetést közvetlenül a SAT-ra mutatja meg: egy polinom idejű Turing-gép teljes számítási táblázatát kódolja egyetlen Boole-képletté.",
     "wiki": "https://en.wikipedia.org/wiki/Cook%E2%80%93Levin-t%C3%A9tel_%28NP-teljess%C3%A9g%29",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1971
   },
   {
     "name": "Megállási probléma",
@@ -713,7 +748,8 @@ const MATEK_DATA = [
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/Meg%C3%A1ll%C3%A1si_probl%C3%A9ma",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1936
   },
   {
     "name": "Nagy számok törvénye",
@@ -723,7 +759,8 @@ const MATEK_DATA = [
     "why": "<b>Minél többször dobsz érmét, annál biztosabban közelít az átlag a valósághoz.</b> Bernoulli 'Aranytételként' (Theorema Aureum) nevezte — ő maga is 20 évig ült rajta, mire publikálta. Ez a tétel teszi lehetővé, hogy a biztosítás, a szavazáskutatás és a statisztikai fizika egyáltalán működjön: a véletlen egyedi eseményekből törvényszerű átlag születik.",
     "whyMore": "Itt X̄_n az n független, azonos eloszlású véletlen változó mintaátlaga, μ pedig az elméleti (populációs) várható értékük. A tétel szerint a mintaátlag szinte biztosan (1 valószínűséggel) tart μ-höz, ahogy n nő — vagyis az egyedi dobások szimmetrikusan ingadoznak, de az átlaguk kiegyenlíti ezeket a kilengéseket. Ez a formális garancia teszi lehetővé, hogy a biztosítás, a közvélemény-kutatás és a statisztikai fizika az átlagokra építhessen.",
     "wiki": "https://en.wikipedia.org/wiki/Nagy_sz%C3%A1mok_t%C3%B6rv%C3%A9nye",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1713
   },
   {
     "name": "Rogers–Ramanujan-azonosságok",
@@ -734,7 +771,8 @@ const MATEK_DATA = [
     "why": "<b>Ramanujan bizonyítás nélkül közölte, mert 'látta', hogy igaz.</b> Két, teljesen különböző módon felírt végtelen sor mindig ugyanazt az értéket adja — egy oldalon partíciók száma bizonyos feltételekkel, másik oldalon egy szorzatalak. Rogers már 1894-ben publikálta, észrevétlenül; Ramanujan függetlenül újra felfedezte, majd amikor MacMahon táblázataiban ellenőrizte, azonnal tudta: ez nem véletlen egyezés.",
     "whyMore": "A q egy formális változó (|q|<1), és a két oldal két teljesen különböző módon számolja ugyanazt a partíciós mennyiséget. A bal oldali sor azokat az egészpartíciókat számlálja, ahol a részek különbsége legalább 2 (a q^{n^2} súllyal), a jobb oldali szorzat pedig a q≡±1 mod 5 alakú részekből felírt moduláris formát adja meg. Az azonosság pontosan ezt a kombinatorikai és analitikus (moduláris formák) világ közti kapcsolatot fogalmazza meg.",
     "wiki": "https://en.wikipedia.org/wiki/Rogers%E2%80%93Ramanujan-azonoss%C3%A1gok",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1894
   },
   {
     "name": "Hardy–Ramanujan-féle aszimptotikus partíciós formula",
@@ -744,7 +782,8 @@ const MATEK_DATA = [
     "why": "<b>Megszámolni, hányféleképp bontható fel egy szám összegre — és a válasz egy exponenciális-gyök képlet.</b> A körmódszer (circle method) itt született meg: Hardy és Ramanujan olyan technikát dolgoztak ki, amivel egy diszkrét, kombinatorikus mennyiséget folytonos analízissel közelítettek pontosan. Rademacher később egzakt (nem csak aszimptotikus) sorfejtéssé finomította.",
     "whyMore": "p(n) az n szám egészpartícióinak (összegfelbontásainak) számát jelöli, és a képlet a növekedés vezető tagját adja meg. Az eredmény azt mondja, hogy a partíciók száma szuperpolinomiálisan, nagyjából e^{√n} módon nő. Hardy és Ramanujan a kör-módszerrel (circle method) kapta meg: a generátorfüggvény 1/∏(1−q^k) domináns szingularitását keresték meg az egységkörön, és Rademacher később ezt konvergens sorfejtéssé finomította.",
     "wiki": "https://en.wikipedia.org/wiki/Hardy%E2%80%93Ramanujan-f%C3%A9le_aszimptotikus_part%C3%ADci%C3%B3s_formula",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1918
   },
   {
     "name": "Ramanujan-sejtés (τ-függvény)",
@@ -754,7 +793,8 @@ const MATEK_DATA = [
     "why": "<b>Egy önkényesnek tűnő együttható-sorozatra Ramanujan megsejtette a pontos növekedési korlátot — és igaza lett.</b> A τ-függvény egy moduláris forma (Δ-függvény) Fourier-együtthatóiból származik. A sejtést végül Deligne bizonyította be, a Weil-sejtések (algebrai geometria) apparátusával — ezért kapott Fields-érmet. Ritka eset, hogy egy tisztán számelméleti rejtvény kulcsa algebrai geometriában rejlik.",
     "whyMore": "A τ(n) együtthatók a Δ(z)=q∏(1−q^n)^{24} diszkrimináns moduláris forma Fourier-együtthatói, a képlet pedig azt állítja, hogy prím p-re |τ(p)| legfeljebb 2·p^{11/2}. Ez azt jelenti, hogy a Hecke-önvektorforma Fourier-együtthatói nem nőhetnek túl gyorsan: a 11/2 kitevő pontosan (k−1)/2, ahol k=12 a forma súlya. Deligne a Weil-sejtések (véges testek fölötti algebrai geometria) segítségével bizonyította, így a teljesen számelméleti kérdés kulcsa az algebrai geometriában rejlett.",
     "wiki": "https://en.wikipedia.org/wiki/Ramanujan-sejt%C3%A9s_%28%CF%84-f%C3%BCggv%C3%A9ny%29",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1916
   },
   {
     "name": "Chudnovsky-algoritmus",
@@ -765,7 +805,8 @@ const MATEK_DATA = [
     "why": "<b>Minden modern π-rekord ezen a képleten fut.</b> A Chudnovsky-fivérek Ramanujan π-sorai alapján olyan sort konstruáltak, amely tagonként ~14 új tizedesjegyet ad — ezzel számították ki π-t sok billió jegyre. Tiszta példa arra, hogy egy 1910-es évekbeli 'egzotikus' matematikai ötlet évtizedekkel később szuperszámítógépes rekordok alapjává válik.",
     "whyMore": "A sor 1/π-t számolja: a k indexeli a tagokat, a 640320^{3k+3/2} tényező pedig rohamosan növekszik, így minden újabb tag kb. 14 tizedesjegy pontosítást ad. A képlet Ramanujan-típusú moduláris egyenletből származik, amelyet a j-invariáns egy speciális komplex-multiplikációs pontjánál nyertek. Ezt a gyors konvergenciát használják fel a modern π-rekordok (sok billió jegy) eléréséhez.",
     "wiki": "https://en.wikipedia.org/wiki/Chudnovsky-algoritmus",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1989
   },
   {
     "name": "Lax–Milgram-tétel",
@@ -775,7 +816,8 @@ const MATEK_DATA = [
     "why": "<b>Garantálja, hogy egy gyenge alakban felírt mérnöki feladatnak pontosan egy megoldása van.</b> Ha a bilineáris forma korlátos és koercitív, a variációs (gyenge) alakú peremérték-feladatnak létezik és egyértelmű a megoldása egy Hilbert-térben. Ez a tétel az, ami a végeselem-módszer (FEM) elméleti hátterét biztosítja — minden statikai szoftver, ami mátrixegyenletet old meg egy szerkezetre, hallgatólagosan erre a tételre épít.",
     "whyMore": "Itt H egy Hilbert-tér, a(·,·) egy korlátos és koercitív bilineáris forma, f pedig korlátos lineáris funkcionál. A tétel a Riesz-reprezentációs tétel általánosítása bilineáris formákra: a koercitivitás (a(u,u) ≥ α‖u‖²) pontosan az, ami garantálja az alkalmazott lineáris operátor invertálhatóságát. Enélkül a gyenge (variációs) alakban felírt parciális differenciálegyenletnek nem lenne garantáltan pontosan egy megoldása — ez az elméleti alapja a végeselem-módszernek.",
     "wiki": "https://en.wikipedia.org/wiki/Lax%E2%80%93Milgram-t%C3%A9tel",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1954
   },
   {
     "name": "Nyquist–Shannon-mintavételezési tétel",
@@ -785,7 +827,8 @@ const MATEK_DATA = [
     "why": "<b>Egy folytonos jel véges számú mintából hiba nélkül visszaállítható — ha elég sűrűn mintavételezel.</b> Ha a mintavételi frekvencia több mint kétszerese a jel legmagasabb frekvenciakomponensének, az eredeti analóg jel tökéletesen rekonstruálható. Minden digitális hangfelvétel, kép- és szenzoradat-feldolgozás (pl. szerkezeti monitoring) ezen alapul.",
     "whyMore": "f_s a mintavételi frekvencia, f_max a jelben előforduló legmagasabb frekvencia-összetevő. A tétel szerint egy sávszélességkorlátos (bandlimited) jel teljesen meghatározott a mintáiból, ha ezeket a legmagasabb frekvenciájának több mint kétszeresével (a Nyquist-frekvenciánál sűrűbben) vesszük. A visszaállítás sinc-függvényekkel történik; ha lassabban mintavételezünk, az f_max feletti komponensek visszahajlanak (aliasing), és a jel torzul.",
     "wiki": "https://en.wikipedia.org/wiki/Nyquist%E2%80%93Shannon-mintav%C3%A9telez%C3%A9si_t%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1949
   },
   {
     "name": "Kalman-szűrő",
@@ -795,7 +838,8 @@ const MATEK_DATA = [
     "why": "<b>Zajos, hiányos mérésekből optimálisan rekonstruálja egy rendszer valódi állapotát — és menet közben is frissül.</b> A rekurzív algoritmus a predikció és a mérés bizonytalanságát súlyozza össze, minimalizálva a becslési hibát. Az Apollo-program navigációjától a szerkezetek valós idejű állapotmonitoringjáig és az önvezető autókig mindenhol ez fut a háttérben.",
     "whyMore": "x̂_k⁻ a prediktált állapot, z_k a mért érték, H leképezi az állapotot a mérésre, K_k pedig a Kalman-erősítés. A frissítés a predikciót és az új mérést a relatív bizonytalanságaik (kovarianciáik) arányában keveri össze, hogy a négyzetes hibát minimálja. K_k-et a prediktált hibakovarianciából számolják, így a megbízhatóbb mérés nagyobb súlyt kap — ez teszi a szűrőt lineáris Gauss-rendszereknél optimálissá és rekurzívvá.",
     "wiki": "https://en.wikipedia.org/wiki/Kalman-sz%C5%B1r%C5%91",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1960
   },
   {
     "name": "Wilson-tétel",
@@ -805,7 +849,8 @@ const MATEK_DATA = [
     "why": "<b>Egy faktoriális maradéka pontosan akkor -1, ha a modulus prím — ez maga a prímteszt.</b> Meglepő, hogy egy tisztán számelméleti tulajdonság (prímség) ilyen egyszerű algebrai kongruenciával jellemezhető. Wilson csak megsejtette, Lagrange bizonyította — Wilson maga sosem publikált bizonyítást.",
     "whyMore": "Prím p esetén az 1,…,p−1 maradékok mindegyike párba áll egy egyedi inverzzel, kivéve az 1-et és a p−1-et, amelyek önmaguk inverzei; az összes szorzata így (p−1)!≡−1 mod p-t ad. Fordítva, ha p összetett (a p=4 kivétellel), akkor (p−1)!≡0 mod p, tehát a kongruencia csak prímekre állhat fenn. Ez elvi prímtesztet ad, bár a faktoriális gyors növekedése miatt a gyakorlatban használhatatlan.",
     "wiki": "https://en.wikipedia.org/wiki/Wilson-t%C3%A9tel",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1770
   },
   {
     "name": "Brun-tétel (ikerprímek)",
@@ -815,7 +860,8 @@ const MATEK_DATA = [
     "why": "<b>Az ikerprímek reciprokösszege véges — még ha végtelen sok ikerprím lenne is.</b> Brun konstansa az egyik legszebb ellenpéldája annak, hogy egy végtelen sorozat sűrűsége nem determinálja a reciproksor viselkedését (szemben az összes prím reciprokösszegével, ami divergál). A tétel nem dönti el, hogy végtelen sok ikerprím van-e — csak azt, hogy ha vannak, gyorsan ritkulnak.",
     "whyMore": "A képlet az ikerprímek (p, p+2) reciprokösszegének konvergenciáját írja le Brun konstansába (B≈1,90216…), szemben az összes prím reciprokösszegével, ami divergál. A konvergencia azt jelenti, hogy az ikerprímek 'elég ritkák', így a reciprokaik összege véges marad — de ez nem dönti el, hogy végtelen sok ikerprím van-e (ez a kérdés még nyitott). A bizonyítás szitaelméleti eredmény, amely a számlálófüggvény kicsinységét mutatja meg.",
     "wiki": "https://en.wikipedia.org/wiki/Brun-t%C3%A9tel_%28ikerpr%C3%ADmek%29",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1919
   },
   {
     "name": "Bertrand-posztulátum",
@@ -825,7 +871,8 @@ const MATEK_DATA = [
     "why": "<b>Bármely szám és a duplája között garantáltan van prím.</b> Bertrand csak sejtette, ellenőrizve 3 millióig; Csebisev bizonyította be elemi, de trükkös kombinatorikus becsléssel (binomiális együtthatók prímtényezős felbontásán keresztül). Erdős Pál 19 évesen adott ennél is elegánsabb bizonyítást — ez volt az egyik első nagy eredménye.",
     "whyMore": "A tétel azt garantálja, hogy n felett a prímhézag mindig kisebb, mint n maga. Csebisev eredeti bizonyítása a középső binomiális együttható C(2n,n) prímtényezős felbontását becsüli, és megmutatja, hogy egy n és 2n közötti prímnek pontosan 1 kitevővel kell osztania azt. Erdős Pál tisztább bizonyítása ugyanezt a binomiális együtthatót használja, de elemi becslésekkel a prímekhatványok nagyságára.",
     "wiki": "https://en.wikipedia.org/wiki/Bertrand-posztul%C3%A1tum",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1852
   },
   {
     "name": "Hall-féle házassági tétel",
@@ -835,7 +882,8 @@ const MATEK_DATA = [
     "why": "<b>Egy csoport pontosan akkor párosítható be teljesen a preferenciáik szerint, ha minden részcsoportjuknak legalább annyi lehetőségük van, ahányan vannak.</b> A 'házassági feltétel' (Hall-feltétel) tiszta kombinatorikus szükséges és elégséges kritérium. Alapja a munkaerő-kiosztási, iskolai felvételi és szervező algoritmusoknak — a modern párosítási piacok (pl. rezidens-kórház rendszerek) elméleti gerince.",
     "whyMore": "N(S) az S részcsoport szomszédainak (lehetséges partnereinek) halmaza a páros gráfban. A 'házassági feltétel' kimondja, hogy akkor és csak akkor létezik teljes párosítás, ha egyetlen bal oldali részcsoport sincs kevés különböző partnerrel, mint ahány tagja van. Ha valamilyen S-re |N(S)|<|S|, azokat a csúcsokat lehetetlen mind párosítani; Hall tétele bizonyítja, hogy ez az egyetlen akadály, és ez a párosító algoritmusok elméleti gerince.",
     "wiki": "https://en.wikipedia.org/wiki/Hall-f%C3%A9le_h%C3%A1zass%C3%A1gi_t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1935
   },
   {
     "name": "Erdős–Szekeres-tétel",
@@ -845,7 +893,8 @@ const MATEK_DATA = [
     "why": "<b>Elég hosszú számsorozatban garantáltan találsz rendezett részletet — akár növekvőt, akár csökkenőt.</b> Ramsey-elméleti szellemű eredmény: teljes rendezetlenség lehetetlen, ha a sorozat elég hosszú. Erdős és Szekeres ugyanabban az 1935-ös cikkben publikálta ezt és a Happy Ending problémát — mindkettő a 'rendezetlenségben rejlő rend' ugyanazon alapgondolatából fakad.",
     "whyMore": "Minden elemhez rendeljük két számot: a rá végződő leghosszabb növekvő részsorozat hosszát, és az innen induló leghosszabb csökkenőét. A galamblyuk-elv szerint ha n>(r−1)(s−1), akkor két elem nem kaphat különböző párokat, vagyis muszáj lennie egy r hosszú növekvő vagy egy s hosszú csökkenő részsorozatnak. Ez egy klasszikus Ramsey-típusú eredmény: elég hosszú sorozatban a teljes rendezetlenség lehetetlen.",
     "wiki": "https://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93Szekeres-t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1935
   },
   {
     "name": "Helly-tétel",
@@ -855,7 +904,8 @@ const MATEK_DATA = [
     "why": "<b>Ha konvex alakzatok bármely (d+1)-es részcsoportjának van közös pontja, akkor mindnek együtt is van.</b> Síkban (d=2) elég, ha minden hármas metszi egymást ahhoz, hogy az egész család közös pontja létezzen. Meglepő, mennyire lecsökkenthető a globális feltétel lokálisra — alapja lineáris programozási megvalósíthatósági téteknek és optimalizálási algoritmusoknak.",
     "whyMore": "A tétel azért igaz, mert a konvex halmazok metszeteinek 'helyi' összeférhetősége már kizárja a globális rést: egy d-dimenziós térben a halmazok affin függetlenségi szerkezete miatt elég csupán a (d+1)-es részcsoportokat vizsgálni. A változó d a tér dimenziója; síkban (d=2) így minden hármas metszete garancia a teljes család közös pontjára. Ez a tulajdonság pontosan a lineáris egyenlőtlenség-rendszerek (Ax≤b) megvalósíthatósági tételeinek duálisa: egy LP akkor és csak akkor megoldható, ha minden kis részrendszere is az.",
     "wiki": "https://en.wikipedia.org/wiki/Helly-t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1913
   },
   {
     "name": "Sperner-lemma",
@@ -865,7 +915,8 @@ const MATEK_DATA = [
     "why": "<b>Egy háromszöget apró háromszögekre bontva, bizonyos színezési szabály mellett garantáltan lesz egy 'teljes szivárvány' cella.</b> Tisztán kombinatorikus tétel — mégis ez adja a Brouwer-féle fixponttétel legkonstruktívabb, algoritmikusan kereshető bizonyítását. A modern 'fair division' (méltányos felosztás) algoritmusok — pl. torta igazságos elosztása — erre a lemmára épülnek.",
     "whyMore": "A lemma bizonyítása paritáson alapul: az élek mentén a színezett kis szimplexek számának párosságát számolva azok az élek, amelyek két különböző színű csúcsot kötnek össze, csak páros sokszor fordulhatnak elő egy cella határán, kivéve a nagy háromszög szélét. Emiatt a határon kívül is léteznie kell legalább egy teljesen színezett (szivárvány) cellának. Ez a diszkrét 'lyuk-feltöltő' struktúra a Brouwer fixponttétel konstruktív, kereshető bizonyításának motorként működik.",
     "wiki": "https://en.wikipedia.org/wiki/Sperner-lemma",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1928
   },
   {
     "name": "Szimplex-módszer",
@@ -875,7 +926,8 @@ const MATEK_DATA = [
     "why": "<b>Egy lineáris optimalizálási feladat legjobb megoldása mindig egy csúcspontban van — elég a csúcsok között lépkedni.</b> Dantzig algoritmusa a poliéder éleit járja végig, mindig javuló irányba lépve. Elméletileg exponenciális futásidejű lehet, gyakorlatban szinte mindig gyors — ez az egyik legrégebbi rejtély az optimalizáláselméletben. Ma is milliószor fut naponta: logisztikában, gyártástervezésben, szerkezetoptimalizálásban.",
     "whyMore": "A célffüggvény cᵀx lineáris, tehát bármely él mentén szigorúan monoton vagy állandó, így egy maximum soha nem eshet egy él vagy lap belső pontjára — mindig elérhető egy csúcspontban. Dantzig algoritmusa a csúcsok között lépked (pivotál) mindig javító irányba, miközben a megoldás a megengedhető poliéder belsejében marad. A rossz esetben exponenciális lépésszám a poliéder csúcsainak számától függ, de a gyakorlati, 'átlagos' példák szinte mindig polinomiálisan gyorsak.",
     "wiki": "https://en.wikipedia.org/wiki/Szimplex-m%C3%B3dszer",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1947
   },
   {
     "name": "Perron–Frobenius-tétel",
@@ -885,7 +937,8 @@ const MATEK_DATA = [
     "why": "<b>Egy csupa pozitív számból álló mátrixnak van egy kitüntetett, domináns sajátértéke — pozitív sajátvektorral.</b> Ez garantálja, hogy iteratív hatványmódszerrel ez a sajátvektor mindig megtalálható, akárhonnan indulsz. Ez a matematikai alapja a Google PageRank algoritmusának, a populációdinamikai modelleknek és a Markov-láncok stacionárius eloszlásának.",
     "whyMore": "Pozitív mátrixnál (A>0) a spektrálsugár λ_max egyszerű sajátérték, és a hozzá tartozó sajátvektor szigorúan pozitív — a pozitivitás kizárja az előjel-kiejtésekből adódó konkurens sajátvektorokat. Ismételt A-val való szorzás (hatványmódszer) bármely pozitív kezdővektorból a domináns irányt erősíti, a többit elnyomja, ezért a konvergencia garantált. Ez teszi egyértelművé és pozitívvá a PageRank stacionárius eloszlását és a Markov-láncok egyensúlyi vektorát.",
     "wiki": "https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius-t%C3%A9tel",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1907
   },
   {
     "name": "Gauss–Markov-tétel",
@@ -895,7 +948,8 @@ const MATEK_DATA = [
     "why": "<b>A legkisebb négyzetek módszere nem csak kényelmes — bizonyíthatóan a legjobb lineáris torzítatlan becslés.</b> Ha a hibák várható értéke nulla és varianciájuk állandó, semmilyen más lineáris, torzítatlan becslő nem lehet kisebb varianciájú. Ez ad elméleti alapot minden lineáris regressziónak — statisztikai modellezéstől mérnöki mérési adatok kiegyenlítéséig.",
     "whyMore": "A tétel azt állítja, hogy azonos (nullvárható értékű, homoszkedasztikus) hibák mellett az OLS-becslés β̂ a legkisebb varianciájú minden lineáris, torzítatlan becslő közül. A bizonyítás szerint bármely más lineáris torzítatlan becslő az OLS és a reziduumok lineáris kombinációjának különbsége, varianciája pedig egy pozitív féligdefinit billenccsel mindig nagyobb. A 'legjobb' jelző itt a lineáris-torzítatlan osztályra vonatkozik, nem globálisan optimális becslésre.",
     "wiki": "https://en.wikipedia.org/wiki/Gauss%E2%80%93Markov-t%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1821
   },
   {
     "name": "Cauchy–Schwarz-egyenlőtlenség",
@@ -905,7 +959,8 @@ const MATEK_DATA = [
     "why": "<b>Két vektor skaláris szorzata sosem nagyobb a hosszaik szorzatánál — ilyen egyszerű, mégis mindenhol felbukkan.</b> A geometriai szemléltetéstől (koszinusz-szabály) a Heisenberg-féle határozatlansági relációig, a Cauchy-eloszlástól a gépi tanulási kernel-módszerekig szinte nincs olyan matematikai terület, ahol ne ez adná a legfontosabb becslési eszközt.",
     "whyMore": "Az |⟨u,v⟩| ≤ ‖u‖‖v‖ egyenlőtlenség geometriai oka, hogy ⟨u,v⟩ = ‖u‖‖v‖cos θ, ahol |cos θ| ≤ 1, tehát a skaláris szorzat maximuma pont a párhuzamos eset. Egyenlőség akkor és csak akkor áll fenn, ha u és v lineárisan összefüggők. Ez az összefüggés definiálja a szöget bármely belső szorzatú téren, és ebből vezethető le, hogy a norma kielégíti a háromszög-egyenlőtlenséget.",
     "wiki": "https://en.wikipedia.org/wiki/Cauchy%E2%80%93Schwarz-egyenl%C5%91tlens%C3%A9g",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1821
   },
   {
     "name": "Weierstrass-approximációs tétel",
@@ -915,7 +970,8 @@ const MATEK_DATA = [
     "why": "<b>Bármely folytonos függvény tetszőleges pontossággal megközelíthető polinomokkal — akármilyen 'vad' is a görbéje.</b> Weierstrass ezt már 70 évesen bizonyította. A tétel adja az elméleti alapját annak, hogy a számítógépek miért tudnak bármilyen folytonos jelenséget közelíteni véges sok művelettel — a modern approximációelmélet és neurális hálók univerzális approximációs tulajdonságának is őse.",
     "whyMore": "A tétel szerint bármely folytonos f az [a,b] intervallumon tetszőleges ε pontossággal közelíthető polinommal; a klasszikus bizonyítás Bernstein-polinomokat vagy konvolúciós magokat használ. Gyakorlatilag ez garantálja, hogy egy számítógép bármely folytonos jelet véges sok művelettel, elég nagy fokszámú polinommal reprezentálhat. Ez az univerzális approximáció őse: a neurális hálók és a Fourier-sorok modern megfelelői ugyanezen elven alapulnak.",
     "wiki": "https://en.wikipedia.org/wiki/Weierstrass-approxim%C3%A1ci%C3%B3s_t%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1885
   },
   {
     "name": "Picard–Lindelöf-tétel",
@@ -925,7 +981,8 @@ const MATEK_DATA = [
     "why": "<b>Garantálja, hogy egy fizikai rendszer jövője egyértelműen meghatározott — ha ismered a pillanatnyi állapotát.</b> Ha a differenciálegyenlet jobb oldala 'elég sima' (Lipschitz-folytonos), pontosan egy megoldás létezik adott kezdeti feltétel mellett. Ez a determinizmus matematikai alapja a klasszikus fizikában — és a tétel bizonyítása (iteráció, kontrakciós leképezés) maga is gyönyörű alkalmazása a Banach-fixponttételnek.",
     "whyMore": "Ha f(x,y) Lipschitz-folytonos y-ban, akkor az y'=f differenciálegyenletnek pontosan egy megoldása van az adott (x₀,y₀) kezdeti feltétel mellett. A bizonyítás szukcesszív közelítéseket épít (y_{n+1}=y₀+∫f(x,y_n)dx), és a Lipschitz-feltétel ezt a leképezést kontrakcióvá teszi, így a Banach-fixponttétel egyértelmű határértéket ad. Ez a klasszikus fizika determinizmusának szigorú alapja: azonos kezdeti állapot → azonos pálya.",
     "wiki": "https://en.wikipedia.org/wiki/Picard%E2%80%93Lindel%C3%B6f-t%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1890
   },
   {
     "name": "Csebisev-egyenlőtlenség",
@@ -935,7 +992,8 @@ const MATEK_DATA = [
     "why": "<b>Bármilyen eloszlásról — anélkül, hogy bármit tudnál a formájáról — garantálhatod, mekkora eséllyel térhet el nagyon az átlagtól.</b> Nincs szükség normális eloszlásra, semmilyen feltételezésre: csak a várható érték és szórás ismeretére. Ez teszi lehetővé a Nagy számok törvényének egyik legegyszerűbb bizonyítását, és ez az alapja a statisztikai minőségbiztosítás legrobusztusabb korlátainak.",
     "whyMore": "A P(|X−μ|≥kσ) ≤ 1/k² egyenlőtlenséghez nem kell ismerni az eloszlás alakját, csak a várható értéket μ-t és a szórást σ-t. Az intuíció: a variancia a négyzetes eltérések átlaga, ezért ha sok tömeg k-szoros szórányira esne a középértéktől, a variancia meghaladná a k²σ²-t — ellentmondás. Ez a leggyengébb feltételű bizonyítása a Nagy számok gyenge törvényének és a robusztus minőségbiztosítási korlátoknak.",
     "wiki": "https://en.wikipedia.org/wiki/Csebisev-egyenl%C5%91tlens%C3%A9g",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1867
   },
   {
     "name": "Markov-lánc ergodikus tétele",
@@ -945,7 +1003,8 @@ const MATEK_DATA = [
     "why": "<b>Egy 'jól viselkedő' véletlen folyamat idővel elfelejti, honnan indult — és egy egyedi, stabil egyensúlyi eloszláshoz konvergál.</b> Bárhonnan is indulsz egy irreducibilis, aperiodikus Markov-láncban, elég sok lépés után ugyanoda jutsz. Ez a tétel adja a Google PageRank, a Markov-lánc Monte Carlo szimulációk (MCMC) és a meteorológiai előrejelzési modellek elméleti biztosítékát: a folyamat 'beáll', és a kezdeti feltétel elfelejthető.",
     "whyMore": "Egy irreducibilis, aperiodikus (ergodikus) véges Markov-láncnál a Pⁿ átmeneti mátrix egy olyan mátrixhoz tart, amelynek minden sora megegyezik a π stacionárius eloszlással, függetlenül a kezdőállapottól. Az intuíció a keveredés: elég sok lépés után a lánc 'elfelejti' a startot, és πP = π miatt hosszú távon az idő hányada minden állapotban π-vel egyenlő. Ez teszi lehetővé az MCMC mintavételezést: a burn-in után a minták π-ből származnak, bárhonnan is indultunk.",
     "wiki": "https://en.wikipedia.org/wiki/Markov-l%C3%A1nc_ergodikus_t%C3%A9tele",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1906
   },
   {
     "name": "Kolmogorov nulla-egy törvénye",
@@ -955,7 +1014,8 @@ const MATEK_DATA = [
     "why": "<b>Egy végtelen véletlen sorozat 'távoli jövőjéről' szóló bármely esemény valószínűsége csak 0 vagy 1 lehet — köztes eshetőség nincs.</b> Meglepő és ellenintuitív: a 'farok-eseményeket' (amelyek nem függenek véges sok kezdeti kimeneteltől) nem lehet félig bekövetkezni. Ez az egyik legmélyebb, legkevésbé nyilvánvaló igazság a valószínűségszámításban — Kolmogorov axiomatikus megalapozásának egyik csúcspontja.",
     "whyMore": "A farokesemények olyan események, amelyek nem függenek véges sok kezdeti kimeneteltől — pusztán a végtelen sorozat 'távoli jövőjétől'. Egy ilyen esemény független önmagától is (a múlt tetszőleges véges részétől független, ami épp őt generálja), így a p valószínűségre p = p² áll fenn, amiből p∈{0,1} következik. Például a 'véletlen bolyongás végtelen sokszor visszatér a 0-ba' esemény valószínűsége kötelezően 0 vagy 1.",
     "wiki": "https://en.wikipedia.org/wiki/Kolmogorov_nulla-egy_t%C3%B6rv%C3%A9nye",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1933
   },
   {
     "name": "Löwenheim–Skolem-tétel",
@@ -965,7 +1025,8 @@ const MATEK_DATA = [
     "why": "<b>Ha egy elsőrendű elmélet leírja a valós számokat (megszámlálhatatlan!), akkor is van neki megszámlálható modellje — ez a Skolem-paradoxon.</b> A logikai nyelv sosem tudja teljesen 'befogni' a végtelenség méretét: bármilyen elmélet, aminek van végtelen modellje, minden végtelen számosságon is modellezhető. Ez mutatta meg először, hogy az elsőrendű logika elvi korlátai mennyire mélyek.",
     "whyMore": "Ha egy elsőrendű elméletnek van végtelen modellje, akkor van belőle megszámlálható modellje is — még akkor is, ha az elmélet 'szánja' magát az uncountable ℝ leírására (ez a Skolem-paradoxon). Az oka, hogy az elsőrendű nyelv axiómái nem rögzítik a számosságot: a lefelé irányú rész egy megszámlálható elemi részmodellt épít. Ez mutatja meg az elsőrendű formalizálás elvi korlátját a végtelenség méretének 'befogásában'.",
     "wiki": "https://en.wikipedia.org/wiki/L%C3%B6wenheim%E2%80%93Skolem-t%C3%A9tel",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1915
   },
   {
     "name": "Tarski igazságdefiníció-tétele",
@@ -975,7 +1036,8 @@ const MATEK_DATA = [
     "why": "<b>Egy elég erős nyelv nem tudja saját mondatainak igazságát önmagában definiálni — csak egy erősebb metanyelvből.</b> Tarski a 'ez a mondat hamis' típusú paradoxonokból indult ki, és szigorú matematikai tételt épített belőle. Gödel nemteljességi tételével rokon szellemű eredmény, de a formális nyelvek szemantikájának egészen más rétegét világítja meg — máig a logika, a nyelvfilozófia és a számítástudomány metaszintjeinek alapköve.",
     "whyMore": "A tétel szerint egy elég erős L nyelv nem definiálhatja saját igazságpredikátumát T-t úgy, hogy T(⌜φ⌝) ↔ φ minden φ-re fennálljon. Ha mégis lehetséges lenne, azzal a 'ez a mondat hamis' típusú hazug paradoxon a nyelven belülre kerülne, ellentmondást okozva. Ezért az igazságot csak egy magasabb expresszív erejű metanyelvben lehet definiálni — ez a Gödel-féle nemteljességgel rokon, de a formális nyelvek szemantikai metaszintjét világítja meg.",
     "wiki": "https://en.wikipedia.org/wiki/Tarski_igazs%C3%A1gdefin%C3%ADci%C3%B3-t%C3%A9tele",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1933
   },
   {
     "name": "Kruskal-féle fatétel",
@@ -985,7 +1047,8 @@ const MATEK_DATA = [
     "why": "<b>Bármilyen végtelen sorozatban véges fákból, mindig találsz egy korábbi fát, ami 'beágyazható' egy későbbibe.</b> A tétel önmagában egyszerűnek hangzik, mégis — akárcsak a Goodstein-tétel — bizonyíthatóan nem vezethető le a Peano-aritmetika axiómáiból, csak erősebb rendszerekben. Az egyik legmeglepőbb példa arra, hogy egy 'ártatlannak' tűnő kombinatorikus állítás logikai ereje meghaladja a szokásos aritmetikát.",
     "whyMore": "A tétel szerint bármely véges fákból álló végtelen sorozatban található i<j, amelyre T_i homeomorf módon beágyazható T_j-be (megőrizve a szülő-gyermek szerkezetet). Meglepő módon — akárcsak a Goodstein-tétel — bizonyíthatóan nem vezethető le a Peano-aritmetika axiómáiból, a bizonyítás erősebb, ordinális-alapú indukciót igényel. Ez a 'természetesnek' tűnő kombinatorikus állítások egyik legszemléletesebb példája, amely logikailag túlmutat a szokásos aritmetikán.",
     "wiki": "https://en.wikipedia.org/wiki/Kruskal-f%C3%A9le_fat%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1960
   },
   {
     "name": "Radon-tétel",
@@ -995,7 +1058,8 @@ const MATEK_DATA = [
     "why": "<b>Elég sok pontot két csoportra osztva, a konvex burkaik mindig metszeni fogják egymást — nincs menekvés.</b> d+2 pont d dimenzióban garantáltan felosztható két olyan csoportra, amelyeknek konvex burkai közös ponttal rendelkeznek. Ez az egyszerű geometriai tény adja a Helly-tétel egyik legelegánsabb bizonyítási útját, és alapja a gépi tanulásban használt lineáris szeparálhatósági korlátoknak is.",
     "whyMore": "d+2 pont ℝ^d-ben affin függő (több pont van, mint a tér dimenziója plusz egy), így létezik egy nemtriviális Σλ_i p_i = 0 összefüggés Σλ_i = 0 mellett. A λ_i előjelének megfelelően két diszjunkt csoportra bontva a pontokat, az egyensúlyi konvex kombináció pontja mindkét konvex burkban benne van, tehát a két burok metszi egymást. Ez a szerkezet a Helly-tétel egyik legelegánsabb bizonyítási lépése és az ML-beli lineáris szeparálhatósági korlátok alapja.",
     "wiki": "https://en.wikipedia.org/wiki/Radon-t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1921
   },
   {
     "name": "Nielsen–Schreier-tétel",
@@ -1005,7 +1069,8 @@ const MATEK_DATA = [
     "why": "<b>Egy szabad csoport minden részcsoportja maga is szabad csoport — akkor is, ha végtelen sok generátorra van szüksége.</b> Meglepő stabilitási tulajdonság: a 'szabadság' (nincsenek rejtett relációk a generátorok között) öröklődik minden részstruktúrára. A tétel topologikus bizonyítása (fedő terek, gráfelmélet) az egyik legszebb példa arra, hogyan old meg egy tisztán algebrai kérdést a geometria.",
     "whyMore": "A tétel mélyebb oka, hogy egy szabad csoport F_n egy gráf fundamentális csoportjaként is felfogható, aminek bármely részcsoportja egy fedő gráf fundamentális csoportja lesz — a fedőtér-elmélet pedig garantálja, hogy egy ilyen csoport is szabad marad. A részcsoport új generátorai a fedő gráf éleinek (Schreier-féle képviselőválasztás) felelnek meg, és mivel a fedő gráfban nem keletkezik feloldhatatlan zárt út, rejtett reláció sem születik. Így egy szabad csoport sosem romlik el belülről: bármely részstruktúrája ugyanolyan rendezett, generátorokkal leírható marad.",
     "wiki": "https://en.wikipedia.org/wiki/Nielsen%E2%80%93Schreier-t%C3%A9tel",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1921
   },
   {
     "name": "Jones-polinom",
@@ -1016,7 +1081,8 @@ const MATEK_DATA = [
     "why": "<b>Egy algebrai kifejezés különbséget tud tenni két csomó között, amelyek a szabad szemmel megkülönböztethetetlenek.</b> Vaughan Jones egy operátoralgebrai kutatás közben, véletlenül bukkant rá erre a csomóinvariánsra — a felfedezés annyira váratlan volt, hogy Fields-érmet kapott érte. A csomóelmélet és a kvantumtérelmélet (Witten később kvantumfizikai értelmezést adott neki) közötti mély, előre nem sejtett kapcsolatot tárta fel.",
     "whyMore": "A polinom egyetlen V(L) értéket rendel minden csomóhoz a skein-reláció mentén: ha egy keresztpontot kétféleképpen (L_+, L_-) oldunk fel, a két érték különbsége a t^{1/2}-t^{-1/2} szorzóval arányos a sima (L_0) eset értékével. Ez a rekurzív szabály egyértelműen meghatározza V-t, és mivel csak a keresztpontok feloldásától függ, két különböző csomó különböző polinomot ad — ezért invariáns. A t változó egy kvantumcsoport (Temperley–Lieb-algebra) paramétere, így a polinom valójában egy kétdimenziós topológiai térelmélet fizikai mennyiségét kódolja.",
     "wiki": "https://en.wikipedia.org/wiki/Jones-polinom",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1984
   },
   {
     "name": "Church–Turing-tézis",
@@ -1026,7 +1092,8 @@ const MATEK_DATA = [
     "why": "<b>Minden ésszerű számítási modell — Turing-gép, lambda-kalkulus, mai programozási nyelv — pontosan ugyanazt tudja kiszámítani.</b> Nem bizonyított tétel, hanem tézis: azt állítja, hogy az intuitív 'algoritmus' fogalma egybeesik a formálisan definiált kiszámíthatósággal. Church és Turing egymástól függetlenül, két teljesen különböző matematikai apparátussal jutottak ugyanarra az eredményre — ez adja a tézis meggyőző erejét.",
     "whyMore": "A tézis lényege, hogy a 'kiszámítható' fogalom modelltől független: bármit, amit egy ember ceruzával papíron véges szabállyal elvégez (algoritmus), azt egy Turing-gép is elvégzi, és fordítva. A ⊨ (logikai következmény) azt rögzíti, hogy a formális kiszámíthatóság (gép) és az intuitív algoritmus fogalma azonos. Mivel minden ismert modell (regisztergép, λ-kalkulus, sejtautomata) ugyanerre a halmazra vezethető vissza, a tézis azt sugallja, hogy elértük a számítás fogalmának természetes határát.",
     "wiki": "https://en.wikipedia.org/wiki/Church%E2%80%93Turing-t%C3%A9zis",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1936
   },
   {
     "name": "Shannon-féle csatornakapacitás-tétel",
@@ -1036,7 +1103,8 @@ const MATEK_DATA = [
     "why": "<b>Egyetlen képlet szabja meg egy zajos csatorna abszolút információátviteli határát — és bizonyítja, hogy ez a határ hibamentesen elérhető.</b> A sávszélesség (B) és a jel-zaj viszony (S/N) egyszerű logaritmikus kapcsolatban áll a maximális átviteli sebességgel. Minden Wi-Fi, mobilhálózat és optikai kábel tervezése ebből az 1948-as képletből indul ki — a modern digitális kommunikáció alapköve.",
     "whyMore": "A képletben B a sávszélesség (Hz), S a jel, N a zaj teljesítménye; a log_2(1+S/N) azt mondja meg, hány bitet tudunk egyetlen hasznos szimbólumidő alatt hibamentesen átvinni egy adott jel-zaj arány mellett. A tétel bizonyítása a tipikus sorozatok exponenciális sokaságán alapul: ha a kódolási sebesség C alatt marad, található olyan kód, ami a hibavalószínűséget tetszőlegesen lecsökkenti. A határ elérhető, de nem léphető túl — ezért minden modern kommunikációs szabvány ezt a C értéket tekinti a fizikai plafonnak.",
     "wiki": "https://en.wikipedia.org/wiki/Shannon-f%C3%A9le_csatornakapacit%C3%A1s-t%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1948
   },
   {
     "name": "Gyors Fourier-transzformáció (FFT)",
@@ -1046,7 +1114,8 @@ const MATEK_DATA = [
     "why": "<b>Egy okos oszd-meg-és-uralkodj trükk négyzetesből lineáris-logaritmikusra gyorsítja a Fourier-transzformáció kiszámítását.</b> Cooley és Tukey algoritmusa (amit valójában Gauss már 1805-ben ismert, csak elfelejtődött) tette lehetővé a digitális jelfeldolgozást, a hangkódolást (MP3), a képtömörítést (JPEG) és a modern rezgésanalízist. Talán a 20. század leggyakrabban lefuttatott algoritmusa.",
     "whyMore": "A nyers DFT n ponton O(n²) szorzást igényel, mert minden kimeneti frekvenciát az összes bemeneti ponttal külön számolunk. Az FFT észreveszi, hogy a komplex gyököknek W = e^{-2πi/n} 'periódusai' vannak: a páros és páratlan indexű pontok transzformáltját kétszer félekkora méretben újra felhasználja, így a probléma két félidős részre esik szét (oszd meg és uralkodj). Ebből a rekurzióból jön ki az O(n log n) idő, ami nagy n-nél hatalmas gyorsulást jelent — innen vált lehetővé a valós idejű hang- és képfeldolgozás.",
     "wiki": "https://en.wikipedia.org/wiki/Gyors_Fourier-transzform%C3%A1ci%C3%B3_%28FFT%29",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1965
   },
   {
     "name": "Lebesgue-féle majorált konvergenciatétel",
@@ -1056,7 +1125,8 @@ const MATEK_DATA = [
     "why": "<b>Ha egy függvénysorozat pontonként konvergál, és van egy közös 'korlátjuk', akkor az integráljaik is konvergálnak — pedig ez korántsem nyilvánvaló.</b> A Riemann-integrál erre képtelen; Lebesgue teljesen új integrálfogalmat épített, ahol a határátmenet és az integrálás felcserélhető. Ez a tétel adja a valószínűségszámítás, a Fourier-analízis és a modern funkcionálanalízis szigorú alapját.",
     "whyMore": "A feltétel |f_n|≤g egy közös, integrálható 'korlát' (majoráns): garantálja, hogy a sorozat sehol nem szalad el a végtelenbe, és az integrálok ne ugorjanak szét. A Lebesgue-integrál pont ezt a mérték szerinti összegzést használja, így a dominált sorozat határértéke integrálható marad, és a határátmenet az integrál alá húzható. Ezért a tétel mondja ki, hogy lim ∫f_n = ∫lim f_n, ami a Riemann-integrálnál sikertelen a 'tüskés' függvénysorozatoknál.",
     "wiki": "https://en.wikipedia.org/wiki/Lebesgue-f%C3%A9le_major%C3%A1lt_konvergenciat%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1908
   },
   {
     "name": "Fubini-tétel",
@@ -1066,7 +1136,8 @@ const MATEK_DATA = [
     "why": "<b>Egy kétváltozós integrál kiszámítható úgy is, hogy előbb az egyik, majd a másik változó szerint integrálsz — a sorrend nem számít.</b> Triviálisnak tűnik, de csak bizonyos feltételek (pl. abszolút integrálhatóság) mellett igaz — enélkül a sorrendcsere hamis eredményt adhat. Ez a hétköznapi 'kettős integrál' minden mérnöki és fizikai számítás rejtett, magától értetődőnek vett alapja.",
     "whyMore": "A tétel azt használja ki, hogy az integrálterület A×B téglányon szétszedhető egyirányú szeletekre; ha f abszolút integrálható (azaz ∫∫|f| véges), akkor a belső egyváltozós integrálok majdnem minden helyen jól definiáltak és újra összegezhetők. A sorrendcsere csak e feltétel mellett garantált, mert a feltétel kizárja azokat a 'csapda' függvényeket, ahol a pozitív és negatív rész külön-külön divergál, de kiejtik egymást. A képlet szerint a kétdimenziós integrál = a belső ∫_B f dy függvényének ∫_A szerinti integrálja.",
     "wiki": "https://en.wikipedia.org/wiki/Fubini-t%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1907
   },
   {
     "name": "Arzelà–Ascoli-tétel",
@@ -1076,7 +1147,8 @@ const MATEK_DATA = [
     "why": "<b>Egy függvényhalmaz akkor 'kompakt' egy függvénytérben, ha nem lehet se túl vad, se túl szétszórt.</b> A tétel a véges dimenziós Bolzano–Weierstrass-tétel messzemenő általánosítása végtelen dimenziós függvényterekre. Ez garantálja, hogy bizonyos differenciálegyenlet-rendszerek megoldásai léteznek — a Picard–Lindelöf-tételnél gyengébb feltételek mellett is.",
     "whyMore": "A 'túl vad' = nem egyenletesen korlátos (a függvények értékei bárhol korlátlanul nagyok lehetnek), a 'túl szétszórt' = nem egyenlő mértékben folytonos (két közeli ponton az értékkülönbség tetszőlegesen nagy). E két tulajdonság együtt teszi lehetővé a diagónális eljárást: egy végtelen függvénysorozatból mindig kinyerhető egy pontonként konvergáló részsorozat, ami aztán egyenletesen is konvergál. Ez a tétel a funkcionálanalízis 'kompaktsági' helyettesítője a végtelen dimenzióban — nélküle a differenciálegyenletek megoldásainak létezése bizonyíthatatlan lenne.",
     "wiki": "https://en.wikipedia.org/wiki/Arzel%C3%A0%E2%80%93Ascoli-t%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1883
   },
   {
     "name": "Poisson-folyamat",
@@ -1086,7 +1158,8 @@ const MATEK_DATA = [
     "why": "<b>Ha véletlen események egymástól függetlenül, állandó átlagos ütemben történnek, a számuk pontosan ezt az eloszlást követi.</b> Radioaktív bomlás, telefonhívások, szerver-kérések, földrengések — mind ugyanazt a matematikai mintát követik. A Poisson-folyamat az egyik legszélesebb körben alkalmazott sztochasztikus modell, mert a 'teljes véletlenszerűség' egyetlen paraméterrel (λ) leírható.",
     "whyMore": "A képletben λ a (kölcsönös) intenzitás: átlagosan λ esemény történik egységnyi idő alatt; N(t)=k azt jelöli, hogy az adott t idő alatt pontosan k esemény érkezett. A (λt)^k/k! tag a 'k eseményt kiválasztjuk és elhelyezzük', az e^{-λt} a 'közben semmi más nem történik' valószínűsége a memóriamentesség (exponenciális várakozás) miatt. Mivel az események függetlenek és állandó üteműek, a számuk pont ezt a Poisson-eloszlást követi — innen illeszkedik a modell minden 'ritka, véletlen' jelenségre.",
     "wiki": "https://en.wikipedia.org/wiki/Poisson-folyamat",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1837
   },
   {
     "name": "Itō-formula",
@@ -1096,7 +1169,8 @@ const MATEK_DATA = [
     "why": "<b>A közönséges láncszabály nem működik véletlen (Brown-mozgást tartalmazó) folyamatokra — Itō talált egy extra tagot, ami mindent megjavít.</b> A második derivált szerinti pluszkorrekció (a kvadratikus variáció miatt) teszi lehetővé a sztochasztikus differenciálegyenletek kezelését. Ez az egyenlet áll a modern opcióárazás (Black–Scholes-modell) és a véletlen bolyongásra épülő fizikai modellek hátterében.",
     "whyMore": "A szokásos láncszabály d(f∘X) = f'(X)dX itt hiányzik, mert a Brown-mozgás (dX) négyzete nem elhanyagolható: (dW)² = dt, a kvadratikus variáció véges. Az Itō-formula ezért plusz egy f''(X)·d⟨X⟩_t/2 taggal javít: ez a másodrendű korrekció pont kompenzálja a véletlen járás 'kitéréstől való átlagos eltávolodását'. d⟨X⟩_t a folyamat kvadratikus variációja (pl. Brown-mozgásnál dt); enélkül a sztochasztikus integrál téves lenne, így viszont a Black–Scholes és a fizikai diffúziós egyenletek szigorúan levezethetők.",
     "wiki": "https://en.wikipedia.org/wiki/It%C5%8D-formula",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1944
   },
   {
     "name": "Erdős–Rényi véletlen gráf fázisátmenete",
@@ -1106,7 +1180,8 @@ const MATEK_DATA = [
     "why": "<b>Egy véletlen hálózat élsűrűsége egy kritikus küszöbnél hirtelen 'átbillen' — alatta szigetekre esik szét, fölötte egyetlen összefüggő komponenssé áll össze.</b> A fázisátmenet éles: egy hajszálnyi élsűrűség-változás teljesen más globális struktúrát eredményez. Ez a jelenség adja a hálózatelmélet alapját — internetes topológiáktól a járványterjedési küszöbökig.",
     "whyMore": "Egy n csúcsú gráfban, ha p (élvalószínűség) kb. ln n / n alatt marad, a komponensek várható mérete O(log n), szigetekre esik szét; fölötte egyetlen óriáskomponens jelenik meg, ami csaknem az összes csúcsot magába foglalja. A p_c ~ ln n / n küszöb pont az, ahol a komponensméret második momentuma elszánlhatatlanul megnő — ez egy kontinuitási ugrás, nem sima átmenet. A jelenséget a 'giant component' explóziója írja le: egyetlen extra él is összeköthet két addig különálló nagy halmazt.",
     "wiki": "https://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93R%C3%A9nyi_v%C3%A9letlen_gr%C3%A1f_f%C3%A1zis%C3%A1tmenete",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1959
   },
   {
     "name": "Kolmogorov-komplexitás",
@@ -1126,7 +1201,8 @@ const MATEK_DATA = [
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/Kolmogorov-komplexit%C3%A1s",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1965
   },
   {
     "name": "Löb-tétel",
@@ -1136,7 +1212,8 @@ const MATEK_DATA = [
     "why": "<b>Ha egy formális rendszer bebizonyítja, hogy 'ha bizonyítható P, akkor P igaz', abból már következik, hogy P tényleg bizonyítható.</b> Ellenintuitív, önreferenciális eredmény — rokona Gödel második nemteljességi tételének, csak élesebb formában. Löb eredetileg egy Henkin nevű matematikus kérdésére válaszolt: bizonyítható-e egy rendszerben a saját konzisztenciája, ha az állítja, hogy bizonyítható — a válasz meglepő módon igen szoros korlátok közé szorítja, mi bizonyítható.",
     "whyMore": "A □ jelölés a 'bizonyítható' modalitás: □P azt jelenti, hogy a rendszer le tudja vezetni P-t. A tétel szerint ha a rendszer képes bebizonyítani, hogy (□P→P) — azaz 'ha P bizonyítható, akkor P igaz' —, akkor már magát P-t is be tudja bizonyítani. Ez azért igaz, mert □P→P formában a rendszer saját bizonyítási mechanizmusára hivatkozik (önreferencia), és a Gödel-féle fixpontkonstrukció pont ezt a zárt kört zárja le. Következménye: egy konzisztens rendszer nem tudja bebizonyítani a saját konzisztenciáját anélkül, hogy az már eleve magában foglalná azt.",
     "wiki": "https://en.wikipedia.org/wiki/L%C3%B6b-t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1955
   },
   {
     "name": "Robertson–Seymour gráf-minor tétel",
@@ -1147,7 +1224,8 @@ const MATEK_DATA = [
     "why": "<b>A gráfok 'jóformáltsága' végtelen sok esetet is véges listával jellemezhet — mint ahogy a síkgráfokat is jellemzi az K5 és K3,3 kizárása.</b> A bizonyítás 20 cikkben, több mint 500 oldalon húzódott végig — sokan a 20. század legmélyebb matematikai eredményének tartják. Ebből következik, hogy minden 'minor-zárt' gráftulajdonság polinom idejű algoritmussal eldönthető, még ha az algoritmus konstansa asztronomikus is.",
     "whyMore": "A 'minor-zárt' azt jelöli, hogy ha egy gráf a családhoz tartozik, akkor minden minora (él/pont törlés, összehúzás) is hozzá tartozik. A tétel szerint ilyen családokat véges sok 'tiltott minor' (H_1,…,H_k) felsorolása jellemzi: egy gráf pont akkor tag, ha egyik tiltott minor sincs benne. Azért működik, mert a minor-rendezés jól-rendezett (nincs végtelen szigorúan csökkenő minor-lánc), így a 'legkisebb tiltott' elemek végesen sokan vannak. Ebből következik, hogy bármely ilyen tulajdonság eldöntése algoritmikusan lehetséges, bár a konstans óriási lehet.",
     "wiki": "https://en.wikipedia.org/wiki/Robertson%E2%80%93Seymour_gr%C3%A1f-minor_t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1983
   },
   {
     "name": "Turán-tétel",
@@ -1157,7 +1235,8 @@ const MATEK_DATA = [
     "why": "<b>Ha egy gráfnak elég sok éle van, garantáltan tartalmaz egy adott méretű teljes részgráfot — pontosan meghatározható küszöb fölött.</b> Turán egy munkatáborban gondolta ki a bizonyítást, és a háború után publikálta — ez indította el az egész extremális gráfelméletet mint önálló diszciplínát. A tétel éles: a Turán-gráf (kiegyensúlyozott r-osztályú teljes soktagú gráf) mutatja, hogy a korlát nem javítható.",
     "whyMore": "A képletben n a csúcsok, e(G) az élek száma, r a keresett teljes részgráf (K_{r+1}) mérete mínusz egy; a (1−1/r)n²/2 küszöb a 'lehető legtöbb él K_{r+1} nélkül' mennyisége (a Turán-gráf élszáma). Ha e(G) ezt meghaladja, a gráf 'túl sűrű' ahhoz, hogy K_{r+1}-mentes maradjon — a skatulya-elv szerint valahol kényszerítetten kialakul egy r+1 csúcsú klikk. A határ éles, mert maga a Turán-gráf pont ennyi élnél még elkerüli a K_{r+1}-et, tehát a tétel nem túlbecsült.",
     "wiki": "https://en.wikipedia.org/wiki/Tur%C3%A1n-t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1941
   },
   {
     "name": "Poincaré–Bendixson-tétel",
@@ -1167,7 +1246,8 @@ const MATEK_DATA = [
     "why": "<b>A síkban a káosz lehetetlen — egy korlátos pálya csak nyugvópontba vagy periodikus ciklusba futhat, semmi bonyolultabba.</b> Ez a tétel az oka annak, hogy a valódi determinisztikus káosz (mint a Lorenz-attraktor) csak legalább háromdimenziós fázistérben jelenhet meg. A síkbeli dinamika ezért — bármilyen bonyolultnak tűnik az egyenletrendszer — mindig 'megszelídül' hosszú távon.",
     "whyMore": "A tétel a sík topológiáján alapul: egy korlátos pálya a saját nyomait nem kerülheti meg végtelen ideig anélkül, hogy vagy megállna (fixpont), vagy egy zárt hurkot (határciklust) rajzolna ki. Mivel a síkban nincs elég hely a pályák számára, hogy kitérjenek egymás elől, a dinamika hosszú távon elkerülhetetlenül egyszerűvé válik. Ezért van az, hogy a Lorenz-attraktorhoz hasonló káoszhoz a harmadik dimenzió – és a pályák felülről való átlátása – szükséges.",
     "wiki": "https://en.wikipedia.org/wiki/Poincar%C3%A9%E2%80%93Bendixson-t%C3%A9tel",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1901
   },
   {
     "name": "Whitney-beágyazási tétel",
@@ -1177,7 +1257,8 @@ const MATEK_DATA = [
     "why": "<b>Bármilyen absztrakt módon definiált geometriai alakzat 'valójában' elhelyezhető egy elég nagy, közönséges euklideszi térben.</b> Ez garantálja, hogy a sokaságok — a modern geometria absztrakt objektumai — nem 'légből kapott' fogalmak, hanem mindig konkrét, kézzelfogható terekbe ágyazhatók. A tétel adja meg azt a biztonságot, hogy a differenciálgeometriai intuíciónk, ami euklideszi terekben edződött, alkalmazható az absztrakt sokaságokra is.",
     "whyMore": "A tétel garantálja, hogy bármely n-dimenziós sokaság sima, injektív és injektív differenciálú leképezéssel beágyazható a 2n-dimenziós euklideszi térbe. Az n helyett a 2n azért kell, mert így a pozíció és az érintőirány együttes kezelésével elkerülhető az önátmetszés. Ez azt jelenti, hogy a görbület és az érintőtér fogalmai érvényesek maradnak a legabsztraktabb sokaságokon is.",
     "wiki": "https://en.wikipedia.org/wiki/Whitney-be%C3%A1gyaz%C3%A1si_t%C3%A9tel",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1936
   },
   {
     "name": "Lefschetz-féle fixponttétel",
@@ -1187,7 +1268,8 @@ const MATEK_DATA = [
     "why": "<b>Egy topologikus tér önmagára képezésének 'algebrai lenyomatából' (a Lefschetz-szám) eldönthető, van-e fixpontja — anélkül, hogy meg kellene találni.</b> A Brouwer-féle fixponttétel messzemenő általánosítása: a homológiacsoportokon vett nyom-összeg egyetlen szám, mégis garantálja a fixpont létezését. Ez az algebrai topológia egyik legszebb példája arra, hogyan válthat ki egy geometriai kérdést egy tisztán algebrai számítás.",
     "whyMore": "A Λ(f) Lefschetz-szám a homológiacsoportokon értelmezett f_*-ra vett súlyozott nyomösszeg: Λ(f) = Σ (-1)^i tr(f_*|_{H_i}). Ha ez nem nulla, akkor f-nek szükségszerűen van fixpontja, mert a fixpontok hiánya egy szabad értékelést adna, ami pont Λ(f)=0-t eredményezne. Így egyetlen algebrai számítással bizonyítható a fixpont létezése anélkül, hogy a pontot megkeresnénk.",
     "wiki": "https://en.wikipedia.org/wiki/Lefschetz-f%C3%A9le_fixpontt%C3%A9tel",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1926
   },
   {
     "name": "Dijkstra-algoritmus",
@@ -1197,7 +1279,8 @@ const MATEK_DATA = [
     "why": "<b>A legrövidebb út egy hálózatban mohó módon, lépésről lépésre megtalálható — mindig a legközelebbi ismeretlen csúcsot választva.</b> Dijkstra állítólag 20 perc alatt, kávézás közben találta ki, papír és ceruza nélkül, mert be akarta mutatni, hogy egy számítógép 'okosan' tud gondolkodni. Ma minden GPS-navigáció, hálózati útvonalválasztó protokoll (OSPF) és térképalkalmazás ezen (vagy egy leszármazottján, az A*-algoritmuson) alapul.",
     "whyMore": "A képlet u = argmin_{v∈Q} dist[v] azt jelenti, hogy mindig a még nem véglegesített (Q-ben lévő) csúcs közül választjuk a legkisebb ismert távolságút. Az eljárás mohó és optimális, mert ha az élek súlya nemnegatív, akkor egy csúcs véglegesítésekor a távolsága már nem javítható tovább (optimális részstruktúra). A dist[v] tömb a forrástól v-ig ismert legrövidebb utat tárolja, Q pedig a prioritási sor a még nyitott csúcsoknak.",
     "wiki": "https://en.wikipedia.org/wiki/Dijkstra-algoritmus",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1956
   },
   {
     "name": "Karmarkar-algoritmus",
@@ -1207,7 +1290,8 @@ const MATEK_DATA = [
     "why": "<b>A Szimplex-módszer csúcsról csúcsra lépked a poliéder élein — Karmarkar helyette a poliéder belsejében, egyenesen a megoldás felé 'siklik'.</b> Az első bizonyítottan polinomiális idejű algoritmus lineáris programozásra, amely gyakorlatban is versenyképesen gyors volt (nem csak elméletileg). A Bell Labs azonnal szabadalmaztatta — ritka eset, hogy egy tisztán matematikai algoritmus ekkora üzleti és katonai jelentőséget kapott (repülőgép-forgalom, telekommunikációs hálózatok optimalizálása).",
     "whyMore": "A módszer a megengedett tartomány (poliéder) belsejében halad egy potenciálfüggvény mentén, amely bünteti a tartomány szélét, így a lépések egyenletesen a megoldás felé tartanak. Az időigény O(n^{3,5} L), ahol n a változók száma és L a bemenet biteinek hossza – ez garantáltan polinomiális, ellentétben a Szimplex ritka exponenciális esetével. A gyakorlati sebességet a projektív skálázás adja, amely a poliédert úgy torzítja, hogy a jelenlegi pont közepe a céliránynak.",
     "wiki": "https://en.wikipedia.org/wiki/Karmarkar-algoritmus",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1984
   },
   {
     "name": "Wald-azonosság",
@@ -1217,7 +1301,8 @@ const MATEK_DATA = [
     "why": "<b>Ha egy véletlen számú lépésben összeadott véletlen mennyiségek várható összegét keresed, elég a két várható értéket összeszorozni — még ha a megállási időpont maga is véletlen.</b> Abraham Wald a második világháború alatt, szekvenciális statisztikai teszteken dolgozva vezette le. A tétel meglepő ereje, hogy a megállási szabály (N) és a lépések (X) közötti finom függőségek ellenére is ilyen egyszerű marad az eredmény — alapja a szekvenciális elemzésnek és a modern A/B-tesztelésnek.",
     "whyMore": "Az összefüggés E[X_1+…+X_N] = E[N]·E[X] akkor is igaz, ha N maga a lépések függvénye, feltéve, hogy a megállási időpont tisztességes, azaz a jövőtől független. A bizonyítás lelke az opcionális megállási tételeken alapul: a várt érték additivitása nem sérül a véletlen lépésszám miatt. Ezért használható a szekvenciális teszteknél, ahol a minta mérete maga is a részeredményektől függ.",
     "wiki": "https://en.wikipedia.org/wiki/Wald-azonoss%C3%A1g",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1944
   },
   {
     "name": "Berry–Esseen-tétel",
@@ -1227,7 +1312,8 @@ const MATEK_DATA = [
     "why": "<b>A Centrális Határeloszlás-tétel csak azt mondja, hogy az eloszlás normálishoz tart — Berry és Esseen megmondták, milyen gyorsan.</b> A konvergencia sebessége 1/√n rendű, és a hibakorlát explicit módon függ a harmadik momentumtól. Ez teszi lehetővé, hogy véges mintaméret esetén is számszerű garanciát adjunk a normális közelítés pontosságára — nélkülözhetetlen a statisztikai próbák megbízhatósági elemzésében.",
     "whyMore": "A tétel konkrét kötést ad: sup_x |F_n(x)−Φ(x)| ≤ C·ρ/(σ³√n), ahol F_n a normált részletösszegek eloszlásfüggvénye, Φ a standard normális, ρ a harmadik momentum és σ a szórás. A 1/√n sebesség és a C ≈ 0,474 konstans azt jelenti, hogy a konvergencia nemcsak létezik, hanem mérhető mértékű is. Minél vastagább farkú az eloszlás (nagyobb ρ), annál lassabb a normális közelítés – ezzel magyarázható, miért kell nagyobb minta a ferde eloszlásoknál.",
     "wiki": "https://en.wikipedia.org/wiki/Berry%E2%80%93Esseen-t%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1941
   },
   {
     "name": "Banach–Steinhaus-tétel",
@@ -1237,7 +1323,8 @@ const MATEK_DATA = [
     "why": "<b>Ha egy operátorsorozat minden ponton külön-külön korlátos, akkor — meglepő módon — egyenletesen is korlátos kell legyen.</b> A bizonyítás a Baire-kategóriatételre épül: egy teljes metrikus tér nem bontható fel megszámlálhatóan sok sehol sem sűrű halmazra. Ez a funkcionálanalízis egyik 'nagy három' alaptétele (a Nyílt Leképezés-tétellel és a Hahn–Banach-tétellel együtt) — nélküle a Fourier-sorok konvergenciájának modern elmélete sem állna.",
     "whyMore": "A tétel szerint ha a {T_n} operátorok minden x vektorra korlátosak (sup_n ||T_n x|| < ∞), akkor az operátornormák is korlátosak (sup_n ||T_n|| < ∞). A bizonyítás a Baire-kategóriatételt használja: egy teljes tér nem lehet megszámlálhatóan sok sehol sem sűrű halmaz uniója, így a rossz pontok halmaza üres. Ez garantálja, hogy a pontonkénti konvergencia nem produkálhat kiugró operátornormákat.",
     "wiki": "https://en.wikipedia.org/wiki/Banach%E2%80%93Steinhaus-t%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1927
   },
   {
     "name": "Sobolev-beágyazási tétel",
@@ -1247,7 +1334,8 @@ const MATEK_DATA = [
     "why": "<b>Ha egy függvénynek elég sok 'gyenge' deriváltja létezik (megfelelő integrálhatósággal), akkor garantáltan sima, folytonos függvény is — nem csak absztrakt objektum.</b> Ez a híd a modern PDE-elmélet gyenge (variációs) megoldásai és a klasszikus, szemléletes sima megoldások között. Minden végeselem-módszerrel dolgozó mérnöki szoftver implicit módon erre a tételre támaszkodik, amikor a numerikus megoldást fizikailag értelmezhető alakváltozásként vagy hőmérsékleti mezőként kezeli.",
     "whyMore": "A feltétel k − n/p > m + α azt mondja ki, hogy a deriváltak rendje (k) és integrálhatósága (p) többletet ad a dimenzió (n) felett, ami simaságot (C^{m,α}) eredményez. Minél magasabb a dimenzió, annál több derivált kell ugyanahhoz a simasághoz, mert a tér több lyukat hagy a függvény kitöltésére. Ezért a végeselem-módszer numerikus megoldásai – bár csak gyenge értelemben simák – mégis fizikailag értelmes, folytonos mezőként viselkednek.",
     "wiki": "https://en.wikipedia.org/wiki/Sobolev-be%C3%A1gyaz%C3%A1si_t%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1938
   },
   {
     "name": "Hopf-fibráció",
@@ -1257,7 +1345,8 @@ const MATEK_DATA = [
     "why": "<b>A háromdimenziós gömb felbontható körök végtelen családjára úgy, hogy minden pár kör pontosan egyszer fonódik össze — mint egy tökéletesen rendezett gombolyag.</b> Heinz Hopf ezzel mutatta meg először, hogy a magasabb homotópiacsoportok sokkal gazdagabbak, mint azt bárki gondolta — a felfedezés előtt sokan hitték, hogy triviálisak. A Hopf-fibráció ma a kvantummechanika (spinorok), a szálkötegek elmélete és a számítógépes grafika (kvaternió-alapú forgatások) egyik legszebb geometriai háttere.",
     "whyMore": "A leképezés S³ → S² úgy osztja fel a háromdimenziós gömböt, hogy a szálak S¹ körök, és minden S²-beli pontnak pontosan egy köre felel meg. Mivel S³ azonosítható a kvaterniók egységgömbjével, a fibráció a kvaternió-szorzás geometriájából adódik természetesen. Ez az első nemtriviális szálköteg, és mutatja, hogy π₃(S²) = ℤ, vagyis a harmadik homotópiacsoport nem triviális.",
     "wiki": "https://en.wikipedia.org/wiki/Hopf-fibr%C3%A1ci%C3%B3",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1931
   },
   {
     "name": "Van Kampen-tétel",
@@ -1267,7 +1356,8 @@ const MATEK_DATA = [
     "why": "<b>Egy összetett tér fundamentális csoportja (a 'hurkok' algebrai szerkezete) kiszámítható két egyszerűbb darabjának csoportjaiból, ha ismerjük az átfedésüket.</b> A tétel adja meg az eszközt ahhoz, hogy bonyolult topologikus terek — csomók, felületek, CW-komplexusok — algebrai invariánsait lépésről lépésre, 'építőkockákból' rakjuk össze. Az egyik legszebb példa arra, hogyan lehet a globális szerkezetet lokális információkból rekonstruálni.",
     "whyMore": "A tétel szerint π₁(X) ≅ π₁(U) *_{π₁(U∩V)} π₁(V), azaz az egyesített tér alapcsoportja az U és V alapcsoportjainak amalgámszorzata, ahol az átfedés π₁(U∩V) generátorait azonosítjuk. Ez lehetővé teszi bonyolult terek – például csomók komplementereinek – felépítését egyszerűbb darabokból lépésről lépésre. A módszer a lokális hurkok összekapcsolásával nyeri a globális szerkezetet.",
     "wiki": "https://en.wikipedia.org/wiki/Van_Kampen-t%C3%A9tel",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1933
   },
   {
     "name": "De Bruijn–Erdős-tétel",
@@ -1277,7 +1367,8 @@ const MATEK_DATA = [
     "why": "<b>Ha n pont a síkban nincs mind egy egyenesen, legalább n különböző egyenesre van szükség ahhoz, hogy minden pontpárt lefedjenek.</b> A bizonyítás elegáns indukciós érvelést használ, és a végeredmény meglepően éles: a szabályos konfigurációk pontosan n egyenest igényelnek. Erdős Pál és de Bruijn egy este alkották meg — tipikus példája annak, milyen mély eredmény születhet egy egyszerűen megfogalmazható geometriai kérdésből.",
     "whyMore": "A tétel azt állítja, hogy n nem-kollineáris (nem egy egyenesen lévő) síkbeli pontot legalább n különböző egyenes lefed. Az indukciós bizonyítás lényege, hogy ha egy pontot eltávolítunk, a maradékra az állítás már igaz, és az új pont bevonása legfeljebb egy új egyenest igényel. A szabályos sokszögek pontosan n egyenest használnak fel, így az alsó korlát éles.",
     "wiki": "https://en.wikipedia.org/wiki/De_Bruijn%E2%80%93Erd%C5%91s-t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1948
   },
   {
     "name": "Borsuk-sejtés (megcáfolva)",
@@ -1287,7 +1378,8 @@ const MATEK_DATA = [
     "why": "<b>Egy 60 éven át 'majdnem biztosan igaznak' hitt sejtést váratlanul megcáfoltak — egy 1325-dimenziós ellenpéldával.</b> Borsuk sejtése olyan magától értetődőnek tűnt, hogy évtizedekig senki nem is kételkedett benne komolyan, miközben alacsony dimenzióban bizonyítást is nyert. Kahn és Kalai 1993-as ellenpéldája emlékeztető arra, hogy a matematikai intuíció — bármilyen meggyőzőnek is tűnik — sosem helyettesíti a bizonyítást.",
     "whyMore": "Borsuk sejtése szerint bármely korlátos halmaz d+1 darab kisebb átmérőjű részre bontható – alacsony dimenzióban (d ≤ 3) ez bizonyítva is volt. Kahn és Kalai 1993-ban mutatta meg, hogy d ≥ 64 dimenzióban léteznek ellenpéldák, ahol ennél több rész szükséges. A cáfolat emlékeztet, hogy a természetesnek tűnő geometriai sejtések nagy dimenzióban is összeomolhatnak.",
     "wiki": "https://en.wikipedia.org/wiki/Borsuk-sejt%C3%A9s_%28megc%C3%A1folva%29",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1933
   },
   {
     "name": "Amdahl-törvény",
@@ -1297,7 +1389,8 @@ const MATEK_DATA = [
     "why": "<b>Egy program párhuzamosításának haszna kérlelhetetlenül korlátos — a szekvenciális rész, bármilyen kicsi is, hosszú távon dominánssá válik.</b> Ha egy program 95%-a párhuzamosítható, végtelen sok processzorral is legfeljebb 20-szoros gyorsulás érhető el. Ez a törvény hűti le a szuperszámítógép-tervezők túlzott optimizmusát, és rávilágít, miért olyan értékes minden szekvenciális szűk keresztmetszet megszüntetése egy nagy rendszerben.",
     "whyMore": "A képlet S(n) = 1/((1−p) + p/n), ahol p a párhuzamosítható rész aránya és n a processzorok száma. Ahogy n → ∞, az S(n) → 1/(1−p), vagyis a gyorsulás szigorúan korlátos a szekvenciális (1−p) rész által. Például 95%-os párhuzamosítás mellett a maximális gyorsulás 20-szoros – ezt a plafont több hardverrel sem lehet áttörni.",
     "wiki": "https://en.wikipedia.org/wiki/Amdahl-t%C3%B6rv%C3%A9ny",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1967
   },
   {
     "name": "RSA-algoritmus",
@@ -1307,7 +1400,8 @@ const MATEK_DATA = [
     "why": "<b>Két nagy prímszám szorzatát könnyű kiszámítani, de a szorzatból visszafejteni a tényezőket gyakorlatilag lehetetlen — erre az aszimmetriára épül a teljes internetes titkosítás.</b> Rivest, Shamir és Adleman Fermat kistételét használták fel egy olyan rendszer megalkotásához, ahol a nyilvános kulcs bárki számára ismert lehet, mégsem törhető fel vele az üzenet. Minden HTTPS-kapcsolat, minden banki tranzakció ezen (vagy egy rokon algoritmuson) alapul — tiszta számelméletből született globális infrastruktúra.",
     "whyMore": "A titkosítás c = m^e mod n és a visszafejtés m = c^d mod n, ahol n = p·q két nagy prím szorzata, és az e, d kitevők úgy választottak, hogy e·d ≡ 1 mod φ(n). A rendszer biztonsága azon alapul, hogy n prímtényezőkre bontása gyakorlatilag lehetetlen a mai számítási kapacitással. A nyilvános (e, n) kulccsal bárki titkosíthat, de csak a privát d ismerője fejthet vissza.",
     "wiki": "https://en.wikipedia.org/wiki/RSA-algoritmus",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1977
   },
   {
     "name": "Hessian-mátrix és a D-teszt",
@@ -1317,7 +1411,8 @@ const MATEK_DATA = [
     "why": "<b>Egyetlen szám dönti el, hogy egy többváltozós függvény egy kritikus pontja hegycsúcs, völgy vagy nyeregpont.</b> A második parciális deriváltakból épített mátrix determinánsa (D) és a fxx előjele együtt teljesen jellemzi a lokális viselkedést — pontosan úgy, ahogy egyváltozós esetben a második derivált teszi. Minden gépi tanulási optimalizáló algoritmus, ami többdimenziós felületen keres minimumot, hallgatólagosan erre a tesztre épít.",
     "whyMore": "A Hessian a másodrendű parciális deriváltak mátrixa; D = fₓₓ·f_yy − f²_xy a determinánsa egy kritikus pontban. Ha D > 0 és fₓₓ > 0, lokális minimum; ha D > 0 és fₓₓ < 0, lokális maximum; ha D < 0, nyeregpont; ha D = 0, a teszt döntésképtelen. A teszt a másodrendű Taylor-közelítésből származik: a kvadratikus tag előjele határozza meg a lokális görbületet.",
     "wiki": "https://en.wikipedia.org/wiki/Hessian-m%C3%A1trix_%C3%A9s_a_D-teszt",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1857
   },
   {
     "name": "Green-tétel",
@@ -1327,7 +1422,8 @@ const MATEK_DATA = [
     "why": "<b>Egy zárt görbe menti vonalintegrál átalakítható a görbe által határolt terület kettős integráljává — a peremen történő és a belsejében történő 'történések' ekvivalensek.</b> Green önmagát tanított matematikusként, molnárként dolgozva alkotta meg ezt az eredményt, amit csak halála után fedeztek fel igazán. Ez a Stokes-tétel síkbeli speciális esete, és a modern vektoranalízis egyik alappillére — együtt Gauss divergenciatételével a 'nagy integrál-hármast' alkotja.",
     "whyMore": "Az L és M a görbe menti vektormező komponensei, a bal oldali vonalintegrál a C zárt görbe menti érintőleges áramlást összegzi, a jobb oldal pedig a D tartományon a helyi forgás erősségét, azaz a (∂M/∂x − ∂L/∂y) „görbületet” integrálja. Geometriailag ez a kifejezés azt méri, hogy a mező az adott pont környezetében mennyire „tekerődik”, így a belső forgások teljes összege éppen a peremen körbejáró áramlással egyenlő. Ezért a Stokes-tétel síkbeli speciális esete: a felületi örvényesség integrálja válik a határvonal körüli keringéssé.",
     "wiki": "https://en.wikipedia.org/wiki/Green-t%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1828
   },
   {
     "name": "Gauss-féle divergenciatétel",
@@ -1337,7 +1433,8 @@ const MATEK_DATA = [
     "why": "<b>Egy vektormező zárt felületen átfolyó teljes fluxusa pontosan megegyezik a divergenciájának a bezárt térfogaton vett integráljával.</b> Ha egy térfogat belsejében nincs forrás vagy nyelő, a be- és kiáramlás pontosan kiegyenlítődik — ez a fizikai intuíció mögötte. Gauss törvénye az elektrodinamikában (Maxwell-egyenletek egyike) és a folyadékok kontinuitási egyenlete is közvetlenül ebből a tételből következik.",
     "whyMore": "Az F egy vektormező, a dS a felület kifelé mutató felületeleme, a bal oldali felületintegrál összeadja, mekkora mező áramlik ki az S burkon át. A jobb oldali térfogatintegrál a ∇·F divergenciát, vagyis a térfogategységre jutó nettó forrásnyelő sűrűséget összegzi a V belsejében. Mivel a divergencia pontonként a „kifolyó mínusz befolyó” arány, a burok teljes kiáramlása szükségszerűen a belső források és nyelők különbségéből adódik.",
     "wiki": "https://en.wikipedia.org/wiki/Gauss-f%C3%A9le_divergenciat%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1813
   },
   {
     "name": "Cauchy–Riemann-egyenletek",
@@ -1347,7 +1444,8 @@ const MATEK_DATA = [
     "why": "<b>Két egyszerű parciális differenciálegyenlet dönti el, hogy egy komplex függvény 'igazán' deriválható-e — nem csak formálisan, hanem a komplex sík minden irányában egyszerre.</b> Ha egy függvény valós és képzetes része teljesíti ezeket az összefüggéseket, a függvény holomorf: végtelenül sokszor deriválható, és analitikus sorba fejthető. Ez a feltétel az, ami a komplex analízist ennyire merevvé és egyben gyönyörűvé teszi — Cauchy integrálformulája és Liouville tétele is erre épül.",
     "whyMore": "Legyen f(z)=u(x,y)+i·v(x,y), ahol u a valós, v a képzetes rész; az egyenletek azt kötik ki, hogy u x szerinti deriváltja egyenlő v y szerinti deriváltjával, és v x szerinti deriváltja az u y szerinti negatívja. Ekkor a Jacobi-mátrix egy elforgatással és nyújtással leírható lineáris leképezés lesz, vagyis a függvény lokálisan szögeket és alakokat megőriz (konform leképezés). Emiatt a derivált értéke független attól, milyen irányból közelítjük a pontot a komplex síkon, és ez a merevség teszi a holomorf függvényeket végtelenül sokszor deriválhatóvá.",
     "wiki": "https://en.wikipedia.org/wiki/Cauchy%E2%80%93Riemann-egyenletek",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1821
   },
   {
     "name": "Wallis-szorzat",
@@ -1357,7 +1455,8 @@ const MATEK_DATA = [
     "why": "<b>Egy végtelen szorzat, kizárólag egész számokból, pontosan π felét adja — évszázadokkal Euler és a Basel-probléma előtt.</b> Wallis geometriai és interpolációs érveléssel jutott el ide, jóval azelőtt, hogy a kalkulus modern eszköztára rendelkezésre állt volna. Ez volt az egyik első jele annak, hogy π sokkal mélyebben kötődik a számelmélethez és az analízishez, mint azt bárki sejtette volna a kör egyszerű geometriájából.",
     "whyMore": "Minden tényező (2n/(2n−1))·(2n/(2n+1)) kissé nagyobb 1-nél, és n→∞ esetén 1-hez tart, az így keletkező végtelen szorzat „lassan kúszva” π/2-hez konvergál. A formula az sinⁿ(x) függvény [0,π/2] feletti integráljából származik: az egymást követő hatványok integráljainak hányadosa adja pontosan a racionális tényezőket. Így π a természetes számokból álló végtelen szorzat határértékeként is megjelenik, évszázadokkal a modern analízis előtt.",
     "wiki": "https://en.wikipedia.org/wiki/Wallis-szorzat",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1656
   },
   {
     "name": "Mittag-Leffler-tétel",
@@ -1367,7 +1466,8 @@ const MATEK_DATA = [
     "why": "<b>Bármilyen előre megadott pólus-szerkezethez létezik olyan meromorf függvény, aminek pontosan azok a pólusai — a függvény szó szerint 'felépíthető' a szingularitásaiból.</b> Mittag-Leffler ezzel a konstruktív egzisztenciatétellel mutatta meg, hogy a komplex analízis nem csupán vizsgálja a függvényeket, hanem tervezni is lehet őket, mint egy mérnöki rendszert. A Weierstrass-féle szorzattétel testvérfogalma — az egyik a zérushelyekből, a másik a pólusokból épít.",
     "whyMore": "Az a_k az előírt pólusok helye, és az 1/(z−a_k) főrészek rögzítik az egyes pólusok körüli szinguláris viselkedést, míg a p_k(z) polinomok eltüntetik a kellemetlen, nem kívánt tagokat, hogy a darabok globálisan összeilleszthetők legyenek. A hozzáadott g(z) teljes függvény a reguláris részt igazítja ki anélkül, hogy a pólusokat megváltoztatná. Ez a Weierstrass-féle szorzattétel additív párja: az egyik a zérushelyekből, a másik a pólusokból „építi fel” a meromorf függvényt.",
     "wiki": "https://en.wikipedia.org/wiki/Mittag-Leffler-t%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1876
   },
   {
     "name": "Mandelbrot-halmaz",
@@ -1378,7 +1478,8 @@ const MATEK_DATA = [
     "why": "<b>Egyetlen, gyerekjáték-egyszerű iterációs szabály — négyzetre emelés és hozzáadás — végtelenül bonyolult, önhasonló határvonalat rajzol ki a komplex síkon.</b> Minden pontja egy teljes Julia-halmaz 'sorsát' kódolja: attól függően, hogy c benne van-e a halmazban, a hozzá tartozó iteráció korlátos marad vagy szétszalad a végtelenbe. A számítógépes grafika tette először láthatóvá — előtte senki nem sejtette, milyen barokkosan gazdag mintázat rejlik ebben az egyszerű képletben.",
     "whyMore": "Az iteráció z_{n+1}=z_n²+c a z₀=0 kezdőpontból indul, és a c pont akkor tartozik M-hez, ha az így kapott sorozat korlátos marad, vagyis nem szalad a végtelenbe. A menekülési sugár pontosan 2: ha valamikor |z_n|>2 lesz, a sorozat bizonyíthatóan divergál, tehát a tagság véges sok lépésben eldönthető. A határvonal barokkos bonyolultsága onnan ered, hogy c apró eltolása is átbillentheti a sorozatot korlátos és szétszaladó között.",
     "wiki": "https://en.wikipedia.org/wiki/Mandelbrot-halmaz",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1978
   },
   {
     "name": "Zorn-lemma",
@@ -1388,7 +1489,8 @@ const MATEK_DATA = [
     "why": "<b>Ha egy részbenrendezett halmazban minden láncnak van felső korlátja, akkor garantáltan létezik maximális elem — még ha a halmaz végtelen és 'megfoghatatlanul' bonyolult is.</b> A lemma bizonyíthatóan ekvivalens a kiválasztási axiómával, mégis sokkal gyakorlatiasabb formában: szinte minden algebrai struktúra (vektortér bázisa, ideál maximálissá bővítése) létezését ezzel bizonyítjuk, anélkül hogy explicit módon meg kellene konstruálnunk azt.",
     "whyMore": "Egy lánc a részbenrendezésben teljesen összehasonlítható (teljesen rendezett) részhalmaz, egy felső korlát pedig olyan elem, amely a lánc minden tagjánál nagyobb vagy egyenlő. A lemma szerint ha minden ilyen láncnak van felső korlátja, akkor folyamatosan „felfelé mászva” előbb-utóbb el kell érni egy maximális elemet, amelynél nincs nagyobb a halmazban. A végtelen „felfelé nyíló” lépcső kizárt, mert minden új elem egy láncot alkotna, amelynek újabb felső korlátot kellene adnia — ez ekvivalens a kiválasztási axiómával.",
     "wiki": "https://en.wikipedia.org/wiki/Zorn-lemma",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1935
   },
   {
     "name": "Gödel második nemteljességi tétele",
@@ -1398,7 +1500,8 @@ const MATEK_DATA = [
     "why": "<b>Egy elég erős, konzisztens formális rendszer nem tudja bebizonyítani a saját ellentmondásmentességét — önmagában.</b> Ez az első nemteljességi tétel közvetlen, de sokkal nyugtalanítóbb következménye: nemcsak hogy vannak eldönthetetlen állítások, hanem maga a rendszer 'megbízhatóságának' bizonyítéka is kicsúszik a kezeink közül. Hilbert programja — hogy a matematika ellentmondásmentességét véges eszközökkel igazolják — pontosan emiatt bukott meg.",
     "whyMore": "A Con(T) a rendszer saját „T konzisztens” állítása, amelyet Gödel-számozással aritmetikai formulaként írunk fel magában T-ben. A tétel kimondja, hogy ha T elég erős az elemi számelmélet leírásához és konzisztens, akkor T nem tudja bizonyítani Con(T)-t. Az első nemteljességi tétel önhivatkozó konstrukcióját újrafelhasználva látható be, hogy egy ilyen konzisztenciabizonyítás azonnal ellentmondáshoz vezetne.",
     "wiki": "https://en.wikipedia.org/wiki/G%C3%B6del_m%C3%A1sodik_nemteljess%C3%A9gi_t%C3%A9tele",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1931
   },
   {
     "name": "Kompaktsági tétel",
@@ -1408,7 +1511,8 @@ const MATEK_DATA = [
     "why": "<b>Ha egy végtelen elméletnek minden véges darabja konzisztens, akkor maga a teljes végtelen elmélet is konzisztens — a végtelenség 'ingyen' következik a végesből.</b> Ez a meglepő átmenet teszi lehetővé olyan egzotikus struktúrák létezésének bizonyítását, mint a nemsztenderd valós számok (végtelenül kicsi és nagy elemekkel) — pusztán logikai eszközökkel, konkrét konstrukció nélkül.",
     "whyMore": "A Σ egy logikai állításokból álló (végtelen) halmaz, a véges kielégíthetőség azt jelenti, hogy Σ minden véges részhalmazának van modellje. Egy az igazságértékek térszét használó (topológiai vagy ultrafilter) érveléssel belátható, hogy ha egyetlen véges rész sem ellentmondásos, akkor létezik egyetlen modell, amely az összes Σ-beli állítást egyszerre kielégíti. Emiatt az ellentmondásmentes végtelen elméleteknek mindig van – gyakran nem szabványos – modelljük.",
     "wiki": "https://en.wikipedia.org/wiki/Kompakts%C3%A1gi_t%C3%A9tel",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1930
   },
   {
     "name": "Kolmogorov-axiómák",
@@ -1418,7 +1522,8 @@ const MATEK_DATA = [
     "why": "<b>Három egyszerű szabály — és a valószínűségszámítás egy évszázados, intuícióra épülő gyakorlata egyszerre válik szigorú matematikává.</b> Kolmogorov a mértékelméletet alkalmazta a véletlenre: a valószínűség nem más, mint egy speciális mérték. Ez az axiomatizálás tette lehetővé, hogy a valószínűségszámítás ugyanolyan biztos lábakon álljon, mint a geometria vagy az analízis — és hogy értelmet nyerjen a folytonos valószínűségi változók fogalma is.",
     "whyMore": "Az Ω az eseménytér, P pedig az eseményeken értelmezett halmazfüggvény. A három axióma – a teljes valószínűség 1, a nemnegativitás, és diszjunkt eseményeknél az unió valószínűsége a tagok összege – éppen azt mondja ki, hogy P egy teljes tömegű (egységnyi) mérték. Így a véletlen a megszámlálhatóan additív mértékelmélet nyelvére fordul, ami a folytonos valószínűségi változók és a határeloszlások szigorú kezelését is lehetővé teszi.",
     "wiki": "https://en.wikipedia.org/wiki/Kolmogorov-axi%C3%B3m%C3%A1k",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1933
   },
   {
     "name": "Borel–Cantelli-lemma",
@@ -1428,7 +1533,8 @@ const MATEK_DATA = [
     "why": "<b>Ha egy véletlen esemény bekövetkezési valószínűségeinek összege véges, akkor szinte biztos, hogy csak véges sokszor következik be — sosem végtelen sokszor.</b> Ez a meglepően egyszerű összefüggés a modern valószínűségszámítás egyik legtöbbet használt technikai eszköze: innen indul a nagy számok erős törvényének, a véletlen bolyongások és a sztochasztikus folyamatok hosszú távú viselkedésének vizsgálata.",
     "whyMore": "Ha Σ P(A_n) véges, akkor a valószínűségek összege korlátos, és a megszámlálható szubadditivitás miatt a végtelen sok A_n bekövetkezésének valószínűsége legfeljebb a farokösszegek nullához tartó maradéka. Vagyis 1 valószínűséggel legfeljebb véges sok A_n következik be: a ritka események, amelyeknek az összvalószínűsége summázható, nem fordulhatnak elő végtelenszer. Ezért ez a technikai eszköz a nagy számok törvényeinek és a sztochasztikus folyamatok hosszú távú viselkedésének kiindulópontja.",
     "wiki": "https://en.wikipedia.org/wiki/Borel%E2%80%93Cantelli-lemma",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1909
   },
   {
     "name": "Nagy eltérések elmélete",
@@ -1438,7 +1544,8 @@ const MATEK_DATA = [
     "why": "<b>Nem csak azt tudjuk, hogy a véletlen átlag konvergál a várható értékhez — azt is, milyen exponenciálisan valószínűtlen egy attól távoli kilengés.</b> Az 'sebesség-függvény' (I) pontosan megmondja, mennyire ritka egy adott mértékű eltérés — ez teszi lehetővé a biztosítási kockázatok, a hálózati torlódások és a statisztikus fizika fázisátmeneteinek precíz becslését. Cramér eredetileg biztosítási csőd-valószínűségeket vizsgált, amikor rábukkant az elméletre.",
     "whyMore": "Az X̄_n az n független, azonos eloszlású változó mintaátlaga, I(a) pedig a sebességfüggvény, amely megadja az a-tól való eltérés „költségét”, gyakran relatív entrópiaként. A P(X̄_n≥a)≈e^{−n·I(a)} becslés szerint a nagy eltérések valószínűsége exponenciálisan, n-ben lineáris kitevővel csökken, és az exponenst a I(a) szabja meg. A I(a) függvényt a momentumgeneráló függvény Legendre–Fenchel-transzformációjával kapjuk, ami pontos becslést ad a biztosítási csődök, hálózati torlódások és a statisztikus fizika fázisátmeneteinek farkára.",
     "wiki": "https://en.wikipedia.org/wiki/Nagy_elt%C3%A9r%C3%A9sek_elm%C3%A9lete",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1938
   },
   {
     "name": "Dilworth-tétel",
@@ -1448,7 +1555,8 @@ const MATEK_DATA = [
     "why": "<b>Egy részbenrendezett halmaz felbontható annyi láncra, ahány elemű a legnagyobb 'egymással össze nem hasonlítható' elemekből álló csoport — sem többre, sem kevesebbre.</b> Ez a dualitási tétel a gráfelmélet és a kombinatorikus optimalizálás egyik alappillére, közeli rokona a König-tételnek és a max-flow-min-cut tételnek — mindhárom ugyanazt a mély elvet fejezi ki más-más nyelven: a legnagyobb 'akadály' pontosan megegyezik a legkisebb 'megoldással'.",
     "whyMore": "Egy lánc a részbenrendezésben páronként összehasonlítható elemek halmaza, egy antilánc pedig páronként összehasonlíthatatlan elemeké. A tétel szerint a pozethalmaz fedéséhez szükséges legkevesebb lánc száma pontosan megegyezik a legnagyobb antilánc méretével – ezt úgy láthatjuk be, hogy ismételten eltávolítjuk a maximális antiláncot, minden eltávolítás egy láncnak felel meg. Ez ugyanazt a duális elvet fogalmazza meg, mint a König- és a max-flow-min-cut tételek a páros gráfok párosításában.",
     "wiki": "https://en.wikipedia.org/wiki/Dilworth-t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1950
   },
   {
     "name": "Menger-tétel",
@@ -1458,7 +1566,8 @@ const MATEK_DATA = [
     "why": "<b>Két csúcs között annyi teljesen független útvonal létezik egy hálózatban, amennyi élt minimálisan el kell vágni ahhoz, hogy szétválasszuk őket.</b> Menger egyetemi szemináriumon vetette fel a kérdést, és a bizonyítás azóta a hálózati folyam-elmélet (max-flow-min-cut) egyik ősforrása lett. Minden internetes útvonalválasztási protokoll, ami a hálózat 'hibatűrését' méri, hallgatólagosan erre a tételre épül.",
     "whyMore": "Két csúcs, s és t esetén az éldiszjunkt utak nem osztanak meg egyetlen élt sem, a minimális elvágó élhalmaz pedig a legkevesebb olyan él, amelynek eltávolítása s-t összeköttetését megszünteti. Menger egyenlősége szerint e két szám egyenlő, mivel bármely maximális darabú független útrendszer minden s-t elvágását kényszeríti, hogy útonként legalább egy élt használjon. Ez a kombinatorikus tény a hálózati folyam-elmélet, közelebbről a max-flow-min-cut tétel ősforrása.",
     "wiki": "https://en.wikipedia.org/wiki/Menger-t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1927
   },
   {
     "name": "Catalan-számok",
@@ -1468,7 +1577,8 @@ const MATEK_DATA = [
     "why": "<b>Egyetlen számsorozat számolja meg a helyesen zárójelezett kifejezéseket, a bináris fákat, a sokszög-háromszögeléseket és tucatnyi más, látszólag teljesen független kombinatorikus struktúrát.</b> A Catalan-számok az egyik legszebb példa arra, hogy a matematikában ugyanaz a mintázat váratlanul sok, egymástól függetlennek tűnő helyen bukkan fel — informatikusok a bináris fák számolásához, kombinatorikusok a zárójelezésekhez használják, és mindig ugyanazt a képletet kapják.",
     "whyMore": "A C_n az n méretű sokféle kombinatorikai struktúrát számolja meg a C_{n+1}=Σ C_i·C_{n−i} rekurzió révén, ami a bináris fák vagy Dyck-utak felbontásából adódik, és zárt alakban C_n=(1/(n+1))·(2n választ n). A 1/(n+1) korrekciós tényező a (2n választ n) túlszámlálását igazítja: a reflexiós elvvel kivonja az érvénytelen, nem Dyck-típusú utakat. Így ugyanaz a zárt képlet írja le a helyes zárójelezéseket, a sokszögek háromszögeléseit és a hegymintákat is.",
     "wiki": "https://en.wikipedia.org/wiki/Catalan-sz%C3%A1mok",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1838
   },
   {
     "name": "Neumann-féle minimax-tétel",
@@ -1478,7 +1588,8 @@ const MATEK_DATA = [
     "why": "<b>Egy kétszemélyes, zéróösszegű játékban mindig létezik olyan stratégia-pár, ahol egyik fél sem tud egyoldalúan javítani a helyzetén — a 'legjobb legrosszabb eset' pontosan megegyezik a 'legrosszabb legjobb esettel'.</b> Neumann János ezzel a tétellel alapította meg a modern játékelméletet, jóval Nash egyensúlyfogalma előtt. Katonai stratégiától a piaci árképzésig és a gépi tanulásbeli ellenséges hálózatokig (GAN-ok) mindenhol ez az elv húzódik meg a háttérben.",
     "whyMore": "A f(x,y) kifejezés a játékosok kifizetését jelöli: x a soros, y az oszlopos játékos stratégiája, az érték a soros nyeresége. A bal oldal azt mondja: a soros előbb rögzíti x-et, aztán az ellenfél a saját szempontjából legrosszabbat választja (min_y), ezt a legrosszabb esetet maximalizálja (max_x). A jobb oldal ugyanez fordítva: az oszlopos előbb véd, a soros a legjobbat játssza. Az egyenlőség azt jelenti, hogy létezik a játéknak egy jól meghatározott értéke v, amit egyik fél sem tud egyoldalúan túllépni — a tétel a biztonságos stratégiák egyensúlyáról szól, nem a nyerésről.",
     "wiki": "https://en.wikipedia.org/wiki/Neumann-f%C3%A9le_minimax-t%C3%A9tel",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1928
   },
   {
     "name": "Poincaré–Hopf-tétel",
@@ -1488,7 +1599,8 @@ const MATEK_DATA = [
     "why": "<b>Egy vektormező szingularitásainak 'örvényessége' — összeadva mindet — pontosan megegyezik a felület Euler-karakterisztikájával, függetlenül attól, milyen vektormezőt választunk.</b> Ez a Sündisznó-tétel (amit a gyűjteményben már érintettünk) messzemenő általánosítása: nem csak azt mondja meg, mikor lehetetlen a sehol-nulla vektormező, hanem pontosan megszámolja, hány és milyen típusú szingularitás garantált. A topológia és az analízis egyik legszebb hídja — tisztán geometriai mennyiség (görbület) és tisztán algebrai invariáns (Euler-karakterisztika) között.",
     "whyMore": "Az ind(x_i) a vektormező i-edik zéruspontjának indexe, azaz hogy a vektorok a szingularitás körül hányszor forognak meg, míg egyszer körbejárjuk (például forrás: +1, nyereg: -1). A χ(M) az M felület Euler-karakterisztikája, egy tisztán topologikai szám (gömbre 2, tóruszra 0). A tétel szerint bármilyen vektormezőt választunk, a szingularitások indexeinek összege mindig pontosan χ(M) — vagyis a felület globális topológiája kényszeríti a helyi szingularitások összesített örvényességét. Ezért lehetetlen a gömbön sehol-nulla vektormező: az összeg 2, de nulla szingularitással 0 jönne ki.",
     "wiki": "https://en.wikipedia.org/wiki/Poincar%C3%A9%E2%80%93Hopf-t%C3%A9tel",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1885
   },
   {
     "name": "Jordan–Brouwer szétválasztási tétel",
@@ -1498,7 +1610,8 @@ const MATEK_DATA = [
     "why": "<b>Egy egyszerű, zárt (n-1)-dimenziós felület mindig pontosan két részre — egy belsőre és egy külsőre — vágja szét a teret, akárhány dimenzióban is vagyunk.</b> Síkban ez a Jordan-görbetétel (amit a gyűjteményben már érintettünk) — 'minden zárt görbének van belseje és külseje', ami triviálisnak tűnik, míg valaki meg nem próbálja szigorúan bebizonyítani. Brouwer általánosította tetszőleges dimenzióra, olyan topologikus eszközökkel (homológia), amik nélkül a magasabb dimenziós geometria ma elképzelhetetlen lenne.",
     "whyMore": "Az S^{n-1} egy (n-1)-dimenziós, egységesen sima, zárt felület (például n=3 esetén egy gömbfelszín) a ℝ^n térben. A tétel szerint ennek elhagyásával a tér pontosan két összefüggő komponensre esik szét: egy belső (korlátos) és egy külső (korlátlan) részre, amelyek csak a felületen érintkeznek. A ⊔ (diszjunkt unió) jelzi, hogy a kettő nem keveredik egymással. Intuitívan: akárhány dimenzióban vagyunk, egy gömb ugyanúgy falat húz a végtelen tér és a belseje közé — ezt a homológiai eszközök teszik szigorúvá.",
     "wiki": "https://en.wikipedia.org/wiki/Jordan%E2%80%93Brouwer_sz%C3%A9tv%C3%A1laszt%C3%A1si_t%C3%A9tel",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1912
   },
   {
     "name": "Theorema Egregium",
@@ -1508,7 +1621,8 @@ const MATEK_DATA = [
     "why": "<b>Egy felület görbülete kiszámítható pusztán a felületen belül végzett mérésekkel — anélkül, hogy tudnánk, hogyan van 'begörbítve' a körülötte lévő térbe.</b> Gauss annyira büszke volt erre a felfedezésre, hogy 'kivételes tételnek' (Theorema Egregium) nevezte el. Ez a meglepő eredmény jelenti ki: egy hangya, ami sosem hagyja el egy gömb felszínét, pusztán a felszínen végzett mérésekkel rájöhetne, hogy gömbön él, nem síkon — ez az alapja annak is, hogy egy térképet sosem lehet torzításmentesen síkba teríteni.",
     "whyMore": "Az E, F, G az első alapforma együtthatói (a felület belső távolságmérését írják le), az L, M, N a második alapformáéi (a környező térbe való hajlást). A K görbület ezek hányadosa, és a lényeg: kizárólag E, F, G-ből és azok deriváltjaiból kiszámolható, a második alapforma nélkül is. Vagyis a görbület intrinsic mennyiség — egy két dimenziós lény a felületen belül is megmérheti, anélkül, hogy a harmadik dimenzióba kilépne. Ezért nem teríthető egy gömb felülete torzítás nélkül síkra: pozitív K-ja van, a síké nulla, és a belső metrika puszta áttekercseléssel nem változhat meg.",
     "wiki": "https://en.wikipedia.org/wiki/Theorema_Egregium",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1827
   },
   {
     "name": "Königsberg hidak problémája",
@@ -1518,7 +1632,8 @@ const MATEK_DATA = [
     "why": "<b>A königsbergi polgárok évszázadokig próbáltak olyan sétautat találni, ami a város mind a hét hídján pontosan egyszer halad át — Euler bebizonyította, hogy ez lehetetlen.</b> A megoldás kulcsa az volt, hogy a földrajzi részleteket teljesen elhagyva, a városrészeket pontokká, a hidakat vonalakká egyszerűsítette — ezzel gyakorlatilag megszülte a gráfelméletet, mint önálló matematikai diszciplínát. Ritkán esik egybe egy tudományterület kezdete ilyen pontosan egyetlen cikkel.",
     "whyMore": "Az Euler-út egy olyan séta, amely minden élen pontosan egyszer halad át. A feltétel szerint ilyen út akkor és csak akkor létezik, ha a gráf összefüggő és legfeljebb két csúcsnak páratlan a foka (az oda vezető és onnan induló élek száma). A két páratlan fokú csúcs pont a kezdő- és végpont lehet; ha nulla páratlan van, zárt körút adódik. Königsbergben mind a négy szigetnek 3 vagy 5 hídja volt, vagyis mind páratlan fokú — ezért volt lehetetlen a hét hidat egyszer átszelő séta.",
     "wiki": "https://en.wikipedia.org/wiki/K%C3%B6nigsberg_hidak_probl%C3%A9m%C3%A1ja",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1736
   },
   {
     "name": "Skatulya-elv (Dirichlet-elv)",
@@ -1528,7 +1643,8 @@ const MATEK_DATA = [
     "why": "<b>Ha n+1 galambot n fészekbe teszel, garantáltan lesz olyan fészek, amiben legalább kettő van — ez a matematika egyik legegyszerűbb, mégis meglepően sokat érő állítása.</b> A tétel önmagában szinte magától értetődő, mégis a legváratlanabb helyeken bukkan fel bizonyítási eszközként: két ember hajszálszáma garantáltan megegyezik egy nagyvárosban, vagy hogy egy irracionális szám tizedesjegyei között garantáltan van ismétlődő minta. A mélység nem az állításban, hanem abban rejlik, hogyan alkalmazzuk.",
     "whyMore": "A formula n+1 tárgyat oszt n fiókba: ha minden fiók legfeljebb 1 tárgyat kapna, összesen csak n tárgy férne el, de n+1 van — ezért valamelyik fiókban legalább 2-nek kell lennie. Ez a tiszta létezési következtetés: nem mondjuk meg, melyik fiók, csak azt, hogy kötelezően van olyan. Az elv ereje az átfogalmazásban rejlik — úgy kell csomagolni a problémát, hogy a tárgyak és fiókok száma közötti különbség kikényszerítse a kívánt ismétlődést.",
     "wiki": "https://en.wikipedia.org/wiki/Skatulya-elv_%28Dirichlet-elv%29",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1834
   },
   {
     "name": "Valószínűségi módszer",
@@ -1538,7 +1654,8 @@ const MATEK_DATA = [
     "why": "<b>Ahhoz, hogy bebizonyítsuk egy bizonyos tulajdonságú objektum létezését, nem kell megkonstruálnunk — elég megmutatni, hogy egy véletlenszerűen választott objektumnak pozitív valószínűséggel van meg ez a tulajdonsága.</b> Erdős Pál forradalmasította ezzel a kombinatorikát: olyan struktúrák (extremális gráfok, Ramsey-számok alsó korlátai) létezését bizonyította, amiket a mai napig senki sem tudott explicit módon megkonstruálni. Az egyik legszebb példa arra, hogy a véletlen néha hatékonyabb bizonyítási eszköz, mint a direkt konstrukció.",
     "whyMore": "A P(tulajdonság) > 0 azt jelenti, hogy egy véletlenül választott objektumnak pozitív eséllyel megvan a kívánt tulajdonság. Ha a valószínűség nem nulla, akkor léteznie kell legalább egy konkrét objektumnak, amely rendelkezik vele — különben a valószínűség 0 lenne. A trükk: nem kell megmutatni egyetlen példát sem, elég a valószínűségi teret jól megválasztani és kimutatni, hogy a rossz objektumok aránya 1-nél kisebb. Így olyan extremális gráfok létezését is belátjuk, amelyeket máig nem sikerült explicit leírni.",
     "wiki": "https://en.wikipedia.org/wiki/Val%C3%B3sz%C3%ADn%C5%B1s%C3%A9gi_m%C3%B3dszer",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1947
   },
   {
     "name": "Markov-egyenlőtlenség",
@@ -1548,7 +1665,8 @@ const MATEK_DATA = [
     "why": "<b>A legegyszerűbb lehetséges korlát arra, mekkora eséllyel vesz fel egy nemnegatív véletlen változó nagy értéket — mindössze a várható értékből.</b> Nincs szükség az eloszlás formájának ismeretére, semmilyen feltételezésre — ez az ára annak, hogy a korlát gyakran nagyon 'laza'. Mégis ez az alapköve a Csebisev-egyenlőtlenségnek (amit a gyűjteményben már érintettünk) és rajta keresztül a nagy számok törvényének is — az egész valószínűségi becsléselmélet erre az egyetlen, triviálisan egyszerű állításra épül.",
     "whyMore": "X egy nemnegatív véletlen változó, E[X] a várható értéke, a pedig egy küszöb. A bizonyítás magva: az E[X] átlagos érték nem lehet kisebb, mint a nagy értékek súlyozott átlaga — hiszen ha X≥a esetekben X helyett csak a-t számoljuk, az alsó becslést adja a várhatónak, így E[X] ≥ a·P(X≥a). Az egyenlőtlenség minden eloszlásra igaz, mert nem használ mást, csak a nemnegativitást és a lineáris várakozási értéket. Minél nagyobb az a, annál kisebb a felső korlát — ezért laza, de univerzális.",
     "wiki": "https://en.wikipedia.org/wiki/Markov-egyenl%C5%91tlens%C3%A9g",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1884
   },
   {
     "name": "Jensen-egyenlőtlenség",
@@ -1558,7 +1676,8 @@ const MATEK_DATA = [
     "why": "<b>Egy konvex függvénybe behelyettesített átlag mindig kisebb vagy egyenlő, mint a függvényértékek átlaga — a görbület 'árat' szab a véletlenszerűségnek.</b> Ez az egyetlen egyenlőtlenség rejtőzik a számtani-mértani közép egyenlőtlenség, az entrópia tulajdonságai és a pénzügyi kockázatelmélet (miért félünk jobban a veszteségtől, mint amennyire örülünk az ugyanakkora nyereségnek) mögött is. Jensen dán matematikusként, biztosítási statisztikusi munkája mellett dolgozta ki.",
     "whyMore": "f konvex: a grafikonja alatt van a szakasznak, tehát a középpont fölött domborodik (például x², eˣ). Ha X véletlen, akkor E[X] a középpont, f(E[X]) a görbe ezen a ponton vett értéke, míg E[f(X)] a görbe menti értékek átlaga. Mivel a konvex görbe kifelé domborodik, az átlag a görbén feljebb esik, mint a görbe középértéken vett magassága: f(E[X]) ≤ E[f(X)]. Ez magyarázza többek között, miért kedvezőbb a biztos kis nyereség a kockázatos nagy átlagnál — a várható haszon konkáv, a kockázat lehúzza a görbét.",
     "wiki": "https://en.wikipedia.org/wiki/Jensen-egyenl%C5%91tlens%C3%A9g",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1906
   },
   {
     "name": "Kruskal-algoritmus",
@@ -1568,7 +1687,8 @@ const MATEK_DATA = [
     "why": "<b>Egy hálózat legolcsóbb 'gerincét' — ami minden pontot összeköt, de a lehető legkevesebb költséggel — elég mohó módon, mindig a legolcsóbb következő élt választva megtalálni.</b> Meglepő, hogy egy ilyen egyszerű, 'kapkodó' stratégia garantáltan optimális megoldást ad — ezt a tulajdonságot (matroid-szerkezet) csak évtizedekkel később értették meg teljesen. Minden távközlési hálózat, elektromos elosztóhálózat és úthálózat-tervezés tervezésekor ez az első algoritmus, amit lefuttatnak.",
     "whyMore": "A mohó itt azt jelenti: a minimális feszítőfa építésekor mindig a legkisebb súlyú, még körmentes élt vesszük be. A kulcs: ha egy élt kihagynánk a legkisebbtől, azt egy drágábbal kellene pótolni ugyanazon komponens összekötéséhez — tehát a mohó választás lokálisan is és globálisan is optimális marad (ez a matroid-tulajdonság). Mivel mindig a legolcsóbb elérhető élt visszük be kör nélkül, a végén pont a minimális összköltségű összekötés marad. A körök elkerülését diszjunkt halmazok (union-find) segítségével döntjük el hatékonyan.",
     "wiki": "https://en.wikipedia.org/wiki/Kruskal-algoritmus",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1956
   },
   {
     "name": "Huffman-kódolás",
@@ -1578,7 +1698,8 @@ const MATEK_DATA = [
     "why": "<b>A leggyakoribb szimbólumoknak a legrövidebb kódot adva, majd lépésről lépésre összevonva a legritkábbakat, garantáltan a lehető legrövidebb átlagos kódhosszt kapjuk.</b> David Huffman ezt egy egyetemi szemináriumi feladatként oldotta meg — professzora, Fano éveken át kutatta a problémát, és a fiatal Huffman jobb megoldást talált, mint a mestere. Minden ZIP-fájl, JPEG-kép és a legtöbb tömörítési szabvány valahol a mélyben ezt az egyszerű, mohó fastruktúra-építést futtatja.",
     "whyMore": "A cél a Σ p_i·l_i várható kódhossz minimalizálása, ahol p_i az i-edik szimbólum gyakorisága és l_i a hozzárendelt kód hossza. Huffman eljárása a két legritkább szimbólumot egyesíti egy közös csomóponttá, és ezt ismétli felfelé egy bináris fát építve – így a gyakori szavak a gyökér közelébe, a ritkák a mélybe kerülnek. Az eredmény prefix-kód, amely optimális: egyetlen más prefix-kód sem ad kisebb várható bitszükségletet.",
     "wiki": "https://en.wikipedia.org/wiki/Huffman-k%C3%B3dol%C3%A1s",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1952
   },
   {
     "name": "Radon-transzformáció",
@@ -1588,7 +1709,8 @@ const MATEK_DATA = [
     "why": "<b>Egy test belsejének teljes szerkezete rekonstruálható pusztán abból, hogy sok különböző irányból megmérjük, mennyi sugárzás nyelődik el benne.</b> Radon 1917-ben tisztán absztrakt matematikai kíváncsiságból dolgozta ki a tételt — fél évszázaddal a CT-szkenner feltalálása előtt. Amikor Hounsfield és Cormack az 1970-es években megépítették az első komputertomográfot, kiderült, hogy a matematikai megoldás már ötven éve készen várta őket. Ma naponta több millió orvosi képalkotó vizsgálat fut ezen az inverz transzformáción.",
     "whyMore": "A ℛf(θ,s) a test f denzitásának a θ irányú, s távolságú egyenes menti összege — mintha egy sugarat küldenénk át és mérnénk, mennyit nyelődik el. A δ (Dirac-delta) azt rögzíti, hogy csak az adott egyenesen lévő pontok számítanak, az integrál végigfut az egyenesen (dl). A Radon-transzformált tehát a test vetületeit adja minden irányból, és a tétel szerint ezekből az egyenes-menti összegekből a test belső eloszlása egyértelműen visszanyerhető. Ez a CT- és MRI-képek számítási alapja: a gép sugarakat küld át, mi pedig Radon inverzével rakjuk össze a metszetet.",
     "wiki": "https://en.wikipedia.org/wiki/Radon-transzform%C3%A1ci%C3%B3",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1917
   },
   {
     "name": "Lorenz-attraktor (pillangóhatás)",
@@ -1599,7 +1721,8 @@ const MATEK_DATA = [
     "why": "<b>Három egyszerű, determinisztikus egyenlet — mégis a megoldásuk örökre kiszámíthatatlan marad, mert a kezdőfeltételek milliomod részének megváltoztatása is teljesen más pályához vezet.</b> Lorenz véletlenül fedezte fel, amikor egy időjárás-szimulációt újraindított kerekített kezdőértékekkel, és teljesen más eredményt kapott. Ez a felismerés (a 'pillangóhatás') alapjaiban változtatta meg az időjárás-előrejelzésről, a hosszú távú tervezhetőségről és a determinizmusról alkotott képünket.",
     "whyMore": "A három egyenlet x, y, z változók időbeli változását írja le (σ a disszipáció, ρ a hajtó hőmérséklet-különbség, β a geometriai tényező). A rendszer determinisztikus: nincs benne véletlen, az egyenletek pontosan megadják a deriváltakat. Mégis a két legközelebbi kezdőpont pályája exponenciálisan szétválik — a hiba minden lépésben egy σ, ρ, β-től függő tényezővel nő. Emiatt a távoli jövőre a pontos előrejelzés lehetetlen: a kezdőfeltételeket soha nem ismerjük végtelen pontossággal, tehát a pillangó szárnycsapása valóban másfajta időjárást okozhat.",
     "wiki": "https://en.wikipedia.org/wiki/Lorenz-attraktor_%28pillang%C3%B3hat%C3%A1s%29",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1963
   },
   {
     "name": "Newton–Raphson-módszer",
@@ -1609,7 +1732,8 @@ const MATEK_DATA = [
     "why": "<b>Egy egyenlet megoldásához nem kell zárt képlet — elég egy tipp, és az érintő mentén csúszva néhány lépésben elképesztő pontossággal megtaláljuk a gyököt.</b> A módszer kvadratikusan konvergál: minden lépésben nagyjából megduplázódik a helyes tizedesjegyek száma. Ma minden mérnöki szoftver, gépi tanulási optimalizáló és numerikus megoldó ezen (vagy egy leszármazottján) alapul — talán a legtöbbet futtatott numerikus algoritmus a történelemben.",
     "whyMore": "f(x_n) a függvényérték a n-edik tippnél, f'(x_n) az érintő meredeksége. Az új tipp x_{n+1} úgy jön, hogy az érintőt lenyúzzuk a görbéig: a hányados megmondja, mennyit kell lépni x irányban, hogy az érintő nullához érjen. Mivel a görbe lokálisan majdnem egyenes, a következő tipp már sokkal közelebb van a valódi gyökhoz — és ha közel vagyunk, a hiba négyzete (kvadratikus konvergencia) csökken. Vigyázat: rossz indulótippnél vagy lapos érintőnél (f'≈0) az eljárás elszállhat, de jó közelítésből villámgyors.",
     "wiki": "https://en.wikipedia.org/wiki/Newton%E2%80%93Raphson-m%C3%B3dszer",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1669
   },
   {
     "name": "Monte Carlo-módszer",
@@ -1619,7 +1743,8 @@ const MATEK_DATA = [
     "why": "<b>Bonyolult, sokdimenziós problémákat úgy oldunk meg, hogy nem kiszámoljuk, hanem véletlenszerűen 'lövöldözünk' rá, és megnézzük, mi jön ki átlagban.</b> Stanislaw Ulam betegen, pasziánszozás közben jött rá az ötletre; a Manhattan-projekt neutron-diffúziós számításaihoz fejlesztették ki Neumann Jánossal. Ma a pénzügyi kockázatelemzéstől a részecskefizikai szimulációkig és a modern AI-modellek mintavételezéséig mindenhol ez fut — a szisztematikus véletlen mint számítási eszköz.",
     "whyMore": "Az I integrál értéke a keresett terület vagy térfogat; V a mintázási tartomány térfogata, N a lövések száma. A trükk: N darab véletlen x_i pontot dobunk egyenletesen (U) a tartományba, kiszámoljuk f(x_i)-t, és átlagoljuk — a V/N súly a becslést a térfogatra skálázza. A minták átlaga a nagy számok törvénye miatt konvergál az igazi integrálhoz, a hiba pedig csak 1/√N -zel csökken, lassan, de dimenziótól függetlenül. Ezért sokdimenziós integráloknál a Monte Carlo sokkal jobb, mint a rácsos módszerek, amelyeknél a pontok száma exponenciálisan robban.",
     "wiki": "https://en.wikipedia.org/wiki/Monte_Carlo-m%C3%B3dszer",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1946
   },
   {
     "name": "Bézier-görbék",
@@ -1629,7 +1754,8 @@ const MATEK_DATA = [
     "why": "<b>Néhány kontrollpont elegendő ahhoz, hogy tetszőlegesen sima, elegáns görbét definiáljunk — amit a számítógép pontosan és gyorsan ki tud rajzolni.</b> Bézier a Renault autókarosszériáinak tervezéséhez dolgozta ki (a rivális Citroënnél de Casteljau egymástól függetlenül ugyanezt). Ma minden betűtípus körvonala, minden vektorgrafikus rajz, minden animációs mozgásgörbe és CAD-modell ezekre a polinomokra épül — ritkán van ilyen közvetlen út az ipari tervezéstől a mindennapi digitális élményig.",
     "whyMore": "A P_i kontrollpontok, a binomiális együtthatókkal súlyozott (1-t)^{n-i}t^i tagok pedig az átmeneti súlyok t=0 és t=1 között. Minden t értékre a görbe pontja a kontrollpontok súlyozott átlaga (Bernstein-polinomokkal) — t=0-nál P_0-nél, t=1-nél P_n-nél vagyunk, közben a görbe vonzódik a többi pont felé anélkül, hogy átmenne rajtuk. Ez teszi könnyen vezérelhetővé: a tervező húzza a kontrollpontokat, a görbe simán követi. A de Casteljau-algoritmussal rekurzívan, stabilan ki is számolható bármely t-re, ezért használják betűtípusoknál és CAD-ben.",
     "wiki": "https://en.wikipedia.org/wiki/B%C3%A9zier-g%C3%B6rb%C3%A9k",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1962
   },
   {
     "name": "Hibavisszaterjesztés (backpropagation)",
@@ -1639,7 +1765,8 @@ const MATEK_DATA = [
     "why": "<b>Egy sokrétegű neurális háló minden egyes súlyáról kiszámítható, mennyivel járult hozzá a hibához — a láncszabályt visszafelé alkalmazva a kimenettől a bemenet felé.</b> Az ötlet önmagában nem új (a láncszabály Leibniz óta ismert), de a felismerés, hogy ezzel gyakorlatban is taníthatók mély hálózatok, elindította a modern mesterséges intelligencia forradalmát. Minden ma használt AI-modell — a képfelismeréstől a nyelvi modellekig — ezen az egyetlen deriválási trükkön tanul.",
     "whyMore": "A hiba E a kimeneteken keresztül minden súlytól függ, ezért a láncszabállyal a ∂E/∂w_ij parciális derivált felírható mint a j-edik neuron helyi hibajele (δ_j) szorozva az i-edik neuron oda érkező aktivációjával (o_i). Maga a δ_j is visszafelé terjed: a következő réteg δ-jeinek súlyozott összege és az aktiváció deriváltjának szorzata. Így egyetlen visszairányú átmenettel minden súly gradiense kiszámolható, ami lehetővé teszi a gradiensmódszert milliárdnyi paraméteren.",
     "wiki": "https://en.wikipedia.org/wiki/Hibavisszaterjeszt%C3%A9s_%28backpropagation%29",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1986
   },
   {
     "name": "Diffie–Hellman-kulcscsere",
@@ -1649,7 +1776,8 @@ const MATEK_DATA = [
     "why": "<b>Két ember megegyezhet egy közös titkos kulcsban egy nyilvános, lehallgatott csatornán keresztül — anélkül, hogy a kulcs valaha is átmenne a vonalon.</b> Ez a lehetetlennek tűnő trükk (a diszkrét logaritmus nehézségén alapulva) teremtette meg a nyilvános kulcsú kriptográfiát, egy évvel az RSA (amit a gyűjteményben már érintettünk) előtt. Minden HTTPS-kapcsolat, minden VPN és titkosított üzenetküldő alkalmazás valamilyen formában ezt a kulcscserét hajtja végre a háttérben.",
     "whyMore": "Alice választ egy titkos a-t és elküldi g^a mod p-t, Bob egy titkos b-t és küldi g^b mod p-t; a közös kulcs mindkettőjüknél g^{ab} mod p = (g^a)^b = (g^b)^a mod p. A lehallgató csak g^a-t és g^b-t látja, de a g^{ab} visszanyeréséhez a diszkrét logaritmust kellene megoldania (a-t kinyerni g^a mod p-ből), ami nagy p esetén számításigényűen lehetetlen. Így azonos titokhoz jutnak anélkül, hogy az valaha is átment volna a csatornán.",
     "wiki": "https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman-kulcscsere",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1976
   },
   {
     "name": "Hamming-kód",
@@ -1659,7 +1787,8 @@ const MATEK_DATA = [
     "why": "<b>Néhány okosan elhelyezett paritásbit hozzáadásával egy üzenet nemcsak felismeri, de automatikusan ki is javítja a benne keletkezett hibát — anélkül, hogy újra kellene küldeni.</b> Hamming a Bell Labs-nál dühöngött, mert a hétvégi számítógépes futtatásai mindig elhaltak egyetlen bithibán — így megalkotta a hibajavító kódolás elméletét. Minden RAM-modul, műholdas adatátvitel, QR-kód és mélyűri szondaüzenet ezen az elven marad épségben a zajos csatornákon.",
     "whyMore": "r paritásbittel 2^r féle szindróma képezhető; ebből egy jelenti a „hibátlan“ állapotot, a maradék címezi a m+r adat- és ellenőrzőpozíciót, ezért kell 2^r ≥ m+r+1. A paritásbiteket 2-es hatvány pozíciókra (1,2,4,8…) teszi, és a kiflitott bit pozícióinak kizáró vagy kapcsolata pont a hibás bit bináris indexét adja. Egyetlen hiba így nemcsak észlelhető, hanem azonnal helyre is állítható újraküldés nélkül.",
     "wiki": "https://en.wikipedia.org/wiki/Hamming-k%C3%B3d",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1950
   },
   {
     "name": "Galois-elmélet",
@@ -1669,7 +1798,8 @@ const MATEK_DATA = [
     "why": "<b>Egy polinomegyenlet gyökei akkor és csak akkor fejezhetők ki gyökjelekkel, ha a hozzá tartozó szimmetriacsoport 'feloldható' — ezzel dőlt el 300 év után, hogy az ötödfokú egyenletre nincs általános megoldóképlet.</b> Galois húszévesen, egy párbaj előtti éjszakán vetette papírra az elmélet vázlatát, majd másnap meghalt. Az általa megalkotott csoportelmélet ma az egész modern algebra alapja — a kriptográfiától a részecskefizika szimmetriáiig.",
     "whyMore": "Egy polinom gyökeit tartalmazó felbontási testnek van egy Gal(K/F) szimmetriacsoportja, amely a gyökök összes mezőművelettel kompatibilis permutációját írja le. Akkor és csak akkor létezik gyökjelképlet, ha ez a csoport feloldható, azaz van egy minden tényezője Abel-csoportos lánca. A legalább ötödfokú egyenleteknél az S_5 csoport nem ilyen, ezért nincs általános megoldóképlet — ezt a pontos akadályt adta meg Galois.",
     "wiki": "https://en.wikipedia.org/wiki/Galois-elm%C3%A9let",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1832
   },
   {
     "name": "Runge–Kutta-módszer",
@@ -1679,7 +1809,8 @@ const MATEK_DATA = [
     "why": "<b>Egy differenciálegyenlet megoldását lépésről lépésre közelíthetjük úgy, hogy minden lépésben négy helyen 'megkóstoljuk' a meredekséget, és okosan súlyozva átlagoljuk őket.</b> A negyedrendű változat (RK4) az a pont, ahol a pontosság és a számítási költség aránya optimális — ezért lett belőle a numerikus szimuláció univerzális munkalova. Bolygópálya-számítástól a szerkezetek dinamikai válaszáig és a járványterjedési modellekig szinte minden szimuláció ezt futtatja.",
     "whyMore": "Az RK4 négy meredekséget „kóstol“: k_1 a kiindulópontban, k_2 és k_3 a fél lépéses Euler-előrejelző szerinti középpontban, k_4 a teljes lépés végén. A (1,2,2,1)/6 súlyozás egyetlen Simpson-szerű kombináció, amely a hibák sorát h^5-ig kiejti, így negyedrendű a módszer. Egy lépés költsége alig több mint az egylépéses Euleré, de a lokális hiba ~h^5 helyett ~h^2, amiért ez lett a szimulációk univerzális munkalova.",
     "wiki": "https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta-m%C3%B3dszer",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1901
   },
   {
     "name": "Logisztikus leképezés",
@@ -1689,7 +1820,8 @@ const MATEK_DATA = [
     "why": "<b>Egyetlen paraméter fokozatos növelésével egy szimpla parabolikus szabály nyugodt egyensúlyból kettőződéseken át teljes káoszba zuhan — és mindezt egy sorban leírható képlet produkálja.</b> May populációdinamikai modellként vizsgálta, és megdöbbentette a felfedezés: nem kell bonyolult rendszer a kiszámíthatatlansághoz. A bifurkációs pontok arányában felbukkanó Feigenbaum-állandó (4,669...) univerzális — teljesen különböző fizikai rendszerekben is ugyanaz a szám jelenik meg.",
     "whyMore": "Az x_{n+1}=r x_n(1−x_n) szabály egy populációt ír le: az r x_n növekedésből levonja az r x_n^2 zsúfoltsági tagot. Ha 1<r<3, a vonzó egyensúlypont x*=1−1/r; az r=3, majd 3,449… értékeknél az stabilitását elveszti és periodikusan kettőződik. A káoszban (r≈3,57 fölött) apró kezdőkülönbségek robbannak szét (pozitív Lyapunov-exponens), miközben a bifurkációs ugrások aránya a univerzális Feigenbaum-állandóhoz, 4,6692-hez tart.",
     "wiki": "https://en.wikipedia.org/wiki/Logisztikus_lek%C3%A9pez%C3%A9s",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1976
   },
   {
     "name": "Gradiensmódszer (gradient descent)",
@@ -1699,7 +1831,8 @@ const MATEK_DATA = [
     "why": "<b>A legmeredekebb lejtő irányába lépkedve bármilyen bonyolult, sokdimenziós 'tájon' megtalálhatjuk a legmélyebb pontot — anélkül, hogy látnánk az egészet.</b> Cauchy csillagászati számításokhoz alkotta meg, de igazi diadalát a gépi tanulásban éli: minden neurális háló tanítása lényegében ennek az egyszerű szabálynak a milliárdszoros ismétlése, több milliárd paraméterű térben. Az AI-forradalom hajtómotorja egy 175 éves ötlet.",
     "whyMore": "A ∇J(θ) gradiens a veszteség legmeredekebb növekedési iránya, ezért az ellentétes irányba, η tanulási rátával lépve a θ_{n+1}=θ_n−η∇J(θ_n) szabály helyben csökkenti J-t. Ismételt alkalmazással lefelé sétálunk a veszteségfelszínen, és elég kicsi η mellett egy (helyi) minimumhoz konvergálunk. A mély tanulásban θ milliárdnyi paraméter, és az egyetlen szabályt milliószor ismételjük.",
     "wiki": "https://en.wikipedia.org/wiki/Gradiensm%C3%B3dszer_%28gradient_descent%29",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1847
   },
   {
     "name": "Bayes-hálózatok",
@@ -1709,7 +1842,8 @@ const MATEK_DATA = [
     "why": "<b>Egy bonyolult, sok változós valószínűségi rendszer hatalmas táblázata felbontható néhány kicsi, kezelhető feltételes valószínűségre — ha ismerjük, mi mitől függ közvetlenül.</b> Pearl gráfelméleti struktúrát adott a Bayes-tételnek (amit a gyűjteményben már érintettünk), és ezzel kiszámíthatóvá tette a bizonytalanság melletti következtetést. Orvosi diagnosztikai rendszerek, hibakeresés, kockázatelemzés és az okság modern matematikai elmélete mind erre épül — Pearl 2011-ben Turing-díjat kapott érte.",
     "whyMore": "n változó együttes eloszlása exponenciálisan nagy lenne, de ha minden X_i csak a szüleitől Pa(X_i) függ közvetlenül, akkor szorzattá esik szét: P=∏ P(X_i | Pa(X_i)). Az irányított körmentes gráf pont ezeket a függőségeket kódolja, így a következtetéshez csak a kis, lokális táblák kellenek. Néhány változó megfigyelése után a valószínűség végigfolyik a gráfon, és a többi csúcs utólagos (poszterior) valószínűsége kiszámítható.",
     "wiki": "https://en.wikipedia.org/wiki/Bayes-h%C3%A1l%C3%B3zatok",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1985
   },
   {
     "name": "Fast Fourier-transzformáció alkalmazása képtömörítésre (DCT)",
@@ -1719,7 +1853,8 @@ const MATEK_DATA = [
     "why": "<b>Egy képet nem képpontonként tárolunk, hanem frekvenciakomponensekre bontva — és mivel a szemünk a finom részletekre kevésbé érzékeny, a magas frekvenciák nagy része egyszerűen eldobható.</b> Ez az egyszerű felismerés tette lehetővé, hogy egy fénykép a huszadára zsugorodjon észrevehető minőségromlás nélkül. Minden JPEG-kép, MP3-hangfájl és videostreaming ezen az elven működik — enélkül a mai internet, ahogy ismerjük, egyszerűen nem létezne.",
     "whyMore": "A DCT a jelet növekvő frekvenciájú koszinusz-bázisfüggvények összegére bontja (az X_k együtthatókkal), és az energia nagy része az alacsony k indexű tagokban összpontosul. A szem sokkal kevésbé érzékeny a finom, magas frekvenciás részletekre, ezért a magas k-jú együtthatókat erősen kvantálhatjuk vagy nullázhatjuk észrevehető minőségromlás nélkül. A JPEG 8×8-os blokkokra vágja a képet, mindegyiken DCT-t futtat, és csak a domináns együtthatókat tartja meg, így a fotó a huszadára zsugorodik.",
     "wiki": "https://en.wikipedia.org/wiki/Fast_Fourier-transzform%C3%A1ci%C3%B3_alkalmaz%C3%A1sa_k%C3%A9pt%C3%B6m%C3%B6r%C3%ADt%C3%A9sre_%28DCT%29",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1974
   },
   {
     "name": "Simplex-módszer duális elmélete",
@@ -1729,7 +1864,8 @@ const MATEK_DATA = [
     "why": "<b>Minden optimalizálási feladatnak van egy 'tükörképe' — és a két feladat optimuma pontosan megegyezik, ami egyszerre ad megoldást és bizonyítékot az optimalitásra.</b> Ez a dualitás nemcsak elméletileg elegáns: a duális megoldás értékei közgazdaságilag értelmezhetők árnyékárakként (mennyit ér egy egységnyi extra erőforrás). Minden ellátásilánc-optimalizálás, termeléstervezés és energiapiaci árazás ezen az elven számol.",
     "whyMore": "A primál max cᵀx, Ax≤b feladatnak duálisa a min bᵀy, Aᵀy≥c feladat, és az erős dualitás tétele szerint a két optimumuk egyenlő. Így a duális megoldása egyszerre adja az optimális értéket és az optimalitás bizonyítékát is. A duális változók y értelmezése az árnyékár: mennyivel javulna a cél függvény, ha az adott b korlátot egy egységgel lazítanánk — közgazdaságilag közvetlenül értelmezhető.",
     "wiki": "https://en.wikipedia.org/wiki/Simplex-m%C3%B3dszer_du%C3%A1lis_elm%C3%A9lete",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1947
   },
   {
     "name": "Lagrange-féle középértéktétel",
@@ -2384,7 +2520,8 @@ const FIZIKA_DATA = [
     "why": "<b>A tömeg és az energia ugyanaz.</b> A világ legismertebb egyenlete — három szimbólum, amely az atomenergiától a csillagok működéséig mindent megmagyaráz. A teljes alak impulzussal: E² = (mc²)² + (pc)².",
     "whyMore": "A c² (≈ 9·10¹⁶ J/kg) átszámító tényező, ezért már egy gramm anyag is óriási energiának felel meg — innen érthető az atomenergia és a csillagok fénye. A teljes alak E² = (mc²)² + (pc)² tartalmazza az impulzust is, így a tömegtelen fotonra E = pc adódik; az m itt a nyugalmi tömeg, vagyis a nyugalmi energia c²-vel osztva.",
     "wiki": "https://en.wikipedia.org/wiki/T%C3%B6meg%E2%80%93energia_ekvivalencia",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1905
   },
   {
     "rank": 10,
@@ -2421,7 +2558,8 @@ const FIZIKA_DATA = [
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/Heisenberg-f%C3%A9le_hat%C3%A1rozatlans%C3%A1gi_rel%C3%A1ci%C3%B3",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1927
   },
   {
     "rank": 12,
@@ -2434,7 +2572,8 @@ const FIZIKA_DATA = [
     "why": "<b>Az információ fizikai mennyiség.</b> Shannon a Boltzmann-entrópia formáját kölcsönözte — nem véletlenül: a bizonytalanság mértéke ugyanaz a matematika, legyen szó gázmolekulákról vagy bitekről. Minden digitális kommunikáció, tömörítés ezen áll.",
     "whyMore": "A képlet H = −Σ pᵢ·log₂ pᵢ a véletlen forrás átlagos meglepettségét méri, vagyis hogy átlagosan hány bit kell egy szimbólum kódolásához — a log₂ miatt az egység a bit. Az egyenletes eloszlás maximalizálja (akkor a legbizonytalanabb a következő szimbólum), és az alakja megegyezik a Boltzmann-entrópia Gibbs-alakjával, amiért az információ és a termodinamikai entrópia ugyanazzal a matematikával írható le.",
     "wiki": "https://en.wikipedia.org/wiki/Shannon-entr%C3%B3pia",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1948
   },
   {
     "rank": 13,
@@ -2461,7 +2600,8 @@ const FIZIKA_DATA = [
     "why": "<b>Itt született meg a kvantumelmélet.</b> Planck a 'fekete-test sugárzás katasztrófáját' oldotta meg azzal a feltevéssel, hogy az energia kvantumokban adódik át — ő maga sem hitte el azonnal, mennyire forradalmi ez.",
     "whyMore": "A képletben a nevező e^{hν/k_BT} − 1 tag azt kódolja, hogy az oszcillátorok csak hν energiakvantumokban sugározhatnak és nyelhetnek el — nagy frekvenciánál (vagy alacsony hőmérsékleten) ez exponenciálisan levágja a sugárzást, így megoldja az ultraviola-katasztrófát. Alacsony ν-nél visszaadja a Rayleigh–Jeans-törvényt, a csúcs helye pedig a hőmérséklettel a Wien-féle törvény szerint tolódik el, ami lehetővé teszi a csillagok hőmérsékletének mérését.",
     "wiki": "https://en.wikipedia.org/wiki/Planck-f%C3%A9le_sug%C3%A1rz%C3%A1si_t%C3%B6rv%C3%A9ny",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1900
   },
   {
     "rank": 15,
@@ -2488,7 +2628,8 @@ const FIZIKA_DATA = [
     "why": "<b>A fekete lyukak nem feketék — sugároznak, és el is párolognak.</b> Hawking ezzel a képlettel kapcsolta össze a kvantummechanikát, a termodinamikát és a relativitást egyetlen jelenségben. Minél kisebb a fekete lyuk, annál melegebb — fordított a megszokott intuícióval.",
     "whyMore": "A képletben ℏ a kvantumos határozatlanságot, G a gravitációt, M a fekete lyuk tömegét jelöli, a T_H pedig fordítottan arányos a tömeggel. A sugárzás onnan származik, hogy az eseményhorizontnál a vákuumingadozás egyik részecskéje a lyukba esik, a párja kiszabadul. Mivel a kisebb lyuk melegebb, a sugárzás gyorsabban párologtatja el, így az egyre forróbbá és végül robbanássá válik.",
     "wiki": "https://en.wikipedia.org/wiki/Hawking-h%C5%91m%C3%A9rs%C3%A9klet",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1974
   },
   {
     "rank": 17,
@@ -2501,7 +2642,8 @@ const FIZIKA_DATA = [
     "why": "<b>A kvarkok közelről szabadok, távolról foglyok.</b> A csatolási állandó nagy energián nullához tart — pont az ellentéte, mint az elektromágnesességnél. Ez magyarázza, miért nem látunk soha szabad kvarkot, mégis 'majdnem szabadon' mozognak egy protonon belül.",
     "whyMore": "Az α_s a színes csatolási állandó, Q² a vizsgált energiamérce négyzete. Nagy Q² (rövid távolság, nagy energia) esetén α_s a nullához tart, vagyis a kvarkok szabadon mozognak, ezt nevezzük aszimptotikus szabadságnak. Kis energián a csatolás erősödik és a kvarkokat befelé feszíti a színtér, ezért sosem figyelhetünk meg szabad kvarkot.",
     "wiki": "https://en.wikipedia.org/wiki/Aszimptotikus_szabads%C3%A1g_%28QCD%29",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 2004
   },
   {
     "rank": 18,
@@ -2528,7 +2670,8 @@ const FIZIKA_DATA = [
     "why": "<b>Tycho Brahe pontos méréseiből Kepler kibogozta a Nap körüli mozgás titkát.</b> A keringési idő négyzete a féltengely kockájával arányos — ez vezette később Newtont az inverz négyzetes gravitációs törvényhez. Az egész égi mechanika gyökere.",
     "whyMore": "A T a keringési idő, a a pálya nagy féltengelye, M a központi test tömege, a 4π²/GM tényező a gravitáció erősségét kódolja. A törvény szerint T²/a³ minden égitestre ugyanaz a konstans, függetlenül a pálya excentricitásától. Newton ebből vezette le az általános gravitációs törvényt, mivel a konstans pont az GM/(4π²) fordítottja.",
     "wiki": "https://en.wikipedia.org/wiki/Kepler_harmadik_t%C3%B6rv%C3%A9nye",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1619
   },
   {
     "rank": 20,
@@ -2555,7 +2698,8 @@ const FIZIKA_DATA = [
     "why": "<b>Két egyenlet, és az ökoszisztéma ritmust kap.</b> A nyúl- és rókapopulációk örökké ismétlődő, zárt ciklusokon mozognak — pont mint egy bolygó keringése, csak itt a konzervált mennyiség nem energia, hanem egy logaritmikus kombináció. A biológia első igazi 'fizikai' modellje.",
     "whyMore": "Az x a zsákmány, y a ragadozó egyedszáma, α a szaporodás, β a zsákmány ragadozó miatti pusztulása, δ a ragadozó táplálékból való szaporodása, γ a ragadozó halálozása. A βxy és δxy kereszttagok mutatják, hogy a két faj csak egymás jelenlétében változik érdemben. A rendszer zárt ciklusokat jár be, és megmarad egy logaritmikus kombinációja, ami a ciklusokat energiaként őrzi meg.",
     "wiki": "https://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_ragadoz%C3%B3-zs%C3%A1km%C3%A1ny_egyenletek",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1925
   },
   {
     "rank": 22,
@@ -2568,7 +2712,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egyetlen binomiális négyzet — és kiderül, mi NEM evolúció.</b> Ha egy populáció génkészlete generációkon át nem változik, a genotípus-gyakoriságok ezt az egyenletet követik. Az eltérés a valóságban jelzi a szelekció, sodródás vagy migráció jelenlétét — a genetika nullhipotézise.",
     "whyMore": "A p az egyik allél gyakorisága, q a másiké, így p+q=1, a p², 2pq, q² pedig a genotípusok aránya. Ha nincs szelekció, mutáció, migráció és génáramlás, a gyakoriságok generációkon át változatlanok maradnak. Az ettől való eltérés bizonyítja valamilyen evolúciós erő hatását, ez a populációgenetika nullhipotézise.",
     "wiki": "https://en.wikipedia.org/wiki/Hardy%E2%80%93Weinberg-egyenlet",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1908
   },
   {
     "rank": 23,
@@ -2609,7 +2754,8 @@ const FIZIKA_DATA = [
     "why": "<b>A gondolat fizikája.</b> Négy differenciálegyenlet, amit kézi számológéppel vezettek le — és pontosan megjósolták, hogyan száguld végig az idegimpulzus az axonon. A membrán mint kondenzátor, az ioncsatornák mint változó ellenállások: az agy elektromos áramkörként viselkedik.",
     "whyMore": "A bal oldalon C·V̇ a membrán töltésváltozása, mint egy kondenzátornál, jobboldalt az ionáramok: g_K és g_Na a csatornavezetések, E_K, E_Na, E_L az egyensúlyi potenciálok. Az n, m, h változók a csatornák nyitottságát írják le, időfejlődésüket külön egyenletek adják. A modell 1952-ben kézi számolással pontosan megjósolta az akciós potenciál alakját és terjedését az axonon.",
     "wiki": "https://en.wikipedia.org/wiki/Hodgkin%E2%80%93Huxley-modell",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1963
   },
   {
     "rank": 26,
@@ -2622,7 +2768,8 @@ const FIZIKA_DATA = [
     "why": "<b>Miért gyorsabb a forró víz a hideg víznél kémiailag is, nem csak fizikailag.</b> A reakciósebesség exponenciálisan nő a hőmérséklettel — egy 10 fokos emelés általában megduplázza a sebességet. A teljes katalízis-tudomány és az élet biokémiája ezen az exponenciális érzékenységen alapul.",
     "whyMore": "A k a reakciósebességi állandó, A a pre-exponenciális tényező, E_a az aktiválási energia, R a gázállandó, T a hőmérséklet. Csak azok az ütközések vezetnek reakcióhoz, amelyeknél a hőmozgás energiája eléri E_a-t, ezek aránya exponenciálisan nő a hőmérséklettel. Emiatt egy kb. 10 fokos emelés általában megduplázza a sebességet, ez a katalízis és az élő biokémia alapja.",
     "wiki": "https://en.wikipedia.org/wiki/Arrhenius-egyenlet",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1889
   },
   {
     "rank": 27,
@@ -2635,7 +2782,8 @@ const FIZIKA_DATA = [
     "why": "<b>A természet 'ellenszegül' a zavarásnak — nem szó szerint, hanem statisztikailag.</b> Nem képlet, hanem elv, mégis kvantitatívan levezethető a szabadentalpia minimalizálásából. Az ammóniagyártástól (Haber–Bosch) az emberi vér pH-pufferéig minden ezen az elven nyugszik.",
     "whyMore": "Az elv szerint ha egy kémiai egyensúlyon külső változást erőltetünk, a rendszer úgy rendeződik át, hogy a változást részben ellensúlyozza. Ez a szabadentalpia minimumkereséséből vezethető le, és megmondja például a Haber-Bosch ammóniaszintézisnél, hogyan növelje a nyomás a hozamot. Ugyanez tartja fenn a vér pH-pufferét is azzal, hogy az eltávolított szén-dioxid eltolja az egyensúlyt a savas oldal felé.",
     "wiki": "https://en.wikipedia.org/wiki/Le_Chatelier-elv",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1884
   },
   {
     "rank": 28,
@@ -2648,7 +2796,8 @@ const FIZIKA_DATA = [
     "why": "<b>A valóság nem lokális — ezt mérték meg, nem csak feltételezték.</b> Einstein 'kísérteties távoli hatásnak' nevezte, de Aspect kísérletei (1980-as évek) és a Tsirelson-korlát (2√2) bebizonyították: az összefonódott részecskék korrelációja erősebb, mint amit bármilyen klasszikus, lokális rejtett változó megengedne. A kvantumkriptográfia alapja.",
     "whyMore": "E(a,b) a két részecske korrelációja, ha az egyiket az a, a másikat a b irányban mérjük — az értéke −1 és 1 között mozog. A CHSH-kombináció |E(a,b)−E(a,b′)+E(a′,b)+E(a′,b′)| a lokális rejtett változók elmélete szerint soha nem lépheti át a 2 határt: ez egy pusztán kombinatorikus korlát. A kvantummechanika azonban 2√2-ig, a Tsirelson-korlátig képes felmenni, mert az összefonódott állapotok korrelációja erősebb a klasszikusnál. Aspect és utódai ezt ténylegesen megmérték, így a kísérlet eldöntötte: a természet nem írható le lokális rejtett változókkal.",
     "wiki": "https://en.wikipedia.org/wiki/Bell-t%C3%A9tel_/_CHSH-egyenl%C5%91tlens%C3%A9g",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1964
   },
   {
     "rank": 29,
@@ -2661,7 +2810,8 @@ const FIZIKA_DATA = [
     "why": "<b>A világ legkönnyebben kiszámítható korlátja — és senki nem kerülheti meg.</b> Semmilyen hőerőgép nem léphet túl ezen a hatásfokon, csak a hőmérsékletektől függ, az anyagtól nem. Carnot 1824-ben, a gőzgépek korában mondta ki — egyenesen a második főtételhez vezet.",
     "whyMore": "A η_max a maximális hatásfok, T_h a forró, T_c a hideg hőtartály abszolút hőmérséklete. A képlet szerint egyetlen hőerőgép sem alakíthat át több hőt munkává mint (1−T_c/T_h), és ezt csak a megfordítható Carnot-ciklus éri el. Mivel csak a hőmérsékletektől függ, az anyagtól független, ez a második főtétel közvetlen következménye.",
     "wiki": "https://en.wikipedia.org/wiki/Carnot-t%C3%A9tel_/_hat%C3%A1sfok",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1824
   },
   {
     "rank": 30,
@@ -2684,7 +2834,8 @@ const FIZIKA_DATA = [
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/Higgs-mechanizmus",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 2012
   },
   {
     "rank": 31,
@@ -2697,7 +2848,8 @@ const FIZIKA_DATA = [
     "why": "<b>Két lemez összeszorul — pusztán azért, hogy 'üres' a köztük lévő tér.</b> A vákuum nem semmi: virtuális fotonok hullámzanak benne, de a lemezek közt csak bizonyos hullámhosszak férnek el. Az aszimmetria mérhető erőt hoz létre. Lamoreaux mérte meg 1996-ban — a kvantumtérelmélet egyik legfurcsább, kísérletileg igazolt jóslata.",
     "whyMore": "A képletben A a lemezek együttes felülete, a az egymástól való távolság, ħ a redukált Planck-állandó, c a fénysebesség. A negatív előjel mutatja, hogy az erő vonzó (összeszorító): minél közelebb a lemezek, annál nagyobb a nyomásbeli különbség. A maradék vákuumenergia csak diszkrét (állóhullám) módokat enged meg a lemezek között, míg kívülről az összes mód hozzájárul - ez az aszimmetria nyomja össze őket.",
     "wiki": "https://en.wikipedia.org/wiki/Casimir-effektus",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1948
   },
   {
     "rank": 32,
@@ -2710,7 +2862,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egyetlen hiperbola írja le, hogyan dolgoznak az enzimek — minden élő sejtben.</b> Alacsony szubsztrátkoncentrációnál a sebesség lineáris, magas koncentrációnál telítésbe megy. A Vmax és KM két paramétere köré épül a teljes gyógyszerfejlesztés és anyagcsere-biokémia.",
     "whyMore": "v a reakciósebesség, [S] a szubsztrát koncentrációja, Vmax a maximális sebesség telítéskor, KM a Michaelis-állandó (az [S], ahol v = Vmax/2). A hiperbola azt jelzi, hogy alacsony [S]-nél az enzim szabad, a sebesség arányos a szubsztráttal; magas [S]-nél az enzimhelyek telítődnek, a sebesség eléri Vmax-ot. KM kicsi értéke erős kötést, azaz hatékony enzimet jelöl.",
     "wiki": "https://en.wikipedia.org/wiki/Michaelis%E2%80%93Menten_enzimkinetika",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1913
   },
   {
     "rank": 33,
@@ -2765,7 +2918,8 @@ const FIZIKA_DATA = [
     "why": "<b>Két elektron, ami egymást taszítja — mégis párba áll, és ellenállás nélkül áramlik.</b> A Cooper-páros elektronok a rácsrezgéseken (fononokon) keresztül gyengén vonzzák egymást, és makroszkopikus kvantumállapotot alkotnak. Bardeen, Cooper és Schrieffer modellje magyarázta meg végre, miért tűnik el az ellenállás bizonyos fémekben abszolút nulla közelében.",
     "whyMore": "Δ a gap (energiaszakadék) nagysága, ħω_D a Debye-energia, N(0) az állapotsűrűség a Fermi-szinten, V a fonon-közvetített vonzás erőssége. Az exponenciális alak azt mutatja, hogy már gyenge vonzás is elég a makroszkopikus párállapot kialakulásához, de a gap a hőmérséklettel csökken. Δ leírja, mennyi energia kell egy Cooper-pár szétszakításához - ezért tűnik el az ellenállás a kritikus hőmérséklet alatt.",
     "wiki": "https://en.wikipedia.org/wiki/BCS-elm%C3%A9let_%28szupravezet%C3%A9s%29",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1972
   },
   {
     "rank": 37,
@@ -2778,7 +2932,8 @@ const FIZIKA_DATA = [
     "why": "<b>Nem mérhető tudományos egyenlet — inkább a tudatlanságunk strukturált térképe.</b> Megbecsüli, hány kommunikáló civilizáció lehet a Tejútrendszerben, hét tényező szorzataként. A legtöbb tagja ismeretlen, mégis ez adta a keretet minden komoly SETI-beszélgetéshez 60+ éve.",
     "whyMore": "N a keresett kommunikáló civilizációk száma; a tényezők sorrendben: csillagkeletkezési ráta, bolygórendszer-arány, átlagos lakható bolygók/egy rendszer, élet kialakulásának esélye, intelligencia, kommunikáció és a civilizáció élettartama években. A szorzat formája azért van, mert ezek független valószínűségek együttese adja az eredményt. A bizonytalanság minden tényezőben hatalmas, ezért N értéke nullától milliókig terjedhet - az egyenlet a kérdés felosztása, nem a válasz.",
     "wiki": "https://en.wikipedia.org/wiki/Drake-egyenlet",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1961
   },
   {
     "rank": 38,
@@ -2791,7 +2946,8 @@ const FIZIKA_DATA = [
     "why": "<b>Minden molekula a koncentráció-különbség irányába 'akar' menni — anélkül, hogy bármelyik egyedi molekula tudná, hova menjen.</b> A véletlen mozgásból statisztikailag mégis rendezett áramlás születik. Ugyanaz az egyenlet írja le az illat terjedését a levegőben, a sejtmembránon át zajló oxigéntranszportot, és az ozmózist.",
     "whyMore": "J az anyagáram (fluxus), D a diffúziós együttható, ∂φ/∂x a koncentráció gradiense, a mínuszjel jelzi, hogy az áramlás a kisebb koncentráció felé tart. Az egyenlet azt mondja ki, hogy a molekulák véletlen bolyongása statisztikailag a koncentrációcsökkenés irányába viszi az anyagot. D az anyag és a közeg sajátja: nagyobb hőmérsékleten vagy kisebb molekulánál nagyobb a szóródás sebessége.",
     "wiki": "https://en.wikipedia.org/wiki/Fick-f%C3%A9le_diff%C3%BAzi%C3%B3t%C3%B6rv%C3%A9ny",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1855
   },
   {
     "rank": 39,
@@ -2804,7 +2960,8 @@ const FIZIKA_DATA = [
     "why": "<b>'Az anyag megmondja a téridőnek, hogyan görbüljön; a téridő megmondja az anyagnak, hogyan mozogjon.' (Wheeler)</b> Tíz csatolt, nemlineáris differenciálegyenlet — és belőle jön ki a fekete lyukak létezése, a táguló univerzum, és a 2015-ben mért gravitációs hullámok, pontosan száz évvel a publikálás után.",
     "whyMore": "G_μν a geometriát, a téridő görbületét írja le, T_μν az anyag és energia nyomáseloszlását; a 8πG/c⁴ a gravitációs állandók átszámítása. A görbület és az energia-impulzus egyenrangúsítása azt jelenti, hogy az anyag határozza meg a téridő alakját, a téridő alakja pedig diktálja az anyag mozgását. A szorzat a gyenge gravitáció határán visszaadja a Newton-féle gravitációt.",
     "wiki": "https://en.wikipedia.org/wiki/Einstein-f%C3%A9le_mez%C5%91egyenletek",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1915
   },
   {
     "rank": 40,
@@ -2817,7 +2974,8 @@ const FIZIKA_DATA = [
     "why": "<b>Mozgó mágnes elektromosságot szül — ez forgatja a világ összes generátorát.</b> Faraday felfedezése kötötte össze elektromosságot és mágnesességet, megalapozva Maxwell egyenleteit. Einstein speciális relativitáselméletének nyitó gondolata pontosan ebből az indukciós aszimmetriából indult.",
     "whyMore": "ℰ az indukált feszültség, Φ_B a mágneses fluxus, a mínuszjel Lenz törvényét hordozza: az indukált áram mindig a változást ellentétes irányba igyekszik megakadályozni. A fluxus megváltozása hozza létre a feszültséget, legyen az a mágnes vagy a tekercs mozgatása a mágneses térben. Ez az alapja a generátoroknak, transzformátoroknak és az egész elektromos hálózatnak.",
     "wiki": "https://en.wikipedia.org/wiki/Faraday-f%C3%A9le_indukci%C3%B3s_t%C3%B6rv%C3%A9ny",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1831
   },
   {
     "rank": 41,
@@ -2830,7 +2988,8 @@ const FIZIKA_DATA = [
     "why": "<b>Megméred egy csillag színét — és tudod a hőmérsékletét, anélkül hogy odautaznál.</b> A forróbb test rövidebb hullámhosszon sugároz legintenzívebben — ezért kék a forró csillag, vörös a hűvös. Ez a kísérleti megfigyelés vezetett Planck 1900-as kvantum-feltevéséhez, és innen indult az egész kvantummechanika.",
     "whyMore": "λ_max a legnagyobb sugárzási intenzitású hullámhossz, T a test abszolút hőmérséklete kelvinben, b a Wien-állandó (kb. 2,9·10⁻³ m·K). A fordított arány azt jelenti: minél melegebb a test, annál rövidebb, kékebb hullámhosszon sugároz a legerősebben. A törvény a feketetest-sugárzásból származik, és lehetővé teszi csillagok hőmérsékletének távolságmérés nélküli becslését.",
     "wiki": "https://en.wikipedia.org/wiki/Wien-f%C3%A9le_eltol%C3%B3d%C3%A1si_t%C3%B6rv%C3%A9ny",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1893
   },
   {
     "rank": 42,
@@ -2857,7 +3016,8 @@ const FIZIKA_DATA = [
     "why": "<b>A közeledő mentőautó szirénája magasabb, a távolodóé mélyebb — ez az egész kozmológia alapja.</b> Ugyanez a frekvenciaeltolódás teszi lehetővé, hogy galaxisok sebességét mérjük fényük vörös- vagy kékeltolódásából. Egyetlen egyszerű hullámjelenség köti össze a mentőautó szirénáját és a táguló univerzumot.",
     "whyMore": "f0 a kibocsátott frekvencia, f a megfigyelt frekvencia, v a hullám terjedési sebessége, v_o a megfigyelő, v_s a forrás sebessége. A ± jelek attól függően választandók, hogy a forrás vagy megfigyelő közeledik-e, ekkor a frekvencia nő, vagy távolodik, ekkor csökken. A jelenség minden hullámra érvényes, a fény vöröseltolódása a táguló univerzum közvetlen mérése.",
     "wiki": "https://en.wikipedia.org/wiki/Doppler-effektus",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1842
   },
   {
     "rank": 44,
@@ -2870,7 +3030,8 @@ const FIZIKA_DATA = [
     "why": "<b>A gyorsabban mozgó folyadékban kisebb a nyomás — ez tartja a levegőben a repülőgépeket.</b> Az energiamegmaradás egyenese áramlástani megfogalmazása: ahol felgyorsul a légáram a szárny felett, ott csökken a nyomás, és ez hozza létre a felhajtóerőt. Egyformán magyarázza a permetezőflakon működését és a vér áramlását az artériákban.",
     "whyMore": "p a nyomás, ½ρv² a dinamikus (sebességi) nyomás, ρgh a hidrosztatikus nyomás, és ezek összege összenyomhatatlan, súrlódásmentes áramlásban állandó az áramvonal mentén. Az energiamegmaradás itt azt jelenti: ahol a sebesség nő, a nyomás csökken, hogy az összeg állandó maradjon. Ebből adódik a szárny feletti kisebb nyomás és a felhajtóerő.",
     "wiki": "https://en.wikipedia.org/wiki/Bernoulli-egyenlet",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1738
   },
   {
     "rank": 45,
@@ -2911,7 +3072,8 @@ const FIZIKA_DATA = [
     "why": "<b>Minél messzebb van egy galaxis, annál gyorsabban távolodik — ez maga a táguló univerzum bizonyítéka.</b> Hubble megfigyelése az első közvetlen kísérleti bizonyíték volt arra, hogy a kozmosz nem statikus, hanem tágul. A törvény fordítva is használható: a táguló univerzum visszapörgetésével kapjuk a Big Bang időpontját, kb. 13.8 milliárd évvel ezelőtt.",
     "whyMore": "A v a galaxis távolodásának sebessége, d a távolsága tőlünk, H_0 a Hubble-állandó (kb. 70 km/s/Mpc), amely megadja, hány km/s-sal gyorsul egy távoli galaxis megaparsecenkénti távolságnövekedésre. A lineáris összefüggés azért igaz, mert a tágulás minden pont közötti távolságot arányosan nyújtja meg — egyetlen globális skálafaktor növekedése, nem tényleges mozgás a térben. Innen fordítva az 1/H_0 inverz idő a Világegyetem korának első közelítése (kb. 14 milliárd év), ami rendkívül közel esik a részletesebb kozmológiai modellből számolt 13,8 milliárd évhez.",
     "wiki": "https://en.wikipedia.org/wiki/Hubble%E2%80%93Lema%C3%AEtre-t%C3%B6rv%C3%A9ny",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1929
   },
   {
     "rank": 48,
@@ -2952,7 +3114,8 @@ const FIZIKA_DATA = [
     "why": "<b>A fény billiárdgolyóként ütközik az elektronnal — ez győzte meg végleg a fizikusokat a foton valóságáról.</b> A szóródott röntgensugár hullámhossza megnő, pontosan annyival, amennyit a foton-részecske impulzusátadása megjósol. Einstein fényrészecske-elképzelését Compton kísérlete tette véglegesen elfogadottá.",
     "whyMore": "A λ a beeső, λ' a szóródott foton hullámhossza, θ a szórási szög, h a Planck-állandó, m_e az elektron nyugalmi tömege, c a fénysebesség; a h/(m_e·c) az ún. Compton-hullámhossz (kb. 2,43 pm). A képlet közvetlenül a foton impulzusának (p = h/λ) és energiájának megőrzéséből adódik: a foton rugalmatlan ütközése az elektronnal átad neki energiát, az elektron gyorsul, a foton tehát hosszabb hullámhosszal (kisebb energiával) távozik. A (1−cosθ) tényezőből látszik, hogy előrefelé (θ=0) nincs hullámhossz-változás, hátrafelé (θ=180°) a maximális — ez a szögfüggés pontosan az, ami a fényt valódi, impulzussal rendelkező részecskékként írta le.",
     "wiki": "https://en.wikipedia.org/wiki/Compton-effektus",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1923
   },
   {
     "rank": 51,
@@ -2965,7 +3128,8 @@ const FIZIKA_DATA = [
     "why": "<b>Az ozmotikus nyomás ugyanúgy viselkedik, mint egy ideális gáz nyomása — egy botanikus séta közbeni véletlen ötletből.</b> Van 't Hoff egy botanikus barátjával beszélgetve jött rá az analógiára: az oldott anyag 'gázként' viselkedik az oldószerben. Ez magyarázza, hogyan szívja fel a víz a fák gyökerét a csúcsig — és miért zsugorodik össze egy sejt sós vízben.",
     "whyMore": "A Π az ozmotikus nyomás, n_s az oldott részecskék számsűrűsége, k_B a Boltzmann-állandó, T az abszolút hőmérséklet — a képlet alakja megegyezik az ideális gáz törvényével (p = nk_B·T). Az analógia onnan jön, hogy az oldott molekulák is véletlenszerűen diffundálnak és 'nyomást fejtenek ki' a féligáteresztő hártyára, mintha gáz volnának az oldószer térfogatában. Minél több oldott részecske és minél magasabb a hőmérséklet, annál nagyobb a nyomás — ezért a sós közeg vizet von ki a sejtből (a víz a kisebb ozmotikus nyomás felé áramlik), és ezért képes a gyökérnyomás a fákban a nedvességet felfelé emelni.",
     "wiki": "https://en.wikipedia.org/wiki/Van_%27t_Hoff-f%C3%A9le_ozmotikus_nyom%C3%A1s",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1887
   },
   {
     "rank": 52,
@@ -2978,7 +3142,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egyetlen tilalom — és ez tartja szilárdnak az anyagot, ez emel ki minket a padlóból.</b> Két azonos fermion (pl. elektron) soha nem lehet ugyanabban a kvantumállapotban — ez generálja a degenerációs nyomást, amely megakadályozza, hogy az atomok egymásba csússzanak. Nélküle nem létezne periódusos rendszer, kémia, vagy szilárd test.",
     "whyMore": "A ψ(x1,x2) = −ψ(x2,x1) antiszimmetria azt jelenti, hogy ha két azonos fermiont felcserélünk, a hullámfüggvény előjelet vált; ha a két részecske ugyanabban az állapotban volna (x1=x2), a függvény önmaga negatívja lenne, vagyis nulla — tehát a valószínűség zéró, az állapot tiltott. Ez generálja az elektronhéjakat: az elektronok sorban foglalják el a lehetséges energiaszinteket a legbelsőtől kifelé, mert az alsókat már betöltötték a társaik. A kialakuló degenerációs (kvantum-) nyomás az, ami a szilárd anyagokat összetartja és megakadályozza, hogy a csillagok vagy az atomok összeomoljanak a saját gravitációjuk/töltésvonzásuk alatt — a periódusos rendszer szerkezete közvetlenül ebből a sorrendből következik.",
     "wiki": "https://en.wikipedia.org/wiki/Pauli-f%C3%A9le_kiz%C3%A1r%C3%A1si_elv",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1925
   },
   {
     "rank": 53,
@@ -3005,7 +3170,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egyetlen dimenziótlan szám dönti el, hogy egy áramlás simán siklik, vagy kaotikus örvényekbe csap át.</b> Az inerciaerők és a viszkózus erők arányát fejezi ki — kis Reynolds-számnál lamináris, nagynál turbulens lesz az áramlás. Ugyanaz a szám írja le, hogyan repül egy repülőgép és hogyan áramlik a vér az artériákban.",
     "whyMore": "A Re dimenziótlan szám, ahol ρ a folyadék sűrűsége, v a jellemző sebesség, L a jellemző hosszméret (pl. csőátmérő), μ a dinamikai viszkozitás; a számláló az inerciaerőket, a nevező a viszkózus (súrlódási) erőket méri. Kis Re-nél a súrlódás uralja az áramlást, elnyomja a kis örvényeket, az áramvonalak simák maradnak (lamináris); nagy Re-nél az inercia győz, a sebességeloszlás instabillá válik és örvények (turbulencia) alakulnak ki. Ugyanaz a szám teszi lehetővé a kísérleti csőmodell és a valós repülő vagy érrendszer összehasonlítását: ha a Re megegyezik, az áramlás minőségileg azonos, függetlenül a mérettől és a folyadéktól.",
     "wiki": "https://en.wikipedia.org/wiki/Reynolds-sz%C3%A1m",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1883
   },
   {
     "rank": 55,
@@ -3018,7 +3184,8 @@ const FIZIKA_DATA = [
     "why": "<b>Két fémet összeérintve, és hőmérséklet-különbséget létrehozva köztük, feszültség keletkezik — minden hőmérőszonda ezen alapul.</b> Seebeck eredetileg mágneses jelenségnek hitte, és csak később derült ki, hogy elektromos áram okozza. A modern termoelektromos generátorok pontosan ezt a hatást fordítják visszafelé: hulladékhőből elektromos áramot.",
     "whyMore": "A V a keletkező feszültség, S a Seebeck-együttható (anyag- és hőmérséklet-függő), ΔT a két érintkezési pont közti hőmérséklet-különbség; a hatás lineárisan arányos a hőfokkülönbséggel. A jelenség oka, hogy a két különböző fémben a vezetési elektronok energiája eltérően függ a hőmérséklettől, így a melegebb oldalon több (és gyorsabb) elektron diffundál át, töltéssétválasztást, azaz feszültséget létrehozva. Ugyanez az elv fordítva is működik (Peltier-effektus): áram átengedése hűti vagy melegíti az érintkezést — ezért használják hőmérséklet-mérésre (termoelempár) és hulladékhő árammá alakítására egyaránt.",
     "wiki": "https://en.wikipedia.org/wiki/Seebeck-effektus",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1821
   },
   {
     "rank": 56,
@@ -3031,7 +3198,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy szám dönti el, hogy egy kihunyt csillag fehér törpeként végzi, vagy neutroncsillaggá/fekete lyukká omlik össze.</b> Chandrasekhar 19 évesen, egy Indiából Angliába tartó hajóúton vezette le: az elfajult elektrongáz kvantum-nyomása (Pauli-elv) csak egy bizonos tömegig tartja egyensúlyban a gravitációt. Eddington nyilvánosan lejáratta az eredményt — Chandrasekhar évtizedekkel később mégis Nobel-díjat kapott érte.",
     "whyMore": "A M_Ch a kritikus tömeg, kb. 1,4 naptömeg (M_☉), amelynél az elfajult elektrongáz kvantum-nyomása (Pauli-elv) épp egyensúlyban tartja a csillag saját gravitációját. Ennél kisebb tömegű kihunyt csillag fehér törpe marad, mert a degenerációs nyomás megakadályozza az összeomlást; az 1,4 M_☉ feletti tömeg legyőzi a kvantum-nyomást, a mag tovább roppan, és neutroncsillag vagy fekete lyuk születik. A határ pontos értéke a csillag összetételétől és sugárzási korrekcióktól függ, de a 1,4 M_☉ a klasszikus, ideális elfajult gázra vonatkozó első közelítés.",
     "wiki": "https://en.wikipedia.org/wiki/Chandrasekhar-hat%C3%A1r",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1930
   },
   {
     "rank": 57,
@@ -3054,7 +3222,8 @@ const FIZIKA_DATA = [
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/Bose%E2%80%93Einstein-kondenz%C3%A1ci%C3%B3",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1924
   },
   {
     "rank": 58,
@@ -3067,7 +3236,8 @@ const FIZIKA_DATA = [
     "why": "<b>Minden Lorentz-invariáns, lokális kvantumtérelmélet szimmetrikus töltés-, paritás- és időtükrözésre együtt — még ha egyenként sérülnek is.</b> A gyenge kölcsönhatás megsérti C-t, P-t, sőt CP-t is (ezt kísérletileg mérték) — de a három együttes alkalmazása mindig szimmetriát ad. Ha valaha CPT-sérülést mérnének, az a kvantumtérelmélet legalapvetőbb pilléreit döntené le.",
     "whyMore": "A ℒ(x) a Lagrange-sűrűség (a fizikai kölcsönhatásokat leíró mennyiség), és az állítás szerint ez invariáns marad, ha egyszerre végrehajtjuk a C (töltéstükrözés: részecske↔antirészecske), P (paritás: térbeli tükrözés) és T (időtükrözés) műveletet. A tétel nem azt mondja, hogy C, P vagy T egyenként szimmetria — a gyenge kölcsönhatásban mindhárom (sőt CP is) sérül —, hanem hogy a három együttes alkalmazása minden Lorentz-invariáns, lokális kvantumtérelméletben szigorú szimmetria. Ebből következik például, hogy egy részecske és antirészecskéje tömege és élettartama pontosan egyenlő kell legyen, amit a kísérletek nagy pontossággal igazolnak; a CPT-sértés a térelmélet egyik alapaxiómájának bukását jelentené.",
     "wiki": "https://en.wikipedia.org/wiki/CPT-t%C3%A9tel",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1954
   },
   {
     "rank": 59,
@@ -3080,7 +3250,8 @@ const FIZIKA_DATA = [
     "why": "<b>Ha egy hőmérséklet-különbség elektromos áramot indukál, ugyanaz az együttható írja le a fordított jelenséget is.</b> Onsager a mikroszkopikus idő-visszafordíthatóságból vezette le, hogy a csatolt irreverzibilis folyamatok (hő, diffúzió, elektromosság) kereszthatás-együtthatói szimmetrikus mátrixot alkotnak. Ez az első mély, általános törvény, ami az egyensúlytól távoli termodinamikában is rendet vág — Nobel-díjat ért.",
     "whyMore": "Az L_ij a csatolt folyamatok lineáris együttható-mátrixa: L_ij azt adja meg, hogy az j-edik hajtóerő (pl. hőmérséklet-gradienst) mekkora i-edik áramot (pl. elektromos áramot) indukál, és a reláció szerint L_ij = L_ji. Onsager ezt a mikroszkopikus folyamatok idő-visszafordíthatóságából (a fluktuáció-disszipáció tételeiből) vezette le: a részecskék mozgásában nincs kitüntetett irány a molekuláris skálán, így a kereszthatások szimmetrikusak. Ez azt jelenti, hogy ha egy hőfokkülönbség áramot gerjeszt, ugyanakkora együtthatóval egy áram is hőfokkülönbséget hoz létre — a mátrix szimmetriája megadja a közel-egyensúlyi irreverzibilis folyamatok általános leírását.",
     "wiki": "https://en.wikipedia.org/wiki/Onsager-reciprocit%C3%A1si_rel%C3%A1ci%C3%B3k",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1931
   },
   {
     "rank": 60,
@@ -3093,7 +3264,8 @@ const FIZIKA_DATA = [
     "why": "<b>Az információtörlésnek fizikai ára van — minimum ennyi hőt kell disszipálni egyetlen bit végleges eltávolításáért.</b> Landauer rájött: nem a számítás, hanem az irreverzibilis törlés az, ami termodinamikailag költséges. Ez köti össze közvetlenül a Shannon-entrópiát a Boltzmann-entrópiával, és szab alsó energiakorlátot minden jövőbeli számítógép-architektúrának — kvantumszámítógépeket is beleértve.",
     "whyMore": "Az E a törléshez minimálisan szükséges disszipált energia, k_B a Boltzmann-állandó, T a hőmérséklet, ln 2 pedig egyetlen bit entrópiájának (Shannon) értéke — a képlet tehát közvetlenül összeköti az információt a hőmérséklettel és energiával. A lényeg, hogy egy bit törlése két lehetséges állapotot egyetlenre redukál, ami csökkenti a rendszer információ-entrópiáját, ezt pedig a környezetben hőként (entrópianövekedésként) kell kompenzálni. Ezért egyetlen logikai művelet (ami nem töröl, csak átalakít) elvileg energiamentes lehetne, de minden számítógép, amely töröl, elkerülhetetlenül minimum k_B·T·ln2-t disszipál bitenként — ez a végső, termodinamikai energiakorlátja a számításnak.",
     "wiki": "https://en.wikipedia.org/wiki/Landauer-elv",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1961
   },
   {
     "rank": 61,
@@ -3120,7 +3292,8 @@ const FIZIKA_DATA = [
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/Euler-f%C3%A9le_kihajl%C3%A1si_k%C3%A9plet",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1757
   },
   {
     "rank": 62,
@@ -3133,7 +3306,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy terhelés pontos eloszlása csak közel számít — kicsit távolabb már csak az eredője.</b> Bármilyen bonyolult, statikailag ekvivalens terhelést alkalmazol egy test kis részén, a feszültségeloszlás a terhelés jellemző méreténél (d) nagyobb távolságban gyakorlatilag azonossá válik. Enélkül minden végeselem-modell és kézi számítás lehetetlenül bonyolult volna — ez teszi jogossá az egyszerűsített peremfeltételeket.",
     "whyMore": "A feszültség „közeli mező”: közvetlenül a terhelésnél a részletek dominálnak, de az rugalmas tér szétágazva, önmagát átlagolva felejti el őket. A jellemző méret d (pl. a terhelés szélessége) adja a lecsengési távolságot: pár d-nyi távolság után már csak az eredő erő számít, nem a pontos eloszlás. Ezért helyettesíthetünk egy valódi csavarozási mintát vagy megoszló terhet egy egyszerű, ekvivalens erővel a kézi számításokban.",
     "wiki": "https://en.wikipedia.org/wiki/Saint-Venant-elv",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1855
   },
   {
     "rank": 63,
@@ -3146,7 +3320,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy tetszőleges pontban ébredő feszültségállapot minden lehetséges elforgatását egyetlen kör rajzolja fel.</b> Mohr geometriai trükkje azonnal megmutatja a főfeszültségeket és a maximális nyírófeszültséget — grafikusan, számológép nélkül. Máig ez az első eszköz, amit egy statikus tanul a feszültségállapotok megértéséhez, jóval a mátrixos véges-elem szoftverek kora előtt született.",
     "whyMore": "Egy pont feszültségállapota a vágási iránytól függően végtelen sok komponensből áll; Mohr köre ezt az egész családot egyetlen szög, a 2θ mentén parametérezi (a 2-es szorzóra figyelj: a fizikai síkban θ elforgatás a körön 2θ-t jelent). A kör minden pontja egy lehetséges normál-/nyírófeszültség-pár valamilyen vágásra, a szélső pontok közvetlenül megadják a főfeszültségeket és a maximális nyírást. Lényegében a feszültségtenzor báziscseréje egy körként ábrázolva.",
     "wiki": "https://en.wikipedia.org/wiki/Mohr-k%C3%B6r",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1882
   },
   {
     "rank": 64,
@@ -3165,7 +3340,8 @@ const FIZIKA_DATA = [
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/Betti-f%C3%A9le_k%C3%B6lcs%C3%B6n%C3%B6ss%C3%A9gi_t%C3%A9tel",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1872
   },
   {
     "rank": 65,
@@ -3178,7 +3354,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egyetlen egyenlet írja le, hogyan tolódik el a fagyás- vagy forráspont a nyomással.</b> A rejtett hő (L) és a térfogatváltozás (Δv) kapcsolja össze a fázisátmenet nyomás-hőmérséklet görbéjét. Ez magyarázza, miért fő alacsonyabb hőmérsékleten a víz nagy magasságban, és miért csúszik könnyebben a korcsolya jég — utóbbi kvantitatív részleteiben ma is vitatott, de az egyenlet maga rendíthetetlen.",
     "whyMore": "Az együttélési görbén a két fázis Gibbs-szabadenergiája egyenlő, így dG=0 összekapcsolja a nyomás- és hőmérséklet-lépést a rejtett hővel (L) és a térfogatugrással (Δv). Az L/T tag a fázisváltás entrópiája (TΔS=L), Δv pedig azt mutatja, melyik fázis mennyivel sűrűbb. Nagy Δv (gőz vs folyadék) meredek forrási görbét ad; negatív Δv (jég vs víz) miatt olvad a jég nyomás alatt — innen a korcsolyázás nyomásolvadása.",
     "wiki": "https://en.wikipedia.org/wiki/Clausius%E2%80%93Clapeyron-egyenlet",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1834
   },
   {
     "rank": 66,
@@ -3191,7 +3368,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egyetlen mennyiség dönti el, hogy egy kémiai reakció magától lejátszódik-e.</b> Gibbs az entalpia (H) és entrópia (S) versenyfutásából egyetlen kritériumot alkotott: ha G csökken, a folyamat spontán. Ez a modern kémiai termodinamika gerince — minden egyensúlyi állandó, minden reakció-hajtóerő ebből az egy egyenletből vezethető le.",
     "whyMore": "Állandó hőmérsékleten és nyomáson a rendszer a G-t minimalizálja; a −TS tag miatt a magas hőmérsékletű folyamatokat a rendezetlenség (entrópia) segíti, míg a H tag az alacsony energiát favorizálja. Egy reakció addig megy, amíg el nem éri az egyensúlyt, ahol ΔG=0. A ΔG kapcsolata az egyensúlyi állandóval (ΔG°=−RT ln K) szó szerint megmondja, meddig megy el a reakció.",
     "wiki": "https://en.wikipedia.org/wiki/Gibbs-f%C3%A9le_szabadenergia",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1876
   },
   {
     "rank": 67,
@@ -3204,7 +3382,8 @@ const FIZIKA_DATA = [
     "why": "<b>Megmondja, hány fermion (pl. elektron) tölthet be egy adott energiaszintet — a Pauli-elv statisztikai megfogalmazása.</b> A nevezőben szereplő '+1' (szemben a Bose–Einstein '−1'-jével) az, ami miatt a fémek elektronjai 'kényszerpályára' kerülnek, és ez adja a fémek vezetőképességének, a fehér törpék stabilitásának és a félvezető-eszközök működésének statisztikus alapját.",
     "whyMore": "A nevezőbeli +1 a Pauli-elvet jelenti: két azonos fermion nem osztozhat ugyanazon az állapoton, ezért a feltöltöttség 1-nél telítődik, és nem szökik fel a klasszikus Maxwell–Boltzmann-eloszlás módjára. A μ (vegyi potenciál / Fermi-szint) az az energia, amely alatt T=0-on az állapotok többsége betelt. Alacsony hőmérsékleten az eloszlás éles lépccsé válik (Fermi-felület) — ezért van a fémekben hatalmas mozgékony elektronkészlet közvetlenül a vezetési szegélynél.",
     "wiki": "https://en.wikipedia.org/wiki/Fermi%E2%80%93Dirac-statisztika",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1926
   },
   {
     "rank": 68,
@@ -3217,7 +3396,8 @@ const FIZIKA_DATA = [
     "why": "<b>A neutrínók útközben 'átváltoznak' egyik típusból a másikba — ami bizonyítja, hogy van tömegük.</b> A Standard Modell eredetileg tömeg nélküli neutrínókat jósolt; a Super-Kamiokande és SNO kísérletek oszcillációs mérései (2015 fizikai Nobel-díj) megcáfolták ezt. Az egyenlet egyszerű hulláminterferencia-alak — mégis az egyik legerősebb jel arra, hogy a Standard Modell nem a teljes történet.",
     "whyMore": "A neutrínók íz-sajátállapotai (elektron/müon/tau) nem azonosak a tömegsajátállapotaikkal; ezek kvantum-szuperpozíciók, amelyek különböző fázissal fejlődnek és útközben újra keverednek. Az oszcillációs valószínűség egy kétállapotú interferenciamintázat — innen a sin²(Δm²L/E) függés, mint egy a tömeg-négyzetes különbség (Δm²) által beállított lebegés. Az 1,27-es szorzó csak mértékegység-konvenció (L km-ben, E GeV-ben); maga a nemnulla Δm² bizonyítja, hogy a neutrínóknak van tömegük.",
     "wiki": "https://en.wikipedia.org/wiki/Neutr%C3%ADn%C3%B3-oszcill%C3%A1ci%C3%B3",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1957
   },
   {
     "rank": 69,
@@ -3230,7 +3410,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy részecske elektromos töltése kiszámítható a belső kvantumszámaiból — izospin, barionszám, ritkaság.</b> Ez a képlet vezetett el a 'nyolcrét út' rendszerezéshez, majd Gell-Mann és Zweig kvark-hipotéziséhez: a hadronok nem elemi részecskék, hanem kvarkokból épülnek fel. A rendezőelv, ami egy zoo-szerű részecsketáblázatból periódusos-rendszer-szerű struktúrát csinált.",
     "whyMore": "Az elektromos töltést (Q) az izospin harmadik komponenséhez (I₃), a barionszámhoz (B) és a ritkasághoz (S) kapcsolja — egy olyan megmaradási törvény-könyvelés, amely minden ismert hadronra igaz volt. Az (I₃, Q) síkban felrajzolt pontok mintázata az „nyolcrét út” (Eightfold Way) multiplicitásaiba rendeződött. Amikor Gell-Mann a frissen felfedezett Ω⁻-t egy dekuplet hiányzó helyére illesztette, az megerősítette a kvarkokat mint valódi alkotórészeket.",
     "wiki": "https://en.wikipedia.org/wiki/Gell-Mann%E2%80%93Nishijima-formula",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1953
   },
   {
     "rank": 70,
@@ -3257,7 +3438,8 @@ const FIZIKA_DATA = [
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/Schwarzschild-sug%C3%A1r",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1916
   },
   {
     "rank": 71,
@@ -3280,7 +3462,8 @@ const FIZIKA_DATA = [
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/Friedmann-egyenletek",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1922
   },
   {
     "rank": 72,
@@ -3293,7 +3476,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egyetlen negyedrendű differenciálegyenlet írja le, hogyan hajlik meg egy gerenda a terhelés alatt.</b> Euler és Bernoulli közös munkája — a hajlítási merevség (EI) és a megoszló teher (q) kapcsolja össze a lehajlás negyedik deriváltjával. Kétszáz évvel a végeselem-módszer előtt született, mégis ma is minden statikai szoftver hajlítási modulja ebből az egyenletből indul ki.",
     "whyMore": "A származtatottak láncolata köti össze a terhet a válasszal: q → nyíróerő V (egyszer) → hajlító nyomaték M (kétszer) → meredekség (háromszor) → lehajlás w (négyszer), az EI merevség a kapcsolatot M=EI·w''-vel adja. Negyedrendű ODE, mert a gerendának négy peremfeltétel kell (két vég × két korlát: lehajlás és meredekség, vagy nyomaték és nyíróerő). Feltételezi, hogy a síkmetszetek síkban maradnak és a nyíródeformáció elhanyagolható — karcsú gerendákra érvényes.",
     "wiki": "https://en.wikipedia.org/wiki/Euler%E2%80%93Bernoulli_gerendaegyenlet",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1750
   },
   {
     "rank": 73,
@@ -3306,7 +3490,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy szerkezet elmozdulása egy adott ponton nem más, mint a benne tárolt rugalmas energia deriváltja az ott ható erő szerint.</b> Castigliano huszonhárom évesen, mérnöki szakdolgozatában vezette le ezt a meglepően egyszerű összefüggést. Az energiamódszerek (ezen belül Castigliano tétele) ma is az egyik leggyorsabb kézi eszköz statikailag határozatlan szerkezetek elmozdulásának és reakcióinak számítására.",
     "whyMore": "U a szerkezetben tárolt teljes rugalmas alakváltozási energia; a reciprocitás/Betti-keret szerint U parciális deriváltja egy erő szerint megadja az elmozdulást az adott erő pontján, annak irányában. Ereje, hogy nem kell a teljes elmozdulás-mezőt megoldani — elég az energia-kifejezést deriválni. Statikailag határozatlan szerkezeteknél a többleterőket változókként adjuk hozzá és nulla elmozdulást írunk elő, így közvetlenül megkapjuk a reakciókat.",
     "wiki": "https://en.wikipedia.org/wiki/Castigliano-t%C3%A9tel",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1873
   },
   {
     "rank": 74,
@@ -3319,7 +3504,8 @@ const FIZIKA_DATA = [
     "why": "<b>Bármely fizikai törvény átírható dimenzió nélküli mennyiségek közötti kapcsolattá — és ez drasztikusan csökkenti a szükséges kísérletek számát.</b> Ha egy jelenséget n fizikai mennyiség ír le k alapdimenzióval, elég (n−k) dimenziótlan csoportot vizsgálni. Ez a modellkísérletek (szélcsatorna, hidraulikai modellek) és a Reynolds-szám típusú hasonlósági paraméterek elméleti alapja — kicsiben tesztelsz, és a π-csoportok garantálják, hogy nagyban is érvényes marad.",
     "whyMore": "A fizikai törvények nem függhetnek a mértékegységtől, ezért dimenziótlan csoportokkal kell kifejezhetőknek lenniük; a Rankine–Buckingham-tétel szerint pontosan n−k ilyen csoportot lehet képezni (n változó, k független alapdimenzió). Ez például 6 változós problémát 3 dimenziótlanra csökkent — ezért tud egy kis szélcsatorna-modell egy teljes méretű repülőt előre jelezni. A Reynolds-szám a klasszikus π-csoport az áramlástanban.",
     "wiki": "https://en.wikipedia.org/wiki/Buckingham_%CF%80-t%C3%A9tel",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1914
   },
   {
     "rank": 75,
@@ -3332,7 +3518,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy részecske véges eséllyel átjuthat egy olyan energiagáton, amit klasszikusan sosem tudna leküzdeni.</b> A hullámfüggvény nem tűnik el a tiltott tartományban, csak exponenciálisan lecseng — és a másik oldalon véges valószínűséggel megjelenik. Ez teszi lehetővé a Nap fúzióját (a protonok Coulomb-gáton 'alagutaznak' át), a radioaktív alfa-bomlást és a modern flash-memóriák működését is.",
     "whyMore": "A hullámfüggvény a gáton belül (V₀>E) nem nulla, hanem exponenciálisan lecseng, a κ lecsengési állandót az határozza meg, mennyivel van E a gát alatt és mekkora a részecske tömege. Az áteresztés a túloldali amplitúdó négyzete — innen az e^{−2κL} függés, amely élesen esik a gátszélesség L és a tömeg m növekedésével. A könnyebb részecskék és vékonyabb/alacsonyabb gátak könnyen alagutaznak; ezért jutnak át az elektronok a flash-memória kapuin és szöknek ki az alfa-részecskék a magból.",
     "wiki": "https://en.wikipedia.org/wiki/Kvantum-alag%C3%BAthat%C3%A1s",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1927
   },
   {
     "rank": 76,
@@ -3355,7 +3542,8 @@ const FIZIKA_DATA = [
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/No-cloning_t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1982
   },
   {
     "rank": 77,
@@ -3368,7 +3556,8 @@ const FIZIKA_DATA = [
     "why": "<b>Két szupravezető között egy vékony szigetelőrétegen áram folyik feszültség nélkül is — pusztán a kvantumfázis-különbség hajtja.</b> Josephson 22 évesen, PhD-hallgatóként jósolta meg ezt a tisztán kvantummechanikai jelenséget. A hatás ma a legpontosabb feszültségetalon és a szupravezető kvantumszámítógépek (qubitek) alapvető építőeleme.",
     "whyMore": "I a szigetelőrétegen átfolyó szuperáram, I_c a kritikus áram (a maximális zérusfeszültségű áram), φ a két szupravezető makroszkopikus hullámfüggvényének fáziskülönbsége, V a rájuk kapcsolt feszültség. Az első egyenlet szerint az áramot pusztán a fáziskülönbség szinusza hajtja; a második (dφ/dt = 2eV/ħ) azt mondja ki, hogy egy feszültség a fázist 2eV/ħ sebességgel forgatja — így egyenfeszültség alatt az áram rezeg (AC Josephson-effektus), ami rendkívül pontos feszültség- és frekvenciamérésre alkalmas.",
     "wiki": "https://en.wikipedia.org/wiki/Josephson-effektus",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1962
   },
   {
     "rank": 78,
@@ -3381,7 +3570,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy szupravezető nem csak vezeti az áramot ellenállás nélkül — aktívan kilöki magából a mágneses teret.</b> Ez a jelenség (nem pusztán a tökéletes vezetőképesség) bizonyította, hogy a szupravezetés valódi, új termodinamikai fázisállapot, nem csak 'nagyon jó vezető'. Ez teszi lehetővé a mágneses lebegtetést (pl. maglev vonatok) és ez motiválta a BCS-elmélet megalkotását két évtizeddel később.",
     "whyMore": "A képlet szerint a szupravezető térfogatában a mágneses indukcióvektor B = 0, azaz a test teljesen kisöpri magából a mágneses teret. Ezt a felszín közelében áramló, a teret kioltó ún. árnyékoló (screening) szuperáramok teszik lehetővé, amelyek egy vékony London-rétegben folynak. Éppen ez a teljes kitaszítás különbözteti meg a valódi szupravezetést a csupán tökéletesen vezető anyagtól, és ez adja a mágneses lebegtetés alapját.",
     "wiki": "https://en.wikipedia.org/wiki/Meissner-effektus",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1933
   },
   {
     "rank": 79,
@@ -3394,7 +3584,8 @@ const FIZIKA_DATA = [
     "why": "<b>Az abszolút nulla fok elvileg sosem érhető el véges számú lépésben — ezt mondja ki a termodinamika harmadik főtétele.</b> Ahogy a hőmérséklet nullához tart, egy tökéletes kristály entrópiája is nullához tart, és ez egyre nehezebbé, végül lehetetlenné teszi a további hűtést. Nernst kémiai reakciók vizsgálatából jutott el ide — a tétel ma is korlátozza, milyen közel juthatunk a kvantumszámítógépek hűtésében az abszolút nullához.",
     "whyMore": "A képlet szerint egy tökéletes kristály entrópiája S a hőmérséklet T nullához tartásával nullához tart. Ennek oka, hogy T=0-on a tökéletes kristálynak csak egyetlen mikroállapota (az összerendezett rács) létezik, így S = k_B·ln 1 = 0. Mivel a további hűtéshez szükséges munka a hőmérséklet-csökkenéssel arányosan nő, amíg az entrópiaváltozás el nem fogy, az abszolút nulla véges lépésben elérhetetlen.",
     "wiki": "https://en.wikipedia.org/wiki/Nernst-t%C3%A9tel_%28harmadik_f%C5%91t%C3%A9tel%29",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1906
   },
   {
     "rank": 80,
@@ -3407,7 +3598,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy gáz molekuláinak sebessége nem egyenletes — pontos, harang alakú eloszlást követ, ami csak a hőmérséklettől függ.</b> Maxwell tisztán valószínűségi érveléssel vezette le, mielőtt Boltzmann statisztikus mechanikai alapokra helyezte volna. Ez volt az első eset, hogy a fizika 'feladta' az egyedi részecskék pontos nyomon követését, és helyette statisztikus törvényekkel írta le a valóságot — ezzel megnyitva az utat a modern statisztikus fizika felé.",
     "whyMore": "f(v) a v sebességű molekulák számsűrűsége, n a teljes részecskesűrűség, m a molekulatömeg, T a hőmérséklet, k_B a Boltzmann-állandó. A v² tényező a sebességtérbeli gömbhéj térfogatából adódik (magasabb sebességnél több lehetséges irány van), az e^{-mv²/2k_BT} Boltzmann-tényező pedig exponenciálisan nyomja el a túl gyors molekulákat — a kettő egyensúlya adja a csúcsos, aszimmetrikus eloszlást egy véges csúcssebességgel.",
     "wiki": "https://en.wikipedia.org/wiki/Maxwell%E2%80%93Boltzmann_sebess%C3%A9geloszl%C3%A1s",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1860
   },
   {
     "rank": 81,
@@ -3420,7 +3612,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy izzó test által kisugárzott teljes energia a hőmérséklet negyedik hatványával nő — innen tudjuk, milyen forró a Nap felszíne.</b> Stefan kísérletileg találta meg az összefüggést, Boltzmann öt évvel később termodinamikai úton vezette le. A negyedik hatvány drámai érzékenységet jelent: ha egy csillag hőmérséklete duplázódik, tizenhatszor annyi energiát sugároz — ez a csillagászati fényesség-hőmérséklet becslések alapja.",
     "whyMore": "j az egységnyi felületről sugárzott teljesítmény (W/m²), σ a Stefan–Boltzmann-állandó (≈5,67·10⁻⁸ W·m⁻²·K⁻⁴), T a hőmérséklet kelvinben. A negyedik hatvány a teljes Planck-spektrum frekvencia- és térszögi integrálásából jön ki: ha T megduplázódik, a kisugárzott teljesítmény 2⁴ = 16-szorosára nő, ami a csillagok felszínhőmérsékletének fényességből való becslését teszi lehetővé.",
     "wiki": "https://en.wikipedia.org/wiki/Stefan%E2%80%93Boltzmann-t%C3%B6rv%C3%A9ny",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1879
   },
   {
     "rank": 82,
@@ -3433,7 +3626,8 @@ const FIZIKA_DATA = [
     "why": "<b>Ha egy töltött részecske gyorsabban halad egy közegben, mint a fény abban a közegben, kék fénykúpot bocsát ki — ez a fény 'hangrobbanása'.</b> A fény vákuumbeli sebességét semmi sem lépheti túl, de egy közegben (pl. vízben) a fénysebesség lassabb, és a részecskék meghaladhatják. A jelenség adja az atomreaktorok jellegzetes kék izzását, és ez alapján épülnek a neutrínó-detektorok (pl. Super-Kamiokande) is.",
     "whyMore": "θ_c a kibocsátott fénykúp félnyílásszöge, n a közeg törésmutatója, β = v/c a részecske sebessége a fénysebesség törtrészében. A képlet a fény 'hangrobbanásának' geometriai feltétele: csak akkor jelenik meg valós, cos θ_c ≤ 1 szögű kúp, ha a részecske gyorsabb a közegben a fénynél, vagyis β > 1/n. A szög mérése megadja a részecske sebességét, ezért alapozza meg a neutrínó- és részecske-detektorok működését.",
     "wiki": "https://en.wikipedia.org/wiki/Cserenkov-sug%C3%A1rz%C3%A1s",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1934
   },
   {
     "rank": 83,
@@ -3446,7 +3640,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy szubatomi részecske mágneses tulajdonsága a Standard Modell jóslatától kis, de makacsul fennmaradó mértékben eltér.</b> A müon mágneses momentuma az egyik legpontosabban mérhető mennyiség a fizikában — a Fermilab 2021-es mérése megerősítette a korábbi Brookhaven-eredményt. Ha az eltérés valódi (és nem elméleti számítási hiba), az új, még ismeretlen részecskék vagy kölcsönhatások létezésére utalhat a Standard Modellen túl.",
     "whyMore": "a_μ a mágneses anomália, azaz a g giromágneses faktor eltérése a Dirac-értéktől: a_μ = (g−2)/2. A mérést és a Standard Modell (SM) elméleti jóslatát összevető különbség ≈4,2σ, azaz 4,2 szórásnyira van egymástól — statisztikailag igen ritkán előforduló eltérés. Ha a különbség valódi, azt jelzi, hogy a müon 'kvantumhurkában' nem szereplő, új virtuális részecskék is hozzájárulnak a mágneses momentumhoz.",
     "wiki": "https://en.wikipedia.org/wiki/M%C3%BCon_g-2_anom%C3%A1lia",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 2021
   },
   {
     "rank": 84,
@@ -3459,7 +3654,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy zárt fülkében lehetetlen megkülönböztetni a gravitációt az egyenletes gyorsulástól — ez volt Einstein 'legboldogabb gondolata'.</b> A tehetetlen és a súlyos tömeg azonossága évszázadok óta ismert kísérleti tény volt, de senki nem gondolt bele a mélyebb jelentésébe. Einstein ebből az egyetlen felismerésből építette fel az egész általános relativitáselméletet — a gravitáció nem erő, hanem a téridő görbülete.",
     "whyMore": "m_tehetetlen a tehetetlen tömeg (az F = m·a szerinti ellenállás a gyorsulásra), m_súlyos a súlyos tömeg (a gravitáció forrása és elszenvedője az F = G·m·M/r² szerint). A kettő kísérletileg azonos, így minden test ugyanazzal a gyorsulással esik — ez teszi lehetővé, hogy egy zárt fülkében a gravitációt megkülönböztethetetlennek tartsuk az egyenletes gyorsulástól, és hogy a gravitációt ne erőnek, hanem a téridő görbületének tekintsük.",
     "wiki": "https://en.wikipedia.org/wiki/Ekvivalenciaelv",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1907
   },
   {
     "rank": 85,
@@ -3472,7 +3668,8 @@ const FIZIKA_DATA = [
     "why": "<b>A valóságos fekete lyukak nem állnak — forognak, és ez alapvetően megváltoztatja a köréjük görbült téridő szerkezetét.</b> Roy Kerr új-zélandi matematikus 1963-ban találta meg az első egzakt megoldást forgó tömegekre — csaknem 50 évvel Einstein után. A forgás miatt a fekete lyuknak két eseményhorizontja is van (r₊ és r₋), és a téridő 'magával rántja' a körülötte lévő teret (frame dragging) — ezt látjuk az Event Horizon Telescope felvételein.",
     "whyMore": "r_s a Schwarzschild-sugár (2GM/c²), a a fekete lyuk dimenziótlan perdülete (J/Mc). A két gyök az eseményhorizontok sugarát adja: r₊ a külső (kozmológiai), r₋ a belső horizontot; valós gyökök csak akkor léteznek, ha a ≤ r_s/2, vagyis a forgó lyuk nem lehet túlextrém. A forgás 'magával rántja' a környező téridőt (frame dragging), és ez a két horizont a lyuk körüli gáz- és anyagáramlásokat is alakítja.",
     "wiki": "https://en.wikipedia.org/wiki/Kerr-metrika",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1963
   },
   {
     "rank": 86,
@@ -3485,7 +3682,8 @@ const FIZIKA_DATA = [
     "why": "<b>Gyorsuló tömegek fodrozzák magát a téridőt — ezek a fodrok a fénysebességgel terjednek, és 100 évvel a jóslat után mérhetőkké váltak.</b> Einstein 1916-ban vezette le a képletet, de maga is kételkedett benne, hogy valaha mérhető lesz. A LIGO 2015-ös első detektálása (két fekete lyuk összeolvadásából) egy teljesen új ablakot nyitott az univerzumra — nem fénnyel, hanem a téridő rezgésével 'hallgatjuk' a kozmoszt.",
     "whyMore": "P a kisugárzott teljesítmény, Q_ij a tömegeloszlás másodrendű (kvadrupól) nyomatéka, a pontok az idő szerinti deriváltakat jelölik, ⟨·⟩ a ciklikus átlagot. A képletből látszik, hogy csak a kvadrupól- (és magasabb) momentum változása sugároz: egy gömbszimmetrikusan lüktető tömegnek Q̈̈_ij = 0, így nem bocsát ki hullámot. A G/c⁵ tényező mutatja, hogy a gravitációs sugárzás sok nagyságrenddel gyengébb az elektromágnesesnél, emiatt volt mérhetetlen 100 éven át.",
     "wiki": "https://en.wikipedia.org/wiki/Gravit%C3%A1ci%C3%B3s_hull%C3%A1mok_%28kvadrup%C3%B3l-formula%29",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1916
   },
   {
     "rank": 87,
@@ -3498,7 +3696,8 @@ const FIZIKA_DATA = [
     "why": "<b>Az Euler–Bernoulli-elmélet elhanyagolja a nyírási alakváltozást — Timoshenko megmutatta, hogy ez zömök gerendáknál nem tehető meg.</b> A klasszikus gerendaelmélet feltételezi, hogy a keresztmetszetek a hajlítás után is merőlegesek maradnak a tengelyre; Timoshenko elengedte ezt a feltevést. Rövid, vastag gerendáknál (pl. hídpillérek, gépalapok) ez a pontosabb modell — máig ez a szabvány a dinamikai és rezgésanalízisben.",
     "whyMore": "G a nyírási modulus, A_s a nyírásra számított keresztmetszet, w a gerenda keresztirányú elhajlása, φ a keresztmetszet elfordulása, q a megoszló terhelés. A w/dx − φ tag éppen a nyírási deformációt ragadja meg: ellentétben az Euler–Bernoulli-feltevéssel, a keresztmetszet nem marad merőleges a semleges tengelyre. Ezért rövid, vastag gerendáknál (pl. hídpillérek), ahol a nyírás nem hanyagolható el, a Timoshenko-egyenlet ad pontosabb hajlítási és rezgési eredményt.",
     "wiki": "https://en.wikipedia.org/wiki/Timoshenko-gerendaelm%C3%A9let",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1921
   },
   {
     "rank": 88,
@@ -3511,7 +3710,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy egyetlen vektoregyenlet írja le, hogyan deformálódik egy háromdimenziós rugalmas test bármilyen terhelés alatt.</b> Navier (ugyanaz, aki a folyadékmechanikai Navier–Stokes-egyenletet is megalkotta) itt a szilárd testek egyensúlyi egyenletét vezette le a Lamé-állandók (λ, μ) segítségével. Ez minden modern végeselemes szerkezetanalízis-szoftver (pl. földrengésálló épülettervezés) elméleti kiindulópontja.",
     "whyMore": "u a test elmozdulásvektora, λ és μ a Lamé-állandók (μ a nyírási modulus), f a térfogati erő. Az egyenlet a 3D rugalmas egyensúly Hooke-törvényből levezetett alakja: ∇·u a térfogati nyúlás (dilatáció), ∇²u a nyírási deformáció, és a (λ+μ) súlyozás összeköti a kettőt. Ez az egyetlen vektoregyenlet minden végeselemes szerkezetanalízis (pl. földrengésálló tervezés) kiindulópontja.",
     "wiki": "https://en.wikipedia.org/wiki/Navier-egyenlet_%28rugalmass%C3%A1gtan%29",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1821
   },
   {
     "rank": 89,
@@ -3524,7 +3724,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy szerkezet első sajátfrekvenciája megbecsülhető, ha csak egy 'ésszerű' rezgésalakot feltételezünk — pontos megoldás nélkül is.</b> Az energiamódszer (mozgási és alakváltozási energia egyenlősége) mindig felülbecsli a valódi sajátfrekvenciát, de gyakran meglepően közel kerül hozzá. Ritz általánosította Rayleigh eredeti ötletét, és ez lett a végeselem-módszer közvetlen elméleti elődje — máig ez az első kézi ellenőrzés, amit egy statikus egy rezgő szerkezetnél elvégez.",
     "whyMore": "ω a szerkezet sajátkörfrekvenciája, EI a hajlítási merevség, m a tömegsűrűség (tömeg/hossz), φ a kitalált (feltételezett) rezgésalak. A tört a feszültségi (alaki) energia és a mozgási energia hányadosa: a két energiát egyenlővé téve maximális értéküknél megkapjuk ω² közelítését. A módszer mindig felülről közelíti a valódi frekvenciát, Ritz pedig úgy tette pontosabbá, hogy több bázisalak lineáris kombinációját használta — ez a végeselem-módszer elődje.",
     "wiki": "https://en.wikipedia.org/wiki/Rayleigh%E2%80%93Ritz_m%C3%B3dszer",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1870
   },
   {
     "rank": 90,
@@ -3537,7 +3738,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egyetlen lineáris arány köti össze a feszültséget és az alakváltozást — ez minden szilárdságtani számítás kiindulópontja.</b> Hooke eredetileg anagrammaként rejtette el felfedezését ('ceiiinosssttuv'), hogy elsőbbségét biztosítsa, miközben tovább finomította. A rugalmassági modulus (E) ma is az anyagválasztás első száma minden mérnöki tervezésnél — a legegyszerűbb fizikai törvény, ami mégis az egész szerkezetstatika alapja.",
     "whyMore": "σ a normálfeszültség (erő/keresztmetszet), ε az alakváltozás (relatív megnyúlás ΔL/L), E a Young-féle rugalmassági modulus. A lineáris összefüggés csak a rugalmas tartományban, az folyáshatár alatt érvényes; E nagysága adja az anyag merevségét — nagy E esetén az anyag kevéssé nyúlik meg adott terhelésre. Ez az egyetlen arány minden szilárdságtani és szerkezetstatikai számítás alapja.",
     "wiki": "https://en.wikipedia.org/wiki/Hooke-t%C3%B6rv%C3%A9ny",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1678
   },
   {
     "rank": 91,
@@ -3556,7 +3758,8 @@ const FIZIKA_DATA = [
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/Darcy-t%C3%B6rv%C3%A9ny",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1856
   },
   {
     "rank": 92,
@@ -3569,7 +3772,8 @@ const FIZIKA_DATA = [
     "why": "<b>Amikor egy épület terhet ad egy agyagos talajra, a víznek időbe telik kipréselődnie a pórusokból — ez az elmélet írja le, milyen ütemben süllyed a szerkezet.</b> Terzaghi Károly a talajmechanikát önálló tudományággá formálta ezzel az egyenlettel, amely formálisan azonos a hővezetés egyenletével. Minden alapozástervezés, ami süllyedés-idő görbét számol, ezen az 1925-ös felismerésen nyugszik — a geotechnikai mérnöki tudomány alapköve.",
     "whyMore": "Az u a pórusokban lévő felesleges víznyomás, amely az épület terhe miatt keletkezik, z a mélység, c_v pedig a talaj konszolidációs tényezője, ami a víz távozásának sebességét jellemzi (minél nagyobb, annál gyorsabban süllyed a talaj). Az egyenlet azt mondja ki, hogy a pórusvíznyomás időbeli csökkenése arányos a nyomás mélység szerinti görbületével — a víz a nagy gradiensű helyekről folyik a kisebb felé, mint a hő vagy anyag diffúziójánál. Ezért indul a süllyedés gyorsan, majd exponenciálisan lassul, ahogy a pórusvíz kiürül.",
     "wiki": "https://en.wikipedia.org/wiki/Terzaghi-f%C3%A9le_konszolid%C3%A1ci%C3%B3elm%C3%A9let",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1925
   },
   {
     "rank": 93,
@@ -3582,7 +3786,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy forgó rendszerben (mint a Föld) mozgó test látszólagos oldalirányú erőt érez — ez téríti el a ciklonokat, a folyók partjait és a tüzérségi lövedékeket.</b> Nem valódi erő, hanem a vonatkoztatási rendszer forgásából adódó látszólagos hatás — mégis mérhető, valós következményekkel. Enélkül lehetetlen lenne pontos ballisztikai számítást, időjárás-előrejelzést vagy akár Foucault-inga-kísérletet végezni.",
     "whyMore": "Az m a test tömege, ω a forgó rendszer (a Föld) szögsebesség-vektora, v a test sebessége a forgó rendszerhez képest, a × pedig a vektoriális szorzat, ami a forgástengelyre és a sebességre is merőleges irányt ad. A 2-es szorzó abból adódik, hogy a forgó koordinátarendszerben két egyenlő nagyságú, a forgásból származó tag összegződik ebben a látszólagos erőben. Mivel az irány mindig a mozgásra merőleges és a forgás irányától függ, északi féltekén jobbra, déli féltekén balra téríti el a mozgó testeket.",
     "wiki": "https://en.wikipedia.org/wiki/Coriolis-er%C5%91",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1835
   },
   {
     "rank": 94,
@@ -3595,7 +3800,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy egyszerű inga lengési síkja a nap folyamán elfordul — nem azért, mert bármi meglöki, hanem mert alatta forog a Föld.</b> Léon Foucault a párizsi Panthéonban 67 méteres drótra függesztett ingával mutatta be, első alkalommal, közvetlen, mechanikai bizonyítékkal a Föld tengelyforgására. A precesszió sebessége a földrajzi szélességtől függ — az Északi-sarkon pontosan 24 óra, az egyenlítőn nulla.",
     "whyMore": "A φ a földrajzi szélesség, a 24 óra egy teljes Föld-körülfordulás ideje; a sin(φ) azt adja meg, hogy az adott szélességen a Föld tengelyforgásának vízszintes (a függőlegestől eltérő) komponense mekkora. Minél közelebb vagyunk a pólushoz, annál nagyobb ez a komponens, és annál gyorsabban fordul el a lengési sík (az egyenlítőn nulla, mert ott a felszín csak vízszintesen mozog). A teljes 360°-os elfordulás ideje pont az egyenlettel adott T, ami a póluson 24 óra, az egyenlítőn végtelen.",
     "wiki": "https://en.wikipedia.org/wiki/Foucault-inga",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1851
   },
   {
     "rank": 95,
@@ -3608,7 +3814,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy forgó merev test — például egy pörgettyű vagy egy műhold — mozgása három csatolt egyenlettel írható le, amelyekben a forgástengelyek maguk is 'vándorolnak'.</b> A giroszkópikus precesszió, a bukdácsoló forgó tojás és a stabil műholdpályák mind ebből az egyenletrendszerből érthetők meg. Euler nem véletlenül ismerte fel: ha egy test három tehetetlenségi nyomatéka mind különböző, a forgása elvileg kaotikussá válhat a köztes tengely körül — ezt nevezik ma 'tenisz-ütő tételnek'.",
     "whyMore": "Az I₁, I₂, I₃ a test saját tehetetlenségi nyomatékai a három főtengelyére, ω₁..ω₃ a szögsebesség komponensei ezeken, M₁ a külső nyomaték az 1-es tengelyre. A (I₂−I₃)ω₂ω₃ tag azt mutatja, hogy az egyik tengelyen keletkező szöggyorsulást a másik kettő perdületének kereszthatása hozza létre — ez a giroszkópikus csatolás. Külső nyomaték nélkül a test a legnagyobb vagy legkisebb tehetetlenségű tengelye körül stabil, a középső körül instabil, innen ered a 'tenisz-ütő tétel'.",
     "wiki": "https://en.wikipedia.org/wiki/Euler-f%C3%A9le_forg%C3%A1segyenletek",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1765
   },
   {
     "rank": 96,
@@ -3621,7 +3828,8 @@ const FIZIKA_DATA = [
     "why": "<b>Az ideális gáztörvény két apró korrekcióval válik valósághűvé: a molekulák saját térfogatot foglalnak el, és vonzzák egymást.</b> Van der Waals ezzel az egyszerű módosítással írta le először, hogyan kondenzálódik egy gáz folyadékká — Nobel-díjat kapott érte. Az egyenlet a kritikus pont létezését is megjósolja, ahol a gáz és a folyadék fázisa megkülönböztethetetlenné válik.",
     "whyMore": "Az a·n²/V² tag a belső vonzóerő miatti nyomáscsökkenést pótolja (a molekulák egymást húzzák, így kevesebb nyomást fejtenek ki a falra), az n·b pedig a molekulák saját térfogatát vonja le a rendelkezésre álló térből. A P a nyomás, V a térfogat, n az anyagmennyiség, T a hőmérséklet, R az egyetemes gázállandó. Kis V-nél ezek a tagok dominálni kezdenek, így az egyenlet — az ideális gáztörvénnyel szemben — leír egy valós gáz folyadék–gáz fázisátmenetét és a kritikus pontot is.",
     "wiki": "https://en.wikipedia.org/wiki/Van_der_Waals-%C3%A1llapotegyenlet",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1873
   },
   {
     "rank": 97,
@@ -3634,7 +3842,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy gáz fojtott (munkavégzés nélküli) tágulásakor lehűlhet vagy felmelegedhet — attól függően, hol van a hőmérséklete az 'inverziós ponthoz' képest.</b> Ez a jelenség (nem az adiabatikus tágulás) teszi lehetővé a gázok cseppfolyósítását ipari méretekben — enélkül nem létezne folyékony nitrogén, oxigén, vagy a modern hűtő- és klímatechnika. A szobahőmérsékleten a legtöbb gáz lehűl a fojtáskor — a hidrogén és a hélium viszont felmelegszik, ezért nehezebb őket cseppfolyósítani.",
     "whyMore": "A μ_JT a Joule–Thomson-együttható: megadja, hány fokot változik a gáz hőmérséklete egységnyi nyomásesésre, miközben az entalpia H (a fojtásnál a hő és munka összege) állandó marad. A fojtás során a gáz nem végez munkát, csak a nyomása csökken — a belső vonzóerők miatt a térfogatnövekedés energiába (hűlésbe) vagy energiából (melegedésbe) kerül. Ahol μ_JT pozitív (több gáz szobahőmérsékleten), a gáz lehűl; ahol negatív (hidrogén, hélium), felmelegszik — ezt az inverziós hőmérséklet határozza meg.",
     "wiki": "https://en.wikipedia.org/wiki/Joule%E2%80%93Thomson-effektus",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1852
   },
   {
     "rank": 98,
@@ -3647,7 +3856,8 @@ const FIZIKA_DATA = [
     "why": "<b>A hőáram mindig a hőmérséklet-gradienssel ellentétes irányba folyik, egyenesen arányos annak nagyságával — ugyanaz a matematikai forma, mint Darcy vagy Fick törvényénél.</b> Fourier ugyanabból az intuícióból építette fel a hővezetés egyenletét, amiből később a Fourier-sorokat és -transzformációt is kifejlesztette — a hőterjedés vizsgálata vezetett a matematikai analízis egyik legfontosabb eszközéhez. Épületfizikai hőszigetelés-tervezéstől a mikroprocesszorok hűtéséig mindenhol ez az egyenlet dolgozik.",
     "whyMore": "A q a hőáramsűrűség-vektor (energia/idő/terület), k a közeg hővezetési tényezője (anyagfüggő konstans: réznél nagy, szigetelőnél kicsi), ∇T a hőmérséklet-gradiens. A mínuszjel a fizikai irányt rögzíti: a hő mindig a melegebb felől a hidegebb felé, a gradiens ellenkező irányába áramlik. Ez a lineáris kapcsolat — kétszer akkora különbség, kétszer akkora hőáram — teszi a hőterjedést jól kezelhető, lineáris diffúziós problémává, akárcsak a Darcy- vagy Fick-törvényt.",
     "wiki": "https://en.wikipedia.org/wiki/Fourier-f%C3%A9le_h%C5%91vezet%C3%A9si_t%C3%B6rv%C3%A9ny",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1822
   },
   {
     "rank": 99,
@@ -3660,7 +3870,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egyetlen egyenlet számítja ki egy elektrokémiai cella feszültségét — és ugyanez az egyenlet írja le, hogyan generálnak a neuronok elektromos jeleket.</b> Az ionkoncentráció-különbségekből adódó potenciál a mérnöki elemektől (akkumulátorok) az idegsejtek membránpotenciáljáig mindenhol ugyanezt a logikát követi. Nernst kémiai munkájáért Nobel-díjat kapott, de az egyenlete végül az idegtudomány egyik legfontosabb alapkövévé vált.",
     "whyMore": "Az E a mért cellafeszültség, E⁰ a szabványos feszültség (a reakció egyensúlyi hajlama), R az egyetemes gázállandó, T a hőmérséklet, z az átadott elektronok száma, F a Faraday-állandó, Q a reakció hányadosa (termékek és kiindulási anyagok koncentrációjának aránya). A ln Q tag azt mondja ki, hogy minél nagyobb az egyensúlytól való eltérés (pl. ionkoncentráció-különbség a membrán két oldalán), annál nagyobb a feszültség. Az egyenlet termodinamikai alapja: a kémiai potenciálkülönbség alakul elektromos feszültséggé, és pontosan így skálázódik a hőmérséklettel és az elektronszámmal.",
     "wiki": "https://en.wikipedia.org/wiki/Nernst-egyenlet",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1889
   },
   {
     "rank": 100,
@@ -3673,7 +3884,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy 3×3-as mátrix magyarázza meg, miért maradt egyáltalán anyag az univerzumban — miért nem semmisült meg minden az ősrobbanás után antianyaggal.</b> Kobayashi és Maskawa 1973-ban, még mielőtt a harmadik kvarkcsalád felfedezték volna, megjósolták: legalább hat kvarktípus kell ahhoz, hogy a Standard Modellben CP-sértés (anyag-antianyag aszimmetria) létezhessen. A jóslat évtizedekkel később igazolódott — 2008-ban Nobel-díjjal jutalmazták.",
     "whyMore": "A mátrix elemei V_ij a kvarkcsaládok (u, c, t 'fel' és d, s, b 'le' kvarkok) közötti kölcsönhatási amplitúdókat adják meg — a három generáció keveredését írják le. A mátrix komplex fázisszöge (amit a 3×3-as alak pont enged meg) teremti meg a CP-sértést: a részecske és antirészecskéje bomlása nem pontosan ugyanolyan valószínűségű. Ha csak két kvarkcsalád lenne (2×2-es mátrix), a fázis kisöpörhető lenne — ezért kellett a harmadik generáció ahhoz, hogy az univerzumban a kis anyag-felesleg létrejöhessen.",
     "wiki": "https://en.wikipedia.org/wiki/CKM-m%C3%A1trix_%28CP-s%C3%A9rt%C3%A9s%29",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1973
   },
   {
     "rank": 101,
@@ -3686,7 +3898,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy elektron kvantumfázisát befolyásolja egy mágneses tér még akkor is, ha az elektron pályája teljes egészében a mágneses tértől mentes régióban halad.</b> Ez a jelenség megmutatta, hogy a vektorpotenciál (A) nem csak matematikai segédeszköz, hanem fizikailag valódi, mérhető hatással bír — ellentétben a klasszikus elektrodinamika korábbi felfogásával. Az egyik legtisztább bizonyíték arra, hogy a kvantummechanika alapvetően nem-lokális jelenségeket rejt.",
     "whyMore": "A Δφ a két egymást keresztező elektronnyaláb közötti fáziskülönbség, e az elemi töltés, ℏ a redukált Planck-állandó, A a vektorpotenciál, a ∮ pedig a zárt hurkon vett vonalintegrál. A klasszikus elektrodinamikában csak E és B (a térerősségek) számítanak, de az egyenlet szerint maga az A vektorpotenciál hat a kvantumfázisra, még ha B=∇×A zérus is a pályán. Ez azt jelenti, hogy a kvantummechanikában a potenciál nemcsak segédeszköz, hanem fizikailag mérhető, nem-lokális hatást közvetít.",
     "wiki": "https://en.wikipedia.org/wiki/Aharonov%E2%80%93Bohm-effektus",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1959
   },
   {
     "rank": 102,
@@ -3699,7 +3912,8 @@ const FIZIKA_DATA = [
     "why": "<b>Ha egyszer egy csillag elég összenyomódik, a téridő-görbület szingularitása matematikailag elkerülhetetlen — nem csak a szimmetrikus, idealizált esetekben.</b> Penrose és Hawking topológiai módszerekkel (nem az egyenletek megoldásával) bizonyították ezt, ami sokkal általánosabb eredményt adott, mint bármelyik korábbi konkrét megoldás. Penrose ezért kapott 2020-ban fizikai Nobel-díjat — a bizonyítás máig az egyik legmélyebb kapocs a topológia és a fizika között.",
     "whyMore": "A θ a geodetikus kongruencia kitágulási skalárja (azt méri, hogyan szét- vagy összeszedődnek a szomszédos pályák), az affin paraméter pedig a geodetikus ívhosszát parameterezi. A tétel feltételezi, hogy létezik egy csapdahorizont (trapped surface), ahol minden fény- és anyagsugár befelé görbül — ekkor θ véges idő alatt −∞-be fut, ami a téridő görbületének végtelenbe tartását (szingularitást) jelenti. A lényeg: nem a szimmetria, hanem az általános relativitás egyenleteinek szerkezete kényszeríti ki a szingularitást, bármilyen aszimmetrikus is a gravitációs összeomlás.",
     "wiki": "https://en.wikipedia.org/wiki/Penrose%E2%80%93Hawking_szingularit%C3%A1st%C3%A9telek",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1965
   },
   {
     "rank": 103,
@@ -3712,7 +3926,8 @@ const FIZIKA_DATA = [
     "why": "<b>A fény mérhetően lelassul, amikor egy nagy tömeg (pl. a Nap) közelében halad el — a görbült téridő 'meghosszabbítja' az útját.</b> Irwin Shapiro jósolta meg és mérte ki radarjelek Vénuszról való visszaverődésével — ez volt az általános relativitáselmélet negyedik klasszikus kísérleti próbája (a fénygörbülés, a bolygópálya-precesszió és a gravitációs vöröseltolódás után). A modern GPS-rendszerek pontossága is számol ezzel a késleltetéssel.",
     "whyMore": "A Δt a késleltetés ideje, G a gravitációs állandó, M a nagy tömeg (pl. a Nap), c a fénysebesség, r₁ és r₂ az adó és vevő távolsága a tömegtől, d a fény sugár legkisebb távolsága a tömeg középpontjától. A c³ a téridő-görbülés skáláját adja meg, a ln(4r₁r₂/d²) pedig a fény effektív útjának megnyúlását írja le a görbült téridőben. A hatás kicsi (a Nap esetén mikromásodpercekben mérhető), de pontosan ezt a korrekciót kell a GPS-nek és a rádiótávcsöveknek is figyelembe venniük.",
     "wiki": "https://en.wikipedia.org/wiki/Shapiro-k%C3%A9sleltet%C3%A9s",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1964
   },
   {
     "rank": 104,
@@ -3725,7 +3940,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy forgó fekete lyuk ergoszférájából elméletileg energia nyerhető ki — a fekete lyuk forgási energiájának terhére.</b> Ha egy részecske az ergoszférában két darabra hasad, és az egyik darab negatív energiával zuhan be a fekete lyukba, a másik nagyobb energiával távozhat, mint amivel érkezett. A folyamat a Kerr-metrika közvetlen, gyakorlati következménye — és felmerült, hogy hipotetikusan fejlett civilizációk energiaforrásként használhatnák egy forgó fekete lyukat.",
     "whyMore": "A folyamat egy forgó (Kerr) fekete lyuk ergoszférájában játszódik: egy beeső részecske két darabra hasad, az egyik darab negatív energiájú lesz (a forgó téridő miatt ez lehetséges) és a lyukba zuhan, a másik pozitív energiával távozik. Az így kinyerhető maximális energia a fekete lyuk forgási energiájának 29%-a, a maradék a lyuk forgásának leállításához kötődik (ekkor válik Schwarzschild-típusúvá). Az elv megmutatja, hogy a fekete lyuk nemcsak nyeli az energiát, hanem forgása révén aktívan tárolja és leadhatja azt.",
     "wiki": "https://en.wikipedia.org/wiki/Penrose-folyamat",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1969
   },
   {
     "rank": 105,
@@ -3738,7 +3954,8 @@ const FIZIKA_DATA = [
     "why": "<b>Négy egyszerű molekula, kizárólag két lehetséges párosítási szabály szerint — és ebből épül fel az élet teljes genetikai kódja.</b> Watson és Crick 1953-as felfedezése (Rosalind Franklin röntgendiffrakciós felvételei alapján) nem csak a DNS szerkezetét adta meg, hanem azonnal megmutatta a másolás mechanizmusát is — a kettős spirál 'magától' szétválik és templátként szolgál. Ritkán esik egybe egy struktúra megismerése ilyen közvetlenül a működésének megértésével.",
     "whyMore": "A négy bázis (adenin, timin, guanin, citozin) közül az adenin mindig a timinnel, a guanin mindig a citozinnal párosodik — mert csak ezeknek illenek egymáshoz a hidrogénkötései (2 az A–T, 3 a G–C pár között). Ez a merev párosítási szabály teszi lehetővé a DNS pontos önreplikációját: ha a kettős szál szétválik, minden félig szálhoz csak a komplementer bázis tud hozzákapcsolódni. A G–C pár extra hidrogénkötése miatt stabilabb és magasabb olvadáspontú, mint az A–T pár.",
     "wiki": "https://en.wikipedia.org/wiki/Watson%E2%80%93Crick_b%C3%A1zisp%C3%A1rosod%C3%A1s",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1953
   },
   {
     "rank": 106,
@@ -3751,7 +3968,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy anyag törési szilárdsága nem anyagállandó — attól függ, mekkora repedés van már benne.</b> Griffith energiamérleg-elve (a felszabaduló rugalmas energia és a felszínenergia versenye) magyarázza meg, miért törik el egy üveg sokkal kisebb feszültségnél, mint amit az atomi kötések elméletileg elbírnának. Ez az elmélet az alapja minden repedésterjedés-vizsgálatnak, fáradási élettartam-számításnak és a modern roncsolásmentes vizsgálati módszereknek.",
     "whyMore": "Griffith tétele szerint a repedés csúcsánál a feszültség a névlegesnél sokkal nagyobbra nő: a hegyes repedés végében a koncentráció ∝ 1/√a. Ezért minél hosszabb a már meglévő repedés (a), annál kisebb külső σ_f elég az egyensúlyi töréshez — a terjedéskor felszabaduló rugalmas energia fedezi az új törésfelület felszínenergiáját (2Eγ_s). Így a törési szilárdság nem az anyag elméleti kötési ereje, hanem a legnagyobb hiba mérete.",
     "wiki": "https://en.wikipedia.org/wiki/Griffith-f%C3%A9le_t%C3%B6r%C3%A9smechanika",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1921
   },
   {
     "rank": 107,
@@ -3764,7 +3982,8 @@ const FIZIKA_DATA = [
     "why": "<b>A súrlódási erő — meglepő módon — nem függ az érintkező felületek méretétől, csak a normálerőtől és egy anyagpárra jellemző együtthatótól.</b> Coulomb (ugyanaz, aki az elektrosztatikus törvényt is megalkotta) kísérletileg igazolta ezt az egyszerű, de korántsem magától értetődő összefüggést. Minden alapozás csúszásvizsgálata, minden fékrendszer-tervezés és minden csavarkötés nyomatékszámítása erre az egyszerű egyenlőtlenségre épül.",
     "whyMore": "A súrlódás a mikroszkopikus érintkezési csúcsok (aszperzitások) összetapadásából és deformációjából származik, nem a látszólagos felület nagyságából. Mivel a valós érintkező terület arányos a normálerővel (N), a súrlódás is lineárisan követi azt: F_s ≤ μ_s·N. A μ_s együttható csak a két anyag atomi kölcsönhatásaitól függ, így ugyanaz a gördeszka fékezésénél és egy csavar meghúzásánál is.",
     "wiki": "https://en.wikipedia.org/wiki/Coulomb-s%C3%BArl%C3%B3d%C3%A1si_t%C3%B6rv%C3%A9ny",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1785
   },
   {
     "rank": 108,
@@ -3777,7 +3996,8 @@ const FIZIKA_DATA = [
     "why": "<b>Az elektromágnesség és a gyenge kölcsönhatás — két, teljesen különbözőnek tűnő erő — valójában ugyanannak az egyesített szimmetriának két arca alacsony energián.</b> Glashow, Weinberg és Salam egymástól részben függetlenül építették fel az elméletet, amit a Higgs-mechanizmus tesz teljessé: ez adja meg a W- és Z-bozonok tömegét, miközben a foton tömeg nélkül marad. Ez volt a fizikatörténet első sikeres 'nagy egyesítése' — a mai Standard Modell gerince.",
     "whyMore": "Nagy (elektrogyenge) energián az SU(2)_L × U(1)_Y szimmetria egységes; a Higgs-mező vákuumértéke megtöri ezt — a W/Z bozonok felveszik a tömeget, a foton tömegtelen marad, mert az elektromágneses U(1)_EM irány nem kap Higgs-töltést. Ezért válik a gyenge kölcsönhatás rövid hatótávúvá, és látszik külön erőnek alacsony energián. A nyíl épp ezt a szimmetriasértő lefolyást jelöli.",
     "wiki": "https://en.wikipedia.org/wiki/Elektrogyenge_egyes%C3%ADt%C3%A9s",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1967
   },
   {
     "rank": 109,
@@ -3790,7 +4010,8 @@ const FIZIKA_DATA = [
     "why": "<b>Alfa-részecskéket lövöldözve vékony aranyfóliára, néhány váratlanul nagy szögben visszapattant — 'mintha ágyúgolyót lőttünk volna selyempapírra, és az visszapattanna'.</b> Rutherford ebből a meglepetésből következtetett arra, hogy az atom tömege és pozitív töltése egy apró, sűrű magban koncentrálódik, nem szét van kenve egyenletesen (ahogy addig hitték). Ez a kísérlet indította el a modern atommag- és részecskefizikát — a szórási hatáskeresztmetszet képlete ma is a legelső eszköz bármilyen új részecske belső szerkezetének feltérképezésére.",
     "whyMore": "A képlet a klasszikus Coulomb-elhajlás megoldása: dσ/dΩ ∝ 1/sin⁴(θ/2), vagyis a visszafelé (θ≈180°) szórt részecskék valószínűsége sokkal nagyobb, mintha a töltés egyenletesen oszlana el. Ezt csak egy sűrű, pontszerű pozitív mag magyarázza, ahol a legközelebb repülő α-részecskére a 1/r²-es Coulomb-erő hatalmas impulzust ad. A Z a mag töltését, E az α-részecske energiáját jelöli — kisebb E és nagyobb Z erősebb szórást ad.",
     "wiki": "https://en.wikipedia.org/wiki/Rutherford-sz%C3%B3r%C3%A1s",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1911
   },
   {
     "rank": 110,
@@ -3803,7 +4024,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy kvantumállapot átvihető egyik részecskéről a másikra anélkül, hogy a részecske maga bárhová is 'utazna' — csak összefonódás és két klasszikus bit szükséges hozzá.</b> Nem tömeget vagy energiát teleportálunk, hanem tiszta információt — és a no-cloning tétel miatt az eredeti állapot szükségszerűen megsemmisül a folyamat során. Ez a protokoll ma a kvantumszámítógépek közötti kommunikáció és a kvantuminternet egyik alapvető építőeleme.",
     "whyMore": "Az összefonódás (|Φ⁺⟩_{BC}) miatt a B-n végzett Bell-mérés korrelált eredményt ad C-vel, de a véletlen kimenetel miatt C állapota még kódolva van. A két klasszikus bit (a mérés eredménye) elárulja, milyen egyértelmű korrekciót kell C-n alkalmazni, hogy pont |ψ⟩ legyen. Mivel a no-cloning tétel miatt az eredeti nem másolható, a teleportálás áthelyezi az állapotot — a klasszikus csatorna elengedhetetlen, így nem szegi meg a fénysebesség-korlátot.",
     "wiki": "https://en.wikipedia.org/wiki/Kvantum-teleport%C3%A1ci%C3%B3",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1993
   },
   {
     "rank": 111,
@@ -3816,7 +4038,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy dinamikai feladat átalakítható statikai egyensúlyi feladattá, ha bevezetünk egy fiktív 'tehetetlenségi erőt' — ez a trükk nyitja meg az utat az analitikus mechanika felé.</b> D'Alembert a virtuális munka elvét terjesztette ki mozgó rendszerekre, és ez az elv vezetett közvetlenül Lagrange egyenleteihez néhány évtizeddel később. A rezgő szerkezetek dinamikai vizsgálatában (pl. földrengésterhek) a mérnökök a mai napig gyakran ebben a d'Alembert-i szemléletben gondolkodnak: 'egyensúly, plusz egy tehetetlenségi tag'.",
     "whyMore": "Ha a mozgó tömegekre ható valódi erőkhöz hozzáadjuk az −mᵢ·r̈ᵢ tehetetlenségi erőt, a rendszer mintha nyugalomban lenne: a virtuális elmozdulásokkal vett munka összege nulla. Így a statikából ismert egyensúly-módszer átvihető gyorsuló rendszerekre is, a koordinátarendszertől függetlenül. A δr̃ᵢ virtuális elmozdulások kiválasztásával pont a kényszererők esnek ki — ez vezet közvetlenül a Lagrange-egyenletekhez.",
     "wiki": "https://en.wikipedia.org/wiki/D%27Alembert-elv",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1743
   },
   {
     "rank": 112,
@@ -3829,7 +4052,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy forgó tömeg (mint a Föld) 'magával rántja' a körülötte lévő téridőt — egy gyűrűkanálhoz hasonlóan, ami mézben forogva örvényt kelt maga körül.</b> Lense és Thirring elméletben jósolta meg, de csak 2004-ben, a Gravity Probe B műhold precíziós giroszkópjaival sikerült ténylegesen kimérni ezt a parányi hatást. Ez a jelenség ugyanaz a 'frame dragging', ami a Kerr-metrikában jelenik meg forgó fekete lyukak körül — csak itt a hétköznapi Föld gyengébb változatában.",
     "whyMore": "Az általános relativitáselméletben a forgó tömeg energia-impulzus tenzora elhajlítja a téridőt, és a megoldás (Kerr-szerű) körmozgásba viszi a környező inerciális vonatkoztatási rendszert. A G a forgási nyomaték (J) mellett a hatás erősségét adja, a c²r³ nevező pedig mutatja: közel a tömeghez és nagyobb forgással erősebb. Ezért a Földnél csak nagy pontosságú giroszkópokkal mérhető, fekete lyukaknál viszont drámai.",
     "wiki": "https://en.wikipedia.org/wiki/Lense%E2%80%93Thirring-effektus",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1918
   },
   {
     "rank": 113,
@@ -3842,7 +4066,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy test kibocsátó- és elnyelőképességének aránya minden anyagra ugyanaz az univerzális függvény — ez vezette Kirchhofföt a 'feketetest' fogalmának bevezetéséhez.</b> A jó elnyelők jó kisugárzók is egyben (ezért fekete a legjobb sugárzó is). Ez a felismerés négy évtizeddel Planck előtt már kijelölte az utat: kellett lennie egy univerzális sugárzási törvénynek — Kirchhoff maga nem találta meg a pontos alakját, de ő tette fel a kérdést, amire Planck végül választ adott.",
     "whyMore": "A termodinamikai egyensúly megköveteli, hogy egy test saját sugárzása és az általa elnyelt idegen sugárzás egyensúlyban legyen — különben egy test a másikat lehűtené anélkül, hogy különbség lenne köztük, ellentmondva a II. főtételnek. Ezért E/A minden anyagra ugyanaz: a feketetest univerzális B(λ,T) sugárzása. Az E a kibocsátó-, A az elnyelőképesség — a jó elnyelő (A→1) ugyanolyan arányban sugároz vissza.",
     "wiki": "https://en.wikipedia.org/wiki/Kirchhoff-f%C3%A9le_sug%C3%A1rz%C3%A1si_t%C3%B6rv%C3%A9ny",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1859
   },
   {
     "rank": 114,
@@ -3855,7 +4080,8 @@ const FIZIKA_DATA = [
     "why": "<b>Kellően magas hőmérsékleten a kvarkok és gluonok kiszabadulnak a protonokból és neutronokból, és egy szabadon áramló 'ősleves' formájában léteznek — pontosan úgy, ahogy az univerzum a Nagy Bumm után mikroszekundumokkal nézett ki.</b> A CERN LHC és a Brookhaven RHIC nehézion-ütközésekkel (ólom- vagy aranyatommagokat ütköztetve fénysebesség közeli sebességgel) hozzák létre ezt az állapotot, bár csak billiomod-billiomod másodpercre. A kvarkbezárás (amit korábban a gyűjteményben már érintettünk) itt 'oldódik fel' — extrém körülmények között.",
     "whyMore": "A kvarkbezárás miatt normál körülmények között a kvarkok soha nem láthatók szabadon — a gluon-tér feszültsége nő a távolodással. De T>150–170 MeV hőmérsékleten a termikus energia felülírja ezt: a hadronok szétolvadnak, és a kvarkok szabad részecskék maradnak a gluonokkal együtt. Ezt a kvark-hadron átmenetet a nehézion-ütközések rövid életű anzikszában figyeljük meg — ez a korai univerzum állapota.",
     "wiki": "https://en.wikipedia.org/wiki/Kvark-gluon_plazma",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 2000
   },
   {
     "rank": 115,
@@ -3868,7 +4094,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy fémgolyó lengéséből — ami egy üveggömb szűk csövében pattog fel-le — pontosan kimérhető egy gáz fajhő-aránya.</b> A módszer szépsége az egyszerűségében rejlik: nincs szükség hőmennyiség-mérésre, csak egy stopperre és a lengésidő megfigyelésére. A γ (cp/cv arány) innen adódik ki, és ez az érték árulja el, hogy a gáz molekulái egy-, két- vagy háromatomosak-e — egy mechanikai lengésből következtetünk a molekulák belső szerkezetére.",
     "whyMore": "Egy kis fémgolyó a gázoszlopban rezonál: a golyó súlya és a gáz rugókeménysége (ami P₀, A, V-től függ) adja a lengésidőt T-t. A γ fajhő-arány a periódusból adódik ki: merevebb (nagyobb γ) gáz gyorsabban löki vissza a golyót. Mivel az egymagos gáz γ=5/3, a kétatomos γ=7/5, a háromatomos γ=4/3, a mért T egyből megmondja a molekula szabadsági fokait.",
     "wiki": "https://en.wikipedia.org/wiki/R%C3%BCchardt-m%C3%B3dszer",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1929
   },
   {
     "rank": 116,
@@ -3881,7 +4108,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egyetlen egyenlet mondja meg, hogy egy csillag felszínén az atomok hány százaléka ionizált egy adott hőmérsékleten — ebből olvassuk le a csillagok színképtípusát.</b> Saha a sztatisztikus mechanikát alkalmazta a csillagászati plazmákra, és ezzel adta meg az elméleti hátteret a Harvard-féle csillagosztályozáshoz (O, B, A, F, G, K, M). Enélkül a Nap színképvonalai csupán rejtélyes csíkok maradtak volna — vele a csillagok hőmérsékletének és összetételének térképévé váltak.",
     "whyMore": "A képlet a termikus egyensúlyt írja le: egy atom ionizációja (n_{i+1}/n_i) annál valószínűbb, minél nagyobb T a χ_i ionizációs energiához képest (a e^{−χ_i/k_BT} tényező). A Λ a termikus de Broglie-hullámhossz, g_i a degenerációs fok — ezek a statisztikus mechanika súlyait adják. Így egy csillag hőmérsékletéből közvetlenül következik, mely színképvonalak jelennek meg.",
     "wiki": "https://en.wikipedia.org/wiki/Saha-egyenlet",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1920
   },
   {
     "rank": 117,
@@ -3894,7 +4122,8 @@ const FIZIKA_DATA = [
     "why": "<b>Néhány, egymástól teljesen független fizikai arány mind ugyanazt a hatalmas számot, kb. 10⁴⁰-et adja — és senki sem tudja biztosan, hogy ez véletlen egybeesés, vagy egy mélyebb törvény jele.</b> Dirac annyira komolyan vette ezt, hogy felvetette: talán a gravitációs állandó időben csökken, ahogy az univerzum tágul. A hipotézist a mai kísérletek nagyrészt cáfolják, mégis a fizikatörténet egyik legizgalmasabb 'mi van, ha' rejtélye maradt — egy számmisztikai megfigyelésből induló komoly elméleti fizikai program.",
     "whyMore": "A megfigyelt egybeesés: az elektromos/gravitációs erőarány két proton között (≈10³⁹), az univerzum kora és az elektron klasszikus idejének aránya (c·t_univ/r_e ≈ 10⁴⁰) és a csillagok/atomok tömegaránya is ugyanabba a tartományba esik. Dirac ebből arra következtetett, hogy G talán csökken az idővel, így maradna az arány állandó a táguló univerzumban. Bár a mérések ma inkább véletlen egybeesésnek látják, a felvetés ösztönözte a változó állandók kutatását.",
     "wiki": "https://en.wikipedia.org/wiki/Eddington%E2%80%93Dirac_nagy_sz%C3%A1m_hipot%C3%A9zis",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1937
   },
   {
     "rank": 118,
@@ -3907,7 +4136,8 @@ const FIZIKA_DATA = [
     "why": "<b>Váltakozó áramnál a vezető belseje 'lusta lesz' — az áram a felszín közelébe szorul, és a vezető közepe elektromosan szinte használatlan marad.</b> Minél magasabb a frekvencia, annál vékonyabb ez a 'bőr' (δ), ezért használnak a nagyfeszültségű távvezetékek üreges vagy sodrott vezetőket, és ezért burkolják ezüsttel a rádiófrekvenciás antennák felszínét ahelyett, hogy tömör ezüstből készítenék őket. Tisztán elektrodinamikai jelenség, óriási gyakorlati (és anyagköltség-) következményekkel.",
     "whyMore": "Egy váltakozó mágneses tér örvényáramokat indukál a vezető belsejében, amik (Lenz-törvény szerint) ellentétes irányúak a központi árammal — így kisöprik az áramot a magból a felület felé. A bőrmélység δ ∝ √(ρ/(ωμ)): nagyobb vezetőképesség (kisebb ρ) vagy frekvencia (ω) vékonyabb réteget jelent. Ezért HF-nél elég a felület (ezüst/arany bevonat) és használnak üreges vezetéket — a mag anyaga kihasználatlan marad.",
     "wiki": "https://en.wikipedia.org/wiki/B%C5%91rhat%C3%A1s_%28Skin_Effect%29",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1883
   },
   {
     "rank": 119,
@@ -3934,7 +4164,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy rendszer állapotainak valószínűségi 'sűrűsége' a fázistérben soha nem tömörödik és nem hígul — csak elfolyik, mint egy összenyomhatatlan folyadék.</b> Ez a tétel garantálja, hogy a klasszikus mechanika determinisztikus, időben visszafordítható törvényei összeegyeztethetők a statisztikus fizika valószínűségi leírásával. Fontos: ez a Joseph Liouville-ról elnevezett tétel teljesen más eredmény, mint a gyűjteményben már szereplő komplex analízisbeli Liouville-tétel — csak a névadó közös.",
     "whyMore": "A {ρ, H} Poisson-zárójel a fázistérbeli áramlás sebességét írja le: a teljes derivált (dρ/dt = ∂ρ/∂t + {ρ,H}) nulla azt jelenti, hogy a ρ sűrűség a mozgó mintapontokkal együtt konzerválódik (kontinuítási egyenlet). Mivel a Hamilton-fluxus térfogattartó (szimp lektikus), a fázistérfogat nem változik — ez a folyadék analógia. Így a mikroállapotok egyenletes eloszlása időben is az marad: ez a statisztikus egyenszüly alapja.",
     "wiki": "https://en.wikipedia.org/wiki/Liouville-egyenlet_%28f%C3%A1zist%C3%A9r%29",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1838
   },
   {
     "rank": 121,
@@ -3947,7 +4178,8 @@ const FIZIKA_DATA = [
     "why": "<b>Négy egyszerű mennyiség — nyomás, térfogat, anyagmennyiség, hőmérséklet — egyetlen egyenletbe sűríti egy gáz teljes makroszkopikus viselkedését.</b> Clapeyron egyesítette benne Boyle, Charles, Gay-Lussac és Avogadro korábban külön-külön felfedezett törvényeit egyetlen, elegáns kifejezésbe. Minden bonyolultabb állapotegyenlet (mint a gyűjteményben már szereplő Van der Waals-egyenlet) ennek a korrekciója — ez a nulladik közelítés, amiből minden más kiindul.",
     "whyMore": "A P a nyomás (a molekulák falnak ütközéséből származó erő/felület), V a térfogat, n az anyagmennyiség (mólok száma), T az abszolút hőmérséklet, R = N_A·k_B az egyetemes gázállandó, ami a mól-méretet skálázza át a molekuláris k_B-re. A fizikai intúíció: minél több és minél gyorsabb (melegebb) molekula van bezárva, annál nagyobb a nyomás, miközben ha a teret növeljük, a nyomás csökken. Az egyenlet azért igaz, mert az ideális gáz modelleknél a molekulák közötti távolság nagy, így a kölcsönhatások és a saját térfogatuk elhanyagolható.",
     "wiki": "https://en.wikipedia.org/wiki/Ide%C3%A1lis_g%C3%A1zt%C3%B6rv%C3%A9ny",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1834
   },
   {
     "rank": 122,
@@ -3960,7 +4192,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egyetlen egyenlet magyarázza meg, miért esik le az alma, és miért kering a Hold a Föld körül — Newton nagy felismerése az volt, hogy ez ugyanaz a jelenség.</b> Ezzel egyesítette először a földi és az égi mechanikát, amelyeket addig teljesen különböző törvények uraltak. Bár Einstein általános relativitáselmélete (amit a gyűjteményben már érintettünk) pontosabb leírást ad, Newton törvénye ma is elég pontos ahhoz, hogy űrszondákat juttassunk a Naprendszer külső bolygóihoz.",
     "whyMore": "G ≈ 6,674·10⁻¹¹ a gravitációs állandó, m₁ és m₂ a két tömeg, r a középpontjaik távolsága. A 1/r² tag a tér háromdimenziós terjedéséből következik: ugyanakkora összes hatás egy 4πr²-nyi gömbfelületen oszlik szét, tehát a felületegységre jutó erő a távolság négyzetével fordítottan arányos. Az erő mindig vonzó, iránya a két tömeg összekötő egyenese mentén, nagysága arányos mindkét tömeggel.",
     "wiki": "https://en.wikipedia.org/wiki/Newton-f%C3%A9le_gravit%C3%A1ci%C3%B3s_t%C3%B6rv%C3%A9ny",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1687
   },
   {
     "rank": 123,
@@ -3973,7 +4206,8 @@ const FIZIKA_DATA = [
     "why": "<b>Minden anyagi részecskének — elektronnak, protonnak, sőt elvben egy futballabdának is — van hullámhossza, ami a lendületétől függ.</b> De Broglie olyan merész ötlettel állt elő PhD-disszertációjában, hogy a bírálóbizottság Einsteinhez fordult tanácsért, mielőtt elfogadták volna. Einstein azonnal felismerte a jelentőségét — ez az ötlet vezetett közvetlenül Schrödinger hullámegyenletéhez néhány hónappal később.",
     "whyMore": "h a Planck-állandó, p = mv a részecske lendülete. A felismerés szimmetrikus a fotonra: ha a fénynek (hullámnak) van részecske-természete, akkor a részecskének is van hullám-természete, és λ mutatja meg, mekkora hullámhosszon „hullámzik”. Kis tömegű, nagy sebességű részecskéknél (elektron) ez mérhető nagyságrendű, ezért látunk elektrondiffrakciót; nagy tárgyaknál λ elhanyagolhatóan kicsi, ezért nem érzékeljük a hullámtermészetüket.",
     "wiki": "https://en.wikipedia.org/wiki/De_Broglie-hull%C3%A1mhossz",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1924
   },
   {
     "rank": 124,
@@ -3986,7 +4220,8 @@ const FIZIKA_DATA = [
     "why": "<b>A kvantummechanikai várható értékek pontosan Newton második törvényét követik — a klasszikus fizika 'kísértete' benne rejlik a kvantumformalizmusban.</b> Ez a tétel adja meg a precíz matematikai hidat aközött, amit a mikrovilágban (hullámfüggvények, operátorok) és amit a makrovilágban (pályák, erők) tapasztalunk. Ehrenfest bebizonyította: elég nagy rendszereknél, vagy elég koncentrált hullámcsomagoknál, a kvantummechanika automatikusan 'visszaadja' a klasszikus mechanikát.",
     "whyMore": "⟨x⟩ a pozíció várható értéke (a hullámcsomag középpontja), V(x) a potenciál, −∇V az erő. A tétel lényege, hogy a várható értékek mozgásegyenlete formálisan megegyezik Newton második törvényével, csak az erő helyett az erő várható értékét kell venni. Amikor a hullámfüggvény elég keskeny (jól lokalizált csomag), az átlagolt erő közelítőleg megegyezik az erővel a középpontban, így visszakapjuk a klasszikus pályát — ez a korrespondenciatétel matematikai alapja.",
     "wiki": "https://en.wikipedia.org/wiki/Ehrenfest-t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1927
   },
   {
     "rank": 125,
@@ -4009,7 +4244,8 @@ const FIZIKA_DATA = [
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/Christoffel-szimb%C3%B3lumok",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1869
   },
   {
     "rank": 126,
@@ -4022,7 +4258,8 @@ const FIZIKA_DATA = [
     "why": "<b>Ez a legkisebb hosszúságskála, aminek fizikailag még van értelme — ez alatt a kvantummechanika és a gravitáció elméletei összeomlanak, és senki sem tudja pontosan, mi történik.</b> Planck három univerzális állandóból (ħ, G, c) építette fel — nem méréssel, hanem tiszta dimenzióanalízissel jósolta meg egy olyan skála létezését, amit azóta sem sikerült közvetlenül megfigyelni. A kvantumgravitáció-elméletek (húrelmélet, hurok-kvantumgravitáció) mind ezen a skálán próbálják megérteni a téridő 'szemcsés' szerkezetét.",
     "whyMore": "ħ a redukált Planck-állandó (kvantummechanika), G a gravitációs állandó, c a fénysebesség. E három univerzális állandóból dimenzióanalízissel épül fel egy hosszúság: √(ħG/c³) — Planck ezt tiszta egységbeli gondolatmenettel jósolta meg, mérés nélkül. Ez a legkisebb értelmes hossz: e alatt a kvantummechanika és a gravitáció elméletei már nem adnak érvényes közös leírást, a téridő feltételezhetően „szemcséssé” válik.",
     "wiki": "https://en.wikipedia.org/wiki/Planck-hossz",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1899
   },
   {
     "rank": 127,
@@ -4035,7 +4272,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy görbült folyadékfelület két oldala közötti nyomáskülönbség kizárólag a felületi feszültségtől és a görbület sugaraitól függ — minél kisebb a buborék, annál nagyobb a belső nyomása.</b> Ez magyarázza, miért olvadnak össze a kis szappanbuborékok a nagyobbakba (a kicsi mindig nagyobb nyomású), és ez a kiindulópontja minden kapilláris jelenségnek, porózus közegbeli folyadékáramlásnak és a modern mikrofluidikai chipek tervezésének.",
     "whyMore": "γ a felületi feszültség (energia/felületegység), R₁ és R₂ a felület két fő görbületi sugara. A görbület „feszíti” a folyadékhatárfelületet, és ez nyomáskülönbséget hoz létre a két oldal között: minél kisebb a sugár (görbébb a felület), annál nagyobb a nyomás. Gömbbuboréknál R₁ = R₂ = R, így ΔP = 2γ/R, ami megmagyarázza, miért olvadnak a kis buborékok a nagyobbakba (a kicsi mindig nagyobb belső nyomású).",
     "wiki": "https://en.wikipedia.org/wiki/Young%E2%80%93Laplace-egyenlet",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1805
   },
   {
     "rank": 128,
@@ -4048,7 +4286,8 @@ const FIZIKA_DATA = [
     "why": "<b>A természet — legalábbis a gyenge kölcsönhatásban — megkülönbözteti a balt a jobbtól.</b> Évtizedekig magától értetődőnek tűnt, hogy a fizikai törvények tükörszimmetrikusak (paritás-invariánsak); Lee és Yang elméleti gyanúja alapján Chien-Shiung Wu kobalt-60 béta-bomlási kísérlete bebizonyította, hogy ez hamis. A felfedezés annyira megrázta a fizikus közösséget, hogy Pauli állítólag nem akarta elhinni — pedig ez volt az egyik legfontosabb 20. századi kísérleti eredmény.",
     "whyMore": "Paritás = tükrözés, azaz r⃗ → −r⃗ transzformáció. A gyenge kölcsönhatásban a hullámfüggvény tükörképe nem egyenlő az eredetivel, azaz a természet „balos”: például a neutrínók csak balra csavarodó (balról forgó) spinnel léteznek. Wu kísérlete lehűtött, mágneses térbe tett kobalt-60-at használt, és azt mérte, hogy a béta-bomlás elektronjai nem szimmetrikusan sugárzódnak ki a spin-tengelyre — közvetlen bizonyíték a bal–jobb aszimmetriára a gyenge erőnél.",
     "wiki": "https://en.wikipedia.org/wiki/Parit%C3%A1ss%C3%A9rt%C3%A9s_%28Wu-k%C3%ADs%C3%A9rlet%29",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1956
   },
   {
     "rank": 129,
@@ -4061,7 +4300,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy egyenlet negatív energiájú megoldásait Dirac nem hibaként, hanem új részecske jóslataként értelmezte — és négy évvel később meg is találták.</b> A Dirac-egyenlet (amit a gyűjteményben már érintettünk) negatív gyökei zavarba ejtették a fizikusokat, amíg Dirac fel nem ismerte: ezek egy addig ismeretlen, pozitív töltésű elektron-párra (pozitron) utalnak. Carl Anderson ködkamrás felvételen fedezte fel — ritka eset, hogy egy matematikai 'furcsaság' ilyen közvetlenül új fizikai valóságot jósol meg.",
     "whyMore": "A relativisztikus energia-momentum összefüggés négyzete két gyököt ad: pozitív ÉS negatív energiát. Dirac ezt úgy értelmezte, hogy a negatív energiájú állapotok nem hibák, hanem egy telített „Dirac-tenger”, aminek egy hiánya egy pozitív töltésű részecskét (pozitront) jelent. Anderson 1932-ben ködkamrában azonosította a pozitront — egy elektronnyi tömegű, de pozitív töltésű nyomot —, így a matematikai furcsaság négy évvel a jóslat után valós fizikai részecske lett.",
     "wiki": "https://en.wikipedia.org/wiki/Antianyag_j%C3%B3slata_%C3%A9s_a_pozitron_felfedez%C3%A9se",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1928
   },
   {
     "rank": 130,
@@ -4074,7 +4314,8 @@ const FIZIKA_DATA = [
     "why": "<b>Pauli 1930-ban egy 'kétségbeesett mentőötletként' jósolta meg a neutrínót, amit — saját szavaival — 'soha nem lehet kimutatni'.</b> 26 évvel később Cowan és Reines egy atomreaktor mellett, ezzel az egyszerű reakcióval mégis sikeresen kimutatták: az antineutrínó protonnal ütközve neutront és pozitront hoz létre, ami jellegzetes fényvillanás-párt kelt egy detektorban. Pauli táviratban gratulált — ez volt élete egyik legmeglepőbb fogadása, amit örömmel vesztett el.",
     "whyMore": "Pauli azért posztulálta a neutrínót, mert a béta-bomlásnál hiányzott az energia és impulzusmegmaradás — egy lappangó, gyakorlatilag tömegtelen részecskének kellett elvinnie a különbséget. A reakció az ún. inverz béta-bomlás: az antineutrínó egy protonnal ütközve neutront és pozitront hoz létre, a pozitron pedig egy elektronnal annihilálódva két gamma-fotonpárt ad. Ezt a jellegzetes fényvillanást detektálta Cowan és Reines 1956-ban egy atomreaktor mellett.",
     "wiki": "https://en.wikipedia.org/wiki/A_neutr%C3%ADn%C3%B3_els%C5%91_k%C3%ADs%C3%A9rleti_detekt%C3%A1l%C3%A1sa",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1956
   },
   {
     "rank": 131,
@@ -4087,7 +4328,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy morvaországi szerzetes borsónövényeket keresztezve fedezte fel az öröklődés matematikai szabályszerűségét — húsz évvel azelőtt, hogy bárki tudott volna a DNS létezéséről.</b> A domináns és recesszív allélek szétválása és független öröklődése olyan pontos, kiszámítható arányokat ad, mint egy fizikai törvény. Mendel eredményeit életében szinte senki nem vette észre — csak 1900-ban, három kutató egymástól függetlenül fedezte fel újra a munkáját, és ez indította el a modern genetikát.",
     "whyMore": "Mendel két allélt vizsgált egy borsónál: egy dominánst (D) és egy recesszívet (r). A homozigóta domináns (DD) és a heterozigóta (Dr) ugyanazt a fenotípust mutatja, csak a recesszív homozigóta (rr) tér el — a véletlen párosodás az F2 nemzedékben 1:2:1 genotípus-arányt ad, ami 3:1 fenotípus-arányra fordítva: három domináns megjelenésű (DD, Dr, Dr) jut egy recesszívre (rr). Ez a szétválás és független osztódás pontos, kiszámítható arányt ad, mint egy fizikai törvény.",
     "wiki": "https://en.wikipedia.org/wiki/Mendel-t%C3%B6rv%C3%A9nyek",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1865
   },
   {
     "rank": 132,
@@ -4100,7 +4342,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy kémiai reakció egyensúlyi állapotában a termékek és a kiindulási anyagok koncentrációi mindig ugyanazt a fix arányt veszik fel — függetlenül attól, honnan indultunk.</b> Guldberg és Waage ezzel a törvénnyel tették kvantitatívvá a kémiai egyensúly fogalmát, ami korábban csak kvalitatív megfigyelés volt. Minden ipari kémiai folyamat (műtrágyagyártás, kőolaj-finomítás) optimalizálása ezen az egyszerű arányon alapul — innen tudjuk, hogyan told el egy egyensúlyt a kívánt irányba.",
     "whyMore": "Egyensúlynál a reakció sebessége előre megegyezik a visszafelé irányultal, ebből következik, hogy a koncentrációk hatványainak hányadosa állandó. A kitevők (kisbetűk) a sztöchiometriai együtthatók: ha egy molekulából kettő vesz részt, a koncentráció négyzeten szerepel. K_eq nagysága megmondja, merre áll az egyensúly — nagy K esetén sok a termék, kicsi K esetén sok a kiindulási anyag —, így tudjuk, hogyan toljuk el a reakciót a kívánt irányba.",
     "wiki": "https://en.wikipedia.org/wiki/T%C3%B6meghat%C3%A1s_t%C3%B6rv%C3%A9nye",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1864
   },
   {
     "rank": 133,
@@ -4113,7 +4356,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egyetlen logaritmikus egyenlet mondja meg, hogyan tartja stabilan a pH-ját a vér, egy sejt belseje, vagy egy laboratóriumi pufferoldat, még ha savat vagy lúgot adunk is hozzá.</b> Az emberi vér pH-ja ennek az egyenletnek köszönhetően marad szűk, életkompatibilis tartományban (7,35–7,45) még jelentős anyagcsere-terhelés mellett is. Minden gyógyszertervezés, fermentációs folyamat és biokémiai laboratóriumi protokoll számol ezzel az összefüggéssel.",
     "whyMore": "HA a gyenge sav, A⁻ a konjugált bázisa, pK_a = −log(K_a) a disszociációs állandó logaritmusa. Az egyenlet azt mutatja, hogy a pH közvetlenül az [A⁻]/[HA] aránytól függ: amíg ez az arány viszonylag állandó, a pH is állandó marad. Ha savat adunk, az A⁻ „elnyeli” (HA-t képez), ha lúgot, a HA reagál — ezt a pufferkapacitást használja a vér, hogy a pH-t 7,35–7,45 között tartsa jelentős anyagcsere-terhelés mellett is.",
     "wiki": "https://en.wikipedia.org/wiki/Henderson%E2%80%93Hasselbalch-egyenlet",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1908
   },
   {
     "rank": 134,
@@ -4126,7 +4370,8 @@ const FIZIKA_DATA = [
     "why": "<b>Maxwell kitalált egy parányi lényt, aki egyetlen ajtó nyitogatásával, munkavégzés nélkül csökkentené egy gáz entrópiáját — látszólag megsértve a termodinamika második főtételét.</b> Csaknem 100 évig megoldatlan paradoxon volt, amíg Landauer (akit a gyűjteményben már érintettünk) rá nem jött: a démonnak emlékeznie kell a molekulák sebességére, és ennek az információnak a törlése pontosan annyi entrópiát termel, amennyit a démon 'megspórolt'. Az egyik legszebb példa arra, hogyan olvad össze az információelmélet a termodinamikával.",
     "whyMore": "A démon egyetlen ajtó nyitogatásával gyors és lassú molekulát szétválogatna, csökkentve a gáz entrópiáját munkavégzés nélkül — látszólag megsértve a termodinamika második főtételét. A feloldás Landauer tétele: a démonnak információt kell tárolnia (melyik molekula gyors), és egy bit törlése minimálisan k_B·ln 2 entrópiát termel. Ez a termelt entrópia pontosan kompenzálja a démon „ingyen” rendezését, így a második főtétel épen marad — az információnak fizikai, entrópiaköltsége van.",
     "wiki": "https://en.wikipedia.org/wiki/Maxwell-d%C3%A9mon_%C3%A9s_felold%C3%A1sa",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1867
   },
   {
     "rank": 135,
@@ -4139,7 +4384,8 @@ const FIZIKA_DATA = [
     "why": "<b>Ha egy gáz olyan gyorsan tágul vagy húzódik össze, hogy nincs ideje hőt cserélni a környezetével, a nyomás és térfogat kapcsolata többé nem az egyszerű fordított arányosság, hanem ennél meredekebb görbét követ.</b> Ez az egyenlet írja le, miért melegszik fel drasztikusan egy dízelmotor hengerében a sűrített levegő (öngyulladásig), és miért hűl le a felszálló légtömeg a légkörben — a felhőképződés és az időjárás egyik alapvető mozgatórugója.",
     "whyMore": "γ = C_p/C_v a fajhőviszony (adiabatikus kitevő), C_p és C_v a nyomás- és térfogatállandó fajhő. Ha a gáz nem cserél hőt a környezettel (Q = 0), a térfogatváltozás munkát végez: összehúzódáskor a gáz felmelegszik, táguláskor lehűl, mert a belső energia csak a hőmérséklettől függ. Emiatt az összefüggés meredekebb az izotermikus PV = állandónál: mivel γ > 1, térfogat-növekedéskor a nyomás gyorsabban esik, mint a hőcserés esetben — ez melegíti a dízelmotor levegőjét és hűti a felszálló légtömegeket.",
     "wiki": "https://en.wikipedia.org/wiki/Adiabatikus_%C3%A1llapotv%C3%A1ltoz%C3%A1s_egyenlete",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1823
   },
   {
     "rank": 136,
@@ -4152,7 +4398,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy áramlásba helyezett henger mögött a örvények szabályos, váltakozó ritmusban válnak le — és ez a lüktetés veszélyes rezgésbe hozhatja a hidakat, kéményeket és tornyokat.</b> A Strouhal-szám szinte állandó marad tág sebességtartományban, ami kiszámíthatóvá teszi a leválási frekvenciát. A jelenség hírhedt szereplője az 1940-es Tacoma Narrows-híd összeomlása — azóta minden karcsú szerkezet tervezésénél kötelező ellenőrizni, nem esik-e egybe az örvényleválási frekvencia a szerkezet sajátfrekvenciájával.",
     "whyMore": "A Strouhal-szám (St) egy mértékegység nélküli arány, amely összeköti az örvényleválás frekvenciáját (f), a henger átmérőjét (D) és az áramlás sebességét (U). Mivel St tág tartományban közelítőleg 0,2 marad, az f = 0,2·U/D összefüggésből kiszámolható, milyen ritmusban lüktet a nyomáseloszlás a test mögött. Ez a lüktetés közvetlenül gerjesztheti a szerkezet sajátrezgését, így a tervező pontosan tudja, mely sebességnél válik kritikussá a helyzet.",
     "wiki": "https://en.wikipedia.org/wiki/K%C3%A1rm%C3%A1n-%C3%B6rv%C3%A9nysor",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1911
   },
   {
     "rank": 137,
@@ -4165,7 +4412,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy talaj vagy kőzet akkor törik el nyírással, amikor a nyírófeszültség meghaladja a kohézió és a súrlódási ellenállás összegét — ez az egyenlet dönti el, mennyire meredek lehet egy rézsű, mielőtt megcsúszna.</b> Coulomb súrlódási törvényét (amit a gyűjteményben már érintettünk) Mohr terjesztette ki általános feszültségállapotokra, a Mohr-körrel (szintén szerepel már) kombinálva. Minden alapozás-tervezés, gátépítés és bevágás-stabilitási számítás ezen az egyszerű, két paraméteres (c, φ) modellen alapul.",
     "whyMore": "A nyírófeszültség-állóság (τ) az a legnagyobb nyírófeszültség, amit az anyag elvisel; lineárisan nő a merőleges feszültséggel (σ_n), mert minél nagyobb a nyomás, annál jobban összezára az érintkező felületeket. A két anyagi állandó a kohézió (c, a belső összetartó erő) és a súrlódási szög (φ), ami közvetlenül Coulomb súrlódási törvényéből származik. Ha a tényleges nyírófeszültség átlépi ezt a határvonalat, az anyag egy sík mentén megcsúszik — ezen a feltételen alapul minden rézsűstabilitási számítás.",
     "wiki": "https://en.wikipedia.org/wiki/Mohr%E2%80%93Coulomb_t%C3%B6r%C3%A9sfelt%C3%A9tel",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1900
   },
   {
     "rank": 138,
@@ -4178,7 +4426,8 @@ const FIZIKA_DATA = [
     "why": "<b>Amikor elektronokat lőttek protonokba nagy energián, a szórási minta olyan viselkedést mutatott, mintha a proton nem folytonos 'kásás' anyag lenne, hanem apró, pontszerű összetevőkből állna.</b> Bjorken jósolta meg elméletileg ezt a 'skálázási' viselkedést, Feynman pedig 'partonoknak' nevezte el a proton belsejében szétszórt pontszerű alkotókat — amikről később kiderült, hogy azonosak a kvarkokkal. Az SLAC-kísérletek ezzel adták az első közvetlen kísérleti bizonyítékot arra, hogy a kvarkok nem csak matematikai absztrakciók, hanem valódi, fizikai részecskék.",
     "whyMore": "Az x a Bjorken-változó, a proton egyetlen partonja által vitt impulzusarány, Q² pedig a szórt elektron impulzusátadásának négyzete, azaz nagyjából a felbontás, amivel a próbát képezzük. A skálázás azt jelenti, hogy ahogy növeljük Q²-t (egyre finomabban nézünk bele), az F₂ függvény csak x-től függ, Q²-től nem — pontosan ezt várnánk, ha a proton pontszerű, nem kölcsönható alkotókból állna. Ez a Q²-től való függetlenség volt a döntő bizonyíték arra, hogy a proton kemény, elemi, pontszerű objektumokat (kvarkokat/partonokat) tartalmaz.",
     "wiki": "https://en.wikipedia.org/wiki/Bjorken-sk%C3%A1l%C3%A1z%C3%A1s_%28kvark-parton_modell%29",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1969
   },
   {
     "rank": 139,
@@ -4191,7 +4440,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy elméletileg 'tiltott' bomlási módot mértek — semleges kaonok időnként úgy bomlanak, ahogy CP-szimmetria mellett sosem szabadna.</b> Cronin és Fitch kísérlete volt az első kísérleti bizonyíték arra, hogy a természet nem szimmetrikus az anyag és antianyag, illetve a tér tükrözése kombinációjára nézve — pontosan az a fajta apró aszimmetria, amire Kobajasi és Maszkava (akiket a gyűjteményben már érintettünk) évekkel később elméleti magyarázatot adott. Enélkül a felfedezés nélkül nem is merült volna fel a CKM-mátrix szükségessége.",
     "whyMore": "Az élettartamú semleges kaon (K⁰_L) a CP-szimmetrikus világban tisztán CP-páratlan állapot, így csak három pionra eshet szét — két pionra soha. A kétpionos végeredmény megjelenése azt jelenti, hogy K⁰_L-nek parányi CP-páros komponense is van, vagyis a CP-szimmetria nem tökéletes. A mért ágviszony (kb. 2·10⁻³) megadja, milyen erősen sér a természetben ez a kombinált szimmetria.",
     "wiki": "https://en.wikipedia.org/wiki/CP-s%C3%A9rt%C3%A9s_kaonokban_%28Cronin%E2%80%93Fitch-k%C3%ADs%C3%A9rlet%29",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1964
   },
   {
     "rank": 140,
@@ -4204,7 +4454,8 @@ const FIZIKA_DATA = [
     "why": "<b>A Nap gravitációja annyira meggörbíti a mellette elhaladó csillagfényt, hogy a csillagok látszólagos helyzete eltolódik — Einstein ezt jósolta, Eddington egy teljes napfogyatkozás alatt mérte meg.</b> A mérés napok alatt világhírűvé tette Einsteint — ez volt az általános relativitáselmélet első nagy kísérleti diadala, egyben az utolsó pillanat, amikor egy fizikai elméletet ilyen látványos, egyetlen expedícióval lehetett a nagyközönség számára is igazolni. A modern gravitációslencse-csillagászat (sötét anyag térképezése, exobolygó-keresés) egyenesen ebből az egy mérésből nőtt ki.",
     "whyMore": "Ez a képlet a fény egy M tömeg mellett, b becsapódási paraméterrel elhaladó sugarának elhajlási szöge; pontosan kétszerese a Newton-féle értéknek ugyanakkora sebességű részecskére, mert a téridő görbülete a teret és az időt is egyaránt meggörbíti. A 4GM/(c²b) kifejezés közvetlenül a Schwarzschild-metrikából adódik, ahol a c²b a hajlítás karja a nevezőben. A Nap peremén a jósolt eltolódás kb. 1,75 ívmásodperc — ezt mérte meg Eddington 1919-ben.",
     "wiki": "https://en.wikipedia.org/wiki/Gravit%C3%A1ci%C3%B3s_lencsehat%C3%A1s_%281919-es_napfogyatkoz%C3%A1s-k%C3%ADs%C3%A9rlet%29",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1919
   },
   {
     "rank": 141,
@@ -4217,7 +4468,8 @@ const FIZIKA_DATA = [
     "why": "<b>Távoli szupernóvák fényét mérve a kutatók azt várták, hogy az univerzum tágulása lassul a gravitáció miatt — ehelyett azt találták, hogy gyorsul.</b> Ez volt az egyik legnagyobb meglepetés a modern csillagászat történetében: egy addig ismeretlen, taszító hatású 'sötét energia' uralja az univerzum energiatartalmának többségét (kb. 68%-át). A felfedezés 2011-ben Nobel-díjat ért, és azóta is az egyik legnagyobb megoldatlan rejtély, hogy pontosan mi ez a sötét energia.",
     "whyMore": "Az ä > 0 azt jelenti, hogy a kozmikus skálatényező második deriváltja pozitív — a tágulás gyorsul, nem lassul a gravitáció hatására. Ezt a Friedmann-egyenletekben csak úgy kaphatjuk meg, ha bevezetünk egy pozitív kozmológiai állandót (Λ), amelynek sűrűségaránya Ω_Λ kb. 0,68. Ez az egyetlen szám azt mondja ki, hogy az univerzum energiatartalmának nagyjából kétharmada egy taszító, vákuumszerű tag, amit sötét energiának nevezünk.",
     "wiki": "https://en.wikipedia.org/wiki/A_s%C3%B6t%C3%A9t_energia_felfedez%C3%A9se_%28gyorsul%C3%B3_univerzum%29",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1998
   },
   {
     "rank": 142,
@@ -4230,7 +4482,8 @@ const FIZIKA_DATA = [
     "why": "<b>Ahogy a Chandrasekhar-határ (amit a gyűjteményben már érintettünk) megszabja, mekkora tömegnél omlik össze egy fehér törpe, ez a határ azt mondja meg, mekkora tömegnél omlik össze egy neutroncsillag is — immár fekete lyukká.</b> A neutronok degenerációs nyomása (a Pauli-elv miatt) egy bizonyos tömeg fölött már nem tudja megtartani a gravitációs összeomlást. Oppenheimer ugyanazokkal az eszközökkel dolgozta ki ezt, amiket pár évvel később az atombomba-programban is használt — a csillagászati és a nukleáris fizika ritkán találkozik ilyen közvetlenül egyetlen ember életművében.",
     "whyMore": "A TOV-határ az a legnagyobb tömeg, amelynél egy neutroncsillag még éppen megtartja magát, mielőtt a gravitáció felülkerekedne a neutronok degenerációs nyomásán (amit a Pauli-elv biztosít). Ez a Chandrasekhar-határ relativisztikus általánosítása: a nyomásgradienseket a görbült téridő gravitációjával egyensúlyozza a Tolman–Oppenheimer–Volkoff-egyenletrendszer. Nagyjából 2–2,3 naptömeg fölött a csillag visszafordíthatatlanul fekete lyukká omlik össze.",
     "wiki": "https://en.wikipedia.org/wiki/Tolman%E2%80%93Oppenheimer%E2%80%93Volkoff-hat%C3%A1r",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1939
   },
   {
     "rank": 143,
@@ -4243,7 +4496,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy fémalkatrész eltörhet olyan feszültségszinten is, amit statikusan simán elviselne — ha elég sokszor ismétlődik a terhelés.</b> August Wöhler vasúti tengelytörések vizsgálatakor fedezte fel, hogy a ciklikus terhelés száma és az elviselhető feszültség szoros, kiszámítható kapcsolatban áll. Minden repülőgép-szárny, forgó gépalkatrész és híd-tervezés fáradási élettartam-számítása erre a görbére épül — a hidak és repülőgépek katasztrófáinak jelentős része a fáradásos törés figyelmen kívül hagyásából eredt, mielőtt Wöhler felismerése általánossá vált.",
     "whyMore": "A Basquin-egyenlet szerint a feszültségingadozás amplitúdója (σ) egy m anyagi állandóra emelve, szorozva a töréshez vezető terhelési ciklusok számával (N), állandó (C). Vagyis ha megduplázzuk a feszültséget, az élettartam 2^m-ed részére zsugorodik — a fáradási élettartam meredeken csökken a terheléssel. Az S–N (Wöhler-) görbe pont ezt a log–log egyenest ábrázolja, így az mérnök leolvashatja bármely feszültségszinthez a biztonságos ciklusszámot.",
     "wiki": "https://en.wikipedia.org/wiki/F%C3%A1rad%C3%A1sos_t%C3%B6r%C3%A9s_%28W%C3%B6hler-g%C3%B6rbe%29",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1860
   },
   {
     "rank": 144,
@@ -4256,7 +4510,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy pontszerű teher (mint egy épület alapja) hatása a talaj mélyebb rétegeiben nem szűnik meg hirtelen, hanem egy jól kiszámítható, kúp alakú mintázatban gyengül el a mélységgel és a távolsággal.</b> Boussinesq eredetileg rugalmas félteret feltételező matematikai megoldása lett a modern alapozás-tervezés egyik legtöbbet használt eszköze — ebből számítjuk ki, mekkora süllyedést okoz egy új épület a szomszédos, már meglévő alapoknál is.",
     "whyMore": "A P a felszínen ható pontszerű teher, z a mélység, r a vízszintes távolság a teher tengelyétől. A függőleges feszültség (σ_z) közvetlenül a teher alatt a legnagyobb, és z⁻² szerint csökken, szorozva egy mértékegység nélküli tényezővel, ami a távolsággal (r) való szétterjedést írja le. A rugalmas félteret leíró zárt alakú megoldás magyarázza, miért okoz egyetlen épületalap még méterekre is mérhető süllyedést a szomszédos alapoknál.",
     "wiki": "https://en.wikipedia.org/wiki/Boussinesq-f%C3%A9le_fesz%C3%BClts%C3%A9geloszl%C3%A1s",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1885
   },
   {
     "rank": 145,
@@ -4269,7 +4524,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy bolygó pontos helyzetét egy ellipszispályán nem lehet egyszerű algebrai képlettel kiszámítani — Kepler egy olyan egyenletet alkotott, aminek nincs zárt alakú megoldása, csak közelítő vagy iteratív.</b> Ez volt a történelem első jelentős transzcendens egyenlete, és Kepler maga is 'méltatlanul nehéznek' nevezte. Minden modern űreszköz-navigáció és műholdpálya-számítás ma is ugyanezt az egyenletet oldja meg numerikusan, csak épp számítógéppel másodpercek alatt, amihez Keplernek hónapokra volt szüksége kézzel.",
     "whyMore": "Az M a közepes anomália (az idő szögbe átváltva, egyenletesen nő), E az excentrikus anomália (a pályatest szöge a segédkörén), e pedig a pálya excentricitása. Az E-re nincs algebrai inverz, ezért az egyenletet iteratívan (pl. Newton-módszerrel) kell megoldani — ám ez pontos, nem közelítő kapcsolat. Miután E megvan, egyszerű geometria adja a test tényleges helyzetét az ellipszisen.",
     "wiki": "https://en.wikipedia.org/wiki/Kepler-egyenlet_%28excentrikus_anom%C3%A1lia%29",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1609
   },
   {
     "rank": 146,
@@ -4282,7 +4538,8 @@ const FIZIKA_DATA = [
     "why": "<b>Két elektronpálya, amiknek a Dirac-egyenlet szerint pontosan ugyanaz lenne az energiája, mégis egy parányi, de mérhető eltérést mutat.</b> Ez az apró eltolódás — amit a vákuum kvantumfluktuációi okoznak — közvetlenül a kvantumelektrodinamika (QED) kifejlesztéséhez vezetett Feynman, Schwinger és Tomonaga munkájával. A Lamb-eltolódás precíz mérése és a QED-jóslat egyezése (kilenc tizedesjegyig!) a fizikatörténet egyik legpontosabban igazolt elmélete.",
     "whyMore": "A Lamb-eltolódás a hidrogén 2S₁/₂ és 2P₁/₂ szintjei közti parányi energiakülönbség, amelynek a Dirac-elmélet szerint pontosan egyenlőnek kellene lennie. Oka, hogy az elektron folyamatosan kölcsönhat a virtuális fotonokkal — a vákuum kvantumfluktuációival —, ami kissé remegteti a helyzetét (vákuumpolarizáció és önenergia). A kb. 1057 MHz-es mérés a QED-jóslatot lélegzetelállító pontossággal igazolta, és kikényszerítette a renormálás kidolgozását.",
     "wiki": "https://en.wikipedia.org/wiki/Lamb-eltol%C3%B3d%C3%A1s",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1947
   },
   {
     "rank": 147,
@@ -4295,7 +4552,8 @@ const FIZIKA_DATA = [
     "why": "<b>2,17 kelvin alatt a folyékony hélium elveszti minden belső súrlódását — súrlódásmentesen kúszik fel egy pohár falán, és véget nem érő örvényekben áramolhat egy csőben.</b> Ez a makroszkopikus méretben megjelenő kvantumjelenség — a Bose–Einstein-kondenzációval (amit a gyűjteményben már érintettünk) rokon — mutatja meg a legszemléletesebben, hogy a kvantummechanika nem csak parányi részecskékre érvényes, hanem néha egy egész pohárnyi folyadék viselkedését is uralja.",
     "whyMore": "A lambda-pont (T_λ ≈ 2,17 K) alatt a folyékony ⁴He fázisátalakulással szuperfolyadékká válik, ahol az atomok makroszkopikus hányada ugyanabban a kvantum-alapállapotban van (Bose–Einstein-kondenzátum). Ebben az állapotban a viszkozitás megszűnik, a folyadék disszipáció nélkül áramlik, felfut a falakon, és kitartó örvényeket tart fenn. A hőkapacitás ezen a hőmérsékleten élesen kiugrik — innen kapta a görbe a görög betűs nevét.",
     "wiki": "https://en.wikipedia.org/wiki/Szuperfoly%C3%A9konys%C3%A1g_%28h%C3%A9lium_lambda-pontja%29",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1937
   },
   {
     "rank": 148,
@@ -4308,7 +4566,8 @@ const FIZIKA_DATA = [
     "why": "<b>A fény nem folytonos hullámként adja át energiáját, hanem diszkrét csomagokban — és ez az egyszerű egyenlet dönti el, kiszakad-e egy elektron a fémből.</b> Einstein ezért kapott Nobel-díjat (nem a relativitáselméletért!), mert ez volt az első meggyőző bizonyíték a fény kvantumos természetére. Minden napelem, digitális képérzékelő, fénymásoló és éjjellátó készülék közvetlenül ezen a jelenségen alapul — az egyik legnagyobb gazdasági hatású fizikai felfedezés.",
     "whyMore": "Egy ν frekvenciájú foton hν energiát hordoz; ha ez meghaladja a fém munkafüggvényét (W, az elektronok kötési energiáját), a felesleg az elektron mozgási energiájaként (E_kin) jelenik meg. A nem-klasszikus lényeg: a küszöbfrekvencia alatti fény (hν < W) bármilyen erős legyen, semmilyen elektront nem szakít ki, és az intenzitás növelése csak több, nem gyorsabb elektront eredményez. A fény részecske-jellege közvetlen bizonyítéka a fotonok létezésének.",
     "wiki": "https://en.wikipedia.org/wiki/Fotoelektromos_hat%C3%A1s",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1905
   },
   {
     "rank": 149,
@@ -4321,7 +4580,8 @@ const FIZIKA_DATA = [
     "why": "<b>Az elektronok nem tetszőleges pályákon keringenek, hanem csak meghatározott, kvantált energiaszinteken — és pontosan az ezek közti ugrások magyarázzák a hidrogén színképvonalait.</b> Bohr modellje ugyan később finomításra szorult, de ez volt az első alkalom, hogy egy atomi szintű elmélet pontos, számszerű jóslatot adott mérhető kísérleti eredményre. A színképelemzés azóta a csillagászat legfontosabb eszköze — így tudjuk meg, miből állnak a csillagok.",
     "whyMore": "Bohr azt tételezte, hogy az elektron impulzusmomentuma ℏ egész számú többszöröseire kvantált, ami diszkrét körpályákra kényszeríti, melyek sugara n² szerint nő. Az n-edik szint energiája így E_n = −13,6 eV/n², ahol a 13,6 eV a hidrogén ionizációs energiája (az n=1 alapállapot mélysége). A fotonok csak az elektron szintugrásakor keletkeznek vagy nyelődnek el, ezért a hidrogén színképe éles vonalakból álló halmaz.",
     "wiki": "https://en.wikipedia.org/wiki/Bohr-f%C3%A9le_atommodell",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1913
   },
   {
     "rank": 150,
@@ -4334,7 +4594,8 @@ const FIZIKA_DATA = [
     "why": "<b>Három mennyiség, egyetlen szorzás — és ezzel az egész elektrotechnika alapja a kezünkben van.</b> Ohm kortársai kezdetben elutasították és 'meddő spekulációnak' nevezték a munkáját; évekkel később ismerték csak el. Ma minden elektromos áramkör méretezése, minden vezeték-keresztmetszet számítása, minden biztosíték kiválasztása ezzel az egyenlettel kezdődik — talán a legtöbbször alkalmazott fizikai összefüggés a mérnöki gyakorlatban.",
     "whyMore": "Ohm törvénye szerint a vezetőn áteső feszültség (U) arányos az átfolyó árammal (I), az arányossági tényező a vezető ellenállása (R), amit az anyag és a geometria (R = ρL/A) határoz meg. Mikroszkopikusan az R azt tükrözi, hogy a mozgó elektronok milyen gyakran ütköznek szét a rács atomjaival. A lineáris U–I összefüggés a fémekben óriási tartományban érvényes, mert ezek az ütközések gyakoriak, de arányuk az alkalmazott kis térerővel alig változik.",
     "wiki": "https://en.wikipedia.org/wiki/Ohm_t%C3%B6rv%C3%A9nye",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1827
   },
   {
     "rank": 151,
@@ -4347,7 +4608,8 @@ const FIZIKA_DATA = [
     "why": "<b>Két egyszerű megmaradási elv — a töltésé és az energiáé — elegendő ahhoz, hogy tetszőlegesen bonyolult áramkört egyenletrendszerré alakítsunk és megoldjunk.</b> Kirchhoff 21 évesen, még egyetemi hallgatóként fogalmazta meg őket. Minden áramkör-szimulációs szoftver (SPICE és leszármazottai), minden elektromos hálózattervezés ezt a két szabályt alkalmazza automatikusan, több millió csomópontra egyszerre.",
     "whyMore": "Az áramcsomóponti törvény (beáramló = kiáramló áram) nem más, mint a töltésmegmaradás: egy elágazásban nem halmozódhat fel töltés. A huroktörvény (a feszültségek összege zárt körben nulla) az energiamegmaradásból következik: egy töltés, ha végigmegy egy teljes hurkon, ugyanoda ér vissza, ahol a potenciálja volt, tehát a nettó munka zéró. A két szabály egyenletet ad csomópontonként és hurkonként, ami elegendő az összes ágáram kiszámításához.",
     "wiki": "https://en.wikipedia.org/wiki/Kirchhoff-f%C3%A9le_%C3%A1ramk%C3%B6ri_t%C3%B6rv%C3%A9nyek",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1845
   },
   {
     "rank": 152,
@@ -4360,7 +4622,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egyetlen egyenlet teszi lehetővé, hogy röntgensugarak visszaverődési szögéből kiszámítsuk egy kristály atomjainak pontos térbeli elrendeződését.</b> Ez a módszer tárta fel a DNS kettős spirálját (Rosalind Franklin felvételei), a penicillin, az inzulin és több tízezer fehérje szerkezetét. A fiatalabb Bragg 25 évesen kapott Nobel-díjat — a mai napig ő a legfiatalabb tudományos Nobel-díjas. Az egész modern szerkezeti biológia és anyagtudomány ebből nőtt ki.",
     "whyMore": "Amikor a röntgensugár párhuzamos kristály síkokra (távolságuk d) esik, a szomszédos síkokról visszavert hullámok 2d·sinθ extra utat tesznek meg. Csak akkor erősítik egymást, ha ez az útkülönbség éppen n egész hullámhossz (nλ) többszöröse — innen a nλ = 2d·sinθ. A visszaverődési csúcsok szögéből tehát közvetlenül leolvasható az atomrétegek térbeli távolsága.",
     "wiki": "https://en.wikipedia.org/wiki/R%C3%B6ntgen-diffrakci%C3%B3_%28Bragg-t%C3%B6rv%C3%A9ny%29",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1913
   },
   {
     "rank": 153,
@@ -4373,7 +4636,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy erős mágneses térbe helyezett atommag pontosan meghatározott frekvencián 'zeng' — és ha a teret helyről helyre változtatjuk, ebből térbeli képet lehet alkotni.</b> A Larmor-frekvencia és a mágneses tér közti egyszerű lineáris kapcsolat tette lehetővé, hogy az emberi test belsejét sugárterhelés nélkül, lágy szöveteket is látva vizsgálhassuk. Az MRI ma a modern orvostudomány egyik legfontosabb diagnosztikai eszköze — egy tisztán kvantummechanikai jelenségből.",
     "whyMore": "A spinnel rendelkező atommag apró mágnesként viselkedik, és külső B₀ térben a Larmor-frekvencián, ω₀ = γB₀ szerint körbe-körbe precesszál. A γ giromágneses arány az adott mag sajátja, így ω₀ egyenesen arányos B₀-val: minél erősebb a mágnes, annál magasabb a rezonanciafrekvencia. Ha a rádióimpulzust pont ω₀-ra hangoljuk, a mag elnyel energiát, a térbeli B₀-gradiens (helyfüggő mező) pedig a térbeli pozíciót kódolja.",
     "wiki": "https://en.wikipedia.org/wiki/M%C3%A1gneses_magrezonancia_%28NMR/MRI%29",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1938
   },
   {
     "rank": 154,
@@ -4386,7 +4650,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy gerjesztett atom nemcsak magától bocsát ki fotont, hanem egy arra járó foton 'rábeszélheti' — és az így keletkező második foton tökéletesen azonos az elsővel.</b> Einstein 1917-ben, tisztán termodinamikai megfontolásból jósolta meg a jelenséget, negyven évvel az első működő lézer előtt. Ma optikai adatátvitel, vonalkód-olvasó, szemműtét, ipari vágás, távolságmérés és a csillagászati adaptív optika — mind ezen az egy kvantumátmeneten alapul.",
     "whyMore": "Einstein egy kétszintű atomot hőegyensúlyban vizsgálva arra jutott, hogy a stimulált emisszió (B₂₁) aránya a spontánhoz (A₂₁) a fotonállapotok sűrűségével, azaz c³/(8πhν³)-sel arányos. Ez a tényező gyakorlatilag a rendelkezésre álló fotonmódusok számát adja meg adott frekvencián — megmondja, mekkora eséllyel csábít ki egy érkező foton egy vele azonosat. Ez a mennyiségi összefüggés a lézer működésének szívét jelenti.",
     "wiki": "https://en.wikipedia.org/wiki/Stimul%C3%A1lt_emisszi%C3%B3_%28a_l%C3%A9zer_elve%29",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1917
   },
   {
     "rank": 155,
@@ -4399,7 +4664,8 @@ const FIZIKA_DATA = [
     "why": "<b>A p-n átmenet exponenciális áram-feszültség karakterisztikája teszi lehetővé, hogy egy apró jellel nagy áramot kapcsoljunk vagy erősítsünk — ez a digitális kor kapcsolóeleme.</b> A Bell Labs 1947-es felfedezése minden idők talán legnagyobb technológiai hatású találmánya: egyetlen modern processzor több tízmilliárd tranzisztort tartalmaz, mindegyik ezt az egyenletet követve. Enélkül nincs számítógép, nincs mobiltelefon, nincs internet.",
     "whyMore": "A p-n átmeneten az alkalmazott feszültség V_D csökkenti azt az energiaakadályt, ami normálisan távol tartja a töltéshordozókat, ezért az áram exponenciálisan nő V_D-vel. A V_T = kT/q termikus feszültség (~26 mV szobahőmérsékleten) adja meg, milyen gyorsan ível fel az áram, az n idealitási tényező (≈1–2) a depleted rétegben zajló rekombinációt korrigálja. A −1 tag garantálja, hogy nulla feszültségnél nulla az áram, és leírja a fordított irányú szivárgást is.",
     "wiki": "https://en.wikipedia.org/wiki/Tranzisztor-egyenlet_%28Shockley%29",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1947
   },
   {
     "rank": 156,
@@ -4412,7 +4678,8 @@ const FIZIKA_DATA = [
     "why": "<b>A levegő inert nitrogénjét ammóniává alakítva vált lehetővé a szintetikus műtrágya ipari gyártása — becslések szerint a ma élő emberek közel felének létezése ezen az egyetlen reakción múlik.</b> A Le Chatelier-elv (amit a gyűjteményben már érintettünk) gyakorlati diadala: nagy nyomás és katalizátor tolja a kívánt irányba az egyensúlyt. Talán az összes reakció közül ez változtatta meg legdrámaibban az emberiség történetét — a világ energiafogyasztásának 1-2%-át ma is ez emészti fel.",
     "whyMore": "A nitrogén N₂ molekula hármas kötése rendkívül stabil, ezért a levegő nitrogénje inaktív; a reakció exoterm (ΔH = −92 kJ/mol) és gázmolekuláit 4-ről 2-re csökkenti, vagyis magas nyomás az ammónia, magas hőmérséklet viszont a kiindulási anyagok felé tolja az egyensúlyt. A vas katalizátor teszi lehetővé a kötésfeltörést elérhető hőfokon. A Le Chatelier-elv pontosan ezt diktálja: iparilag ~200 atm és pár száz °C mellett fut.",
     "wiki": "https://en.wikipedia.org/wiki/Haber%E2%80%93Bosch-elj%C3%A1r%C3%A1s",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1909
   },
   {
     "rank": 157,
@@ -4425,7 +4692,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egyetlen DNS-szakasz néhány óra alatt milliárdszorosára sokszorozható — ciklusonként egyszerű duplázással, hőmérséklet-változtatás vezérelve.</b> Mullis állítólag autóvezetés közben jött rá az ötletre; Nobel-díjat kapott érte. A PCR nélkül nem létezne modern törvényszéki genetika, örökletes betegségek diagnosztikája, ősi DNS kutatása, vagy — ahogy azt a világ 2020-ban megtapasztalta — gyors és megbízható járványügyi tesztelés.",
     "whyMore": "Minden hőciklus először szétválasztja a két DNS-szálat, majd a primerek hozzákötődnek mindkét szálhoz, végül a polimeráz lemásolja őket — így egy molekulából kettő lesz. n ciklus után a másolatok száma minden lépésben megduplázódik, ezért N = N₀·2ⁿ (ideális esetben; a valós hatékonyság némileg kevesebb). Ez az exponenciális növekedés fordítja egyetlen példányt néhány tucat ciklus alatt milliárdokká.",
     "wiki": "https://en.wikipedia.org/wiki/Polimer%C3%A1z-l%C3%A1ncreakci%C3%B3_%28PCR%29",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1983
   },
   {
     "rank": 158,
@@ -4438,7 +4706,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy baktériumok vírusok elleni védekezéséből 'kölcsönvett' molekuláris olló pontosan oda vágja el a DNS-t, ahová egy programozható vezető-RNS irányítja.</b> A génszerkesztés korábban évekig tartó, drága és megbízhatatlan folyamat volt; a CRISPR néhány év alatt olcsóvá és rutinszerűvé tette. Charpentier és Doudna 2020-ban Nobel-díjat kapott — a technológia egyszerre hordozza a genetikai betegségek gyógyításának ígéretét és komoly etikai kérdéseket.",
     "whyMore": "A vezető RNS egy ~20 bázisból álló, a cél-DNS-sel komplementer szakaszt hordoz; a Cas9 ezt használja, hogy megtalálja és odakösse avezetőt, majd nukleáz-részei elvágják mindkét szálat. Mivel az RNS programozható, ugyanaz az enzim szinte bármely génre irányítható egyetlen szekvenciacsere révén. A sejt saját javító gépezete ezután vagy kiüti, vagy — sablon mellett — átírja a szakaszt.",
     "wiki": "https://en.wikipedia.org/wiki/CRISPR%E2%80%93Cas9_g%C3%A9nszerkeszt%C3%A9s",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 2012
   },
   {
     "rank": 159,
@@ -4451,7 +4720,8 @@ const FIZIKA_DATA = [
     "why": "<b>Napfényből, vízből és szén-dioxidból cukor és oxigén — ez az egyetlen reakció tartja fenn gyakorlatilag az egész földi élővilágot.</b> A légkör teljes oxigéntartalma ennek a folyamatnak a mellékterméke, felhalmozódva évmilliárdok alatt. Minden táplálék, minden fosszilis tüzelőanyag és minden lélegzetvételünk végső soron ezen az egyenleten keresztül a Napból származó energia — a legfontosabb kémiai reakció a bolygónkon.",
     "whyMore": "A klorofill a vörös és kék fotonokat nyeli el, s ezzel a víz felhasad, elektronok és O₂ szabadul fel, miközben a CO₂-ből glükóz épül. Az egyenlet „nettó”, mert a fényreakciók és a Calvin-ciklus együtt 6 CO₂-t és 6 H₂O-t használnak el cukormolekulánként. A C₆H₁₂O₆ kötéseiben tárolt szabadenergia közvetlenül a megfogott fotonokból származik.",
     "wiki": "https://en.wikipedia.org/wiki/Fotoszint%C3%A9zis_nett%C3%B3_egyenlete",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1845
   },
   {
     "rank": 160,
@@ -4464,7 +4734,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy nyolclépéses, körkörös reakciólánc, amiben a molekulák visszatérnek a kiindulási állapotukba — miközben minden fordulat energiát szabadít fel a sejt számára.</b> Krebs eredeti cikkét a Nature elutasította; máshol publikálta, majd Nobel-díjat kapott érte. A ciklus szinte minden aerob élőlényben azonos formában működik — a baktériumoktól az emberig —, ami az egyik legerősebb bizonyíték a földi élet közös eredetére.",
     "whyMore": "Az acetil-CoA egy körkörös útra lép, ahol teljesen CO₂-vá oxidálódik, a felszabaduló energia pedig elektronhordozókban (NADH, FADH₂) és egy GTP-ben tárolódik. A kiindulási oxaloacetát a ciklus végére újratermelődik, így az kör folyamatosan jár, amíg üzemanyag érkezik. A keletkező NADH/FADH₂ az elektrontranszport-láncba kerül, ahol a sejt ATP-jének döntő többsége ténylegesen termelődik.",
     "wiki": "https://en.wikipedia.org/wiki/Citr%C3%A1tk%C3%B6r_%28Krebs-ciklus%29",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1937
   },
   {
     "rank": 161,
@@ -4477,7 +4748,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy oldat ozmotikus nyomása pontosan ugyanazt a formulát követi, mint egy gáz nyomása — mintha az oldott részecskék 'gázként' viselkednének a folyadékban.</b> Ez a meglepő analógia adja meg minden sejt vízháztartásának, a veseműködésnek, az infúziós oldatok koncentrációjának és a fordított ozmózisos víztisztításnak az alapját. Van 't Hoff az első kémiai Nobel-díjat kapta többek között ezért a felismerésért.",
     "whyMore": "A feloldott részecskék ugyanúgy lökdösik az féligáteresztő hártyát, mint ahogy a gázmolekulák a tartályfalat, ezért az ozmotikus nyomás ugyanazt az ideális gáztörvényt követi, csak a részecskesűrűség helyett a koncentráció (c) szerepel. Az i van ’t Hoff-tényező azt adja meg, hány részecskevá alakul egy oldott anyag (pl. NaCl esetén i=2), R a gázállandó, T az abszolút hőmérséklet. Ezért egy híg sóoldat ugyanakkora Π = cRT nyomást fejt ki, mint egy vele azonos moláris gáz.",
     "wiki": "https://en.wikipedia.org/wiki/Ozmotikus_nyom%C3%A1s_%28van_%27t_Hoff-egyenlet%29",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1887
   },
   {
     "rank": 162,
@@ -4490,7 +4762,8 @@ const FIZIKA_DATA = [
     "why": "<b>Egy véletlenül szennyeződött Petri-csésze körül a baktériumok elpusztultak — és ez a megfigyelés több életet mentett meg, mint bármely más orvosi felfedezés a történelemben.</b> A β-laktám gyűrű a baktériumok sejtfalépítő enzimjét blokkolja, miközben az emberi sejteket érintetlenül hagyja — ez a szelektív toxicitás az antibiotikumok alapelve. Fleming Nobel-beszédében figyelmeztetett a rezisztencia veszélyére is: nyolcvan évvel később pontosan ez vált korunk egyik legnagyobb egészségügyi kihívásává.",
     "whyMore": "A penicillin β-laktám gyűrűje visszafordíthatatlanul köti a baktériumok sejtfalát építő transzpeptidáz enzimet, így a fal nem újulhat meg, és a sejt szétreped. Az emberi sejteknek nincs ilyen fala és enzime, ez a szelektív toxicitás alapja. A ⊣ jel itt „gátolja” értelemben áll: a gomba anyagcsereterméke blokkolja a sejtfal-szintézis útját.",
     "wiki": "https://en.wikipedia.org/wiki/Fleming-f%C3%A9le_penicillin-felfedez%C3%A9s",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1928
   },
   {
     "name": "Biot–Savart-törvény",
@@ -5926,6 +6199,27 @@ const graphTooltip = document.getElementById("graphTooltip");
 const graphResetBtn = document.getElementById("graphResetBtn");
 const graphDomainBtn = document.getElementById("graphDomainBtn");
 
+const simLabBtn = document.getElementById("simLabBtn");
+const simOverlay = document.getElementById("simOverlay");
+const simClose = document.getElementById("simClose");
+const simTitle = document.getElementById("simTitle");
+const simTabs = document.getElementById("simTabs");
+const simCanvas = document.getElementById("simCanvas");
+const simControls = document.getElementById("simControls");
+const simInfo = document.getElementById("simInfo");
+
+const SIMULATION_TARGETS = {
+  "lorentz-transzformacio": "lorentz",
+  "kvantum-alaguthatas": "tunnel",
+  "schrodinger-egyenlet": "tunnel",
+  "hidrogenatom-schrodinger-egyenlete": "tunnel",
+  "mandelbrot-halmaz": "mandelbrot",
+  "fourier-transzformalt": "fourier",
+  "gyors-fourier-transzformacio-fft": "fourier",
+  "fast-fourier-transzformacio-alkalmazasa-keptomoritesre-dct": "fourier",
+  "conway-elet-jateka": "conway"
+};
+
 let activeDomain = "matek";
 let activeCategory = "all";
 let activeTagFilter = null;   // téma-szűrő (tag cloud) — a keresőmezőt is meghajtja
@@ -6285,6 +6579,21 @@ function buildRow(entry, index, domainKey) {
     generateShareCard(entry, domainKey, cardBtn);
   });
   actions.appendChild(cardBtn);
+
+  if (SIMULATION_TARGETS[slug]) {
+    const simKey = SIMULATION_TARGETS[slug];
+    const simBtn = document.createElement("button");
+    simBtn.type = "button";
+    simBtn.className = "icon-btn sim-btn";
+    simBtn.setAttribute("aria-label", "Interaktív szimuláció");
+    simBtn.title = "Interaktív szimuláció indítása";
+    simBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="6" width="18" height="12" rx="3.5" stroke="currentColor" stroke-width="1.6"/><circle cx="8" cy="12" r="1.8" fill="currentColor"/><path d="M14 10v4M12 12h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
+    simBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      openSimulation(simKey);
+    });
+    actions.appendChild(simBtn);
+  }
 
   if (entry.wiki) {
     const wikiBtn = document.createElement("button");
@@ -7049,6 +7358,7 @@ document.addEventListener("keydown", (e) => {
     closeModal();
     closeLightbox();
     closeGraph();
+    closeSimulation();
     statsOverlay.classList.remove("visible");
     statsOverlay.setAttribute("aria-hidden", "true");
   }
@@ -7562,6 +7872,26 @@ function renderDeck() {
     dw.style.display = "inline-flex";
     dw.onclick = () => window.open(e.wiki, "_blank", "noopener");
   } else if (dw) { dw.style.display = "none"; }
+
+  // Szimuláció gomb a decken
+  let dSim = document.getElementById("deckSim");
+  const deckSlug = slugify(e.name);
+  if (SIMULATION_TARGETS[deckSlug]) {
+    const simKey = SIMULATION_TARGETS[deckSlug];
+    if (!dSim) {
+      dSim = document.createElement("button");
+      dSim.id = "deckSim";
+      dSim.className = "icon-btn sim-btn";
+      dSim.setAttribute("aria-label", "Interaktív szimuláció");
+      dSim.title = "Interaktív szimuláció indítása";
+      dSim.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="6" width="18" height="12" rx="3.5" stroke="currentColor" stroke-width="1.6"/><circle cx="8" cy="12" r="1.8" fill="currentColor"/><path d="M14 10v4M12 12h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
+      deckCard.querySelector(".deck-actions").appendChild(dSim);
+    }
+    dSim.style.display = "inline-flex";
+    dSim.onclick = () => openSimulation(simKey);
+  } else if (dSim) {
+    dSim.style.display = "none";
+  }
   const favKey = activeDomain + ":" + slugify(e.name);
   deckFav.classList.toggle("active", favorites.has(favKey));
   deckFav.onclick = () => { toggleFavorite(favKey, deckFav); };
@@ -8563,6 +8893,1025 @@ if (weeklyFav) weeklyFav.addEventListener("click", () => {
 if (weeklyDismiss) weeklyDismiss.addEventListener("click", () => {
   weeklyCard.hidden = true;
   try { localStorage.setItem("tsz_weekly_dismissed", isoWeekKey(new Date())); } catch (e) {}
+});
+
+// ============================================================================
+// ==== INTERAKTÍV TUDOMÁNYOS LABORATÓRIUM (SZIMULÁCIÓK) =======================
+// ============================================================================
+
+let currentSimId = "lorentz";
+let simRaf = null;
+let simCtx = null;
+let simActive = false;
+
+const SIM_TITLES = {
+  lorentz: "⚡ Lorentz-transzformáció és Idődilatáció",
+  tunnel: "🌊 Kvantum-alagúthatás (Schrödinger-egyenlet)",
+  mandelbrot: "🌀 Mandelbrot-halmaz és Komplex fraktálok",
+  fourier: "🎼 Fourier-sorfejtés és Epiciklikus szintézis",
+  conway: "👾 Conway: Élet játéka (Sejtautomata)"
+};
+
+// 1. Lorentz állapot
+const simLorentz = {
+  beta: 0.70,
+  running: true,
+  tau: 0,
+  t: 0,
+  xMoving: 100,
+  lightRestY: 0,
+  lightRestDir: 1,
+  lightMovY: 0,
+  lightMovDir: 1,
+  trail: []
+};
+
+// 2. Kvantum-alagút állapot
+const simTunnel = {
+  E: 3.0,
+  V0: 4.8,
+  barrierWidth: 46,
+  running: true,
+  t: 0
+};
+
+// 3. Mandelbrot állapot
+const simMandelbrot = {
+  cx: -0.7,
+  cy: 0.0,
+  zoom: 1.0,
+  maxIter: 64,
+  palette: "aurora",
+  needsRedraw: true
+};
+let mandelbrotOffscreen = null;
+
+// 4. Fourier állapot
+const simFourier = {
+  waveType: "square",
+  harmonics: 5,
+  speed: 1.0,
+  running: true,
+  time: 0,
+  waveHistory: []
+};
+
+// 5. Conway állapot
+const simConway = {
+  cols: 64,
+  rows: 36,
+  grid: null,
+  nextGrid: null,
+  cellAge: null,
+  running: true,
+  lastStep: 0,
+  speedMs: 100,
+  generation: 0
+};
+
+function drawLorentz(ctx, width, height) {
+  const L0 = 120;
+  const H = 70;
+  const c = 2.4;
+  const beta = simLorentz.beta;
+  const gamma = 1 / Math.sqrt(Math.max(0.001, 1 - beta * beta));
+  const L = L0 / gamma;
+
+  if (simLorentz.running) {
+    simLorentz.tau += 0.04;
+    simLorentz.t += 0.04 * gamma;
+
+    simLorentz.lightRestY += simLorentz.lightRestDir * c;
+    if (simLorentz.lightRestY >= H) {
+      simLorentz.lightRestY = H;
+      simLorentz.lightRestDir = -1;
+    } else if (simLorentz.lightRestY <= 0) {
+      simLorentz.lightRestY = 0;
+      simLorentz.lightRestDir = 1;
+    }
+
+    simLorentz.xMoving += beta * c * 1.3;
+    const maxX = width - 40;
+    const minX = 40;
+    if (simLorentz.xMoving > maxX) {
+      simLorentz.xMoving = minX;
+      simLorentz.trail = [];
+    }
+
+    simLorentz.lightMovY += simLorentz.lightMovDir * (c / gamma);
+    if (simLorentz.lightMovY >= H) {
+      simLorentz.lightMovY = H;
+      simLorentz.lightMovDir = -1;
+    } else if (simLorentz.lightMovY <= 0) {
+      simLorentz.lightMovY = 0;
+      simLorentz.lightMovDir = 1;
+    }
+
+    simLorentz.trail.push({ x: simLorentz.xMoving, y: 220 + simLorentz.lightMovY });
+    if (simLorentz.trail.length > 70) simLorentz.trail.shift();
+  }
+
+  ctx.fillStyle = "#050813";
+  ctx.fillRect(0, 0, width, height);
+
+  ctx.strokeStyle = "rgba(125, 163, 255, 0.07)";
+  ctx.lineWidth = 1;
+  for (let x = 0; x < width; x += 40) {
+    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, height); ctx.stroke();
+  }
+  ctx.beginPath(); ctx.moveTo(0, 160); ctx.lineTo(width, 160); ctx.stroke();
+
+  // Felső: Nyugalmi rendszer
+  ctx.font = "600 12px Inter, sans-serif";
+  ctx.fillStyle = "#9aa6c4";
+  ctx.fillText("NYUGALMI RENDSZER (FÖLD) — v = 0, sajátidő (τ)", 20, 26);
+
+  const restX = 80;
+  const restY = 48;
+  ctx.strokeStyle = "rgba(201, 162, 75, 0.6)";
+  ctx.lineWidth = 4;
+  ctx.beginPath(); ctx.moveTo(restX, restY); ctx.lineTo(restX + L0, restY); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(restX, restY + H); ctx.lineTo(restX + L0, restY + H); ctx.stroke();
+
+  ctx.strokeStyle = "rgba(201, 162, 75, 0.25)";
+  ctx.lineWidth = 1.5;
+  ctx.strokeRect(restX, restY, L0, H);
+
+  ctx.strokeStyle = "rgba(255, 230, 120, 0.3)";
+  ctx.setLineDash([3, 3]);
+  ctx.beginPath(); ctx.moveTo(restX + L0 / 2, restY); ctx.lineTo(restX + L0 / 2, restY + H); ctx.stroke();
+  ctx.setLineDash([]);
+
+  ctx.fillStyle = "#ffe066";
+  ctx.shadowColor = "#ffe066";
+  ctx.shadowBlur = 10;
+  ctx.beginPath();
+  ctx.arc(restX + L0 / 2, restY + simLorentz.lightRestY, 4.5, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.shadowBlur = 0;
+
+  ctx.font = "500 12px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#e9c877";
+  ctx.fillText(`τ = ${simLorentz.tau.toFixed(1)} s (1.00×)`, restX + L0 + 25, restY + H / 2 + 4);
+
+  // Alsó: Mozgó rendszer
+  ctx.font = "600 12px Inter, sans-serif";
+  ctx.fillStyle = "#9aa6c4";
+  ctx.fillText(`MOZGÓ RENDSZER — v = ${beta.toFixed(2)}c, Lorentz-faktor γ = ${gamma.toFixed(2)}`, 20, 185);
+
+  const movY = 220;
+  if (simLorentz.trail.length > 1) {
+    ctx.beginPath();
+    ctx.strokeStyle = "rgba(62, 184, 240, 0.4)";
+    ctx.lineWidth = 2;
+    for (let i = 0; i < simLorentz.trail.length; i++) {
+      const p = simLorentz.trail[i];
+      if (i === 0) ctx.moveTo(p.x, p.y);
+      else ctx.lineTo(p.x, p.y);
+    }
+    ctx.stroke();
+  }
+
+  const mx = simLorentz.xMoving - L / 2;
+  ctx.strokeStyle = "rgba(62, 184, 240, 0.7)";
+  ctx.lineWidth = 4;
+  ctx.beginPath(); ctx.moveTo(mx, movY); ctx.lineTo(mx + L, movY); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(mx, movY + H); ctx.lineTo(mx + L, movY + H); ctx.stroke();
+
+  ctx.strokeStyle = "rgba(62, 184, 240, 0.35)";
+  ctx.lineWidth = 1.5;
+  ctx.strokeRect(mx, movY, L, H);
+
+  ctx.fillStyle = "#7fd8ff";
+  ctx.shadowColor = "#7fd8ff";
+  ctx.shadowBlur = 12;
+  ctx.beginPath();
+  ctx.arc(simLorentz.xMoving, movY + simLorentz.lightMovY, 4.5, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.shadowBlur = 0;
+
+  ctx.font = "500 12px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#7fd8ff";
+  ctx.fillText(`t' = ${simLorentz.t.toFixed(1)} s (${gamma.toFixed(2)}× lassabb)`, 20, movY + H + 30);
+}
+
+function drawTunnel(ctx, width, height) {
+  const { E, V0, barrierWidth } = simTunnel;
+  const baseLine = 250;
+  const scaleV = 16;
+  const scaleE = 16;
+
+  ctx.fillStyle = "#050813";
+  ctx.fillRect(0, 0, width, height);
+
+  const bx1 = width / 2 - barrierWidth / 2;
+  const bx2 = width / 2 + barrierWidth / 2;
+  const bHeight = V0 * scaleV;
+  const eHeight = E * scaleE;
+
+  const grad = ctx.createLinearGradient(0, baseLine - bHeight, 0, baseLine);
+  grad.addColorStop(0, "rgba(233, 110, 60, 0.5)");
+  grad.addColorStop(1, "rgba(233, 110, 60, 0.08)");
+  ctx.fillStyle = grad;
+  ctx.fillRect(bx1, baseLine - bHeight, barrierWidth, bHeight);
+
+  ctx.strokeStyle = "#e97244";
+  ctx.lineWidth = 2;
+  ctx.strokeRect(bx1, baseLine - bHeight, barrierWidth, bHeight);
+
+  ctx.font = "500 11px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#e97244";
+  ctx.fillText(`V₀ = ${V0.toFixed(1)} eV`, bx1 + 4, baseLine - bHeight - 8);
+
+  ctx.strokeStyle = "rgba(125, 163, 255, 0.6)";
+  ctx.setLineDash([4, 4]);
+  ctx.beginPath();
+  ctx.moveTo(20, baseLine - eHeight);
+  ctx.lineTo(width - 20, baseLine - eHeight);
+  ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = "#7da3ff";
+  ctx.fillText(`E = ${E.toFixed(1)} eV`, 24, baseLine - eHeight - 6);
+
+  let T = 0;
+  if (E < V0) {
+    const kappa = Math.sqrt(Math.max(0.01, 2 * (V0 - E))) * 0.07;
+    const sinhVal = Math.sinh(kappa * barrierWidth);
+    T = 1 / (1 + (V0 * V0 * sinhVal * sinhVal) / (4 * E * (V0 - E)));
+  } else {
+    const k1 = Math.sqrt(Math.max(0.01, 2 * (E - V0))) * 0.07;
+    const sinVal = Math.sin(k1 * barrierWidth);
+    T = 1 / (1 + (V0 * V0 * sinVal * sinVal) / (4 * E * (E - V0)));
+  }
+  T = Math.min(1, Math.max(0, T));
+  const R = 1 - T;
+
+  if (simTunnel.running) {
+    simTunnel.t += 0.06;
+  }
+
+  const k0 = Math.sqrt(2 * E) * 0.12;
+  const cycle = (simTunnel.t * 30) % (width + 200);
+  const packetCenter = cycle - 100;
+
+  ctx.beginPath();
+  ctx.strokeStyle = "#4fd6a0";
+  ctx.lineWidth = 2;
+
+  for (let x = 20; x < width - 20; x += 2) {
+    let amp = 0;
+    const sigma = 35;
+    if (x < bx1) {
+      const inc = Math.exp(-Math.pow(x - packetCenter, 2) / (2 * sigma * sigma));
+      const refDist = bx1 + (bx1 - packetCenter);
+      const ref = Math.sqrt(R) * Math.exp(-Math.pow(x - refDist, 2) / (2 * sigma * sigma));
+      amp = (inc * Math.cos(k0 * x - simTunnel.t * 4) + ref * Math.cos(-k0 * x - simTunnel.t * 4)) * 36;
+    } else if (x >= bx1 && x <= bx2) {
+      const decay = Math.exp(-0.06 * Math.sqrt(Math.max(0.1, V0 - E)) * (x - bx1));
+      const atEntry = Math.exp(-Math.pow(bx1 - packetCenter, 2) / (2 * sigma * sigma));
+      amp = atEntry * decay * Math.sqrt(T) * Math.cos(k0 * x - simTunnel.t * 4) * 36;
+    } else {
+      const transCenter = packetCenter;
+      const trans = Math.sqrt(T) * Math.exp(-Math.pow(x - transCenter, 2) / (2 * sigma * sigma));
+      amp = trans * Math.cos(k0 * x - simTunnel.t * 4) * 36;
+    }
+
+    const y = baseLine - amp;
+    if (x === 20) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  ctx.stroke();
+
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.15)";
+  ctx.beginPath(); ctx.moveTo(10, baseLine); ctx.lineTo(width - 10, baseLine); ctx.stroke();
+
+  ctx.font = "600 12px Inter, sans-serif";
+  ctx.fillStyle = "#9aa6c4";
+  ctx.fillText("SCHRÖDINGER KVANTUM-ALAGÚTHATÁS SZIMULÁCIÓ", 20, 26);
+
+  ctx.font = "500 12px 'JetBrains Mono', monospace";
+  ctx.fillStyle = T > 0.05 ? "#4fd6a0" : "#9aa6c4";
+  ctx.fillText(`Áthaladás (T): ${(T * 100).toFixed(2)}% | Visszaverődés (R): ${(R * 100).toFixed(2)}%`, 20, height - 16);
+}
+
+function drawMandelbrot(ctx, width, height) {
+  if (!simMandelbrot.needsRedraw && mandelbrotOffscreen) {
+    ctx.drawImage(mandelbrotOffscreen, 0, 0, width, height);
+    return;
+  }
+
+  const renderW = Math.floor(width / 2);
+  const renderH = Math.floor(height / 2);
+  if (!mandelbrotOffscreen || mandelbrotOffscreen.width !== renderW || mandelbrotOffscreen.height !== renderH) {
+    mandelbrotOffscreen = document.createElement("canvas");
+    mandelbrotOffscreen.width = renderW;
+    mandelbrotOffscreen.height = renderH;
+  }
+  const offCtx = mandelbrotOffscreen.getContext("2d");
+  const imgData = offCtx.createImageData(renderW, renderH);
+  const data = imgData.data;
+
+  const { cx, cy, zoom, maxIter, palette } = simMandelbrot;
+  const aspect = renderW / renderH;
+  const rx = 1.4 / zoom;
+  const ry = rx / aspect;
+
+  for (let py = 0; py < renderH; py++) {
+    const y0 = cy + (py / renderH - 0.5) * ry * 2;
+    for (let px = 0; px < renderW; px++) {
+      const x0 = cx + (px / renderW - 0.5) * rx * 2;
+      let x = 0.0;
+      let y = 0.0;
+      let iter = 0;
+      while (x * x + y * y <= 4 && iter < maxIter) {
+        const xTemp = x * x - y * y + x0;
+        y = 2 * x * y + y0;
+        x = xTemp;
+        iter++;
+      }
+
+      const idx = (py * renderW + px) * 4;
+      if (iter === maxIter) {
+        data[idx] = 4;
+        data[idx + 1] = 6;
+        data[idx + 2] = 16;
+        data[idx + 3] = 255;
+      } else {
+        const mu = iter + 1 - Math.log(Math.max(1, Math.log(x * x + y * y))) / Math.LN2;
+        const norm = Math.max(0, mu / maxIter);
+
+        if (palette === "fire") {
+          data[idx] = Math.min(255, Math.floor(norm * 450));
+          data[idx + 1] = Math.min(255, Math.floor(norm * norm * 350));
+          data[idx + 2] = Math.min(255, Math.floor(norm * norm * norm * 200));
+        } else if (palette === "neon") {
+          data[idx] = Math.min(255, Math.floor(norm * 60));
+          data[idx + 1] = Math.min(255, Math.floor(norm * 320));
+          data[idx + 2] = Math.min(255, Math.floor(norm * 240));
+        } else {
+          data[idx] = Math.min(255, Math.floor(Math.sin(norm * 6.28) * 80 + 100));
+          data[idx + 1] = Math.min(255, Math.floor(Math.sin(norm * 6.28 + 2.0) * 90 + 140));
+          data[idx + 2] = Math.min(255, Math.floor(Math.sin(norm * 6.28 + 4.0) * 80 + 160));
+        }
+        data[idx + 3] = 255;
+      }
+    }
+  }
+
+  offCtx.putImageData(imgData, 0, 0);
+  ctx.imageSmoothingEnabled = true;
+  ctx.drawImage(mandelbrotOffscreen, 0, 0, width, height);
+
+  simMandelbrot.needsRedraw = false;
+
+  ctx.font = "500 12px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#e9c877";
+  ctx.fillText(`Zoom: ${zoom.toFixed(1)}× | Re: ${cx.toFixed(4)}, Im: ${cy.toFixed(4)} (Kattints a nagyításhoz!)`, 20, height - 16);
+}
+
+function drawFourier(ctx, width, height) {
+  const { waveType, harmonics, speed } = simFourier;
+  const centerY = height / 2;
+  const centerX = 140;
+  const baseRadius = 55;
+
+  if (simFourier.running) {
+    simFourier.time += 0.025 * speed;
+  }
+
+  ctx.fillStyle = "#050813";
+  ctx.fillRect(0, 0, width, height);
+
+  let x = centerX;
+  let y = centerY;
+
+  for (let i = 0; i < harmonics; i++) {
+    const prevX = x;
+    const prevY = y;
+    let n = 1;
+    let radius = 0;
+
+    if (waveType === "square") {
+      n = i * 2 + 1;
+      radius = baseRadius * (4 / (n * Math.PI));
+    } else if (waveType === "sawtooth") {
+      n = i + 1;
+      radius = baseRadius * (2 / (n * Math.PI)) * (i % 2 === 0 ? 1 : -1);
+    } else if (waveType === "triangle") {
+      n = i * 2 + 1;
+      const sign = (i % 2 === 0) ? 1 : -1;
+      radius = baseRadius * (8 / (n * n * Math.PI * Math.PI)) * sign;
+    }
+
+    x += radius * Math.cos(n * simFourier.time);
+    y += radius * Math.sin(n * simFourier.time);
+
+    ctx.strokeStyle = "rgba(125, 163, 255, 0.22)";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.arc(prevX, prevY, Math.abs(radius), 0, Math.PI * 2);
+    ctx.stroke();
+
+    ctx.strokeStyle = "rgba(201, 162, 75, 0.6)";
+    ctx.beginPath();
+    ctx.moveTo(prevX, prevY);
+    ctx.lineTo(x, y);
+    ctx.stroke();
+
+    ctx.fillStyle = "#e9c877";
+    ctx.beginPath();
+    ctx.arc(x, y, 2, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  if (simFourier.running) {
+    simFourier.waveHistory.unshift(y);
+    if (simFourier.waveHistory.length > width - 280) {
+      simFourier.waveHistory.pop();
+    }
+  }
+
+  ctx.strokeStyle = "rgba(79, 214, 160, 0.4)";
+  ctx.setLineDash([3, 3]);
+  ctx.beginPath();
+  ctx.moveTo(x, y);
+  ctx.lineTo(280, y);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  ctx.strokeStyle = "#4fd6a0";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  for (let i = 0; i < simFourier.waveHistory.length; i++) {
+    const wx = 280 + i;
+    const wy = simFourier.waveHistory[i];
+    if (i === 0) ctx.moveTo(wx, wy);
+    else ctx.lineTo(wx, wy);
+  }
+  ctx.stroke();
+
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+  ctx.beginPath(); ctx.moveTo(280, centerY); ctx.lineTo(width - 20, centerY); ctx.stroke();
+
+  ctx.font = "600 12px Inter, sans-serif";
+  ctx.fillStyle = "#9aa6c4";
+  ctx.fillText(`FOURIER-SORFEJTÉS: ${harmonics} HARMONIKUS (EPICIKLUSOK)`, 20, 26);
+
+  ctx.font = "500 12px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#4fd6a0";
+  ctx.fillText(`Típus: ${waveType.toUpperCase()} | Gibbs-jelenség az éleknél`, 280, height - 16);
+}
+
+function initConwayGrid() {
+  const { cols, rows } = simConway;
+  simConway.grid = new Uint8Array(cols * rows);
+  simConway.nextGrid = new Uint8Array(cols * rows);
+  simConway.cellAge = new Uint8Array(cols * rows);
+  simConway.generation = 0;
+  loadConwayPreset("glider");
+}
+
+function loadConwayPreset(name) {
+  if (!simConway.grid) initConwayGrid();
+  simConway.grid.fill(0);
+  simConway.cellAge.fill(0);
+  simConway.generation = 0;
+  const { cols, rows, grid } = simConway;
+  const midX = Math.floor(cols / 2);
+  const midY = Math.floor(rows / 2);
+
+  if (name === "glider") {
+    const coords = [[0, -1], [1, 0], [-1, 1], [0, 1], [1, 1]];
+    coords.forEach(([dx, dy]) => {
+      const x = (midX + dx + cols) % cols;
+      const y = (midY + dy + rows) % rows;
+      grid[y * cols + x] = 1;
+    });
+  } else if (name === "pulsar") {
+    const p = [-6, -1, 1, 6];
+    const q = [-4, -3, -2, 2, 3, 4];
+    p.forEach(x => q.forEach(y => {
+      grid[((midY + y + rows) % rows) * cols + ((midX + x + cols) % cols)] = 1;
+      grid[((midY + x + rows) % rows) * cols + ((midX + y + cols) % cols)] = 1;
+    }));
+  } else if (name === "lwss") {
+    const coords = [[-2, -1], [1, -1], [2, 0], [-2, 1], [2, 1], [-1, 2], [0, 2], [1, 2], [2, 2]];
+    coords.forEach(([dx, dy]) => {
+      const x = (midX + dx + cols) % cols;
+      const y = (midY + dy + rows) % rows;
+      grid[y * cols + x] = 1;
+    });
+  } else if (name === "random") {
+    for (let i = 0; i < grid.length; i++) {
+      grid[i] = Math.random() < 0.22 ? 1 : 0;
+    }
+  }
+}
+
+function stepConway() {
+  const { cols, rows, grid, nextGrid, cellAge } = simConway;
+  if (!grid) return;
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      let neighbors = 0;
+      for (let dy = -1; dy <= 1; dy++) {
+        for (let dx = -1; dx <= 1; dx++) {
+          if (dx === 0 && dy === 0) continue;
+          const nx = (x + dx + cols) % cols;
+          const ny = (y + dy + rows) % rows;
+          if (grid[ny * cols + nx]) neighbors++;
+        }
+      }
+      const idx = y * cols + x;
+      const alive = grid[idx];
+      if (alive) {
+        if (neighbors === 2 || neighbors === 3) {
+          nextGrid[idx] = 1;
+          cellAge[idx] = Math.min(255, cellAge[idx] + 1);
+        } else {
+          nextGrid[idx] = 0;
+          cellAge[idx] = 0;
+        }
+      } else {
+        if (neighbors === 3) {
+          nextGrid[idx] = 1;
+          cellAge[idx] = 1;
+        } else {
+          nextGrid[idx] = 0;
+          cellAge[idx] = 0;
+        }
+      }
+    }
+  }
+  grid.set(nextGrid);
+  simConway.generation++;
+}
+
+function drawConway(ctx, width, height) {
+  if (!simConway.grid) initConwayGrid();
+
+  const now = performance.now();
+  if (simConway.running && now - simConway.lastStep > simConway.speedMs) {
+    stepConway();
+    simConway.lastStep = now;
+  }
+
+  const { cols, rows, grid, cellAge } = simConway;
+  const cellW = width / cols;
+  const cellH = height / rows;
+
+  ctx.fillStyle = "#050813";
+  ctx.fillRect(0, 0, width, height);
+
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.04)";
+  ctx.lineWidth = 0.5;
+  for (let x = 0; x <= cols; x++) {
+    ctx.beginPath(); ctx.moveTo(x * cellW, 0); ctx.lineTo(x * cellW, height); ctx.stroke();
+  }
+  for (let y = 0; y <= rows; y++) {
+    ctx.beginPath(); ctx.moveTo(0, y * cellH); ctx.lineTo(width, y * cellH); ctx.stroke();
+  }
+
+  let aliveCount = 0;
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      const idx = y * cols + x;
+      if (grid[idx]) {
+        aliveCount++;
+        const age = cellAge[idx];
+        if (age === 1) ctx.fillStyle = "#7fd8ff";
+        else if (age < 6) ctx.fillStyle = "#4fd6a0";
+        else ctx.fillStyle = "#e9c877";
+
+        ctx.fillRect(x * cellW + 1, y * cellH + 1, cellW - 2, cellH - 2);
+      }
+    }
+  }
+
+  ctx.font = "600 12px Inter, sans-serif";
+  ctx.fillStyle = "#9aa6c4";
+  ctx.fillText("CONWAY: ÉLET JÁTÉKA — B3/S23 (Kattints a sejtekre rajzoláshoz!)", 20, 24);
+
+  ctx.font = "500 12px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#4fd6a0";
+  ctx.fillText(`Generáció: ${simConway.generation} | Élő sejtek: ${aliveCount}`, 20, height - 14);
+}
+
+function renderSimControls(simId) {
+  if (!simControls) return;
+  simControls.innerHTML = "";
+
+  if (simId === "lorentz") {
+    simControls.innerHTML = `
+      <div class="sim-row">
+        <span class="sim-label">Sebesség: <b>v = ${(simLorentz.beta * 100).toFixed(0)}% c</b></span>
+        <div class="sim-slider-wrap">
+          <input type="range" class="sim-slider" id="simBetaSlider" min="0" max="0.98" step="0.01" value="${simLorentz.beta}">
+          <span class="sim-val" id="simBetaVal">${simLorentz.beta.toFixed(2)}c</span>
+        </div>
+        <div class="sim-btn-group">
+          <button type="button" class="sim-ctrl-btn" id="simLorentzPlay">${simLorentz.running ? "⏸ Szünet" : "▶ Indítás"}</button>
+          <button type="button" class="sim-ctrl-btn" id="simLorentzReset">↺ Visszaállítás</button>
+        </div>
+      </div>
+      <div class="sim-hud">
+        <div class="sim-hud-item">Lorentz-faktor (γ)<b id="simHudGamma">1.40</b></div>
+        <div class="sim-hud-item">Hosszkontrakció<b id="simHudLength">71.4%</b></div>
+        <div class="sim-hud-item">Idődilatáció<b id="simHudDilation">1.40×</b></div>
+      </div>
+    `;
+
+    const slider = document.getElementById("simBetaSlider");
+    const valLabel = document.getElementById("simBetaVal");
+    const playBtn = document.getElementById("simLorentzPlay");
+    const resetBtn = document.getElementById("simLorentzReset");
+    const hudGamma = document.getElementById("simHudGamma");
+    const hudLength = document.getElementById("simHudLength");
+    const hudDilation = document.getElementById("simHudDilation");
+
+    function updateLorentzHud() {
+      const g = 1 / Math.sqrt(Math.max(0.001, 1 - simLorentz.beta * simLorentz.beta));
+      if (hudGamma) hudGamma.textContent = g.toFixed(3);
+      if (hudLength) hudLength.textContent = ((1 / g) * 100).toFixed(1) + "%";
+      if (hudDilation) hudDilation.textContent = g.toFixed(2) + "×";
+    }
+    updateLorentzHud();
+
+    if (slider) slider.addEventListener("input", (e) => {
+      simLorentz.beta = parseFloat(e.target.value);
+      if (valLabel) valLabel.textContent = simLorentz.beta.toFixed(2) + "c";
+      updateLorentzHud();
+    });
+    if (playBtn) playBtn.addEventListener("click", () => {
+      simLorentz.running = !simLorentz.running;
+      playBtn.textContent = simLorentz.running ? "⏸ Szünet" : "▶ Indítás";
+    });
+    if (resetBtn) resetBtn.addEventListener("click", () => {
+      simLorentz.tau = 0;
+      simLorentz.t = 0;
+      simLorentz.trail = [];
+    });
+
+  } else if (simId === "tunnel") {
+    simControls.innerHTML = `
+      <div class="sim-row">
+        <span class="sim-label">Részecske E: <b>${simTunnel.E.toFixed(1)} eV</b></span>
+        <div class="sim-slider-wrap">
+          <input type="range" class="sim-slider" id="simESlider" min="0.5" max="8.0" step="0.1" value="${simTunnel.E}">
+          <span class="sim-val" id="simEVal">${simTunnel.E.toFixed(1)} eV</span>
+        </div>
+        <span class="sim-label">Gát V₀: <b>${simTunnel.V0.toFixed(1)} eV</b></span>
+        <div class="sim-slider-wrap">
+          <input type="range" class="sim-slider" id="simV0Slider" min="1.0" max="10.0" step="0.1" value="${simTunnel.V0}">
+          <span class="sim-val" id="simV0Val">${simTunnel.V0.toFixed(1)} eV</span>
+        </div>
+      </div>
+      <div class="sim-row">
+        <span class="sim-label">Gát szélesség (a): <b>${simTunnel.barrierWidth} px</b></span>
+        <div class="sim-slider-wrap">
+          <input type="range" class="sim-slider" id="simBarrierSlider" min="15" max="90" step="1" value="${simTunnel.barrierWidth}">
+          <span class="sim-val" id="simBarrierVal">${simTunnel.barrierWidth} px</span>
+        </div>
+        <div class="sim-btn-group">
+          <button type="button" class="sim-ctrl-btn" id="simTunnelRestart">↺ Újraindítás</button>
+        </div>
+      </div>
+    `;
+
+    const eSlider = document.getElementById("simESlider");
+    const vSlider = document.getElementById("simV0Slider");
+    const bSlider = document.getElementById("simBarrierSlider");
+    const eVal = document.getElementById("simEVal");
+    const vVal = document.getElementById("simV0Val");
+    const bVal = document.getElementById("simBarrierVal");
+    const restartBtn = document.getElementById("simTunnelRestart");
+
+    if (eSlider) eSlider.addEventListener("input", (e) => {
+      simTunnel.E = parseFloat(e.target.value);
+      if (eVal) eVal.textContent = simTunnel.E.toFixed(1) + " eV";
+    });
+    if (vSlider) vSlider.addEventListener("input", (e) => {
+      simTunnel.V0 = parseFloat(e.target.value);
+      if (vVal) vVal.textContent = simTunnel.V0.toFixed(1) + " eV";
+    });
+    if (bSlider) bSlider.addEventListener("input", (e) => {
+      simTunnel.barrierWidth = parseInt(e.target.value, 10);
+      if (bVal) bVal.textContent = simTunnel.barrierWidth + " px";
+    });
+    if (restartBtn) restartBtn.addEventListener("click", () => {
+      simTunnel.t = 0;
+    });
+
+  } else if (simId === "mandelbrot") {
+    simControls.innerHTML = `
+      <div class="sim-row">
+        <span class="sim-label">Max. iteráció: <b>${simMandelbrot.maxIter}</b></span>
+        <div class="sim-slider-wrap">
+          <input type="range" class="sim-slider" id="simMandelIterSlider" min="24" max="192" step="4" value="${simMandelbrot.maxIter}">
+          <span class="sim-val" id="simMandelIterVal">${simMandelbrot.maxIter}</span>
+        </div>
+        <span class="sim-label">Paletta:</span>
+        <select class="sim-select" id="simMandelPalette">
+          <option value="aurora" ${simMandelbrot.palette === "aurora" ? "selected" : ""}>🌌 Kozmikus Aurora</option>
+          <option value="fire" ${simMandelbrot.palette === "fire" ? "selected" : ""}>🔥 Napkitörés</option>
+          <option value="neon" ${simMandelbrot.palette === "neon" ? "selected" : ""}>⚡ Elektromos Neon</option>
+        </select>
+        <div class="sim-btn-group">
+          <button type="button" class="sim-ctrl-btn" id="simMandelZoomIn">🔍 Nagyítás (+)</button>
+          <button type="button" class="sim-ctrl-btn" id="simMandelZoomOut">🔍 Kicsinyítés (-)</button>
+          <button type="button" class="sim-ctrl-btn" id="simMandelReset">↺ Alaphelyzet</button>
+        </div>
+      </div>
+    `;
+
+    const iterSlider = document.getElementById("simMandelIterSlider");
+    const iterVal = document.getElementById("simMandelIterVal");
+    const palSelect = document.getElementById("simMandelPalette");
+    const zIn = document.getElementById("simMandelZoomIn");
+    const zOut = document.getElementById("simMandelZoomOut");
+    const reset = document.getElementById("simMandelReset");
+
+    if (iterSlider) iterSlider.addEventListener("input", (e) => {
+      simMandelbrot.maxIter = parseInt(e.target.value, 10);
+      if (iterVal) iterVal.textContent = simMandelbrot.maxIter;
+      simMandelbrot.needsRedraw = true;
+    });
+    if (palSelect) palSelect.addEventListener("change", (e) => {
+      simMandelbrot.palette = e.target.value;
+      simMandelbrot.needsRedraw = true;
+    });
+    if (zIn) zIn.addEventListener("click", () => {
+      simMandelbrot.zoom *= 1.8;
+      simMandelbrot.needsRedraw = true;
+    });
+    if (zOut) zOut.addEventListener("click", () => {
+      simMandelbrot.zoom = Math.max(0.4, simMandelbrot.zoom / 1.8);
+      simMandelbrot.needsRedraw = true;
+    });
+    if (reset) reset.addEventListener("click", () => {
+      simMandelbrot.cx = -0.7;
+      simMandelbrot.cy = 0.0;
+      simMandelbrot.zoom = 1.0;
+      simMandelbrot.needsRedraw = true;
+    });
+
+  } else if (simId === "fourier") {
+    simControls.innerHTML = `
+      <div class="sim-row">
+        <span class="sim-label">Hullámforma:</span>
+        <select class="sim-select" id="simFourierWave">
+          <option value="square" ${simFourier.waveType === "square" ? "selected" : ""}>Négyszögjel (Square)</option>
+          <option value="sawtooth" ${simFourier.waveType === "sawtooth" ? "selected" : ""}>Fűrészfog (Sawtooth)</option>
+          <option value="triangle" ${simFourier.waveType === "triangle" ? "selected" : ""}>Háromszögjel (Triangle)</option>
+        </select>
+        <span class="sim-label">Harmónikusok (N): <b>${simFourier.harmonics}</b></span>
+        <div class="sim-slider-wrap">
+          <input type="range" class="sim-slider" id="simFourierHarmSlider" min="1" max="25" step="1" value="${simFourier.harmonics}">
+          <span class="sim-val" id="simFourierHarmVal">${simFourier.harmonics}</span>
+        </div>
+        <div class="sim-btn-group">
+          <button type="button" class="sim-ctrl-btn" id="simFourierPlay">${simFourier.running ? "⏸ Szünet" : "▶ Indítás"}</button>
+          <button type="button" class="sim-ctrl-btn" id="simFourierClear">↺ Törlés</button>
+        </div>
+      </div>
+    `;
+
+    const waveSel = document.getElementById("simFourierWave");
+    const harmSlider = document.getElementById("simFourierHarmSlider");
+    const harmVal = document.getElementById("simFourierHarmVal");
+    const playBtn = document.getElementById("simFourierPlay");
+    const clearBtn = document.getElementById("simFourierClear");
+
+    if (waveSel) waveSel.addEventListener("change", (e) => {
+      simFourier.waveType = e.target.value;
+      simFourier.waveHistory = [];
+    });
+    if (harmSlider) harmSlider.addEventListener("input", (e) => {
+      simFourier.harmonics = parseInt(e.target.value, 10);
+      if (harmVal) harmVal.textContent = simFourier.harmonics;
+      simFourier.waveHistory = [];
+    });
+    if (playBtn) playBtn.addEventListener("click", () => {
+      simFourier.running = !simFourier.running;
+      playBtn.textContent = simFourier.running ? "⏸ Szünet" : "▶ Indítás";
+    });
+    if (clearBtn) clearBtn.addEventListener("click", () => {
+      simFourier.time = 0;
+      simFourier.waveHistory = [];
+    });
+
+  } else if (simId === "conway") {
+    simControls.innerHTML = `
+      <div class="sim-row">
+        <div class="sim-btn-group">
+          <button type="button" class="sim-ctrl-btn" id="simConwayPlay">${simConway.running ? "⏸ Szünet" : "▶ Indítás"}</button>
+          <button type="button" class="sim-ctrl-btn" id="simConwayStep">⏭ 1 lépés</button>
+          <button type="button" class="sim-ctrl-btn" id="simConwayRandom">🎲 Véletlen</button>
+          <button type="button" class="sim-ctrl-btn" id="simConwayClear">🗑 Törlés</button>
+        </div>
+        <span class="sim-label">Sablonok:</span>
+        <select class="sim-select" id="simConwayPreset">
+          <option value="glider">Sikló (Glider)</option>
+          <option value="pulsar">Pulzár (Pulsar)</option>
+          <option value="lwss">Űrhajó (LWSS)</option>
+        </select>
+      </div>
+    `;
+
+    const playBtn = document.getElementById("simConwayPlay");
+    const stepBtn = document.getElementById("simConwayStep");
+    const randBtn = document.getElementById("simConwayRandom");
+    const clearBtn = document.getElementById("simConwayClear");
+    const presetSel = document.getElementById("simConwayPreset");
+
+    if (playBtn) playBtn.addEventListener("click", () => {
+      simConway.running = !simConway.running;
+      playBtn.textContent = simConway.running ? "⏸ Szünet" : "▶ Indítás";
+    });
+    if (stepBtn) stepBtn.addEventListener("click", () => {
+      simConway.running = false;
+      if (playBtn) playBtn.textContent = "▶ Indítás";
+      stepConway();
+    });
+    if (randBtn) randBtn.addEventListener("click", () => {
+      loadConwayPreset("random");
+    });
+    if (clearBtn) clearBtn.addEventListener("click", () => {
+      if (simConway.grid) simConway.grid.fill(0);
+      if (simConway.cellAge) simConway.cellAge.fill(0);
+      simConway.generation = 0;
+    });
+    if (presetSel) presetSel.addEventListener("change", (e) => {
+      loadConwayPreset(e.target.value);
+    });
+  }
+}
+
+function renderSimInfo(simId) {
+  if (!simInfo) return;
+  if (simId === "lorentz") {
+    simInfo.innerHTML = `
+      <p><b>A tétel lényege:</b> Albert Einstein speciális relativitáselméletének alappillére: a vákuumbeli fénysebesség (<i>c</i>) minden inerciarendszerben azonos. Ebből következik, hogy a mozgó megfigyelő számára a fényórában a foton hosszabb, átlós utat jár be — emiatt <b>a mozgó óra lassabban jár</b> (idődilatáció), a mozgó test hossza pedig a mozgás irányában <b>megrövidül</b> (Lorentz-kontrakció: <i>L = L₀ / γ</i>).</p>
+      <p><b>Mit látsz a szimuláción?</b> A felső fényóra nyugalomban van (Föld). Az alsó óra <i>v</i> sebességgel halad. Állítsd a sebességet 0.90c fölé, és figyeld meg az űrhajó radikális összenyomódását és az órák közötti szétcsúszást!</p>
+    `;
+  } else if (simId === "tunnel") {
+    simInfo.innerHTML = `
+      <p><b>A tétel lényege:</b> A klasszikus fizikában a részecske nem képes átjutni egy nála magasabb energiaszintű gáton (<i>E &lt; V₀</i>). A Schrödinger-egyenlet szerint azonban a kvantumrészecske hullámcsomagja nem vész el hirtelen a falnál, hanem exponenciálisan lecsengve áthatol rajta. Véges vastagságú gát esetén véges valószínűséggel (<i>T &gt; 0</i>) megjelenik a túlsó oldalon.</p>
+      <p><b>Mit látsz a szimuláción?</b> A zöld hullámcsomag megközelíti a narancs potenciálfalat. Figyeld meg, hogy még akkor is átjut egy kisebb hullámcsomag (kvantum-alagutazás), amikor a részecske energiája (kék vonal) alacsonyabb, mint a gát magassága!</p>
+    `;
+  } else if (simId === "mandelbrot") {
+    simInfo.innerHTML = `
+      <p><b>A tétel lényege:</b> A <i>zₙ₊₁ = zₙ² + c</i> iteráció azon komplex <i>c</i> paramétereinek halmaza, amelyekre a sorozat korlátos marad (|zₙ| ≤ 2). A határvonal végtelen komplexitású fraktál: bármeddig nagyítod, soha nem ismétlődik tökéletesen, mégis végtelenül önhasonló struktúrák, mini-Mandelbrotok és spirálok bukkannak fel belőle.</p>
+      <p><b>Interakció:</b> Kattints a képre bárhol az egérrel a <b>2.5× nagyításhoz</b>! A Shift-kattintás kicsinyít. Növeld az iterációk számát a finomabb határvonal-részletekért.</p>
+    `;
+  } else if (simId === "fourier") {
+    simInfo.innerHTML = `
+      <p><b>A tétel lényege:</b> Joseph Fourier korszakalkotó tétele: minden periodikus függvény felbontható különböző frekvenciájú szinuszos harmonikusok összegére. Geometriai formában ezek egymáshoz láncolt forgó körök (epiciklusok), melyek csúcsa kirajzolja a hullámot.</p>
+      <p><b>Mit látsz a szimuláción?</b> Négyszögjel esetén figyelhető meg a leglátványosabban a <b>Gibbs-jelenség</b>: a sarkoknál a szintézis enyhén túllövi a célértéket, de a harmónikusok számának (N) növelésével a hullám egyre tökéletesebben felveszi a formát.</p>
+    `;
+  } else if (simId === "conway") {
+    simInfo.innerHTML = `
+      <p><b>A tétel lényege:</b> John Conway 1970-es sejt-automatája az emergens komplexitás legszebb példája. Csupán 4 egyszerű helyi szabályból (alulnépesedés, túlnépesedés, túlélés, születés) intelligens viselkedésnek tűnő, vándorló és pulzáló struktúrák születnek. A rendszer bizonyítottan <b>Turing-teljes</b>.</p>
+      <p><b>Interakció:</b> Kattints vagy húzd az egeret a rácson a saját sejtek felrajzolásához! Válassz a sablonok közül (Sikló, Pulzár, Űrhajó) a klasszikus minták megtekintéséhez.</p>
+    `;
+  }
+}
+
+function simLoop() {
+  if (!simActive) return;
+  if (simCanvas && simCtx) {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const rect = simCanvas.getBoundingClientRect();
+    const w = rect.width || 640;
+    const h = rect.height || 360;
+    if (simCanvas.width !== Math.floor(w * dpr) || simCanvas.height !== Math.floor(h * dpr)) {
+      simCanvas.width = Math.floor(w * dpr);
+      simCanvas.height = Math.floor(h * dpr);
+      if (currentSimId === "mandelbrot") simMandelbrot.needsRedraw = true;
+    }
+    simCtx.save();
+    simCtx.scale(dpr, dpr);
+    if (currentSimId === "lorentz") drawLorentz(simCtx, w, h);
+    else if (currentSimId === "tunnel") drawTunnel(simCtx, w, h);
+    else if (currentSimId === "mandelbrot") drawMandelbrot(simCtx, w, h);
+    else if (currentSimId === "fourier") drawFourier(simCtx, w, h);
+    else if (currentSimId === "conway") drawConway(simCtx, w, h);
+    simCtx.restore();
+  }
+  simRaf = requestAnimationFrame(simLoop);
+}
+
+function switchSimulation(simId) {
+  currentSimId = simId;
+  if (simTabs) {
+    [...simTabs.children].forEach(tab => {
+      tab.classList.toggle("active", tab.dataset.sim === simId);
+    });
+  }
+  if (simTitle && SIM_TITLES[simId]) {
+    simTitle.textContent = SIM_TITLES[simId];
+  }
+  renderSimControls(simId);
+  renderSimInfo(simId);
+
+  if (simId === "mandelbrot") {
+    simMandelbrot.needsRedraw = true;
+  }
+  if (simId === "conway" && !simConway.grid) {
+    initConwayGrid();
+  }
+}
+
+function openSimulation(simId) {
+  if (simId) currentSimId = simId;
+  if (!simOverlay) return;
+
+  simActive = true;
+  simOverlay.classList.add("visible");
+  simOverlay.setAttribute("aria-hidden", "false");
+
+  if (!simCtx && simCanvas) {
+    simCtx = simCanvas.getContext("2d");
+  }
+
+  switchSimulation(currentSimId);
+
+  if (simRaf) cancelAnimationFrame(simRaf);
+  simRaf = requestAnimationFrame(simLoop);
+}
+
+function closeSimulation() {
+  simActive = false;
+  if (simOverlay) {
+    simOverlay.classList.remove("visible");
+    simOverlay.setAttribute("aria-hidden", "true");
+  }
+  if (simRaf) {
+    cancelAnimationFrame(simRaf);
+    simRaf = null;
+  }
+}
+
+// Canvas interakciók (Mandelbrot zoom + Conway rajzolás)
+if (simCanvas) {
+  let isDrawingConway = false;
+
+  simCanvas.addEventListener("click", (e) => {
+    if (currentSimId === "mandelbrot") {
+      const rect = simCanvas.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const clickY = e.clientY - rect.top;
+      const aspect = rect.width / rect.height;
+      const rx = 1.4 / simMandelbrot.zoom;
+      const ry = rx / aspect;
+
+      simMandelbrot.cx = simMandelbrot.cx + (clickX / rect.width - 0.5) * rx * 2;
+      simMandelbrot.cy = simMandelbrot.cy + (clickY / rect.height - 0.5) * ry * 2;
+      simMandelbrot.zoom *= 2.2;
+      simMandelbrot.needsRedraw = true;
+    }
+  });
+
+  simCanvas.addEventListener("contextmenu", (e) => {
+    if (currentSimId === "mandelbrot") {
+      e.preventDefault();
+      simMandelbrot.zoom = Math.max(0.4, simMandelbrot.zoom / 2.2);
+      simMandelbrot.needsRedraw = true;
+    }
+  });
+
+  function handleConwayDraw(e) {
+    if (currentSimId !== "conway" || !simConway.grid) return;
+    const rect = simCanvas.getBoundingClientRect();
+    const x = Math.floor(((e.clientX - rect.left) / rect.width) * simConway.cols);
+    const y = Math.floor(((e.clientY - rect.top) / rect.height) * simConway.rows);
+    if (x >= 0 && x < simConway.cols && y >= 0 && y < simConway.rows) {
+      const idx = y * simConway.cols + x;
+      simConway.grid[idx] = 1;
+      simConway.cellAge[idx] = 1;
+    }
+  }
+
+  simCanvas.addEventListener("mousedown", (e) => {
+    if (currentSimId === "conway") {
+      isDrawingConway = true;
+      handleConwayDraw(e);
+    }
+  });
+  window.addEventListener("mousemove", (e) => {
+    if (isDrawingConway && currentSimId === "conway") handleConwayDraw(e);
+  });
+  window.addEventListener("mouseup", () => { isDrawingConway = false; });
+}
+
+if (simLabBtn) simLabBtn.addEventListener("click", () => openSimulation());
+if (simClose) simClose.addEventListener("click", closeSimulation);
+if (simOverlay) simOverlay.addEventListener("click", (e) => {
+  if (e.target === simOverlay) closeSimulation();
+});
+if (simTabs) simTabs.addEventListener("click", (e) => {
+  const tab = e.target.closest(".sim-tab");
+  if (tab && tab.dataset.sim) switchSimulation(tab.dataset.sim);
 });
 
 function init() {

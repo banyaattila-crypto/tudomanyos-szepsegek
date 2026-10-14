@@ -220,6 +220,16 @@ A "szét esve" hiba óta a headless screenshot **nem** megbízható egyedüli bi
 - **Verifikáció** — build smoke guard + headless Chrome e2e 23/23 prod és dev módban
 - **48 hiányzó illusztráció pótlása** — a mező nélküli 48 matek tétel (logika-halmaz 17 + számítástudomány-mérnöki 31) kapott `illustration` témát; validate-only 0 figyelmeztetés, DOM 202/202 sor illusztrációval, deck + quiz kattintásos ellenőrzés zöld
 
+### Kész 2026-10-14 ✅
+- **273 hiányzó évszám pótlása** — mind a 473 tétel rendelkezik pontos `year` mezővel (136 matek + 137 fizika gazdagítva); `build.py` kimenete: **0 figyelmeztetés, 0 hiba**.
+- **Interaktív Tudományos Laboratórium (5 Canvas szimuláció)**:
+  1. *Lorentz-transzformáció* (v/c sebességcsúszka, élő fényóra, idődilatáció és hosszkontrakció telemetria)
+  2. *Kvantum-alagúthatás* (Schrödinger-egyenlet, állítható E, V₀ és gátszélesség, hullámcsomag szétválás)
+  3. *Mandelbrot-halmaz* (élő komplex dinamika, kattintásos 2.5× zoom, 3 kozmikus színpaletta)
+  4. *Fourier-sorfejtés* (forgó epiciklusok és időbeli szintetizált hullámforma négyszög/fűrészfog/háromszög jelekre, Gibbs-jelenség)
+  5. *Conway: Életjáték* (B3/S23 sejt-automata, rajzolás a canvasen, sikló/pulzár/űrhajó sablonok)
+- **Gyorsindítók**: Navigációs sáv 🕹️ gomb, tétel sorokban és Deck kártyákon megjelenő 🕹️ szimuláció gombok.
+
 ### Nyitva (⬜)
 - C) 10 — Nyomtatható A4 lap minden tételről
 - Takarítás: gyökér `index.html` (elavult monolit) és `files.zip` törlése/újrazippelése

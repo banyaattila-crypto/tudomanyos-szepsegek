@@ -74,7 +74,8 @@
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/Riemann-hipot%C3%A9zis",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1859
   },
   {
     "name": "Cauchy-integrálformula",
@@ -127,7 +128,8 @@
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/Basel-probl%C3%A9ma",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1734
   },
   {
     "name": "Gauss–Bonnet-tétel",
@@ -180,7 +182,8 @@
     "why": "<b>358 év a margótól a bizonyításig.</b> Fermat azt írta, csodás bizonyítása van, de a margó túl szűk. Andrew Wiles 1994-ben oldotta meg — moduláris formák és elliptikus görbék összekapcsolásával. A leghosszabb nyitott rejtély, ami valaha lezárult.",
     "whyMore": "x^n+y^n=z^n. n=2-re van megoldás (Pitagorasz), de n>2-re állítólag nincs. Wiles moduláris formákkal bizonyította: ha lenne megoldás, egy elliptikus görbe (Frey-görbe) sértené a moduláris tételeket — ellentmondás.",
     "wiki": "https://en.wikipedia.org/wiki/Fermat%E2%80%93Wiles-t%C3%A9tel",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1637
   },
   {
     "name": "Gödel első nemteljességi tétele",
@@ -204,7 +207,8 @@
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/G%C3%B6del_els%C5%91_nemteljess%C3%A9gi_t%C3%A9tele",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1931
   },
   {
     "name": "Bayes-tétel",
@@ -214,7 +218,8 @@
     "why": "<b>Hogyan frissítsd a hiteidet bizonyíték alapján.</b> Egyetlen törtből az egész modern statisztika, gépi tanulás és tudományos következtetés kiindul. Egyszerű algebra — mégis ez a racionális gondolkodás matematikai magja.",
     "whyMore": "P(A|B) = miután láttuk B-t, mekkora A esélye. Számláló: P(B|A)·P(A) = 'A igaz volt ÉS B-t produkált' valószínűsége. Nevező P(B) = az összes lehetséges ok együttes valószínűsége (normalizálás). Így frissítjük a hitet új adat fényében.",
     "wiki": "https://en.wikipedia.org/wiki/Bayes-t%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1763
   },
   {
     "name": "Liouville-tétel",
@@ -224,7 +229,8 @@
     "why": "<b>A korlátosság megöli a változást.</b> Ha egy egész függvény a teljes síkon korlátos, kénytelen állandó lenni — nincs kompromisszum. Ebből pár sorban levezethető az algebra alaptétele: minden nemkonstans polinomnak van komplex gyöke.",
     "whyMore": "Egész függvény = komplex analitikus mindenütt. Ha korlátos (|f|≤M), a Liouville-tétel szerint kötelezően konstans. A bizonyítás: a Cauchy-formula szerint f'(z)=0 mindenhol → f konstans.",
     "wiki": "https://en.wikipedia.org/wiki/Liouville-t%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1844
   },
   {
     "name": "Cayley-formula",
@@ -256,7 +262,8 @@
     "why": "<b>Nem lehet a sündisznót simára fésülni.</b> Bármilyen folytonos, eltűnés-mentes érintő vektormezőt próbálsz a gömbön definiálni, mindig marad egy 'kobak' (zérushely). A tóruszon viszont igen — mert ott az Euler-karakterisztika nulla. Ebből következik: a Földön mindig van egy pont, ahol nem fúj a szél.",
     "whyMore": "χ(S²)=2≠0, ezért nincs sehol-zérus érintő vektormező a gömbon. A 'kobak' ahol a mező eltűnik. Tóruszon χ=0, ott lehet (pl. forgás). Fizikai következmény: gömbfelületen mindig van szélmentes pont.",
     "wiki": "https://en.wikipedia.org/wiki/S%C3%BCndiszn%C3%B3-t%C3%A9tel",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1885
   },
   {
     "name": "Cantor diagonális argumentuma",
@@ -266,7 +273,8 @@
     "why": "<b>Nem minden végtelen egyforma méretű.</b> Cantor egy elképesztően egyszerű trükkel — átlós konstrukcióval — bizonyította, hogy a valós számok 'több' mint a természetes számok, miközben mindkét halmaz végtelen. Ez a technika később Gödel és Turing bizonyításainak is alapja lett.",
     "whyMore": "|R|>|N| azt jelenti, nincs bijekció a valós és természetes számok között. A diagonális trükk: feltételezzük van lista, majd az n-edik szám n-edik jegyét megváltoztatva készítünk egy új valósat, ami nincs a listában — ellentmondás.",
     "wiki": "https://en.wikipedia.org/wiki/Cantor_diagon%C3%A1lis_argumentuma",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1891
   },
   {
     "name": "Aranymetszés",
@@ -287,7 +295,8 @@
     "why": "<b>Nem csak létezik — meg is lehet találni.</b> Banach kontrakciós leképzés-tétele konstruktív: az iteráció maga a megoldó algoritmus. Differenciálegyenletek egzisztenciabizonyításának, numerikus módszereknek és gazdasági egyensúly-modelleknek a magja.",
     "whyMore": "T kontrakció: távolságot szorozza q<1-gyel. Iteráció: x_{k+1}=Tx_k. A sorozat egyre sűrűbben közelít egyetlen x*-hoz, ahol Tx*=x*. A tétel garancia + algoritmus egyszerre.",
     "wiki": "https://en.wikipedia.org/wiki/Banach-f%C3%A9le_fixpontt%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1922
   },
   {
     "name": "Brouwer-féle fixponttétel",
@@ -307,7 +316,8 @@
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/Brouwer-f%C3%A9le_fixpontt%C3%A9tel",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1911
   },
   {
     "name": "Prímszámtétel",
@@ -317,7 +327,8 @@
     "why": "<b>A prímek 'átlagos' sűrűsége egyetlen logaritmusban.</b> A prímszámok kaotikusnak tűnnek egyenként, de aszimptotikusan ilyen szabályosan ritkulnak. Hadamard és de la Vallée Poussin Riemann zéta-függvényének tulajdonságaiból vezette le — a rend a látszólagos rendezetlenség mögött.",
     "whyMore": "π(x) = prímek száma x-ig. Az asymptotikus: π(x) ~ x/ln x, azaz x alatti prímek sűrűsége ≈ 1/ln x. Minél nagyobb x, annál ritkábbak — de a ritkulás pontosan a logaritmus törvényét követi.",
     "wiki": "https://en.wikipedia.org/wiki/Pr%C3%ADmsz%C3%A1mt%C3%A9tel",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1896
   },
   {
     "name": "Centrális határeloszlás-tétel",
@@ -349,7 +360,8 @@
     "why": "<b>Bármilyen pontfelhőben, ha nincs minden egy vonalban, mindig van 'magányos pár'.</b> Bármely nem-kollineáris ponthalmazban létezik olyan egyenes, amely pontosan két pontot tartalmaz. Melchior bizonyítása az Euler-formulára épül — geometria és topológia újra összefonódik.",
     "whyMore": "Pontosan 2 pontos egyenes = olyan egyenes, ami csak két pontot érint a halmazból. Az állítás: nem-kollineáris ponthalmazban mindig van ilyen. Melchior bizonyítása: Euler-formula (V−E+F) a síkgráfra.",
     "wiki": "https://en.wikipedia.org/wiki/Sylvester%E2%80%93Gallai-t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1893
   },
   {
     "name": "Négyszín-tétel",
@@ -359,7 +371,8 @@
     "why": "<b>Bármilyen térkép kiszínezhető 4 színnel úgy, hogy szomszédos országok ne legyenek egyformák.</b> Az első jelentős tétel, amit számítógéppel bizonyítottak — emberi kéz nem tudta ellenőrizni. Vita folyt róla: bizonyítás-e az, amit nem lehet kézzel átolvasni?",
     "whyMore": "χ(G) a gráf kromatikus száma (legkevesebb szín a szomszédok különbözőre). Síkbeli gráfra χ≤4. Azaz bármely térképet 4 színnel kiszínezhetünk anélkül, hogy két szomszédos ország egyforma lenne.",
     "wiki": "https://en.wikipedia.org/wiki/N%C3%A9gysz%C3%ADn-t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1976
   },
   {
     "name": "Jordan-féle görbetétel",
@@ -369,7 +382,8 @@
     "why": "<b>'Nyilvánvaló', de rendkívül nehéz bizonyítani.</b> Minden egyszerű zárt görbe a síkot pontosan két részre osztja — belsőre és külsőre. Annyira intuitív, hogy generációk hagyták ki a bizonyítást, miközben a teljesen rigorózus verzió csak évtizedekkel később, számítógéppel ellenőrzött formában készült el.",
     "whyMore": "J egyszerű zárt görbe (nem metszi magát) a síkban. R²J = a görbén kívüli ponthalmaz, ami pont két összefüggő komponensre esik szét: belső (korlátos) és külső (korlátlan).",
     "wiki": "https://en.wikipedia.org/wiki/Jordan-f%C3%A9le_g%C3%B6rbet%C3%A9tel",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1887
   },
   {
     "name": "Collatz-sejtés",
@@ -390,7 +404,8 @@
     "why": "<b>Minden páros szám 2 prím összege — csak bizonyítani nem lehet.</b> 280 éve nyitott, miközben minden ellenőrzött számra (kvadrillió nagyságrendig) igaznak bizonyult. A legegyszerűbben megfogalmazható, mégis legkitartóbban ellenálló sejtés.",
     "whyMore": "Minden páros n>2 felírható két prím összegeként: n=p₁+p₂. Példa: 28=11+17. A sejtés: növekvő n-re egyre több ilyen felbontás van, de egyetlen ellenpélda sincs — mégis hiányzik a bizonyítás.",
     "wiki": "https://en.wikipedia.org/wiki/Goldbach-sejt%C3%A9s",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1742
   },
   {
     "name": "P vs NP probléma",
@@ -421,7 +436,8 @@
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/Hilbert-sz%C3%A1lloda_paradoxon",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1924
   },
   {
     "name": "Monty Hall-probléma",
@@ -464,7 +480,8 @@
     "why": "<b>Bármely természetes szám négy négyzetszám összege.</b> Lagrange négyzettétele: nincs kivétel, soha. Fermat már tudta, de nem publikálta a bizonyítást — Lagrange véglegesítette. Az egész szám-elméleti additív struktúra egyik alappillére.",
     "whyMore": "Minden n természetes szám = a²+b²+c²+d² négy négyzetszám összege. Pl. 7=4+1+1+1. Nincs kivétel; a bizonyítás a négyzetalakú számok azonosságain és a kettős-négyzet azonosságon alapul.",
     "wiki": "https://en.wikipedia.org/wiki/N%C3%A9gyzetsz%C3%A1mok_n%C3%A9gyzet%C3%B6sszege",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1770
   },
   {
     "name": "Erdős–Ko–Rado-tétel",
@@ -474,7 +491,8 @@
     "why": "<b>Ha minden halmazpárnak van közös eleme, korlátozott, mennyi lehet belőlük.</b> 23 évig váratott magára a publikálással, mire felismerték a jelentőségét — mára az extremál kombinatorika egyik alaptétele, számtalan általánosítással.",
     "whyMore": "F egy k-elemű halmazok családja, ahol minden két halmaz metszi egymást (van közös elemük). Ha n elég nagy k-hoz (n≥2k), akkor max |F| = C(n−1,k−1): az összes halmaz, ami egy fix pontot tartalmaz.",
     "wiki": "https://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93Ko%E2%80%93Rado-t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1938
   },
   {
     "name": "Banach–Tarski-paradoxon",
@@ -484,7 +502,8 @@
     "why": "<b>Egy gömböt feldarabolsz, összerakod — és két ugyanolyan méretű gömböt kapsz.</b> A kiválasztási axióma legdöbbenetesebb következménye: a darabok annyira 'szaggatottak', hogy nincs jól definiált térfogatuk. Tisztán matematikai jelenség — a fizikai anyagra nem alkalmazható, de a mértékelmélet alapjait rengeti meg.",
     "whyMore": "B³ a gömb. A '~' jelentése: felbontható véges sok részre, amik szétcsúsztatva/forgatva két teljes gömböt adnak. A darabok nem mérhetők (nincs térfogatuk) — a kiválasztási axióma 'szaggatott' halmazai miatt.",
     "wiki": "https://en.wikipedia.org/wiki/Banach%E2%80%93Tarski-paradoxon",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1924
   },
   {
     "name": "Arrow-lehetetlenségi tétel",
@@ -494,7 +513,8 @@
     "why": "<b>Nincs tökéletes szavazási rendszer — ez bizonyított tétel, nem politikai vélemény.</b> Ha legalább 3 jelölt van, minden aggregáló módszer megsérti legalább egy alapvető igazságossági feltételt. Közgazdasági Nobel-díjat kapott érte Arrow — a demokrácia matematikai korlátja.",
     "whyMore": "f a szavazatokból kimenet (győztes) leképezése. A tétel: ha ≥3 jelölt, NINCS olyan f, ami egyszerre: (1) monoton, (2) független a releváns alternatíváktól, (3) nem-diktatórikus. Valamelyik feltétel sérül.",
     "wiki": "https://en.wikipedia.org/wiki/Arrow-lehetetlens%C3%A9gi_t%C3%A9tel",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1951
   },
   {
     "name": "Poincaré-sejtés",
@@ -504,7 +524,8 @@
     "why": "<b>Az egyetlen millenniumi probléma, amit megoldottak — és a megoldó visszautasította a milliót.</b> Minden egyszeresen összefüggő, korlátos 3-dimenziós sokaság topológiailag a 3-gömb. Perelman a Ricci-folyás technikájával bizonyította, majd visszautasította mind a Fields-érmet, mind az 1 millió dolláros Clay-díjat.",
     "whyMore": "A feltétel π₁(M³)=0 azt jelenti, hogy a 3-sokaság egyszeresen összefüggő: bármely rajta futó hurkot összehúzhatunk egy ponttá. Az állítás szerint egy ilyen zárt, kompakt 3-sokaság topológiailag azonos a 3-dimenziós gömbbel (S³). Perelman a Ricci-folyamot használta: a görbületet szétfőtte, miközben a sokaság fokozatosan gömbre deformálódott, a folyamat során kiszakadó nyakakat és buborékokat pedig szigorú analízissel kezelte. Ez volt az egyetlen megoldott Clay millenniumi probléma — Perelman a 2006-os Fields-érmet és az 1 millió dolláros díjat is visszautasította.",
     "wiki": "https://en.wikipedia.org/wiki/Poincar%C3%A9-sejt%C3%A9s",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 2002
   },
   {
     "name": "Euler-féle poliédertétel",
@@ -514,7 +535,8 @@
     "why": "<b>Csúcsok mínusz élek plusz lapok — mindig 2, bármilyen konvex poliéderre.</b> Kockára, piramisra, dodekaéderre egyaránt igaz. Ez az egyszerű invariáns nyitotta meg a topológia tudományát — az Euler-karakterisztika általánosítása minden felületre kiterjed, a Möbius-szalagtól a tóruszig.",
     "whyMore": "V a csúcsok (sarkok), E az élek (a csúcsokat összekötő vonalak), F a lapok (síkbeli oldalak) száma egy konvex poliéderen. A V−E+F különbség, az Euler-karakterisztika, bármely konvex poliéderre pontosan 2 — ezt úgy láthatjuk be, hogy a testet egy lapjáról kiterítjük a síkra, ahol a csúcs−él+lap (a végtelen külső tartománnyal együtt) mindig 2-t ad. Általánosabban bármely felületre V−E+F = 2−2g, ahol g a lyukak száma: a tórusznál (egy lyuk) ez 0, a Möbius-szalagnál 1. Így a formula a topológia legősibb invariánsa — ugyanaz marad, ha a testet tetszőlegesen deformáljuk, amíg a lyukak száma nem változik.",
     "wiki": "https://en.wikipedia.org/wiki/Euler-f%C3%A9le_poli%C3%A9dert%C3%A9tel",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1750
   },
   {
     "name": "Ramsey-tétel",
@@ -535,7 +557,8 @@
     "why": "<b>Ha egy számhalmaz 'elég sűrű', garantáltan tartalmaz tetszőlegesen hosszú számtani sorozatot.</b> Szemerédi bizonyítása kombinatorikus tour de force volt; később Furstenberg ergodelmélettel, Gowers Fourier-analízissel adott új bizonyítást — egy tétel, négy teljesen különböző matematikai nyelven.",
     "whyMore": "A \\bar{d}(A) a halmaz felső aszimptotikus sűrűsége, vagyis az A∩{1,…,N} arányának felső határa N→∞ mentén, és ha ez pozitív, akkor A-ben bármilyen hosszúságú számtani sorozat található. Az intuíció: egy pozitív sűrűségű részhalmaz „túl sűrű\", semhogy elkerülhetné a periodikus mintázatokat — Furstenberg ergodikus bizonyításában ez a tény a dinamikai rendszerek visszatérési tételének megfelelőjeként jelenik meg. A prímek esetében a Green–Tao-szűrő teszi lehetővé, hogy a prímek egy elég sűrű pszeudovéletlen rendszerhez hasonlóan viselkedjenek.",
     "wiki": "https://en.wikipedia.org/wiki/Szemer%C3%A9di-t%C3%A9tel",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1975
   },
   {
     "name": "Green–Tao-tétel",
@@ -545,7 +568,8 @@
     "why": "<b>A prímszámok — a matematika legrendezetlenebb objektumai — mégis szabályos mintázatokat rejtenek.</b> A prímek között tetszőlegesen hosszú, egyenlő különbségű sorozatok találhatók. Szemerédi tételét és ergodelméleti technikákat ötvözve bizonyították — 2004-ben, váratlan áttörésként.",
     "whyMore": "A tétel azt állítja, hogy a prímek halmaza P „számtani sorozat-gazdag\": bármely k hosszúsághoz található k prím egyenlő különbséggel. A bizonyítás kulcsa a Szemerédi-tétel átvitele a prímekre egy pszeudovéletlen mérték, a „prímek szűrője\" segítségével, ami azt mutatja, hogy a prímek eloszlása elég „véletlenszerűen sűrű\" a kombinatorikus garanciához. Ez azért meglepő, mert a prímek hosszú távon ritkulnak (1/ln n sűrűségűek), mégis hordoznak tetszőlegesen hosszú szabályos mintákat.",
     "wiki": "https://en.wikipedia.org/wiki/Green%E2%80%93Tao-t%C3%A9tel",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 2004
   },
   {
     "name": "Kontinuumhipotézis függetlensége",
@@ -555,7 +579,8 @@
     "why": "<b>Van egy matematikai kérdés, amire SOHA nem lesz válasz — és ezt is bizonyították.</b> A kontinuumhipotézis sem nem bizonyítható, sem nem cáfolható a halmazelmélet szokásos axiómáiból. Gödel és Cohen két fele alkotja a 20. század egyik legmélyebb logikai felfedezését — a matematika határainak feltárása.",
     "whyMore": "A formula azt jelenti, hogy a halmazelmélet szokásos ZFC-axiómáiból sem a kontinuumhipotézés (CH: nincs a megszámlálható és a kontinuum közti számosság), sem annak tagadása nem vezethető le. Gödel 1940-ben a belső modellel (L) mutatta meg, hogy CH nem cáfolható, Cohen 1963-ban az erőszakos átnevezéssel (forcing) pedig azt, hogy nem is bizonyítható — így a CH a ZFC „semleges\" tétele. Ez azt jelenti, hogy a ZFC axiómái nem határozzák meg egyértelműen a valós számok számosságának sorsát.",
     "wiki": "https://en.wikipedia.org/wiki/Kontinuumhipot%C3%A9zis_f%C3%BCggetlens%C3%A9ge",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1938
   },
   {
     "name": "Algebra alaptétele",
@@ -576,7 +601,8 @@
     "why": "<b>8 és 9 az egyetlen két szomszédos 'tiszta hatvány' egész szám — minden más esetben bizonyítottan nincs ilyen pár.</b> 158 évig nyitott kérdés volt, mire Mihailescu ciklotomikus testek elméletével bezárta. Egyetlen ember, egyetlen dolgozat, egy 19. századi sejtés véglegesen lezárva.",
     "whyMore": "A formula azt írja le, hogy az x^p − y^q = 1 egyenlet egész megoldásai közül az egyetlen, ahol x,y,p,q > 1, a (3,2,2,3) négyes: 3² − 2³ = 9 − 8 = 1. Mihailescu 2002-ben ciklotomikus testek és a Catalan–Mihailescu-féle oszthatósági tételek segítségével zárta le, megmutatva, hogy két egymást követő „tiszta hatvány\" másképp nem létezik. Az 1 és a két hatvány közti különbség elemzése a p és q prím esetre vezethető vissza, ahol a ciklotomikus maradékosztályok korlátozzák a lehetőségeket egyetlen megoldásra.",
     "wiki": "https://en.wikipedia.org/wiki/Catalan-sejt%C3%A9s_/_Mihailescu-t%C3%A9tel",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1844
   },
   {
     "name": "Kalkulus alaptétele",
@@ -597,7 +623,8 @@
     "why": "<b>2000 éves geometriai probléma — végleg lezárva egy számelméleti ténnyel.</b> A π nem gyöke semmilyen racionális együtthatós polinomnak, ezért körző-vonalzóval sosem szerkeszthető meg vele egyenlő területű négyzet. Lindemann bizonyítása Euler azonosságát (e^iπ+1=0) használja fel a lehetetlenség igazolására — a két legszebb tétel összekapcsolódik.",
     "whyMore": "A formula azt rögzíti, hogy π nem algebrai szám (nem gyöke semmilyen racionális együtthatós polinomnak), hanem transzcendens — ebből következik, hogy a kör négyzetesítése körzővel és vonalzóval lehetetlen. Lindemann 1882-es bizonyítása az e^{iπ}+1=0 azonosságból indul ki: ha π algebrai lenne, akkor iπ is az volna, és a Lindemann–Weierstrass-tétel szerint e^{iπ}=−1 transzcendens lenne, ellentmondás. Ez lezárja az ókori görögök 2000 éves kérdését arról, hogy szerkeszthető-e egyenlő területű négyzet a körből.",
     "wiki": "https://en.wikipedia.org/wiki/Pi_transzcendenci%C3%A1ja",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1882
   },
   {
     "name": "Happy Ending probléma",
@@ -607,7 +634,8 @@
     "why": "<b>A bizonyítás végén a két társszerző összeházasodott — innen a név.</b> Bármely 5 pont (nincs 3 egy vonalban) közül mindig kiválasztható 4, ami konvex négyszöget alkot. A probléma általánosítása máig is nyitott: pontosan hány pont garantál egy konvex n-szöget — Erdős 500 dolláros díjat ajánlott a megoldásért.",
     "whyMore": "A képlet azt mondja ki, hogy a síkon tetszőlegesen elhelyezett 5 pont (amelyek közül nincs hármat egy egyenesen) közül mindig kiválasztható 4, amely konvex négyszöget alkot. Az intuíció: ha a pontok konvex burka 5, 4 vagy 3 csúcsú, akkor könnyen találunk ilyen négyest; a 3 csúcsú (háromszög) esetben a belső pont és a három csúcs konvex négyszöget ad. Az általános kérdés — hány pont garantál egy konvex n-szöget — máig nyitott (Erdős–Szekeres-sejtés).",
     "wiki": "https://en.wikipedia.org/wiki/Happy_Ending_probl%C3%A9ma",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1935
   },
   {
     "name": "Nash-egyenlőség létezése",
@@ -617,7 +645,8 @@
     "why": "<b>Bármilyen véges játéknak van egyensúlyi pontja — ez köti össze a matematikát a közgazdasággal.</b> Nash a Kakutani-féle fixponttételt használta a bizonyításra, később a Brouwer-tétellel egyszerűsítette. A 21 éves matematikus egylapos disszertációja alapozta meg a modern játékelméletet — végül Nobel-díjat kapott érte.",
     "whyMore": "A formula azt jelenti, hogy minden véges szereplős, véges stratégiájú játéknak létezik kevert stratégiájú Nash-egyensúlya, ahol egyik játékosnak sem éri meg egyoldalúan eltérnie. Nash a Kakutani-féle fixponttételt használta: a „legjobb válasz\" leképezésnek a Brouwer-féle fixponttétel szerint van fixpontja, ami pont az egyensúly. A kevert stratégiák (valószínűségi eloszlások a tiszta lépések fölött) bevezetése teszi lehetővé, hogy még a „kő–papír–olló\" típusú játékoknak is legyen stabil pontja.",
     "wiki": "https://en.wikipedia.org/wiki/Nash-egyenl%C5%91s%C3%A9g_l%C3%A9tez%C3%A9se",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1950
   },
   {
     "name": "Kepler-sejtés",
@@ -627,7 +656,8 @@
     "why": "<b>A zöldségesnél látott narancshalmozás bizonyítottan a legsűrűbb lehetséges elrendezés.</b> Kepler 1611-ben sejtette meg, de csak 1998-ban, számítógépes esetszétválasztással bizonyította Hales — 250 oldal és tömeges számítás. A formális, gépileg ellenőrzött bizonyítás csak 2014-re készült el véglegesen.",
     "whyMore": "A ρ_max a legnagyobb lehetséges térkitöltési sűrűség gömbök esetén, és az érték π/(3√2) ≈ 0,7405 a köbcentrikus (FCC) pakolásé, azaz a gyümölcsös rekeszes elrendezésé. Kepler 1611-ben sejtette, hogy ez a maximum, Hales 1998-ban bizonyította be számítógépes esetszétválasztással, végül 2014-re készült el a formális, gépileg ellenőrzött bizonyítás. A tény azt jelenti, hogy gömbök nem tölthetnek be több mint ~74%-át a térnek, bármilyen elrendezést választunk.",
     "wiki": "https://en.wikipedia.org/wiki/Kepler-sejt%C3%A9s",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1611
   },
   {
     "name": "Pick-tétel",
@@ -637,7 +667,8 @@
     "why": "<b>Egy rácspontokra rajzolt sokszög területét pusztán a pontok megszámolásával kapod meg — integrálás nélkül.</b> I a belső, B a határon lévő rácspontok száma. Pick maga koncentrációs táborban halt meg a háborúban, és csak évtizedekkel később vált híressé saját felfedezése — Steinhaus népszerűsítette újra.",
     "whyMore": "A képlet szerint egy rácspontokra illesztett egyszerű sokszög területe A = I + B/2 − 1, ahol I a belső és B a határon lévő rácspontok száma. Az intuíció: minden egységnégyzet a rácsvonalakra bontva pontosan 1 területet ad, a határpontok fele (mert két szomszédos sokszög megosztja őket) és a −1 a konvexitási/összefüggőségi korrekció. A tétel a sokszöget elemi háromszögekre bontva, a háromszögekre felírva és összeadva adódik.",
     "wiki": "https://en.wikipedia.org/wiki/Pick-t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1899
   },
   {
     "name": "Goodstein-tétel",
@@ -657,7 +688,8 @@
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/Goodstein-t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1944
   },
   {
     "name": "Riemann-leképezési tétel",
@@ -667,7 +699,8 @@
     "why": "<b>Minden 'lyuk nélküli' alakzat — bármilyen bizarr is — konform módon ugyanaz, mint egy egyszerű kör.</b> Bármely egyszeresen összefüggő, valódi komplex síkbeli részhalmaz szögtartó módon leképezhető az egységkörre. Riemann eredeti bizonyítása hibás volt; a teljesen rigorózus változat csak évtizedekkel később készült el.",
     "whyMore": "A formula azt jelenti, hogy bármely egyszeresen összefüggő, nem üres és nem az egész sík U komplex tartomány konform (szögtartó) leképezéssel képekre hozható az egységkörre ℝ. A konformitás garantálja, hogy a leképezés sehol sem torzítja a szögeket, így a tartomány „alakja\" megőrződik — ezért a lyuk nélküli tartományok topológiailag és konform értelemben mind azonosak a körrel. Riemann 1851-es eredeti bizonyítása hibás volt (a Dirichlet-elv helytelen használata miatt), a rigorózus változatot később többen, köztük Hilbert javította meg.",
     "wiki": "https://en.wikipedia.org/wiki/Riemann-lek%C3%A9pez%C3%A9si_t%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1851
   },
   {
     "name": "Korlátos prímrés-tétel",
@@ -677,7 +710,8 @@
     "why": "<b>Egy ismeretlen vidéki oktató, aki korábban Subway szendvicsboltban dolgozott, áttörést hozott egy 70+ éves problémában.</b> Zhang bebizonyította, hogy a szomszédos prímek közti különbség infinit sokszor korlátos marad — ez közelebb hozta a több évszázados ikerprím-sejtést. A korlátot azóta 246-ra csökkentették a Polymath-projekt csoportos erőfeszítésével.",
     "whyMore": "A formula azt állítja, hogy a szomszédos prímek különbségének alsó határértéke (liminf) kisebb mint 7·10^7, azaz végtelen sokszor a két egymást követő prím távolsága legfeljebb 70 millió. Zhang 2013-ban bizonyította ezt egy szűrő-elemzéssel, ami a prímek közti lyukak eloszlását vizsgálja a számelméleti függvények segítségével. Azóta a Polymath-projekt a korlátot 246-ra szorította, ami egy lépés az ikerprím-sejtés (végtelen sok 2-különbségű prímpár) felé.",
     "wiki": "https://en.wikipedia.org/wiki/Korl%C3%A1tos_pr%C3%ADmr%C3%A9s-t%C3%A9tel",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 2013
   },
   {
     "name": "Cook–Levin-tétel (NP-teljesség)",
@@ -687,7 +721,8 @@
     "why": "<b>Egyetlen probléma, amire ha gyors megoldást találnál, minden NP-probléma egy csapásra megoldódna.</b> A Cook–Levin-tétel megalapozta a teljes NP-teljesség elméletét: ha a Boole-kielégíthetőség polinom időben megoldható, akkor a P=NP kérdés is eldöntött lenne. Karp 21 további klasszikus problémát (hátizsák, Hamilton-kör) vezetett rá vissza.",
     "whyMore": "A SAT (Boole-kielégíthetőség) azt kérdezi, létezik-e olyan igaz/hamis értékadás a változókra, amelyre a megadott logikai kifejezés igaz lesz. Egy probléma akkor NP-teljes, ha minden olyan probléma, amelynél a javasolt megoldás polinom időben ellenőrizhető, polinom időben visszavezethető rá — tehát egyetlen gyors megoldója az összes többi ilyen problémát is egy csapásra megoldja. A Cook–Levin-tétel ezt a visszavezetést közvetlenül a SAT-ra mutatja meg: egy polinom idejű Turing-gép teljes számítási táblázatát kódolja egyetlen Boole-képletté.",
     "wiki": "https://en.wikipedia.org/wiki/Cook%E2%80%93Levin-t%C3%A9tel_%28NP-teljess%C3%A9g%29",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1971
   },
   {
     "name": "Megállási probléma",
@@ -711,7 +746,8 @@
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/Meg%C3%A1ll%C3%A1si_probl%C3%A9ma",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1936
   },
   {
     "name": "Nagy számok törvénye",
@@ -721,7 +757,8 @@
     "why": "<b>Minél többször dobsz érmét, annál biztosabban közelít az átlag a valósághoz.</b> Bernoulli 'Aranytételként' (Theorema Aureum) nevezte — ő maga is 20 évig ült rajta, mire publikálta. Ez a tétel teszi lehetővé, hogy a biztosítás, a szavazáskutatás és a statisztikai fizika egyáltalán működjön: a véletlen egyedi eseményekből törvényszerű átlag születik.",
     "whyMore": "Itt X̄_n az n független, azonos eloszlású véletlen változó mintaátlaga, μ pedig az elméleti (populációs) várható értékük. A tétel szerint a mintaátlag szinte biztosan (1 valószínűséggel) tart μ-höz, ahogy n nő — vagyis az egyedi dobások szimmetrikusan ingadoznak, de az átlaguk kiegyenlíti ezeket a kilengéseket. Ez a formális garancia teszi lehetővé, hogy a biztosítás, a közvélemény-kutatás és a statisztikai fizika az átlagokra építhessen.",
     "wiki": "https://en.wikipedia.org/wiki/Nagy_sz%C3%A1mok_t%C3%B6rv%C3%A9nye",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1713
   },
   {
     "name": "Rogers–Ramanujan-azonosságok",
@@ -732,7 +769,8 @@
     "why": "<b>Ramanujan bizonyítás nélkül közölte, mert 'látta', hogy igaz.</b> Két, teljesen különböző módon felírt végtelen sor mindig ugyanazt az értéket adja — egy oldalon partíciók száma bizonyos feltételekkel, másik oldalon egy szorzatalak. Rogers már 1894-ben publikálta, észrevétlenül; Ramanujan függetlenül újra felfedezte, majd amikor MacMahon táblázataiban ellenőrizte, azonnal tudta: ez nem véletlen egyezés.",
     "whyMore": "A q egy formális változó (|q|<1), és a két oldal két teljesen különböző módon számolja ugyanazt a partíciós mennyiséget. A bal oldali sor azokat az egészpartíciókat számlálja, ahol a részek különbsége legalább 2 (a q^{n^2} súllyal), a jobb oldali szorzat pedig a q≡±1 mod 5 alakú részekből felírt moduláris formát adja meg. Az azonosság pontosan ezt a kombinatorikai és analitikus (moduláris formák) világ közti kapcsolatot fogalmazza meg.",
     "wiki": "https://en.wikipedia.org/wiki/Rogers%E2%80%93Ramanujan-azonoss%C3%A1gok",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1894
   },
   {
     "name": "Hardy–Ramanujan-féle aszimptotikus partíciós formula",
@@ -742,7 +780,8 @@
     "why": "<b>Megszámolni, hányféleképp bontható fel egy szám összegre — és a válasz egy exponenciális-gyök képlet.</b> A körmódszer (circle method) itt született meg: Hardy és Ramanujan olyan technikát dolgoztak ki, amivel egy diszkrét, kombinatorikus mennyiséget folytonos analízissel közelítettek pontosan. Rademacher később egzakt (nem csak aszimptotikus) sorfejtéssé finomította.",
     "whyMore": "p(n) az n szám egészpartícióinak (összegfelbontásainak) számát jelöli, és a képlet a növekedés vezető tagját adja meg. Az eredmény azt mondja, hogy a partíciók száma szuperpolinomiálisan, nagyjából e^{√n} módon nő. Hardy és Ramanujan a kör-módszerrel (circle method) kapta meg: a generátorfüggvény 1/∏(1−q^k) domináns szingularitását keresték meg az egységkörön, és Rademacher később ezt konvergens sorfejtéssé finomította.",
     "wiki": "https://en.wikipedia.org/wiki/Hardy%E2%80%93Ramanujan-f%C3%A9le_aszimptotikus_part%C3%ADci%C3%B3s_formula",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1918
   },
   {
     "name": "Ramanujan-sejtés (τ-függvény)",
@@ -752,7 +791,8 @@
     "why": "<b>Egy önkényesnek tűnő együttható-sorozatra Ramanujan megsejtette a pontos növekedési korlátot — és igaza lett.</b> A τ-függvény egy moduláris forma (Δ-függvény) Fourier-együtthatóiból származik. A sejtést végül Deligne bizonyította be, a Weil-sejtések (algebrai geometria) apparátusával — ezért kapott Fields-érmet. Ritka eset, hogy egy tisztán számelméleti rejtvény kulcsa algebrai geometriában rejlik.",
     "whyMore": "A τ(n) együtthatók a Δ(z)=q∏(1−q^n)^{24} diszkrimináns moduláris forma Fourier-együtthatói, a képlet pedig azt állítja, hogy prím p-re |τ(p)| legfeljebb 2·p^{11/2}. Ez azt jelenti, hogy a Hecke-önvektorforma Fourier-együtthatói nem nőhetnek túl gyorsan: a 11/2 kitevő pontosan (k−1)/2, ahol k=12 a forma súlya. Deligne a Weil-sejtések (véges testek fölötti algebrai geometria) segítségével bizonyította, így a teljesen számelméleti kérdés kulcsa az algebrai geometriában rejlett.",
     "wiki": "https://en.wikipedia.org/wiki/Ramanujan-sejt%C3%A9s_%28%CF%84-f%C3%BCggv%C3%A9ny%29",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1916
   },
   {
     "name": "Chudnovsky-algoritmus",
@@ -763,7 +803,8 @@
     "why": "<b>Minden modern π-rekord ezen a képleten fut.</b> A Chudnovsky-fivérek Ramanujan π-sorai alapján olyan sort konstruáltak, amely tagonként ~14 új tizedesjegyet ad — ezzel számították ki π-t sok billió jegyre. Tiszta példa arra, hogy egy 1910-es évekbeli 'egzotikus' matematikai ötlet évtizedekkel később szuperszámítógépes rekordok alapjává válik.",
     "whyMore": "A sor 1/π-t számolja: a k indexeli a tagokat, a 640320^{3k+3/2} tényező pedig rohamosan növekszik, így minden újabb tag kb. 14 tizedesjegy pontosítást ad. A képlet Ramanujan-típusú moduláris egyenletből származik, amelyet a j-invariáns egy speciális komplex-multiplikációs pontjánál nyertek. Ezt a gyors konvergenciát használják fel a modern π-rekordok (sok billió jegy) eléréséhez.",
     "wiki": "https://en.wikipedia.org/wiki/Chudnovsky-algoritmus",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1989
   },
   {
     "name": "Lax–Milgram-tétel",
@@ -773,7 +814,8 @@
     "why": "<b>Garantálja, hogy egy gyenge alakban felírt mérnöki feladatnak pontosan egy megoldása van.</b> Ha a bilineáris forma korlátos és koercitív, a variációs (gyenge) alakú peremérték-feladatnak létezik és egyértelmű a megoldása egy Hilbert-térben. Ez a tétel az, ami a végeselem-módszer (FEM) elméleti hátterét biztosítja — minden statikai szoftver, ami mátrixegyenletet old meg egy szerkezetre, hallgatólagosan erre a tételre épít.",
     "whyMore": "Itt H egy Hilbert-tér, a(·,·) egy korlátos és koercitív bilineáris forma, f pedig korlátos lineáris funkcionál. A tétel a Riesz-reprezentációs tétel általánosítása bilineáris formákra: a koercitivitás (a(u,u) ≥ α‖u‖²) pontosan az, ami garantálja az alkalmazott lineáris operátor invertálhatóságát. Enélkül a gyenge (variációs) alakban felírt parciális differenciálegyenletnek nem lenne garantáltan pontosan egy megoldása — ez az elméleti alapja a végeselem-módszernek.",
     "wiki": "https://en.wikipedia.org/wiki/Lax%E2%80%93Milgram-t%C3%A9tel",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1954
   },
   {
     "name": "Nyquist–Shannon-mintavételezési tétel",
@@ -783,7 +825,8 @@
     "why": "<b>Egy folytonos jel véges számú mintából hiba nélkül visszaállítható — ha elég sűrűn mintavételezel.</b> Ha a mintavételi frekvencia több mint kétszerese a jel legmagasabb frekvenciakomponensének, az eredeti analóg jel tökéletesen rekonstruálható. Minden digitális hangfelvétel, kép- és szenzoradat-feldolgozás (pl. szerkezeti monitoring) ezen alapul.",
     "whyMore": "f_s a mintavételi frekvencia, f_max a jelben előforduló legmagasabb frekvencia-összetevő. A tétel szerint egy sávszélességkorlátos (bandlimited) jel teljesen meghatározott a mintáiból, ha ezeket a legmagasabb frekvenciájának több mint kétszeresével (a Nyquist-frekvenciánál sűrűbben) vesszük. A visszaállítás sinc-függvényekkel történik; ha lassabban mintavételezünk, az f_max feletti komponensek visszahajlanak (aliasing), és a jel torzul.",
     "wiki": "https://en.wikipedia.org/wiki/Nyquist%E2%80%93Shannon-mintav%C3%A9telez%C3%A9si_t%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1949
   },
   {
     "name": "Kalman-szűrő",
@@ -793,7 +836,8 @@
     "why": "<b>Zajos, hiányos mérésekből optimálisan rekonstruálja egy rendszer valódi állapotát — és menet közben is frissül.</b> A rekurzív algoritmus a predikció és a mérés bizonytalanságát súlyozza össze, minimalizálva a becslési hibát. Az Apollo-program navigációjától a szerkezetek valós idejű állapotmonitoringjáig és az önvezető autókig mindenhol ez fut a háttérben.",
     "whyMore": "x̂_k⁻ a prediktált állapot, z_k a mért érték, H leképezi az állapotot a mérésre, K_k pedig a Kalman-erősítés. A frissítés a predikciót és az új mérést a relatív bizonytalanságaik (kovarianciáik) arányában keveri össze, hogy a négyzetes hibát minimálja. K_k-et a prediktált hibakovarianciából számolják, így a megbízhatóbb mérés nagyobb súlyt kap — ez teszi a szűrőt lineáris Gauss-rendszereknél optimálissá és rekurzívvá.",
     "wiki": "https://en.wikipedia.org/wiki/Kalman-sz%C5%B1r%C5%91",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1960
   },
   {
     "name": "Wilson-tétel",
@@ -803,7 +847,8 @@
     "why": "<b>Egy faktoriális maradéka pontosan akkor -1, ha a modulus prím — ez maga a prímteszt.</b> Meglepő, hogy egy tisztán számelméleti tulajdonság (prímség) ilyen egyszerű algebrai kongruenciával jellemezhető. Wilson csak megsejtette, Lagrange bizonyította — Wilson maga sosem publikált bizonyítást.",
     "whyMore": "Prím p esetén az 1,…,p−1 maradékok mindegyike párba áll egy egyedi inverzzel, kivéve az 1-et és a p−1-et, amelyek önmaguk inverzei; az összes szorzata így (p−1)!≡−1 mod p-t ad. Fordítva, ha p összetett (a p=4 kivétellel), akkor (p−1)!≡0 mod p, tehát a kongruencia csak prímekre állhat fenn. Ez elvi prímtesztet ad, bár a faktoriális gyors növekedése miatt a gyakorlatban használhatatlan.",
     "wiki": "https://en.wikipedia.org/wiki/Wilson-t%C3%A9tel",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1770
   },
   {
     "name": "Brun-tétel (ikerprímek)",
@@ -813,7 +858,8 @@
     "why": "<b>Az ikerprímek reciprokösszege véges — még ha végtelen sok ikerprím lenne is.</b> Brun konstansa az egyik legszebb ellenpéldája annak, hogy egy végtelen sorozat sűrűsége nem determinálja a reciproksor viselkedését (szemben az összes prím reciprokösszegével, ami divergál). A tétel nem dönti el, hogy végtelen sok ikerprím van-e — csak azt, hogy ha vannak, gyorsan ritkulnak.",
     "whyMore": "A képlet az ikerprímek (p, p+2) reciprokösszegének konvergenciáját írja le Brun konstansába (B≈1,90216…), szemben az összes prím reciprokösszegével, ami divergál. A konvergencia azt jelenti, hogy az ikerprímek 'elég ritkák', így a reciprokaik összege véges marad — de ez nem dönti el, hogy végtelen sok ikerprím van-e (ez a kérdés még nyitott). A bizonyítás szitaelméleti eredmény, amely a számlálófüggvény kicsinységét mutatja meg.",
     "wiki": "https://en.wikipedia.org/wiki/Brun-t%C3%A9tel_%28ikerpr%C3%ADmek%29",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1919
   },
   {
     "name": "Bertrand-posztulátum",
@@ -823,7 +869,8 @@
     "why": "<b>Bármely szám és a duplája között garantáltan van prím.</b> Bertrand csak sejtette, ellenőrizve 3 millióig; Csebisev bizonyította be elemi, de trükkös kombinatorikus becsléssel (binomiális együtthatók prímtényezős felbontásán keresztül). Erdős Pál 19 évesen adott ennél is elegánsabb bizonyítást — ez volt az egyik első nagy eredménye.",
     "whyMore": "A tétel azt garantálja, hogy n felett a prímhézag mindig kisebb, mint n maga. Csebisev eredeti bizonyítása a középső binomiális együttható C(2n,n) prímtényezős felbontását becsüli, és megmutatja, hogy egy n és 2n közötti prímnek pontosan 1 kitevővel kell osztania azt. Erdős Pál tisztább bizonyítása ugyanezt a binomiális együtthatót használja, de elemi becslésekkel a prímekhatványok nagyságára.",
     "wiki": "https://en.wikipedia.org/wiki/Bertrand-posztul%C3%A1tum",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1852
   },
   {
     "name": "Hall-féle házassági tétel",
@@ -833,7 +880,8 @@
     "why": "<b>Egy csoport pontosan akkor párosítható be teljesen a preferenciáik szerint, ha minden részcsoportjuknak legalább annyi lehetőségük van, ahányan vannak.</b> A 'házassági feltétel' (Hall-feltétel) tiszta kombinatorikus szükséges és elégséges kritérium. Alapja a munkaerő-kiosztási, iskolai felvételi és szervező algoritmusoknak — a modern párosítási piacok (pl. rezidens-kórház rendszerek) elméleti gerince.",
     "whyMore": "N(S) az S részcsoport szomszédainak (lehetséges partnereinek) halmaza a páros gráfban. A 'házassági feltétel' kimondja, hogy akkor és csak akkor létezik teljes párosítás, ha egyetlen bal oldali részcsoport sincs kevés különböző partnerrel, mint ahány tagja van. Ha valamilyen S-re |N(S)|<|S|, azokat a csúcsokat lehetetlen mind párosítani; Hall tétele bizonyítja, hogy ez az egyetlen akadály, és ez a párosító algoritmusok elméleti gerince.",
     "wiki": "https://en.wikipedia.org/wiki/Hall-f%C3%A9le_h%C3%A1zass%C3%A1gi_t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1935
   },
   {
     "name": "Erdős–Szekeres-tétel",
@@ -843,7 +891,8 @@
     "why": "<b>Elég hosszú számsorozatban garantáltan találsz rendezett részletet — akár növekvőt, akár csökkenőt.</b> Ramsey-elméleti szellemű eredmény: teljes rendezetlenség lehetetlen, ha a sorozat elég hosszú. Erdős és Szekeres ugyanabban az 1935-ös cikkben publikálta ezt és a Happy Ending problémát — mindkettő a 'rendezetlenségben rejlő rend' ugyanazon alapgondolatából fakad.",
     "whyMore": "Minden elemhez rendeljük két számot: a rá végződő leghosszabb növekvő részsorozat hosszát, és az innen induló leghosszabb csökkenőét. A galamblyuk-elv szerint ha n>(r−1)(s−1), akkor két elem nem kaphat különböző párokat, vagyis muszáj lennie egy r hosszú növekvő vagy egy s hosszú csökkenő részsorozatnak. Ez egy klasszikus Ramsey-típusú eredmény: elég hosszú sorozatban a teljes rendezetlenség lehetetlen.",
     "wiki": "https://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93Szekeres-t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1935
   },
   {
     "name": "Helly-tétel",
@@ -853,7 +902,8 @@
     "why": "<b>Ha konvex alakzatok bármely (d+1)-es részcsoportjának van közös pontja, akkor mindnek együtt is van.</b> Síkban (d=2) elég, ha minden hármas metszi egymást ahhoz, hogy az egész család közös pontja létezzen. Meglepő, mennyire lecsökkenthető a globális feltétel lokálisra — alapja lineáris programozási megvalósíthatósági téteknek és optimalizálási algoritmusoknak.",
     "whyMore": "A tétel azért igaz, mert a konvex halmazok metszeteinek 'helyi' összeférhetősége már kizárja a globális rést: egy d-dimenziós térben a halmazok affin függetlenségi szerkezete miatt elég csupán a (d+1)-es részcsoportokat vizsgálni. A változó d a tér dimenziója; síkban (d=2) így minden hármas metszete garancia a teljes család közös pontjára. Ez a tulajdonság pontosan a lineáris egyenlőtlenség-rendszerek (Ax≤b) megvalósíthatósági tételeinek duálisa: egy LP akkor és csak akkor megoldható, ha minden kis részrendszere is az.",
     "wiki": "https://en.wikipedia.org/wiki/Helly-t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1913
   },
   {
     "name": "Sperner-lemma",
@@ -863,7 +913,8 @@
     "why": "<b>Egy háromszöget apró háromszögekre bontva, bizonyos színezési szabály mellett garantáltan lesz egy 'teljes szivárvány' cella.</b> Tisztán kombinatorikus tétel — mégis ez adja a Brouwer-féle fixponttétel legkonstruktívabb, algoritmikusan kereshető bizonyítását. A modern 'fair division' (méltányos felosztás) algoritmusok — pl. torta igazságos elosztása — erre a lemmára épülnek.",
     "whyMore": "A lemma bizonyítása paritáson alapul: az élek mentén a színezett kis szimplexek számának párosságát számolva azok az élek, amelyek két különböző színű csúcsot kötnek össze, csak páros sokszor fordulhatnak elő egy cella határán, kivéve a nagy háromszög szélét. Emiatt a határon kívül is léteznie kell legalább egy teljesen színezett (szivárvány) cellának. Ez a diszkrét 'lyuk-feltöltő' struktúra a Brouwer fixponttétel konstruktív, kereshető bizonyításának motorként működik.",
     "wiki": "https://en.wikipedia.org/wiki/Sperner-lemma",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1928
   },
   {
     "name": "Szimplex-módszer",
@@ -873,7 +924,8 @@
     "why": "<b>Egy lineáris optimalizálási feladat legjobb megoldása mindig egy csúcspontban van — elég a csúcsok között lépkedni.</b> Dantzig algoritmusa a poliéder éleit járja végig, mindig javuló irányba lépve. Elméletileg exponenciális futásidejű lehet, gyakorlatban szinte mindig gyors — ez az egyik legrégebbi rejtély az optimalizáláselméletben. Ma is milliószor fut naponta: logisztikában, gyártástervezésben, szerkezetoptimalizálásban.",
     "whyMore": "A célffüggvény cᵀx lineáris, tehát bármely él mentén szigorúan monoton vagy állandó, így egy maximum soha nem eshet egy él vagy lap belső pontjára — mindig elérhető egy csúcspontban. Dantzig algoritmusa a csúcsok között lépked (pivotál) mindig javító irányba, miközben a megoldás a megengedhető poliéder belsejében marad. A rossz esetben exponenciális lépésszám a poliéder csúcsainak számától függ, de a gyakorlati, 'átlagos' példák szinte mindig polinomiálisan gyorsak.",
     "wiki": "https://en.wikipedia.org/wiki/Szimplex-m%C3%B3dszer",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1947
   },
   {
     "name": "Perron–Frobenius-tétel",
@@ -883,7 +935,8 @@
     "why": "<b>Egy csupa pozitív számból álló mátrixnak van egy kitüntetett, domináns sajátértéke — pozitív sajátvektorral.</b> Ez garantálja, hogy iteratív hatványmódszerrel ez a sajátvektor mindig megtalálható, akárhonnan indulsz. Ez a matematikai alapja a Google PageRank algoritmusának, a populációdinamikai modelleknek és a Markov-láncok stacionárius eloszlásának.",
     "whyMore": "Pozitív mátrixnál (A>0) a spektrálsugár λ_max egyszerű sajátérték, és a hozzá tartozó sajátvektor szigorúan pozitív — a pozitivitás kizárja az előjel-kiejtésekből adódó konkurens sajátvektorokat. Ismételt A-val való szorzás (hatványmódszer) bármely pozitív kezdővektorból a domináns irányt erősíti, a többit elnyomja, ezért a konvergencia garantált. Ez teszi egyértelművé és pozitívvá a PageRank stacionárius eloszlását és a Markov-láncok egyensúlyi vektorát.",
     "wiki": "https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius-t%C3%A9tel",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1907
   },
   {
     "name": "Gauss–Markov-tétel",
@@ -893,7 +946,8 @@
     "why": "<b>A legkisebb négyzetek módszere nem csak kényelmes — bizonyíthatóan a legjobb lineáris torzítatlan becslés.</b> Ha a hibák várható értéke nulla és varianciájuk állandó, semmilyen más lineáris, torzítatlan becslő nem lehet kisebb varianciájú. Ez ad elméleti alapot minden lineáris regressziónak — statisztikai modellezéstől mérnöki mérési adatok kiegyenlítéséig.",
     "whyMore": "A tétel azt állítja, hogy azonos (nullvárható értékű, homoszkedasztikus) hibák mellett az OLS-becslés β̂ a legkisebb varianciájú minden lineáris, torzítatlan becslő közül. A bizonyítás szerint bármely más lineáris torzítatlan becslő az OLS és a reziduumok lineáris kombinációjának különbsége, varianciája pedig egy pozitív féligdefinit billenccsel mindig nagyobb. A 'legjobb' jelző itt a lineáris-torzítatlan osztályra vonatkozik, nem globálisan optimális becslésre.",
     "wiki": "https://en.wikipedia.org/wiki/Gauss%E2%80%93Markov-t%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1821
   },
   {
     "name": "Cauchy–Schwarz-egyenlőtlenség",
@@ -903,7 +957,8 @@
     "why": "<b>Két vektor skaláris szorzata sosem nagyobb a hosszaik szorzatánál — ilyen egyszerű, mégis mindenhol felbukkan.</b> A geometriai szemléltetéstől (koszinusz-szabály) a Heisenberg-féle határozatlansági relációig, a Cauchy-eloszlástól a gépi tanulási kernel-módszerekig szinte nincs olyan matematikai terület, ahol ne ez adná a legfontosabb becslési eszközt.",
     "whyMore": "Az |⟨u,v⟩| ≤ ‖u‖‖v‖ egyenlőtlenség geometriai oka, hogy ⟨u,v⟩ = ‖u‖‖v‖cos θ, ahol |cos θ| ≤ 1, tehát a skaláris szorzat maximuma pont a párhuzamos eset. Egyenlőség akkor és csak akkor áll fenn, ha u és v lineárisan összefüggők. Ez az összefüggés definiálja a szöget bármely belső szorzatú téren, és ebből vezethető le, hogy a norma kielégíti a háromszög-egyenlőtlenséget.",
     "wiki": "https://en.wikipedia.org/wiki/Cauchy%E2%80%93Schwarz-egyenl%C5%91tlens%C3%A9g",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1821
   },
   {
     "name": "Weierstrass-approximációs tétel",
@@ -913,7 +968,8 @@
     "why": "<b>Bármely folytonos függvény tetszőleges pontossággal megközelíthető polinomokkal — akármilyen 'vad' is a görbéje.</b> Weierstrass ezt már 70 évesen bizonyította. A tétel adja az elméleti alapját annak, hogy a számítógépek miért tudnak bármilyen folytonos jelenséget közelíteni véges sok művelettel — a modern approximációelmélet és neurális hálók univerzális approximációs tulajdonságának is őse.",
     "whyMore": "A tétel szerint bármely folytonos f az [a,b] intervallumon tetszőleges ε pontossággal közelíthető polinommal; a klasszikus bizonyítás Bernstein-polinomokat vagy konvolúciós magokat használ. Gyakorlatilag ez garantálja, hogy egy számítógép bármely folytonos jelet véges sok művelettel, elég nagy fokszámú polinommal reprezentálhat. Ez az univerzális approximáció őse: a neurális hálók és a Fourier-sorok modern megfelelői ugyanezen elven alapulnak.",
     "wiki": "https://en.wikipedia.org/wiki/Weierstrass-approxim%C3%A1ci%C3%B3s_t%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1885
   },
   {
     "name": "Picard–Lindelöf-tétel",
@@ -923,7 +979,8 @@
     "why": "<b>Garantálja, hogy egy fizikai rendszer jövője egyértelműen meghatározott — ha ismered a pillanatnyi állapotát.</b> Ha a differenciálegyenlet jobb oldala 'elég sima' (Lipschitz-folytonos), pontosan egy megoldás létezik adott kezdeti feltétel mellett. Ez a determinizmus matematikai alapja a klasszikus fizikában — és a tétel bizonyítása (iteráció, kontrakciós leképezés) maga is gyönyörű alkalmazása a Banach-fixponttételnek.",
     "whyMore": "Ha f(x,y) Lipschitz-folytonos y-ban, akkor az y'=f differenciálegyenletnek pontosan egy megoldása van az adott (x₀,y₀) kezdeti feltétel mellett. A bizonyítás szukcesszív közelítéseket épít (y_{n+1}=y₀+∫f(x,y_n)dx), és a Lipschitz-feltétel ezt a leképezést kontrakcióvá teszi, így a Banach-fixponttétel egyértelmű határértéket ad. Ez a klasszikus fizika determinizmusának szigorú alapja: azonos kezdeti állapot → azonos pálya.",
     "wiki": "https://en.wikipedia.org/wiki/Picard%E2%80%93Lindel%C3%B6f-t%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1890
   },
   {
     "name": "Csebisev-egyenlőtlenség",
@@ -933,7 +990,8 @@
     "why": "<b>Bármilyen eloszlásról — anélkül, hogy bármit tudnál a formájáról — garantálhatod, mekkora eséllyel térhet el nagyon az átlagtól.</b> Nincs szükség normális eloszlásra, semmilyen feltételezésre: csak a várható érték és szórás ismeretére. Ez teszi lehetővé a Nagy számok törvényének egyik legegyszerűbb bizonyítását, és ez az alapja a statisztikai minőségbiztosítás legrobusztusabb korlátainak.",
     "whyMore": "A P(|X−μ|≥kσ) ≤ 1/k² egyenlőtlenséghez nem kell ismerni az eloszlás alakját, csak a várható értéket μ-t és a szórást σ-t. Az intuíció: a variancia a négyzetes eltérések átlaga, ezért ha sok tömeg k-szoros szórányira esne a középértéktől, a variancia meghaladná a k²σ²-t — ellentmondás. Ez a leggyengébb feltételű bizonyítása a Nagy számok gyenge törvényének és a robusztus minőségbiztosítási korlátoknak.",
     "wiki": "https://en.wikipedia.org/wiki/Csebisev-egyenl%C5%91tlens%C3%A9g",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1867
   },
   {
     "name": "Markov-lánc ergodikus tétele",
@@ -943,7 +1001,8 @@
     "why": "<b>Egy 'jól viselkedő' véletlen folyamat idővel elfelejti, honnan indult — és egy egyedi, stabil egyensúlyi eloszláshoz konvergál.</b> Bárhonnan is indulsz egy irreducibilis, aperiodikus Markov-láncban, elég sok lépés után ugyanoda jutsz. Ez a tétel adja a Google PageRank, a Markov-lánc Monte Carlo szimulációk (MCMC) és a meteorológiai előrejelzési modellek elméleti biztosítékát: a folyamat 'beáll', és a kezdeti feltétel elfelejthető.",
     "whyMore": "Egy irreducibilis, aperiodikus (ergodikus) véges Markov-láncnál a Pⁿ átmeneti mátrix egy olyan mátrixhoz tart, amelynek minden sora megegyezik a π stacionárius eloszlással, függetlenül a kezdőállapottól. Az intuíció a keveredés: elég sok lépés után a lánc 'elfelejti' a startot, és πP = π miatt hosszú távon az idő hányada minden állapotban π-vel egyenlő. Ez teszi lehetővé az MCMC mintavételezést: a burn-in után a minták π-ből származnak, bárhonnan is indultunk.",
     "wiki": "https://en.wikipedia.org/wiki/Markov-l%C3%A1nc_ergodikus_t%C3%A9tele",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1906
   },
   {
     "name": "Kolmogorov nulla-egy törvénye",
@@ -953,7 +1012,8 @@
     "why": "<b>Egy végtelen véletlen sorozat 'távoli jövőjéről' szóló bármely esemény valószínűsége csak 0 vagy 1 lehet — köztes eshetőség nincs.</b> Meglepő és ellenintuitív: a 'farok-eseményeket' (amelyek nem függenek véges sok kezdeti kimeneteltől) nem lehet félig bekövetkezni. Ez az egyik legmélyebb, legkevésbé nyilvánvaló igazság a valószínűségszámításban — Kolmogorov axiomatikus megalapozásának egyik csúcspontja.",
     "whyMore": "A farokesemények olyan események, amelyek nem függenek véges sok kezdeti kimeneteltől — pusztán a végtelen sorozat 'távoli jövőjétől'. Egy ilyen esemény független önmagától is (a múlt tetszőleges véges részétől független, ami épp őt generálja), így a p valószínűségre p = p² áll fenn, amiből p∈{0,1} következik. Például a 'véletlen bolyongás végtelen sokszor visszatér a 0-ba' esemény valószínűsége kötelezően 0 vagy 1.",
     "wiki": "https://en.wikipedia.org/wiki/Kolmogorov_nulla-egy_t%C3%B6rv%C3%A9nye",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1933
   },
   {
     "name": "Löwenheim–Skolem-tétel",
@@ -963,7 +1023,8 @@
     "why": "<b>Ha egy elsőrendű elmélet leírja a valós számokat (megszámlálhatatlan!), akkor is van neki megszámlálható modellje — ez a Skolem-paradoxon.</b> A logikai nyelv sosem tudja teljesen 'befogni' a végtelenség méretét: bármilyen elmélet, aminek van végtelen modellje, minden végtelen számosságon is modellezhető. Ez mutatta meg először, hogy az elsőrendű logika elvi korlátai mennyire mélyek.",
     "whyMore": "Ha egy elsőrendű elméletnek van végtelen modellje, akkor van belőle megszámlálható modellje is — még akkor is, ha az elmélet 'szánja' magát az uncountable ℝ leírására (ez a Skolem-paradoxon). Az oka, hogy az elsőrendű nyelv axiómái nem rögzítik a számosságot: a lefelé irányú rész egy megszámlálható elemi részmodellt épít. Ez mutatja meg az elsőrendű formalizálás elvi korlátját a végtelenség méretének 'befogásában'.",
     "wiki": "https://en.wikipedia.org/wiki/L%C3%B6wenheim%E2%80%93Skolem-t%C3%A9tel",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1915
   },
   {
     "name": "Tarski igazságdefiníció-tétele",
@@ -973,7 +1034,8 @@
     "why": "<b>Egy elég erős nyelv nem tudja saját mondatainak igazságát önmagában definiálni — csak egy erősebb metanyelvből.</b> Tarski a 'ez a mondat hamis' típusú paradoxonokból indult ki, és szigorú matematikai tételt épített belőle. Gödel nemteljességi tételével rokon szellemű eredmény, de a formális nyelvek szemantikájának egészen más rétegét világítja meg — máig a logika, a nyelvfilozófia és a számítástudomány metaszintjeinek alapköve.",
     "whyMore": "A tétel szerint egy elég erős L nyelv nem definiálhatja saját igazságpredikátumát T-t úgy, hogy T(⌜φ⌝) ↔ φ minden φ-re fennálljon. Ha mégis lehetséges lenne, azzal a 'ez a mondat hamis' típusú hazug paradoxon a nyelven belülre kerülne, ellentmondást okozva. Ezért az igazságot csak egy magasabb expresszív erejű metanyelvben lehet definiálni — ez a Gödel-féle nemteljességgel rokon, de a formális nyelvek szemantikai metaszintjét világítja meg.",
     "wiki": "https://en.wikipedia.org/wiki/Tarski_igazs%C3%A1gdefin%C3%ADci%C3%B3-t%C3%A9tele",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1933
   },
   {
     "name": "Kruskal-féle fatétel",
@@ -983,7 +1045,8 @@
     "why": "<b>Bármilyen végtelen sorozatban véges fákból, mindig találsz egy korábbi fát, ami 'beágyazható' egy későbbibe.</b> A tétel önmagában egyszerűnek hangzik, mégis — akárcsak a Goodstein-tétel — bizonyíthatóan nem vezethető le a Peano-aritmetika axiómáiból, csak erősebb rendszerekben. Az egyik legmeglepőbb példa arra, hogy egy 'ártatlannak' tűnő kombinatorikus állítás logikai ereje meghaladja a szokásos aritmetikát.",
     "whyMore": "A tétel szerint bármely véges fákból álló végtelen sorozatban található i<j, amelyre T_i homeomorf módon beágyazható T_j-be (megőrizve a szülő-gyermek szerkezetet). Meglepő módon — akárcsak a Goodstein-tétel — bizonyíthatóan nem vezethető le a Peano-aritmetika axiómáiból, a bizonyítás erősebb, ordinális-alapú indukciót igényel. Ez a 'természetesnek' tűnő kombinatorikus állítások egyik legszemléletesebb példája, amely logikailag túlmutat a szokásos aritmetikán.",
     "wiki": "https://en.wikipedia.org/wiki/Kruskal-f%C3%A9le_fat%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1960
   },
   {
     "name": "Radon-tétel",
@@ -993,7 +1056,8 @@
     "why": "<b>Elég sok pontot két csoportra osztva, a konvex burkaik mindig metszeni fogják egymást — nincs menekvés.</b> d+2 pont d dimenzióban garantáltan felosztható két olyan csoportra, amelyeknek konvex burkai közös ponttal rendelkeznek. Ez az egyszerű geometriai tény adja a Helly-tétel egyik legelegánsabb bizonyítási útját, és alapja a gépi tanulásban használt lineáris szeparálhatósági korlátoknak is.",
     "whyMore": "d+2 pont ℝ^d-ben affin függő (több pont van, mint a tér dimenziója plusz egy), így létezik egy nemtriviális Σλ_i p_i = 0 összefüggés Σλ_i = 0 mellett. A λ_i előjelének megfelelően két diszjunkt csoportra bontva a pontokat, az egyensúlyi konvex kombináció pontja mindkét konvex burkban benne van, tehát a két burok metszi egymást. Ez a szerkezet a Helly-tétel egyik legelegánsabb bizonyítási lépése és az ML-beli lineáris szeparálhatósági korlátok alapja.",
     "wiki": "https://en.wikipedia.org/wiki/Radon-t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1921
   },
   {
     "name": "Nielsen–Schreier-tétel",
@@ -1003,7 +1067,8 @@
     "why": "<b>Egy szabad csoport minden részcsoportja maga is szabad csoport — akkor is, ha végtelen sok generátorra van szüksége.</b> Meglepő stabilitási tulajdonság: a 'szabadság' (nincsenek rejtett relációk a generátorok között) öröklődik minden részstruktúrára. A tétel topologikus bizonyítása (fedő terek, gráfelmélet) az egyik legszebb példa arra, hogyan old meg egy tisztán algebrai kérdést a geometria.",
     "whyMore": "A tétel mélyebb oka, hogy egy szabad csoport F_n egy gráf fundamentális csoportjaként is felfogható, aminek bármely részcsoportja egy fedő gráf fundamentális csoportja lesz — a fedőtér-elmélet pedig garantálja, hogy egy ilyen csoport is szabad marad. A részcsoport új generátorai a fedő gráf éleinek (Schreier-féle képviselőválasztás) felelnek meg, és mivel a fedő gráfban nem keletkezik feloldhatatlan zárt út, rejtett reláció sem születik. Így egy szabad csoport sosem romlik el belülről: bármely részstruktúrája ugyanolyan rendezett, generátorokkal leírható marad.",
     "wiki": "https://en.wikipedia.org/wiki/Nielsen%E2%80%93Schreier-t%C3%A9tel",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1921
   },
   {
     "name": "Jones-polinom",
@@ -1014,7 +1079,8 @@
     "why": "<b>Egy algebrai kifejezés különbséget tud tenni két csomó között, amelyek a szabad szemmel megkülönböztethetetlenek.</b> Vaughan Jones egy operátoralgebrai kutatás közben, véletlenül bukkant rá erre a csomóinvariánsra — a felfedezés annyira váratlan volt, hogy Fields-érmet kapott érte. A csomóelmélet és a kvantumtérelmélet (Witten később kvantumfizikai értelmezést adott neki) közötti mély, előre nem sejtett kapcsolatot tárta fel.",
     "whyMore": "A polinom egyetlen V(L) értéket rendel minden csomóhoz a skein-reláció mentén: ha egy keresztpontot kétféleképpen (L_+, L_-) oldunk fel, a két érték különbsége a t^{1/2}-t^{-1/2} szorzóval arányos a sima (L_0) eset értékével. Ez a rekurzív szabály egyértelműen meghatározza V-t, és mivel csak a keresztpontok feloldásától függ, két különböző csomó különböző polinomot ad — ezért invariáns. A t változó egy kvantumcsoport (Temperley–Lieb-algebra) paramétere, így a polinom valójában egy kétdimenziós topológiai térelmélet fizikai mennyiségét kódolja.",
     "wiki": "https://en.wikipedia.org/wiki/Jones-polinom",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1984
   },
   {
     "name": "Church–Turing-tézis",
@@ -1024,7 +1090,8 @@
     "why": "<b>Minden ésszerű számítási modell — Turing-gép, lambda-kalkulus, mai programozási nyelv — pontosan ugyanazt tudja kiszámítani.</b> Nem bizonyított tétel, hanem tézis: azt állítja, hogy az intuitív 'algoritmus' fogalma egybeesik a formálisan definiált kiszámíthatósággal. Church és Turing egymástól függetlenül, két teljesen különböző matematikai apparátussal jutottak ugyanarra az eredményre — ez adja a tézis meggyőző erejét.",
     "whyMore": "A tézis lényege, hogy a 'kiszámítható' fogalom modelltől független: bármit, amit egy ember ceruzával papíron véges szabállyal elvégez (algoritmus), azt egy Turing-gép is elvégzi, és fordítva. A ⊨ (logikai következmény) azt rögzíti, hogy a formális kiszámíthatóság (gép) és az intuitív algoritmus fogalma azonos. Mivel minden ismert modell (regisztergép, λ-kalkulus, sejtautomata) ugyanerre a halmazra vezethető vissza, a tézis azt sugallja, hogy elértük a számítás fogalmának természetes határát.",
     "wiki": "https://en.wikipedia.org/wiki/Church%E2%80%93Turing-t%C3%A9zis",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1936
   },
   {
     "name": "Shannon-féle csatornakapacitás-tétel",
@@ -1034,7 +1101,8 @@
     "why": "<b>Egyetlen képlet szabja meg egy zajos csatorna abszolút információátviteli határát — és bizonyítja, hogy ez a határ hibamentesen elérhető.</b> A sávszélesség (B) és a jel-zaj viszony (S/N) egyszerű logaritmikus kapcsolatban áll a maximális átviteli sebességgel. Minden Wi-Fi, mobilhálózat és optikai kábel tervezése ebből az 1948-as képletből indul ki — a modern digitális kommunikáció alapköve.",
     "whyMore": "A képletben B a sávszélesség (Hz), S a jel, N a zaj teljesítménye; a log_2(1+S/N) azt mondja meg, hány bitet tudunk egyetlen hasznos szimbólumidő alatt hibamentesen átvinni egy adott jel-zaj arány mellett. A tétel bizonyítása a tipikus sorozatok exponenciális sokaságán alapul: ha a kódolási sebesség C alatt marad, található olyan kód, ami a hibavalószínűséget tetszőlegesen lecsökkenti. A határ elérhető, de nem léphető túl — ezért minden modern kommunikációs szabvány ezt a C értéket tekinti a fizikai plafonnak.",
     "wiki": "https://en.wikipedia.org/wiki/Shannon-f%C3%A9le_csatornakapacit%C3%A1s-t%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1948
   },
   {
     "name": "Gyors Fourier-transzformáció (FFT)",
@@ -1044,7 +1112,8 @@
     "why": "<b>Egy okos oszd-meg-és-uralkodj trükk négyzetesből lineáris-logaritmikusra gyorsítja a Fourier-transzformáció kiszámítását.</b> Cooley és Tukey algoritmusa (amit valójában Gauss már 1805-ben ismert, csak elfelejtődött) tette lehetővé a digitális jelfeldolgozást, a hangkódolást (MP3), a képtömörítést (JPEG) és a modern rezgésanalízist. Talán a 20. század leggyakrabban lefuttatott algoritmusa.",
     "whyMore": "A nyers DFT n ponton O(n²) szorzást igényel, mert minden kimeneti frekvenciát az összes bemeneti ponttal külön számolunk. Az FFT észreveszi, hogy a komplex gyököknek W = e^{-2πi/n} 'periódusai' vannak: a páros és páratlan indexű pontok transzformáltját kétszer félekkora méretben újra felhasználja, így a probléma két félidős részre esik szét (oszd meg és uralkodj). Ebből a rekurzióból jön ki az O(n log n) idő, ami nagy n-nél hatalmas gyorsulást jelent — innen vált lehetővé a valós idejű hang- és képfeldolgozás.",
     "wiki": "https://en.wikipedia.org/wiki/Gyors_Fourier-transzform%C3%A1ci%C3%B3_%28FFT%29",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1965
   },
   {
     "name": "Lebesgue-féle majorált konvergenciatétel",
@@ -1054,7 +1123,8 @@
     "why": "<b>Ha egy függvénysorozat pontonként konvergál, és van egy közös 'korlátjuk', akkor az integráljaik is konvergálnak — pedig ez korántsem nyilvánvaló.</b> A Riemann-integrál erre képtelen; Lebesgue teljesen új integrálfogalmat épített, ahol a határátmenet és az integrálás felcserélhető. Ez a tétel adja a valószínűségszámítás, a Fourier-analízis és a modern funkcionálanalízis szigorú alapját.",
     "whyMore": "A feltétel |f_n|≤g egy közös, integrálható 'korlát' (majoráns): garantálja, hogy a sorozat sehol nem szalad el a végtelenbe, és az integrálok ne ugorjanak szét. A Lebesgue-integrál pont ezt a mérték szerinti összegzést használja, így a dominált sorozat határértéke integrálható marad, és a határátmenet az integrál alá húzható. Ezért a tétel mondja ki, hogy lim ∫f_n = ∫lim f_n, ami a Riemann-integrálnál sikertelen a 'tüskés' függvénysorozatoknál.",
     "wiki": "https://en.wikipedia.org/wiki/Lebesgue-f%C3%A9le_major%C3%A1lt_konvergenciat%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1908
   },
   {
     "name": "Fubini-tétel",
@@ -1064,7 +1134,8 @@
     "why": "<b>Egy kétváltozós integrál kiszámítható úgy is, hogy előbb az egyik, majd a másik változó szerint integrálsz — a sorrend nem számít.</b> Triviálisnak tűnik, de csak bizonyos feltételek (pl. abszolút integrálhatóság) mellett igaz — enélkül a sorrendcsere hamis eredményt adhat. Ez a hétköznapi 'kettős integrál' minden mérnöki és fizikai számítás rejtett, magától értetődőnek vett alapja.",
     "whyMore": "A tétel azt használja ki, hogy az integrálterület A×B téglányon szétszedhető egyirányú szeletekre; ha f abszolút integrálható (azaz ∫∫|f| véges), akkor a belső egyváltozós integrálok majdnem minden helyen jól definiáltak és újra összegezhetők. A sorrendcsere csak e feltétel mellett garantált, mert a feltétel kizárja azokat a 'csapda' függvényeket, ahol a pozitív és negatív rész külön-külön divergál, de kiejtik egymást. A képlet szerint a kétdimenziós integrál = a belső ∫_B f dy függvényének ∫_A szerinti integrálja.",
     "wiki": "https://en.wikipedia.org/wiki/Fubini-t%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1907
   },
   {
     "name": "Arzelà–Ascoli-tétel",
@@ -1074,7 +1145,8 @@
     "why": "<b>Egy függvényhalmaz akkor 'kompakt' egy függvénytérben, ha nem lehet se túl vad, se túl szétszórt.</b> A tétel a véges dimenziós Bolzano–Weierstrass-tétel messzemenő általánosítása végtelen dimenziós függvényterekre. Ez garantálja, hogy bizonyos differenciálegyenlet-rendszerek megoldásai léteznek — a Picard–Lindelöf-tételnél gyengébb feltételek mellett is.",
     "whyMore": "A 'túl vad' = nem egyenletesen korlátos (a függvények értékei bárhol korlátlanul nagyok lehetnek), a 'túl szétszórt' = nem egyenlő mértékben folytonos (két közeli ponton az értékkülönbség tetszőlegesen nagy). E két tulajdonság együtt teszi lehetővé a diagónális eljárást: egy végtelen függvénysorozatból mindig kinyerhető egy pontonként konvergáló részsorozat, ami aztán egyenletesen is konvergál. Ez a tétel a funkcionálanalízis 'kompaktsági' helyettesítője a végtelen dimenzióban — nélküle a differenciálegyenletek megoldásainak létezése bizonyíthatatlan lenne.",
     "wiki": "https://en.wikipedia.org/wiki/Arzel%C3%A0%E2%80%93Ascoli-t%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1883
   },
   {
     "name": "Poisson-folyamat",
@@ -1084,7 +1156,8 @@
     "why": "<b>Ha véletlen események egymástól függetlenül, állandó átlagos ütemben történnek, a számuk pontosan ezt az eloszlást követi.</b> Radioaktív bomlás, telefonhívások, szerver-kérések, földrengések — mind ugyanazt a matematikai mintát követik. A Poisson-folyamat az egyik legszélesebb körben alkalmazott sztochasztikus modell, mert a 'teljes véletlenszerűség' egyetlen paraméterrel (λ) leírható.",
     "whyMore": "A képletben λ a (kölcsönös) intenzitás: átlagosan λ esemény történik egységnyi idő alatt; N(t)=k azt jelöli, hogy az adott t idő alatt pontosan k esemény érkezett. A (λt)^k/k! tag a 'k eseményt kiválasztjuk és elhelyezzük', az e^{-λt} a 'közben semmi más nem történik' valószínűsége a memóriamentesség (exponenciális várakozás) miatt. Mivel az események függetlenek és állandó üteműek, a számuk pont ezt a Poisson-eloszlást követi — innen illeszkedik a modell minden 'ritka, véletlen' jelenségre.",
     "wiki": "https://en.wikipedia.org/wiki/Poisson-folyamat",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1837
   },
   {
     "name": "Itō-formula",
@@ -1094,7 +1167,8 @@
     "why": "<b>A közönséges láncszabály nem működik véletlen (Brown-mozgást tartalmazó) folyamatokra — Itō talált egy extra tagot, ami mindent megjavít.</b> A második derivált szerinti pluszkorrekció (a kvadratikus variáció miatt) teszi lehetővé a sztochasztikus differenciálegyenletek kezelését. Ez az egyenlet áll a modern opcióárazás (Black–Scholes-modell) és a véletlen bolyongásra épülő fizikai modellek hátterében.",
     "whyMore": "A szokásos láncszabály d(f∘X) = f'(X)dX itt hiányzik, mert a Brown-mozgás (dX) négyzete nem elhanyagolható: (dW)² = dt, a kvadratikus variáció véges. Az Itō-formula ezért plusz egy f''(X)·d⟨X⟩_t/2 taggal javít: ez a másodrendű korrekció pont kompenzálja a véletlen járás 'kitéréstől való átlagos eltávolodását'. d⟨X⟩_t a folyamat kvadratikus variációja (pl. Brown-mozgásnál dt); enélkül a sztochasztikus integrál téves lenne, így viszont a Black–Scholes és a fizikai diffúziós egyenletek szigorúan levezethetők.",
     "wiki": "https://en.wikipedia.org/wiki/It%C5%8D-formula",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1944
   },
   {
     "name": "Erdős–Rényi véletlen gráf fázisátmenete",
@@ -1104,7 +1178,8 @@
     "why": "<b>Egy véletlen hálózat élsűrűsége egy kritikus küszöbnél hirtelen 'átbillen' — alatta szigetekre esik szét, fölötte egyetlen összefüggő komponenssé áll össze.</b> A fázisátmenet éles: egy hajszálnyi élsűrűség-változás teljesen más globális struktúrát eredményez. Ez a jelenség adja a hálózatelmélet alapját — internetes topológiáktól a járványterjedési küszöbökig.",
     "whyMore": "Egy n csúcsú gráfban, ha p (élvalószínűség) kb. ln n / n alatt marad, a komponensek várható mérete O(log n), szigetekre esik szét; fölötte egyetlen óriáskomponens jelenik meg, ami csaknem az összes csúcsot magába foglalja. A p_c ~ ln n / n küszöb pont az, ahol a komponensméret második momentuma elszánlhatatlanul megnő — ez egy kontinuitási ugrás, nem sima átmenet. A jelenséget a 'giant component' explóziója írja le: egyetlen extra él is összeköthet két addig különálló nagy halmazt.",
     "wiki": "https://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93R%C3%A9nyi_v%C3%A9letlen_gr%C3%A1f_f%C3%A1zis%C3%A1tmenete",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1959
   },
   {
     "name": "Kolmogorov-komplexitás",
@@ -1124,7 +1199,8 @@
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/Kolmogorov-komplexit%C3%A1s",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1965
   },
   {
     "name": "Löb-tétel",
@@ -1134,7 +1210,8 @@
     "why": "<b>Ha egy formális rendszer bebizonyítja, hogy 'ha bizonyítható P, akkor P igaz', abból már következik, hogy P tényleg bizonyítható.</b> Ellenintuitív, önreferenciális eredmény — rokona Gödel második nemteljességi tételének, csak élesebb formában. Löb eredetileg egy Henkin nevű matematikus kérdésére válaszolt: bizonyítható-e egy rendszerben a saját konzisztenciája, ha az állítja, hogy bizonyítható — a válasz meglepő módon igen szoros korlátok közé szorítja, mi bizonyítható.",
     "whyMore": "A □ jelölés a 'bizonyítható' modalitás: □P azt jelenti, hogy a rendszer le tudja vezetni P-t. A tétel szerint ha a rendszer képes bebizonyítani, hogy (□P→P) — azaz 'ha P bizonyítható, akkor P igaz' —, akkor már magát P-t is be tudja bizonyítani. Ez azért igaz, mert □P→P formában a rendszer saját bizonyítási mechanizmusára hivatkozik (önreferencia), és a Gödel-féle fixpontkonstrukció pont ezt a zárt kört zárja le. Következménye: egy konzisztens rendszer nem tudja bebizonyítani a saját konzisztenciáját anélkül, hogy az már eleve magában foglalná azt.",
     "wiki": "https://en.wikipedia.org/wiki/L%C3%B6b-t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1955
   },
   {
     "name": "Robertson–Seymour gráf-minor tétel",
@@ -1145,7 +1222,8 @@
     "why": "<b>A gráfok 'jóformáltsága' végtelen sok esetet is véges listával jellemezhet — mint ahogy a síkgráfokat is jellemzi az K5 és K3,3 kizárása.</b> A bizonyítás 20 cikkben, több mint 500 oldalon húzódott végig — sokan a 20. század legmélyebb matematikai eredményének tartják. Ebből következik, hogy minden 'minor-zárt' gráftulajdonság polinom idejű algoritmussal eldönthető, még ha az algoritmus konstansa asztronomikus is.",
     "whyMore": "A 'minor-zárt' azt jelöli, hogy ha egy gráf a családhoz tartozik, akkor minden minora (él/pont törlés, összehúzás) is hozzá tartozik. A tétel szerint ilyen családokat véges sok 'tiltott minor' (H_1,…,H_k) felsorolása jellemzi: egy gráf pont akkor tag, ha egyik tiltott minor sincs benne. Azért működik, mert a minor-rendezés jól-rendezett (nincs végtelen szigorúan csökkenő minor-lánc), így a 'legkisebb tiltott' elemek végesen sokan vannak. Ebből következik, hogy bármely ilyen tulajdonság eldöntése algoritmikusan lehetséges, bár a konstans óriási lehet.",
     "wiki": "https://en.wikipedia.org/wiki/Robertson%E2%80%93Seymour_gr%C3%A1f-minor_t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1983
   },
   {
     "name": "Turán-tétel",
@@ -1155,7 +1233,8 @@
     "why": "<b>Ha egy gráfnak elég sok éle van, garantáltan tartalmaz egy adott méretű teljes részgráfot — pontosan meghatározható küszöb fölött.</b> Turán egy munkatáborban gondolta ki a bizonyítást, és a háború után publikálta — ez indította el az egész extremális gráfelméletet mint önálló diszciplínát. A tétel éles: a Turán-gráf (kiegyensúlyozott r-osztályú teljes soktagú gráf) mutatja, hogy a korlát nem javítható.",
     "whyMore": "A képletben n a csúcsok, e(G) az élek száma, r a keresett teljes részgráf (K_{r+1}) mérete mínusz egy; a (1−1/r)n²/2 küszöb a 'lehető legtöbb él K_{r+1} nélkül' mennyisége (a Turán-gráf élszáma). Ha e(G) ezt meghaladja, a gráf 'túl sűrű' ahhoz, hogy K_{r+1}-mentes maradjon — a skatulya-elv szerint valahol kényszerítetten kialakul egy r+1 csúcsú klikk. A határ éles, mert maga a Turán-gráf pont ennyi élnél még elkerüli a K_{r+1}-et, tehát a tétel nem túlbecsült.",
     "wiki": "https://en.wikipedia.org/wiki/Tur%C3%A1n-t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1941
   },
   {
     "name": "Poincaré–Bendixson-tétel",
@@ -1165,7 +1244,8 @@
     "why": "<b>A síkban a káosz lehetetlen — egy korlátos pálya csak nyugvópontba vagy periodikus ciklusba futhat, semmi bonyolultabba.</b> Ez a tétel az oka annak, hogy a valódi determinisztikus káosz (mint a Lorenz-attraktor) csak legalább háromdimenziós fázistérben jelenhet meg. A síkbeli dinamika ezért — bármilyen bonyolultnak tűnik az egyenletrendszer — mindig 'megszelídül' hosszú távon.",
     "whyMore": "A tétel a sík topológiáján alapul: egy korlátos pálya a saját nyomait nem kerülheti meg végtelen ideig anélkül, hogy vagy megállna (fixpont), vagy egy zárt hurkot (határciklust) rajzolna ki. Mivel a síkban nincs elég hely a pályák számára, hogy kitérjenek egymás elől, a dinamika hosszú távon elkerülhetetlenül egyszerűvé válik. Ezért van az, hogy a Lorenz-attraktorhoz hasonló káoszhoz a harmadik dimenzió – és a pályák felülről való átlátása – szükséges.",
     "wiki": "https://en.wikipedia.org/wiki/Poincar%C3%A9%E2%80%93Bendixson-t%C3%A9tel",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1901
   },
   {
     "name": "Whitney-beágyazási tétel",
@@ -1175,7 +1255,8 @@
     "why": "<b>Bármilyen absztrakt módon definiált geometriai alakzat 'valójában' elhelyezhető egy elég nagy, közönséges euklideszi térben.</b> Ez garantálja, hogy a sokaságok — a modern geometria absztrakt objektumai — nem 'légből kapott' fogalmak, hanem mindig konkrét, kézzelfogható terekbe ágyazhatók. A tétel adja meg azt a biztonságot, hogy a differenciálgeometriai intuíciónk, ami euklideszi terekben edződött, alkalmazható az absztrakt sokaságokra is.",
     "whyMore": "A tétel garantálja, hogy bármely n-dimenziós sokaság sima, injektív és injektív differenciálú leképezéssel beágyazható a 2n-dimenziós euklideszi térbe. Az n helyett a 2n azért kell, mert így a pozíció és az érintőirány együttes kezelésével elkerülhető az önátmetszés. Ez azt jelenti, hogy a görbület és az érintőtér fogalmai érvényesek maradnak a legabsztraktabb sokaságokon is.",
     "wiki": "https://en.wikipedia.org/wiki/Whitney-be%C3%A1gyaz%C3%A1si_t%C3%A9tel",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1936
   },
   {
     "name": "Lefschetz-féle fixponttétel",
@@ -1185,7 +1266,8 @@
     "why": "<b>Egy topologikus tér önmagára képezésének 'algebrai lenyomatából' (a Lefschetz-szám) eldönthető, van-e fixpontja — anélkül, hogy meg kellene találni.</b> A Brouwer-féle fixponttétel messzemenő általánosítása: a homológiacsoportokon vett nyom-összeg egyetlen szám, mégis garantálja a fixpont létezését. Ez az algebrai topológia egyik legszebb példája arra, hogyan válthat ki egy geometriai kérdést egy tisztán algebrai számítás.",
     "whyMore": "A Λ(f) Lefschetz-szám a homológiacsoportokon értelmezett f_*-ra vett súlyozott nyomösszeg: Λ(f) = Σ (-1)^i tr(f_*|_{H_i}). Ha ez nem nulla, akkor f-nek szükségszerűen van fixpontja, mert a fixpontok hiánya egy szabad értékelést adna, ami pont Λ(f)=0-t eredményezne. Így egyetlen algebrai számítással bizonyítható a fixpont létezése anélkül, hogy a pontot megkeresnénk.",
     "wiki": "https://en.wikipedia.org/wiki/Lefschetz-f%C3%A9le_fixpontt%C3%A9tel",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1926
   },
   {
     "name": "Dijkstra-algoritmus",
@@ -1195,7 +1277,8 @@
     "why": "<b>A legrövidebb út egy hálózatban mohó módon, lépésről lépésre megtalálható — mindig a legközelebbi ismeretlen csúcsot választva.</b> Dijkstra állítólag 20 perc alatt, kávézás közben találta ki, papír és ceruza nélkül, mert be akarta mutatni, hogy egy számítógép 'okosan' tud gondolkodni. Ma minden GPS-navigáció, hálózati útvonalválasztó protokoll (OSPF) és térképalkalmazás ezen (vagy egy leszármazottján, az A*-algoritmuson) alapul.",
     "whyMore": "A képlet u = argmin_{v∈Q} dist[v] azt jelenti, hogy mindig a még nem véglegesített (Q-ben lévő) csúcs közül választjuk a legkisebb ismert távolságút. Az eljárás mohó és optimális, mert ha az élek súlya nemnegatív, akkor egy csúcs véglegesítésekor a távolsága már nem javítható tovább (optimális részstruktúra). A dist[v] tömb a forrástól v-ig ismert legrövidebb utat tárolja, Q pedig a prioritási sor a még nyitott csúcsoknak.",
     "wiki": "https://en.wikipedia.org/wiki/Dijkstra-algoritmus",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1956
   },
   {
     "name": "Karmarkar-algoritmus",
@@ -1205,7 +1288,8 @@
     "why": "<b>A Szimplex-módszer csúcsról csúcsra lépked a poliéder élein — Karmarkar helyette a poliéder belsejében, egyenesen a megoldás felé 'siklik'.</b> Az első bizonyítottan polinomiális idejű algoritmus lineáris programozásra, amely gyakorlatban is versenyképesen gyors volt (nem csak elméletileg). A Bell Labs azonnal szabadalmaztatta — ritka eset, hogy egy tisztán matematikai algoritmus ekkora üzleti és katonai jelentőséget kapott (repülőgép-forgalom, telekommunikációs hálózatok optimalizálása).",
     "whyMore": "A módszer a megengedett tartomány (poliéder) belsejében halad egy potenciálfüggvény mentén, amely bünteti a tartomány szélét, így a lépések egyenletesen a megoldás felé tartanak. Az időigény O(n^{3,5} L), ahol n a változók száma és L a bemenet biteinek hossza – ez garantáltan polinomiális, ellentétben a Szimplex ritka exponenciális esetével. A gyakorlati sebességet a projektív skálázás adja, amely a poliédert úgy torzítja, hogy a jelenlegi pont közepe a céliránynak.",
     "wiki": "https://en.wikipedia.org/wiki/Karmarkar-algoritmus",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1984
   },
   {
     "name": "Wald-azonosság",
@@ -1215,7 +1299,8 @@
     "why": "<b>Ha egy véletlen számú lépésben összeadott véletlen mennyiségek várható összegét keresed, elég a két várható értéket összeszorozni — még ha a megállási időpont maga is véletlen.</b> Abraham Wald a második világháború alatt, szekvenciális statisztikai teszteken dolgozva vezette le. A tétel meglepő ereje, hogy a megállási szabály (N) és a lépések (X) közötti finom függőségek ellenére is ilyen egyszerű marad az eredmény — alapja a szekvenciális elemzésnek és a modern A/B-tesztelésnek.",
     "whyMore": "Az összefüggés E[X_1+…+X_N] = E[N]·E[X] akkor is igaz, ha N maga a lépések függvénye, feltéve, hogy a megállási időpont tisztességes, azaz a jövőtől független. A bizonyítás lelke az opcionális megállási tételeken alapul: a várt érték additivitása nem sérül a véletlen lépésszám miatt. Ezért használható a szekvenciális teszteknél, ahol a minta mérete maga is a részeredményektől függ.",
     "wiki": "https://en.wikipedia.org/wiki/Wald-azonoss%C3%A1g",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1944
   },
   {
     "name": "Berry–Esseen-tétel",
@@ -1225,7 +1310,8 @@
     "why": "<b>A Centrális Határeloszlás-tétel csak azt mondja, hogy az eloszlás normálishoz tart — Berry és Esseen megmondták, milyen gyorsan.</b> A konvergencia sebessége 1/√n rendű, és a hibakorlát explicit módon függ a harmadik momentumtól. Ez teszi lehetővé, hogy véges mintaméret esetén is számszerű garanciát adjunk a normális közelítés pontosságára — nélkülözhetetlen a statisztikai próbák megbízhatósági elemzésében.",
     "whyMore": "A tétel konkrét kötést ad: sup_x |F_n(x)−Φ(x)| ≤ C·ρ/(σ³√n), ahol F_n a normált részletösszegek eloszlásfüggvénye, Φ a standard normális, ρ a harmadik momentum és σ a szórás. A 1/√n sebesség és a C ≈ 0,474 konstans azt jelenti, hogy a konvergencia nemcsak létezik, hanem mérhető mértékű is. Minél vastagább farkú az eloszlás (nagyobb ρ), annál lassabb a normális közelítés – ezzel magyarázható, miért kell nagyobb minta a ferde eloszlásoknál.",
     "wiki": "https://en.wikipedia.org/wiki/Berry%E2%80%93Esseen-t%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1941
   },
   {
     "name": "Banach–Steinhaus-tétel",
@@ -1235,7 +1321,8 @@
     "why": "<b>Ha egy operátorsorozat minden ponton külön-külön korlátos, akkor — meglepő módon — egyenletesen is korlátos kell legyen.</b> A bizonyítás a Baire-kategóriatételre épül: egy teljes metrikus tér nem bontható fel megszámlálhatóan sok sehol sem sűrű halmazra. Ez a funkcionálanalízis egyik 'nagy három' alaptétele (a Nyílt Leképezés-tétellel és a Hahn–Banach-tétellel együtt) — nélküle a Fourier-sorok konvergenciájának modern elmélete sem állna.",
     "whyMore": "A tétel szerint ha a {T_n} operátorok minden x vektorra korlátosak (sup_n ||T_n x|| < ∞), akkor az operátornormák is korlátosak (sup_n ||T_n|| < ∞). A bizonyítás a Baire-kategóriatételt használja: egy teljes tér nem lehet megszámlálhatóan sok sehol sem sűrű halmaz uniója, így a rossz pontok halmaza üres. Ez garantálja, hogy a pontonkénti konvergencia nem produkálhat kiugró operátornormákat.",
     "wiki": "https://en.wikipedia.org/wiki/Banach%E2%80%93Steinhaus-t%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1927
   },
   {
     "name": "Sobolev-beágyazási tétel",
@@ -1245,7 +1332,8 @@
     "why": "<b>Ha egy függvénynek elég sok 'gyenge' deriváltja létezik (megfelelő integrálhatósággal), akkor garantáltan sima, folytonos függvény is — nem csak absztrakt objektum.</b> Ez a híd a modern PDE-elmélet gyenge (variációs) megoldásai és a klasszikus, szemléletes sima megoldások között. Minden végeselem-módszerrel dolgozó mérnöki szoftver implicit módon erre a tételre támaszkodik, amikor a numerikus megoldást fizikailag értelmezhető alakváltozásként vagy hőmérsékleti mezőként kezeli.",
     "whyMore": "A feltétel k − n/p > m + α azt mondja ki, hogy a deriváltak rendje (k) és integrálhatósága (p) többletet ad a dimenzió (n) felett, ami simaságot (C^{m,α}) eredményez. Minél magasabb a dimenzió, annál több derivált kell ugyanahhoz a simasághoz, mert a tér több lyukat hagy a függvény kitöltésére. Ezért a végeselem-módszer numerikus megoldásai – bár csak gyenge értelemben simák – mégis fizikailag értelmes, folytonos mezőként viselkednek.",
     "wiki": "https://en.wikipedia.org/wiki/Sobolev-be%C3%A1gyaz%C3%A1si_t%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1938
   },
   {
     "name": "Hopf-fibráció",
@@ -1255,7 +1343,8 @@
     "why": "<b>A háromdimenziós gömb felbontható körök végtelen családjára úgy, hogy minden pár kör pontosan egyszer fonódik össze — mint egy tökéletesen rendezett gombolyag.</b> Heinz Hopf ezzel mutatta meg először, hogy a magasabb homotópiacsoportok sokkal gazdagabbak, mint azt bárki gondolta — a felfedezés előtt sokan hitték, hogy triviálisak. A Hopf-fibráció ma a kvantummechanika (spinorok), a szálkötegek elmélete és a számítógépes grafika (kvaternió-alapú forgatások) egyik legszebb geometriai háttere.",
     "whyMore": "A leképezés S³ → S² úgy osztja fel a háromdimenziós gömböt, hogy a szálak S¹ körök, és minden S²-beli pontnak pontosan egy köre felel meg. Mivel S³ azonosítható a kvaterniók egységgömbjével, a fibráció a kvaternió-szorzás geometriájából adódik természetesen. Ez az első nemtriviális szálköteg, és mutatja, hogy π₃(S²) = ℤ, vagyis a harmadik homotópiacsoport nem triviális.",
     "wiki": "https://en.wikipedia.org/wiki/Hopf-fibr%C3%A1ci%C3%B3",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1931
   },
   {
     "name": "Van Kampen-tétel",
@@ -1265,7 +1354,8 @@
     "why": "<b>Egy összetett tér fundamentális csoportja (a 'hurkok' algebrai szerkezete) kiszámítható két egyszerűbb darabjának csoportjaiból, ha ismerjük az átfedésüket.</b> A tétel adja meg az eszközt ahhoz, hogy bonyolult topologikus terek — csomók, felületek, CW-komplexusok — algebrai invariánsait lépésről lépésre, 'építőkockákból' rakjuk össze. Az egyik legszebb példa arra, hogyan lehet a globális szerkezetet lokális információkból rekonstruálni.",
     "whyMore": "A tétel szerint π₁(X) ≅ π₁(U) *_{π₁(U∩V)} π₁(V), azaz az egyesített tér alapcsoportja az U és V alapcsoportjainak amalgámszorzata, ahol az átfedés π₁(U∩V) generátorait azonosítjuk. Ez lehetővé teszi bonyolult terek – például csomók komplementereinek – felépítését egyszerűbb darabokból lépésről lépésre. A módszer a lokális hurkok összekapcsolásával nyeri a globális szerkezetet.",
     "wiki": "https://en.wikipedia.org/wiki/Van_Kampen-t%C3%A9tel",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1933
   },
   {
     "name": "De Bruijn–Erdős-tétel",
@@ -1275,7 +1365,8 @@
     "why": "<b>Ha n pont a síkban nincs mind egy egyenesen, legalább n különböző egyenesre van szükség ahhoz, hogy minden pontpárt lefedjenek.</b> A bizonyítás elegáns indukciós érvelést használ, és a végeredmény meglepően éles: a szabályos konfigurációk pontosan n egyenest igényelnek. Erdős Pál és de Bruijn egy este alkották meg — tipikus példája annak, milyen mély eredmény születhet egy egyszerűen megfogalmazható geometriai kérdésből.",
     "whyMore": "A tétel azt állítja, hogy n nem-kollineáris (nem egy egyenesen lévő) síkbeli pontot legalább n különböző egyenes lefed. Az indukciós bizonyítás lényege, hogy ha egy pontot eltávolítunk, a maradékra az állítás már igaz, és az új pont bevonása legfeljebb egy új egyenest igényel. A szabályos sokszögek pontosan n egyenest használnak fel, így az alsó korlát éles.",
     "wiki": "https://en.wikipedia.org/wiki/De_Bruijn%E2%80%93Erd%C5%91s-t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1948
   },
   {
     "name": "Borsuk-sejtés (megcáfolva)",
@@ -1285,7 +1376,8 @@
     "why": "<b>Egy 60 éven át 'majdnem biztosan igaznak' hitt sejtést váratlanul megcáfoltak — egy 1325-dimenziós ellenpéldával.</b> Borsuk sejtése olyan magától értetődőnek tűnt, hogy évtizedekig senki nem is kételkedett benne komolyan, miközben alacsony dimenzióban bizonyítást is nyert. Kahn és Kalai 1993-as ellenpéldája emlékeztető arra, hogy a matematikai intuíció — bármilyen meggyőzőnek is tűnik — sosem helyettesíti a bizonyítást.",
     "whyMore": "Borsuk sejtése szerint bármely korlátos halmaz d+1 darab kisebb átmérőjű részre bontható – alacsony dimenzióban (d ≤ 3) ez bizonyítva is volt. Kahn és Kalai 1993-ban mutatta meg, hogy d ≥ 64 dimenzióban léteznek ellenpéldák, ahol ennél több rész szükséges. A cáfolat emlékeztet, hogy a természetesnek tűnő geometriai sejtések nagy dimenzióban is összeomolhatnak.",
     "wiki": "https://en.wikipedia.org/wiki/Borsuk-sejt%C3%A9s_%28megc%C3%A1folva%29",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1933
   },
   {
     "name": "Amdahl-törvény",
@@ -1295,7 +1387,8 @@
     "why": "<b>Egy program párhuzamosításának haszna kérlelhetetlenül korlátos — a szekvenciális rész, bármilyen kicsi is, hosszú távon dominánssá válik.</b> Ha egy program 95%-a párhuzamosítható, végtelen sok processzorral is legfeljebb 20-szoros gyorsulás érhető el. Ez a törvény hűti le a szuperszámítógép-tervezők túlzott optimizmusát, és rávilágít, miért olyan értékes minden szekvenciális szűk keresztmetszet megszüntetése egy nagy rendszerben.",
     "whyMore": "A képlet S(n) = 1/((1−p) + p/n), ahol p a párhuzamosítható rész aránya és n a processzorok száma. Ahogy n → ∞, az S(n) → 1/(1−p), vagyis a gyorsulás szigorúan korlátos a szekvenciális (1−p) rész által. Például 95%-os párhuzamosítás mellett a maximális gyorsulás 20-szoros – ezt a plafont több hardverrel sem lehet áttörni.",
     "wiki": "https://en.wikipedia.org/wiki/Amdahl-t%C3%B6rv%C3%A9ny",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1967
   },
   {
     "name": "RSA-algoritmus",
@@ -1305,7 +1398,8 @@
     "why": "<b>Két nagy prímszám szorzatát könnyű kiszámítani, de a szorzatból visszafejteni a tényezőket gyakorlatilag lehetetlen — erre az aszimmetriára épül a teljes internetes titkosítás.</b> Rivest, Shamir és Adleman Fermat kistételét használták fel egy olyan rendszer megalkotásához, ahol a nyilvános kulcs bárki számára ismert lehet, mégsem törhető fel vele az üzenet. Minden HTTPS-kapcsolat, minden banki tranzakció ezen (vagy egy rokon algoritmuson) alapul — tiszta számelméletből született globális infrastruktúra.",
     "whyMore": "A titkosítás c = m^e mod n és a visszafejtés m = c^d mod n, ahol n = p·q két nagy prím szorzata, és az e, d kitevők úgy választottak, hogy e·d ≡ 1 mod φ(n). A rendszer biztonsága azon alapul, hogy n prímtényezőkre bontása gyakorlatilag lehetetlen a mai számítási kapacitással. A nyilvános (e, n) kulccsal bárki titkosíthat, de csak a privát d ismerője fejthet vissza.",
     "wiki": "https://en.wikipedia.org/wiki/RSA-algoritmus",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1977
   },
   {
     "name": "Hessian-mátrix és a D-teszt",
@@ -1315,7 +1409,8 @@
     "why": "<b>Egyetlen szám dönti el, hogy egy többváltozós függvény egy kritikus pontja hegycsúcs, völgy vagy nyeregpont.</b> A második parciális deriváltakból épített mátrix determinánsa (D) és a fxx előjele együtt teljesen jellemzi a lokális viselkedést — pontosan úgy, ahogy egyváltozós esetben a második derivált teszi. Minden gépi tanulási optimalizáló algoritmus, ami többdimenziós felületen keres minimumot, hallgatólagosan erre a tesztre épít.",
     "whyMore": "A Hessian a másodrendű parciális deriváltak mátrixa; D = fₓₓ·f_yy − f²_xy a determinánsa egy kritikus pontban. Ha D > 0 és fₓₓ > 0, lokális minimum; ha D > 0 és fₓₓ < 0, lokális maximum; ha D < 0, nyeregpont; ha D = 0, a teszt döntésképtelen. A teszt a másodrendű Taylor-közelítésből származik: a kvadratikus tag előjele határozza meg a lokális görbületet.",
     "wiki": "https://en.wikipedia.org/wiki/Hessian-m%C3%A1trix_%C3%A9s_a_D-teszt",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1857
   },
   {
     "name": "Green-tétel",
@@ -1325,7 +1420,8 @@
     "why": "<b>Egy zárt görbe menti vonalintegrál átalakítható a görbe által határolt terület kettős integráljává — a peremen történő és a belsejében történő 'történések' ekvivalensek.</b> Green önmagát tanított matematikusként, molnárként dolgozva alkotta meg ezt az eredményt, amit csak halála után fedeztek fel igazán. Ez a Stokes-tétel síkbeli speciális esete, és a modern vektoranalízis egyik alappillére — együtt Gauss divergenciatételével a 'nagy integrál-hármast' alkotja.",
     "whyMore": "Az L és M a görbe menti vektormező komponensei, a bal oldali vonalintegrál a C zárt görbe menti érintőleges áramlást összegzi, a jobb oldal pedig a D tartományon a helyi forgás erősségét, azaz a (∂M/∂x − ∂L/∂y) „görbületet” integrálja. Geometriailag ez a kifejezés azt méri, hogy a mező az adott pont környezetében mennyire „tekerődik”, így a belső forgások teljes összege éppen a peremen körbejáró áramlással egyenlő. Ezért a Stokes-tétel síkbeli speciális esete: a felületi örvényesség integrálja válik a határvonal körüli keringéssé.",
     "wiki": "https://en.wikipedia.org/wiki/Green-t%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1828
   },
   {
     "name": "Gauss-féle divergenciatétel",
@@ -1335,7 +1431,8 @@
     "why": "<b>Egy vektormező zárt felületen átfolyó teljes fluxusa pontosan megegyezik a divergenciájának a bezárt térfogaton vett integráljával.</b> Ha egy térfogat belsejében nincs forrás vagy nyelő, a be- és kiáramlás pontosan kiegyenlítődik — ez a fizikai intuíció mögötte. Gauss törvénye az elektrodinamikában (Maxwell-egyenletek egyike) és a folyadékok kontinuitási egyenlete is közvetlenül ebből a tételből következik.",
     "whyMore": "Az F egy vektormező, a dS a felület kifelé mutató felületeleme, a bal oldali felületintegrál összeadja, mekkora mező áramlik ki az S burkon át. A jobb oldali térfogatintegrál a ∇·F divergenciát, vagyis a térfogategységre jutó nettó forrásnyelő sűrűséget összegzi a V belsejében. Mivel a divergencia pontonként a „kifolyó mínusz befolyó” arány, a burok teljes kiáramlása szükségszerűen a belső források és nyelők különbségéből adódik.",
     "wiki": "https://en.wikipedia.org/wiki/Gauss-f%C3%A9le_divergenciat%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1813
   },
   {
     "name": "Cauchy–Riemann-egyenletek",
@@ -1345,7 +1442,8 @@
     "why": "<b>Két egyszerű parciális differenciálegyenlet dönti el, hogy egy komplex függvény 'igazán' deriválható-e — nem csak formálisan, hanem a komplex sík minden irányában egyszerre.</b> Ha egy függvény valós és képzetes része teljesíti ezeket az összefüggéseket, a függvény holomorf: végtelenül sokszor deriválható, és analitikus sorba fejthető. Ez a feltétel az, ami a komplex analízist ennyire merevvé és egyben gyönyörűvé teszi — Cauchy integrálformulája és Liouville tétele is erre épül.",
     "whyMore": "Legyen f(z)=u(x,y)+i·v(x,y), ahol u a valós, v a képzetes rész; az egyenletek azt kötik ki, hogy u x szerinti deriváltja egyenlő v y szerinti deriváltjával, és v x szerinti deriváltja az u y szerinti negatívja. Ekkor a Jacobi-mátrix egy elforgatással és nyújtással leírható lineáris leképezés lesz, vagyis a függvény lokálisan szögeket és alakokat megőriz (konform leképezés). Emiatt a derivált értéke független attól, milyen irányból közelítjük a pontot a komplex síkon, és ez a merevség teszi a holomorf függvényeket végtelenül sokszor deriválhatóvá.",
     "wiki": "https://en.wikipedia.org/wiki/Cauchy%E2%80%93Riemann-egyenletek",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1821
   },
   {
     "name": "Wallis-szorzat",
@@ -1355,7 +1453,8 @@
     "why": "<b>Egy végtelen szorzat, kizárólag egész számokból, pontosan π felét adja — évszázadokkal Euler és a Basel-probléma előtt.</b> Wallis geometriai és interpolációs érveléssel jutott el ide, jóval azelőtt, hogy a kalkulus modern eszköztára rendelkezésre állt volna. Ez volt az egyik első jele annak, hogy π sokkal mélyebben kötődik a számelmélethez és az analízishez, mint azt bárki sejtette volna a kör egyszerű geometriájából.",
     "whyMore": "Minden tényező (2n/(2n−1))·(2n/(2n+1)) kissé nagyobb 1-nél, és n→∞ esetén 1-hez tart, az így keletkező végtelen szorzat „lassan kúszva” π/2-hez konvergál. A formula az sinⁿ(x) függvény [0,π/2] feletti integráljából származik: az egymást követő hatványok integráljainak hányadosa adja pontosan a racionális tényezőket. Így π a természetes számokból álló végtelen szorzat határértékeként is megjelenik, évszázadokkal a modern analízis előtt.",
     "wiki": "https://en.wikipedia.org/wiki/Wallis-szorzat",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1656
   },
   {
     "name": "Mittag-Leffler-tétel",
@@ -1365,7 +1464,8 @@
     "why": "<b>Bármilyen előre megadott pólus-szerkezethez létezik olyan meromorf függvény, aminek pontosan azok a pólusai — a függvény szó szerint 'felépíthető' a szingularitásaiból.</b> Mittag-Leffler ezzel a konstruktív egzisztenciatétellel mutatta meg, hogy a komplex analízis nem csupán vizsgálja a függvényeket, hanem tervezni is lehet őket, mint egy mérnöki rendszert. A Weierstrass-féle szorzattétel testvérfogalma — az egyik a zérushelyekből, a másik a pólusokból épít.",
     "whyMore": "Az a_k az előírt pólusok helye, és az 1/(z−a_k) főrészek rögzítik az egyes pólusok körüli szinguláris viselkedést, míg a p_k(z) polinomok eltüntetik a kellemetlen, nem kívánt tagokat, hogy a darabok globálisan összeilleszthetők legyenek. A hozzáadott g(z) teljes függvény a reguláris részt igazítja ki anélkül, hogy a pólusokat megváltoztatná. Ez a Weierstrass-féle szorzattétel additív párja: az egyik a zérushelyekből, a másik a pólusokból „építi fel” a meromorf függvényt.",
     "wiki": "https://en.wikipedia.org/wiki/Mittag-Leffler-t%C3%A9tel",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1876
   },
   {
     "name": "Mandelbrot-halmaz",
@@ -1376,7 +1476,8 @@
     "why": "<b>Egyetlen, gyerekjáték-egyszerű iterációs szabály — négyzetre emelés és hozzáadás — végtelenül bonyolult, önhasonló határvonalat rajzol ki a komplex síkon.</b> Minden pontja egy teljes Julia-halmaz 'sorsát' kódolja: attól függően, hogy c benne van-e a halmazban, a hozzá tartozó iteráció korlátos marad vagy szétszalad a végtelenbe. A számítógépes grafika tette először láthatóvá — előtte senki nem sejtette, milyen barokkosan gazdag mintázat rejlik ebben az egyszerű képletben.",
     "whyMore": "Az iteráció z_{n+1}=z_n²+c a z₀=0 kezdőpontból indul, és a c pont akkor tartozik M-hez, ha az így kapott sorozat korlátos marad, vagyis nem szalad a végtelenbe. A menekülési sugár pontosan 2: ha valamikor |z_n|>2 lesz, a sorozat bizonyíthatóan divergál, tehát a tagság véges sok lépésben eldönthető. A határvonal barokkos bonyolultsága onnan ered, hogy c apró eltolása is átbillentheti a sorozatot korlátos és szétszaladó között.",
     "wiki": "https://en.wikipedia.org/wiki/Mandelbrot-halmaz",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1978
   },
   {
     "name": "Zorn-lemma",
@@ -1386,7 +1487,8 @@
     "why": "<b>Ha egy részbenrendezett halmazban minden láncnak van felső korlátja, akkor garantáltan létezik maximális elem — még ha a halmaz végtelen és 'megfoghatatlanul' bonyolult is.</b> A lemma bizonyíthatóan ekvivalens a kiválasztási axiómával, mégis sokkal gyakorlatiasabb formában: szinte minden algebrai struktúra (vektortér bázisa, ideál maximálissá bővítése) létezését ezzel bizonyítjuk, anélkül hogy explicit módon meg kellene konstruálnunk azt.",
     "whyMore": "Egy lánc a részbenrendezésben teljesen összehasonlítható (teljesen rendezett) részhalmaz, egy felső korlát pedig olyan elem, amely a lánc minden tagjánál nagyobb vagy egyenlő. A lemma szerint ha minden ilyen láncnak van felső korlátja, akkor folyamatosan „felfelé mászva” előbb-utóbb el kell érni egy maximális elemet, amelynél nincs nagyobb a halmazban. A végtelen „felfelé nyíló” lépcső kizárt, mert minden új elem egy láncot alkotna, amelynek újabb felső korlátot kellene adnia — ez ekvivalens a kiválasztási axiómával.",
     "wiki": "https://en.wikipedia.org/wiki/Zorn-lemma",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1935
   },
   {
     "name": "Gödel második nemteljességi tétele",
@@ -1396,7 +1498,8 @@
     "why": "<b>Egy elég erős, konzisztens formális rendszer nem tudja bebizonyítani a saját ellentmondásmentességét — önmagában.</b> Ez az első nemteljességi tétel közvetlen, de sokkal nyugtalanítóbb következménye: nemcsak hogy vannak eldönthetetlen állítások, hanem maga a rendszer 'megbízhatóságának' bizonyítéka is kicsúszik a kezeink közül. Hilbert programja — hogy a matematika ellentmondásmentességét véges eszközökkel igazolják — pontosan emiatt bukott meg.",
     "whyMore": "A Con(T) a rendszer saját „T konzisztens” állítása, amelyet Gödel-számozással aritmetikai formulaként írunk fel magában T-ben. A tétel kimondja, hogy ha T elég erős az elemi számelmélet leírásához és konzisztens, akkor T nem tudja bizonyítani Con(T)-t. Az első nemteljességi tétel önhivatkozó konstrukcióját újrafelhasználva látható be, hogy egy ilyen konzisztenciabizonyítás azonnal ellentmondáshoz vezetne.",
     "wiki": "https://en.wikipedia.org/wiki/G%C3%B6del_m%C3%A1sodik_nemteljess%C3%A9gi_t%C3%A9tele",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1931
   },
   {
     "name": "Kompaktsági tétel",
@@ -1406,7 +1509,8 @@
     "why": "<b>Ha egy végtelen elméletnek minden véges darabja konzisztens, akkor maga a teljes végtelen elmélet is konzisztens — a végtelenség 'ingyen' következik a végesből.</b> Ez a meglepő átmenet teszi lehetővé olyan egzotikus struktúrák létezésének bizonyítását, mint a nemsztenderd valós számok (végtelenül kicsi és nagy elemekkel) — pusztán logikai eszközökkel, konkrét konstrukció nélkül.",
     "whyMore": "A Σ egy logikai állításokból álló (végtelen) halmaz, a véges kielégíthetőség azt jelenti, hogy Σ minden véges részhalmazának van modellje. Egy az igazságértékek térszét használó (topológiai vagy ultrafilter) érveléssel belátható, hogy ha egyetlen véges rész sem ellentmondásos, akkor létezik egyetlen modell, amely az összes Σ-beli állítást egyszerre kielégíti. Emiatt az ellentmondásmentes végtelen elméleteknek mindig van – gyakran nem szabványos – modelljük.",
     "wiki": "https://en.wikipedia.org/wiki/Kompakts%C3%A1gi_t%C3%A9tel",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1930
   },
   {
     "name": "Kolmogorov-axiómák",
@@ -1416,7 +1520,8 @@
     "why": "<b>Három egyszerű szabály — és a valószínűségszámítás egy évszázados, intuícióra épülő gyakorlata egyszerre válik szigorú matematikává.</b> Kolmogorov a mértékelméletet alkalmazta a véletlenre: a valószínűség nem más, mint egy speciális mérték. Ez az axiomatizálás tette lehetővé, hogy a valószínűségszámítás ugyanolyan biztos lábakon álljon, mint a geometria vagy az analízis — és hogy értelmet nyerjen a folytonos valószínűségi változók fogalma is.",
     "whyMore": "Az Ω az eseménytér, P pedig az eseményeken értelmezett halmazfüggvény. A három axióma – a teljes valószínűség 1, a nemnegativitás, és diszjunkt eseményeknél az unió valószínűsége a tagok összege – éppen azt mondja ki, hogy P egy teljes tömegű (egységnyi) mérték. Így a véletlen a megszámlálhatóan additív mértékelmélet nyelvére fordul, ami a folytonos valószínűségi változók és a határeloszlások szigorú kezelését is lehetővé teszi.",
     "wiki": "https://en.wikipedia.org/wiki/Kolmogorov-axi%C3%B3m%C3%A1k",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1933
   },
   {
     "name": "Borel–Cantelli-lemma",
@@ -1426,7 +1531,8 @@
     "why": "<b>Ha egy véletlen esemény bekövetkezési valószínűségeinek összege véges, akkor szinte biztos, hogy csak véges sokszor következik be — sosem végtelen sokszor.</b> Ez a meglepően egyszerű összefüggés a modern valószínűségszámítás egyik legtöbbet használt technikai eszköze: innen indul a nagy számok erős törvényének, a véletlen bolyongások és a sztochasztikus folyamatok hosszú távú viselkedésének vizsgálata.",
     "whyMore": "Ha Σ P(A_n) véges, akkor a valószínűségek összege korlátos, és a megszámlálható szubadditivitás miatt a végtelen sok A_n bekövetkezésének valószínűsége legfeljebb a farokösszegek nullához tartó maradéka. Vagyis 1 valószínűséggel legfeljebb véges sok A_n következik be: a ritka események, amelyeknek az összvalószínűsége summázható, nem fordulhatnak elő végtelenszer. Ezért ez a technikai eszköz a nagy számok törvényeinek és a sztochasztikus folyamatok hosszú távú viselkedésének kiindulópontja.",
     "wiki": "https://en.wikipedia.org/wiki/Borel%E2%80%93Cantelli-lemma",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1909
   },
   {
     "name": "Nagy eltérések elmélete",
@@ -1436,7 +1542,8 @@
     "why": "<b>Nem csak azt tudjuk, hogy a véletlen átlag konvergál a várható értékhez — azt is, milyen exponenciálisan valószínűtlen egy attól távoli kilengés.</b> Az 'sebesség-függvény' (I) pontosan megmondja, mennyire ritka egy adott mértékű eltérés — ez teszi lehetővé a biztosítási kockázatok, a hálózati torlódások és a statisztikus fizika fázisátmeneteinek precíz becslését. Cramér eredetileg biztosítási csőd-valószínűségeket vizsgált, amikor rábukkant az elméletre.",
     "whyMore": "Az X̄_n az n független, azonos eloszlású változó mintaátlaga, I(a) pedig a sebességfüggvény, amely megadja az a-tól való eltérés „költségét”, gyakran relatív entrópiaként. A P(X̄_n≥a)≈e^{−n·I(a)} becslés szerint a nagy eltérések valószínűsége exponenciálisan, n-ben lineáris kitevővel csökken, és az exponenst a I(a) szabja meg. A I(a) függvényt a momentumgeneráló függvény Legendre–Fenchel-transzformációjával kapjuk, ami pontos becslést ad a biztosítási csődök, hálózati torlódások és a statisztikus fizika fázisátmeneteinek farkára.",
     "wiki": "https://en.wikipedia.org/wiki/Nagy_elt%C3%A9r%C3%A9sek_elm%C3%A9lete",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1938
   },
   {
     "name": "Dilworth-tétel",
@@ -1446,7 +1553,8 @@
     "why": "<b>Egy részbenrendezett halmaz felbontható annyi láncra, ahány elemű a legnagyobb 'egymással össze nem hasonlítható' elemekből álló csoport — sem többre, sem kevesebbre.</b> Ez a dualitási tétel a gráfelmélet és a kombinatorikus optimalizálás egyik alappillére, közeli rokona a König-tételnek és a max-flow-min-cut tételnek — mindhárom ugyanazt a mély elvet fejezi ki más-más nyelven: a legnagyobb 'akadály' pontosan megegyezik a legkisebb 'megoldással'.",
     "whyMore": "Egy lánc a részbenrendezésben páronként összehasonlítható elemek halmaza, egy antilánc pedig páronként összehasonlíthatatlan elemeké. A tétel szerint a pozethalmaz fedéséhez szükséges legkevesebb lánc száma pontosan megegyezik a legnagyobb antilánc méretével – ezt úgy láthatjuk be, hogy ismételten eltávolítjuk a maximális antiláncot, minden eltávolítás egy láncnak felel meg. Ez ugyanazt a duális elvet fogalmazza meg, mint a König- és a max-flow-min-cut tételek a páros gráfok párosításában.",
     "wiki": "https://en.wikipedia.org/wiki/Dilworth-t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1950
   },
   {
     "name": "Menger-tétel",
@@ -1456,7 +1564,8 @@
     "why": "<b>Két csúcs között annyi teljesen független útvonal létezik egy hálózatban, amennyi élt minimálisan el kell vágni ahhoz, hogy szétválasszuk őket.</b> Menger egyetemi szemináriumon vetette fel a kérdést, és a bizonyítás azóta a hálózati folyam-elmélet (max-flow-min-cut) egyik ősforrása lett. Minden internetes útvonalválasztási protokoll, ami a hálózat 'hibatűrését' méri, hallgatólagosan erre a tételre épül.",
     "whyMore": "Két csúcs, s és t esetén az éldiszjunkt utak nem osztanak meg egyetlen élt sem, a minimális elvágó élhalmaz pedig a legkevesebb olyan él, amelynek eltávolítása s-t összeköttetését megszünteti. Menger egyenlősége szerint e két szám egyenlő, mivel bármely maximális darabú független útrendszer minden s-t elvágását kényszeríti, hogy útonként legalább egy élt használjon. Ez a kombinatorikus tény a hálózati folyam-elmélet, közelebbről a max-flow-min-cut tétel ősforrása.",
     "wiki": "https://en.wikipedia.org/wiki/Menger-t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1927
   },
   {
     "name": "Catalan-számok",
@@ -1466,7 +1575,8 @@
     "why": "<b>Egyetlen számsorozat számolja meg a helyesen zárójelezett kifejezéseket, a bináris fákat, a sokszög-háromszögeléseket és tucatnyi más, látszólag teljesen független kombinatorikus struktúrát.</b> A Catalan-számok az egyik legszebb példa arra, hogy a matematikában ugyanaz a mintázat váratlanul sok, egymástól függetlennek tűnő helyen bukkan fel — informatikusok a bináris fák számolásához, kombinatorikusok a zárójelezésekhez használják, és mindig ugyanazt a képletet kapják.",
     "whyMore": "A C_n az n méretű sokféle kombinatorikai struktúrát számolja meg a C_{n+1}=Σ C_i·C_{n−i} rekurzió révén, ami a bináris fák vagy Dyck-utak felbontásából adódik, és zárt alakban C_n=(1/(n+1))·(2n választ n). A 1/(n+1) korrekciós tényező a (2n választ n) túlszámlálását igazítja: a reflexiós elvvel kivonja az érvénytelen, nem Dyck-típusú utakat. Így ugyanaz a zárt képlet írja le a helyes zárójelezéseket, a sokszögek háromszögeléseit és a hegymintákat is.",
     "wiki": "https://en.wikipedia.org/wiki/Catalan-sz%C3%A1mok",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1838
   },
   {
     "name": "Neumann-féle minimax-tétel",
@@ -1476,7 +1586,8 @@
     "why": "<b>Egy kétszemélyes, zéróösszegű játékban mindig létezik olyan stratégia-pár, ahol egyik fél sem tud egyoldalúan javítani a helyzetén — a 'legjobb legrosszabb eset' pontosan megegyezik a 'legrosszabb legjobb esettel'.</b> Neumann János ezzel a tétellel alapította meg a modern játékelméletet, jóval Nash egyensúlyfogalma előtt. Katonai stratégiától a piaci árképzésig és a gépi tanulásbeli ellenséges hálózatokig (GAN-ok) mindenhol ez az elv húzódik meg a háttérben.",
     "whyMore": "A f(x,y) kifejezés a játékosok kifizetését jelöli: x a soros, y az oszlopos játékos stratégiája, az érték a soros nyeresége. A bal oldal azt mondja: a soros előbb rögzíti x-et, aztán az ellenfél a saját szempontjából legrosszabbat választja (min_y), ezt a legrosszabb esetet maximalizálja (max_x). A jobb oldal ugyanez fordítva: az oszlopos előbb véd, a soros a legjobbat játssza. Az egyenlőség azt jelenti, hogy létezik a játéknak egy jól meghatározott értéke v, amit egyik fél sem tud egyoldalúan túllépni — a tétel a biztonságos stratégiák egyensúlyáról szól, nem a nyerésről.",
     "wiki": "https://en.wikipedia.org/wiki/Neumann-f%C3%A9le_minimax-t%C3%A9tel",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1928
   },
   {
     "name": "Poincaré–Hopf-tétel",
@@ -1486,7 +1597,8 @@
     "why": "<b>Egy vektormező szingularitásainak 'örvényessége' — összeadva mindet — pontosan megegyezik a felület Euler-karakterisztikájával, függetlenül attól, milyen vektormezőt választunk.</b> Ez a Sündisznó-tétel (amit a gyűjteményben már érintettünk) messzemenő általánosítása: nem csak azt mondja meg, mikor lehetetlen a sehol-nulla vektormező, hanem pontosan megszámolja, hány és milyen típusú szingularitás garantált. A topológia és az analízis egyik legszebb hídja — tisztán geometriai mennyiség (görbület) és tisztán algebrai invariáns (Euler-karakterisztika) között.",
     "whyMore": "Az ind(x_i) a vektormező i-edik zéruspontjának indexe, azaz hogy a vektorok a szingularitás körül hányszor forognak meg, míg egyszer körbejárjuk (például forrás: +1, nyereg: -1). A χ(M) az M felület Euler-karakterisztikája, egy tisztán topologikai szám (gömbre 2, tóruszra 0). A tétel szerint bármilyen vektormezőt választunk, a szingularitások indexeinek összege mindig pontosan χ(M) — vagyis a felület globális topológiája kényszeríti a helyi szingularitások összesített örvényességét. Ezért lehetetlen a gömbön sehol-nulla vektormező: az összeg 2, de nulla szingularitással 0 jönne ki.",
     "wiki": "https://en.wikipedia.org/wiki/Poincar%C3%A9%E2%80%93Hopf-t%C3%A9tel",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1885
   },
   {
     "name": "Jordan–Brouwer szétválasztási tétel",
@@ -1496,7 +1608,8 @@
     "why": "<b>Egy egyszerű, zárt (n-1)-dimenziós felület mindig pontosan két részre — egy belsőre és egy külsőre — vágja szét a teret, akárhány dimenzióban is vagyunk.</b> Síkban ez a Jordan-görbetétel (amit a gyűjteményben már érintettünk) — 'minden zárt görbének van belseje és külseje', ami triviálisnak tűnik, míg valaki meg nem próbálja szigorúan bebizonyítani. Brouwer általánosította tetszőleges dimenzióra, olyan topologikus eszközökkel (homológia), amik nélkül a magasabb dimenziós geometria ma elképzelhetetlen lenne.",
     "whyMore": "Az S^{n-1} egy (n-1)-dimenziós, egységesen sima, zárt felület (például n=3 esetén egy gömbfelszín) a ℝ^n térben. A tétel szerint ennek elhagyásával a tér pontosan két összefüggő komponensre esik szét: egy belső (korlátos) és egy külső (korlátlan) részre, amelyek csak a felületen érintkeznek. A ⊔ (diszjunkt unió) jelzi, hogy a kettő nem keveredik egymással. Intuitívan: akárhány dimenzióban vagyunk, egy gömb ugyanúgy falat húz a végtelen tér és a belseje közé — ezt a homológiai eszközök teszik szigorúvá.",
     "wiki": "https://en.wikipedia.org/wiki/Jordan%E2%80%93Brouwer_sz%C3%A9tv%C3%A1laszt%C3%A1si_t%C3%A9tel",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1912
   },
   {
     "name": "Theorema Egregium",
@@ -1506,7 +1619,8 @@
     "why": "<b>Egy felület görbülete kiszámítható pusztán a felületen belül végzett mérésekkel — anélkül, hogy tudnánk, hogyan van 'begörbítve' a körülötte lévő térbe.</b> Gauss annyira büszke volt erre a felfedezésre, hogy 'kivételes tételnek' (Theorema Egregium) nevezte el. Ez a meglepő eredmény jelenti ki: egy hangya, ami sosem hagyja el egy gömb felszínét, pusztán a felszínen végzett mérésekkel rájöhetne, hogy gömbön él, nem síkon — ez az alapja annak is, hogy egy térképet sosem lehet torzításmentesen síkba teríteni.",
     "whyMore": "Az E, F, G az első alapforma együtthatói (a felület belső távolságmérését írják le), az L, M, N a második alapformáéi (a környező térbe való hajlást). A K görbület ezek hányadosa, és a lényeg: kizárólag E, F, G-ből és azok deriváltjaiból kiszámolható, a második alapforma nélkül is. Vagyis a görbület intrinsic mennyiség — egy két dimenziós lény a felületen belül is megmérheti, anélkül, hogy a harmadik dimenzióba kilépne. Ezért nem teríthető egy gömb felülete torzítás nélkül síkra: pozitív K-ja van, a síké nulla, és a belső metrika puszta áttekercseléssel nem változhat meg.",
     "wiki": "https://en.wikipedia.org/wiki/Theorema_Egregium",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1827
   },
   {
     "name": "Königsberg hidak problémája",
@@ -1516,7 +1630,8 @@
     "why": "<b>A königsbergi polgárok évszázadokig próbáltak olyan sétautat találni, ami a város mind a hét hídján pontosan egyszer halad át — Euler bebizonyította, hogy ez lehetetlen.</b> A megoldás kulcsa az volt, hogy a földrajzi részleteket teljesen elhagyva, a városrészeket pontokká, a hidakat vonalakká egyszerűsítette — ezzel gyakorlatilag megszülte a gráfelméletet, mint önálló matematikai diszciplínát. Ritkán esik egybe egy tudományterület kezdete ilyen pontosan egyetlen cikkel.",
     "whyMore": "Az Euler-út egy olyan séta, amely minden élen pontosan egyszer halad át. A feltétel szerint ilyen út akkor és csak akkor létezik, ha a gráf összefüggő és legfeljebb két csúcsnak páratlan a foka (az oda vezető és onnan induló élek száma). A két páratlan fokú csúcs pont a kezdő- és végpont lehet; ha nulla páratlan van, zárt körút adódik. Königsbergben mind a négy szigetnek 3 vagy 5 hídja volt, vagyis mind páratlan fokú — ezért volt lehetetlen a hét hidat egyszer átszelő séta.",
     "wiki": "https://en.wikipedia.org/wiki/K%C3%B6nigsberg_hidak_probl%C3%A9m%C3%A1ja",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1736
   },
   {
     "name": "Skatulya-elv (Dirichlet-elv)",
@@ -1526,7 +1641,8 @@
     "why": "<b>Ha n+1 galambot n fészekbe teszel, garantáltan lesz olyan fészek, amiben legalább kettő van — ez a matematika egyik legegyszerűbb, mégis meglepően sokat érő állítása.</b> A tétel önmagában szinte magától értetődő, mégis a legváratlanabb helyeken bukkan fel bizonyítási eszközként: két ember hajszálszáma garantáltan megegyezik egy nagyvárosban, vagy hogy egy irracionális szám tizedesjegyei között garantáltan van ismétlődő minta. A mélység nem az állításban, hanem abban rejlik, hogyan alkalmazzuk.",
     "whyMore": "A formula n+1 tárgyat oszt n fiókba: ha minden fiók legfeljebb 1 tárgyat kapna, összesen csak n tárgy férne el, de n+1 van — ezért valamelyik fiókban legalább 2-nek kell lennie. Ez a tiszta létezési következtetés: nem mondjuk meg, melyik fiók, csak azt, hogy kötelezően van olyan. Az elv ereje az átfogalmazásban rejlik — úgy kell csomagolni a problémát, hogy a tárgyak és fiókok száma közötti különbség kikényszerítse a kívánt ismétlődést.",
     "wiki": "https://en.wikipedia.org/wiki/Skatulya-elv_%28Dirichlet-elv%29",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1834
   },
   {
     "name": "Valószínűségi módszer",
@@ -1536,7 +1652,8 @@
     "why": "<b>Ahhoz, hogy bebizonyítsuk egy bizonyos tulajdonságú objektum létezését, nem kell megkonstruálnunk — elég megmutatni, hogy egy véletlenszerűen választott objektumnak pozitív valószínűséggel van meg ez a tulajdonsága.</b> Erdős Pál forradalmasította ezzel a kombinatorikát: olyan struktúrák (extremális gráfok, Ramsey-számok alsó korlátai) létezését bizonyította, amiket a mai napig senki sem tudott explicit módon megkonstruálni. Az egyik legszebb példa arra, hogy a véletlen néha hatékonyabb bizonyítási eszköz, mint a direkt konstrukció.",
     "whyMore": "A P(tulajdonság) > 0 azt jelenti, hogy egy véletlenül választott objektumnak pozitív eséllyel megvan a kívánt tulajdonság. Ha a valószínűség nem nulla, akkor léteznie kell legalább egy konkrét objektumnak, amely rendelkezik vele — különben a valószínűség 0 lenne. A trükk: nem kell megmutatni egyetlen példát sem, elég a valószínűségi teret jól megválasztani és kimutatni, hogy a rossz objektumok aránya 1-nél kisebb. Így olyan extremális gráfok létezését is belátjuk, amelyeket máig nem sikerült explicit leírni.",
     "wiki": "https://en.wikipedia.org/wiki/Val%C3%B3sz%C3%ADn%C5%B1s%C3%A9gi_m%C3%B3dszer",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1947
   },
   {
     "name": "Markov-egyenlőtlenség",
@@ -1546,7 +1663,8 @@
     "why": "<b>A legegyszerűbb lehetséges korlát arra, mekkora eséllyel vesz fel egy nemnegatív véletlen változó nagy értéket — mindössze a várható értékből.</b> Nincs szükség az eloszlás formájának ismeretére, semmilyen feltételezésre — ez az ára annak, hogy a korlát gyakran nagyon 'laza'. Mégis ez az alapköve a Csebisev-egyenlőtlenségnek (amit a gyűjteményben már érintettünk) és rajta keresztül a nagy számok törvényének is — az egész valószínűségi becsléselmélet erre az egyetlen, triviálisan egyszerű állításra épül.",
     "whyMore": "X egy nemnegatív véletlen változó, E[X] a várható értéke, a pedig egy küszöb. A bizonyítás magva: az E[X] átlagos érték nem lehet kisebb, mint a nagy értékek súlyozott átlaga — hiszen ha X≥a esetekben X helyett csak a-t számoljuk, az alsó becslést adja a várhatónak, így E[X] ≥ a·P(X≥a). Az egyenlőtlenség minden eloszlásra igaz, mert nem használ mást, csak a nemnegativitást és a lineáris várakozási értéket. Minél nagyobb az a, annál kisebb a felső korlát — ezért laza, de univerzális.",
     "wiki": "https://en.wikipedia.org/wiki/Markov-egyenl%C5%91tlens%C3%A9g",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1884
   },
   {
     "name": "Jensen-egyenlőtlenség",
@@ -1556,7 +1674,8 @@
     "why": "<b>Egy konvex függvénybe behelyettesített átlag mindig kisebb vagy egyenlő, mint a függvényértékek átlaga — a görbület 'árat' szab a véletlenszerűségnek.</b> Ez az egyetlen egyenlőtlenség rejtőzik a számtani-mértani közép egyenlőtlenség, az entrópia tulajdonságai és a pénzügyi kockázatelmélet (miért félünk jobban a veszteségtől, mint amennyire örülünk az ugyanakkora nyereségnek) mögött is. Jensen dán matematikusként, biztosítási statisztikusi munkája mellett dolgozta ki.",
     "whyMore": "f konvex: a grafikonja alatt van a szakasznak, tehát a középpont fölött domborodik (például x², eˣ). Ha X véletlen, akkor E[X] a középpont, f(E[X]) a görbe ezen a ponton vett értéke, míg E[f(X)] a görbe menti értékek átlaga. Mivel a konvex görbe kifelé domborodik, az átlag a görbén feljebb esik, mint a görbe középértéken vett magassága: f(E[X]) ≤ E[f(X)]. Ez magyarázza többek között, miért kedvezőbb a biztos kis nyereség a kockázatos nagy átlagnál — a várható haszon konkáv, a kockázat lehúzza a görbét.",
     "wiki": "https://en.wikipedia.org/wiki/Jensen-egyenl%C5%91tlens%C3%A9g",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1906
   },
   {
     "name": "Kruskal-algoritmus",
@@ -1566,7 +1685,8 @@
     "why": "<b>Egy hálózat legolcsóbb 'gerincét' — ami minden pontot összeköt, de a lehető legkevesebb költséggel — elég mohó módon, mindig a legolcsóbb következő élt választva megtalálni.</b> Meglepő, hogy egy ilyen egyszerű, 'kapkodó' stratégia garantáltan optimális megoldást ad — ezt a tulajdonságot (matroid-szerkezet) csak évtizedekkel később értették meg teljesen. Minden távközlési hálózat, elektromos elosztóhálózat és úthálózat-tervezés tervezésekor ez az első algoritmus, amit lefuttatnak.",
     "whyMore": "A mohó itt azt jelenti: a minimális feszítőfa építésekor mindig a legkisebb súlyú, még körmentes élt vesszük be. A kulcs: ha egy élt kihagynánk a legkisebbtől, azt egy drágábbal kellene pótolni ugyanazon komponens összekötéséhez — tehát a mohó választás lokálisan is és globálisan is optimális marad (ez a matroid-tulajdonság). Mivel mindig a legolcsóbb elérhető élt visszük be kör nélkül, a végén pont a minimális összköltségű összekötés marad. A körök elkerülését diszjunkt halmazok (union-find) segítségével döntjük el hatékonyan.",
     "wiki": "https://en.wikipedia.org/wiki/Kruskal-algoritmus",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1956
   },
   {
     "name": "Huffman-kódolás",
@@ -1576,7 +1696,8 @@
     "why": "<b>A leggyakoribb szimbólumoknak a legrövidebb kódot adva, majd lépésről lépésre összevonva a legritkábbakat, garantáltan a lehető legrövidebb átlagos kódhosszt kapjuk.</b> David Huffman ezt egy egyetemi szemináriumi feladatként oldotta meg — professzora, Fano éveken át kutatta a problémát, és a fiatal Huffman jobb megoldást talált, mint a mestere. Minden ZIP-fájl, JPEG-kép és a legtöbb tömörítési szabvány valahol a mélyben ezt az egyszerű, mohó fastruktúra-építést futtatja.",
     "whyMore": "A cél a Σ p_i·l_i várható kódhossz minimalizálása, ahol p_i az i-edik szimbólum gyakorisága és l_i a hozzárendelt kód hossza. Huffman eljárása a két legritkább szimbólumot egyesíti egy közös csomóponttá, és ezt ismétli felfelé egy bináris fát építve – így a gyakori szavak a gyökér közelébe, a ritkák a mélybe kerülnek. Az eredmény prefix-kód, amely optimális: egyetlen más prefix-kód sem ad kisebb várható bitszükségletet.",
     "wiki": "https://en.wikipedia.org/wiki/Huffman-k%C3%B3dol%C3%A1s",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1952
   },
   {
     "name": "Radon-transzformáció",
@@ -1586,7 +1707,8 @@
     "why": "<b>Egy test belsejének teljes szerkezete rekonstruálható pusztán abból, hogy sok különböző irányból megmérjük, mennyi sugárzás nyelődik el benne.</b> Radon 1917-ben tisztán absztrakt matematikai kíváncsiságból dolgozta ki a tételt — fél évszázaddal a CT-szkenner feltalálása előtt. Amikor Hounsfield és Cormack az 1970-es években megépítették az első komputertomográfot, kiderült, hogy a matematikai megoldás már ötven éve készen várta őket. Ma naponta több millió orvosi képalkotó vizsgálat fut ezen az inverz transzformáción.",
     "whyMore": "A ℛf(θ,s) a test f denzitásának a θ irányú, s távolságú egyenes menti összege — mintha egy sugarat küldenénk át és mérnénk, mennyit nyelődik el. A δ (Dirac-delta) azt rögzíti, hogy csak az adott egyenesen lévő pontok számítanak, az integrál végigfut az egyenesen (dl). A Radon-transzformált tehát a test vetületeit adja minden irányból, és a tétel szerint ezekből az egyenes-menti összegekből a test belső eloszlása egyértelműen visszanyerhető. Ez a CT- és MRI-képek számítási alapja: a gép sugarakat küld át, mi pedig Radon inverzével rakjuk össze a metszetet.",
     "wiki": "https://en.wikipedia.org/wiki/Radon-transzform%C3%A1ci%C3%B3",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1917
   },
   {
     "name": "Lorenz-attraktor (pillangóhatás)",
@@ -1597,7 +1719,8 @@
     "why": "<b>Három egyszerű, determinisztikus egyenlet — mégis a megoldásuk örökre kiszámíthatatlan marad, mert a kezdőfeltételek milliomod részének megváltoztatása is teljesen más pályához vezet.</b> Lorenz véletlenül fedezte fel, amikor egy időjárás-szimulációt újraindított kerekített kezdőértékekkel, és teljesen más eredményt kapott. Ez a felismerés (a 'pillangóhatás') alapjaiban változtatta meg az időjárás-előrejelzésről, a hosszú távú tervezhetőségről és a determinizmusról alkotott képünket.",
     "whyMore": "A három egyenlet x, y, z változók időbeli változását írja le (σ a disszipáció, ρ a hajtó hőmérséklet-különbség, β a geometriai tényező). A rendszer determinisztikus: nincs benne véletlen, az egyenletek pontosan megadják a deriváltakat. Mégis a két legközelebbi kezdőpont pályája exponenciálisan szétválik — a hiba minden lépésben egy σ, ρ, β-től függő tényezővel nő. Emiatt a távoli jövőre a pontos előrejelzés lehetetlen: a kezdőfeltételeket soha nem ismerjük végtelen pontossággal, tehát a pillangó szárnycsapása valóban másfajta időjárást okozhat.",
     "wiki": "https://en.wikipedia.org/wiki/Lorenz-attraktor_%28pillang%C3%B3hat%C3%A1s%29",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1963
   },
   {
     "name": "Newton–Raphson-módszer",
@@ -1607,7 +1730,8 @@
     "why": "<b>Egy egyenlet megoldásához nem kell zárt képlet — elég egy tipp, és az érintő mentén csúszva néhány lépésben elképesztő pontossággal megtaláljuk a gyököt.</b> A módszer kvadratikusan konvergál: minden lépésben nagyjából megduplázódik a helyes tizedesjegyek száma. Ma minden mérnöki szoftver, gépi tanulási optimalizáló és numerikus megoldó ezen (vagy egy leszármazottján) alapul — talán a legtöbbet futtatott numerikus algoritmus a történelemben.",
     "whyMore": "f(x_n) a függvényérték a n-edik tippnél, f'(x_n) az érintő meredeksége. Az új tipp x_{n+1} úgy jön, hogy az érintőt lenyúzzuk a görbéig: a hányados megmondja, mennyit kell lépni x irányban, hogy az érintő nullához érjen. Mivel a görbe lokálisan majdnem egyenes, a következő tipp már sokkal közelebb van a valódi gyökhoz — és ha közel vagyunk, a hiba négyzete (kvadratikus konvergencia) csökken. Vigyázat: rossz indulótippnél vagy lapos érintőnél (f'≈0) az eljárás elszállhat, de jó közelítésből villámgyors.",
     "wiki": "https://en.wikipedia.org/wiki/Newton%E2%80%93Raphson-m%C3%B3dszer",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1669
   },
   {
     "name": "Monte Carlo-módszer",
@@ -1617,7 +1741,8 @@
     "why": "<b>Bonyolult, sokdimenziós problémákat úgy oldunk meg, hogy nem kiszámoljuk, hanem véletlenszerűen 'lövöldözünk' rá, és megnézzük, mi jön ki átlagban.</b> Stanislaw Ulam betegen, pasziánszozás közben jött rá az ötletre; a Manhattan-projekt neutron-diffúziós számításaihoz fejlesztették ki Neumann Jánossal. Ma a pénzügyi kockázatelemzéstől a részecskefizikai szimulációkig és a modern AI-modellek mintavételezéséig mindenhol ez fut — a szisztematikus véletlen mint számítási eszköz.",
     "whyMore": "Az I integrál értéke a keresett terület vagy térfogat; V a mintázási tartomány térfogata, N a lövések száma. A trükk: N darab véletlen x_i pontot dobunk egyenletesen (U) a tartományba, kiszámoljuk f(x_i)-t, és átlagoljuk — a V/N súly a becslést a térfogatra skálázza. A minták átlaga a nagy számok törvénye miatt konvergál az igazi integrálhoz, a hiba pedig csak 1/√N -zel csökken, lassan, de dimenziótól függetlenül. Ezért sokdimenziós integráloknál a Monte Carlo sokkal jobb, mint a rácsos módszerek, amelyeknél a pontok száma exponenciálisan robban.",
     "wiki": "https://en.wikipedia.org/wiki/Monte_Carlo-m%C3%B3dszer",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1946
   },
   {
     "name": "Bézier-görbék",
@@ -1627,7 +1752,8 @@
     "why": "<b>Néhány kontrollpont elegendő ahhoz, hogy tetszőlegesen sima, elegáns görbét definiáljunk — amit a számítógép pontosan és gyorsan ki tud rajzolni.</b> Bézier a Renault autókarosszériáinak tervezéséhez dolgozta ki (a rivális Citroënnél de Casteljau egymástól függetlenül ugyanezt). Ma minden betűtípus körvonala, minden vektorgrafikus rajz, minden animációs mozgásgörbe és CAD-modell ezekre a polinomokra épül — ritkán van ilyen közvetlen út az ipari tervezéstől a mindennapi digitális élményig.",
     "whyMore": "A P_i kontrollpontok, a binomiális együtthatókkal súlyozott (1-t)^{n-i}t^i tagok pedig az átmeneti súlyok t=0 és t=1 között. Minden t értékre a görbe pontja a kontrollpontok súlyozott átlaga (Bernstein-polinomokkal) — t=0-nál P_0-nél, t=1-nél P_n-nél vagyunk, közben a görbe vonzódik a többi pont felé anélkül, hogy átmenne rajtuk. Ez teszi könnyen vezérelhetővé: a tervező húzza a kontrollpontokat, a görbe simán követi. A de Casteljau-algoritmussal rekurzívan, stabilan ki is számolható bármely t-re, ezért használják betűtípusoknál és CAD-ben.",
     "wiki": "https://en.wikipedia.org/wiki/B%C3%A9zier-g%C3%B6rb%C3%A9k",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1962
   },
   {
     "name": "Hibavisszaterjesztés (backpropagation)",
@@ -1637,7 +1763,8 @@
     "why": "<b>Egy sokrétegű neurális háló minden egyes súlyáról kiszámítható, mennyivel járult hozzá a hibához — a láncszabályt visszafelé alkalmazva a kimenettől a bemenet felé.</b> Az ötlet önmagában nem új (a láncszabály Leibniz óta ismert), de a felismerés, hogy ezzel gyakorlatban is taníthatók mély hálózatok, elindította a modern mesterséges intelligencia forradalmát. Minden ma használt AI-modell — a képfelismeréstől a nyelvi modellekig — ezen az egyetlen deriválási trükkön tanul.",
     "whyMore": "A hiba E a kimeneteken keresztül minden súlytól függ, ezért a láncszabállyal a ∂E/∂w_ij parciális derivált felírható mint a j-edik neuron helyi hibajele (δ_j) szorozva az i-edik neuron oda érkező aktivációjával (o_i). Maga a δ_j is visszafelé terjed: a következő réteg δ-jeinek súlyozott összege és az aktiváció deriváltjának szorzata. Így egyetlen visszairányú átmenettel minden súly gradiense kiszámolható, ami lehetővé teszi a gradiensmódszert milliárdnyi paraméteren.",
     "wiki": "https://en.wikipedia.org/wiki/Hibavisszaterjeszt%C3%A9s_%28backpropagation%29",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1986
   },
   {
     "name": "Diffie–Hellman-kulcscsere",
@@ -1647,7 +1774,8 @@
     "why": "<b>Két ember megegyezhet egy közös titkos kulcsban egy nyilvános, lehallgatott csatornán keresztül — anélkül, hogy a kulcs valaha is átmenne a vonalon.</b> Ez a lehetetlennek tűnő trükk (a diszkrét logaritmus nehézségén alapulva) teremtette meg a nyilvános kulcsú kriptográfiát, egy évvel az RSA (amit a gyűjteményben már érintettünk) előtt. Minden HTTPS-kapcsolat, minden VPN és titkosított üzenetküldő alkalmazás valamilyen formában ezt a kulcscserét hajtja végre a háttérben.",
     "whyMore": "Alice választ egy titkos a-t és elküldi g^a mod p-t, Bob egy titkos b-t és küldi g^b mod p-t; a közös kulcs mindkettőjüknél g^{ab} mod p = (g^a)^b = (g^b)^a mod p. A lehallgató csak g^a-t és g^b-t látja, de a g^{ab} visszanyeréséhez a diszkrét logaritmust kellene megoldania (a-t kinyerni g^a mod p-ből), ami nagy p esetén számításigényűen lehetetlen. Így azonos titokhoz jutnak anélkül, hogy az valaha is átment volna a csatornán.",
     "wiki": "https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman-kulcscsere",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1976
   },
   {
     "name": "Hamming-kód",
@@ -1657,7 +1785,8 @@
     "why": "<b>Néhány okosan elhelyezett paritásbit hozzáadásával egy üzenet nemcsak felismeri, de automatikusan ki is javítja a benne keletkezett hibát — anélkül, hogy újra kellene küldeni.</b> Hamming a Bell Labs-nál dühöngött, mert a hétvégi számítógépes futtatásai mindig elhaltak egyetlen bithibán — így megalkotta a hibajavító kódolás elméletét. Minden RAM-modul, műholdas adatátvitel, QR-kód és mélyűri szondaüzenet ezen az elven marad épségben a zajos csatornákon.",
     "whyMore": "r paritásbittel 2^r féle szindróma képezhető; ebből egy jelenti a „hibátlan“ állapotot, a maradék címezi a m+r adat- és ellenőrzőpozíciót, ezért kell 2^r ≥ m+r+1. A paritásbiteket 2-es hatvány pozíciókra (1,2,4,8…) teszi, és a kiflitott bit pozícióinak kizáró vagy kapcsolata pont a hibás bit bináris indexét adja. Egyetlen hiba így nemcsak észlelhető, hanem azonnal helyre is állítható újraküldés nélkül.",
     "wiki": "https://en.wikipedia.org/wiki/Hamming-k%C3%B3d",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1950
   },
   {
     "name": "Galois-elmélet",
@@ -1667,7 +1796,8 @@
     "why": "<b>Egy polinomegyenlet gyökei akkor és csak akkor fejezhetők ki gyökjelekkel, ha a hozzá tartozó szimmetriacsoport 'feloldható' — ezzel dőlt el 300 év után, hogy az ötödfokú egyenletre nincs általános megoldóképlet.</b> Galois húszévesen, egy párbaj előtti éjszakán vetette papírra az elmélet vázlatát, majd másnap meghalt. Az általa megalkotott csoportelmélet ma az egész modern algebra alapja — a kriptográfiától a részecskefizika szimmetriáiig.",
     "whyMore": "Egy polinom gyökeit tartalmazó felbontási testnek van egy Gal(K/F) szimmetriacsoportja, amely a gyökök összes mezőművelettel kompatibilis permutációját írja le. Akkor és csak akkor létezik gyökjelképlet, ha ez a csoport feloldható, azaz van egy minden tényezője Abel-csoportos lánca. A legalább ötödfokú egyenleteknél az S_5 csoport nem ilyen, ezért nincs általános megoldóképlet — ezt a pontos akadályt adta meg Galois.",
     "wiki": "https://en.wikipedia.org/wiki/Galois-elm%C3%A9let",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1832
   },
   {
     "name": "Runge–Kutta-módszer",
@@ -1677,7 +1807,8 @@
     "why": "<b>Egy differenciálegyenlet megoldását lépésről lépésre közelíthetjük úgy, hogy minden lépésben négy helyen 'megkóstoljuk' a meredekséget, és okosan súlyozva átlagoljuk őket.</b> A negyedrendű változat (RK4) az a pont, ahol a pontosság és a számítási költség aránya optimális — ezért lett belőle a numerikus szimuláció univerzális munkalova. Bolygópálya-számítástól a szerkezetek dinamikai válaszáig és a járványterjedési modellekig szinte minden szimuláció ezt futtatja.",
     "whyMore": "Az RK4 négy meredekséget „kóstol“: k_1 a kiindulópontban, k_2 és k_3 a fél lépéses Euler-előrejelző szerinti középpontban, k_4 a teljes lépés végén. A (1,2,2,1)/6 súlyozás egyetlen Simpson-szerű kombináció, amely a hibák sorát h^5-ig kiejti, így negyedrendű a módszer. Egy lépés költsége alig több mint az egylépéses Euleré, de a lokális hiba ~h^5 helyett ~h^2, amiért ez lett a szimulációk univerzális munkalova.",
     "wiki": "https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta-m%C3%B3dszer",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1901
   },
   {
     "name": "Logisztikus leképezés",
@@ -1687,7 +1818,8 @@
     "why": "<b>Egyetlen paraméter fokozatos növelésével egy szimpla parabolikus szabály nyugodt egyensúlyból kettőződéseken át teljes káoszba zuhan — és mindezt egy sorban leírható képlet produkálja.</b> May populációdinamikai modellként vizsgálta, és megdöbbentette a felfedezés: nem kell bonyolult rendszer a kiszámíthatatlansághoz. A bifurkációs pontok arányában felbukkanó Feigenbaum-állandó (4,669...) univerzális — teljesen különböző fizikai rendszerekben is ugyanaz a szám jelenik meg.",
     "whyMore": "Az x_{n+1}=r x_n(1−x_n) szabály egy populációt ír le: az r x_n növekedésből levonja az r x_n^2 zsúfoltsági tagot. Ha 1<r<3, a vonzó egyensúlypont x*=1−1/r; az r=3, majd 3,449… értékeknél az stabilitását elveszti és periodikusan kettőződik. A káoszban (r≈3,57 fölött) apró kezdőkülönbségek robbannak szét (pozitív Lyapunov-exponens), miközben a bifurkációs ugrások aránya a univerzális Feigenbaum-állandóhoz, 4,6692-hez tart.",
     "wiki": "https://en.wikipedia.org/wiki/Logisztikus_lek%C3%A9pez%C3%A9s",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1976
   },
   {
     "name": "Gradiensmódszer (gradient descent)",
@@ -1697,7 +1829,8 @@
     "why": "<b>A legmeredekebb lejtő irányába lépkedve bármilyen bonyolult, sokdimenziós 'tájon' megtalálhatjuk a legmélyebb pontot — anélkül, hogy látnánk az egészet.</b> Cauchy csillagászati számításokhoz alkotta meg, de igazi diadalát a gépi tanulásban éli: minden neurális háló tanítása lényegében ennek az egyszerű szabálynak a milliárdszoros ismétlése, több milliárd paraméterű térben. Az AI-forradalom hajtómotorja egy 175 éves ötlet.",
     "whyMore": "A ∇J(θ) gradiens a veszteség legmeredekebb növekedési iránya, ezért az ellentétes irányba, η tanulási rátával lépve a θ_{n+1}=θ_n−η∇J(θ_n) szabály helyben csökkenti J-t. Ismételt alkalmazással lefelé sétálunk a veszteségfelszínen, és elég kicsi η mellett egy (helyi) minimumhoz konvergálunk. A mély tanulásban θ milliárdnyi paraméter, és az egyetlen szabályt milliószor ismételjük.",
     "wiki": "https://en.wikipedia.org/wiki/Gradiensm%C3%B3dszer_%28gradient_descent%29",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1847
   },
   {
     "name": "Bayes-hálózatok",
@@ -1707,7 +1840,8 @@
     "why": "<b>Egy bonyolult, sok változós valószínűségi rendszer hatalmas táblázata felbontható néhány kicsi, kezelhető feltételes valószínűségre — ha ismerjük, mi mitől függ közvetlenül.</b> Pearl gráfelméleti struktúrát adott a Bayes-tételnek (amit a gyűjteményben már érintettünk), és ezzel kiszámíthatóvá tette a bizonytalanság melletti következtetést. Orvosi diagnosztikai rendszerek, hibakeresés, kockázatelemzés és az okság modern matematikai elmélete mind erre épül — Pearl 2011-ben Turing-díjat kapott érte.",
     "whyMore": "n változó együttes eloszlása exponenciálisan nagy lenne, de ha minden X_i csak a szüleitől Pa(X_i) függ közvetlenül, akkor szorzattá esik szét: P=∏ P(X_i | Pa(X_i)). Az irányított körmentes gráf pont ezeket a függőségeket kódolja, így a következtetéshez csak a kis, lokális táblák kellenek. Néhány változó megfigyelése után a valószínűség végigfolyik a gráfon, és a többi csúcs utólagos (poszterior) valószínűsége kiszámítható.",
     "wiki": "https://en.wikipedia.org/wiki/Bayes-h%C3%A1l%C3%B3zatok",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1985
   },
   {
     "name": "Fast Fourier-transzformáció alkalmazása képtömörítésre (DCT)",
@@ -1717,7 +1851,8 @@
     "why": "<b>Egy képet nem képpontonként tárolunk, hanem frekvenciakomponensekre bontva — és mivel a szemünk a finom részletekre kevésbé érzékeny, a magas frekvenciák nagy része egyszerűen eldobható.</b> Ez az egyszerű felismerés tette lehetővé, hogy egy fénykép a huszadára zsugorodjon észrevehető minőségromlás nélkül. Minden JPEG-kép, MP3-hangfájl és videostreaming ezen az elven működik — enélkül a mai internet, ahogy ismerjük, egyszerűen nem létezne.",
     "whyMore": "A DCT a jelet növekvő frekvenciájú koszinusz-bázisfüggvények összegére bontja (az X_k együtthatókkal), és az energia nagy része az alacsony k indexű tagokban összpontosul. A szem sokkal kevésbé érzékeny a finom, magas frekvenciás részletekre, ezért a magas k-jú együtthatókat erősen kvantálhatjuk vagy nullázhatjuk észrevehető minőségromlás nélkül. A JPEG 8×8-os blokkokra vágja a képet, mindegyiken DCT-t futtat, és csak a domináns együtthatókat tartja meg, így a fotó a huszadára zsugorodik.",
     "wiki": "https://en.wikipedia.org/wiki/Fast_Fourier-transzform%C3%A1ci%C3%B3_alkalmaz%C3%A1sa_k%C3%A9pt%C3%B6m%C3%B6r%C3%ADt%C3%A9sre_%28DCT%29",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1974
   },
   {
     "name": "Simplex-módszer duális elmélete",
@@ -1727,7 +1862,8 @@
     "why": "<b>Minden optimalizálási feladatnak van egy 'tükörképe' — és a két feladat optimuma pontosan megegyezik, ami egyszerre ad megoldást és bizonyítékot az optimalitásra.</b> Ez a dualitás nemcsak elméletileg elegáns: a duális megoldás értékei közgazdaságilag értelmezhetők árnyékárakként (mennyit ér egy egységnyi extra erőforrás). Minden ellátásilánc-optimalizálás, termeléstervezés és energiapiaci árazás ezen az elven számol.",
     "whyMore": "A primál max cᵀx, Ax≤b feladatnak duálisa a min bᵀy, Aᵀy≥c feladat, és az erős dualitás tétele szerint a két optimumuk egyenlő. Így a duális megoldása egyszerre adja az optimális értéket és az optimalitás bizonyítékát is. A duális változók y értelmezése az árnyékár: mennyivel javulna a cél függvény, ha az adott b korlátot egy egységgel lazítanánk — közgazdaságilag közvetlenül értelmezhető.",
     "wiki": "https://en.wikipedia.org/wiki/Simplex-m%C3%B3dszer_du%C3%A1lis_elm%C3%A9lete",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1947
   },
   {
     "name": "Lagrange-féle középértéktétel",

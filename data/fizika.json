@@ -174,7 +174,8 @@
     "why": "<b>A tömeg és az energia ugyanaz.</b> A világ legismertebb egyenlete — három szimbólum, amely az atomenergiától a csillagok működéséig mindent megmagyaráz. A teljes alak impulzussal: E² = (mc²)² + (pc)².",
     "whyMore": "A c² (≈ 9·10¹⁶ J/kg) átszámító tényező, ezért már egy gramm anyag is óriási energiának felel meg — innen érthető az atomenergia és a csillagok fénye. A teljes alak E² = (mc²)² + (pc)² tartalmazza az impulzust is, így a tömegtelen fotonra E = pc adódik; az m itt a nyugalmi tömeg, vagyis a nyugalmi energia c²-vel osztva.",
     "wiki": "https://en.wikipedia.org/wiki/T%C3%B6meg%E2%80%93energia_ekvivalencia",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1905
   },
   {
     "rank": 10,
@@ -211,7 +212,8 @@
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/Heisenberg-f%C3%A9le_hat%C3%A1rozatlans%C3%A1gi_rel%C3%A1ci%C3%B3",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1927
   },
   {
     "rank": 12,
@@ -224,7 +226,8 @@
     "why": "<b>Az információ fizikai mennyiség.</b> Shannon a Boltzmann-entrópia formáját kölcsönözte — nem véletlenül: a bizonytalanság mértéke ugyanaz a matematika, legyen szó gázmolekulákról vagy bitekről. Minden digitális kommunikáció, tömörítés ezen áll.",
     "whyMore": "A képlet H = −Σ pᵢ·log₂ pᵢ a véletlen forrás átlagos meglepettségét méri, vagyis hogy átlagosan hány bit kell egy szimbólum kódolásához — a log₂ miatt az egység a bit. Az egyenletes eloszlás maximalizálja (akkor a legbizonytalanabb a következő szimbólum), és az alakja megegyezik a Boltzmann-entrópia Gibbs-alakjával, amiért az információ és a termodinamikai entrópia ugyanazzal a matematikával írható le.",
     "wiki": "https://en.wikipedia.org/wiki/Shannon-entr%C3%B3pia",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1948
   },
   {
     "rank": 13,
@@ -251,7 +254,8 @@
     "why": "<b>Itt született meg a kvantumelmélet.</b> Planck a 'fekete-test sugárzás katasztrófáját' oldotta meg azzal a feltevéssel, hogy az energia kvantumokban adódik át — ő maga sem hitte el azonnal, mennyire forradalmi ez.",
     "whyMore": "A képletben a nevező e^{hν/k_BT} − 1 tag azt kódolja, hogy az oszcillátorok csak hν energiakvantumokban sugározhatnak és nyelhetnek el — nagy frekvenciánál (vagy alacsony hőmérsékleten) ez exponenciálisan levágja a sugárzást, így megoldja az ultraviola-katasztrófát. Alacsony ν-nél visszaadja a Rayleigh–Jeans-törvényt, a csúcs helye pedig a hőmérséklettel a Wien-féle törvény szerint tolódik el, ami lehetővé teszi a csillagok hőmérsékletének mérését.",
     "wiki": "https://en.wikipedia.org/wiki/Planck-f%C3%A9le_sug%C3%A1rz%C3%A1si_t%C3%B6rv%C3%A9ny",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1900
   },
   {
     "rank": 15,
@@ -278,7 +282,8 @@
     "why": "<b>A fekete lyukak nem feketék — sugároznak, és el is párolognak.</b> Hawking ezzel a képlettel kapcsolta össze a kvantummechanikát, a termodinamikát és a relativitást egyetlen jelenségben. Minél kisebb a fekete lyuk, annál melegebb — fordított a megszokott intuícióval.",
     "whyMore": "A képletben ℏ a kvantumos határozatlanságot, G a gravitációt, M a fekete lyuk tömegét jelöli, a T_H pedig fordítottan arányos a tömeggel. A sugárzás onnan származik, hogy az eseményhorizontnál a vákuumingadozás egyik részecskéje a lyukba esik, a párja kiszabadul. Mivel a kisebb lyuk melegebb, a sugárzás gyorsabban párologtatja el, így az egyre forróbbá és végül robbanássá válik.",
     "wiki": "https://en.wikipedia.org/wiki/Hawking-h%C5%91m%C3%A9rs%C3%A9klet",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1974
   },
   {
     "rank": 17,
@@ -291,7 +296,8 @@
     "why": "<b>A kvarkok közelről szabadok, távolról foglyok.</b> A csatolási állandó nagy energián nullához tart — pont az ellentéte, mint az elektromágnesességnél. Ez magyarázza, miért nem látunk soha szabad kvarkot, mégis 'majdnem szabadon' mozognak egy protonon belül.",
     "whyMore": "Az α_s a színes csatolási állandó, Q² a vizsgált energiamérce négyzete. Nagy Q² (rövid távolság, nagy energia) esetén α_s a nullához tart, vagyis a kvarkok szabadon mozognak, ezt nevezzük aszimptotikus szabadságnak. Kis energián a csatolás erősödik és a kvarkokat befelé feszíti a színtér, ezért sosem figyelhetünk meg szabad kvarkot.",
     "wiki": "https://en.wikipedia.org/wiki/Aszimptotikus_szabads%C3%A1g_%28QCD%29",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 2004
   },
   {
     "rank": 18,
@@ -318,7 +324,8 @@
     "why": "<b>Tycho Brahe pontos méréseiből Kepler kibogozta a Nap körüli mozgás titkát.</b> A keringési idő négyzete a féltengely kockájával arányos — ez vezette később Newtont az inverz négyzetes gravitációs törvényhez. Az egész égi mechanika gyökere.",
     "whyMore": "A T a keringési idő, a a pálya nagy féltengelye, M a központi test tömege, a 4π²/GM tényező a gravitáció erősségét kódolja. A törvény szerint T²/a³ minden égitestre ugyanaz a konstans, függetlenül a pálya excentricitásától. Newton ebből vezette le az általános gravitációs törvényt, mivel a konstans pont az GM/(4π²) fordítottja.",
     "wiki": "https://en.wikipedia.org/wiki/Kepler_harmadik_t%C3%B6rv%C3%A9nye",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1619
   },
   {
     "rank": 20,
@@ -345,7 +352,8 @@
     "why": "<b>Két egyenlet, és az ökoszisztéma ritmust kap.</b> A nyúl- és rókapopulációk örökké ismétlődő, zárt ciklusokon mozognak — pont mint egy bolygó keringése, csak itt a konzervált mennyiség nem energia, hanem egy logaritmikus kombináció. A biológia első igazi 'fizikai' modellje.",
     "whyMore": "Az x a zsákmány, y a ragadozó egyedszáma, α a szaporodás, β a zsákmány ragadozó miatti pusztulása, δ a ragadozó táplálékból való szaporodása, γ a ragadozó halálozása. A βxy és δxy kereszttagok mutatják, hogy a két faj csak egymás jelenlétében változik érdemben. A rendszer zárt ciklusokat jár be, és megmarad egy logaritmikus kombinációja, ami a ciklusokat energiaként őrzi meg.",
     "wiki": "https://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_ragadoz%C3%B3-zs%C3%A1km%C3%A1ny_egyenletek",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1925
   },
   {
     "rank": 22,
@@ -358,7 +366,8 @@
     "why": "<b>Egyetlen binomiális négyzet — és kiderül, mi NEM evolúció.</b> Ha egy populáció génkészlete generációkon át nem változik, a genotípus-gyakoriságok ezt az egyenletet követik. Az eltérés a valóságban jelzi a szelekció, sodródás vagy migráció jelenlétét — a genetika nullhipotézise.",
     "whyMore": "A p az egyik allél gyakorisága, q a másiké, így p+q=1, a p², 2pq, q² pedig a genotípusok aránya. Ha nincs szelekció, mutáció, migráció és génáramlás, a gyakoriságok generációkon át változatlanok maradnak. Az ettől való eltérés bizonyítja valamilyen evolúciós erő hatását, ez a populációgenetika nullhipotézise.",
     "wiki": "https://en.wikipedia.org/wiki/Hardy%E2%80%93Weinberg-egyenlet",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1908
   },
   {
     "rank": 23,
@@ -399,7 +408,8 @@
     "why": "<b>A gondolat fizikája.</b> Négy differenciálegyenlet, amit kézi számológéppel vezettek le — és pontosan megjósolták, hogyan száguld végig az idegimpulzus az axonon. A membrán mint kondenzátor, az ioncsatornák mint változó ellenállások: az agy elektromos áramkörként viselkedik.",
     "whyMore": "A bal oldalon C·V̇ a membrán töltésváltozása, mint egy kondenzátornál, jobboldalt az ionáramok: g_K és g_Na a csatornavezetések, E_K, E_Na, E_L az egyensúlyi potenciálok. Az n, m, h változók a csatornák nyitottságát írják le, időfejlődésüket külön egyenletek adják. A modell 1952-ben kézi számolással pontosan megjósolta az akciós potenciál alakját és terjedését az axonon.",
     "wiki": "https://en.wikipedia.org/wiki/Hodgkin%E2%80%93Huxley-modell",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1963
   },
   {
     "rank": 26,
@@ -412,7 +422,8 @@
     "why": "<b>Miért gyorsabb a forró víz a hideg víznél kémiailag is, nem csak fizikailag.</b> A reakciósebesség exponenciálisan nő a hőmérséklettel — egy 10 fokos emelés általában megduplázza a sebességet. A teljes katalízis-tudomány és az élet biokémiája ezen az exponenciális érzékenységen alapul.",
     "whyMore": "A k a reakciósebességi állandó, A a pre-exponenciális tényező, E_a az aktiválási energia, R a gázállandó, T a hőmérséklet. Csak azok az ütközések vezetnek reakcióhoz, amelyeknél a hőmozgás energiája eléri E_a-t, ezek aránya exponenciálisan nő a hőmérséklettel. Emiatt egy kb. 10 fokos emelés általában megduplázza a sebességet, ez a katalízis és az élő biokémia alapja.",
     "wiki": "https://en.wikipedia.org/wiki/Arrhenius-egyenlet",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1889
   },
   {
     "rank": 27,
@@ -425,7 +436,8 @@
     "why": "<b>A természet 'ellenszegül' a zavarásnak — nem szó szerint, hanem statisztikailag.</b> Nem képlet, hanem elv, mégis kvantitatívan levezethető a szabadentalpia minimalizálásából. Az ammóniagyártástól (Haber–Bosch) az emberi vér pH-pufferéig minden ezen az elven nyugszik.",
     "whyMore": "Az elv szerint ha egy kémiai egyensúlyon külső változást erőltetünk, a rendszer úgy rendeződik át, hogy a változást részben ellensúlyozza. Ez a szabadentalpia minimumkereséséből vezethető le, és megmondja például a Haber-Bosch ammóniaszintézisnél, hogyan növelje a nyomás a hozamot. Ugyanez tartja fenn a vér pH-pufferét is azzal, hogy az eltávolított szén-dioxid eltolja az egyensúlyt a savas oldal felé.",
     "wiki": "https://en.wikipedia.org/wiki/Le_Chatelier-elv",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1884
   },
   {
     "rank": 28,
@@ -438,7 +450,8 @@
     "why": "<b>A valóság nem lokális — ezt mérték meg, nem csak feltételezték.</b> Einstein 'kísérteties távoli hatásnak' nevezte, de Aspect kísérletei (1980-as évek) és a Tsirelson-korlát (2√2) bebizonyították: az összefonódott részecskék korrelációja erősebb, mint amit bármilyen klasszikus, lokális rejtett változó megengedne. A kvantumkriptográfia alapja.",
     "whyMore": "E(a,b) a két részecske korrelációja, ha az egyiket az a, a másikat a b irányban mérjük — az értéke −1 és 1 között mozog. A CHSH-kombináció |E(a,b)−E(a,b′)+E(a′,b)+E(a′,b′)| a lokális rejtett változók elmélete szerint soha nem lépheti át a 2 határt: ez egy pusztán kombinatorikus korlát. A kvantummechanika azonban 2√2-ig, a Tsirelson-korlátig képes felmenni, mert az összefonódott állapotok korrelációja erősebb a klasszikusnál. Aspect és utódai ezt ténylegesen megmérték, így a kísérlet eldöntötte: a természet nem írható le lokális rejtett változókkal.",
     "wiki": "https://en.wikipedia.org/wiki/Bell-t%C3%A9tel_/_CHSH-egyenl%C5%91tlens%C3%A9g",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1964
   },
   {
     "rank": 29,
@@ -451,7 +464,8 @@
     "why": "<b>A világ legkönnyebben kiszámítható korlátja — és senki nem kerülheti meg.</b> Semmilyen hőerőgép nem léphet túl ezen a hatásfokon, csak a hőmérsékletektől függ, az anyagtól nem. Carnot 1824-ben, a gőzgépek korában mondta ki — egyenesen a második főtételhez vezet.",
     "whyMore": "A η_max a maximális hatásfok, T_h a forró, T_c a hideg hőtartály abszolút hőmérséklete. A képlet szerint egyetlen hőerőgép sem alakíthat át több hőt munkává mint (1−T_c/T_h), és ezt csak a megfordítható Carnot-ciklus éri el. Mivel csak a hőmérsékletektől függ, az anyagtól független, ez a második főtétel közvetlen következménye.",
     "wiki": "https://en.wikipedia.org/wiki/Carnot-t%C3%A9tel_/_hat%C3%A1sfok",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1824
   },
   {
     "rank": 30,
@@ -474,7 +488,8 @@
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/Higgs-mechanizmus",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 2012
   },
   {
     "rank": 31,
@@ -487,7 +502,8 @@
     "why": "<b>Két lemez összeszorul — pusztán azért, hogy 'üres' a köztük lévő tér.</b> A vákuum nem semmi: virtuális fotonok hullámzanak benne, de a lemezek közt csak bizonyos hullámhosszak férnek el. Az aszimmetria mérhető erőt hoz létre. Lamoreaux mérte meg 1996-ban — a kvantumtérelmélet egyik legfurcsább, kísérletileg igazolt jóslata.",
     "whyMore": "A képletben A a lemezek együttes felülete, a az egymástól való távolság, ħ a redukált Planck-állandó, c a fénysebesség. A negatív előjel mutatja, hogy az erő vonzó (összeszorító): minél közelebb a lemezek, annál nagyobb a nyomásbeli különbség. A maradék vákuumenergia csak diszkrét (állóhullám) módokat enged meg a lemezek között, míg kívülről az összes mód hozzájárul - ez az aszimmetria nyomja össze őket.",
     "wiki": "https://en.wikipedia.org/wiki/Casimir-effektus",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1948
   },
   {
     "rank": 32,
@@ -500,7 +516,8 @@
     "why": "<b>Egyetlen hiperbola írja le, hogyan dolgoznak az enzimek — minden élő sejtben.</b> Alacsony szubsztrátkoncentrációnál a sebesség lineáris, magas koncentrációnál telítésbe megy. A Vmax és KM két paramétere köré épül a teljes gyógyszerfejlesztés és anyagcsere-biokémia.",
     "whyMore": "v a reakciósebesség, [S] a szubsztrát koncentrációja, Vmax a maximális sebesség telítéskor, KM a Michaelis-állandó (az [S], ahol v = Vmax/2). A hiperbola azt jelzi, hogy alacsony [S]-nél az enzim szabad, a sebesség arányos a szubsztráttal; magas [S]-nél az enzimhelyek telítődnek, a sebesség eléri Vmax-ot. KM kicsi értéke erős kötést, azaz hatékony enzimet jelöl.",
     "wiki": "https://en.wikipedia.org/wiki/Michaelis%E2%80%93Menten_enzimkinetika",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1913
   },
   {
     "rank": 33,
@@ -555,7 +572,8 @@
     "why": "<b>Két elektron, ami egymást taszítja — mégis párba áll, és ellenállás nélkül áramlik.</b> A Cooper-páros elektronok a rácsrezgéseken (fononokon) keresztül gyengén vonzzák egymást, és makroszkopikus kvantumállapotot alkotnak. Bardeen, Cooper és Schrieffer modellje magyarázta meg végre, miért tűnik el az ellenállás bizonyos fémekben abszolút nulla közelében.",
     "whyMore": "Δ a gap (energiaszakadék) nagysága, ħω_D a Debye-energia, N(0) az állapotsűrűség a Fermi-szinten, V a fonon-közvetített vonzás erőssége. Az exponenciális alak azt mutatja, hogy már gyenge vonzás is elég a makroszkopikus párállapot kialakulásához, de a gap a hőmérséklettel csökken. Δ leírja, mennyi energia kell egy Cooper-pár szétszakításához - ezért tűnik el az ellenállás a kritikus hőmérséklet alatt.",
     "wiki": "https://en.wikipedia.org/wiki/BCS-elm%C3%A9let_%28szupravezet%C3%A9s%29",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1972
   },
   {
     "rank": 37,
@@ -568,7 +586,8 @@
     "why": "<b>Nem mérhető tudományos egyenlet — inkább a tudatlanságunk strukturált térképe.</b> Megbecsüli, hány kommunikáló civilizáció lehet a Tejútrendszerben, hét tényező szorzataként. A legtöbb tagja ismeretlen, mégis ez adta a keretet minden komoly SETI-beszélgetéshez 60+ éve.",
     "whyMore": "N a keresett kommunikáló civilizációk száma; a tényezők sorrendben: csillagkeletkezési ráta, bolygórendszer-arány, átlagos lakható bolygók/egy rendszer, élet kialakulásának esélye, intelligencia, kommunikáció és a civilizáció élettartama években. A szorzat formája azért van, mert ezek független valószínűségek együttese adja az eredményt. A bizonytalanság minden tényezőben hatalmas, ezért N értéke nullától milliókig terjedhet - az egyenlet a kérdés felosztása, nem a válasz.",
     "wiki": "https://en.wikipedia.org/wiki/Drake-egyenlet",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1961
   },
   {
     "rank": 38,
@@ -581,7 +600,8 @@
     "why": "<b>Minden molekula a koncentráció-különbség irányába 'akar' menni — anélkül, hogy bármelyik egyedi molekula tudná, hova menjen.</b> A véletlen mozgásból statisztikailag mégis rendezett áramlás születik. Ugyanaz az egyenlet írja le az illat terjedését a levegőben, a sejtmembránon át zajló oxigéntranszportot, és az ozmózist.",
     "whyMore": "J az anyagáram (fluxus), D a diffúziós együttható, ∂φ/∂x a koncentráció gradiense, a mínuszjel jelzi, hogy az áramlás a kisebb koncentráció felé tart. Az egyenlet azt mondja ki, hogy a molekulák véletlen bolyongása statisztikailag a koncentrációcsökkenés irányába viszi az anyagot. D az anyag és a közeg sajátja: nagyobb hőmérsékleten vagy kisebb molekulánál nagyobb a szóródás sebessége.",
     "wiki": "https://en.wikipedia.org/wiki/Fick-f%C3%A9le_diff%C3%BAzi%C3%B3t%C3%B6rv%C3%A9ny",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1855
   },
   {
     "rank": 39,
@@ -594,7 +614,8 @@
     "why": "<b>'Az anyag megmondja a téridőnek, hogyan görbüljön; a téridő megmondja az anyagnak, hogyan mozogjon.' (Wheeler)</b> Tíz csatolt, nemlineáris differenciálegyenlet — és belőle jön ki a fekete lyukak létezése, a táguló univerzum, és a 2015-ben mért gravitációs hullámok, pontosan száz évvel a publikálás után.",
     "whyMore": "G_μν a geometriát, a téridő görbületét írja le, T_μν az anyag és energia nyomáseloszlását; a 8πG/c⁴ a gravitációs állandók átszámítása. A görbület és az energia-impulzus egyenrangúsítása azt jelenti, hogy az anyag határozza meg a téridő alakját, a téridő alakja pedig diktálja az anyag mozgását. A szorzat a gyenge gravitáció határán visszaadja a Newton-féle gravitációt.",
     "wiki": "https://en.wikipedia.org/wiki/Einstein-f%C3%A9le_mez%C5%91egyenletek",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1915
   },
   {
     "rank": 40,
@@ -607,7 +628,8 @@
     "why": "<b>Mozgó mágnes elektromosságot szül — ez forgatja a világ összes generátorát.</b> Faraday felfedezése kötötte össze elektromosságot és mágnesességet, megalapozva Maxwell egyenleteit. Einstein speciális relativitáselméletének nyitó gondolata pontosan ebből az indukciós aszimmetriából indult.",
     "whyMore": "ℰ az indukált feszültség, Φ_B a mágneses fluxus, a mínuszjel Lenz törvényét hordozza: az indukált áram mindig a változást ellentétes irányba igyekszik megakadályozni. A fluxus megváltozása hozza létre a feszültséget, legyen az a mágnes vagy a tekercs mozgatása a mágneses térben. Ez az alapja a generátoroknak, transzformátoroknak és az egész elektromos hálózatnak.",
     "wiki": "https://en.wikipedia.org/wiki/Faraday-f%C3%A9le_indukci%C3%B3s_t%C3%B6rv%C3%A9ny",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1831
   },
   {
     "rank": 41,
@@ -620,7 +642,8 @@
     "why": "<b>Megméred egy csillag színét — és tudod a hőmérsékletét, anélkül hogy odautaznál.</b> A forróbb test rövidebb hullámhosszon sugároz legintenzívebben — ezért kék a forró csillag, vörös a hűvös. Ez a kísérleti megfigyelés vezetett Planck 1900-as kvantum-feltevéséhez, és innen indult az egész kvantummechanika.",
     "whyMore": "λ_max a legnagyobb sugárzási intenzitású hullámhossz, T a test abszolút hőmérséklete kelvinben, b a Wien-állandó (kb. 2,9·10⁻³ m·K). A fordított arány azt jelenti: minél melegebb a test, annál rövidebb, kékebb hullámhosszon sugároz a legerősebben. A törvény a feketetest-sugárzásból származik, és lehetővé teszi csillagok hőmérsékletének távolságmérés nélküli becslését.",
     "wiki": "https://en.wikipedia.org/wiki/Wien-f%C3%A9le_eltol%C3%B3d%C3%A1si_t%C3%B6rv%C3%A9ny",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1893
   },
   {
     "rank": 42,
@@ -647,7 +670,8 @@
     "why": "<b>A közeledő mentőautó szirénája magasabb, a távolodóé mélyebb — ez az egész kozmológia alapja.</b> Ugyanez a frekvenciaeltolódás teszi lehetővé, hogy galaxisok sebességét mérjük fényük vörös- vagy kékeltolódásából. Egyetlen egyszerű hullámjelenség köti össze a mentőautó szirénáját és a táguló univerzumot.",
     "whyMore": "f0 a kibocsátott frekvencia, f a megfigyelt frekvencia, v a hullám terjedési sebessége, v_o a megfigyelő, v_s a forrás sebessége. A ± jelek attól függően választandók, hogy a forrás vagy megfigyelő közeledik-e, ekkor a frekvencia nő, vagy távolodik, ekkor csökken. A jelenség minden hullámra érvényes, a fény vöröseltolódása a táguló univerzum közvetlen mérése.",
     "wiki": "https://en.wikipedia.org/wiki/Doppler-effektus",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1842
   },
   {
     "rank": 44,
@@ -660,7 +684,8 @@
     "why": "<b>A gyorsabban mozgó folyadékban kisebb a nyomás — ez tartja a levegőben a repülőgépeket.</b> Az energiamegmaradás egyenese áramlástani megfogalmazása: ahol felgyorsul a légáram a szárny felett, ott csökken a nyomás, és ez hozza létre a felhajtóerőt. Egyformán magyarázza a permetezőflakon működését és a vér áramlását az artériákban.",
     "whyMore": "p a nyomás, ½ρv² a dinamikus (sebességi) nyomás, ρgh a hidrosztatikus nyomás, és ezek összege összenyomhatatlan, súrlódásmentes áramlásban állandó az áramvonal mentén. Az energiamegmaradás itt azt jelenti: ahol a sebesség nő, a nyomás csökken, hogy az összeg állandó maradjon. Ebből adódik a szárny feletti kisebb nyomás és a felhajtóerő.",
     "wiki": "https://en.wikipedia.org/wiki/Bernoulli-egyenlet",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1738
   },
   {
     "rank": 45,
@@ -701,7 +726,8 @@
     "why": "<b>Minél messzebb van egy galaxis, annál gyorsabban távolodik — ez maga a táguló univerzum bizonyítéka.</b> Hubble megfigyelése az első közvetlen kísérleti bizonyíték volt arra, hogy a kozmosz nem statikus, hanem tágul. A törvény fordítva is használható: a táguló univerzum visszapörgetésével kapjuk a Big Bang időpontját, kb. 13.8 milliárd évvel ezelőtt.",
     "whyMore": "A v a galaxis távolodásának sebessége, d a távolsága tőlünk, H_0 a Hubble-állandó (kb. 70 km/s/Mpc), amely megadja, hány km/s-sal gyorsul egy távoli galaxis megaparsecenkénti távolságnövekedésre. A lineáris összefüggés azért igaz, mert a tágulás minden pont közötti távolságot arányosan nyújtja meg — egyetlen globális skálafaktor növekedése, nem tényleges mozgás a térben. Innen fordítva az 1/H_0 inverz idő a Világegyetem korának első közelítése (kb. 14 milliárd év), ami rendkívül közel esik a részletesebb kozmológiai modellből számolt 13,8 milliárd évhez.",
     "wiki": "https://en.wikipedia.org/wiki/Hubble%E2%80%93Lema%C3%AEtre-t%C3%B6rv%C3%A9ny",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1929
   },
   {
     "rank": 48,
@@ -742,7 +768,8 @@
     "why": "<b>A fény billiárdgolyóként ütközik az elektronnal — ez győzte meg végleg a fizikusokat a foton valóságáról.</b> A szóródott röntgensugár hullámhossza megnő, pontosan annyival, amennyit a foton-részecske impulzusátadása megjósol. Einstein fényrészecske-elképzelését Compton kísérlete tette véglegesen elfogadottá.",
     "whyMore": "A λ a beeső, λ' a szóródott foton hullámhossza, θ a szórási szög, h a Planck-állandó, m_e az elektron nyugalmi tömege, c a fénysebesség; a h/(m_e·c) az ún. Compton-hullámhossz (kb. 2,43 pm). A képlet közvetlenül a foton impulzusának (p = h/λ) és energiájának megőrzéséből adódik: a foton rugalmatlan ütközése az elektronnal átad neki energiát, az elektron gyorsul, a foton tehát hosszabb hullámhosszal (kisebb energiával) távozik. A (1−cosθ) tényezőből látszik, hogy előrefelé (θ=0) nincs hullámhossz-változás, hátrafelé (θ=180°) a maximális — ez a szögfüggés pontosan az, ami a fényt valódi, impulzussal rendelkező részecskékként írta le.",
     "wiki": "https://en.wikipedia.org/wiki/Compton-effektus",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1923
   },
   {
     "rank": 51,
@@ -755,7 +782,8 @@
     "why": "<b>Az ozmotikus nyomás ugyanúgy viselkedik, mint egy ideális gáz nyomása — egy botanikus séta közbeni véletlen ötletből.</b> Van 't Hoff egy botanikus barátjával beszélgetve jött rá az analógiára: az oldott anyag 'gázként' viselkedik az oldószerben. Ez magyarázza, hogyan szívja fel a víz a fák gyökerét a csúcsig — és miért zsugorodik össze egy sejt sós vízben.",
     "whyMore": "A Π az ozmotikus nyomás, n_s az oldott részecskék számsűrűsége, k_B a Boltzmann-állandó, T az abszolút hőmérséklet — a képlet alakja megegyezik az ideális gáz törvényével (p = nk_B·T). Az analógia onnan jön, hogy az oldott molekulák is véletlenszerűen diffundálnak és 'nyomást fejtenek ki' a féligáteresztő hártyára, mintha gáz volnának az oldószer térfogatában. Minél több oldott részecske és minél magasabb a hőmérséklet, annál nagyobb a nyomás — ezért a sós közeg vizet von ki a sejtből (a víz a kisebb ozmotikus nyomás felé áramlik), és ezért képes a gyökérnyomás a fákban a nedvességet felfelé emelni.",
     "wiki": "https://en.wikipedia.org/wiki/Van_%27t_Hoff-f%C3%A9le_ozmotikus_nyom%C3%A1s",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1887
   },
   {
     "rank": 52,
@@ -768,7 +796,8 @@
     "why": "<b>Egyetlen tilalom — és ez tartja szilárdnak az anyagot, ez emel ki minket a padlóból.</b> Két azonos fermion (pl. elektron) soha nem lehet ugyanabban a kvantumállapotban — ez generálja a degenerációs nyomást, amely megakadályozza, hogy az atomok egymásba csússzanak. Nélküle nem létezne periódusos rendszer, kémia, vagy szilárd test.",
     "whyMore": "A ψ(x1,x2) = −ψ(x2,x1) antiszimmetria azt jelenti, hogy ha két azonos fermiont felcserélünk, a hullámfüggvény előjelet vált; ha a két részecske ugyanabban az állapotban volna (x1=x2), a függvény önmaga negatívja lenne, vagyis nulla — tehát a valószínűség zéró, az állapot tiltott. Ez generálja az elektronhéjakat: az elektronok sorban foglalják el a lehetséges energiaszinteket a legbelsőtől kifelé, mert az alsókat már betöltötték a társaik. A kialakuló degenerációs (kvantum-) nyomás az, ami a szilárd anyagokat összetartja és megakadályozza, hogy a csillagok vagy az atomok összeomoljanak a saját gravitációjuk/töltésvonzásuk alatt — a periódusos rendszer szerkezete közvetlenül ebből a sorrendből következik.",
     "wiki": "https://en.wikipedia.org/wiki/Pauli-f%C3%A9le_kiz%C3%A1r%C3%A1si_elv",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1925
   },
   {
     "rank": 53,
@@ -795,7 +824,8 @@
     "why": "<b>Egyetlen dimenziótlan szám dönti el, hogy egy áramlás simán siklik, vagy kaotikus örvényekbe csap át.</b> Az inerciaerők és a viszkózus erők arányát fejezi ki — kis Reynolds-számnál lamináris, nagynál turbulens lesz az áramlás. Ugyanaz a szám írja le, hogyan repül egy repülőgép és hogyan áramlik a vér az artériákban.",
     "whyMore": "A Re dimenziótlan szám, ahol ρ a folyadék sűrűsége, v a jellemző sebesség, L a jellemző hosszméret (pl. csőátmérő), μ a dinamikai viszkozitás; a számláló az inerciaerőket, a nevező a viszkózus (súrlódási) erőket méri. Kis Re-nél a súrlódás uralja az áramlást, elnyomja a kis örvényeket, az áramvonalak simák maradnak (lamináris); nagy Re-nél az inercia győz, a sebességeloszlás instabillá válik és örvények (turbulencia) alakulnak ki. Ugyanaz a szám teszi lehetővé a kísérleti csőmodell és a valós repülő vagy érrendszer összehasonlítását: ha a Re megegyezik, az áramlás minőségileg azonos, függetlenül a mérettől és a folyadéktól.",
     "wiki": "https://en.wikipedia.org/wiki/Reynolds-sz%C3%A1m",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1883
   },
   {
     "rank": 55,
@@ -808,7 +838,8 @@
     "why": "<b>Két fémet összeérintve, és hőmérséklet-különbséget létrehozva köztük, feszültség keletkezik — minden hőmérőszonda ezen alapul.</b> Seebeck eredetileg mágneses jelenségnek hitte, és csak később derült ki, hogy elektromos áram okozza. A modern termoelektromos generátorok pontosan ezt a hatást fordítják visszafelé: hulladékhőből elektromos áramot.",
     "whyMore": "A V a keletkező feszültség, S a Seebeck-együttható (anyag- és hőmérséklet-függő), ΔT a két érintkezési pont közti hőmérséklet-különbség; a hatás lineárisan arányos a hőfokkülönbséggel. A jelenség oka, hogy a két különböző fémben a vezetési elektronok energiája eltérően függ a hőmérséklettől, így a melegebb oldalon több (és gyorsabb) elektron diffundál át, töltéssétválasztást, azaz feszültséget létrehozva. Ugyanez az elv fordítva is működik (Peltier-effektus): áram átengedése hűti vagy melegíti az érintkezést — ezért használják hőmérséklet-mérésre (termoelempár) és hulladékhő árammá alakítására egyaránt.",
     "wiki": "https://en.wikipedia.org/wiki/Seebeck-effektus",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1821
   },
   {
     "rank": 56,
@@ -821,7 +852,8 @@
     "why": "<b>Egy szám dönti el, hogy egy kihunyt csillag fehér törpeként végzi, vagy neutroncsillaggá/fekete lyukká omlik össze.</b> Chandrasekhar 19 évesen, egy Indiából Angliába tartó hajóúton vezette le: az elfajult elektrongáz kvantum-nyomása (Pauli-elv) csak egy bizonos tömegig tartja egyensúlyban a gravitációt. Eddington nyilvánosan lejáratta az eredményt — Chandrasekhar évtizedekkel később mégis Nobel-díjat kapott érte.",
     "whyMore": "A M_Ch a kritikus tömeg, kb. 1,4 naptömeg (M_☉), amelynél az elfajult elektrongáz kvantum-nyomása (Pauli-elv) épp egyensúlyban tartja a csillag saját gravitációját. Ennél kisebb tömegű kihunyt csillag fehér törpe marad, mert a degenerációs nyomás megakadályozza az összeomlást; az 1,4 M_☉ feletti tömeg legyőzi a kvantum-nyomást, a mag tovább roppan, és neutroncsillag vagy fekete lyuk születik. A határ pontos értéke a csillag összetételétől és sugárzási korrekcióktól függ, de a 1,4 M_☉ a klasszikus, ideális elfajult gázra vonatkozó első közelítés.",
     "wiki": "https://en.wikipedia.org/wiki/Chandrasekhar-hat%C3%A1r",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1930
   },
   {
     "rank": 57,
@@ -844,7 +876,8 @@
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/Bose%E2%80%93Einstein-kondenz%C3%A1ci%C3%B3",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1924
   },
   {
     "rank": 58,
@@ -857,7 +890,8 @@
     "why": "<b>Minden Lorentz-invariáns, lokális kvantumtérelmélet szimmetrikus töltés-, paritás- és időtükrözésre együtt — még ha egyenként sérülnek is.</b> A gyenge kölcsönhatás megsérti C-t, P-t, sőt CP-t is (ezt kísérletileg mérték) — de a három együttes alkalmazása mindig szimmetriát ad. Ha valaha CPT-sérülést mérnének, az a kvantumtérelmélet legalapvetőbb pilléreit döntené le.",
     "whyMore": "A ℒ(x) a Lagrange-sűrűség (a fizikai kölcsönhatásokat leíró mennyiség), és az állítás szerint ez invariáns marad, ha egyszerre végrehajtjuk a C (töltéstükrözés: részecske↔antirészecske), P (paritás: térbeli tükrözés) és T (időtükrözés) műveletet. A tétel nem azt mondja, hogy C, P vagy T egyenként szimmetria — a gyenge kölcsönhatásban mindhárom (sőt CP is) sérül —, hanem hogy a három együttes alkalmazása minden Lorentz-invariáns, lokális kvantumtérelméletben szigorú szimmetria. Ebből következik például, hogy egy részecske és antirészecskéje tömege és élettartama pontosan egyenlő kell legyen, amit a kísérletek nagy pontossággal igazolnak; a CPT-sértés a térelmélet egyik alapaxiómájának bukását jelentené.",
     "wiki": "https://en.wikipedia.org/wiki/CPT-t%C3%A9tel",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1954
   },
   {
     "rank": 59,
@@ -870,7 +904,8 @@
     "why": "<b>Ha egy hőmérséklet-különbség elektromos áramot indukál, ugyanaz az együttható írja le a fordított jelenséget is.</b> Onsager a mikroszkopikus idő-visszafordíthatóságból vezette le, hogy a csatolt irreverzibilis folyamatok (hő, diffúzió, elektromosság) kereszthatás-együtthatói szimmetrikus mátrixot alkotnak. Ez az első mély, általános törvény, ami az egyensúlytól távoli termodinamikában is rendet vág — Nobel-díjat ért.",
     "whyMore": "Az L_ij a csatolt folyamatok lineáris együttható-mátrixa: L_ij azt adja meg, hogy az j-edik hajtóerő (pl. hőmérséklet-gradienst) mekkora i-edik áramot (pl. elektromos áramot) indukál, és a reláció szerint L_ij = L_ji. Onsager ezt a mikroszkopikus folyamatok idő-visszafordíthatóságából (a fluktuáció-disszipáció tételeiből) vezette le: a részecskék mozgásában nincs kitüntetett irány a molekuláris skálán, így a kereszthatások szimmetrikusak. Ez azt jelenti, hogy ha egy hőfokkülönbség áramot gerjeszt, ugyanakkora együtthatóval egy áram is hőfokkülönbséget hoz létre — a mátrix szimmetriája megadja a közel-egyensúlyi irreverzibilis folyamatok általános leírását.",
     "wiki": "https://en.wikipedia.org/wiki/Onsager-reciprocit%C3%A1si_rel%C3%A1ci%C3%B3k",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1931
   },
   {
     "rank": 60,
@@ -883,7 +918,8 @@
     "why": "<b>Az információtörlésnek fizikai ára van — minimum ennyi hőt kell disszipálni egyetlen bit végleges eltávolításáért.</b> Landauer rájött: nem a számítás, hanem az irreverzibilis törlés az, ami termodinamikailag költséges. Ez köti össze közvetlenül a Shannon-entrópiát a Boltzmann-entrópiával, és szab alsó energiakorlátot minden jövőbeli számítógép-architektúrának — kvantumszámítógépeket is beleértve.",
     "whyMore": "Az E a törléshez minimálisan szükséges disszipált energia, k_B a Boltzmann-állandó, T a hőmérséklet, ln 2 pedig egyetlen bit entrópiájának (Shannon) értéke — a képlet tehát közvetlenül összeköti az információt a hőmérséklettel és energiával. A lényeg, hogy egy bit törlése két lehetséges állapotot egyetlenre redukál, ami csökkenti a rendszer információ-entrópiáját, ezt pedig a környezetben hőként (entrópianövekedésként) kell kompenzálni. Ezért egyetlen logikai művelet (ami nem töröl, csak átalakít) elvileg energiamentes lehetne, de minden számítógép, amely töröl, elkerülhetetlenül minimum k_B·T·ln2-t disszipál bitenként — ez a végső, termodinamikai energiakorlátja a számításnak.",
     "wiki": "https://en.wikipedia.org/wiki/Landauer-elv",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1961
   },
   {
     "rank": 61,
@@ -910,7 +946,8 @@
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/Euler-f%C3%A9le_kihajl%C3%A1si_k%C3%A9plet",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1757
   },
   {
     "rank": 62,
@@ -923,7 +960,8 @@
     "why": "<b>Egy terhelés pontos eloszlása csak közel számít — kicsit távolabb már csak az eredője.</b> Bármilyen bonyolult, statikailag ekvivalens terhelést alkalmazol egy test kis részén, a feszültségeloszlás a terhelés jellemző méreténél (d) nagyobb távolságban gyakorlatilag azonossá válik. Enélkül minden végeselem-modell és kézi számítás lehetetlenül bonyolult volna — ez teszi jogossá az egyszerűsített peremfeltételeket.",
     "whyMore": "A feszültség „közeli mező”: közvetlenül a terhelésnél a részletek dominálnak, de az rugalmas tér szétágazva, önmagát átlagolva felejti el őket. A jellemző méret d (pl. a terhelés szélessége) adja a lecsengési távolságot: pár d-nyi távolság után már csak az eredő erő számít, nem a pontos eloszlás. Ezért helyettesíthetünk egy valódi csavarozási mintát vagy megoszló terhet egy egyszerű, ekvivalens erővel a kézi számításokban.",
     "wiki": "https://en.wikipedia.org/wiki/Saint-Venant-elv",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1855
   },
   {
     "rank": 63,
@@ -936,7 +974,8 @@
     "why": "<b>Egy tetszőleges pontban ébredő feszültségállapot minden lehetséges elforgatását egyetlen kör rajzolja fel.</b> Mohr geometriai trükkje azonnal megmutatja a főfeszültségeket és a maximális nyírófeszültséget — grafikusan, számológép nélkül. Máig ez az első eszköz, amit egy statikus tanul a feszültségállapotok megértéséhez, jóval a mátrixos véges-elem szoftverek kora előtt született.",
     "whyMore": "Egy pont feszültségállapota a vágási iránytól függően végtelen sok komponensből áll; Mohr köre ezt az egész családot egyetlen szög, a 2θ mentén parametérezi (a 2-es szorzóra figyelj: a fizikai síkban θ elforgatás a körön 2θ-t jelent). A kör minden pontja egy lehetséges normál-/nyírófeszültség-pár valamilyen vágásra, a szélső pontok közvetlenül megadják a főfeszültségeket és a maximális nyírást. Lényegében a feszültségtenzor báziscseréje egy körként ábrázolva.",
     "wiki": "https://en.wikipedia.org/wiki/Mohr-k%C3%B6r",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1882
   },
   {
     "rank": 64,
@@ -955,7 +994,8 @@
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/Betti-f%C3%A9le_k%C3%B6lcs%C3%B6n%C3%B6ss%C3%A9gi_t%C3%A9tel",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1872
   },
   {
     "rank": 65,
@@ -968,7 +1008,8 @@
     "why": "<b>Egyetlen egyenlet írja le, hogyan tolódik el a fagyás- vagy forráspont a nyomással.</b> A rejtett hő (L) és a térfogatváltozás (Δv) kapcsolja össze a fázisátmenet nyomás-hőmérséklet görbéjét. Ez magyarázza, miért fő alacsonyabb hőmérsékleten a víz nagy magasságban, és miért csúszik könnyebben a korcsolya jég — utóbbi kvantitatív részleteiben ma is vitatott, de az egyenlet maga rendíthetetlen.",
     "whyMore": "Az együttélési görbén a két fázis Gibbs-szabadenergiája egyenlő, így dG=0 összekapcsolja a nyomás- és hőmérséklet-lépést a rejtett hővel (L) és a térfogatugrással (Δv). Az L/T tag a fázisváltás entrópiája (TΔS=L), Δv pedig azt mutatja, melyik fázis mennyivel sűrűbb. Nagy Δv (gőz vs folyadék) meredek forrási görbét ad; negatív Δv (jég vs víz) miatt olvad a jég nyomás alatt — innen a korcsolyázás nyomásolvadása.",
     "wiki": "https://en.wikipedia.org/wiki/Clausius%E2%80%93Clapeyron-egyenlet",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1834
   },
   {
     "rank": 66,
@@ -981,7 +1022,8 @@
     "why": "<b>Egyetlen mennyiség dönti el, hogy egy kémiai reakció magától lejátszódik-e.</b> Gibbs az entalpia (H) és entrópia (S) versenyfutásából egyetlen kritériumot alkotott: ha G csökken, a folyamat spontán. Ez a modern kémiai termodinamika gerince — minden egyensúlyi állandó, minden reakció-hajtóerő ebből az egy egyenletből vezethető le.",
     "whyMore": "Állandó hőmérsékleten és nyomáson a rendszer a G-t minimalizálja; a −TS tag miatt a magas hőmérsékletű folyamatokat a rendezetlenség (entrópia) segíti, míg a H tag az alacsony energiát favorizálja. Egy reakció addig megy, amíg el nem éri az egyensúlyt, ahol ΔG=0. A ΔG kapcsolata az egyensúlyi állandóval (ΔG°=−RT ln K) szó szerint megmondja, meddig megy el a reakció.",
     "wiki": "https://en.wikipedia.org/wiki/Gibbs-f%C3%A9le_szabadenergia",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1876
   },
   {
     "rank": 67,
@@ -994,7 +1036,8 @@
     "why": "<b>Megmondja, hány fermion (pl. elektron) tölthet be egy adott energiaszintet — a Pauli-elv statisztikai megfogalmazása.</b> A nevezőben szereplő '+1' (szemben a Bose–Einstein '−1'-jével) az, ami miatt a fémek elektronjai 'kényszerpályára' kerülnek, és ez adja a fémek vezetőképességének, a fehér törpék stabilitásának és a félvezető-eszközök működésének statisztikus alapját.",
     "whyMore": "A nevezőbeli +1 a Pauli-elvet jelenti: két azonos fermion nem osztozhat ugyanazon az állapoton, ezért a feltöltöttség 1-nél telítődik, és nem szökik fel a klasszikus Maxwell–Boltzmann-eloszlás módjára. A μ (vegyi potenciál / Fermi-szint) az az energia, amely alatt T=0-on az állapotok többsége betelt. Alacsony hőmérsékleten az eloszlás éles lépccsé válik (Fermi-felület) — ezért van a fémekben hatalmas mozgékony elektronkészlet közvetlenül a vezetési szegélynél.",
     "wiki": "https://en.wikipedia.org/wiki/Fermi%E2%80%93Dirac-statisztika",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1926
   },
   {
     "rank": 68,
@@ -1007,7 +1050,8 @@
     "why": "<b>A neutrínók útközben 'átváltoznak' egyik típusból a másikba — ami bizonyítja, hogy van tömegük.</b> A Standard Modell eredetileg tömeg nélküli neutrínókat jósolt; a Super-Kamiokande és SNO kísérletek oszcillációs mérései (2015 fizikai Nobel-díj) megcáfolták ezt. Az egyenlet egyszerű hulláminterferencia-alak — mégis az egyik legerősebb jel arra, hogy a Standard Modell nem a teljes történet.",
     "whyMore": "A neutrínók íz-sajátállapotai (elektron/müon/tau) nem azonosak a tömegsajátállapotaikkal; ezek kvantum-szuperpozíciók, amelyek különböző fázissal fejlődnek és útközben újra keverednek. Az oszcillációs valószínűség egy kétállapotú interferenciamintázat — innen a sin²(Δm²L/E) függés, mint egy a tömeg-négyzetes különbség (Δm²) által beállított lebegés. Az 1,27-es szorzó csak mértékegység-konvenció (L km-ben, E GeV-ben); maga a nemnulla Δm² bizonyítja, hogy a neutrínóknak van tömegük.",
     "wiki": "https://en.wikipedia.org/wiki/Neutr%C3%ADn%C3%B3-oszcill%C3%A1ci%C3%B3",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1957
   },
   {
     "rank": 69,
@@ -1020,7 +1064,8 @@
     "why": "<b>Egy részecske elektromos töltése kiszámítható a belső kvantumszámaiból — izospin, barionszám, ritkaság.</b> Ez a képlet vezetett el a 'nyolcrét út' rendszerezéshez, majd Gell-Mann és Zweig kvark-hipotéziséhez: a hadronok nem elemi részecskék, hanem kvarkokból épülnek fel. A rendezőelv, ami egy zoo-szerű részecsketáblázatból periódusos-rendszer-szerű struktúrát csinált.",
     "whyMore": "Az elektromos töltést (Q) az izospin harmadik komponenséhez (I₃), a barionszámhoz (B) és a ritkasághoz (S) kapcsolja — egy olyan megmaradási törvény-könyvelés, amely minden ismert hadronra igaz volt. Az (I₃, Q) síkban felrajzolt pontok mintázata az „nyolcrét út” (Eightfold Way) multiplicitásaiba rendeződött. Amikor Gell-Mann a frissen felfedezett Ω⁻-t egy dekuplet hiányzó helyére illesztette, az megerősítette a kvarkokat mint valódi alkotórészeket.",
     "wiki": "https://en.wikipedia.org/wiki/Gell-Mann%E2%80%93Nishijima-formula",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1953
   },
   {
     "rank": 70,
@@ -1047,7 +1092,8 @@
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/Schwarzschild-sug%C3%A1r",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1916
   },
   {
     "rank": 71,
@@ -1070,7 +1116,8 @@
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/Friedmann-egyenletek",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1922
   },
   {
     "rank": 72,
@@ -1083,7 +1130,8 @@
     "why": "<b>Egyetlen negyedrendű differenciálegyenlet írja le, hogyan hajlik meg egy gerenda a terhelés alatt.</b> Euler és Bernoulli közös munkája — a hajlítási merevség (EI) és a megoszló teher (q) kapcsolja össze a lehajlás negyedik deriváltjával. Kétszáz évvel a végeselem-módszer előtt született, mégis ma is minden statikai szoftver hajlítási modulja ebből az egyenletből indul ki.",
     "whyMore": "A származtatottak láncolata köti össze a terhet a válasszal: q → nyíróerő V (egyszer) → hajlító nyomaték M (kétszer) → meredekség (háromszor) → lehajlás w (négyszer), az EI merevség a kapcsolatot M=EI·w''-vel adja. Negyedrendű ODE, mert a gerendának négy peremfeltétel kell (két vég × két korlát: lehajlás és meredekség, vagy nyomaték és nyíróerő). Feltételezi, hogy a síkmetszetek síkban maradnak és a nyíródeformáció elhanyagolható — karcsú gerendákra érvényes.",
     "wiki": "https://en.wikipedia.org/wiki/Euler%E2%80%93Bernoulli_gerendaegyenlet",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1750
   },
   {
     "rank": 73,
@@ -1096,7 +1144,8 @@
     "why": "<b>Egy szerkezet elmozdulása egy adott ponton nem más, mint a benne tárolt rugalmas energia deriváltja az ott ható erő szerint.</b> Castigliano huszonhárom évesen, mérnöki szakdolgozatában vezette le ezt a meglepően egyszerű összefüggést. Az energiamódszerek (ezen belül Castigliano tétele) ma is az egyik leggyorsabb kézi eszköz statikailag határozatlan szerkezetek elmozdulásának és reakcióinak számítására.",
     "whyMore": "U a szerkezetben tárolt teljes rugalmas alakváltozási energia; a reciprocitás/Betti-keret szerint U parciális deriváltja egy erő szerint megadja az elmozdulást az adott erő pontján, annak irányában. Ereje, hogy nem kell a teljes elmozdulás-mezőt megoldani — elég az energia-kifejezést deriválni. Statikailag határozatlan szerkezeteknél a többleterőket változókként adjuk hozzá és nulla elmozdulást írunk elő, így közvetlenül megkapjuk a reakciókat.",
     "wiki": "https://en.wikipedia.org/wiki/Castigliano-t%C3%A9tel",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1873
   },
   {
     "rank": 74,
@@ -1109,7 +1158,8 @@
     "why": "<b>Bármely fizikai törvény átírható dimenzió nélküli mennyiségek közötti kapcsolattá — és ez drasztikusan csökkenti a szükséges kísérletek számát.</b> Ha egy jelenséget n fizikai mennyiség ír le k alapdimenzióval, elég (n−k) dimenziótlan csoportot vizsgálni. Ez a modellkísérletek (szélcsatorna, hidraulikai modellek) és a Reynolds-szám típusú hasonlósági paraméterek elméleti alapja — kicsiben tesztelsz, és a π-csoportok garantálják, hogy nagyban is érvényes marad.",
     "whyMore": "A fizikai törvények nem függhetnek a mértékegységtől, ezért dimenziótlan csoportokkal kell kifejezhetőknek lenniük; a Rankine–Buckingham-tétel szerint pontosan n−k ilyen csoportot lehet képezni (n változó, k független alapdimenzió). Ez például 6 változós problémát 3 dimenziótlanra csökkent — ezért tud egy kis szélcsatorna-modell egy teljes méretű repülőt előre jelezni. A Reynolds-szám a klasszikus π-csoport az áramlástanban.",
     "wiki": "https://en.wikipedia.org/wiki/Buckingham_%CF%80-t%C3%A9tel",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1914
   },
   {
     "rank": 75,
@@ -1122,7 +1172,8 @@
     "why": "<b>Egy részecske véges eséllyel átjuthat egy olyan energiagáton, amit klasszikusan sosem tudna leküzdeni.</b> A hullámfüggvény nem tűnik el a tiltott tartományban, csak exponenciálisan lecseng — és a másik oldalon véges valószínűséggel megjelenik. Ez teszi lehetővé a Nap fúzióját (a protonok Coulomb-gáton 'alagutaznak' át), a radioaktív alfa-bomlást és a modern flash-memóriák működését is.",
     "whyMore": "A hullámfüggvény a gáton belül (V₀>E) nem nulla, hanem exponenciálisan lecseng, a κ lecsengési állandót az határozza meg, mennyivel van E a gát alatt és mekkora a részecske tömege. Az áteresztés a túloldali amplitúdó négyzete — innen az e^{−2κL} függés, amely élesen esik a gátszélesség L és a tömeg m növekedésével. A könnyebb részecskék és vékonyabb/alacsonyabb gátak könnyen alagutaznak; ezért jutnak át az elektronok a flash-memória kapuin és szöknek ki az alfa-részecskék a magból.",
     "wiki": "https://en.wikipedia.org/wiki/Kvantum-alag%C3%BAthat%C3%A1s",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1927
   },
   {
     "rank": 76,
@@ -1145,7 +1196,8 @@
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/No-cloning_t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1982
   },
   {
     "rank": 77,
@@ -1158,7 +1210,8 @@
     "why": "<b>Két szupravezető között egy vékony szigetelőrétegen áram folyik feszültség nélkül is — pusztán a kvantumfázis-különbség hajtja.</b> Josephson 22 évesen, PhD-hallgatóként jósolta meg ezt a tisztán kvantummechanikai jelenséget. A hatás ma a legpontosabb feszültségetalon és a szupravezető kvantumszámítógépek (qubitek) alapvető építőeleme.",
     "whyMore": "I a szigetelőrétegen átfolyó szuperáram, I_c a kritikus áram (a maximális zérusfeszültségű áram), φ a két szupravezető makroszkopikus hullámfüggvényének fáziskülönbsége, V a rájuk kapcsolt feszültség. Az első egyenlet szerint az áramot pusztán a fáziskülönbség szinusza hajtja; a második (dφ/dt = 2eV/ħ) azt mondja ki, hogy egy feszültség a fázist 2eV/ħ sebességgel forgatja — így egyenfeszültség alatt az áram rezeg (AC Josephson-effektus), ami rendkívül pontos feszültség- és frekvenciamérésre alkalmas.",
     "wiki": "https://en.wikipedia.org/wiki/Josephson-effektus",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1962
   },
   {
     "rank": 78,
@@ -1171,7 +1224,8 @@
     "why": "<b>Egy szupravezető nem csak vezeti az áramot ellenállás nélkül — aktívan kilöki magából a mágneses teret.</b> Ez a jelenség (nem pusztán a tökéletes vezetőképesség) bizonyította, hogy a szupravezetés valódi, új termodinamikai fázisállapot, nem csak 'nagyon jó vezető'. Ez teszi lehetővé a mágneses lebegtetést (pl. maglev vonatok) és ez motiválta a BCS-elmélet megalkotását két évtizeddel később.",
     "whyMore": "A képlet szerint a szupravezető térfogatában a mágneses indukcióvektor B = 0, azaz a test teljesen kisöpri magából a mágneses teret. Ezt a felszín közelében áramló, a teret kioltó ún. árnyékoló (screening) szuperáramok teszik lehetővé, amelyek egy vékony London-rétegben folynak. Éppen ez a teljes kitaszítás különbözteti meg a valódi szupravezetést a csupán tökéletesen vezető anyagtól, és ez adja a mágneses lebegtetés alapját.",
     "wiki": "https://en.wikipedia.org/wiki/Meissner-effektus",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1933
   },
   {
     "rank": 79,
@@ -1184,7 +1238,8 @@
     "why": "<b>Az abszolút nulla fok elvileg sosem érhető el véges számú lépésben — ezt mondja ki a termodinamika harmadik főtétele.</b> Ahogy a hőmérséklet nullához tart, egy tökéletes kristály entrópiája is nullához tart, és ez egyre nehezebbé, végül lehetetlenné teszi a további hűtést. Nernst kémiai reakciók vizsgálatából jutott el ide — a tétel ma is korlátozza, milyen közel juthatunk a kvantumszámítógépek hűtésében az abszolút nullához.",
     "whyMore": "A képlet szerint egy tökéletes kristály entrópiája S a hőmérséklet T nullához tartásával nullához tart. Ennek oka, hogy T=0-on a tökéletes kristálynak csak egyetlen mikroállapota (az összerendezett rács) létezik, így S = k_B·ln 1 = 0. Mivel a további hűtéshez szükséges munka a hőmérséklet-csökkenéssel arányosan nő, amíg az entrópiaváltozás el nem fogy, az abszolút nulla véges lépésben elérhetetlen.",
     "wiki": "https://en.wikipedia.org/wiki/Nernst-t%C3%A9tel_%28harmadik_f%C5%91t%C3%A9tel%29",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1906
   },
   {
     "rank": 80,
@@ -1197,7 +1252,8 @@
     "why": "<b>Egy gáz molekuláinak sebessége nem egyenletes — pontos, harang alakú eloszlást követ, ami csak a hőmérséklettől függ.</b> Maxwell tisztán valószínűségi érveléssel vezette le, mielőtt Boltzmann statisztikus mechanikai alapokra helyezte volna. Ez volt az első eset, hogy a fizika 'feladta' az egyedi részecskék pontos nyomon követését, és helyette statisztikus törvényekkel írta le a valóságot — ezzel megnyitva az utat a modern statisztikus fizika felé.",
     "whyMore": "f(v) a v sebességű molekulák számsűrűsége, n a teljes részecskesűrűség, m a molekulatömeg, T a hőmérséklet, k_B a Boltzmann-állandó. A v² tényező a sebességtérbeli gömbhéj térfogatából adódik (magasabb sebességnél több lehetséges irány van), az e^{-mv²/2k_BT} Boltzmann-tényező pedig exponenciálisan nyomja el a túl gyors molekulákat — a kettő egyensúlya adja a csúcsos, aszimmetrikus eloszlást egy véges csúcssebességgel.",
     "wiki": "https://en.wikipedia.org/wiki/Maxwell%E2%80%93Boltzmann_sebess%C3%A9geloszl%C3%A1s",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1860
   },
   {
     "rank": 81,
@@ -1210,7 +1266,8 @@
     "why": "<b>Egy izzó test által kisugárzott teljes energia a hőmérséklet negyedik hatványával nő — innen tudjuk, milyen forró a Nap felszíne.</b> Stefan kísérletileg találta meg az összefüggést, Boltzmann öt évvel később termodinamikai úton vezette le. A negyedik hatvány drámai érzékenységet jelent: ha egy csillag hőmérséklete duplázódik, tizenhatszor annyi energiát sugároz — ez a csillagászati fényesség-hőmérséklet becslések alapja.",
     "whyMore": "j az egységnyi felületről sugárzott teljesítmény (W/m²), σ a Stefan–Boltzmann-állandó (≈5,67·10⁻⁸ W·m⁻²·K⁻⁴), T a hőmérséklet kelvinben. A negyedik hatvány a teljes Planck-spektrum frekvencia- és térszögi integrálásából jön ki: ha T megduplázódik, a kisugárzott teljesítmény 2⁴ = 16-szorosára nő, ami a csillagok felszínhőmérsékletének fényességből való becslését teszi lehetővé.",
     "wiki": "https://en.wikipedia.org/wiki/Stefan%E2%80%93Boltzmann-t%C3%B6rv%C3%A9ny",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1879
   },
   {
     "rank": 82,
@@ -1223,7 +1280,8 @@
     "why": "<b>Ha egy töltött részecske gyorsabban halad egy közegben, mint a fény abban a közegben, kék fénykúpot bocsát ki — ez a fény 'hangrobbanása'.</b> A fény vákuumbeli sebességét semmi sem lépheti túl, de egy közegben (pl. vízben) a fénysebesség lassabb, és a részecskék meghaladhatják. A jelenség adja az atomreaktorok jellegzetes kék izzását, és ez alapján épülnek a neutrínó-detektorok (pl. Super-Kamiokande) is.",
     "whyMore": "θ_c a kibocsátott fénykúp félnyílásszöge, n a közeg törésmutatója, β = v/c a részecske sebessége a fénysebesség törtrészében. A képlet a fény 'hangrobbanásának' geometriai feltétele: csak akkor jelenik meg valós, cos θ_c ≤ 1 szögű kúp, ha a részecske gyorsabb a közegben a fénynél, vagyis β > 1/n. A szög mérése megadja a részecske sebességét, ezért alapozza meg a neutrínó- és részecske-detektorok működését.",
     "wiki": "https://en.wikipedia.org/wiki/Cserenkov-sug%C3%A1rz%C3%A1s",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1934
   },
   {
     "rank": 83,
@@ -1236,7 +1294,8 @@
     "why": "<b>Egy szubatomi részecske mágneses tulajdonsága a Standard Modell jóslatától kis, de makacsul fennmaradó mértékben eltér.</b> A müon mágneses momentuma az egyik legpontosabban mérhető mennyiség a fizikában — a Fermilab 2021-es mérése megerősítette a korábbi Brookhaven-eredményt. Ha az eltérés valódi (és nem elméleti számítási hiba), az új, még ismeretlen részecskék vagy kölcsönhatások létezésére utalhat a Standard Modellen túl.",
     "whyMore": "a_μ a mágneses anomália, azaz a g giromágneses faktor eltérése a Dirac-értéktől: a_μ = (g−2)/2. A mérést és a Standard Modell (SM) elméleti jóslatát összevető különbség ≈4,2σ, azaz 4,2 szórásnyira van egymástól — statisztikailag igen ritkán előforduló eltérés. Ha a különbség valódi, azt jelzi, hogy a müon 'kvantumhurkában' nem szereplő, új virtuális részecskék is hozzájárulnak a mágneses momentumhoz.",
     "wiki": "https://en.wikipedia.org/wiki/M%C3%BCon_g-2_anom%C3%A1lia",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 2021
   },
   {
     "rank": 84,
@@ -1249,7 +1308,8 @@
     "why": "<b>Egy zárt fülkében lehetetlen megkülönböztetni a gravitációt az egyenletes gyorsulástól — ez volt Einstein 'legboldogabb gondolata'.</b> A tehetetlen és a súlyos tömeg azonossága évszázadok óta ismert kísérleti tény volt, de senki nem gondolt bele a mélyebb jelentésébe. Einstein ebből az egyetlen felismerésből építette fel az egész általános relativitáselméletet — a gravitáció nem erő, hanem a téridő görbülete.",
     "whyMore": "m_tehetetlen a tehetetlen tömeg (az F = m·a szerinti ellenállás a gyorsulásra), m_súlyos a súlyos tömeg (a gravitáció forrása és elszenvedője az F = G·m·M/r² szerint). A kettő kísérletileg azonos, így minden test ugyanazzal a gyorsulással esik — ez teszi lehetővé, hogy egy zárt fülkében a gravitációt megkülönböztethetetlennek tartsuk az egyenletes gyorsulástól, és hogy a gravitációt ne erőnek, hanem a téridő görbületének tekintsük.",
     "wiki": "https://en.wikipedia.org/wiki/Ekvivalenciaelv",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1907
   },
   {
     "rank": 85,
@@ -1262,7 +1322,8 @@
     "why": "<b>A valóságos fekete lyukak nem állnak — forognak, és ez alapvetően megváltoztatja a köréjük görbült téridő szerkezetét.</b> Roy Kerr új-zélandi matematikus 1963-ban találta meg az első egzakt megoldást forgó tömegekre — csaknem 50 évvel Einstein után. A forgás miatt a fekete lyuknak két eseményhorizontja is van (r₊ és r₋), és a téridő 'magával rántja' a körülötte lévő teret (frame dragging) — ezt látjuk az Event Horizon Telescope felvételein.",
     "whyMore": "r_s a Schwarzschild-sugár (2GM/c²), a a fekete lyuk dimenziótlan perdülete (J/Mc). A két gyök az eseményhorizontok sugarát adja: r₊ a külső (kozmológiai), r₋ a belső horizontot; valós gyökök csak akkor léteznek, ha a ≤ r_s/2, vagyis a forgó lyuk nem lehet túlextrém. A forgás 'magával rántja' a környező téridőt (frame dragging), és ez a két horizont a lyuk körüli gáz- és anyagáramlásokat is alakítja.",
     "wiki": "https://en.wikipedia.org/wiki/Kerr-metrika",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1963
   },
   {
     "rank": 86,
@@ -1275,7 +1336,8 @@
     "why": "<b>Gyorsuló tömegek fodrozzák magát a téridőt — ezek a fodrok a fénysebességgel terjednek, és 100 évvel a jóslat után mérhetőkké váltak.</b> Einstein 1916-ban vezette le a képletet, de maga is kételkedett benne, hogy valaha mérhető lesz. A LIGO 2015-ös első detektálása (két fekete lyuk összeolvadásából) egy teljesen új ablakot nyitott az univerzumra — nem fénnyel, hanem a téridő rezgésével 'hallgatjuk' a kozmoszt.",
     "whyMore": "P a kisugárzott teljesítmény, Q_ij a tömegeloszlás másodrendű (kvadrupól) nyomatéka, a pontok az idő szerinti deriváltakat jelölik, ⟨·⟩ a ciklikus átlagot. A képletből látszik, hogy csak a kvadrupól- (és magasabb) momentum változása sugároz: egy gömbszimmetrikusan lüktető tömegnek Q̈̈_ij = 0, így nem bocsát ki hullámot. A G/c⁵ tényező mutatja, hogy a gravitációs sugárzás sok nagyságrenddel gyengébb az elektromágnesesnél, emiatt volt mérhetetlen 100 éven át.",
     "wiki": "https://en.wikipedia.org/wiki/Gravit%C3%A1ci%C3%B3s_hull%C3%A1mok_%28kvadrup%C3%B3l-formula%29",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1916
   },
   {
     "rank": 87,
@@ -1288,7 +1350,8 @@
     "why": "<b>Az Euler–Bernoulli-elmélet elhanyagolja a nyírási alakváltozást — Timoshenko megmutatta, hogy ez zömök gerendáknál nem tehető meg.</b> A klasszikus gerendaelmélet feltételezi, hogy a keresztmetszetek a hajlítás után is merőlegesek maradnak a tengelyre; Timoshenko elengedte ezt a feltevést. Rövid, vastag gerendáknál (pl. hídpillérek, gépalapok) ez a pontosabb modell — máig ez a szabvány a dinamikai és rezgésanalízisben.",
     "whyMore": "G a nyírási modulus, A_s a nyírásra számított keresztmetszet, w a gerenda keresztirányú elhajlása, φ a keresztmetszet elfordulása, q a megoszló terhelés. A w/dx − φ tag éppen a nyírási deformációt ragadja meg: ellentétben az Euler–Bernoulli-feltevéssel, a keresztmetszet nem marad merőleges a semleges tengelyre. Ezért rövid, vastag gerendáknál (pl. hídpillérek), ahol a nyírás nem hanyagolható el, a Timoshenko-egyenlet ad pontosabb hajlítási és rezgési eredményt.",
     "wiki": "https://en.wikipedia.org/wiki/Timoshenko-gerendaelm%C3%A9let",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1921
   },
   {
     "rank": 88,
@@ -1301,7 +1364,8 @@
     "why": "<b>Egy egyetlen vektoregyenlet írja le, hogyan deformálódik egy háromdimenziós rugalmas test bármilyen terhelés alatt.</b> Navier (ugyanaz, aki a folyadékmechanikai Navier–Stokes-egyenletet is megalkotta) itt a szilárd testek egyensúlyi egyenletét vezette le a Lamé-állandók (λ, μ) segítségével. Ez minden modern végeselemes szerkezetanalízis-szoftver (pl. földrengésálló épülettervezés) elméleti kiindulópontja.",
     "whyMore": "u a test elmozdulásvektora, λ és μ a Lamé-állandók (μ a nyírási modulus), f a térfogati erő. Az egyenlet a 3D rugalmas egyensúly Hooke-törvényből levezetett alakja: ∇·u a térfogati nyúlás (dilatáció), ∇²u a nyírási deformáció, és a (λ+μ) súlyozás összeköti a kettőt. Ez az egyetlen vektoregyenlet minden végeselemes szerkezetanalízis (pl. földrengésálló tervezés) kiindulópontja.",
     "wiki": "https://en.wikipedia.org/wiki/Navier-egyenlet_%28rugalmass%C3%A1gtan%29",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1821
   },
   {
     "rank": 89,
@@ -1314,7 +1378,8 @@
     "why": "<b>Egy szerkezet első sajátfrekvenciája megbecsülhető, ha csak egy 'ésszerű' rezgésalakot feltételezünk — pontos megoldás nélkül is.</b> Az energiamódszer (mozgási és alakváltozási energia egyenlősége) mindig felülbecsli a valódi sajátfrekvenciát, de gyakran meglepően közel kerül hozzá. Ritz általánosította Rayleigh eredeti ötletét, és ez lett a végeselem-módszer közvetlen elméleti elődje — máig ez az első kézi ellenőrzés, amit egy statikus egy rezgő szerkezetnél elvégez.",
     "whyMore": "ω a szerkezet sajátkörfrekvenciája, EI a hajlítási merevség, m a tömegsűrűség (tömeg/hossz), φ a kitalált (feltételezett) rezgésalak. A tört a feszültségi (alaki) energia és a mozgási energia hányadosa: a két energiát egyenlővé téve maximális értéküknél megkapjuk ω² közelítését. A módszer mindig felülről közelíti a valódi frekvenciát, Ritz pedig úgy tette pontosabbá, hogy több bázisalak lineáris kombinációját használta — ez a végeselem-módszer elődje.",
     "wiki": "https://en.wikipedia.org/wiki/Rayleigh%E2%80%93Ritz_m%C3%B3dszer",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1870
   },
   {
     "rank": 90,
@@ -1327,7 +1392,8 @@
     "why": "<b>Egyetlen lineáris arány köti össze a feszültséget és az alakváltozást — ez minden szilárdságtani számítás kiindulópontja.</b> Hooke eredetileg anagrammaként rejtette el felfedezését ('ceiiinosssttuv'), hogy elsőbbségét biztosítsa, miközben tovább finomította. A rugalmassági modulus (E) ma is az anyagválasztás első száma minden mérnöki tervezésnél — a legegyszerűbb fizikai törvény, ami mégis az egész szerkezetstatika alapja.",
     "whyMore": "σ a normálfeszültség (erő/keresztmetszet), ε az alakváltozás (relatív megnyúlás ΔL/L), E a Young-féle rugalmassági modulus. A lineáris összefüggés csak a rugalmas tartományban, az folyáshatár alatt érvényes; E nagysága adja az anyag merevségét — nagy E esetén az anyag kevéssé nyúlik meg adott terhelésre. Ez az egyetlen arány minden szilárdságtani és szerkezetstatikai számítás alapja.",
     "wiki": "https://en.wikipedia.org/wiki/Hooke-t%C3%B6rv%C3%A9ny",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1678
   },
   {
     "rank": 91,
@@ -1346,7 +1412,8 @@
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/Darcy-t%C3%B6rv%C3%A9ny",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1856
   },
   {
     "rank": 92,
@@ -1359,7 +1426,8 @@
     "why": "<b>Amikor egy épület terhet ad egy agyagos talajra, a víznek időbe telik kipréselődnie a pórusokból — ez az elmélet írja le, milyen ütemben süllyed a szerkezet.</b> Terzaghi Károly a talajmechanikát önálló tudományággá formálta ezzel az egyenlettel, amely formálisan azonos a hővezetés egyenletével. Minden alapozástervezés, ami süllyedés-idő görbét számol, ezen az 1925-ös felismerésen nyugszik — a geotechnikai mérnöki tudomány alapköve.",
     "whyMore": "Az u a pórusokban lévő felesleges víznyomás, amely az épület terhe miatt keletkezik, z a mélység, c_v pedig a talaj konszolidációs tényezője, ami a víz távozásának sebességét jellemzi (minél nagyobb, annál gyorsabban süllyed a talaj). Az egyenlet azt mondja ki, hogy a pórusvíznyomás időbeli csökkenése arányos a nyomás mélység szerinti görbületével — a víz a nagy gradiensű helyekről folyik a kisebb felé, mint a hő vagy anyag diffúziójánál. Ezért indul a süllyedés gyorsan, majd exponenciálisan lassul, ahogy a pórusvíz kiürül.",
     "wiki": "https://en.wikipedia.org/wiki/Terzaghi-f%C3%A9le_konszolid%C3%A1ci%C3%B3elm%C3%A9let",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1925
   },
   {
     "rank": 93,
@@ -1372,7 +1440,8 @@
     "why": "<b>Egy forgó rendszerben (mint a Föld) mozgó test látszólagos oldalirányú erőt érez — ez téríti el a ciklonokat, a folyók partjait és a tüzérségi lövedékeket.</b> Nem valódi erő, hanem a vonatkoztatási rendszer forgásából adódó látszólagos hatás — mégis mérhető, valós következményekkel. Enélkül lehetetlen lenne pontos ballisztikai számítást, időjárás-előrejelzést vagy akár Foucault-inga-kísérletet végezni.",
     "whyMore": "Az m a test tömege, ω a forgó rendszer (a Föld) szögsebesség-vektora, v a test sebessége a forgó rendszerhez képest, a × pedig a vektoriális szorzat, ami a forgástengelyre és a sebességre is merőleges irányt ad. A 2-es szorzó abból adódik, hogy a forgó koordinátarendszerben két egyenlő nagyságú, a forgásból származó tag összegződik ebben a látszólagos erőben. Mivel az irány mindig a mozgásra merőleges és a forgás irányától függ, északi féltekén jobbra, déli féltekén balra téríti el a mozgó testeket.",
     "wiki": "https://en.wikipedia.org/wiki/Coriolis-er%C5%91",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1835
   },
   {
     "rank": 94,
@@ -1385,7 +1454,8 @@
     "why": "<b>Egy egyszerű inga lengési síkja a nap folyamán elfordul — nem azért, mert bármi meglöki, hanem mert alatta forog a Föld.</b> Léon Foucault a párizsi Panthéonban 67 méteres drótra függesztett ingával mutatta be, első alkalommal, közvetlen, mechanikai bizonyítékkal a Föld tengelyforgására. A precesszió sebessége a földrajzi szélességtől függ — az Északi-sarkon pontosan 24 óra, az egyenlítőn nulla.",
     "whyMore": "A φ a földrajzi szélesség, a 24 óra egy teljes Föld-körülfordulás ideje; a sin(φ) azt adja meg, hogy az adott szélességen a Föld tengelyforgásának vízszintes (a függőlegestől eltérő) komponense mekkora. Minél közelebb vagyunk a pólushoz, annál nagyobb ez a komponens, és annál gyorsabban fordul el a lengési sík (az egyenlítőn nulla, mert ott a felszín csak vízszintesen mozog). A teljes 360°-os elfordulás ideje pont az egyenlettel adott T, ami a póluson 24 óra, az egyenlítőn végtelen.",
     "wiki": "https://en.wikipedia.org/wiki/Foucault-inga",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1851
   },
   {
     "rank": 95,
@@ -1398,7 +1468,8 @@
     "why": "<b>Egy forgó merev test — például egy pörgettyű vagy egy műhold — mozgása három csatolt egyenlettel írható le, amelyekben a forgástengelyek maguk is 'vándorolnak'.</b> A giroszkópikus precesszió, a bukdácsoló forgó tojás és a stabil műholdpályák mind ebből az egyenletrendszerből érthetők meg. Euler nem véletlenül ismerte fel: ha egy test három tehetetlenségi nyomatéka mind különböző, a forgása elvileg kaotikussá válhat a köztes tengely körül — ezt nevezik ma 'tenisz-ütő tételnek'.",
     "whyMore": "Az I₁, I₂, I₃ a test saját tehetetlenségi nyomatékai a három főtengelyére, ω₁..ω₃ a szögsebesség komponensei ezeken, M₁ a külső nyomaték az 1-es tengelyre. A (I₂−I₃)ω₂ω₃ tag azt mutatja, hogy az egyik tengelyen keletkező szöggyorsulást a másik kettő perdületének kereszthatása hozza létre — ez a giroszkópikus csatolás. Külső nyomaték nélkül a test a legnagyobb vagy legkisebb tehetetlenségű tengelye körül stabil, a középső körül instabil, innen ered a 'tenisz-ütő tétel'.",
     "wiki": "https://en.wikipedia.org/wiki/Euler-f%C3%A9le_forg%C3%A1segyenletek",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1765
   },
   {
     "rank": 96,
@@ -1411,7 +1482,8 @@
     "why": "<b>Az ideális gáztörvény két apró korrekcióval válik valósághűvé: a molekulák saját térfogatot foglalnak el, és vonzzák egymást.</b> Van der Waals ezzel az egyszerű módosítással írta le először, hogyan kondenzálódik egy gáz folyadékká — Nobel-díjat kapott érte. Az egyenlet a kritikus pont létezését is megjósolja, ahol a gáz és a folyadék fázisa megkülönböztethetetlenné válik.",
     "whyMore": "Az a·n²/V² tag a belső vonzóerő miatti nyomáscsökkenést pótolja (a molekulák egymást húzzák, így kevesebb nyomást fejtenek ki a falra), az n·b pedig a molekulák saját térfogatát vonja le a rendelkezésre álló térből. A P a nyomás, V a térfogat, n az anyagmennyiség, T a hőmérséklet, R az egyetemes gázállandó. Kis V-nél ezek a tagok dominálni kezdenek, így az egyenlet — az ideális gáztörvénnyel szemben — leír egy valós gáz folyadék–gáz fázisátmenetét és a kritikus pontot is.",
     "wiki": "https://en.wikipedia.org/wiki/Van_der_Waals-%C3%A1llapotegyenlet",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1873
   },
   {
     "rank": 97,
@@ -1424,7 +1496,8 @@
     "why": "<b>Egy gáz fojtott (munkavégzés nélküli) tágulásakor lehűlhet vagy felmelegedhet — attól függően, hol van a hőmérséklete az 'inverziós ponthoz' képest.</b> Ez a jelenség (nem az adiabatikus tágulás) teszi lehetővé a gázok cseppfolyósítását ipari méretekben — enélkül nem létezne folyékony nitrogén, oxigén, vagy a modern hűtő- és klímatechnika. A szobahőmérsékleten a legtöbb gáz lehűl a fojtáskor — a hidrogén és a hélium viszont felmelegszik, ezért nehezebb őket cseppfolyósítani.",
     "whyMore": "A μ_JT a Joule–Thomson-együttható: megadja, hány fokot változik a gáz hőmérséklete egységnyi nyomásesésre, miközben az entalpia H (a fojtásnál a hő és munka összege) állandó marad. A fojtás során a gáz nem végez munkát, csak a nyomása csökken — a belső vonzóerők miatt a térfogatnövekedés energiába (hűlésbe) vagy energiából (melegedésbe) kerül. Ahol μ_JT pozitív (több gáz szobahőmérsékleten), a gáz lehűl; ahol negatív (hidrogén, hélium), felmelegszik — ezt az inverziós hőmérséklet határozza meg.",
     "wiki": "https://en.wikipedia.org/wiki/Joule%E2%80%93Thomson-effektus",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1852
   },
   {
     "rank": 98,
@@ -1437,7 +1510,8 @@
     "why": "<b>A hőáram mindig a hőmérséklet-gradienssel ellentétes irányba folyik, egyenesen arányos annak nagyságával — ugyanaz a matematikai forma, mint Darcy vagy Fick törvényénél.</b> Fourier ugyanabból az intuícióból építette fel a hővezetés egyenletét, amiből később a Fourier-sorokat és -transzformációt is kifejlesztette — a hőterjedés vizsgálata vezetett a matematikai analízis egyik legfontosabb eszközéhez. Épületfizikai hőszigetelés-tervezéstől a mikroprocesszorok hűtéséig mindenhol ez az egyenlet dolgozik.",
     "whyMore": "A q a hőáramsűrűség-vektor (energia/idő/terület), k a közeg hővezetési tényezője (anyagfüggő konstans: réznél nagy, szigetelőnél kicsi), ∇T a hőmérséklet-gradiens. A mínuszjel a fizikai irányt rögzíti: a hő mindig a melegebb felől a hidegebb felé, a gradiens ellenkező irányába áramlik. Ez a lineáris kapcsolat — kétszer akkora különbség, kétszer akkora hőáram — teszi a hőterjedést jól kezelhető, lineáris diffúziós problémává, akárcsak a Darcy- vagy Fick-törvényt.",
     "wiki": "https://en.wikipedia.org/wiki/Fourier-f%C3%A9le_h%C5%91vezet%C3%A9si_t%C3%B6rv%C3%A9ny",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1822
   },
   {
     "rank": 99,
@@ -1450,7 +1524,8 @@
     "why": "<b>Egyetlen egyenlet számítja ki egy elektrokémiai cella feszültségét — és ugyanez az egyenlet írja le, hogyan generálnak a neuronok elektromos jeleket.</b> Az ionkoncentráció-különbségekből adódó potenciál a mérnöki elemektől (akkumulátorok) az idegsejtek membránpotenciáljáig mindenhol ugyanezt a logikát követi. Nernst kémiai munkájáért Nobel-díjat kapott, de az egyenlete végül az idegtudomány egyik legfontosabb alapkövévé vált.",
     "whyMore": "Az E a mért cellafeszültség, E⁰ a szabványos feszültség (a reakció egyensúlyi hajlama), R az egyetemes gázállandó, T a hőmérséklet, z az átadott elektronok száma, F a Faraday-állandó, Q a reakció hányadosa (termékek és kiindulási anyagok koncentrációjának aránya). A ln Q tag azt mondja ki, hogy minél nagyobb az egyensúlytól való eltérés (pl. ionkoncentráció-különbség a membrán két oldalán), annál nagyobb a feszültség. Az egyenlet termodinamikai alapja: a kémiai potenciálkülönbség alakul elektromos feszültséggé, és pontosan így skálázódik a hőmérséklettel és az elektronszámmal.",
     "wiki": "https://en.wikipedia.org/wiki/Nernst-egyenlet",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1889
   },
   {
     "rank": 100,
@@ -1463,7 +1538,8 @@
     "why": "<b>Egy 3×3-as mátrix magyarázza meg, miért maradt egyáltalán anyag az univerzumban — miért nem semmisült meg minden az ősrobbanás után antianyaggal.</b> Kobayashi és Maskawa 1973-ban, még mielőtt a harmadik kvarkcsalád felfedezték volna, megjósolták: legalább hat kvarktípus kell ahhoz, hogy a Standard Modellben CP-sértés (anyag-antianyag aszimmetria) létezhessen. A jóslat évtizedekkel később igazolódott — 2008-ban Nobel-díjjal jutalmazták.",
     "whyMore": "A mátrix elemei V_ij a kvarkcsaládok (u, c, t 'fel' és d, s, b 'le' kvarkok) közötti kölcsönhatási amplitúdókat adják meg — a három generáció keveredését írják le. A mátrix komplex fázisszöge (amit a 3×3-as alak pont enged meg) teremti meg a CP-sértést: a részecske és antirészecskéje bomlása nem pontosan ugyanolyan valószínűségű. Ha csak két kvarkcsalád lenne (2×2-es mátrix), a fázis kisöpörhető lenne — ezért kellett a harmadik generáció ahhoz, hogy az univerzumban a kis anyag-felesleg létrejöhessen.",
     "wiki": "https://en.wikipedia.org/wiki/CKM-m%C3%A1trix_%28CP-s%C3%A9rt%C3%A9s%29",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1973
   },
   {
     "rank": 101,
@@ -1476,7 +1552,8 @@
     "why": "<b>Egy elektron kvantumfázisát befolyásolja egy mágneses tér még akkor is, ha az elektron pályája teljes egészében a mágneses tértől mentes régióban halad.</b> Ez a jelenség megmutatta, hogy a vektorpotenciál (A) nem csak matematikai segédeszköz, hanem fizikailag valódi, mérhető hatással bír — ellentétben a klasszikus elektrodinamika korábbi felfogásával. Az egyik legtisztább bizonyíték arra, hogy a kvantummechanika alapvetően nem-lokális jelenségeket rejt.",
     "whyMore": "A Δφ a két egymást keresztező elektronnyaláb közötti fáziskülönbség, e az elemi töltés, ℏ a redukált Planck-állandó, A a vektorpotenciál, a ∮ pedig a zárt hurkon vett vonalintegrál. A klasszikus elektrodinamikában csak E és B (a térerősségek) számítanak, de az egyenlet szerint maga az A vektorpotenciál hat a kvantumfázisra, még ha B=∇×A zérus is a pályán. Ez azt jelenti, hogy a kvantummechanikában a potenciál nemcsak segédeszköz, hanem fizikailag mérhető, nem-lokális hatást közvetít.",
     "wiki": "https://en.wikipedia.org/wiki/Aharonov%E2%80%93Bohm-effektus",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1959
   },
   {
     "rank": 102,
@@ -1489,7 +1566,8 @@
     "why": "<b>Ha egyszer egy csillag elég összenyomódik, a téridő-görbület szingularitása matematikailag elkerülhetetlen — nem csak a szimmetrikus, idealizált esetekben.</b> Penrose és Hawking topológiai módszerekkel (nem az egyenletek megoldásával) bizonyították ezt, ami sokkal általánosabb eredményt adott, mint bármelyik korábbi konkrét megoldás. Penrose ezért kapott 2020-ban fizikai Nobel-díjat — a bizonyítás máig az egyik legmélyebb kapocs a topológia és a fizika között.",
     "whyMore": "A θ a geodetikus kongruencia kitágulási skalárja (azt méri, hogyan szét- vagy összeszedődnek a szomszédos pályák), az affin paraméter pedig a geodetikus ívhosszát parameterezi. A tétel feltételezi, hogy létezik egy csapdahorizont (trapped surface), ahol minden fény- és anyagsugár befelé görbül — ekkor θ véges idő alatt −∞-be fut, ami a téridő görbületének végtelenbe tartását (szingularitást) jelenti. A lényeg: nem a szimmetria, hanem az általános relativitás egyenleteinek szerkezete kényszeríti ki a szingularitást, bármilyen aszimmetrikus is a gravitációs összeomlás.",
     "wiki": "https://en.wikipedia.org/wiki/Penrose%E2%80%93Hawking_szingularit%C3%A1st%C3%A9telek",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1965
   },
   {
     "rank": 103,
@@ -1502,7 +1580,8 @@
     "why": "<b>A fény mérhetően lelassul, amikor egy nagy tömeg (pl. a Nap) közelében halad el — a görbült téridő 'meghosszabbítja' az útját.</b> Irwin Shapiro jósolta meg és mérte ki radarjelek Vénuszról való visszaverődésével — ez volt az általános relativitáselmélet negyedik klasszikus kísérleti próbája (a fénygörbülés, a bolygópálya-precesszió és a gravitációs vöröseltolódás után). A modern GPS-rendszerek pontossága is számol ezzel a késleltetéssel.",
     "whyMore": "A Δt a késleltetés ideje, G a gravitációs állandó, M a nagy tömeg (pl. a Nap), c a fénysebesség, r₁ és r₂ az adó és vevő távolsága a tömegtől, d a fény sugár legkisebb távolsága a tömeg középpontjától. A c³ a téridő-görbülés skáláját adja meg, a ln(4r₁r₂/d²) pedig a fény effektív útjának megnyúlását írja le a görbült téridőben. A hatás kicsi (a Nap esetén mikromásodpercekben mérhető), de pontosan ezt a korrekciót kell a GPS-nek és a rádiótávcsöveknek is figyelembe venniük.",
     "wiki": "https://en.wikipedia.org/wiki/Shapiro-k%C3%A9sleltet%C3%A9s",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1964
   },
   {
     "rank": 104,
@@ -1515,7 +1594,8 @@
     "why": "<b>Egy forgó fekete lyuk ergoszférájából elméletileg energia nyerhető ki — a fekete lyuk forgási energiájának terhére.</b> Ha egy részecske az ergoszférában két darabra hasad, és az egyik darab negatív energiával zuhan be a fekete lyukba, a másik nagyobb energiával távozhat, mint amivel érkezett. A folyamat a Kerr-metrika közvetlen, gyakorlati következménye — és felmerült, hogy hipotetikusan fejlett civilizációk energiaforrásként használhatnák egy forgó fekete lyukat.",
     "whyMore": "A folyamat egy forgó (Kerr) fekete lyuk ergoszférájában játszódik: egy beeső részecske két darabra hasad, az egyik darab negatív energiájú lesz (a forgó téridő miatt ez lehetséges) és a lyukba zuhan, a másik pozitív energiával távozik. Az így kinyerhető maximális energia a fekete lyuk forgási energiájának 29%-a, a maradék a lyuk forgásának leállításához kötődik (ekkor válik Schwarzschild-típusúvá). Az elv megmutatja, hogy a fekete lyuk nemcsak nyeli az energiát, hanem forgása révén aktívan tárolja és leadhatja azt.",
     "wiki": "https://en.wikipedia.org/wiki/Penrose-folyamat",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1969
   },
   {
     "rank": 105,
@@ -1528,7 +1608,8 @@
     "why": "<b>Négy egyszerű molekula, kizárólag két lehetséges párosítási szabály szerint — és ebből épül fel az élet teljes genetikai kódja.</b> Watson és Crick 1953-as felfedezése (Rosalind Franklin röntgendiffrakciós felvételei alapján) nem csak a DNS szerkezetét adta meg, hanem azonnal megmutatta a másolás mechanizmusát is — a kettős spirál 'magától' szétválik és templátként szolgál. Ritkán esik egybe egy struktúra megismerése ilyen közvetlenül a működésének megértésével.",
     "whyMore": "A négy bázis (adenin, timin, guanin, citozin) közül az adenin mindig a timinnel, a guanin mindig a citozinnal párosodik — mert csak ezeknek illenek egymáshoz a hidrogénkötései (2 az A–T, 3 a G–C pár között). Ez a merev párosítási szabály teszi lehetővé a DNS pontos önreplikációját: ha a kettős szál szétválik, minden félig szálhoz csak a komplementer bázis tud hozzákapcsolódni. A G–C pár extra hidrogénkötése miatt stabilabb és magasabb olvadáspontú, mint az A–T pár.",
     "wiki": "https://en.wikipedia.org/wiki/Watson%E2%80%93Crick_b%C3%A1zisp%C3%A1rosod%C3%A1s",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1953
   },
   {
     "rank": 106,
@@ -1541,7 +1622,8 @@
     "why": "<b>Egy anyag törési szilárdsága nem anyagállandó — attól függ, mekkora repedés van már benne.</b> Griffith energiamérleg-elve (a felszabaduló rugalmas energia és a felszínenergia versenye) magyarázza meg, miért törik el egy üveg sokkal kisebb feszültségnél, mint amit az atomi kötések elméletileg elbírnának. Ez az elmélet az alapja minden repedésterjedés-vizsgálatnak, fáradási élettartam-számításnak és a modern roncsolásmentes vizsgálati módszereknek.",
     "whyMore": "Griffith tétele szerint a repedés csúcsánál a feszültség a névlegesnél sokkal nagyobbra nő: a hegyes repedés végében a koncentráció ∝ 1/√a. Ezért minél hosszabb a már meglévő repedés (a), annál kisebb külső σ_f elég az egyensúlyi töréshez — a terjedéskor felszabaduló rugalmas energia fedezi az új törésfelület felszínenergiáját (2Eγ_s). Így a törési szilárdság nem az anyag elméleti kötési ereje, hanem a legnagyobb hiba mérete.",
     "wiki": "https://en.wikipedia.org/wiki/Griffith-f%C3%A9le_t%C3%B6r%C3%A9smechanika",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1921
   },
   {
     "rank": 107,
@@ -1554,7 +1636,8 @@
     "why": "<b>A súrlódási erő — meglepő módon — nem függ az érintkező felületek méretétől, csak a normálerőtől és egy anyagpárra jellemző együtthatótól.</b> Coulomb (ugyanaz, aki az elektrosztatikus törvényt is megalkotta) kísérletileg igazolta ezt az egyszerű, de korántsem magától értetődő összefüggést. Minden alapozás csúszásvizsgálata, minden fékrendszer-tervezés és minden csavarkötés nyomatékszámítása erre az egyszerű egyenlőtlenségre épül.",
     "whyMore": "A súrlódás a mikroszkopikus érintkezési csúcsok (aszperzitások) összetapadásából és deformációjából származik, nem a látszólagos felület nagyságából. Mivel a valós érintkező terület arányos a normálerővel (N), a súrlódás is lineárisan követi azt: F_s ≤ μ_s·N. A μ_s együttható csak a két anyag atomi kölcsönhatásaitól függ, így ugyanaz a gördeszka fékezésénél és egy csavar meghúzásánál is.",
     "wiki": "https://en.wikipedia.org/wiki/Coulomb-s%C3%BArl%C3%B3d%C3%A1si_t%C3%B6rv%C3%A9ny",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1785
   },
   {
     "rank": 108,
@@ -1567,7 +1650,8 @@
     "why": "<b>Az elektromágnesség és a gyenge kölcsönhatás — két, teljesen különbözőnek tűnő erő — valójában ugyanannak az egyesített szimmetriának két arca alacsony energián.</b> Glashow, Weinberg és Salam egymástól részben függetlenül építették fel az elméletet, amit a Higgs-mechanizmus tesz teljessé: ez adja meg a W- és Z-bozonok tömegét, miközben a foton tömeg nélkül marad. Ez volt a fizikatörténet első sikeres 'nagy egyesítése' — a mai Standard Modell gerince.",
     "whyMore": "Nagy (elektrogyenge) energián az SU(2)_L × U(1)_Y szimmetria egységes; a Higgs-mező vákuumértéke megtöri ezt — a W/Z bozonok felveszik a tömeget, a foton tömegtelen marad, mert az elektromágneses U(1)_EM irány nem kap Higgs-töltést. Ezért válik a gyenge kölcsönhatás rövid hatótávúvá, és látszik külön erőnek alacsony energián. A nyíl épp ezt a szimmetriasértő lefolyást jelöli.",
     "wiki": "https://en.wikipedia.org/wiki/Elektrogyenge_egyes%C3%ADt%C3%A9s",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1967
   },
   {
     "rank": 109,
@@ -1580,7 +1664,8 @@
     "why": "<b>Alfa-részecskéket lövöldözve vékony aranyfóliára, néhány váratlanul nagy szögben visszapattant — 'mintha ágyúgolyót lőttünk volna selyempapírra, és az visszapattanna'.</b> Rutherford ebből a meglepetésből következtetett arra, hogy az atom tömege és pozitív töltése egy apró, sűrű magban koncentrálódik, nem szét van kenve egyenletesen (ahogy addig hitték). Ez a kísérlet indította el a modern atommag- és részecskefizikát — a szórási hatáskeresztmetszet képlete ma is a legelső eszköz bármilyen új részecske belső szerkezetének feltérképezésére.",
     "whyMore": "A képlet a klasszikus Coulomb-elhajlás megoldása: dσ/dΩ ∝ 1/sin⁴(θ/2), vagyis a visszafelé (θ≈180°) szórt részecskék valószínűsége sokkal nagyobb, mintha a töltés egyenletesen oszlana el. Ezt csak egy sűrű, pontszerű pozitív mag magyarázza, ahol a legközelebb repülő α-részecskére a 1/r²-es Coulomb-erő hatalmas impulzust ad. A Z a mag töltését, E az α-részecske energiáját jelöli — kisebb E és nagyobb Z erősebb szórást ad.",
     "wiki": "https://en.wikipedia.org/wiki/Rutherford-sz%C3%B3r%C3%A1s",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1911
   },
   {
     "rank": 110,
@@ -1593,7 +1678,8 @@
     "why": "<b>Egy kvantumállapot átvihető egyik részecskéről a másikra anélkül, hogy a részecske maga bárhová is 'utazna' — csak összefonódás és két klasszikus bit szükséges hozzá.</b> Nem tömeget vagy energiát teleportálunk, hanem tiszta információt — és a no-cloning tétel miatt az eredeti állapot szükségszerűen megsemmisül a folyamat során. Ez a protokoll ma a kvantumszámítógépek közötti kommunikáció és a kvantuminternet egyik alapvető építőeleme.",
     "whyMore": "Az összefonódás (|Φ⁺⟩_{BC}) miatt a B-n végzett Bell-mérés korrelált eredményt ad C-vel, de a véletlen kimenetel miatt C állapota még kódolva van. A két klasszikus bit (a mérés eredménye) elárulja, milyen egyértelmű korrekciót kell C-n alkalmazni, hogy pont |ψ⟩ legyen. Mivel a no-cloning tétel miatt az eredeti nem másolható, a teleportálás áthelyezi az állapotot — a klasszikus csatorna elengedhetetlen, így nem szegi meg a fénysebesség-korlátot.",
     "wiki": "https://en.wikipedia.org/wiki/Kvantum-teleport%C3%A1ci%C3%B3",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1993
   },
   {
     "rank": 111,
@@ -1606,7 +1692,8 @@
     "why": "<b>Egy dinamikai feladat átalakítható statikai egyensúlyi feladattá, ha bevezetünk egy fiktív 'tehetetlenségi erőt' — ez a trükk nyitja meg az utat az analitikus mechanika felé.</b> D'Alembert a virtuális munka elvét terjesztette ki mozgó rendszerekre, és ez az elv vezetett közvetlenül Lagrange egyenleteihez néhány évtizeddel később. A rezgő szerkezetek dinamikai vizsgálatában (pl. földrengésterhek) a mérnökök a mai napig gyakran ebben a d'Alembert-i szemléletben gondolkodnak: 'egyensúly, plusz egy tehetetlenségi tag'.",
     "whyMore": "Ha a mozgó tömegekre ható valódi erőkhöz hozzáadjuk az −mᵢ·r̈ᵢ tehetetlenségi erőt, a rendszer mintha nyugalomban lenne: a virtuális elmozdulásokkal vett munka összege nulla. Így a statikából ismert egyensúly-módszer átvihető gyorsuló rendszerekre is, a koordinátarendszertől függetlenül. A δr̃ᵢ virtuális elmozdulások kiválasztásával pont a kényszererők esnek ki — ez vezet közvetlenül a Lagrange-egyenletekhez.",
     "wiki": "https://en.wikipedia.org/wiki/D%27Alembert-elv",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1743
   },
   {
     "rank": 112,
@@ -1619,7 +1706,8 @@
     "why": "<b>Egy forgó tömeg (mint a Föld) 'magával rántja' a körülötte lévő téridőt — egy gyűrűkanálhoz hasonlóan, ami mézben forogva örvényt kelt maga körül.</b> Lense és Thirring elméletben jósolta meg, de csak 2004-ben, a Gravity Probe B műhold precíziós giroszkópjaival sikerült ténylegesen kimérni ezt a parányi hatást. Ez a jelenség ugyanaz a 'frame dragging', ami a Kerr-metrikában jelenik meg forgó fekete lyukak körül — csak itt a hétköznapi Föld gyengébb változatában.",
     "whyMore": "Az általános relativitáselméletben a forgó tömeg energia-impulzus tenzora elhajlítja a téridőt, és a megoldás (Kerr-szerű) körmozgásba viszi a környező inerciális vonatkoztatási rendszert. A G a forgási nyomaték (J) mellett a hatás erősségét adja, a c²r³ nevező pedig mutatja: közel a tömeghez és nagyobb forgással erősebb. Ezért a Földnél csak nagy pontosságú giroszkópokkal mérhető, fekete lyukaknál viszont drámai.",
     "wiki": "https://en.wikipedia.org/wiki/Lense%E2%80%93Thirring-effektus",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1918
   },
   {
     "rank": 113,
@@ -1632,7 +1720,8 @@
     "why": "<b>Egy test kibocsátó- és elnyelőképességének aránya minden anyagra ugyanaz az univerzális függvény — ez vezette Kirchhofföt a 'feketetest' fogalmának bevezetéséhez.</b> A jó elnyelők jó kisugárzók is egyben (ezért fekete a legjobb sugárzó is). Ez a felismerés négy évtizeddel Planck előtt már kijelölte az utat: kellett lennie egy univerzális sugárzási törvénynek — Kirchhoff maga nem találta meg a pontos alakját, de ő tette fel a kérdést, amire Planck végül választ adott.",
     "whyMore": "A termodinamikai egyensúly megköveteli, hogy egy test saját sugárzása és az általa elnyelt idegen sugárzás egyensúlyban legyen — különben egy test a másikat lehűtené anélkül, hogy különbség lenne köztük, ellentmondva a II. főtételnek. Ezért E/A minden anyagra ugyanaz: a feketetest univerzális B(λ,T) sugárzása. Az E a kibocsátó-, A az elnyelőképesség — a jó elnyelő (A→1) ugyanolyan arányban sugároz vissza.",
     "wiki": "https://en.wikipedia.org/wiki/Kirchhoff-f%C3%A9le_sug%C3%A1rz%C3%A1si_t%C3%B6rv%C3%A9ny",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1859
   },
   {
     "rank": 114,
@@ -1645,7 +1734,8 @@
     "why": "<b>Kellően magas hőmérsékleten a kvarkok és gluonok kiszabadulnak a protonokból és neutronokból, és egy szabadon áramló 'ősleves' formájában léteznek — pontosan úgy, ahogy az univerzum a Nagy Bumm után mikroszekundumokkal nézett ki.</b> A CERN LHC és a Brookhaven RHIC nehézion-ütközésekkel (ólom- vagy aranyatommagokat ütköztetve fénysebesség közeli sebességgel) hozzák létre ezt az állapotot, bár csak billiomod-billiomod másodpercre. A kvarkbezárás (amit korábban a gyűjteményben már érintettünk) itt 'oldódik fel' — extrém körülmények között.",
     "whyMore": "A kvarkbezárás miatt normál körülmények között a kvarkok soha nem láthatók szabadon — a gluon-tér feszültsége nő a távolodással. De T>150–170 MeV hőmérsékleten a termikus energia felülírja ezt: a hadronok szétolvadnak, és a kvarkok szabad részecskék maradnak a gluonokkal együtt. Ezt a kvark-hadron átmenetet a nehézion-ütközések rövid életű anzikszában figyeljük meg — ez a korai univerzum állapota.",
     "wiki": "https://en.wikipedia.org/wiki/Kvark-gluon_plazma",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 2000
   },
   {
     "rank": 115,
@@ -1658,7 +1748,8 @@
     "why": "<b>Egy fémgolyó lengéséből — ami egy üveggömb szűk csövében pattog fel-le — pontosan kimérhető egy gáz fajhő-aránya.</b> A módszer szépsége az egyszerűségében rejlik: nincs szükség hőmennyiség-mérésre, csak egy stopperre és a lengésidő megfigyelésére. A γ (cp/cv arány) innen adódik ki, és ez az érték árulja el, hogy a gáz molekulái egy-, két- vagy háromatomosak-e — egy mechanikai lengésből következtetünk a molekulák belső szerkezetére.",
     "whyMore": "Egy kis fémgolyó a gázoszlopban rezonál: a golyó súlya és a gáz rugókeménysége (ami P₀, A, V-től függ) adja a lengésidőt T-t. A γ fajhő-arány a periódusból adódik ki: merevebb (nagyobb γ) gáz gyorsabban löki vissza a golyót. Mivel az egymagos gáz γ=5/3, a kétatomos γ=7/5, a háromatomos γ=4/3, a mért T egyből megmondja a molekula szabadsági fokait.",
     "wiki": "https://en.wikipedia.org/wiki/R%C3%BCchardt-m%C3%B3dszer",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1929
   },
   {
     "rank": 116,
@@ -1671,7 +1762,8 @@
     "why": "<b>Egyetlen egyenlet mondja meg, hogy egy csillag felszínén az atomok hány százaléka ionizált egy adott hőmérsékleten — ebből olvassuk le a csillagok színképtípusát.</b> Saha a sztatisztikus mechanikát alkalmazta a csillagászati plazmákra, és ezzel adta meg az elméleti hátteret a Harvard-féle csillagosztályozáshoz (O, B, A, F, G, K, M). Enélkül a Nap színképvonalai csupán rejtélyes csíkok maradtak volna — vele a csillagok hőmérsékletének és összetételének térképévé váltak.",
     "whyMore": "A képlet a termikus egyensúlyt írja le: egy atom ionizációja (n_{i+1}/n_i) annál valószínűbb, minél nagyobb T a χ_i ionizációs energiához képest (a e^{−χ_i/k_BT} tényező). A Λ a termikus de Broglie-hullámhossz, g_i a degenerációs fok — ezek a statisztikus mechanika súlyait adják. Így egy csillag hőmérsékletéből közvetlenül következik, mely színképvonalak jelennek meg.",
     "wiki": "https://en.wikipedia.org/wiki/Saha-egyenlet",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1920
   },
   {
     "rank": 117,
@@ -1684,7 +1776,8 @@
     "why": "<b>Néhány, egymástól teljesen független fizikai arány mind ugyanazt a hatalmas számot, kb. 10⁴⁰-et adja — és senki sem tudja biztosan, hogy ez véletlen egybeesés, vagy egy mélyebb törvény jele.</b> Dirac annyira komolyan vette ezt, hogy felvetette: talán a gravitációs állandó időben csökken, ahogy az univerzum tágul. A hipotézist a mai kísérletek nagyrészt cáfolják, mégis a fizikatörténet egyik legizgalmasabb 'mi van, ha' rejtélye maradt — egy számmisztikai megfigyelésből induló komoly elméleti fizikai program.",
     "whyMore": "A megfigyelt egybeesés: az elektromos/gravitációs erőarány két proton között (≈10³⁹), az univerzum kora és az elektron klasszikus idejének aránya (c·t_univ/r_e ≈ 10⁴⁰) és a csillagok/atomok tömegaránya is ugyanabba a tartományba esik. Dirac ebből arra következtetett, hogy G talán csökken az idővel, így maradna az arány állandó a táguló univerzumban. Bár a mérések ma inkább véletlen egybeesésnek látják, a felvetés ösztönözte a változó állandók kutatását.",
     "wiki": "https://en.wikipedia.org/wiki/Eddington%E2%80%93Dirac_nagy_sz%C3%A1m_hipot%C3%A9zis",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1937
   },
   {
     "rank": 118,
@@ -1697,7 +1790,8 @@
     "why": "<b>Váltakozó áramnál a vezető belseje 'lusta lesz' — az áram a felszín közelébe szorul, és a vezető közepe elektromosan szinte használatlan marad.</b> Minél magasabb a frekvencia, annál vékonyabb ez a 'bőr' (δ), ezért használnak a nagyfeszültségű távvezetékek üreges vagy sodrott vezetőket, és ezért burkolják ezüsttel a rádiófrekvenciás antennák felszínét ahelyett, hogy tömör ezüstből készítenék őket. Tisztán elektrodinamikai jelenség, óriási gyakorlati (és anyagköltség-) következményekkel.",
     "whyMore": "Egy váltakozó mágneses tér örvényáramokat indukál a vezető belsejében, amik (Lenz-törvény szerint) ellentétes irányúak a központi árammal — így kisöprik az áramot a magból a felület felé. A bőrmélység δ ∝ √(ρ/(ωμ)): nagyobb vezetőképesség (kisebb ρ) vagy frekvencia (ω) vékonyabb réteget jelent. Ezért HF-nél elég a felület (ezüst/arany bevonat) és használnak üreges vezetéket — a mag anyaga kihasználatlan marad.",
     "wiki": "https://en.wikipedia.org/wiki/B%C5%91rhat%C3%A1s_%28Skin_Effect%29",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1883
   },
   {
     "rank": 119,
@@ -1724,7 +1818,8 @@
     "why": "<b>Egy rendszer állapotainak valószínűségi 'sűrűsége' a fázistérben soha nem tömörödik és nem hígul — csak elfolyik, mint egy összenyomhatatlan folyadék.</b> Ez a tétel garantálja, hogy a klasszikus mechanika determinisztikus, időben visszafordítható törvényei összeegyeztethetők a statisztikus fizika valószínűségi leírásával. Fontos: ez a Joseph Liouville-ról elnevezett tétel teljesen más eredmény, mint a gyűjteményben már szereplő komplex analízisbeli Liouville-tétel — csak a névadó közös.",
     "whyMore": "A {ρ, H} Poisson-zárójel a fázistérbeli áramlás sebességét írja le: a teljes derivált (dρ/dt = ∂ρ/∂t + {ρ,H}) nulla azt jelenti, hogy a ρ sűrűség a mozgó mintapontokkal együtt konzerválódik (kontinuítási egyenlet). Mivel a Hamilton-fluxus térfogattartó (szimp lektikus), a fázistérfogat nem változik — ez a folyadék analógia. Így a mikroállapotok egyenletes eloszlása időben is az marad: ez a statisztikus egyenszüly alapja.",
     "wiki": "https://en.wikipedia.org/wiki/Liouville-egyenlet_%28f%C3%A1zist%C3%A9r%29",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1838
   },
   {
     "rank": 121,
@@ -1737,7 +1832,8 @@
     "why": "<b>Négy egyszerű mennyiség — nyomás, térfogat, anyagmennyiség, hőmérséklet — egyetlen egyenletbe sűríti egy gáz teljes makroszkopikus viselkedését.</b> Clapeyron egyesítette benne Boyle, Charles, Gay-Lussac és Avogadro korábban külön-külön felfedezett törvényeit egyetlen, elegáns kifejezésbe. Minden bonyolultabb állapotegyenlet (mint a gyűjteményben már szereplő Van der Waals-egyenlet) ennek a korrekciója — ez a nulladik közelítés, amiből minden más kiindul.",
     "whyMore": "A P a nyomás (a molekulák falnak ütközéséből származó erő/felület), V a térfogat, n az anyagmennyiség (mólok száma), T az abszolút hőmérséklet, R = N_A·k_B az egyetemes gázállandó, ami a mól-méretet skálázza át a molekuláris k_B-re. A fizikai intúíció: minél több és minél gyorsabb (melegebb) molekula van bezárva, annál nagyobb a nyomás, miközben ha a teret növeljük, a nyomás csökken. Az egyenlet azért igaz, mert az ideális gáz modelleknél a molekulák közötti távolság nagy, így a kölcsönhatások és a saját térfogatuk elhanyagolható.",
     "wiki": "https://en.wikipedia.org/wiki/Ide%C3%A1lis_g%C3%A1zt%C3%B6rv%C3%A9ny",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1834
   },
   {
     "rank": 122,
@@ -1750,7 +1846,8 @@
     "why": "<b>Egyetlen egyenlet magyarázza meg, miért esik le az alma, és miért kering a Hold a Föld körül — Newton nagy felismerése az volt, hogy ez ugyanaz a jelenség.</b> Ezzel egyesítette először a földi és az égi mechanikát, amelyeket addig teljesen különböző törvények uraltak. Bár Einstein általános relativitáselmélete (amit a gyűjteményben már érintettünk) pontosabb leírást ad, Newton törvénye ma is elég pontos ahhoz, hogy űrszondákat juttassunk a Naprendszer külső bolygóihoz.",
     "whyMore": "G ≈ 6,674·10⁻¹¹ a gravitációs állandó, m₁ és m₂ a két tömeg, r a középpontjaik távolsága. A 1/r² tag a tér háromdimenziós terjedéséből következik: ugyanakkora összes hatás egy 4πr²-nyi gömbfelületen oszlik szét, tehát a felületegységre jutó erő a távolság négyzetével fordítottan arányos. Az erő mindig vonzó, iránya a két tömeg összekötő egyenese mentén, nagysága arányos mindkét tömeggel.",
     "wiki": "https://en.wikipedia.org/wiki/Newton-f%C3%A9le_gravit%C3%A1ci%C3%B3s_t%C3%B6rv%C3%A9ny",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1687
   },
   {
     "rank": 123,
@@ -1763,7 +1860,8 @@
     "why": "<b>Minden anyagi részecskének — elektronnak, protonnak, sőt elvben egy futballabdának is — van hullámhossza, ami a lendületétől függ.</b> De Broglie olyan merész ötlettel állt elő PhD-disszertációjában, hogy a bírálóbizottság Einsteinhez fordult tanácsért, mielőtt elfogadták volna. Einstein azonnal felismerte a jelentőségét — ez az ötlet vezetett közvetlenül Schrödinger hullámegyenletéhez néhány hónappal később.",
     "whyMore": "h a Planck-állandó, p = mv a részecske lendülete. A felismerés szimmetrikus a fotonra: ha a fénynek (hullámnak) van részecske-természete, akkor a részecskének is van hullám-természete, és λ mutatja meg, mekkora hullámhosszon „hullámzik”. Kis tömegű, nagy sebességű részecskéknél (elektron) ez mérhető nagyságrendű, ezért látunk elektrondiffrakciót; nagy tárgyaknál λ elhanyagolhatóan kicsi, ezért nem érzékeljük a hullámtermészetüket.",
     "wiki": "https://en.wikipedia.org/wiki/De_Broglie-hull%C3%A1mhossz",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1924
   },
   {
     "rank": 124,
@@ -1776,7 +1874,8 @@
     "why": "<b>A kvantummechanikai várható értékek pontosan Newton második törvényét követik — a klasszikus fizika 'kísértete' benne rejlik a kvantumformalizmusban.</b> Ez a tétel adja meg a precíz matematikai hidat aközött, amit a mikrovilágban (hullámfüggvények, operátorok) és amit a makrovilágban (pályák, erők) tapasztalunk. Ehrenfest bebizonyította: elég nagy rendszereknél, vagy elég koncentrált hullámcsomagoknál, a kvantummechanika automatikusan 'visszaadja' a klasszikus mechanikát.",
     "whyMore": "⟨x⟩ a pozíció várható értéke (a hullámcsomag középpontja), V(x) a potenciál, −∇V az erő. A tétel lényege, hogy a várható értékek mozgásegyenlete formálisan megegyezik Newton második törvényével, csak az erő helyett az erő várható értékét kell venni. Amikor a hullámfüggvény elég keskeny (jól lokalizált csomag), az átlagolt erő közelítőleg megegyezik az erővel a középpontban, így visszakapjuk a klasszikus pályát — ez a korrespondenciatétel matematikai alapja.",
     "wiki": "https://en.wikipedia.org/wiki/Ehrenfest-t%C3%A9tel",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1927
   },
   {
     "rank": 125,
@@ -1799,7 +1898,8 @@
       }
     ],
     "wiki": "https://en.wikipedia.org/wiki/Christoffel-szimb%C3%B3lumok",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1869
   },
   {
     "rank": 126,
@@ -1812,7 +1912,8 @@
     "why": "<b>Ez a legkisebb hosszúságskála, aminek fizikailag még van értelme — ez alatt a kvantummechanika és a gravitáció elméletei összeomlanak, és senki sem tudja pontosan, mi történik.</b> Planck három univerzális állandóból (ħ, G, c) építette fel — nem méréssel, hanem tiszta dimenzióanalízissel jósolta meg egy olyan skála létezését, amit azóta sem sikerült közvetlenül megfigyelni. A kvantumgravitáció-elméletek (húrelmélet, hurok-kvantumgravitáció) mind ezen a skálán próbálják megérteni a téridő 'szemcsés' szerkezetét.",
     "whyMore": "ħ a redukált Planck-állandó (kvantummechanika), G a gravitációs állandó, c a fénysebesség. E három univerzális állandóból dimenzióanalízissel épül fel egy hosszúság: √(ħG/c³) — Planck ezt tiszta egységbeli gondolatmenettel jósolta meg, mérés nélkül. Ez a legkisebb értelmes hossz: e alatt a kvantummechanika és a gravitáció elméletei már nem adnak érvényes közös leírást, a téridő feltételezhetően „szemcséssé” válik.",
     "wiki": "https://en.wikipedia.org/wiki/Planck-hossz",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1899
   },
   {
     "rank": 127,
@@ -1825,7 +1926,8 @@
     "why": "<b>Egy görbült folyadékfelület két oldala közötti nyomáskülönbség kizárólag a felületi feszültségtől és a görbület sugaraitól függ — minél kisebb a buborék, annál nagyobb a belső nyomása.</b> Ez magyarázza, miért olvadnak össze a kis szappanbuborékok a nagyobbakba (a kicsi mindig nagyobb nyomású), és ez a kiindulópontja minden kapilláris jelenségnek, porózus közegbeli folyadékáramlásnak és a modern mikrofluidikai chipek tervezésének.",
     "whyMore": "γ a felületi feszültség (energia/felületegység), R₁ és R₂ a felület két fő görbületi sugara. A görbület „feszíti” a folyadékhatárfelületet, és ez nyomáskülönbséget hoz létre a két oldal között: minél kisebb a sugár (görbébb a felület), annál nagyobb a nyomás. Gömbbuboréknál R₁ = R₂ = R, így ΔP = 2γ/R, ami megmagyarázza, miért olvadnak a kis buborékok a nagyobbakba (a kicsi mindig nagyobb belső nyomású).",
     "wiki": "https://en.wikipedia.org/wiki/Young%E2%80%93Laplace-egyenlet",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1805
   },
   {
     "rank": 128,
@@ -1838,7 +1940,8 @@
     "why": "<b>A természet — legalábbis a gyenge kölcsönhatásban — megkülönbözteti a balt a jobbtól.</b> Évtizedekig magától értetődőnek tűnt, hogy a fizikai törvények tükörszimmetrikusak (paritás-invariánsak); Lee és Yang elméleti gyanúja alapján Chien-Shiung Wu kobalt-60 béta-bomlási kísérlete bebizonyította, hogy ez hamis. A felfedezés annyira megrázta a fizikus közösséget, hogy Pauli állítólag nem akarta elhinni — pedig ez volt az egyik legfontosabb 20. századi kísérleti eredmény.",
     "whyMore": "Paritás = tükrözés, azaz r⃗ → −r⃗ transzformáció. A gyenge kölcsönhatásban a hullámfüggvény tükörképe nem egyenlő az eredetivel, azaz a természet „balos”: például a neutrínók csak balra csavarodó (balról forgó) spinnel léteznek. Wu kísérlete lehűtött, mágneses térbe tett kobalt-60-at használt, és azt mérte, hogy a béta-bomlás elektronjai nem szimmetrikusan sugárzódnak ki a spin-tengelyre — közvetlen bizonyíték a bal–jobb aszimmetriára a gyenge erőnél.",
     "wiki": "https://en.wikipedia.org/wiki/Parit%C3%A1ss%C3%A9rt%C3%A9s_%28Wu-k%C3%ADs%C3%A9rlet%29",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1956
   },
   {
     "rank": 129,
@@ -1851,7 +1954,8 @@
     "why": "<b>Egy egyenlet negatív energiájú megoldásait Dirac nem hibaként, hanem új részecske jóslataként értelmezte — és négy évvel később meg is találták.</b> A Dirac-egyenlet (amit a gyűjteményben már érintettünk) negatív gyökei zavarba ejtették a fizikusokat, amíg Dirac fel nem ismerte: ezek egy addig ismeretlen, pozitív töltésű elektron-párra (pozitron) utalnak. Carl Anderson ködkamrás felvételen fedezte fel — ritka eset, hogy egy matematikai 'furcsaság' ilyen közvetlenül új fizikai valóságot jósol meg.",
     "whyMore": "A relativisztikus energia-momentum összefüggés négyzete két gyököt ad: pozitív ÉS negatív energiát. Dirac ezt úgy értelmezte, hogy a negatív energiájú állapotok nem hibák, hanem egy telített „Dirac-tenger”, aminek egy hiánya egy pozitív töltésű részecskét (pozitront) jelent. Anderson 1932-ben ködkamrában azonosította a pozitront — egy elektronnyi tömegű, de pozitív töltésű nyomot —, így a matematikai furcsaság négy évvel a jóslat után valós fizikai részecske lett.",
     "wiki": "https://en.wikipedia.org/wiki/Antianyag_j%C3%B3slata_%C3%A9s_a_pozitron_felfedez%C3%A9se",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1928
   },
   {
     "rank": 130,
@@ -1864,7 +1968,8 @@
     "why": "<b>Pauli 1930-ban egy 'kétségbeesett mentőötletként' jósolta meg a neutrínót, amit — saját szavaival — 'soha nem lehet kimutatni'.</b> 26 évvel később Cowan és Reines egy atomreaktor mellett, ezzel az egyszerű reakcióval mégis sikeresen kimutatták: az antineutrínó protonnal ütközve neutront és pozitront hoz létre, ami jellegzetes fényvillanás-párt kelt egy detektorban. Pauli táviratban gratulált — ez volt élete egyik legmeglepőbb fogadása, amit örömmel vesztett el.",
     "whyMore": "Pauli azért posztulálta a neutrínót, mert a béta-bomlásnál hiányzott az energia és impulzusmegmaradás — egy lappangó, gyakorlatilag tömegtelen részecskének kellett elvinnie a különbséget. A reakció az ún. inverz béta-bomlás: az antineutrínó egy protonnal ütközve neutront és pozitront hoz létre, a pozitron pedig egy elektronnal annihilálódva két gamma-fotonpárt ad. Ezt a jellegzetes fényvillanást detektálta Cowan és Reines 1956-ban egy atomreaktor mellett.",
     "wiki": "https://en.wikipedia.org/wiki/A_neutr%C3%ADn%C3%B3_els%C5%91_k%C3%ADs%C3%A9rleti_detekt%C3%A1l%C3%A1sa",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1956
   },
   {
     "rank": 131,
@@ -1877,7 +1982,8 @@
     "why": "<b>Egy morvaországi szerzetes borsónövényeket keresztezve fedezte fel az öröklődés matematikai szabályszerűségét — húsz évvel azelőtt, hogy bárki tudott volna a DNS létezéséről.</b> A domináns és recesszív allélek szétválása és független öröklődése olyan pontos, kiszámítható arányokat ad, mint egy fizikai törvény. Mendel eredményeit életében szinte senki nem vette észre — csak 1900-ban, három kutató egymástól függetlenül fedezte fel újra a munkáját, és ez indította el a modern genetikát.",
     "whyMore": "Mendel két allélt vizsgált egy borsónál: egy dominánst (D) és egy recesszívet (r). A homozigóta domináns (DD) és a heterozigóta (Dr) ugyanazt a fenotípust mutatja, csak a recesszív homozigóta (rr) tér el — a véletlen párosodás az F2 nemzedékben 1:2:1 genotípus-arányt ad, ami 3:1 fenotípus-arányra fordítva: három domináns megjelenésű (DD, Dr, Dr) jut egy recesszívre (rr). Ez a szétválás és független osztódás pontos, kiszámítható arányt ad, mint egy fizikai törvény.",
     "wiki": "https://en.wikipedia.org/wiki/Mendel-t%C3%B6rv%C3%A9nyek",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1865
   },
   {
     "rank": 132,
@@ -1890,7 +1996,8 @@
     "why": "<b>Egy kémiai reakció egyensúlyi állapotában a termékek és a kiindulási anyagok koncentrációi mindig ugyanazt a fix arányt veszik fel — függetlenül attól, honnan indultunk.</b> Guldberg és Waage ezzel a törvénnyel tették kvantitatívvá a kémiai egyensúly fogalmát, ami korábban csak kvalitatív megfigyelés volt. Minden ipari kémiai folyamat (műtrágyagyártás, kőolaj-finomítás) optimalizálása ezen az egyszerű arányon alapul — innen tudjuk, hogyan told el egy egyensúlyt a kívánt irányba.",
     "whyMore": "Egyensúlynál a reakció sebessége előre megegyezik a visszafelé irányultal, ebből következik, hogy a koncentrációk hatványainak hányadosa állandó. A kitevők (kisbetűk) a sztöchiometriai együtthatók: ha egy molekulából kettő vesz részt, a koncentráció négyzeten szerepel. K_eq nagysága megmondja, merre áll az egyensúly — nagy K esetén sok a termék, kicsi K esetén sok a kiindulási anyag —, így tudjuk, hogyan toljuk el a reakciót a kívánt irányba.",
     "wiki": "https://en.wikipedia.org/wiki/T%C3%B6meghat%C3%A1s_t%C3%B6rv%C3%A9nye",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1864
   },
   {
     "rank": 133,
@@ -1903,7 +2010,8 @@
     "why": "<b>Egyetlen logaritmikus egyenlet mondja meg, hogyan tartja stabilan a pH-ját a vér, egy sejt belseje, vagy egy laboratóriumi pufferoldat, még ha savat vagy lúgot adunk is hozzá.</b> Az emberi vér pH-ja ennek az egyenletnek köszönhetően marad szűk, életkompatibilis tartományban (7,35–7,45) még jelentős anyagcsere-terhelés mellett is. Minden gyógyszertervezés, fermentációs folyamat és biokémiai laboratóriumi protokoll számol ezzel az összefüggéssel.",
     "whyMore": "HA a gyenge sav, A⁻ a konjugált bázisa, pK_a = −log(K_a) a disszociációs állandó logaritmusa. Az egyenlet azt mutatja, hogy a pH közvetlenül az [A⁻]/[HA] aránytól függ: amíg ez az arány viszonylag állandó, a pH is állandó marad. Ha savat adunk, az A⁻ „elnyeli” (HA-t képez), ha lúgot, a HA reagál — ezt a pufferkapacitást használja a vér, hogy a pH-t 7,35–7,45 között tartsa jelentős anyagcsere-terhelés mellett is.",
     "wiki": "https://en.wikipedia.org/wiki/Henderson%E2%80%93Hasselbalch-egyenlet",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1908
   },
   {
     "rank": 134,
@@ -1916,7 +2024,8 @@
     "why": "<b>Maxwell kitalált egy parányi lényt, aki egyetlen ajtó nyitogatásával, munkavégzés nélkül csökkentené egy gáz entrópiáját — látszólag megsértve a termodinamika második főtételét.</b> Csaknem 100 évig megoldatlan paradoxon volt, amíg Landauer (akit a gyűjteményben már érintettünk) rá nem jött: a démonnak emlékeznie kell a molekulák sebességére, és ennek az információnak a törlése pontosan annyi entrópiát termel, amennyit a démon 'megspórolt'. Az egyik legszebb példa arra, hogyan olvad össze az információelmélet a termodinamikával.",
     "whyMore": "A démon egyetlen ajtó nyitogatásával gyors és lassú molekulát szétválogatna, csökkentve a gáz entrópiáját munkavégzés nélkül — látszólag megsértve a termodinamika második főtételét. A feloldás Landauer tétele: a démonnak információt kell tárolnia (melyik molekula gyors), és egy bit törlése minimálisan k_B·ln 2 entrópiát termel. Ez a termelt entrópia pontosan kompenzálja a démon „ingyen” rendezését, így a második főtétel épen marad — az információnak fizikai, entrópiaköltsége van.",
     "wiki": "https://en.wikipedia.org/wiki/Maxwell-d%C3%A9mon_%C3%A9s_felold%C3%A1sa",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1867
   },
   {
     "rank": 135,
@@ -1929,7 +2038,8 @@
     "why": "<b>Ha egy gáz olyan gyorsan tágul vagy húzódik össze, hogy nincs ideje hőt cserélni a környezetével, a nyomás és térfogat kapcsolata többé nem az egyszerű fordított arányosság, hanem ennél meredekebb görbét követ.</b> Ez az egyenlet írja le, miért melegszik fel drasztikusan egy dízelmotor hengerében a sűrített levegő (öngyulladásig), és miért hűl le a felszálló légtömeg a légkörben — a felhőképződés és az időjárás egyik alapvető mozgatórugója.",
     "whyMore": "γ = C_p/C_v a fajhőviszony (adiabatikus kitevő), C_p és C_v a nyomás- és térfogatállandó fajhő. Ha a gáz nem cserél hőt a környezettel (Q = 0), a térfogatváltozás munkát végez: összehúzódáskor a gáz felmelegszik, táguláskor lehűl, mert a belső energia csak a hőmérséklettől függ. Emiatt az összefüggés meredekebb az izotermikus PV = állandónál: mivel γ > 1, térfogat-növekedéskor a nyomás gyorsabban esik, mint a hőcserés esetben — ez melegíti a dízelmotor levegőjét és hűti a felszálló légtömegeket.",
     "wiki": "https://en.wikipedia.org/wiki/Adiabatikus_%C3%A1llapotv%C3%A1ltoz%C3%A1s_egyenlete",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1823
   },
   {
     "rank": 136,
@@ -1942,7 +2052,8 @@
     "why": "<b>Egy áramlásba helyezett henger mögött a örvények szabályos, váltakozó ritmusban válnak le — és ez a lüktetés veszélyes rezgésbe hozhatja a hidakat, kéményeket és tornyokat.</b> A Strouhal-szám szinte állandó marad tág sebességtartományban, ami kiszámíthatóvá teszi a leválási frekvenciát. A jelenség hírhedt szereplője az 1940-es Tacoma Narrows-híd összeomlása — azóta minden karcsú szerkezet tervezésénél kötelező ellenőrizni, nem esik-e egybe az örvényleválási frekvencia a szerkezet sajátfrekvenciájával.",
     "whyMore": "A Strouhal-szám (St) egy mértékegység nélküli arány, amely összeköti az örvényleválás frekvenciáját (f), a henger átmérőjét (D) és az áramlás sebességét (U). Mivel St tág tartományban közelítőleg 0,2 marad, az f = 0,2·U/D összefüggésből kiszámolható, milyen ritmusban lüktet a nyomáseloszlás a test mögött. Ez a lüktetés közvetlenül gerjesztheti a szerkezet sajátrezgését, így a tervező pontosan tudja, mely sebességnél válik kritikussá a helyzet.",
     "wiki": "https://en.wikipedia.org/wiki/K%C3%A1rm%C3%A1n-%C3%B6rv%C3%A9nysor",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1911
   },
   {
     "rank": 137,
@@ -1955,7 +2066,8 @@
     "why": "<b>Egy talaj vagy kőzet akkor törik el nyírással, amikor a nyírófeszültség meghaladja a kohézió és a súrlódási ellenállás összegét — ez az egyenlet dönti el, mennyire meredek lehet egy rézsű, mielőtt megcsúszna.</b> Coulomb súrlódási törvényét (amit a gyűjteményben már érintettünk) Mohr terjesztette ki általános feszültségállapotokra, a Mohr-körrel (szintén szerepel már) kombinálva. Minden alapozás-tervezés, gátépítés és bevágás-stabilitási számítás ezen az egyszerű, két paraméteres (c, φ) modellen alapul.",
     "whyMore": "A nyírófeszültség-állóság (τ) az a legnagyobb nyírófeszültség, amit az anyag elvisel; lineárisan nő a merőleges feszültséggel (σ_n), mert minél nagyobb a nyomás, annál jobban összezára az érintkező felületeket. A két anyagi állandó a kohézió (c, a belső összetartó erő) és a súrlódási szög (φ), ami közvetlenül Coulomb súrlódási törvényéből származik. Ha a tényleges nyírófeszültség átlépi ezt a határvonalat, az anyag egy sík mentén megcsúszik — ezen a feltételen alapul minden rézsűstabilitási számítás.",
     "wiki": "https://en.wikipedia.org/wiki/Mohr%E2%80%93Coulomb_t%C3%B6r%C3%A9sfelt%C3%A9tel",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1900
   },
   {
     "rank": 138,
@@ -1968,7 +2080,8 @@
     "why": "<b>Amikor elektronokat lőttek protonokba nagy energián, a szórási minta olyan viselkedést mutatott, mintha a proton nem folytonos 'kásás' anyag lenne, hanem apró, pontszerű összetevőkből állna.</b> Bjorken jósolta meg elméletileg ezt a 'skálázási' viselkedést, Feynman pedig 'partonoknak' nevezte el a proton belsejében szétszórt pontszerű alkotókat — amikről később kiderült, hogy azonosak a kvarkokkal. Az SLAC-kísérletek ezzel adták az első közvetlen kísérleti bizonyítékot arra, hogy a kvarkok nem csak matematikai absztrakciók, hanem valódi, fizikai részecskék.",
     "whyMore": "Az x a Bjorken-változó, a proton egyetlen partonja által vitt impulzusarány, Q² pedig a szórt elektron impulzusátadásának négyzete, azaz nagyjából a felbontás, amivel a próbát képezzük. A skálázás azt jelenti, hogy ahogy növeljük Q²-t (egyre finomabban nézünk bele), az F₂ függvény csak x-től függ, Q²-től nem — pontosan ezt várnánk, ha a proton pontszerű, nem kölcsönható alkotókból állna. Ez a Q²-től való függetlenség volt a döntő bizonyíték arra, hogy a proton kemény, elemi, pontszerű objektumokat (kvarkokat/partonokat) tartalmaz.",
     "wiki": "https://en.wikipedia.org/wiki/Bjorken-sk%C3%A1l%C3%A1z%C3%A1s_%28kvark-parton_modell%29",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1969
   },
   {
     "rank": 139,
@@ -1981,7 +2094,8 @@
     "why": "<b>Egy elméletileg 'tiltott' bomlási módot mértek — semleges kaonok időnként úgy bomlanak, ahogy CP-szimmetria mellett sosem szabadna.</b> Cronin és Fitch kísérlete volt az első kísérleti bizonyíték arra, hogy a természet nem szimmetrikus az anyag és antianyag, illetve a tér tükrözése kombinációjára nézve — pontosan az a fajta apró aszimmetria, amire Kobajasi és Maszkava (akiket a gyűjteményben már érintettünk) évekkel később elméleti magyarázatot adott. Enélkül a felfedezés nélkül nem is merült volna fel a CKM-mátrix szükségessége.",
     "whyMore": "Az élettartamú semleges kaon (K⁰_L) a CP-szimmetrikus világban tisztán CP-páratlan állapot, így csak három pionra eshet szét — két pionra soha. A kétpionos végeredmény megjelenése azt jelenti, hogy K⁰_L-nek parányi CP-páros komponense is van, vagyis a CP-szimmetria nem tökéletes. A mért ágviszony (kb. 2·10⁻³) megadja, milyen erősen sér a természetben ez a kombinált szimmetria.",
     "wiki": "https://en.wikipedia.org/wiki/CP-s%C3%A9rt%C3%A9s_kaonokban_%28Cronin%E2%80%93Fitch-k%C3%ADs%C3%A9rlet%29",
-    "illustration": "lattice"
+    "illustration": "lattice",
+    "year": 1964
   },
   {
     "rank": 140,
@@ -1994,7 +2108,8 @@
     "why": "<b>A Nap gravitációja annyira meggörbíti a mellette elhaladó csillagfényt, hogy a csillagok látszólagos helyzete eltolódik — Einstein ezt jósolta, Eddington egy teljes napfogyatkozás alatt mérte meg.</b> A mérés napok alatt világhírűvé tette Einsteint — ez volt az általános relativitáselmélet első nagy kísérleti diadala, egyben az utolsó pillanat, amikor egy fizikai elméletet ilyen látványos, egyetlen expedícióval lehetett a nagyközönség számára is igazolni. A modern gravitációslencse-csillagászat (sötét anyag térképezése, exobolygó-keresés) egyenesen ebből az egy mérésből nőtt ki.",
     "whyMore": "Ez a képlet a fény egy M tömeg mellett, b becsapódási paraméterrel elhaladó sugarának elhajlási szöge; pontosan kétszerese a Newton-féle értéknek ugyanakkora sebességű részecskére, mert a téridő görbülete a teret és az időt is egyaránt meggörbíti. A 4GM/(c²b) kifejezés közvetlenül a Schwarzschild-metrikából adódik, ahol a c²b a hajlítás karja a nevezőben. A Nap peremén a jósolt eltolódás kb. 1,75 ívmásodperc — ezt mérte meg Eddington 1919-ben.",
     "wiki": "https://en.wikipedia.org/wiki/Gravit%C3%A1ci%C3%B3s_lencsehat%C3%A1s_%281919-es_napfogyatkoz%C3%A1s-k%C3%ADs%C3%A9rlet%29",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1919
   },
   {
     "rank": 141,
@@ -2007,7 +2122,8 @@
     "why": "<b>Távoli szupernóvák fényét mérve a kutatók azt várták, hogy az univerzum tágulása lassul a gravitáció miatt — ehelyett azt találták, hogy gyorsul.</b> Ez volt az egyik legnagyobb meglepetés a modern csillagászat történetében: egy addig ismeretlen, taszító hatású 'sötét energia' uralja az univerzum energiatartalmának többségét (kb. 68%-át). A felfedezés 2011-ben Nobel-díjat ért, és azóta is az egyik legnagyobb megoldatlan rejtély, hogy pontosan mi ez a sötét energia.",
     "whyMore": "Az ä > 0 azt jelenti, hogy a kozmikus skálatényező második deriváltja pozitív — a tágulás gyorsul, nem lassul a gravitáció hatására. Ezt a Friedmann-egyenletekben csak úgy kaphatjuk meg, ha bevezetünk egy pozitív kozmológiai állandót (Λ), amelynek sűrűségaránya Ω_Λ kb. 0,68. Ez az egyetlen szám azt mondja ki, hogy az univerzum energiatartalmának nagyjából kétharmada egy taszító, vákuumszerű tag, amit sötét energiának nevezünk.",
     "wiki": "https://en.wikipedia.org/wiki/A_s%C3%B6t%C3%A9t_energia_felfedez%C3%A9se_%28gyorsul%C3%B3_univerzum%29",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1998
   },
   {
     "rank": 142,
@@ -2020,7 +2136,8 @@
     "why": "<b>Ahogy a Chandrasekhar-határ (amit a gyűjteményben már érintettünk) megszabja, mekkora tömegnél omlik össze egy fehér törpe, ez a határ azt mondja meg, mekkora tömegnél omlik össze egy neutroncsillag is — immár fekete lyukká.</b> A neutronok degenerációs nyomása (a Pauli-elv miatt) egy bizonyos tömeg fölött már nem tudja megtartani a gravitációs összeomlást. Oppenheimer ugyanazokkal az eszközökkel dolgozta ki ezt, amiket pár évvel később az atombomba-programban is használt — a csillagászati és a nukleáris fizika ritkán találkozik ilyen közvetlenül egyetlen ember életművében.",
     "whyMore": "A TOV-határ az a legnagyobb tömeg, amelynél egy neutroncsillag még éppen megtartja magát, mielőtt a gravitáció felülkerekedne a neutronok degenerációs nyomásán (amit a Pauli-elv biztosít). Ez a Chandrasekhar-határ relativisztikus általánosítása: a nyomásgradienseket a görbült téridő gravitációjával egyensúlyozza a Tolman–Oppenheimer–Volkoff-egyenletrendszer. Nagyjából 2–2,3 naptömeg fölött a csillag visszafordíthatatlanul fekete lyukká omlik össze.",
     "wiki": "https://en.wikipedia.org/wiki/Tolman%E2%80%93Oppenheimer%E2%80%93Volkoff-hat%C3%A1r",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1939
   },
   {
     "rank": 143,
@@ -2033,7 +2150,8 @@
     "why": "<b>Egy fémalkatrész eltörhet olyan feszültségszinten is, amit statikusan simán elviselne — ha elég sokszor ismétlődik a terhelés.</b> August Wöhler vasúti tengelytörések vizsgálatakor fedezte fel, hogy a ciklikus terhelés száma és az elviselhető feszültség szoros, kiszámítható kapcsolatban áll. Minden repülőgép-szárny, forgó gépalkatrész és híd-tervezés fáradási élettartam-számítása erre a görbére épül — a hidak és repülőgépek katasztrófáinak jelentős része a fáradásos törés figyelmen kívül hagyásából eredt, mielőtt Wöhler felismerése általánossá vált.",
     "whyMore": "A Basquin-egyenlet szerint a feszültségingadozás amplitúdója (σ) egy m anyagi állandóra emelve, szorozva a töréshez vezető terhelési ciklusok számával (N), állandó (C). Vagyis ha megduplázzuk a feszültséget, az élettartam 2^m-ed részére zsugorodik — a fáradási élettartam meredeken csökken a terheléssel. Az S–N (Wöhler-) görbe pont ezt a log–log egyenest ábrázolja, így az mérnök leolvashatja bármely feszültségszinthez a biztonságos ciklusszámot.",
     "wiki": "https://en.wikipedia.org/wiki/F%C3%A1rad%C3%A1sos_t%C3%B6r%C3%A9s_%28W%C3%B6hler-g%C3%B6rbe%29",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1860
   },
   {
     "rank": 144,
@@ -2046,7 +2164,8 @@
     "why": "<b>Egy pontszerű teher (mint egy épület alapja) hatása a talaj mélyebb rétegeiben nem szűnik meg hirtelen, hanem egy jól kiszámítható, kúp alakú mintázatban gyengül el a mélységgel és a távolsággal.</b> Boussinesq eredetileg rugalmas félteret feltételező matematikai megoldása lett a modern alapozás-tervezés egyik legtöbbet használt eszköze — ebből számítjuk ki, mekkora süllyedést okoz egy új épület a szomszédos, már meglévő alapoknál is.",
     "whyMore": "A P a felszínen ható pontszerű teher, z a mélység, r a vízszintes távolság a teher tengelyétől. A függőleges feszültség (σ_z) közvetlenül a teher alatt a legnagyobb, és z⁻² szerint csökken, szorozva egy mértékegység nélküli tényezővel, ami a távolsággal (r) való szétterjedést írja le. A rugalmas félteret leíró zárt alakú megoldás magyarázza, miért okoz egyetlen épületalap még méterekre is mérhető süllyedést a szomszédos alapoknál.",
     "wiki": "https://en.wikipedia.org/wiki/Boussinesq-f%C3%A9le_fesz%C3%BClts%C3%A9geloszl%C3%A1s",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1885
   },
   {
     "rank": 145,
@@ -2059,7 +2178,8 @@
     "why": "<b>Egy bolygó pontos helyzetét egy ellipszispályán nem lehet egyszerű algebrai képlettel kiszámítani — Kepler egy olyan egyenletet alkotott, aminek nincs zárt alakú megoldása, csak közelítő vagy iteratív.</b> Ez volt a történelem első jelentős transzcendens egyenlete, és Kepler maga is 'méltatlanul nehéznek' nevezte. Minden modern űreszköz-navigáció és műholdpálya-számítás ma is ugyanezt az egyenletet oldja meg numerikusan, csak épp számítógéppel másodpercek alatt, amihez Keplernek hónapokra volt szüksége kézzel.",
     "whyMore": "Az M a közepes anomália (az idő szögbe átváltva, egyenletesen nő), E az excentrikus anomália (a pályatest szöge a segédkörén), e pedig a pálya excentricitása. Az E-re nincs algebrai inverz, ezért az egyenletet iteratívan (pl. Newton-módszerrel) kell megoldani — ám ez pontos, nem közelítő kapcsolat. Miután E megvan, egyszerű geometria adja a test tényleges helyzetét az ellipszisen.",
     "wiki": "https://en.wikipedia.org/wiki/Kepler-egyenlet_%28excentrikus_anom%C3%A1lia%29",
-    "illustration": "wave"
+    "illustration": "wave",
+    "year": 1609
   },
   {
     "rank": 146,
@@ -2072,7 +2192,8 @@
     "why": "<b>Két elektronpálya, amiknek a Dirac-egyenlet szerint pontosan ugyanaz lenne az energiája, mégis egy parányi, de mérhető eltérést mutat.</b> Ez az apró eltolódás — amit a vákuum kvantumfluktuációi okoznak — közvetlenül a kvantumelektrodinamika (QED) kifejlesztéséhez vezetett Feynman, Schwinger és Tomonaga munkájával. A Lamb-eltolódás precíz mérése és a QED-jóslat egyezése (kilenc tizedesjegyig!) a fizikatörténet egyik legpontosabban igazolt elmélete.",
     "whyMore": "A Lamb-eltolódás a hidrogén 2S₁/₂ és 2P₁/₂ szintjei közti parányi energiakülönbség, amelynek a Dirac-elmélet szerint pontosan egyenlőnek kellene lennie. Oka, hogy az elektron folyamatosan kölcsönhat a virtuális fotonokkal — a vákuum kvantumfluktuációival —, ami kissé remegteti a helyzetét (vákuumpolarizáció és önenergia). A kb. 1057 MHz-es mérés a QED-jóslatot lélegzetelállító pontossággal igazolta, és kikényszerítette a renormálás kidolgozását.",
     "wiki": "https://en.wikipedia.org/wiki/Lamb-eltol%C3%B3d%C3%A1s",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1947
   },
   {
     "rank": 147,
@@ -2085,7 +2206,8 @@
     "why": "<b>2,17 kelvin alatt a folyékony hélium elveszti minden belső súrlódását — súrlódásmentesen kúszik fel egy pohár falán, és véget nem érő örvényekben áramolhat egy csőben.</b> Ez a makroszkopikus méretben megjelenő kvantumjelenség — a Bose–Einstein-kondenzációval (amit a gyűjteményben már érintettünk) rokon — mutatja meg a legszemléletesebben, hogy a kvantummechanika nem csak parányi részecskékre érvényes, hanem néha egy egész pohárnyi folyadék viselkedését is uralja.",
     "whyMore": "A lambda-pont (T_λ ≈ 2,17 K) alatt a folyékony ⁴He fázisátalakulással szuperfolyadékká válik, ahol az atomok makroszkopikus hányada ugyanabban a kvantum-alapállapotban van (Bose–Einstein-kondenzátum). Ebben az állapotban a viszkozitás megszűnik, a folyadék disszipáció nélkül áramlik, felfut a falakon, és kitartó örvényeket tart fenn. A hőkapacitás ezen a hőmérsékleten élesen kiugrik — innen kapta a görbe a görög betűs nevét.",
     "wiki": "https://en.wikipedia.org/wiki/Szuperfoly%C3%A9konys%C3%A1g_%28h%C3%A9lium_lambda-pontja%29",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1937
   },
   {
     "rank": 148,
@@ -2098,7 +2220,8 @@
     "why": "<b>A fény nem folytonos hullámként adja át energiáját, hanem diszkrét csomagokban — és ez az egyszerű egyenlet dönti el, kiszakad-e egy elektron a fémből.</b> Einstein ezért kapott Nobel-díjat (nem a relativitáselméletért!), mert ez volt az első meggyőző bizonyíték a fény kvantumos természetére. Minden napelem, digitális képérzékelő, fénymásoló és éjjellátó készülék közvetlenül ezen a jelenségen alapul — az egyik legnagyobb gazdasági hatású fizikai felfedezés.",
     "whyMore": "Egy ν frekvenciájú foton hν energiát hordoz; ha ez meghaladja a fém munkafüggvényét (W, az elektronok kötési energiáját), a felesleg az elektron mozgási energiájaként (E_kin) jelenik meg. A nem-klasszikus lényeg: a küszöbfrekvencia alatti fény (hν < W) bármilyen erős legyen, semmilyen elektront nem szakít ki, és az intenzitás növelése csak több, nem gyorsabb elektront eredményez. A fény részecske-jellege közvetlen bizonyítéka a fotonok létezésének.",
     "wiki": "https://en.wikipedia.org/wiki/Fotoelektromos_hat%C3%A1s",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1905
   },
   {
     "rank": 149,
@@ -2111,7 +2234,8 @@
     "why": "<b>Az elektronok nem tetszőleges pályákon keringenek, hanem csak meghatározott, kvantált energiaszinteken — és pontosan az ezek közti ugrások magyarázzák a hidrogén színképvonalait.</b> Bohr modellje ugyan később finomításra szorult, de ez volt az első alkalom, hogy egy atomi szintű elmélet pontos, számszerű jóslatot adott mérhető kísérleti eredményre. A színképelemzés azóta a csillagászat legfontosabb eszköze — így tudjuk meg, miből állnak a csillagok.",
     "whyMore": "Bohr azt tételezte, hogy az elektron impulzusmomentuma ℏ egész számú többszöröseire kvantált, ami diszkrét körpályákra kényszeríti, melyek sugara n² szerint nő. Az n-edik szint energiája így E_n = −13,6 eV/n², ahol a 13,6 eV a hidrogén ionizációs energiája (az n=1 alapállapot mélysége). A fotonok csak az elektron szintugrásakor keletkeznek vagy nyelődnek el, ezért a hidrogén színképe éles vonalakból álló halmaz.",
     "wiki": "https://en.wikipedia.org/wiki/Bohr-f%C3%A9le_atommodell",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1913
   },
   {
     "rank": 150,
@@ -2124,7 +2248,8 @@
     "why": "<b>Három mennyiség, egyetlen szorzás — és ezzel az egész elektrotechnika alapja a kezünkben van.</b> Ohm kortársai kezdetben elutasították és 'meddő spekulációnak' nevezték a munkáját; évekkel később ismerték csak el. Ma minden elektromos áramkör méretezése, minden vezeték-keresztmetszet számítása, minden biztosíték kiválasztása ezzel az egyenlettel kezdődik — talán a legtöbbször alkalmazott fizikai összefüggés a mérnöki gyakorlatban.",
     "whyMore": "Ohm törvénye szerint a vezetőn áteső feszültség (U) arányos az átfolyó árammal (I), az arányossági tényező a vezető ellenállása (R), amit az anyag és a geometria (R = ρL/A) határoz meg. Mikroszkopikusan az R azt tükrözi, hogy a mozgó elektronok milyen gyakran ütköznek szét a rács atomjaival. A lineáris U–I összefüggés a fémekben óriási tartományban érvényes, mert ezek az ütközések gyakoriak, de arányuk az alkalmazott kis térerővel alig változik.",
     "wiki": "https://en.wikipedia.org/wiki/Ohm_t%C3%B6rv%C3%A9nye",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1827
   },
   {
     "rank": 151,
@@ -2137,7 +2262,8 @@
     "why": "<b>Két egyszerű megmaradási elv — a töltésé és az energiáé — elegendő ahhoz, hogy tetszőlegesen bonyolult áramkört egyenletrendszerré alakítsunk és megoldjunk.</b> Kirchhoff 21 évesen, még egyetemi hallgatóként fogalmazta meg őket. Minden áramkör-szimulációs szoftver (SPICE és leszármazottai), minden elektromos hálózattervezés ezt a két szabályt alkalmazza automatikusan, több millió csomópontra egyszerre.",
     "whyMore": "Az áramcsomóponti törvény (beáramló = kiáramló áram) nem más, mint a töltésmegmaradás: egy elágazásban nem halmozódhat fel töltés. A huroktörvény (a feszültségek összege zárt körben nulla) az energiamegmaradásból következik: egy töltés, ha végigmegy egy teljes hurkon, ugyanoda ér vissza, ahol a potenciálja volt, tehát a nettó munka zéró. A két szabály egyenletet ad csomópontonként és hurkonként, ami elegendő az összes ágáram kiszámításához.",
     "wiki": "https://en.wikipedia.org/wiki/Kirchhoff-f%C3%A9le_%C3%A1ramk%C3%B6ri_t%C3%B6rv%C3%A9nyek",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1845
   },
   {
     "rank": 152,
@@ -2150,7 +2276,8 @@
     "why": "<b>Egyetlen egyenlet teszi lehetővé, hogy röntgensugarak visszaverődési szögéből kiszámítsuk egy kristály atomjainak pontos térbeli elrendeződését.</b> Ez a módszer tárta fel a DNS kettős spirálját (Rosalind Franklin felvételei), a penicillin, az inzulin és több tízezer fehérje szerkezetét. A fiatalabb Bragg 25 évesen kapott Nobel-díjat — a mai napig ő a legfiatalabb tudományos Nobel-díjas. Az egész modern szerkezeti biológia és anyagtudomány ebből nőtt ki.",
     "whyMore": "Amikor a röntgensugár párhuzamos kristály síkokra (távolságuk d) esik, a szomszédos síkokról visszavert hullámok 2d·sinθ extra utat tesznek meg. Csak akkor erősítik egymást, ha ez az útkülönbség éppen n egész hullámhossz (nλ) többszöröse — innen a nλ = 2d·sinθ. A visszaverődési csúcsok szögéből tehát közvetlenül leolvasható az atomrétegek térbeli távolsága.",
     "wiki": "https://en.wikipedia.org/wiki/R%C3%B6ntgen-diffrakci%C3%B3_%28Bragg-t%C3%B6rv%C3%A9ny%29",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1913
   },
   {
     "rank": 153,
@@ -2163,7 +2290,8 @@
     "why": "<b>Egy erős mágneses térbe helyezett atommag pontosan meghatározott frekvencián 'zeng' — és ha a teret helyről helyre változtatjuk, ebből térbeli képet lehet alkotni.</b> A Larmor-frekvencia és a mágneses tér közti egyszerű lineáris kapcsolat tette lehetővé, hogy az emberi test belsejét sugárterhelés nélkül, lágy szöveteket is látva vizsgálhassuk. Az MRI ma a modern orvostudomány egyik legfontosabb diagnosztikai eszköze — egy tisztán kvantummechanikai jelenségből.",
     "whyMore": "A spinnel rendelkező atommag apró mágnesként viselkedik, és külső B₀ térben a Larmor-frekvencián, ω₀ = γB₀ szerint körbe-körbe precesszál. A γ giromágneses arány az adott mag sajátja, így ω₀ egyenesen arányos B₀-val: minél erősebb a mágnes, annál magasabb a rezonanciafrekvencia. Ha a rádióimpulzust pont ω₀-ra hangoljuk, a mag elnyel energiát, a térbeli B₀-gradiens (helyfüggő mező) pedig a térbeli pozíciót kódolja.",
     "wiki": "https://en.wikipedia.org/wiki/M%C3%A1gneses_magrezonancia_%28NMR/MRI%29",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1938
   },
   {
     "rank": 154,
@@ -2176,7 +2304,8 @@
     "why": "<b>Egy gerjesztett atom nemcsak magától bocsát ki fotont, hanem egy arra járó foton 'rábeszélheti' — és az így keletkező második foton tökéletesen azonos az elsővel.</b> Einstein 1917-ben, tisztán termodinamikai megfontolásból jósolta meg a jelenséget, negyven évvel az első működő lézer előtt. Ma optikai adatátvitel, vonalkód-olvasó, szemműtét, ipari vágás, távolságmérés és a csillagászati adaptív optika — mind ezen az egy kvantumátmeneten alapul.",
     "whyMore": "Einstein egy kétszintű atomot hőegyensúlyban vizsgálva arra jutott, hogy a stimulált emisszió (B₂₁) aránya a spontánhoz (A₂₁) a fotonállapotok sűrűségével, azaz c³/(8πhν³)-sel arányos. Ez a tényező gyakorlatilag a rendelkezésre álló fotonmódusok számát adja meg adott frekvencián — megmondja, mekkora eséllyel csábít ki egy érkező foton egy vele azonosat. Ez a mennyiségi összefüggés a lézer működésének szívét jelenti.",
     "wiki": "https://en.wikipedia.org/wiki/Stimul%C3%A1lt_emisszi%C3%B3_%28a_l%C3%A9zer_elve%29",
-    "illustration": "spiral"
+    "illustration": "spiral",
+    "year": 1917
   },
   {
     "rank": 155,
@@ -2189,7 +2318,8 @@
     "why": "<b>A p-n átmenet exponenciális áram-feszültség karakterisztikája teszi lehetővé, hogy egy apró jellel nagy áramot kapcsoljunk vagy erősítsünk — ez a digitális kor kapcsolóeleme.</b> A Bell Labs 1947-es felfedezése minden idők talán legnagyobb technológiai hatású találmánya: egyetlen modern processzor több tízmilliárd tranzisztort tartalmaz, mindegyik ezt az egyenletet követve. Enélkül nincs számítógép, nincs mobiltelefon, nincs internet.",
     "whyMore": "A p-n átmeneten az alkalmazott feszültség V_D csökkenti azt az energiaakadályt, ami normálisan távol tartja a töltéshordozókat, ezért az áram exponenciálisan nő V_D-vel. A V_T = kT/q termikus feszültség (~26 mV szobahőmérsékleten) adja meg, milyen gyorsan ível fel az áram, az n idealitási tényező (≈1–2) a depleted rétegben zajló rekombinációt korrigálja. A −1 tag garantálja, hogy nulla feszültségnél nulla az áram, és leírja a fordított irányú szivárgást is.",
     "wiki": "https://en.wikipedia.org/wiki/Tranzisztor-egyenlet_%28Shockley%29",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1947
   },
   {
     "rank": 156,
@@ -2202,7 +2332,8 @@
     "why": "<b>A levegő inert nitrogénjét ammóniává alakítva vált lehetővé a szintetikus műtrágya ipari gyártása — becslések szerint a ma élő emberek közel felének létezése ezen az egyetlen reakción múlik.</b> A Le Chatelier-elv (amit a gyűjteményben már érintettünk) gyakorlati diadala: nagy nyomás és katalizátor tolja a kívánt irányba az egyensúlyt. Talán az összes reakció közül ez változtatta meg legdrámaibban az emberiség történetét — a világ energiafogyasztásának 1-2%-át ma is ez emészti fel.",
     "whyMore": "A nitrogén N₂ molekula hármas kötése rendkívül stabil, ezért a levegő nitrogénje inaktív; a reakció exoterm (ΔH = −92 kJ/mol) és gázmolekuláit 4-ről 2-re csökkenti, vagyis magas nyomás az ammónia, magas hőmérséklet viszont a kiindulási anyagok felé tolja az egyensúlyt. A vas katalizátor teszi lehetővé a kötésfeltörést elérhető hőfokon. A Le Chatelier-elv pontosan ezt diktálja: iparilag ~200 atm és pár száz °C mellett fut.",
     "wiki": "https://en.wikipedia.org/wiki/Haber%E2%80%93Bosch-elj%C3%A1r%C3%A1s",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1909
   },
   {
     "rank": 157,
@@ -2215,7 +2346,8 @@
     "why": "<b>Egyetlen DNS-szakasz néhány óra alatt milliárdszorosára sokszorozható — ciklusonként egyszerű duplázással, hőmérséklet-változtatás vezérelve.</b> Mullis állítólag autóvezetés közben jött rá az ötletre; Nobel-díjat kapott érte. A PCR nélkül nem létezne modern törvényszéki genetika, örökletes betegségek diagnosztikája, ősi DNS kutatása, vagy — ahogy azt a világ 2020-ban megtapasztalta — gyors és megbízható járványügyi tesztelés.",
     "whyMore": "Minden hőciklus először szétválasztja a két DNS-szálat, majd a primerek hozzákötődnek mindkét szálhoz, végül a polimeráz lemásolja őket — így egy molekulából kettő lesz. n ciklus után a másolatok száma minden lépésben megduplázódik, ezért N = N₀·2ⁿ (ideális esetben; a valós hatékonyság némileg kevesebb). Ez az exponenciális növekedés fordítja egyetlen példányt néhány tucat ciklus alatt milliárdokká.",
     "wiki": "https://en.wikipedia.org/wiki/Polimer%C3%A1z-l%C3%A1ncreakci%C3%B3_%28PCR%29",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1983
   },
   {
     "rank": 158,
@@ -2228,7 +2360,8 @@
     "why": "<b>Egy baktériumok vírusok elleni védekezéséből 'kölcsönvett' molekuláris olló pontosan oda vágja el a DNS-t, ahová egy programozható vezető-RNS irányítja.</b> A génszerkesztés korábban évekig tartó, drága és megbízhatatlan folyamat volt; a CRISPR néhány év alatt olcsóvá és rutinszerűvé tette. Charpentier és Doudna 2020-ban Nobel-díjat kapott — a technológia egyszerre hordozza a genetikai betegségek gyógyításának ígéretét és komoly etikai kérdéseket.",
     "whyMore": "A vezető RNS egy ~20 bázisból álló, a cél-DNS-sel komplementer szakaszt hordoz; a Cas9 ezt használja, hogy megtalálja és odakösse avezetőt, majd nukleáz-részei elvágják mindkét szálat. Mivel az RNS programozható, ugyanaz az enzim szinte bármely génre irányítható egyetlen szekvenciacsere révén. A sejt saját javító gépezete ezután vagy kiüti, vagy — sablon mellett — átírja a szakaszt.",
     "wiki": "https://en.wikipedia.org/wiki/CRISPR%E2%80%93Cas9_g%C3%A9nszerkeszt%C3%A9s",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 2012
   },
   {
     "rank": 159,
@@ -2241,7 +2374,8 @@
     "why": "<b>Napfényből, vízből és szén-dioxidból cukor és oxigén — ez az egyetlen reakció tartja fenn gyakorlatilag az egész földi élővilágot.</b> A légkör teljes oxigéntartalma ennek a folyamatnak a mellékterméke, felhalmozódva évmilliárdok alatt. Minden táplálék, minden fosszilis tüzelőanyag és minden lélegzetvételünk végső soron ezen az egyenleten keresztül a Napból származó energia — a legfontosabb kémiai reakció a bolygónkon.",
     "whyMore": "A klorofill a vörös és kék fotonokat nyeli el, s ezzel a víz felhasad, elektronok és O₂ szabadul fel, miközben a CO₂-ből glükóz épül. Az egyenlet „nettó”, mert a fényreakciók és a Calvin-ciklus együtt 6 CO₂-t és 6 H₂O-t használnak el cukormolekulánként. A C₆H₁₂O₆ kötéseiben tárolt szabadenergia közvetlenül a megfogott fotonokból származik.",
     "wiki": "https://en.wikipedia.org/wiki/Fotoszint%C3%A9zis_nett%C3%B3_egyenlete",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1845
   },
   {
     "rank": 160,
@@ -2254,7 +2388,8 @@
     "why": "<b>Egy nyolclépéses, körkörös reakciólánc, amiben a molekulák visszatérnek a kiindulási állapotukba — miközben minden fordulat energiát szabadít fel a sejt számára.</b> Krebs eredeti cikkét a Nature elutasította; máshol publikálta, majd Nobel-díjat kapott érte. A ciklus szinte minden aerob élőlényben azonos formában működik — a baktériumoktól az emberig —, ami az egyik legerősebb bizonyíték a földi élet közös eredetére.",
     "whyMore": "Az acetil-CoA egy körkörös útra lép, ahol teljesen CO₂-vá oxidálódik, a felszabaduló energia pedig elektronhordozókban (NADH, FADH₂) és egy GTP-ben tárolódik. A kiindulási oxaloacetát a ciklus végére újratermelődik, így az kör folyamatosan jár, amíg üzemanyag érkezik. A keletkező NADH/FADH₂ az elektrontranszport-láncba kerül, ahol a sejt ATP-jének döntő többsége ténylegesen termelődik.",
     "wiki": "https://en.wikipedia.org/wiki/Citr%C3%A1tk%C3%B6r_%28Krebs-ciklus%29",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1937
   },
   {
     "rank": 161,
@@ -2267,7 +2402,8 @@
     "why": "<b>Egy oldat ozmotikus nyomása pontosan ugyanazt a formulát követi, mint egy gáz nyomása — mintha az oldott részecskék 'gázként' viselkednének a folyadékban.</b> Ez a meglepő analógia adja meg minden sejt vízháztartásának, a veseműködésnek, az infúziós oldatok koncentrációjának és a fordított ozmózisos víztisztításnak az alapját. Van 't Hoff az első kémiai Nobel-díjat kapta többek között ezért a felismerésért.",
     "whyMore": "A feloldott részecskék ugyanúgy lökdösik az féligáteresztő hártyát, mint ahogy a gázmolekulák a tartályfalat, ezért az ozmotikus nyomás ugyanazt az ideális gáztörvényt követi, csak a részecskesűrűség helyett a koncentráció (c) szerepel. Az i van ’t Hoff-tényező azt adja meg, hány részecskevá alakul egy oldott anyag (pl. NaCl esetén i=2), R a gázállandó, T az abszolút hőmérséklet. Ezért egy híg sóoldat ugyanakkora Π = cRT nyomást fejt ki, mint egy vele azonos moláris gáz.",
     "wiki": "https://en.wikipedia.org/wiki/Ozmotikus_nyom%C3%A1s_%28van_%27t_Hoff-egyenlet%29",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1887
   },
   {
     "rank": 162,
@@ -2280,7 +2416,8 @@
     "why": "<b>Egy véletlenül szennyeződött Petri-csésze körül a baktériumok elpusztultak — és ez a megfigyelés több életet mentett meg, mint bármely más orvosi felfedezés a történelemben.</b> A β-laktám gyűrű a baktériumok sejtfalépítő enzimjét blokkolja, miközben az emberi sejteket érintetlenül hagyja — ez a szelektív toxicitás az antibiotikumok alapelve. Fleming Nobel-beszédében figyelmeztetett a rezisztencia veszélyére is: nyolcvan évvel később pontosan ez vált korunk egyik legnagyobb egészségügyi kihívásává.",
     "whyMore": "A penicillin β-laktám gyűrűje visszafordíthatatlanul köti a baktériumok sejtfalát építő transzpeptidáz enzimet, így a fal nem újulhat meg, és a sejt szétreped. Az emberi sejteknek nincs ilyen fala és enzime, ez a szelektív toxicitás alapja. A ⊣ jel itt „gátolja” értelemben áll: a gomba anyagcsereterméke blokkolja a sejtfal-szintézis útját.",
     "wiki": "https://en.wikipedia.org/wiki/Fleming-f%C3%A9le_penicillin-felfedez%C3%A9s",
-    "illustration": "graph"
+    "illustration": "graph",
+    "year": 1928
   },
   {
     "name": "Biot–Savart-törvény",
