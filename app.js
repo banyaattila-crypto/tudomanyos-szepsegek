@@ -380,7 +380,9 @@ function legacyCopy(text) {
 
 function copyRowLink(id, btnEl) {
   const url = location.origin + location.pathname + "#" + id;
-  history.replaceState(null, "", "#" + id);
+  try {
+    history.replaceState(null, "", "#" + id);
+  } catch (_) {}
 
   const row = document.getElementById(id);
   if (row) {
@@ -391,9 +393,11 @@ function copyRowLink(id, btnEl) {
   }
 
   const finish = (copied) => {
-    btnEl.classList.add("copied");
-    setTimeout(() => btnEl.classList.remove("copied"), 1500);
-    showToast(copied ? "Link másolva a vágólapra!" : "Ez a tétel linkje — másold a címsorból");
+    if (btnEl) {
+      btnEl.classList.add("copied");
+      setTimeout(() => btnEl.classList.remove("copied"), 1500);
+    }
+    showToast(copied ? "🔗 Link másolva a vágólapra!" : "Ez a tétel linkje — másold a címsorból");
   };
 
   if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -1531,23 +1535,75 @@ searchClear.addEventListener("click", () => {
 });
 
 function handleDeepLink() {
-  const hash = location.hash.replace(/^#/, "");
-  if (!hash.startsWith("entry-")) return;
-  const rest = hash.slice("entry-".length);
-  const m = rest.match(/^(matek|fizika|informatika)-(.+)$/);
-  if (!m) return;
-  const [, domainKey] = m;
-  if (domainKey !== activeDomain) {
-    renderDomain(domainKey);
-  }
-  requestAnimationFrame(() => {
-    const el = document.getElementById(hash);
-    if (el) {
-      if (el.scrollIntoView) el.scrollIntoView({behavior: "smooth", block: "center"});
-      el.classList.add("highlight-flash");
-      setTimeout(() => el.classList.remove("highlight-flash"), 2300);
+  const rawHash = (location.hash || "").replace(/^#/, "").trim();
+  if (!rawHash) return;
+
+  // Ha a hash szimulációra mutat (pl. #sim-gravity vagy #sim-pendulum)
+  if (rawHash.startsWith("sim-")) {
+    const simKey = rawHash.slice(4);
+    if (typeof openSimulation === "function") {
+      openSimulation(simKey);
+      return;
     }
-  });
+  }
+
+  let targetDomain = null;
+  let targetSlug = null;
+
+  // 1. entry-{domain}-{slug}
+  const mDomain = rawHash.match(/^entry-(matek|fizika|informatika)-(.+)$/);
+  if (mDomain) {
+    targetDomain = mDomain[1];
+    targetSlug = mDomain[2];
+  } else {
+    // 2. entry-{slug} vagy közvetlen {slug}
+    const cleanSlug = rawHash.replace(/^entry-/, "");
+    for (const dKey of ["matek", "fizika", "informatika"]) {
+      const items = DOMAINS[dKey]?.data || [];
+      const match = items.find(it => slugify(it.name) === cleanSlug);
+      if (match) {
+        targetDomain = dKey;
+        targetSlug = cleanSlug;
+        break;
+      }
+    }
+  }
+
+  if (!targetDomain || !targetSlug) return;
+
+  const targetId = `entry-${targetDomain}-${targetSlug}`;
+
+  // Váltás a domainre, ha szükséges
+  if (targetDomain !== activeDomain) {
+    renderDomain(targetDomain);
+  }
+
+  // Ha nem a lista nézetben vagyunk, váltsunk lista (rank) nézetre
+  if (typeof currentView !== "undefined" && currentView !== "rank") {
+    const rankBtn = document.querySelector(`.view-tab[data-view="rank"]`);
+    if (rankBtn) rankBtn.click();
+  }
+
+  // Töröljük a szűrőket, hogy az elem biztosan látható legyen
+  if (searchQuery || activeTagFilter) {
+    searchQuery = "";
+    activeTagFilter = null;
+    if (searchClear) searchClear.classList.remove("visible");
+    if (tagcloud) [...tagcloud.children].forEach(c => { if (c.classList.contains("tchip")) c.classList.remove("active"); });
+    applyFilter();
+  }
+
+  setTimeout(() => {
+    const el = document.getElementById(targetId);
+    if (el) {
+      if (el.scrollIntoView) el.scrollIntoView({ behavior: "smooth", block: "center" });
+      el.classList.remove("highlight-flash");
+      void el.offsetWidth;
+      el.classList.add("highlight-flash");
+      setTimeout(() => el.classList.remove("highlight-flash"), 3000);
+      showToast("📍 Tétel kiválasztva");
+    }
+  }, 120);
 }
 
 // ==== TUDÁS-GRÁF ====
@@ -2042,6 +2098,19 @@ function renderDeck() {
     deckCard.querySelector(".deck-actions").appendChild(dPrint);
   }
   dPrint.onclick = () => printEntry(e, activeDomain);
+
+  // Link másolása gomb a decken
+  let dLink = document.getElementById("deckLink");
+  if (!dLink) {
+    dLink = document.createElement("button");
+    dLink.id = "deckLink";
+    dLink.className = "icon-btn link-btn";
+    dLink.setAttribute("aria-label", "Link másolása");
+    dLink.title = "Közvetlen link másolása a vágólapra";
+    dLink.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 15l6-6M10 6l1-1a3.5 3.5 0 015 5l-1 1M14 18l-1 1a3.5 3.5 0 01-5-5l1-1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
+    deckCard.querySelector(".deck-actions").appendChild(dLink);
+  }
+  dLink.onclick = () => copyRowLink(`entry-${activeDomain}-${slugify(e.name)}`, dLink);
 
   const favKey = activeDomain + ":" + slugify(e.name);
   deckFav.classList.toggle("active", favorites.has(favKey));
@@ -5113,6 +5182,7 @@ function init() {
   renderDomain("matek");
   renderDailyFeature();
   handleDeepLink();
+  window.addEventListener("hashchange", handleDeepLink);
 
   if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     const spin = document.getElementById("logoSpin");

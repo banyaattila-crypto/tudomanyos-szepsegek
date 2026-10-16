@@ -1,0 +1,8 @@
+{
+  "outputDirectory": "dist",
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/dist/(.*)", "destination": "/$1", "permanent": true },
+    { "source": "/dist", "destination": "/", "permanent": true }
+  ]
+}

@@ -6013,6 +6013,402 @@ const INFORMATIKA_DATA = [
     "illustration": "graph",
     "why": "<b>A legnagyobb párosítás = a legkisebb lefogó.</b> Páros gráfokban a maximálisan párosítható élek száma pontosan a legkisebb csúcslefogó halmaz mérete. A Max-flow min-cut tételel rokon mélység — és az ütemezés, a párosítás, a forgalomelmélet alapja.",
     "whyMore": "A tétel szerint páros gráfban a maximális párosítás (a lefoglalható élek maximális száma) pontosan megegyezik a legkisebb lefogó (vertex cover) csúcs halmaz méretével. Az intuíció a váltakozó utakkal (alternating paths) működik: ha egy párosítás nem lenne maximális, létezne egy úgynevezett növelő út, amivel tovább lehetne bővíteni, a szimmetrikus különbség pedig megadja a minimális lefogót. Ez rokon a max-flow min-cut tétellel, mivel a páros gráf egy megfelelő folyamhálózattá alakítható, ahol a maximális párosítás a maximális folyamnak, a minimális lefogó pedig a minimális vágásnak felel meg."
+  },
+  {
+    "name": "Quicksort algoritmus (Hoare)",
+    "tag": "Algoritmusok · Oszd meg és uralkodj",
+    "category": "algoritmusok",
+    "year": 1961,
+    "tex": "T(n) = 2T\\left(\\frac{n}{2}\\right) + O(n) \\implies O(n \\log n)",
+    "wiki": "https://en.wikipedia.org/wiki/Quicksort",
+    "illustration": "graph",
+    "why": "Tony Hoare pivot-alapú rendező algoritmusa a modern szoftverrendszerek legelterjedtebb belső rendezése kiváló gyorsítótár-lokalitása és átlagos O(n log n) sebessége miatt.",
+    "whyMore": "A Quicksort az 'oszd meg és uralkodj' elv remekműve: egy választott pivot elem mentén két részre particionálja a tömböt, majd rekurzívan rendezi azokat helyben (in-place). Bár legrosszabb esetben O(n²) lenne, véletlenszerű vagy medián pivot-választással gyakorlatilag mindig O(n log n) lépést igényel, minimális memóriahasználattal."
+  },
+  {
+    "name": "Cooley–Tukey gyors Fourier-transzformáció (FFT)",
+    "tag": "Algoritmusok · Jelfeldolgozás",
+    "category": "algoritmusok",
+    "year": 1965,
+    "tex": "X_k = \\sum_{n=0}^{N-1} x_n e^{-i 2\\pi k n / N} \\implies O(N \\log N)",
+    "wiki": "https://en.wikipedia.org/wiki/Cooley%E2%80%93Tukey_FFT_algorithm",
+    "illustration": "wave",
+    "why": "A diszkrét Fourier-transzformáció számítási igényét O(N²)-ről O(N log N)-re csökkentette, megalapozva a modern digitális jelfeldolgozást, hang- és képtömörítést.",
+    "whyMore": "James Cooley és John Tukey 1965-ös algoritmusa a páros és páratlan indexű diszkrét minták rekurzív szétválasztásával ('lepke-művelet') exponenciálisan felgyorsította a spektrális analízist. Nélküle a modern távközlés (OFDM, 5G), a JPEG/MP3 tömörítés és az orvosi képalkotás (MRI, CT) számításilag kivitelezhetetlen lenne."
+  },
+  {
+    "name": "Bellman–Ford algoritmus",
+    "tag": "Algoritmusok · Dinamikus programozás",
+    "category": "algoritmusok",
+    "year": 1958,
+    "tex": "d[v] = \\min(d[v], \\, d[u] + w(u, v)) \\quad \\forall (u, v) \\in E",
+    "wiki": "https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm",
+    "illustration": "graph",
+    "why": "Legrövidebb utakat számol súlyozott irányított gráfokban, és képes detektálni a negatív súlyú köröket is, ami elengedhetetlen a távolságvektor-alapú hálózati útválasztásban (RIP).",
+    "whyMore": "Ellentétben a Dijkstra-algoritmussal, a Bellman–Ford negatív élsúlyok mellett is helyes legrövidebb utakat ad. Minden lépésben relaxálja az összes élt legfeljebb |V|-1 alkalommal; ha egy további |V|-edik lépésben is csökken bármely távolság, az negatív összsúlyú kör jelenlétét bizonyítja."
+  },
+  {
+    "name": "Kruskal minimális feszítőfa algoritmusa",
+    "tag": "Algoritmusok · Mohó stratégia",
+    "category": "algoritmusok",
+    "year": 1956,
+    "tex": "w(T) = \\sum_{e \\in T} w(e), \\quad O(|E| \\log |V|)",
+    "wiki": "https://en.wikipedia.org/wiki/Kruskal%27s_algorithm",
+    "illustration": "graph",
+    "why": "Élek növekvő súly szerinti rendezésével és diszjunkt halmaz (Union-Find) adatstruktúrával minimális összsúlyú összefüggő feszítőfát konstruál.",
+    "whyMore": "Joseph Kruskal 1956-os mohó algoritmusa az egyik legszebb példa a matroid-elméletre. Az éleket súlyuk szerint rendezi, majd ciklust nem alkotva köti össze a komponenseket. A minimális költségű hálózati infrastruktúrák (vízvezeték, villamosenergia, optikai kábelezés) alapvető tervezési eszköze."
+  },
+  {
+    "name": "Prim minimális feszítőfa algoritmusa",
+    "tag": "Algoritmusok · Gráfelmélet",
+    "category": "algoritmusok",
+    "year": 1957,
+    "tex": "T \\leftarrow T \\cup \\{\\arg\\min_{u \\in V \\setminus S, \\, v \\in S} w(u, v)\\}",
+    "wiki": "https://en.wikipedia.org/wiki/Prim%27s_algorithm",
+    "illustration": "lattice",
+    "why": "Egyetlen kezdőcsúcsból kiindulva prioritásos sorral fokozatosan növeszti a minimális feszítőfát, sűrű gráfok esetén különösen optimális futási idővel.",
+    "whyMore": "Robert Prim és Vojtěch Jarník algoritmusa egyetlen fa növesztésével éri el az optimális feszítőfát: mindig a már fában lévő csúcsokból kifelé vezető legkisebb súlyú élt választja. Fibonacci-kupaccal O(|E| + |V| log |V|) futási idő érhető el."
+  },
+  {
+    "name": "Knuth–Morris–Pratt (KMP) sztringkeresés",
+    "tag": "Algoritmusok · Sztringillesztés",
+    "category": "algoritmusok",
+    "year": 1977,
+    "tex": "\\pi[i] = \\max \\{ k < i : P[1..k] \\text{ szuffixuma } P[1..i] \\}",
+    "wiki": "https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm",
+    "illustration": "spiral",
+    "why": "Lineáris O(n + m) időben keres mintát a szövegben a minta önátfedéseit kódoló pi-függvény segítségével, visszalépés nélküli olvasással.",
+    "whyMore": "A naiv szövegkeresés illeszkedési hiba esetén elölről kezdené az összehasonlítást. A KMP algoritmus előfeldolgozza a mintát egy prefiksztáblába (π-függvény), így hiba esetén pontosan tudja, hány karakterrel csúsztatható el a minta a szövegben anélkül, hogy a beolvasott szövegben vissza kellene lépni."
+  },
+  {
+    "name": "Boyer–Moore sztringkereső algoritmus",
+    "tag": "Algoritmusok · Gyors mintaillesztés",
+    "category": "algoritmusok",
+    "year": 1977,
+    "tex": "\\Delta_{\\text{shift}} = \\max(\\text{rossz\\_karakter}[c], \\, \\text{jó\\_szuffix}[k])",
+    "wiki": "https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_string-search_algorithm",
+    "illustration": "lattice",
+    "why": "A mintát jobbról balra hasonlítja össze, így akár a minta hosszával megegyező ugrásokat téve a szöveg karaktereinek többségét átugorhatja (szublineáris átlagos idő).",
+    "whyMore": "Robert S. Boyer és J Strother Moore algoritmusa a leggyorsabb általános szövegkereső eljárás (pl. GNU grep magja). A 'rossz karakter' és a 'jó szuffix' heurisztikák révén minél hosszabb a keresett minta, annál kevesebb karaktert kell ténylegesen megvizsgálni a szövegben."
+  },
+  {
+    "name": "B-fa és B+ fa adatstruktúra",
+    "tag": "Algoritmusok · Adatbázis indexek",
+    "category": "algoritmusok",
+    "year": 1972,
+    "tex": "\\lceil m/2 \\rceil \\le \\text{kulcsok száma blokkonként} \\le m - 1",
+    "wiki": "https://en.wikipedia.org/wiki/B-tree",
+    "illustration": "lattice",
+    "why": "Önkiegyensúlyozó sokágú keresőfa, amely minimalizálja a háttértár-olvasási műveleteket (I/O), a relációs adatbázisok és fájlrendszerek szabványos indexe.",
+    "whyMore": "Rudolf Bayer és Edward M. McCreight 1972-es találmánya megoldotta a nagyméretű lemezes adatbázisok hatékony indexelését. Ahelyett, hogy bináris elágazást használna, a csomópontok lemezblokk-méretű lapokat tárolnak, így a fa magassága log_m(N), ami garantálja, hogy milliárdnyi rekordból is 3-4 lemezművelettel megtalálható bármely kulcs."
+  },
+  {
+    "name": "Piros-fekete fák (Red-Black Trees)",
+    "tag": "Algoritmusok · Önkiegyensúlyozó fa",
+    "category": "algoritmusok",
+    "year": 1978,
+    "tex": "h \\le 2 \\log_2(n + 1), \\quad O(\\log n) \\text{ garantált műveletidő}",
+    "wiki": "https://en.wikipedia.org/wiki/Red%E2%80%93black_tree",
+    "illustration": "graph",
+    "why": "Csomópontonként egyetlen szín-bittel biztosítja, hogy a fa kiegyensúlyozott maradjon, a C++ std::map és Java TreeMap alapköve.",
+    "whyMore": "Leo J. Guibas és Robert Sedgewick 1978-as struktúrája szigorú invariánsokat tart fenn: a gyökér és a levelek feketék, piros csomópontnak csak fekete gyereke lehet, és minden gyökértől levélig vezető úton ugyanannyi a fekete csomópont. Ebből következik, hogy a leghosszabb út legfeljebb kétszerese a legrövidebbnek."
+  },
+  {
+    "name": "Kupacrendezés és Bináris Kupac (Williams)",
+    "tag": "Algoritmusok · Prioritásos sor",
+    "category": "algoritmusok",
+    "year": 1964,
+    "tex": "A[\\text{parent}(i)] \\ge A[i], \\quad T(n) \\in O(n \\log n)",
+    "wiki": "https://en.wikipedia.org/wiki/Heapsort",
+    "illustration": "lattice",
+    "why": "Egyetlen tömbön belül ábrázolt teljes bináris fával O(n log n) garantált legrosszabb futási idejű, helyben végzett (in-place) rendezést ad.",
+    "whyMore": "J. W. J. Williams 1964-ben alkotta meg a bináris kupacot és a Heapsortot. A kupactulajdonság szerint a szülő értéke mindig nagyobb vagy egyenlő gyerekei értékénél (max-heap). A kupacépítés O(n) időben elvégezhető, majd a gyökérelem egymás utáni kiemelésével és a kupac helyreállításával O(n log n) időben és O(1) extra memóriával rendezhető a tömb."
+  },
+  {
+    "name": "Mestertétel rekurszív egyenletekre",
+    "tag": "Algoritmusok · Aszimptotikus analízis",
+    "category": "algoritmusok",
+    "year": 1980,
+    "tex": "T(n) = a T(n/b) + f(n) \\implies \\Theta\\left(n^{\\log_b a}\\right) \\text{ vagy } \\Theta(f(n))",
+    "wiki": "https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms)",
+    "illustration": "spiral",
+    "why": "Általános és elegáns képletet ad az oszd meg és uralkodj algoritmusok rekurszív futási idejének közvetlen zárt alakú meghatározására.",
+    "whyMore": "Jon Bentley, Dorothea Haken és James B. Saxe 1980-as mestertételével (Master Theorem) pillanatok alatt eldönthető a divide-and-conquer algoritmusok bonyolultsága. A tétel három esete összehasonlítja a részfeladatok felosztásának költségét (n^{log_b a}) a felosztási/összefésülési lépés (f(n)) munkájával."
+  },
+  {
+    "name": "Tarjan erősen összefüggő komponens algoritmusa",
+    "tag": "Algoritmusok · Mélységi bejárás",
+    "category": "algoritmusok",
+    "year": 1972,
+    "tex": "\\text{lowlink}[v] = \\min\\big(\\text{dfn}[v], \\, \\min_{(v,w) \\in E} \\text{lowlink}[w]\\big)",
+    "wiki": "https://en.wikipedia.org/wiki/Tarjan%27s_strongly_connected_components_algorithm",
+    "illustration": "graph",
+    "why": "Egyetlen mélységi gráfbejárással (DFS) lineáris O(|V| + |E|) időben meghatározza egy irányított gráf összes erősen összefüggő komponensét.",
+    "whyMore": "Robert Tarjan Turing-díjas algoritmusa egy vermet és a csúcsok felfedezési sorrendjét (dfn) és visszamutató ugrását (lowlink) követi. Amikor a DFS visszalépéskor lowlink[v] == dfn[v], a veremben lévő csúcsok pontosan egy erősen összefüggő komponenst (SCC) alkotnak."
+  },
+  {
+    "name": "Viterbi-algoritmus (Dinamikus dekódolás)",
+    "tag": "Információelmélet · Rejtett Markov-modellek",
+    "category": "infoelmelet",
+    "year": 1967,
+    "tex": "V_{t,k} = P(y_t \\mid k) \\cdot \\max_x \\big(V_{t-1,x} \\cdot a_{x,k}\\big)",
+    "wiki": "https://en.wikipedia.org/wiki/Viterbi_algorithm",
+    "illustration": "wave",
+    "why": "A legvalószínűbb rejtett állapotsorozatot határozza meg dinamikus programozással, a mobilhálózatok (GSM/CDMA) és a beszédfelismerés nélkülözhetetlen algoritmusa.",
+    "whyMore": "Andrew Viterbi 1967-es algoritmusa konvolúciós hibajavító kódok zajos csatornán átvitt jeleinek dekódolására készült. Később a beszédfelismerés, a bioinformatika (DNS szekvencia-illesztés) és a digitális kommunikáció egyik legtöbbet hivatkozott algoritmusává vált."
+  },
+  {
+    "name": "Kolmogorov-bonyolultság (Algoritmikus információ)",
+    "tag": "Információelmélet · Tömöríthetőség",
+    "category": "infoelmelet",
+    "year": 1965,
+    "tex": "K(x) = \\min_p \\{ |p| : U(p) = x \\}",
+    "wiki": "https://en.wikipedia.org/wiki/Kolmogorov_complexity",
+    "illustration": "spiral",
+    "why": "Egy adat objektív információtartalmát a legrövidebb olyan számítógépes program hosszával definiálja, amely képes azt kiírni.",
+    "whyMore": "Andrej Kolmogorov, Ray Solomonoff és Gregory Chaitin egymástól függetlenül fedezték fel, hogy a véletlenszerűség definíciója a tömöríthetetlenség: egy sztring akkor véletlen, ha nem létezik nála rövidebb program, amely generálja. Bár K(x) kiszámíthatatlan, a modern statisztika és gépi tanulás (MDL elv) elméleti alapköve."
+  },
+  {
+    "name": "Chaitin konstans (Omega szám)",
+    "tag": "Számításelmélet · Kiszámíthatatlanság",
+    "category": "szamelmelet-it",
+    "year": 1975,
+    "tex": "\\Omega = \\sum_{p \\in \\text{Halts}} 2^{-|p|}, \\quad 0 < \\Omega < 1",
+    "wiki": "https://en.wikipedia.org/wiki/Chaitin%27s_constant",
+    "illustration": "spiral",
+    "why": "Annak a pontos valószínűsége, hogy egy véletlenszerűen generált számítógépes program megáll; egy teljesen kiszámíthatatlan, maximálisan tömöríthetetlen valós szám.",
+    "whyMore": "Gregory Chaitin Ω-száma a tiszta matematikai véletlent testesíti meg a számítástudományban. Ha ismernénk az Ω első N bitjét, meg tudnánk oldani a Turing-leállási problémát az összes legfeljebb N bites programra, és eldönthetnénk a Riemann-sejtést vagy a Goldbach-sejtést is."
+  },
+  {
+    "name": "Church–Turing tézis",
+    "tag": "Számításelmélet · Kiszámíthatóság",
+    "category": "szamelmelet-it",
+    "year": 1936,
+    "tex": "\\text{Algoritmikusan kiszámítható} \\iff \\text{Turing-géppel kiszámítható}",
+    "wiki": "https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis",
+    "illustration": "lattice",
+    "why": "Azonosítja az emberi intuíció szerinti mechanikus számítást a matematikai Turing-gép és lambda-kalkulus fogalmával.",
+    "whyMore": "Alonzo Church és Alan Turing tézise kimondja, hogy bármely elképzelhető fizikai vagy logikai számítógép pontosan ugyanazokat a problémákat képes megoldani, mint egy egyszerű Turing-gép. Ez az elmélet alapozza meg, hogy miért írhatunk tetszőleges programnyelven kódot: mindegyik ekvivalens erőkészletű."
+  },
+  {
+    "name": "Chomsky-hierarchia és formális grammatikák",
+    "tag": "Számításelmélet · Nyelvtechnológia",
+    "category": "szamelmelet-it",
+    "year": 1956,
+    "tex": "\\mathcal{L}_{\\text{reguláris}} \\subset \\mathcal{L}_{\\text{környezetfüggetlen}} \\subset \\mathcal{L}_{\\text{környezetfüggő}} \\subset \\mathcal{L}_{\\text{rekurzívan felsorolható}}",
+    "wiki": "https://en.wikipedia.org/wiki/Chomsky_hierarchy",
+    "illustration": "lattice",
+    "why": "Négy szintre osztályozza a formális nyelveket és a felismerésükhöz szükséges automata típusokat (véges gép, veremautomata, LBA, Turing-gép).",
+    "whyMore": "Noam Chomsky 1956-os modellje a modern fordítóprogramok (compiler lexer és parser fázisok) és a programozási nyelvek szintaxisának alapja: a regexek a reguláris nyelveket, a szintaktikai elemzők (ANTLR, Bison) a környezetfüggetlen nyelveket ismerik fel."
+  },
+  {
+    "name": "Cook–Levin tétel (SAT NP-teljessége)",
+    "tag": "Komplexitáselmélet · NP-teljesség",
+    "category": "komplexitas",
+    "year": 1971,
+    "tex": "\\text{SAT} \\in \\mathbf{NP}\\text{-teljes} \\implies \\forall L \\in \\mathbf{NP} : L \\le_p \\text{SAT}",
+    "wiki": "https://en.wikipedia.org/wiki/Cook%E2%80%93Levin_theorem",
+    "illustration": "graph",
+    "why": "Bebizonyította, hogy a logikai kielégíthetőség (SAT) a legnehezebb feladatok közé tartozik az NP osztályban, megteremtve az NP-teljesség elméletét.",
+    "whyMore": "Stephen Cook (1971) és Leonyid Levin (1973) megmutatták, hogy bármely nemdeterminisztikus polinom idejű algoritmus működése átkódolható egyetlen logikai formulába. Ezzel SAT-ra vezethető vissza az összes NP feladat, és ha SAT polinom időben megoldható lenne, akkor P = NP állna fenn."
+  },
+  {
+    "name": "Karp 21 NP-teljes problémája",
+    "tag": "Komplexitáselmélet · Redukciók",
+    "category": "komplexitas",
+    "year": 1972,
+    "tex": "\\text{SAT} \\le_p \\text{3-SAT} \\le_p \\text{Klikk} \\le_p \\text{Csúcsfedés} \\le_p \\dots \\le_p \\text{Hátizsák}",
+    "wiki": "https://en.wikipedia.org/wiki/Karp%27s_21_NP-complete_problems",
+    "illustration": "graph",
+    "why": "Richard Karp megmutatta, hogy a klasszikus kombinatorikai és optimalizálási problémák többsége kölcsönösen egymásba transzformálható és NP-teljes.",
+    "whyMore": "Karp 1972-es mérföldkő tanulmánya bizonyította, hogy az NP-teljesség nem elméleti ritkaság, hanem a gyakorlati élet problémáinak (utazó ügynök, klikk, partíció, színezés, hátizsák) természetes velejárója, elindítva a közelítő algoritmusok és heurisztikák forradalmát."
+  },
+  {
+    "name": "Idő-hierarchia tétel (Hartmanis & Stearns)",
+    "tag": "Komplexitáselmélet · Számítási korlátok",
+    "category": "komplexitas",
+    "year": 1965,
+    "tex": "f(n) \\log f(n) = o(g(n)) \\implies \\mathbf{DTIME}(f(n)) \\subsetneq \\mathbf{DTIME}(g(n))",
+    "wiki": "https://en.wikipedia.org/wiki/Time_hierarchy_theorem",
+    "illustration": "spiral",
+    "why": "Szigorúan bizonyítja, hogy több számítási idővel valóban szigorúan több probléma oldható meg determinisztikusan.",
+    "whyMore": "Juris Hartmanis és Richard Stearns Turing-díjas tétele átlósítással bizonyítja, hogy a számítási időosztályok valódi hierarchiát alkotnak: például léteznek olyan problémák, amelyek megoldhatók O(n²) időben, de semmilyen O(n) algoritmus nem képes megoldani őket."
+  },
+  {
+    "name": "Tér-hierarchia tétel",
+    "tag": "Komplexitáselmélet · Memória korlátok",
+    "category": "komplexitas",
+    "year": 1965,
+    "tex": "f(n) = o(g(n)) \\implies \\mathbf{DSPACE}(f(n)) \\subsetneq \\mathbf{DSPACE}(g(n))",
+    "wiki": "https://en.wikipedia.org/wiki/Space_hierarchy_theorem",
+    "illustration": "lattice",
+    "why": "Garantálja, hogy több memóriatárral strictly több eldöntési probléma oldható meg, logaritmikus rés nélkül.",
+    "whyMore": "A tér-hierarchia tétel még élesebb, mint az idő-hierarchia: már egy tetszőlegesen kicsi aszimptotikus többlettár (f(n) = o(g(n))) elegendő ahhoz, hogy a gép új nyelveket tudjon felismerni, mivel a térbeli újrahasznosíthatóság miatt nincs szükség a szimuláció log-tényezőjére."
+  },
+  {
+    "name": "Elliptikus görbe kriptográfia (ECC)",
+    "tag": "Kriptográfia · Nyilvános kulcs",
+    "category": "kripto",
+    "year": 1985,
+    "tex": "y^2 = x^3 + ax + b \\pmod p, \\quad Q = k \\cdot P",
+    "wiki": "https://en.wikipedia.org/wiki/Elliptic-curve_cryptography",
+    "illustration": "spiral",
+    "why": "Az elliptikus görbék diszkrét logaritmus problémájára építve nagyságrendekkel rövidebb kulcsokkal nyújt az RSA-val azonos biztonsági szintet.",
+    "whyMore": "Neal Koblitz és Victor Miller 1985-ben javasolták az elliptikus görbék pontjainak csoportműveleteire épülő rejtjelezést. Egy 256 bites ECC kulcs ugyanolyan védelmet ad, mint egy 3072 bites RSA kulcs, így a modern TLS/HTTPS (ECDSA, Ed25519) és a kriptovaluták alapértelmezett szabványa."
+  },
+  {
+    "name": "ElGamal titkosítás és digitális aláírás",
+    "tag": "Kriptográfia · Diszkrét logaritmus",
+    "category": "kripto",
+    "year": 1985,
+    "tex": "c = \\big(g^k \\bmod p, \\; m \\cdot y^k \\bmod p\\big)",
+    "wiki": "https://en.wikipedia.org/wiki/ElGamal_encryption",
+    "illustration": "wave",
+    "why": "A Diffie–Hellman kulcscsere elvén alapuló probabilisztikus aszimmetrikus titkosítás, a PGP és GPG kulcskezelésének alappillére.",
+    "whyMore": "Taher Elgamal 1985-ös eljárása probabilisztikus: minden titkosításkor egy friss véletlen 'k' értéket használ, így ugyanaz a nyílt szöveg minden alkalommal teljesen más rejtjelezett szöveget eredményez, megakadályozva a választott nyílt szöveges támadásokat."
+  },
+  {
+    "name": "AES / Rijndael szimmetrikus titkosító",
+    "tag": "Kriptográfia · Blokkrejtjelezés",
+    "category": "kripto",
+    "year": 1998,
+    "tex": "\\text{State} \\leftarrow \\text{AddRoundKey}\\big(\\text{MixColumns}(\\text{ShiftRows}(\\text{SubBytes}(\\text{State})))\\big)",
+    "wiki": "https://en.wikipedia.org/wiki/Advanced_Encryption_Standard",
+    "illustration": "lattice",
+    "why": "A globális szabványú szimmetrikus titkosító (NIST AES), amely 128, 192 vagy 256 bites kulccsal hardveresen gyorsított, feltörhetetlen adatvédelmet nyújt.",
+    "whyMore": "Joan Daemen és Vincent Rijmen belga kriptográfusok Rijndael algoritmusa egy szubsztitúciós-permutációs hálózat (SPN), amely a Galois-mezőbeli (GF(2^8)) aritmetikát használja. Hatékonysága miatt közvetlen hardveres CPU-utasításkészlet (AES-NI) támogatja világszerte."
+  },
+  {
+    "name": "SHA-256 és Merkle–Damgård konstrukció",
+    "tag": "Kriptográfia · Kriptográfiai hash",
+    "category": "kripto",
+    "year": 2001,
+    "tex": "H_i = f(H_{i-1}, \\, M_i), \\quad h = \\text{SHA-256}(M) \\in \\{0,1\\}^{256}",
+    "wiki": "https://en.wikipedia.org/wiki/SHA-2",
+    "illustration": "spiral",
+    "why": "Egyirányú, ütközésbiztos kriptográfiai lenyomatképzés, amely a digitális aláírások, SSL tanúsítványok és a blokklánc technológia gerince.",
+    "whyMore": "A Merkle–Damgård felépítés tetszőleges hosszúságú üzenetet rögzített méretű blokkokra tördelve tömörít egyirányú kompressziós függvénnyel. Az SHA-256 esetén még 2026-ban sincs ismert gyakorlati ütközési támadás: 2^128 művelet lenne két azonos hash-ű eltérő bemenetet találni."
+  },
+  {
+    "name": "Shamir titokmegosztási sémája",
+    "tag": "Kriptográfia · Polinom-interpoláció",
+    "category": "kripto",
+    "year": 1979,
+    "tex": "f(x) = S + a_1 x + a_2 x^2 + \\dots + a_{k-1} x^{k-1} \\pmod p",
+    "wiki": "https://en.wikipedia.org/wiki/Shamir%27s_secret_sharing",
+    "illustration": "wave",
+    "why": "Egy titkot (k, n) küszöbérték szerint oszt szét n fél között úgy, hogy bármely k rész elegendő a visszafejtéshez, de k-1 rész semmit sem árul el.",
+    "whyMore": "Adi Shamir 1979-es elegáns konstrukciója a Lagrange-féle polinom-interpolációra épül. Egy (k-1)-ed fokú véletlen polinom szabad tagja maga a titok S: k pont ismeretében a polinom egyértelműen rekonstruálható, míg k-1 pont esetén a titok értéke tökéletesen egyenletes eloszlású marad (információelméleti biztonság)."
+  },
+  {
+    "name": "Perceptron tanulási algoritmusa (Rosenblatt)",
+    "tag": "Mesterséges intelligencia · Neurális hálózatok",
+    "category": "ml",
+    "year": 1958,
+    "tex": "y = \\text{sgn}(\\mathbf{w}^T \\mathbf{x} + b), \\quad \\mathbf{w} \\leftarrow \\mathbf{w} + \\eta (y^* - y) \\mathbf{x}",
+    "wiki": "https://en.wikipedia.org/wiki/Perceptron",
+    "illustration": "lattice",
+    "why": "A mesterséges idegsejtek legelső tanuló modellje, amely lineárisan szeparálható minták esetén garantáltan konvergál a helyes döntési hipersíkhoz.",
+    "whyMore": "Frank Rosenblatt 1958-as perceptronja indította el a mesterséges neurális hálózatok korszakát. A perceptron-konvergencia tétel szerint ha létezik olyan lineáris elválasztó sík, ami a tanítóadatokat elválasztja, az algoritmus véges számú lépésben megtalálja a megfelelő súlyvektort."
+  },
+  {
+    "name": "Hopfield-hálózat és asszociatív memória",
+    "tag": "Mesterséges intelligencia · Visszacsatolt hálózatok",
+    "category": "ml",
+    "year": 1982,
+    "tex": "E = -\\frac{1}{2} \\sum_{i,j} w_{ij} s_i s_j - \\sum_i \\theta_i s_i, \\quad \\frac{dE}{dt} \\le 0",
+    "wiki": "https://en.wikipedia.org/wiki/Hopfield_network",
+    "illustration": "lattice",
+    "why": "Fizikai Spin-üveg modellekre épülő rekurrens neurális háló, amely energiaminimum-kereséssel zajos bemenetekből képes felidézni a megtanult emlékeket.",
+    "whyMore": "John Hopfield 1982-es modellje (amiért 2024-ben fizikai Nobel-díjat kapott) hidat képezett a statisztikus fizika és a gépi tanulás között. A hálózat állapotai a definiált Ljapunov-energiafelület lokális minimumai felé konvergálnak, megvalósítva az emberi agyhoz hasonló asszociatív mintafelismerést."
+  },
+  {
+    "name": "Q-tanulás és megerősítéses tanulás",
+    "tag": "Mesterséges intelligencia · Reinforcement Learning",
+    "category": "ml",
+    "year": 1989,
+    "tex": "Q(s, a) \\leftarrow Q(s, a) + \\alpha \\big[r + \\gamma \\max_{a'} Q(s', a') - Q(s, a)\\big]",
+    "wiki": "https://en.wikipedia.org/wiki/Q-learning",
+    "illustration": "spiral",
+    "why": "Modellmentes megerősítéses tanulási algoritmus, amellyel egy ágens közvetlen környezeti tapasztalatokból képes megtanulni az optimális cselekvési stratégiát.",
+    "whyMore": "Chris Watkins 1989-es Q-learning algoritmusa a Bellman-féle optimális egyenlet temporális különbség (TD) alapú iterációja. Később a mély neurális hálózatokkal kombinálva (DQN, DeepMind) forradalmasította az AI-t, lehetővé téve emberfeletti szintű Atari és Go játékosok létrehozását."
+  },
+  {
+    "name": "Word2Vec és folytonos szóbeágyazás",
+    "tag": "Mesterséges intelligencia · NLP",
+    "category": "ml",
+    "year": 2013,
+    "tex": "\\mathcal{L} = \\sum_{t=1}^T \\sum_{-c \\le j \\le c, \\, j \\ne 0} \\log P(w_{t+j} \\mid w_t)",
+    "wiki": "https://en.wikipedia.org/wiki/Word2vec",
+    "illustration": "graph",
+    "why": "A szavakat magas dimenziós vektortérbe képezi le, ahol a szemantikai hasonlóságok geometriai vektoraritmetikává válnak (Király - Férfi + Nő = Királynő).",
+    "whyMore": "Tomas Mikolov és a Google csapata 2013-ban a Skip-gram és CBOW architektúrákkal megmutatta, hogy szavak környezetének előrejelzésével geometriai térben kódolhatók a fogalmi összefüggések. Ez a felfedezés nyitotta meg az utat a modern nagy nyelvi modellek (LLM-ek) beágyazási rétegei előtt."
+  },
+  {
+    "name": "ResNet mély maradékhálózatok (He et al.)",
+    "tag": "Mesterséges intelligencia · Deep Learning",
+    "category": "ml",
+    "year": 2015,
+    "tex": "\\mathbf{y} = \\mathcal{F}(\\mathbf{x}, \\{W_i\\}) + \\mathbf{x}",
+    "wiki": "https://en.wikipedia.org/wiki/Residual_neural_network",
+    "illustration": "wave",
+    "why": "A skip-connection (maradékos kapcsolat) bevezetésével megoldotta a grádiens-eltűnés problémáját, lehetővé téve a 100+ rétegű szupermély hálózatok stabil tanítását.",
+    "whyMore": "Kaiming He és munkatársai ahelyett, hogy egy rétegnek közvetlenül a kívánt leképezést tanítanák meg, a maradékot (reziduális függvényt) tanítják az identitás-ugrókapcsolat mellett. Ez az egyszerű matematikai húzás megszüntette a mélységi korlátokat, és ma szinte minden látó- és transzformer-hálózat alapja."
+  },
+  {
+    "name": "Generatív ellenérdekelt hálózatok (GAN)",
+    "tag": "Mesterséges intelligencia · Generatív modellek",
+    "category": "ml",
+    "year": 2014,
+    "tex": "\\min_G \\max_D \\mathbb{E}_{x}[\\log D(x)] + \\mathbb{E}_{z}[\\log(1 - D(G(z)))]",
+    "wiki": "https://en.wikipedia.org/wiki/Generative_adversarial_network",
+    "illustration": "wave",
+    "why": "Két neurális hálózat min-max játékelméleti versenyeztetésével (hamisító vs nyomozó) fotorealisztikus szintetikus adatok és képek generálását tette lehetővé.",
+    "whyMore": "Ian Goodfellow 2014-es ötlete a generatív modellezést zéró összegű játékként fogalmazza meg: a Generátor (G) élethű hamisítványokat készít zajból, míg a Diszkriminátor (D) megpróbálja megkülönböztetni a valódit a szintetikustól. Nash-egyensúlyban a generált képek eloszlása megkülönböztethetetlenné válik a valódi adatokétól."
+  },
+  {
+    "name": "Lamport logikai órák és kauzalitás",
+    "tag": "Elosztott rendszerek · Eseménysorrend",
+    "category": "elosztott",
+    "year": 1978,
+    "tex": "a \\to b \\implies C(a) < C(b), \\quad C(b) = \\max(C(b), \\, C(a) + 1)",
+    "wiki": "https://en.wikipedia.org/wiki/Lamport_timestamp",
+    "illustration": "lattice",
+    "why": "Közös fizikai óra nélkül definiálja az események kauzális 'megelőzte' relációját az elosztott rendszerekben.",
+    "whyMore": "Leslie Lamport 1978-as klasszikus dolgozata az elosztott rendszerek legtöbbet idézett publikációja. Megmutatta, hogy a relativitáselmélethez hasonlóan elosztott gépek között nem létezik abszolút egyidejűség: az időt logikai számlálókkal kell mérni, amelyeket az üzenetváltások szinkronizálnak."
+  },
+  {
+    "name": "Raft konszenzus algoritmus",
+    "tag": "Elosztott rendszerek · Hibaeltűrő konszenzus",
+    "category": "elosztott",
+    "year": 2014,
+    "tex": "\\text{Leader Election} + \\text{Log Replication} + \\text{Safety} \\implies \\text{Konszenzus}",
+    "wiki": "https://en.wikipedia.org/wiki/Raft_(algorithm)",
+    "illustration": "lattice",
+    "why": "A Paxos-szal egyenértékű megbízhatóságot nyújtó, de annál sokkal érthetőbb és könnyebben implementálható elosztott állapotgép-replikációs algoritmus.",
+    "whyMore": "Diego Ongaro és John Ousterhout a Stanford Egyetemen alkották meg a Raftot azzal a céllal, hogy leváltsák a hírhedten nehezen megérthető Paxost. A konszenzust három világosan szétválasztott alfeladatra bontja: vezetőválasztás, naplóreplikáció és biztonsági invariánsok. Ma a modern felhő-infrastruktúrák (Kubernetes etcd, HashiCorp Consul) motorja."
+  },
+  {
+    "name": "Nakamoto-konszenzus és Proof-of-Work",
+    "tag": "Elosztott rendszerek · Blokklánc",
+    "category": "elosztott",
+    "year": 2008,
+    "tex": "\\text{SHA-256}\\big(\\text{SHA-256}(\\text{BlockHeader})\\big) < \\text{Target}",
+    "wiki": "https://en.wikipedia.org/wiki/Proof_of_work",
+    "illustration": "lattice",
+    "why": "Megoldotta a nyílt, bizalmatlan hálózatokban a bizánci hibatűrést és a kétszeres költés problémáját kriptográfiai munka és leghosszabb lánc szabállyal.",
+    "whyMore": "Satoshi Nakamoto 2008-as fehér könyve egyesítette Adam Back Hashcash Proof-of-Work ötletét, a Merkle-fákat és az aszimmetrikus kriptográfiát. A hálózat résztvevői számítási kapacitásukkal szavaznak az érvényes állapotra, decentralizált konszenzust hozva létre központi bank vagy megbízható harmadik fél nélkül."
+  },
+  {
+    "name": "Kvantum teleportáció protokoll (Bennett et al.)",
+    "tag": "Kvantumszámítás · Információátvitel",
+    "category": "kvantum-it",
+    "year": 1993,
+    "tex": "|\\psi\\rangle \\otimes |\\Phi^+\\rangle \\xrightarrow{\\text{Bell-mérés}} 2 \\text{ klasszikus bit} \\xrightarrow{X^a Z^b} |\\psi\\rangle",
+    "wiki": "https://en.wikipedia.org/wiki/Quantum_teleportation",
+    "illustration": "wave",
+    "why": "Egy ismeretlen kvantumállapot tökéletes átvitele két távoli pont között kvantum-összefonódás és 2 klasszikus bit kommunikáció segítségével, az állapot megsemmisülése nélkül.",
+    "whyMore": "Charles H. Bennett és kutatótársai 1993-ban bebizonyították, hogy bár a No-Cloning tétel tiltja a kvantumállapotok másolását, összefonódott EPR-párok és klasszikus kommunikáció segítségével egy állapot megsemmisíthető a küldőnél és tökéletesen rekonstruálható a fogadónál. Ez a kvantum-internet és elosztott kvantumszámítás alapja."
   }
 ];
 
@@ -6375,7 +6771,9 @@ function legacyCopy(text) {
 
 function copyRowLink(id, btnEl) {
   const url = location.origin + location.pathname + "#" + id;
-  history.replaceState(null, "", "#" + id);
+  try {
+    history.replaceState(null, "", "#" + id);
+  } catch (_) {}
 
   const row = document.getElementById(id);
   if (row) {
@@ -6386,9 +6784,11 @@ function copyRowLink(id, btnEl) {
   }
 
   const finish = (copied) => {
-    btnEl.classList.add("copied");
-    setTimeout(() => btnEl.classList.remove("copied"), 1500);
-    showToast(copied ? "Link másolva a vágólapra!" : "Ez a tétel linkje — másold a címsorból");
+    if (btnEl) {
+      btnEl.classList.add("copied");
+      setTimeout(() => btnEl.classList.remove("copied"), 1500);
+    }
+    showToast(copied ? "🔗 Link másolva a vágólapra!" : "Ez a tétel linkje — másold a címsorból");
   };
 
   if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -7526,23 +7926,75 @@ searchClear.addEventListener("click", () => {
 });
 
 function handleDeepLink() {
-  const hash = location.hash.replace(/^#/, "");
-  if (!hash.startsWith("entry-")) return;
-  const rest = hash.slice("entry-".length);
-  const m = rest.match(/^(matek|fizika|informatika)-(.+)$/);
-  if (!m) return;
-  const [, domainKey] = m;
-  if (domainKey !== activeDomain) {
-    renderDomain(domainKey);
-  }
-  requestAnimationFrame(() => {
-    const el = document.getElementById(hash);
-    if (el) {
-      if (el.scrollIntoView) el.scrollIntoView({behavior: "smooth", block: "center"});
-      el.classList.add("highlight-flash");
-      setTimeout(() => el.classList.remove("highlight-flash"), 2300);
+  const rawHash = (location.hash || "").replace(/^#/, "").trim();
+  if (!rawHash) return;
+
+  // Ha a hash szimulációra mutat (pl. #sim-gravity vagy #sim-pendulum)
+  if (rawHash.startsWith("sim-")) {
+    const simKey = rawHash.slice(4);
+    if (typeof openSimulation === "function") {
+      openSimulation(simKey);
+      return;
     }
-  });
+  }
+
+  let targetDomain = null;
+  let targetSlug = null;
+
+  // 1. entry-{domain}-{slug}
+  const mDomain = rawHash.match(/^entry-(matek|fizika|informatika)-(.+)$/);
+  if (mDomain) {
+    targetDomain = mDomain[1];
+    targetSlug = mDomain[2];
+  } else {
+    // 2. entry-{slug} vagy közvetlen {slug}
+    const cleanSlug = rawHash.replace(/^entry-/, "");
+    for (const dKey of ["matek", "fizika", "informatika"]) {
+      const items = DOMAINS[dKey]?.data || [];
+      const match = items.find(it => slugify(it.name) === cleanSlug);
+      if (match) {
+        targetDomain = dKey;
+        targetSlug = cleanSlug;
+        break;
+      }
+    }
+  }
+
+  if (!targetDomain || !targetSlug) return;
+
+  const targetId = `entry-${targetDomain}-${targetSlug}`;
+
+  // Váltás a domainre, ha szükséges
+  if (targetDomain !== activeDomain) {
+    renderDomain(targetDomain);
+  }
+
+  // Ha nem a lista nézetben vagyunk, váltsunk lista (rank) nézetre
+  if (typeof currentView !== "undefined" && currentView !== "rank") {
+    const rankBtn = document.querySelector(`.view-tab[data-view="rank"]`);
+    if (rankBtn) rankBtn.click();
+  }
+
+  // Töröljük a szűrőket, hogy az elem biztosan látható legyen
+  if (searchQuery || activeTagFilter) {
+    searchQuery = "";
+    activeTagFilter = null;
+    if (searchClear) searchClear.classList.remove("visible");
+    if (tagcloud) [...tagcloud.children].forEach(c => { if (c.classList.contains("tchip")) c.classList.remove("active"); });
+    applyFilter();
+  }
+
+  setTimeout(() => {
+    const el = document.getElementById(targetId);
+    if (el) {
+      if (el.scrollIntoView) el.scrollIntoView({ behavior: "smooth", block: "center" });
+      el.classList.remove("highlight-flash");
+      void el.offsetWidth;
+      el.classList.add("highlight-flash");
+      setTimeout(() => el.classList.remove("highlight-flash"), 3000);
+      showToast("📍 Tétel kiválasztva");
+    }
+  }, 120);
 }
 
 // ==== TUDÁS-GRÁF ====
@@ -8037,6 +8489,19 @@ function renderDeck() {
     deckCard.querySelector(".deck-actions").appendChild(dPrint);
   }
   dPrint.onclick = () => printEntry(e, activeDomain);
+
+  // Link másolása gomb a decken
+  let dLink = document.getElementById("deckLink");
+  if (!dLink) {
+    dLink = document.createElement("button");
+    dLink.id = "deckLink";
+    dLink.className = "icon-btn link-btn";
+    dLink.setAttribute("aria-label", "Link másolása");
+    dLink.title = "Közvetlen link másolása a vágólapra";
+    dLink.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 15l6-6M10 6l1-1a3.5 3.5 0 015 5l-1 1M14 18l-1 1a3.5 3.5 0 01-5-5l1-1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
+    deckCard.querySelector(".deck-actions").appendChild(dLink);
+  }
+  dLink.onclick = () => copyRowLink(`entry-${activeDomain}-${slugify(e.name)}`, dLink);
 
   const favKey = activeDomain + ":" + slugify(e.name);
   deckFav.classList.toggle("active", favorites.has(favKey));
@@ -11108,6 +11573,7 @@ function init() {
   renderDomain("matek");
   renderDailyFeature();
   handleDeepLink();
+  window.addEventListener("hashchange", handleDeepLink);
 
   if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     const spin = document.getElementById("logoSpin");

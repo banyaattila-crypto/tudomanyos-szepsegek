@@ -1,4 +1,4 @@
-const CACHE_NAME = "tsz-cache-v10";
+const CACHE_NAME = "tsz-cache-v11";
 // Csak a dist/ -ben TÉNYLEG meglévő fájlokat precacheljük:
 // a moduláris szerkezet (index.html + app.css + app.js + editor.js) elemei,
 // ahol az app.js tartalmazza a beágyazott adatokat is.

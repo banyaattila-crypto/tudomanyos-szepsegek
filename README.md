@@ -7,10 +7,10 @@ Obszervatóriumi „Kozmikus aurora” dizájn, interaktív szimulációk, KaTeX
 
 ## Fő jellemzők
 
-- **473 tétel** 3 tudományterületen:
+- **509 tétel** 3 tudományterületen:
   - 202 Matematika
   - 207 Fizika · Kémia · Biológia
-  - 64 Informatika
+  - 100 Informatika
   - Mindegyik tétel egyedi évszámmal (`year`), kategóriával, leírással, képlettel és SVG illusztrációval ellátva.
 - **7 gazdag nézet**:
   - **Rangsor**: Teljes katalógus szűrőkkel, keresővel, kártya- és wiki hivatkozásokkal.
@@ -46,7 +46,7 @@ Obszervatóriumi „Kozmikus aurora” dizájn, interaktív szimulációk, KaTeX
 | `editor.js` | Beépített szerkesztőpanel modul |
 | `build.py` | Build pipeline: JSON validálás, adatinjektálás és `dist/` előállítás |
 | `dist/` | Production build (4 moduláris, függetlenül gyorsítótárazható fájl) |
-| `sw.js` | Service Worker v7 (PWA precache, offline támogatás) |
+| `sw.js` | Service Worker v11 (PWA precache, offline támogatás) |
 | `manifest.json`, `icon-*.png` | PWA telepíthetőségi metaadatok és ikonok |
 
 ---
