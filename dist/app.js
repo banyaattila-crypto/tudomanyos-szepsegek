@@ -6217,7 +6217,22 @@ const SIMULATION_TARGETS = {
   "fourier-transzformalt": "fourier",
   "gyors-fourier-transzformacio-fft": "fourier",
   "fast-fourier-transzformacio-alkalmazasa-keptomoritesre-dct": "fourier",
-  "conway-elet-jateka": "conway"
+  "conway-elet-jateka": "conway",
+  "lorenz-attraktor-pillangohatas": "pendulum",
+  "logisztikus-lekepezes": "pendulum",
+  "euler-lagrange-egyenlet": "pendulum",
+  "hamilton-egyenletek": "pendulum",
+  "liouville-egyenlet-fazister": "pendulum",
+  "poincare-bendixson-tetel": "pendulum",
+  "foucault-inga": "pendulum",
+  "kepler-harmadik-torvenye": "gravity",
+  "kepler-egyenlet-excentrikus-anomalia": "gravity",
+  "newton-fele-gravitacios-torveny": "gravity",
+  "einstein-egyenletek-altalanos-relativitas": "gravity",
+  "gravitacios-hullamok-kvadrupol-formula": "gravity",
+  "gravitacios-lencsehatas-1919-es-napfogyatkozas-kiserlet": "gravity",
+  "eotvos-kiserlet": "gravity",
+  "egyenertekusegi-elv-eotvos": "gravity"
 };
 
 let activeDomain = "matek";
@@ -9040,7 +9055,9 @@ const SIM_TITLES = {
   tunnel: "🌊 Kvantum-alagúthatás (Schrödinger-egyenlet)",
   mandelbrot: "🌀 Mandelbrot-halmaz és Komplex fraktálok",
   fourier: "🎼 Fourier-sorfejtés és Epiciklikus szintézis",
-  conway: "👾 Conway: Élet játéka (Sejtautomata)"
+  conway: "👾 Conway: Élet játéka (Sejtautomata)",
+  pendulum: "🪀 Kettős inga és Káoszelmélet (Pillangóhatás)",
+  gravity: "🪐 N-test gravitáció és Kepler-pályák (Égimechanika)"
 };
 
 // 1. Lorentz állapot
@@ -9099,6 +9116,308 @@ const simConway = {
   speedMs: 100,
   generation: 0
 };
+
+// 6. Kettős inga (káoszelmélet) állapot
+const simPendulum = {
+  m1: 1.0,
+  m2: 1.0,
+  l1: 1.0,
+  l2: 1.0,
+  g: 9.81,
+  damp: 0.0001,
+  speed: 1.0,
+  stateA: [Math.PI / 2 + 0.2, Math.PI / 2, 0, 0],
+  stateB: [Math.PI / 2 + 0.201, Math.PI / 2, 0, 0],
+  initA: [Math.PI / 2 + 0.2, Math.PI / 2],
+  deltaTheta0: 0.001,
+  showTwin: true,
+  showPhaseSpace: false,
+  running: true,
+  trailA: [],
+  trailB: [],
+  maxTrail: 240,
+  draggedBob: null
+};
+
+function rk4Pendulum(s, dt, params) {
+  function getDerivs(t1, t2, w1, w2, m1, m2, l1, l2, g, damp) {
+    const dTheta = t1 - t2;
+    const num1 = -g * (2 * m1 + m2) * Math.sin(t1) - m2 * g * Math.sin(t1 - 2 * t2) - 2 * Math.sin(dTheta) * m2 * (w2 * w2 * l2 + w1 * w1 * l1 * Math.cos(dTheta));
+    const den1 = l1 * (2 * m1 + m2 - m2 * Math.cos(2 * t1 - 2 * t2));
+    const alpha1 = num1 / den1 - damp * w1;
+
+    const num2 = 2 * Math.sin(dTheta) * (w1 * w1 * l1 * (m1 + m2) + g * (m1 + m2) * Math.cos(t1) + w2 * w2 * l2 * m2 * Math.cos(dTheta));
+    const den2 = l2 * (2 * m1 + m2 - m2 * Math.cos(2 * t1 - 2 * t2));
+    const alpha2 = num2 / den2 - damp * w2;
+
+    return [w1, w2, alpha1, alpha2];
+  }
+
+  const [t1, t2, w1, w2] = s;
+  const k1 = getDerivs(t1, t2, w1, w2, ...params);
+  const k2 = getDerivs(t1 + 0.5 * dt * k1[0], t2 + 0.5 * dt * k1[1], w1 + 0.5 * dt * k1[2], w2 + 0.5 * dt * k1[3], ...params);
+  const k3 = getDerivs(t1 + 0.5 * dt * k2[0], t2 + 0.5 * dt * k2[1], w1 + 0.5 * dt * k2[2], w2 + 0.5 * dt * k2[3], ...params);
+  const k4 = getDerivs(t1 + dt * k3[0], t2 + dt * k3[1], w1 + dt * k3[2], w2 + dt * k3[3], ...params);
+
+  return [
+    t1 + (dt / 6) * (k1[0] + 2 * k2[0] + 2 * k3[0] + k4[0]),
+    t2 + (dt / 6) * (k1[1] + 2 * k2[1] + 2 * k3[1] + k4[1]),
+    w1 + (dt / 6) * (k1[2] + 2 * k2[2] + 2 * k3[2] + k4[2]),
+    w2 + (dt / 6) * (k1[3] + 2 * k2[3] + 2 * k3[3] + k4[3])
+  ];
+}
+
+// 7. N-test gravitáció és égimechanika állapot
+const simGravity = {
+  preset: "figure8",
+  G: 2500,
+  eps: 5.0,
+  speed: 1.0,
+  spawnMass: 60,
+  maxTrail: 180,
+  running: true,
+  bodies: [],
+  isAiming: false,
+  aimStart: null,
+  aimCurrent: null
+};
+
+function colorWithAlpha(hexOrRgb, alpha) {
+  if (typeof hexOrRgb === "string" && hexOrRgb.startsWith("#") && hexOrRgb.length >= 7) {
+    const r = parseInt(hexOrRgb.slice(1, 3), 16);
+    const g = parseInt(hexOrRgb.slice(3, 5), 16);
+    const b = parseInt(hexOrRgb.slice(5, 7), 16);
+    return `rgba(${r}, ${g}, ${b}, ${alpha.toFixed(2)})`;
+  }
+  return hexOrRgb;
+}
+
+function computeGravityAccels(bodies, G, eps) {
+  const n = bodies.length;
+  const accels = bodies.map(() => ({ ax: 0, ay: 0 }));
+  const eps2 = eps * eps;
+
+  for (let i = 0; i < n; i++) {
+    for (let j = i + 1; j < n; j++) {
+      const dx = bodies[j].x - bodies[i].x;
+      const dy = bodies[j].y - bodies[i].y;
+      const dist2 = dx * dx + dy * dy + eps2;
+      const dist = Math.sqrt(dist2);
+      const forceMag = (G * bodies[i].m * bodies[j].m) / (dist2 * dist);
+
+      accels[i].ax += (forceMag * dx) / bodies[i].m;
+      accels[i].ay += (forceMag * dy) / bodies[i].m;
+      accels[j].ax -= (forceMag * dx) / bodies[j].m;
+      accels[j].ay -= (forceMag * dy) / bodies[j].m;
+    }
+  }
+  return accels;
+}
+
+function verletStepGravity(bodies, dt, G, eps) {
+  const n = bodies.length;
+  const a1 = computeGravityAccels(bodies, G, eps);
+
+  for (let i = 0; i < n; i++) {
+    bodies[i].x += bodies[i].vx * dt + 0.5 * a1[i].ax * dt * dt;
+    bodies[i].y += bodies[i].vy * dt + 0.5 * a1[i].ay * dt * dt;
+  }
+
+  const a2 = computeGravityAccels(bodies, G, eps);
+
+  for (let i = 0; i < n; i++) {
+    bodies[i].vx += 0.5 * (a1[i].ax + a2[i].ax) * dt;
+    bodies[i].vy += 0.5 * (a1[i].ay + a2[i].ay) * dt;
+  }
+}
+
+function loadGravityPreset(presetId, w, h) {
+  simGravity.preset = presetId;
+  const cx = (w || 640) / 2;
+  const cy = (h || 360) / 2;
+  const G = simGravity.G;
+
+  if (presetId === "figure8") {
+    const scale = 135;
+    const x1 = 0.97000436, y1 = -0.24308753;
+    const vx1 = 0.46620531, vy1 = 0.43236573;
+    const m = 1000;
+    const vScale = Math.sqrt((G * m) / scale);
+
+    simGravity.bodies = [
+      {
+        name: "Alfa (1)",
+        x: cx + x1 * scale, y: cy + y1 * scale,
+        vx: vx1 * vScale, vy: vy1 * vScale,
+        m: m, radius: 7.5,
+        color: "#00f2fe", glowColor: "rgba(0, 242, 254, 0.55)",
+        trail: []
+      },
+      {
+        name: "Béta (2)",
+        x: cx - x1 * scale, y: cy - y1 * scale,
+        vx: vx1 * vScale, vy: vy1 * vScale,
+        m: m, radius: 7.5,
+        color: "#38ef7d", glowColor: "rgba(56, 239, 125, 0.55)",
+        trail: []
+      },
+      {
+        name: "Gamma (3)",
+        x: cx, y: cy,
+        vx: -2 * vx1 * vScale, vy: -2 * vy1 * vScale,
+        m: m, radius: 7.5,
+        color: "#ff416c", glowColor: "rgba(255, 65, 108, 0.55)",
+        trail: []
+      }
+    ];
+  } else if (presetId === "solar") {
+    const M = 9500;
+    const rE = 125;
+    const vE = Math.sqrt(G * M / rE);
+    const mE = 260;
+    const rM = 14;
+    const vM = Math.sqrt(G * mE / rM);
+    const rMars = 185;
+    const vMars = Math.sqrt(G * M / rMars);
+
+    simGravity.bodies = [
+      {
+        name: "Központi Nap",
+        x: cx, y: cy, vx: 0, vy: 0,
+        m: M, radius: 13,
+        color: "#ffe066", glowColor: "rgba(255, 224, 102, 0.65)",
+        trail: []
+      },
+      {
+        name: "Föld",
+        x: cx + rE, y: cy, vx: 0, vy: vE,
+        m: mE, radius: 6,
+        color: "#3eb8f0", glowColor: "rgba(62, 184, 240, 0.55)",
+        trail: []
+      },
+      {
+        name: "Hold",
+        x: cx + rE + rM, y: cy, vx: 0, vy: vE + vM,
+        m: 3, radius: 2.8,
+        color: "#e0e6ed", glowColor: "rgba(224, 230, 237, 0.4)",
+        trail: []
+      },
+      {
+        name: "Mars",
+        x: cx - rMars, y: cy, vx: 0, vy: -vMars,
+        m: 50, radius: 4.5,
+        color: "#ff6b6b", glowColor: "rgba(255, 107, 107, 0.55)",
+        trail: []
+      }
+    ];
+  } else if (presetId === "lagrange") {
+    const M = 8500;
+    const mJ = 400;
+    const rJ = 140;
+    const vJ = Math.sqrt(G * (M + mJ) / rJ);
+
+    const xSun = - (mJ / (M + mJ)) * rJ;
+    const xJup = (M / (M + mJ)) * rJ;
+
+    const angleL4 = Math.PI / 3;
+    const rL4 = rJ;
+    const xL4 = xSun + rL4 * Math.cos(angleL4);
+    const yL4 = rL4 * Math.sin(angleL4);
+    const vL4x = -vJ * Math.sin(angleL4);
+    const vL4y = vJ * Math.cos(angleL4);
+
+    const angleL5 = -Math.PI / 3;
+    const xL5 = xSun + rL4 * Math.cos(angleL5);
+    const yL5 = rL4 * Math.sin(angleL5);
+    const vL5x = -vJ * Math.sin(angleL5);
+    const vL5y = vJ * Math.cos(angleL5);
+
+    simGravity.bodies = [
+      {
+        name: "Nap",
+        x: cx + xSun, y: cy, vx: 0, vy: -(mJ / (M + mJ)) * vJ,
+        m: M, radius: 12,
+        color: "#ffe066", glowColor: "rgba(255, 224, 102, 0.65)",
+        trail: []
+      },
+      {
+        name: "Jupiter",
+        x: cx + xJup, y: cy, vx: 0, vy: (M / (M + mJ)) * vJ,
+        m: mJ, radius: 8,
+        color: "#f5a623", glowColor: "rgba(245, 166, 35, 0.55)",
+        trail: []
+      },
+      {
+        name: "Trójai (L4)",
+        x: cx + xL4, y: cy + yL4, vx: vL4x, vy: vL4y,
+        m: 2, radius: 3,
+        color: "#38ef7d", glowColor: "rgba(56, 239, 125, 0.5)",
+        trail: []
+      },
+      {
+        name: "Görög (L5)",
+        x: cx + xL5, y: cy + yL5, vx: vL5x, vy: vL5y,
+        m: 2, radius: 3,
+        color: "#00f2fe", glowColor: "rgba(0, 242, 254, 0.5)",
+        trail: []
+      }
+    ];
+  } else if (presetId === "pythagoras") {
+    const s = 18;
+    simGravity.bodies = [
+      {
+        name: "Test A (m=3)",
+        x: cx + 1 * s, y: cy + 3 * s, vx: 0, vy: 0,
+        m: 600, radius: 6.5,
+        color: "#00f2fe", glowColor: "rgba(0, 242, 254, 0.55)",
+        trail: []
+      },
+      {
+        name: "Test B (m=4)",
+        x: cx - 2 * s, y: cy - 1 * s, vx: 0, vy: 0,
+        m: 800, radius: 7.5,
+        color: "#38ef7d", glowColor: "rgba(56, 239, 125, 0.55)",
+        trail: []
+      },
+      {
+        name: "Test C (m=5)",
+        x: cx + 1 * s, y: cy - 1 * s, vx: 0, vy: 0,
+        m: 1000, radius: 8.5,
+        color: "#ff416c", glowColor: "rgba(255, 65, 108, 0.55)",
+        trail: []
+      }
+    ];
+  } else if (presetId === "slingshot") {
+    const M = 9000;
+    const mP = 1400;
+    const rP = 120;
+    const vP = Math.sqrt(G * M / rP);
+
+    simGravity.bodies = [
+      {
+        name: "Központi Csillag",
+        x: cx, y: cy, vx: 0, vy: 0,
+        m: M, radius: 12,
+        color: "#ffe066", glowColor: "rgba(255, 224, 102, 0.65)",
+        trail: []
+      },
+      {
+        name: "Óriásbolygó",
+        x: cx, y: cy + rP, vx: -vP, vy: 0,
+        m: mP, radius: 9,
+        color: "#f5a623", glowColor: "rgba(245, 166, 35, 0.55)",
+        trail: []
+      },
+      {
+        name: "Űrszonda (Voyager)",
+        x: cx - 180, y: cy + rP - 24, vx: 180, vy: -15,
+        m: 1, radius: 3,
+        color: "#38ef7d", glowColor: "rgba(56, 239, 125, 0.7)",
+        trail: []
+      }
+    ];
+  }
+}
 
 function drawLorentz(ctx, width, height) {
   const L0 = 120;
@@ -9628,6 +9947,407 @@ function drawConway(ctx, width, height) {
   ctx.fillText(`Generáció: ${simConway.generation} | Élő sejtek: ${aliveCount}`, 20, height - 14);
 }
 
+function drawPhaseSpace(ctx, width, height) {
+  const boxW = Math.min(220, Math.floor(width * 0.36));
+  const boxH = Math.min(180, Math.floor(height * 0.62));
+  const boxX = width - boxW - 16;
+  const boxY = 46;
+
+  ctx.fillStyle = "rgba(6, 11, 24, 0.88)";
+  ctx.strokeStyle = "rgba(125, 163, 255, 0.25)";
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  if (ctx.roundRect) ctx.roundRect(boxX, boxY, boxW, boxH, 8);
+  else ctx.rect(boxX, boxY, boxW, boxH);
+  ctx.fill();
+  ctx.stroke();
+
+  const midX = boxX + boxW / 2;
+  const midY = boxY + boxH / 2;
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.12)";
+  ctx.setLineDash([2, 2]);
+  ctx.beginPath(); ctx.moveTo(boxX + 6, midY); ctx.lineTo(boxX + boxW - 6, midY); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(midX, boxY + 6); ctx.lineTo(midX, boxY + boxH - 6); ctx.stroke();
+  ctx.setLineDash([]);
+
+  ctx.font = "600 10.5px Inter, sans-serif";
+  ctx.fillStyle = "#e9c877";
+  ctx.fillText("Fázistér (θ₁ vs ω₁)", boxX + 10, boxY + 16);
+  ctx.font = "500 9px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "rgba(154, 166, 196, 0.7)";
+  ctx.fillText("+ω", midX + 4, boxY + 14);
+  ctx.fillText("-ω", midX + 4, boxY + boxH - 6);
+  ctx.fillText("+π", boxX + boxW - 16, midY - 4);
+  ctx.fillText("-π", boxX + 6, midY - 4);
+
+  const len = simPendulum.trailA.length;
+  if (len > 1) {
+    const maxW = 9.0;
+    ctx.strokeStyle = "rgba(56, 239, 125, 0.75)";
+    ctx.lineWidth = 1.2;
+    ctx.beginPath();
+    for (let i = 0; i < len; i++) {
+      const pt = simPendulum.trailA[i];
+      let th = ((pt.t1 + Math.PI) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI) - Math.PI;
+      const px = midX + (th / Math.PI) * (boxW / 2 - 12);
+      const py = midY - Math.max(-1, Math.min(1, (pt.w1 || 0) / maxW)) * (boxH / 2 - 14);
+      if (i === 0) ctx.moveTo(px, py);
+      else ctx.lineTo(px, py);
+    }
+    ctx.stroke();
+
+    const curr = simPendulum.trailA[len - 1];
+    let currTh = ((curr.t1 + Math.PI) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI) - Math.PI;
+    const cpx = midX + (currTh / Math.PI) * (boxW / 2 - 12);
+    const cpy = midY - Math.max(-1, Math.min(1, (curr.w1 || 0) / maxW)) * (boxH / 2 - 14);
+    ctx.fillStyle = "#ffe066";
+    ctx.shadowColor = "#ffe066";
+    ctx.shadowBlur = 8;
+    ctx.beginPath(); ctx.arc(cpx, cpy, 3.5, 0, Math.PI * 2); ctx.fill();
+    ctx.shadowBlur = 0;
+  }
+}
+
+function drawPendulum(ctx, width, height) {
+  ctx.fillStyle = "#050813";
+  ctx.fillRect(0, 0, width, height);
+
+  ctx.strokeStyle = "rgba(125, 163, 255, 0.05)";
+  ctx.lineWidth = 1;
+  for (let x = 0; x < width; x += 40) {
+    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, height); ctx.stroke();
+  }
+  for (let y = 0; y < height; y += 40) {
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(width, y); ctx.stroke();
+  }
+
+  const R1 = 70;
+  const R2 = 70;
+  const cx = simPendulum.showPhaseSpace ? width * 0.32 : width * 0.5;
+  const cy = height * 0.38;
+
+  if (simPendulum.running && !simPendulum.draggedBob) {
+    const subSteps = 6;
+    const baseDt = 0.02 * (simPendulum.speed || 1.0);
+    const dt = baseDt / subSteps;
+    const params = [simPendulum.m1, simPendulum.m2, simPendulum.l1, simPendulum.l2, simPendulum.g, simPendulum.damp];
+
+    for (let i = 0; i < subSteps; i++) {
+      simPendulum.stateA = rk4Pendulum(simPendulum.stateA, dt, params);
+      if (simPendulum.showTwin) {
+        simPendulum.stateB = rk4Pendulum(simPendulum.stateB, dt, params);
+      }
+    }
+
+    simPendulum.stateA[0] = ((simPendulum.stateA[0] + Math.PI) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI) - Math.PI;
+    simPendulum.stateA[1] = ((simPendulum.stateA[1] + Math.PI) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI) - Math.PI;
+    if (simPendulum.showTwin) {
+      simPendulum.stateB[0] = ((simPendulum.stateB[0] + Math.PI) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI) - Math.PI;
+      simPendulum.stateB[1] = ((simPendulum.stateB[1] + Math.PI) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI) - Math.PI;
+    }
+
+    const t1A = simPendulum.stateA[0];
+    const t2A = simPendulum.stateA[1];
+    const x1A = cx + R1 * Math.sin(t1A);
+    const y1A = cy + R1 * Math.cos(t1A);
+    const x2A = x1A + R2 * Math.sin(t2A);
+    const y2A = y1A + R2 * Math.cos(t2A);
+    simPendulum.trailA.push({ x: x2A, y: y2A, t1: t1A, w1: simPendulum.stateA[2] });
+    if (simPendulum.trailA.length > simPendulum.maxTrail) simPendulum.trailA.shift();
+
+    if (simPendulum.showTwin) {
+      const t1B = simPendulum.stateB[0];
+      const t2B = simPendulum.stateB[1];
+      const x1B = cx + R1 * Math.sin(t1B);
+      const y1B = cy + R1 * Math.cos(t1B);
+      const x2B = x1B + R2 * Math.sin(t2B);
+      const y2B = y1B + R2 * Math.cos(t2B);
+      simPendulum.trailB.push({ x: x2B, y: y2B, t1: t1B, w1: simPendulum.stateB[2] });
+      if (simPendulum.trailB.length > simPendulum.maxTrail) simPendulum.trailB.shift();
+    }
+  }
+
+  const t1A = simPendulum.stateA[0];
+  const t2A = simPendulum.stateA[1];
+  const x1A = cx + R1 * Math.sin(t1A);
+  const y1A = cy + R1 * Math.cos(t1A);
+  const x2A = x1A + R2 * Math.sin(t2A);
+  const y2A = y1A + R2 * Math.cos(t2A);
+
+  let x1B = 0, y1B = 0, x2B = 0, y2B = 0, dist = 0;
+  if (simPendulum.showTwin) {
+    const t1B = simPendulum.stateB[0];
+    const t2B = simPendulum.stateB[1];
+    x1B = cx + R1 * Math.sin(t1B);
+    y1B = cy + R1 * Math.cos(t1B);
+    x2B = x1B + R2 * Math.sin(t2B);
+    y2B = y1B + R2 * Math.cos(t2B);
+    dist = Math.hypot(x2A - x2B, y2A - y2B);
+  }
+
+  if (simPendulum.showTwin && simPendulum.trailB.length > 1) {
+    const lenB = simPendulum.trailB.length;
+    for (let i = 1; i < lenB; i++) {
+      const p0 = simPendulum.trailB[i - 1];
+      const p1 = simPendulum.trailB[i];
+      const alpha = (i / lenB) * 0.7;
+      ctx.strokeStyle = `rgba(255, 65, 108, ${alpha})`;
+      ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(p0.x, p0.y); ctx.lineTo(p1.x, p1.y); ctx.stroke();
+    }
+  }
+
+  if (simPendulum.trailA.length > 1) {
+    const lenA = simPendulum.trailA.length;
+    for (let i = 1; i < lenA; i++) {
+      const p0 = simPendulum.trailA[i - 1];
+      const p1 = simPendulum.trailA[i];
+      const alpha = (i / lenA) * 0.85;
+      ctx.strokeStyle = `rgba(56, 239, 125, ${alpha})`;
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(p0.x, p0.y); ctx.lineTo(p1.x, p1.y); ctx.stroke();
+    }
+  }
+
+  if (simPendulum.showTwin) {
+    ctx.strokeStyle = "rgba(255, 65, 108, 0.4)";
+    ctx.lineWidth = 2;
+    ctx.setLineDash([4, 4]);
+    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(x1B, y1B); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(x1B, y1B); ctx.lineTo(x2B, y2B); ctx.stroke();
+    ctx.setLineDash([]);
+
+    ctx.fillStyle = "rgba(255, 100, 150, 0.7)";
+    ctx.beginPath(); ctx.arc(x1B, y1B, 5, 0, Math.PI * 2); ctx.fill();
+
+    ctx.fillStyle = "#ff416c";
+    ctx.shadowColor = "#ff416c";
+    ctx.shadowBlur = 10;
+    ctx.beginPath(); ctx.arc(x2B, y2B, 6, 0, Math.PI * 2); ctx.fill();
+    ctx.shadowBlur = 0;
+  }
+
+  ctx.strokeStyle = "rgba(201, 162, 75, 0.8)";
+  ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(x1A, y1A); ctx.stroke();
+
+  ctx.strokeStyle = "rgba(125, 163, 255, 0.85)";
+  ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(x1A, y1A); ctx.lineTo(x2A, y2A); ctx.stroke();
+
+  ctx.fillStyle = "#e9c877";
+  ctx.shadowColor = "#e9c877";
+  ctx.shadowBlur = 8;
+  ctx.beginPath(); ctx.arc(cx, cy, 6, 0, Math.PI * 2); ctx.fill();
+  ctx.shadowBlur = 0;
+
+  ctx.fillStyle = "#3eb8f0";
+  ctx.shadowColor = "#3eb8f0";
+  ctx.shadowBlur = 10;
+  ctx.beginPath(); ctx.arc(x1A, y1A, 7.5, 0, Math.PI * 2); ctx.fill();
+  ctx.shadowBlur = 0;
+
+  ctx.fillStyle = "#38ef7d";
+  ctx.shadowColor = "#38ef7d";
+  ctx.shadowBlur = 14;
+  ctx.beginPath(); ctx.arc(x2A, y2A, 8.5, 0, Math.PI * 2); ctx.fill();
+  ctx.shadowBlur = 0;
+
+  ctx.font = "600 12px Inter, sans-serif";
+  ctx.fillStyle = "#9aa6c4";
+  ctx.fillText("KETTŐS INGA — Determinisztikus Káosz & Pillangóhatás (RK4)", 20, 24);
+
+  let statusText = "🟢 Szinkronban (egyező pályák)";
+  let statusColor = "#38ef7d";
+  if (simPendulum.showTwin) {
+    if (dist > 30) {
+      statusText = "🔴 Kaotikus szétválás (Pillangóhatás)";
+      statusColor = "#ff416c";
+    } else if (dist > 3) {
+      statusText = "🟡 Enyhe divergencia indul";
+      statusColor = "#ffd200";
+    }
+  }
+
+  ctx.font = "500 11.5px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#9aa6c4";
+  ctx.fillText(`Inga: θ₁=${(t1A * 180 / Math.PI).toFixed(0)}°, θ₂=${(t2A * 180 / Math.PI).toFixed(0)}°`, 20, height - 28);
+  if (simPendulum.showTwin) {
+    ctx.fillStyle = statusColor;
+    ctx.fillText(`Két inga távolsága: Δd = ${dist.toFixed(1)} px | ${statusText}`, 20, height - 12);
+  }
+
+  if (simPendulum.showPhaseSpace) {
+    drawPhaseSpace(ctx, width, height);
+  }
+
+  const elDist = document.getElementById("simHudPendulumDist");
+  const elW1 = document.getElementById("simHudPendulumW1");
+  const elEnergy = document.getElementById("simHudPendulumEnergy");
+  const elState = document.getElementById("simHudPendulumState");
+  if (elDist) elDist.textContent = simPendulum.showTwin ? `${dist.toFixed(1)} px` : "—";
+  if (elW1) elW1.textContent = `${simPendulum.stateA[2].toFixed(2)} rad/s`;
+  if (elEnergy) elEnergy.textContent = simPendulum.damp === 0 ? "Konzervatív (E=állandó)" : "Disszipatív";
+  if (elState) {
+    elState.textContent = simPendulum.showTwin ? statusText : "Egyszeres inga";
+    elState.style.color = statusColor;
+  }
+}
+
+function drawGravity(ctx, width, height) {
+  if (simGravity.bodies.length === 0) {
+    loadGravityPreset(simGravity.preset, width, height);
+  }
+
+  // Physics sub-stepping (8 steps per frame for symplectic Verlet accuracy)
+  if (simGravity.running) {
+    const subSteps = 8;
+    const baseDt = 0.0016 * simGravity.speed;
+    const dt = baseDt / subSteps;
+    const G = simGravity.G;
+    const eps = simGravity.eps;
+
+    for (let s = 0; s < subSteps; s++) {
+      verletStepGravity(simGravity.bodies, dt, G, eps);
+    }
+
+    // Update trails
+    for (const b of simGravity.bodies) {
+      b.trail.push({ x: b.x, y: b.y });
+      if (b.trail.length > simGravity.maxTrail) b.trail.shift();
+    }
+  }
+
+  ctx.fillStyle = "#050813";
+  ctx.fillRect(0, 0, width, height);
+
+  // Subtle coordinate grid
+  ctx.strokeStyle = "rgba(125, 163, 255, 0.04)";
+  ctx.lineWidth = 1;
+  for (let x = 0; x < width; x += 50) {
+    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, height); ctx.stroke();
+  }
+  for (let y = 0; y < height; y += 50) {
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(width, y); ctx.stroke();
+  }
+
+  // Draw trails with glowing alpha fade
+  for (const b of simGravity.bodies) {
+    const tLen = b.trail.length;
+    if (tLen > 1) {
+      for (let i = 1; i < tLen; i++) {
+        const p0 = b.trail[i - 1];
+        const p1 = b.trail[i];
+        const alpha = (i / tLen) * 0.75;
+        ctx.strokeStyle = colorWithAlpha(b.color, alpha);
+        ctx.lineWidth = Math.min(2.2, Math.max(1, b.radius * 0.35));
+        ctx.beginPath(); ctx.moveTo(p0.x, p0.y); ctx.lineTo(p1.x, p1.y); ctx.stroke();
+      }
+    }
+  }
+
+  // Draw bodies with realistic radial glow and core
+  for (const b of simGravity.bodies) {
+    // Outer halo glow
+    ctx.fillStyle = b.glowColor;
+    ctx.beginPath();
+    ctx.arc(b.x, b.y, b.radius * 2.2, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Solid core
+    ctx.fillStyle = b.color;
+    ctx.shadowColor = b.color;
+    ctx.shadowBlur = b.radius * 2;
+    ctx.beginPath();
+    ctx.arc(b.x, b.y, b.radius, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.shadowBlur = 0;
+
+    // Body label
+    ctx.font = "500 10px Inter, sans-serif";
+    ctx.fillStyle = "rgba(220, 230, 255, 0.75)";
+    ctx.fillText(b.name, b.x + b.radius + 4, b.y + 3);
+  }
+
+  // Draw interactive aim vector when dragging
+  if (simGravity.isAiming && simGravity.aimStart && simGravity.aimCurrent) {
+    const { x: sx, y: sy } = simGravity.aimStart;
+    const { x: mx, y: my } = simGravity.aimCurrent;
+
+    // Line from spawn point to cursor
+    ctx.strokeStyle = "#ffe066";
+    ctx.lineWidth = 2;
+    ctx.setLineDash([4, 4]);
+    ctx.beginPath(); ctx.moveTo(sx, sy); ctx.lineTo(mx, my); ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Velocity arrow head
+    ctx.fillStyle = "#ffe066";
+    ctx.beginPath(); ctx.arc(mx, my, 4, 0, Math.PI * 2); ctx.fill();
+
+    // Spawn preview circle
+    const previewR = Math.max(3.5, Math.min(10, Math.cbrt(simGravity.spawnMass)));
+    ctx.fillStyle = "rgba(0, 242, 254, 0.7)";
+    ctx.shadowColor = "#00f2fe";
+    ctx.shadowBlur = 10;
+    ctx.beginPath(); ctx.arc(sx, sy, previewR, 0, Math.PI * 2); ctx.fill();
+    ctx.shadowBlur = 0;
+
+    // Projected velocity telemetry
+    const vMag = Math.hypot(mx - sx, my - sy) * 1.5;
+    ctx.font = "600 11px 'JetBrains Mono', monospace";
+    ctx.fillStyle = "#ffe066";
+    ctx.fillText(`v₀ = ${vMag.toFixed(0)} px/s (m = ${simGravity.spawnMass})`, sx + 14, sy - 10);
+  }
+
+  // Canvas eyebrow title
+  ctx.font = "600 12px Inter, sans-serif";
+  ctx.fillStyle = "#9aa6c4";
+  ctx.fillText("N-TEST GRAVITÁCIÓ — Kepler-pályák & Velocity Verlet Integráció (Kattints és húzd az indításhoz!)", 20, 24);
+
+  // Compute total energy & momentum
+  let T = 0, V = 0;
+  const n = simGravity.bodies.length;
+  const eps2 = simGravity.eps * simGravity.eps;
+  for (let i = 0; i < n; i++) {
+    const bi = simGravity.bodies[i];
+    T += 0.5 * bi.m * (bi.vx * bi.vx + bi.vy * bi.vy);
+    for (let j = i + 1; j < n; j++) {
+      const bj = simGravity.bodies[j];
+      const dx = bj.x - bi.x;
+      const dy = bj.y - bi.y;
+      const dist = Math.sqrt(dx * dx + dy * dy + eps2);
+      V -= (simGravity.G * bi.m * bj.m) / dist;
+    }
+  }
+  const E = T + V;
+
+  ctx.font = "500 11.5px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#9aa6c4";
+  ctx.fillText(`Égitestek: N = ${n} | Kinetikus T: ${(T / 1e6).toFixed(2)}M | Potenciális V: ${(V / 1e6).toFixed(2)}M`, 20, height - 26);
+  ctx.fillStyle = "#e9c877";
+  ctx.fillText(`Teljes energia E: ${(E / 1e6).toFixed(2)}M J (Szimplektikus konzerváció) | Jobb-klikk: törlés`, 20, height - 10);
+
+  // Update HUD telemetry DOM elements if present
+  const hudBodies = document.getElementById("simHudGravBodies");
+  const hudEnergy = document.getElementById("simHudGravEnergy");
+  const hudPreset = document.getElementById("simHudGravPreset");
+  const hudStatus = document.getElementById("simHudGravStatus");
+  if (hudBodies) hudBodies.textContent = `${n} db`;
+  if (hudEnergy) hudEnergy.textContent = `${(E / 1e6).toFixed(2)}M J`;
+  if (hudPreset) {
+    const names = {
+      figure8: "🌌 8-as pálya",
+      solar: "☀️ Naprendszer",
+      lagrange: "🪐 Lagrange L4/L5",
+      pythagoras: "💥 Pitagoraszi",
+      slingshot: "🚀 Parittya"
+    };
+    hudPreset.textContent = names[simGravity.preset] || simGravity.preset;
+  }
+  if (hudStatus) hudStatus.textContent = simGravity.running ? "🟢 Aktív keringés" : "⏸ Szünetel";
+}
+
 function renderSimControls(simId) {
   if (!simControls) return;
   simControls.innerHTML = "";
@@ -9875,6 +10595,174 @@ function renderSimControls(simId) {
     if (presetSel) presetSel.addEventListener("change", (e) => {
       loadConwayPreset(e.target.value);
     });
+  } else if (simId === "pendulum") {
+    simControls.innerHTML = `
+      <div class="sim-row">
+        <div class="sim-btn-group">
+          <button type="button" class="sim-ctrl-btn" id="simPendulumPlay">${simPendulum.running ? "⏸ Szünet" : "▶ Indítás"}</button>
+          <button type="button" class="sim-ctrl-btn" id="simPendulumReset">↺ Alaphelyzet</button>
+          <button type="button" class="sim-ctrl-btn" id="simPendulumRandom">🎲 Véletlen szög</button>
+          <button type="button" class="sim-ctrl-btn" id="simPendulumClear">🧹 Törlés</button>
+        </div>
+        <div class="sim-btn-group">
+          <label class="sim-checkbox">
+            <input type="checkbox" id="simPendulumTwin" ${simPendulum.showTwin ? "checked" : ""}>
+            <span>🦋 Ikeringa (Pillangóhatás)</span>
+          </label>
+          <label class="sim-checkbox">
+            <input type="checkbox" id="simPendulumPhase" ${simPendulum.showPhaseSpace ? "checked" : ""}>
+            <span>📈 Fázistér diagram</span>
+          </label>
+        </div>
+      </div>
+      <div class="sim-row">
+        <span class="sim-label">Kezdőeltérés (Δθ₀): <b id="simPendulumDeltaVal">${(simPendulum.deltaTheta0 * 180 / Math.PI).toFixed(3)}°</b></span>
+        <div class="sim-slider-wrap">
+          <input type="range" class="sim-slider" id="simPendulumDeltaSlider" min="0.0001" max="0.05" step="0.0002" value="${simPendulum.deltaTheta0}">
+          <span class="sim-val" id="simPendulumDeltaRad">${(simPendulum.deltaTheta0 * 1000).toFixed(1)} mrad</span>
+        </div>
+        <span class="sim-label">Csillapítás: <b id="simPendulumDampVal">${simPendulum.damp === 0 ? "0 (Ideális)" : (simPendulum.damp * 10000).toFixed(1)}</b></span>
+        <div class="sim-slider-wrap">
+          <input type="range" class="sim-slider" id="simPendulumDampSlider" min="0" max="0.001" step="0.00005" value="${simPendulum.damp}">
+          <span class="sim-val" id="simPendulumDampNum">${(simPendulum.damp * 1000).toFixed(2)}‰</span>
+        </div>
+      </div>
+      <div class="sim-hud">
+        <div class="sim-hud-item">Két inga eltérése (Δd)<b id="simHudPendulumDist">0.0 px</b></div>
+        <div class="sim-hud-item">Szögsebesség (ω₁)<b id="simHudPendulumW1">0.00 rad/s</b></div>
+        <div class="sim-hud-item">Energiaállapot (E)<b id="simHudPendulumEnergy">Konzervatív</b></div>
+        <div class="sim-hud-item">Kaotikus állapot<b id="simHudPendulumState">🟢 Szinkronban</b></div>
+      </div>
+    `;
+
+    const playBtn = document.getElementById("simPendulumPlay");
+    const resetBtn = document.getElementById("simPendulumReset");
+    const randBtn = document.getElementById("simPendulumRandom");
+    const clearBtn = document.getElementById("simPendulumClear");
+    const twinCheck = document.getElementById("simPendulumTwin");
+    const phaseCheck = document.getElementById("simPendulumPhase");
+    const deltaSlider = document.getElementById("simPendulumDeltaSlider");
+    const deltaVal = document.getElementById("simPendulumDeltaVal");
+    const deltaRad = document.getElementById("simPendulumDeltaRad");
+    const dampSlider = document.getElementById("simPendulumDampSlider");
+    const dampVal = document.getElementById("simPendulumDampVal");
+    const dampNum = document.getElementById("simPendulumDampNum");
+
+    function resetPendulumTo(t1, t2) {
+      simPendulum.initA = [t1, t2];
+      simPendulum.stateA = [t1, t2, 0, 0];
+      simPendulum.stateB = [t1 + simPendulum.deltaTheta0, t2, 0, 0];
+      simPendulum.trailA = [];
+      simPendulum.trailB = [];
+    }
+
+    if (playBtn) playBtn.addEventListener("click", () => {
+      simPendulum.running = !simPendulum.running;
+      playBtn.textContent = simPendulum.running ? "⏸ Szünet" : "▶ Indítás";
+    });
+    if (resetBtn) resetBtn.addEventListener("click", () => {
+      resetPendulumTo(Math.PI / 2 + 0.2, Math.PI / 2);
+    });
+    if (randBtn) randBtn.addEventListener("click", () => {
+      const r1 = (Math.random() * 2 - 1) * Math.PI;
+      const r2 = (Math.random() * 2 - 1) * Math.PI;
+      resetPendulumTo(r1, r2);
+    });
+    if (clearBtn) clearBtn.addEventListener("click", () => {
+      simPendulum.trailA = [];
+      simPendulum.trailB = [];
+    });
+    if (twinCheck) twinCheck.addEventListener("change", (e) => {
+      simPendulum.showTwin = e.target.checked;
+      simPendulum.trailB = [];
+      if (simPendulum.showTwin) {
+        simPendulum.stateB = [simPendulum.stateA[0] + simPendulum.deltaTheta0, simPendulum.stateA[1], simPendulum.stateA[2], simPendulum.stateA[3]];
+      }
+    });
+    if (phaseCheck) phaseCheck.addEventListener("change", (e) => {
+      simPendulum.showPhaseSpace = e.target.checked;
+    });
+    if (deltaSlider) deltaSlider.addEventListener("input", (e) => {
+      simPendulum.deltaTheta0 = parseFloat(e.target.value);
+      if (deltaVal) deltaVal.textContent = (simPendulum.deltaTheta0 * 180 / Math.PI).toFixed(3) + "°";
+      if (deltaRad) deltaRad.textContent = (simPendulum.deltaTheta0 * 1000).toFixed(1) + " mrad";
+    });
+    if (dampSlider) dampSlider.addEventListener("input", (e) => {
+      simPendulum.damp = parseFloat(e.target.value);
+      if (dampVal) dampVal.textContent = simPendulum.damp === 0 ? "0 (Ideális)" : (simPendulum.damp * 10000).toFixed(1);
+      if (dampNum) dampNum.textContent = (simPendulum.damp * 1000).toFixed(2) + "‰";
+    });
+  } else if (simId === "gravity") {
+    simControls.innerHTML = `
+      <div class="sim-row">
+        <div class="sim-btn-group">
+          <button type="button" class="sim-ctrl-btn" id="simGravPlay">${simGravity.running ? "⏸ Szünet" : "▶ Indítás"}</button>
+          <button type="button" class="sim-ctrl-btn" id="simGravReset">↺ Újraindítás</button>
+          <button type="button" class="sim-ctrl-btn" id="simGravClear">🧹 Pályák törlése</button>
+        </div>
+        <span class="sim-label">Sablon:</span>
+        <select class="sim-select" id="simGravPreset">
+          <option value="figure8" ${simGravity.preset === "figure8" ? "selected" : ""}>🌌 Chenciner–Montgomery 8-as pálya</option>
+          <option value="solar" ${simGravity.preset === "solar" ? "selected" : ""}>☀️ Belső Naprendszer (Nap, Föld, Hold, Mars)</option>
+          <option value="lagrange" ${simGravity.preset === "lagrange" ? "selected" : ""}>🪐 Lagrange-pontok & Trójaiak (L4/L5)</option>
+          <option value="pythagoras" ${simGravity.preset === "pythagoras" ? "selected" : ""}>💥 Pitagoraszi 3-test (Kaotikus szétlökődés)</option>
+          <option value="slingshot" ${simGravity.preset === "slingshot" ? "selected" : ""}>🚀 Gravitációs parittya (Voyager)</option>
+        </select>
+      </div>
+      <div class="sim-row">
+        <span class="sim-label">Új égitest tömeg: <b id="simGravMassVal">${simGravity.spawnMass}</b></span>
+        <div class="sim-slider-wrap">
+          <input type="range" class="sim-slider" id="simGravMassSlider" min="5" max="800" step="5" value="${simGravity.spawnMass}">
+          <span class="sim-val" id="simGravMassNum">${simGravity.spawnMass} M</span>
+        </div>
+        <span class="sim-label">Gravitáció (G): <b id="simGravGVal">${(simGravity.G / 2500).toFixed(1)}×</b></span>
+        <div class="sim-slider-wrap">
+          <input type="range" class="sim-slider" id="simGravGSlider" min="500" max="6000" step="100" value="${simGravity.G}">
+          <span class="sim-val" id="simGravGNum">${simGravity.G}</span>
+        </div>
+      </div>
+      <div class="sim-hud">
+        <div class="sim-hud-item">Égitestek száma<b id="simHudGravBodies">${simGravity.bodies.length} db</b></div>
+        <div class="sim-hud-item">Mechanikai energia (E)<b id="simHudGravEnergy">—</b></div>
+        <div class="sim-hud-item">Aktuális sablon<b id="simHudGravPreset">🌌 8-as pálya</b></div>
+        <div class="sim-hud-item">Szimuláció állapota<b id="simHudGravStatus">🟢 Aktív keringés</b></div>
+      </div>
+    `;
+
+    const playBtn = document.getElementById("simGravPlay");
+    const resetBtn = document.getElementById("simGravReset");
+    const clearBtn = document.getElementById("simGravClear");
+    const presetSel = document.getElementById("simGravPreset");
+    const massSlider = document.getElementById("simGravMassSlider");
+    const massVal = document.getElementById("simGravMassVal");
+    const massNum = document.getElementById("simGravMassNum");
+    const gSlider = document.getElementById("simGravGSlider");
+    const gVal = document.getElementById("simGravGVal");
+    const gNum = document.getElementById("simGravGNum");
+
+    if (playBtn) playBtn.addEventListener("click", () => {
+      simGravity.running = !simGravity.running;
+      playBtn.textContent = simGravity.running ? "⏸ Szünet" : "▶ Indítás";
+    });
+    if (resetBtn) resetBtn.addEventListener("click", () => {
+      loadGravityPreset(simGravity.preset, simCanvas?.width || 640, simCanvas?.height || 360);
+    });
+    if (clearBtn) clearBtn.addEventListener("click", () => {
+      simGravity.bodies.forEach(b => b.trail = []);
+    });
+    if (presetSel) presetSel.addEventListener("change", (e) => {
+      loadGravityPreset(e.target.value, simCanvas?.width || 640, simCanvas?.height || 360);
+    });
+    if (massSlider) massSlider.addEventListener("input", (e) => {
+      simGravity.spawnMass = parseInt(e.target.value, 10);
+      if (massVal) massVal.textContent = simGravity.spawnMass;
+      if (massNum) massNum.textContent = simGravity.spawnMass + " M";
+    });
+    if (gSlider) gSlider.addEventListener("input", (e) => {
+      simGravity.G = parseInt(e.target.value, 10);
+      if (gVal) gVal.textContent = (simGravity.G / 2500).toFixed(1) + "×";
+      if (gNum) gNum.textContent = simGravity.G;
+    });
   }
 }
 
@@ -9905,6 +10793,16 @@ function renderSimInfo(simId) {
       <p><b>A tétel lényege:</b> John Conway 1970-es sejt-automatája az emergens komplexitás legszebb példája. Csupán 4 egyszerű helyi szabályból (alulnépesedés, túlnépesedés, túlélés, születés) intelligens viselkedésnek tűnő, vándorló és pulzáló struktúrák születnek. A rendszer bizonyítottan <b>Turing-teljes</b>.</p>
       <p><b>Interakció:</b> Kattints vagy húzd az egeret a rácson a saját sejtek felrajzolásához! Válassz a sablonok közül (Sikló, Pulzár, Űrhajó) a klasszikus minták megtekintéséhez.</p>
     `;
+  } else if (simId === "pendulum") {
+    simInfo.innerHTML = `
+      <p><b>A tétel lényege:</b> A kettős inga a legegyszerűbb mechanikai rendszer, amely determinisztikus káoszt mutat. Mozgását az Euler–Lagrange- és Hamilton-egyenletek határozzák meg: <b>zéró véletlenszerűség</b> van benne, a fizika törvényei abszolút szigorúak. A két ingakar közötti nemlineáris energiaátadás miatt azonban a rendszer pozitív Lyapunov-exponenssel rendelkezik — a trajektóriák exponenciális sebességgel válnak szét.</p>
+      <p><b>A szimuláció (Pillangóhatás a gyakorlatban):</b> Két hajszálra azonos kezdőhelyzetű inga fut egyszerre (az ikeringa mindössze <b>0,001 radiánnal (~0,057°)</b> tér el). Figyeld meg, hogy az első másodpercekben a két mozgás szinte megkülönböztethetetlen, majd a pillangóhatás miatt hirtelen és visszavonhatatlanul szétválnak egymástól! Kattints és húzd a csuklókat az egérrel vagy érintéssel bármely szög beállításához.</p>
+    `;
+  } else if (simId === "gravity") {
+    simInfo.innerHTML = `
+      <p><b>A tétel lényege:</b> Johannes Kepler törvényei és Isaac Newton egyetemes gravitációs törvénye (<i>F = G·m₁m₂ / r²</i>) a klasszikus mechanika csúcsai. Két test keringése zárt kúpmetsszet (Kepler-ellipszis), ám három vagy több gravitáló test esetén a rendszer azonnal kaotikussá válik (<b>Háromtest-probléma</b>). A szimuláció a szimplektikus <b>Velocity Verlet</b> integrátort használja, amely hosszú távon is precízen megőrzi az összenergiát és az impulzusmomentumot.</p>
+      <p><b>Interakció és funkciók:</b> Válassz a híres sablonok közül (Chenciner–Montgomery 8-as pálya, Belső Naprendszer a Holddal, Lagrange L4/L5 pontok), vagy <b>kattints és húzd az egeret / ujjadat</b> a sötét űrön, hogy saját égitesteket lőj gravitációs pályára kezdősebességgel! Jobb kattintással vagy Shift-kattintással eltávolíthatsz égitesteket.</p>
+    `;
   }
 }
 
@@ -9927,6 +10825,8 @@ function simLoop() {
     else if (currentSimId === "mandelbrot") drawMandelbrot(simCtx, w, h);
     else if (currentSimId === "fourier") drawFourier(simCtx, w, h);
     else if (currentSimId === "conway") drawConway(simCtx, w, h);
+    else if (currentSimId === "pendulum") drawPendulum(simCtx, w, h);
+    else if (currentSimId === "gravity") drawGravity(simCtx, w, h);
     simCtx.restore();
   }
   simRaf = requestAnimationFrame(simLoop);
@@ -9950,6 +10850,9 @@ function switchSimulation(simId) {
   }
   if (simId === "conway" && !simConway.grid) {
     initConwayGrid();
+  }
+  if (simId === "gravity" && (!simGravity.bodies || simGravity.bodies.length === 0)) {
+    loadGravityPreset(simGravity.preset, simCanvas?.width || 640, simCanvas?.height || 360);
   }
 }
 
@@ -10008,6 +10911,15 @@ if (simCanvas) {
       e.preventDefault();
       simMandelbrot.zoom = Math.max(0.4, simMandelbrot.zoom / 2.2);
       simMandelbrot.needsRedraw = true;
+    } else if (currentSimId === "gravity") {
+      e.preventDefault();
+      const rect = simCanvas.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const clickY = e.clientY - rect.top;
+      const idx = simGravity.bodies.findIndex(b => Math.hypot(b.x - clickX, b.y - clickY) < b.radius + 12);
+      if (idx !== -1) {
+        simGravity.bodies.splice(idx, 1);
+      }
     }
   });
 
@@ -10023,16 +10935,161 @@ if (simCanvas) {
     }
   }
 
+  function handlePendulumDrag(clientX, clientY) {
+    if (!simPendulum.draggedBob) return;
+    const rect = simCanvas.getBoundingClientRect();
+    const mx = clientX - rect.left;
+    const my = clientY - rect.top;
+    const cx = simPendulum.showPhaseSpace ? rect.width * 0.32 : rect.width * 0.5;
+    const cy = rect.height * 0.38;
+    const R1 = 70;
+
+    if (simPendulum.draggedBob === 1) {
+      simPendulum.stateA[0] = Math.atan2(mx - cx, my - cy);
+      simPendulum.stateA[2] = 0;
+      simPendulum.stateA[3] = 0;
+    } else if (simPendulum.draggedBob === 2) {
+      const t1 = simPendulum.stateA[0];
+      const x1 = cx + R1 * Math.sin(t1);
+      const y1 = cy + R1 * Math.cos(t1);
+      simPendulum.stateA[1] = Math.atan2(mx - x1, my - y1);
+      simPendulum.stateA[2] = 0;
+      simPendulum.stateA[3] = 0;
+    }
+
+    simPendulum.stateB[0] = simPendulum.stateA[0] + simPendulum.deltaTheta0;
+    simPendulum.stateB[1] = simPendulum.stateA[1];
+    simPendulum.stateB[2] = 0;
+    simPendulum.stateB[3] = 0;
+    simPendulum.trailA = [];
+    simPendulum.trailB = [];
+  }
+
+  function startPendulumDrag(clientX, clientY) {
+    const rect = simCanvas.getBoundingClientRect();
+    const clickX = clientX - rect.left;
+    const clickY = clientY - rect.top;
+    const cx = simPendulum.showPhaseSpace ? rect.width * 0.32 : rect.width * 0.5;
+    const cy = rect.height * 0.38;
+    const R1 = 70;
+    const R2 = 70;
+
+    const t1 = simPendulum.stateA[0];
+    const t2 = simPendulum.stateA[1];
+    const x1 = cx + R1 * Math.sin(t1);
+    const y1 = cy + R1 * Math.cos(t1);
+    const x2 = x1 + R2 * Math.sin(t2);
+    const y2 = y1 + R2 * Math.cos(t2);
+
+    if (Math.hypot(clickX - x1, clickY - y1) < 26) {
+      simPendulum.draggedBob = 1;
+      handlePendulumDrag(clientX, clientY);
+    } else if (Math.hypot(clickX - x2, clickY - y2) < 26) {
+      simPendulum.draggedBob = 2;
+      handlePendulumDrag(clientX, clientY);
+    } else if (!simPendulum.showPhaseSpace || clickX < rect.width * 0.6) {
+      simPendulum.draggedBob = 2;
+      handlePendulumDrag(clientX, clientY);
+    }
+  }
+
+  function handleGravityAim(clientX, clientY) {
+    if (!simGravity.isAiming) return;
+    const rect = simCanvas.getBoundingClientRect();
+    simGravity.aimCurrent = {
+      x: clientX - rect.left,
+      y: clientY - rect.top
+    };
+  }
+
+  function startGravityAim(clientX, clientY) {
+    const rect = simCanvas.getBoundingClientRect();
+    const x = clientX - rect.left;
+    const y = clientY - rect.top;
+    simGravity.isAiming = true;
+    simGravity.aimStart = { x, y };
+    simGravity.aimCurrent = { x, y };
+  }
+
+  function endGravityAim() {
+    if (!simGravity.isAiming || !simGravity.aimStart || !simGravity.aimCurrent) return;
+    const sx = simGravity.aimStart.x;
+    const sy = simGravity.aimStart.y;
+    const mx = simGravity.aimCurrent.x;
+    const my = simGravity.aimCurrent.y;
+    const dist = Math.hypot(mx - sx, my - sy);
+
+    const colors = ["#00f2fe", "#38ef7d", "#ff416c", "#ffe066", "#c77dff", "#f5a623", "#ff79c6"];
+    const c = colors[simGravity.bodies.length % colors.length];
+
+    const vx = (mx - sx) * 1.5;
+    const vy = (my - sy) * 1.5;
+    const m = simGravity.spawnMass || 60;
+    const r = Math.max(3.5, Math.min(10, Math.cbrt(m)));
+
+    simGravity.bodies.push({
+      name: `Bolygó #${simGravity.bodies.length + 1}`,
+      x: sx,
+      y: sy,
+      vx: dist > 4 ? vx : 0,
+      vy: dist > 4 ? vy : 0,
+      m: m,
+      radius: r,
+      color: c,
+      glowColor: c,
+      trail: []
+    });
+
+    simGravity.isAiming = false;
+    simGravity.aimStart = null;
+    simGravity.aimCurrent = null;
+  }
+
   simCanvas.addEventListener("mousedown", (e) => {
     if (currentSimId === "conway") {
       isDrawingConway = true;
       handleConwayDraw(e);
+    } else if (currentSimId === "pendulum") {
+      startPendulumDrag(e.clientX, e.clientY);
+    } else if (currentSimId === "gravity") {
+      startGravityAim(e.clientX, e.clientY);
     }
   });
   window.addEventListener("mousemove", (e) => {
     if (isDrawingConway && currentSimId === "conway") handleConwayDraw(e);
+    if (simPendulum.draggedBob && currentSimId === "pendulum") handlePendulumDrag(e.clientX, e.clientY);
+    if (simGravity.isAiming && currentSimId === "gravity") handleGravityAim(e.clientX, e.clientY);
   });
-  window.addEventListener("mouseup", () => { isDrawingConway = false; });
+  window.addEventListener("mouseup", () => {
+    isDrawingConway = false;
+    simPendulum.draggedBob = null;
+    if (currentSimId === "gravity") endGravityAim();
+  });
+
+  simCanvas.addEventListener("touchstart", (e) => {
+    if (!e.touches || !e.touches[0]) return;
+    const t = e.touches[0];
+    if (currentSimId === "conway") {
+      isDrawingConway = true;
+      handleConwayDraw(t);
+    } else if (currentSimId === "pendulum") {
+      startPendulumDrag(t.clientX, t.clientY);
+    } else if (currentSimId === "gravity") {
+      startGravityAim(t.clientX, t.clientY);
+    }
+  }, { passive: true });
+  window.addEventListener("touchmove", (e) => {
+    if (!e.touches || !e.touches[0]) return;
+    const t = e.touches[0];
+    if (isDrawingConway && currentSimId === "conway") handleConwayDraw(t);
+    if (simPendulum.draggedBob && currentSimId === "pendulum") handlePendulumDrag(t.clientX, t.clientY);
+    if (simGravity.isAiming && currentSimId === "gravity") handleGravityAim(t.clientX, t.clientY);
+  }, { passive: true });
+  window.addEventListener("touchend", () => {
+    isDrawingConway = false;
+    simPendulum.draggedBob = null;
+    if (currentSimId === "gravity") endGravityAim();
+  });
 }
 
 if (simLabBtn) simLabBtn.addEventListener("click", () => openSimulation());

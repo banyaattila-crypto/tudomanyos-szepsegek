@@ -26,6 +26,8 @@ Obszervatóriumi „Kozmikus aurora” dizájn, interaktív szimulációk, KaTeX
   - *Mandelbrot-halmaz* (élő komplex dinamika, 2.5× kattintásos zoom, 3 színpaletta)
   - *Fourier-sorfejtés* (forgó epiciklusok és szintetizált hullámforma négyszög/fűrészfog/háromszög jelekre)
   - *Conway: Életjáték* (B3/S23 sejt-automata élő rajzolással és sablonokkal)
+  - *Kettős inga és Káoszelmélet* (4. rendű Runge-Kutta [RK4] szimuláció, Pillangóhatás és ikeringa divergencia 0,001 rad kezdőeltérésből, Fázistér diagram [θ₁ vs ω₁])
+  - *N-test gravitáció és Égimechanika* (szimplektikus Velocity Verlet integrátor, Chenciner–Montgomery 8-as pálya, Naprendszer, Lagrange-pontok, interaktív égitest-indítás)
 - **🖨️ Nyomtatható A4 Adatlap**:
   - Nyomtatóbarát, letisztult fehér hátterű A4-es tudományos adatlap generálás minden tételhez (Ctrl+P / PDF mentés).
 - **✏️ Beépített szerkesztő panel**:

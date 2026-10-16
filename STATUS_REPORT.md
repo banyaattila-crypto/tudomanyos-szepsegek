@@ -22,12 +22,12 @@ A PWA **teljesen működőképes**, production-ready állapotban van. Összesen 
 | Figyelmeztetések (Warnings) | **0 (a build validator 0 hibával és 0 figyelmeztetéssel fut le)** |
 | Domainek | 3 (matek / fizika / informatika) |
 | Nézetek | 7 fül: Rangsor / Kategóriák / Idővonal / Lapozó / Játék / Térkép / Kedvencek |
-| Interaktív laboratórium | **5 Canvas szimuláció** (Lorentz, Kvantum-alagút, Mandelbrot, Fourier, Conway) |
+| Interaktív laboratórium | **7 Canvas szimuláció** (Lorentz, Kvantum-alagút, Mandelbrot, Fourier, Conway, Kettős inga, N-test gravitáció) |
 | Nyomtatás | **A4 Tudományos Adatlap generálás** (Print CSS / PDF export) minden tételnél |
 | Szerkesztő panel | ✅ beépített (edit, add, delete, export, offline localStorage) |
 | Wiki linkek | minden tételnél (en/hu.wikipedia.org) |
 | SVG illusztrációk | **mind a 473 tételnél** (202 + 207 + 64), 4 téma: wave / lattice / graph / spiral |
-| PWA telepíthető | igen (manifest.json + sw.js **v7**) |
+| PWA telepíthető | igen (manifest.json + sw.js **v9**) |
 | Offline tűrés | igen (SW precache: index.html + app.css + app.js + editor.js + KaTeX-független boot) |
 | Forrás fájlszerkezet | **4 fájl** (moduláris): `index_template.html` + `app.css` + `app.js` + `editor.js` |
 | Build step | `python3 build.py` (JSON → `dist/` 4 fájl) + smoke guard |
@@ -60,6 +60,8 @@ A PWA **teljesen működőképes**, production-ready állapotban van. Összesen 
   - *Mandelbrot-halmaz* (élő komplex dinamika, kattintásos 2.5× nagyítás, 3 színpaletta)
   - *Fourier-sorfejtés* (forgó epiciklusok és szintetizált hullámforma négyszög/fűrészfog/háromszög jelekre, Gibbs-jelenség)
   - *Conway: Életjáték* (B3/S23 sejt-automata, kattintással rajzolható rács, beépített sablonok)
+  - *Kettős inga és Káoszelmélet* (4. rendű Runge-Kutta [RK4] szimuláció, Pillangóhatás és ikeringa divergencia 0,001 rad kezdőeltérésből, Fázistér diagram [θ₁ vs ω₁], interaktív szög- és csillapítás-állítás)
+  - *N-test gravitáció és Égimechanika* (szimplektikus Velocity Verlet integrátor [$\Delta E/E < 10^{-6}$], Chenciner–Montgomery 8-as pálya, Belső Naprendszer a Holddal, Lagrange L4/L5 pontok, Pitagoraszi 3-test és gravitációs parittya, interaktív égitest-indítás sebességvektorral)
 - [x] **🖨️ Nyomtatható A4 Tudományos Adatlap**:
   - Nyomtatóbarát, letisztult fehér hátterű A4-es tudományos lap generálás minden tételhez (Ctrl+P / PDF mentés).
 - [x] **Kártyakészítő** — PNG kártya letöltése megosztáshoz.
