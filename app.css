@@ -1715,3 +1715,158 @@
     }
   }
 
+/* ===== EDITOR PANEL ===== */
+#editorToggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10000;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--accent, #f0a500);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 22px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .2s;
+}
+#editorToggle:hover { transform: scale(1.1); }
+#editorToggle.offline { background: #888; }
+#editorPanel {
+  position: fixed;
+  top: 0;
+  right: -440px;
+  width: 420px;
+  height: 100vh;
+  z-index: 9999;
+  background: #1a1a2e;
+  color: #e0e0e0;
+  overflow-y: auto;
+  transition: right .3s ease;
+  box-shadow: -4px 0 24px rgba(0,0,0,.5);
+  font-size: 14px;
+}
+#editorPanel.open { right: 0; }
+.editor-header {
+  padding: 14px 16px;
+  background: #16213e;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+.editor-header h3 { margin: 0; font-size: 16px; color: var(--accent, #f0a500); }
+.editor-close { background: none; border: none; color: #aaa; font-size: 20px; cursor: pointer; }
+.editor-domain-tabs {
+  display: flex;
+  border-bottom: 1px solid #333;
+  position: sticky;
+  top: 52px;
+  background: #1a1a2e;
+  z-index: 1;
+}
+.editor-domain-tabs button {
+  flex: 1;
+  padding: 10px;
+  background: none;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+  font-size: 13px;
+  border-bottom: 2px solid transparent;
+}
+.editor-domain-tabs button.active { color: var(--accent, #f0a500); border-bottom-color: var(--accent, #f0a500); }
+.editor-search { padding: 10px 16px; border-bottom: 1px solid #333; }
+.editor-search input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background: #16213e;
+  color: #e0e0e0;
+  font-size: 13px;
+  box-sizing: border-box;
+}
+.editor-entry {
+  padding: 10px 16px;
+  border-bottom: 1px solid #222;
+  cursor: pointer;
+  font-size: 13px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.editor-entry:hover { background: #16213e; }
+.editor-entry.active { background: #16213e; border-left: 3px solid var(--accent, #f0a500); }
+.editor-entry-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.editor-entry-year { color: #888; font-size: 12px; margin-left: 8px; }
+.editor-form { padding: 16px; }
+.editor-form label { display: block; margin-top: 10px; font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: .5px; }
+.editor-form input, .editor-form textarea, .editor-form select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #444;
+  border-radius: 4px;
+  background: #16213e;
+  color: #e0e0e0;
+  font-size: 13px;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+.editor-form textarea { min-height: 80px; resize: vertical; }
+.editor-form .field-row { display: flex; gap: 10px; }
+.editor-form .field-row > * { flex: 1; }
+.editor-actions {
+  padding: 16px;
+  border-top: 1px solid #333;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  position: sticky;
+  bottom: 0;
+  background: #1a1a2e;
+}
+.editor-actions button {
+  padding: 8px 14px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background: #16213e;
+  color: #e0e0e0;
+  cursor: pointer;
+  font-size: 12px;
+}
+.editor-actions .btn-danger { border-color: #c44; color: #f66; }
+.editor-actions .btn-primary { background: var(--accent, #f0a500); color: #000; border-color: var(--accent, #f0a500); font-weight: bold; }
+.editor-status {
+  padding: 8px 16px;
+  font-size: 11px;
+  color: #888;
+  border-bottom: 1px solid #333;
+  display: flex;
+  justify-content: space-between;
+}
+.editor-status .online { color: #4f4; }
+.editor-status .offline { color: #f66; }
+.editor-toast {
+  position: fixed;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-size: 13px;
+  z-index: 20000;
+  opacity: 0;
+  transition: opacity .3s;
+  pointer-events: none;
+}
+.editor-toast.show { opacity: 1; }

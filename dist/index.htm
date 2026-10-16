@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Halhatatlan tudományos szépségek — archívum</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0b0f1f">
+<link rel="icon" href="icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Tud. szépségek">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="app.css">
+</head>
+<body data-domain="matek">
+  <div class="aurora-bg" aria-hidden="true"></div>
+  <div class="stardust-bg" aria-hidden="true"></div>
+  <canvas class="constellation-bg" id="constellationBg" aria-hidden="true"></canvas>
+  <div class="nebula-bg" aria-hidden="true"></div>
+  <div class="galaxy-bg" aria-hidden="true"></div>
+
+  <section class="weekly-card" id="weeklyCard" hidden>
+    <button type="button" class="weekly-dismiss" id="weeklyDismiss" aria-label="Elrejtés erre a hétre">✕</button>
+    <div class="weekly-head">
+      <span class="weekly-badge"><span class="weekly-star">✦</span> Heti kiemelt</span>
+      <span class="weekly-week" id="weeklyWeek"></span>
+    </div>
+    <h2 class="weekly-name" id="weeklyName"></h2>
+    <span class="weekly-tag" id="weeklyTag"></span>
+    <div class="weekly-formula" id="weeklyFormula"></div>
+    <p class="weekly-why" id="weeklyWhy"></p>
+    <div class="weekly-actions">
+      <button type="button" class="weekly-jump" id="weeklyJump">Ugrás a tételhez →</button>
+      <button type="button" class="weekly-fav" id="weeklyFav">☆ Kedvenc</button>
+    </div>
+  </section>
+  <canvas class="weekly-meteor" id="weeklyMeteor" aria-hidden="true"></canvas>
+  <div class="weekly-banner" id="weeklyBanner" aria-hidden="true">☄️ Heti kiemelt tétel — csillaghullás!</div>
+  <div class="ghost-bg" id="ghostBg" aria-hidden="true"></div>
+
+  <section class="starmap-view" id="starMapView" hidden aria-live="polite">
+    <canvas id="starMapCanvas" aria-hidden="true"></canvas>
+    <div class="starmap-hint" id="starMapHint">Húzd a térképet · görgővel nagyíts · kattints egy csillagra</div>
+    <div class="starmap-label" id="starMapLabel" hidden></div>
+    <button type="button" class="starmap-reset" id="starMapReset" title="Visszaállítás">⌂</button>
+  </section>
+
+  <div class="logo-mark" id="logoMark" title="Halhatatlan tudományos szépségek" aria-hidden="true">
+  <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="32" cy="32" rx="27" ry="12" transform="rotate(28 32 32)" stroke="url(#logoGrad)" stroke-width="1.4" opacity="0.85"/>
+    <ellipse cx="32" cy="32" rx="27" ry="12" transform="rotate(-28 32 32)" stroke="url(#logoGrad)" stroke-width="1.4" opacity="0.85"/>
+    <ellipse cx="32" cy="32" rx="27" ry="12" stroke="url(#logoGrad)" stroke-width="1" opacity="0.4"/>
+    <circle cx="32" cy="32" r="3.4" fill="url(#logoGrad)"/>
+    <circle class="logo-electron" cx="32" cy="5" r="2" fill="url(#logoGrad)">
+      <animateTransform id="logoSpin" attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" dur="9s" repeatCount="indefinite"/>
+    </circle>
+    <defs>
+      <linearGradient id="logoGrad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="var(--primary-bright)"/>
+        <stop offset="1" stop-color="var(--primary)"/>
+      </linearGradient>
+    </defs>
+  </svg>
+</div>
+<div class="wrap">
+
+  <div class="top-row">
+    <div class="domain-switch" id="domainSwitch">
+      <button type="button" class="dbtn active" data-domain="matek">Matematika</button>
+      <button type="button" class="dbtn" data-domain="fizika">Fizika · Kémia · Biológia</button>
+      <button type="button" class="dbtn" data-domain="informatika">Informatika</button>
+    </div>
+    <div class="top-row-actions">
+      <button type="button" class="info-btn" id="nightSkyBtn" aria-pressed="false" title="Éjszakai égbolt — kedvenceid csillagképe" aria-label="Éjszakai égbolt">✨</button>
+      <button type="button" class="info-btn" id="simLabBtn" aria-label="Interaktív laboratórium" title="Interaktív tudományos szimulációk">🕹️</button>
+      <button type="button" class="info-btn" id="infoBtn" aria-label="A gyűjteményről" title="A gyűjteményről">ℹ</button>
+      <button type="button" class="info-btn" id="statsBtn" aria-label="Statisztika" title="Statisztika">📊</button>
+      <button type="button" class="info-btn" id="graphBtn" aria-label="Tudás-gráf" title="Tudás-gráf">🕸</button>
+    </div>
+  </div>
+  <p class="grand-total" id="grandTotal"></p>
+
+  <header>
+    <p class="eyebrow" id="eyebrow"></p>
+    <h1 id="title"></h1>
+    <p class="sub" id="subtitle"></p>
+    <div class="rule"></div>
+  </header>
+
+  <section class="daily-card" id="dailyCard" hidden>
+    <div class="daily-head">
+      <span class="daily-eyebrow">A nap szépsége</span>
+      <span class="daily-date" id="dailyDate"></span>
+      <button type="button" class="daily-dismiss" id="dailyDismiss" aria-label="Elrejtés mára">✕</button>
+    </div>
+    <div class="daily-body">
+      <div class="daily-formula" id="dailyFormula"></div>
+      <div class="daily-meta">
+        <span class="daily-name" id="dailyName"></span>
+        <span class="daily-tag" id="dailyTag"></span>
+      </div>
+      <p class="daily-why" id="dailyWhy"></p>
+      <button type="button" class="daily-jump" id="dailyJump">Ugrás a tételhez →</button>
+    </div>
+  </section>
+
+  <div class="toolbar">
+    <div class="search-wrap">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input type="search" id="searchBox" class="search-box" placeholder="Keresés név vagy leírás alapján…" autocomplete="off">
+      <button type="button" id="searchClear" class="search-clear" aria-label="Törlés">✕</button>
+    </div>
+    <button type="button" class="fav-toggle" id="favToggle" aria-pressed="false" title="Csak a kedvenceim">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.3l-5.4 3.2 1.4-6.1-4.7-4.1 6.2-.5L12 4l2.5 5.8 6.2.5-4.7 4.1 1.4 6.1z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      Kedvencek
+    </button>
+    <div class="view-switch" id="viewSwitch">
+      <button type="button" class="vbtn active" data-view="rank">Rangsor</button>
+      <button type="button" class="vbtn" data-view="grouped">Kategóriák</button>
+      <button type="button" class="vbtn" data-view="timeline">Idővonal</button>
+      <button type="button" class="vbtn" data-view="deck">Lapozó</button>
+      <button type="button" class="vbtn" data-view="quiz">Játék</button>
+      <button type="button" class="vbtn" data-view="map">Térkép</button>
+      <button type="button" class="vbtn" data-view="fav">Kedvencek</button>
+    </div>
+  </div>
+
+  <div class="filterbar" id="filterbar"></div>
+  <div class="tagcloud" id="tagcloud" aria-label="Téma szűrő"></div>
+  <div class="group-controls" id="groupControls">
+    <button type="button" class="group-btn" id="expandAllBtn">Mind kinyit</button>
+    <button type="button" class="group-btn" id="collapseAllBtn">Mind becsuk</button>
+  </div>
+  <p class="count-display" id="countDisplay"></p>
+
+  <main class="grid" id="grid"></main>
+  <section class="deck-view" id="deckView" hidden aria-live="polite">
+    <canvas class="deck-confetti" id="deckConfetti" aria-hidden="true"></canvas>
+    <div class="deck-toolbar">
+      <div class="deck-cats" id="deckCats" aria-label="Kategória szűrő a lapozóban"></div>
+      <input type="search" id="deckSearch" class="deck-search" placeholder="Keresés a pakliban…" autocomplete="off">
+    </div>
+    <div class="deck-card" id="deckCard">
+      <div class="deck-top">
+        <span class="deck-tag" id="deckTag"></span>
+        <span class="deck-year" id="deckYear"></span>
+      </div>
+      <div class="deck-illu" id="deckIllu"></div>
+      <h2 class="deck-name" id="deckName"></h2>
+      <div class="deck-formula" id="deckFormula"></div>
+      <p class="deck-why" id="deckWhy"></p>
+      <div class="deck-actions">
+        <button type="button" class="icon-btn fav-star" id="deckFav" aria-label="Kedvencekhez adás"></button>
+        <button type="button" class="deck-jump" id="deckJump">Részletek</button>
+      </div>
+    </div>
+    <div class="deck-nav">
+      <button type="button" class="deck-navbtn" id="deckPrev" aria-label="Előző">‹</button>
+      <div class="deck-progress"><span id="deckPos">0</span> / <span id="deckTotal">0</span></div>
+      <button type="button" class="deck-navbtn" id="deckNext" aria-label="Következő">›</button>
+      <button type="button" class="deck-rand" id="deckRand" aria-label="Véletlen">🎲</button>
+    </div>
+    <div class="deck-keys" aria-hidden="true">
+      <span><kbd>←</kbd><kbd>→</kbd>lapozás</span>
+      <span><kbd>F</kbd>kedvenc</span>
+      <span><kbd>R</kbd>véletlen</span>
+    </div>
+  </section>
+  <p class="empty-state" id="emptyState">Nincs találat.</p>
+
+  <footer>
+    <div id="footerCount">Szedés: KaTeX</div>
+    <div id="footerNames"><span></span></div>
+  </footer>
+</div>
+
+<div class="graph-overlay" id="graphOverlay" aria-hidden="true">
+  <canvas id="graphCanvas"></canvas>
+  <div class="graph-topbar">
+    <span class="graph-title">Tudás-gráf</span>
+    <span class="graph-hint" id="graphHint">Húzd az ujjal a mozgatáshoz · csípd össze a nagyításhoz · koppints egy pontra</span>
+    <button type="button" class="graph-close" id="graphClose" aria-label="Bezárás">✕</button>
+  </div>
+  <div class="graph-legend" id="graphLegend"></div>
+  <div class="graph-tooltip" id="graphTooltip"></div>
+  <div class="graph-controls">
+    <button type="button" class="group-btn" id="graphResetBtn">Nézet vissza</button>
+    <button type="button" class="group-btn" id="graphDomainBtn">Domain váltás</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- ===== Játék mód overlay ===== -->
+<div class="quiz-overlay" id="quizOverlay" aria-hidden="true">
+  <div class="quiz-panel" id="quizPanel"></div>
+</div>
+
+<!-- ===== Oszd meg menü ===== -->
+<div class="share-backdrop" id="shareBackdrop"></div>
+<div class="share-menu" id="shareMenu" role="menu" aria-label="Megosztás"></div>
+
+<div class="formula-lightbox" id="formulaLightbox" aria-hidden="true">
+  <div class="lightbox-panel">
+    <button type="button" class="modal-close lightbox-close" id="lightboxClose" aria-label="Bezárás">✕</button>
+    <p class="lightbox-title" id="lightboxTitle"></p>
+    <div id="lightboxContent"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="statsOverlay" aria-hidden="true">
+  <div class="modal-panel stats-panel" role="dialog" aria-modal="true">
+    <button type="button" class="modal-close" id="statsClose" aria-label="Bezárás">✕</button>
+    <p class="modal-eyebrow">Statisztika</p>
+    <h2 id="statsTitle">Eloszlás</h2>
+    <div id="statsCategories"></div>
+    <p class="stat-section-title">Korszakok szerint</p>
+    <div id="statsEras"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay" aria-hidden="true">
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button type="button" class="modal-close" id="modalClose" aria-label="Bezárás">✕</button>
+    <p class="modal-eyebrow">Kurátori jegyzet</p>
+    <h2 id="modalTitle">Miért ez a 251(+) tétel?</h2>
+    <p>Ez a gyűjtemény egy folyamatosan bővülő, szubjektív válogatás — nem egy „legjobb” lista, hanem azoknak a pillanatoknak a leltára, amikor egy formula, tétel vagy törvény túlmutatott a puszta hasznosságán, és valami mélyebbet mutatott meg: egy váratlan kapcsolatot, egy elegáns egyszerűséget, vagy azt az érzést, hogy a világ néha meglepően rendezett.</p>
+    <p>Nincs objektív mérce arra, mi „szép” egy egyenletben. A rangsor sorrendje nem tudományos konszenzus, hanem személyes ízlés, mérnöki és esztétikai szemmel egyaránt nézve — máshogy is fel lehetne építeni, és idővel biztosan változni is fog.</p>
+    <p>Ha van kedvenc tételed, ami hiányzik innen, az nem véletlen mulasztás — egyszerűen még nem jutott el idáig a lista.</p>
+  </div>
+</div>
+
+<!-- ===== Interaktív szimulációk laboratóriuma ===== -->
+<div class="modal-overlay" id="simOverlay" aria-hidden="true">
+  <div class="modal-panel sim-panel" role="dialog" aria-modal="true" aria-labelledby="simTitle">
+    <button type="button" class="modal-close" id="simClose" aria-label="Bezárás">✕</button>
+    <p class="modal-eyebrow">Interaktív tudományos laboratórium</p>
+    <h2 id="simTitle">Interaktív szimuláció</h2>
+    <div class="sim-tabs" id="simTabs">
+      <button type="button" class="sim-tab active" data-sim="lorentz">⚡ Lorentz-transzformáció</button>
+      <button type="button" class="sim-tab" data-sim="tunnel">🌊 Kvantum-alagút</button>
+      <button type="button" class="sim-tab" data-sim="mandelbrot">🌀 Mandelbrot-halmaz</button>
+      <button type="button" class="sim-tab" data-sim="fourier">🎼 Fourier-sorfejtés</button>
+      <button type="button" class="sim-tab" data-sim="conway">👾 Conway: Életjáték</button>
+      <button type="button" class="sim-tab" data-sim="pendulum">🪀 Kettős inga (Káosz)</button>
+      <button type="button" class="sim-tab" data-sim="gravity">🪐 N-test gravitáció</button>
+    </div>
+    <div class="sim-canvas-wrap">
+      <canvas id="simCanvas" width="640" height="360"></canvas>
+    </div>
+    <div class="sim-controls" id="simControls"></div>
+    <div class="sim-info" id="simInfo"></div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+
+<button id="editorToggle" title="Szerkesztő">✏️</button>
+<div id="editorPanel">
+  <div class="editor-header">
+    <h3>✏️ Szerkesztő</h3>
+    <button class="editor-close">✕</button>
+  </div>
+  <div class="editor-status">
+    <span id="editorStatusText">Betöltés…</span>
+    <span id="editorOnlineStatus"></span>
+  </div>
+  <div class="editor-domain-tabs">
+    <button data-domain="matek" class="active">Matek</button>
+    <button data-domain="fizika">Fizika</button>
+    <button data-domain="informatika">Info</button>
+  </div>
+  <div class="editor-search">
+    <input type="search" id="editorSearch" placeholder="Keresés név/címke alapján…" autocomplete="off">
+  </div>
+  <div class="editor-list" id="editorList"></div>
+  <div class="editor-form" id="editorForm" style="display:none;"></div>
+  <div class="editor-actions" id="editorActions" style="display:none;">
+    <button class="btn-primary" id="editorSave">💾 Mentés</button>
+    <button id="editorAdd">➕ Új</button>
+    <button class="btn-danger" id="editorDelete">🗑 Töröl</button>
+    <button id="editorExport">📥 JSON export</button>
+  </div>
+</div>
+<div class="editor-toast" id="editorToast"></div>
+
+<div id="printSheet" class="print-sheet" aria-hidden="true"></div>
+
+<script src="editor.js"></script>
+</body>
+</html>
+

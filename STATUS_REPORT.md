@@ -3,8 +3,8 @@
 **Projekt:** Telepíthető webapp (PWA) — szubjektív rangsor a legszebb matematikai, fizikai és informatikai tételekről.
 **Hely:** `/home/attila/projects/tudomanyos-szepsegek/`
 **Utolsó frissítés:** 2026. október 16.
-**Fő fájlok (forrás):** `index_template.html` (455 soros vékony HTML-váz) + `app.css` (1717 sor) + `app.js` (5174 sor) + `editor.js` (269 sor) + `data/*.json` (473 tétel).
-**Production:** `dist/` — **4 moduláris, külön cache-elhető fájlban** (`index.html` 20 KB + `app.css` 74 KB + `app.js` 776 KB + `editor.js` 12 KB), `index.htm` kompatibilitási aliasszal.
+**Fő fájlok (forrás):** `index_template.html` (298 soros vékony HTML-váz) + `app.css` (1872 sor) + `app.js` (5174 sor) + `editor.js` (269 sor) + `data/*.json` (473 tétel).
+**Production:** `dist/` — **4 moduláris, külön cache-elhető fájlban** (`index.html` 16 KB + `app.css` 78 KB + `app.js` 776 KB + `editor.js` 12 KB), `index.htm` kompatibilitási aliasszal.
 
 ---
 
@@ -27,7 +27,7 @@ A PWA **teljesen működőképes**, production-ready állapotban van. Összesen 
 | Szerkesztő panel | ✅ beépített (edit, add, delete, export, offline localStorage) |
 | Wiki linkek | minden tételnél (en/hu.wikipedia.org) |
 | SVG illusztrációk | **mind a 473 tételnél** (202 + 207 + 64), 4 téma: wave / lattice / graph / spiral |
-| PWA telepíthető | igen (manifest.json + sw.js **v9**) |
+| PWA telepíthető | igen (manifest.json + sw.js **v10**) |
 | Offline tűrés | igen (SW precache: index.html + app.css + app.js + editor.js + KaTeX-független boot) |
 | Forrás fájlszerkezet | **4 fájl** (moduláris): `index_template.html` + `app.css` + `app.js` + `editor.js` |
 | Build step | `python3 build.py` (JSON → `dist/` 4 fájl) + smoke guard |
@@ -75,7 +75,7 @@ A PWA **teljesen működőképes**, production-ready állapotban van. Összesen 
 - [x] **Főcím glow & Hover-glow** — kiemelések Fraunces és pulzáló fénykoszorúval
 
 ### Technikai / PWA
-- [x] **SW v9 cache** — `tsz-cache-v9`, precache a moduláris app shellre, skipWaiting + clients.claim
+- [x] **SW v10 cache** — `tsz-cache-v10`, precache a moduláris app shellre, skipWaiting + clients.claim
 - [x] **KaTeX-független indítás** — `safeKatex` wrapper + boot fix: az app mindig elindul offline is
 - [x] **Manifest** — telepíthető ikonokkal (icon-192/512/maskable)
 - [x] **Gyökér átirányítás & kompatibilitás** — az elavult monolit gyökérfájl lecserélve tiszta átirányításra, `dist/index.htm` alias biztosítja a `.htm` linkek hibátlan működését.
@@ -87,21 +87,21 @@ A PWA **teljesen működőképes**, production-ready állapotban van. Összesen 
 ### Forrásfájlok (git, fejlesztés):
 | Fájl | Sorok / Méret | Szerep |
 |---|---|---|
-| `index_template.html` | 455 sor / 20 KB | Vékony HTML-váz (modalok, konténerek, scriptek) |
-| `app.css` | 1717 sor / 74 KB | Stíluslapok, aurora animációk, szimulációk és print CSS |
+| `index_template.html` | 298 sor / 16 KB | Vékony HTML-váz (modalok, konténerek, scriptek) |
+| `app.css` | 1872 sor / 78 KB | Stíluslapok, aurora animációk, szimulációk, editor panel és print CSS |
 | `app.js` | 5174 sor / 211 KB | Alkalmazáslogika, nézetek, szimulációk, nyomtatás és boot |
 | `editor.js` | 269 sor / 12 KB | Beépített szerkesztőpanel modul |
 | `data/*.json` | 473 tétel | Adatbázis (`matek.json`, `fizika.json`, `informatika.json`) |
 | `build.py` | 262 sor | Build pipeline + `--validate-only` + smoke guard |
-| `sw.js` | 87 sor | Service worker (cache v9) |
+| `sw.js` | 87 sor | Service worker (cache v10) |
 | `manifest.json`, `icon-*.png` | 1–7 KB | PWA metaadatok és ikonok |
 
 ### Production (`dist/` — a CI és webszerver ezt szolgálja ki):
 | Fájl | Méret | Szerep |
 |---|---|---|
-| `dist/index.html` | 20 KB | Vékony HTML |
-| `dist/index.htm` | 20 KB | Kompatibilitási alias |
-| `dist/app.css` | 74 KB | Tömör stíluslapok |
+| `dist/index.html` | 16 KB | Vékony HTML |
+| `dist/index.htm` | 16 KB | Kompatibilitási alias |
+| `dist/app.css` | 78 KB | Tömör stíluslapok |
 | `dist/app.js` | 776 KB | Core JS + beágyazott 473 tétel + szimulációk |
 | `dist/editor.js` | 12 KB | Szerkesztő modul |
 | `dist/sw.js`, `manifest.json`, ikonok | — | PWA shell elemek |
@@ -136,9 +136,12 @@ A PWA **teljesen működőképes**, production-ready állapotban van. Összesen 
 5. **Dokumentáció**:
    - `README.md` teljesen újraírva és aktualizálva.
    - GitHub szinkronizáció sikeres, GitHub Pages automatikus deployment lefutott (zöld pipával).
-6. **Service Worker v9 és gyorsítótár-stratégia**:
-   - Cache verzió növelése `tsz-cache-v9`-re az új szimulációk és módosított shell azonnali aktiválásához.
+6. **Service Worker v10 és gyorsítótár-stratégia**:
+   - Cache verzió növelése `tsz-cache-v10`-re az új szimulációk, módosított shell és stíluslap azonnali aktiválásához.
    - PWA precache lista szinkronban a moduláris felépítéssel.
+7. **Szerkesztőpanel CSS javítása (head-szivárgás megszüntetése)**:
+   - A korábban `index_template.html` `<head>`-be tag nélkül bekerült `#editorToggle` / `#editorPanel` nyers CSS átkerült az `app.css`-be.
+   - Ezzel véglegesen megszűnt az oldal tetején korábban megjelenő nyers CSS kódblokk, a stílusok most már szabványosan a stíluslapból érvényesülnek.
 
 ---
 
@@ -171,7 +174,8 @@ python3 -m http.server 8000
 - [x] 48 hiányzó matek illusztráció pótlása
 - [x] 273 hiányzó évszám pótlása (0 warning)
 - [x] 7 Canvas tudományos szimuláció (Kettős inga RK4 + N-test gravitáció Verlet)
-- [x] Service Worker v9 cache frissítés
+- [x] Szerkesztőpanel CSS áthelyezése app.css-be (nyers CSS szöveg javítása)
+- [x] Service Worker v10 cache frissítés
 - [x] README és STATUS_REPORT aktualizálása
 
 *A rendszer production-ready, minden funkció működik és ellenőrzött.*
