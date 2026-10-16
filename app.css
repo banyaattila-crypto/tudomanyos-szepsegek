@@ -1537,3 +1537,175 @@
     box-shadow:0 0 10px color-mix(in srgb,var(--primary) 50%,transparent);
   }
 
+  /* ===== NYOMTATÁSI STÍLUSOK (A4 TUDOMÁNYOS ADATLAP ÉS LISTA) ===== */
+  .print-btn{
+    color:var(--muted);
+  }
+  .print-btn:hover{
+    color:var(--paper);border-color:var(--chip-hover-border);
+  }
+
+  .print-sheet{
+    display:none;
+    background:#ffffff;
+    color:#111827;
+    font-family:"Inter",-apple-system,sans-serif;
+  }
+
+  @media screen{
+    .print-sheet{display:none!important;}
+  }
+
+  @media print{
+    @page{
+      size:A4 portrait;
+      margin:12mm 15mm 15mm;
+    }
+    html,body{
+      background:#ffffff!important;
+      color:#111827!important;
+      font-size:12pt;
+      -webkit-print-color-adjust:exact;
+      print-color-adjust:exact;
+    }
+
+    /* Felesleges elemek elrejtése nyomtatáskor */
+    .aurora-bg, .nebula-bg, .galaxy-bg, .stardust-bg, .ghost-bg,
+    .top-row, .toolbar, .filterbar, .tagcloud, .group-controls,
+    .deck-nav, .deck-keys, .deck-bar, .row-actions, .starmap-view,
+    .modal-overlay, .modal-close, #editorToggle, #editorPanel, #editorToast,
+    .daily-card, .weekly-banner, .weekly-meteor, .weekly-card,
+    .count-display, footer, .search-wrap, .fav-toggle, .view-switch,
+    .logo-mark, .rule, .eyebrow, #grandTotal{
+      display:none!important;
+    }
+
+    /* Egyetlen tétel A4 nyomtatása */
+    body.printing-single > *:not(#printSheet){
+      display:none!important;
+    }
+    body.printing-single #printSheet{
+      display:block!important;
+      background:#ffffff!important;
+      color:#111827!important;
+      padding:0;
+      margin:0;
+    }
+    .print-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      border-bottom:2px solid #111827;
+      padding-bottom:12px;
+      margin-bottom:20px;
+    }
+    .print-brand{
+      font-size:10pt;
+      font-weight:700;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:#4b5563;
+    }
+    .print-meta-pill{
+      font-size:11pt;
+      font-weight:600;
+      font-family:"JetBrains Mono",monospace;
+      color:#111827;
+      background:#f3f4f6!important;
+      padding:4px 10px;
+      border-radius:6px;
+      border:1px solid #d1d5db;
+    }
+    .print-title{
+      font-family:"Fraunces",Georgia,serif!important;
+      font-size:26pt!important;
+      font-weight:600!important;
+      color:#111827!important;
+      line-height:1.15;
+      margin:0 0 6px;
+    }
+    .print-tag{
+      font-size:12pt;
+      color:#4b5563;
+      margin-bottom:18px;
+    }
+    .print-formula-card{
+      background:#f9fafb!important;
+      border:1.5px solid #d1d5db!important;
+      border-radius:10px;
+      padding:18px 20px;
+      text-align:center;
+      margin-bottom:20px;
+      page-break-inside:avoid;
+      break-inside:avoid;
+    }
+    .print-formula-card .katex{
+      font-size:1.8rem!important;
+      color:#111827!important;
+    }
+    .print-illu-wrap{
+      display:flex;
+      justify-content:center;
+      margin-bottom:20px;
+      page-break-inside:avoid;
+    }
+    .print-illu-wrap svg{
+      width:130px;
+      height:130px;
+      stroke:#111827!important;
+    }
+    .print-body{
+      font-size:11pt;
+      line-height:1.65;
+      color:#1f2937;
+      margin-bottom:20px;
+    }
+    .print-body h3{
+      font-size:10pt;
+      letter-spacing:.15em;
+      text-transform:uppercase;
+      color:#6b7280;
+      margin:0 0 8px;
+    }
+    .print-body p{margin:0 0 10px;}
+    .print-footer{
+      border-top:1px solid #e5e7eb;
+      padding-top:10px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-size:9pt;
+      color:#6b7280;
+      margin-top:24px;
+    }
+
+    /* Teljes lista nyomtatás fallback */
+    body:not(.printing-single) .wrap{
+      max-width:100%!important;
+      padding:0!important;
+    }
+    body:not(.printing-single) header h1{
+      color:#111827!important;
+      font-size:22pt!important;
+    }
+    body:not(.printing-single) header .sub{
+      color:#4b5563!important;
+    }
+    body:not(.printing-single) .row{
+      page-break-inside:avoid;
+      break-inside:avoid;
+      background:#ffffff!important;
+      border:1px solid #d1d5db!important;
+      color:#111827!important;
+      box-shadow:none!important;
+      margin-bottom:10px!important;
+    }
+    body:not(.printing-single) .row *{
+      color:#111827!important;
+      text-shadow:none!important;
+    }
+    body:not(.printing-single) .row-illu svg{
+      stroke:#111827!important;
+    }
+  }
+

@@ -585,6 +585,18 @@ function buildRow(entry, index, domainKey) {
   });
   actions.appendChild(cardBtn);
 
+  const printBtn = document.createElement("button");
+  printBtn.type = "button";
+  printBtn.className = "icon-btn print-btn";
+  printBtn.setAttribute("aria-label", "Nyomtatható A4 adatlap");
+  printBtn.title = "Nyomtatható A4 tudományos adatlap (PDF)";
+  printBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9V4h12v5M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2" stroke="currentColor" stroke-width="1.6"/><rect x="6" y="14" width="12" height="7" rx="1" stroke="currentColor" stroke-width="1.6"/></svg>';
+  printBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    printEntry(entry, domainKey);
+  });
+  actions.appendChild(printBtn);
+
   if (SIMULATION_TARGETS[slug]) {
     const simKey = SIMULATION_TARGETS[slug];
     const simBtn = document.createElement("button");
@@ -1358,6 +1370,111 @@ async function generateShareCard(entry, domainKey, btnEl) {
   }
 }
 
+// ==== NYOMTATHATÓ A4 TUDOMÁNYOS ADATLAP ====
+function printEntry(entry, domainKey) {
+  let sheet = document.getElementById("printSheet");
+  if (!sheet) {
+    sheet = document.createElement("div");
+    sheet.id = "printSheet";
+    sheet.className = "print-sheet";
+    document.body.appendChild(sheet);
+  }
+
+  const domain = DOMAINS[domainKey];
+  const domainLabel = domain ? domain.label : domainKey;
+  const yr = extractYear(entry);
+  const yearText = yr < 0 ? ("Kr. e. " + Math.abs(yr) + ".") : (yr === 9999 ? "" : String(yr));
+  const catLabel = (domain && domain.categoryLabels && domain.categoryLabels[entry.category]) || entry.category || "";
+
+  sheet.innerHTML = `
+    <div class="print-head">
+      <div>
+        <span class="print-brand">Halhatatlan Tudományos Szépségek · Obszervatóriumi Adatlap</span>
+        <div style="font-size:12px;color:#6b7280;margin-top:2px;">Katalógus: ${domainLabel} ${catLabel ? "· " + catLabel : ""}</div>
+      </div>
+      <div style="display:flex;gap:6px;align-items:center;">
+        ${yearText ? `<span class="print-meta-pill">${yearText}</span>` : ""}
+        ${entry.rank ? `<span class="print-meta-pill">#${entry.rank}</span>` : ""}
+      </div>
+    </div>
+
+    <h1 class="print-title">${entry.name}</h1>
+    <div class="print-tag">${entry.tag || ""}</div>
+
+    <div class="print-formula-card" id="printFormulaBox"></div>
+
+    ${entry.illustration ? `
+      <div class="print-illu-wrap">
+        ${buildIllustration(entry.illustration, "#1f2937")}
+      </div>
+    ` : ""}
+
+    <div class="print-body">
+      <h3>Miért halhatatlan tudományos szépség?</h3>
+      <p><b>${entry.why || ""}</b></p>
+      ${entry.whyMore ? `<p>${entry.whyMore}</p>` : ""}
+    </div>
+
+    ${entry.wiki ? `
+      <div style="font-size:12px;color:#4b5563;margin-bottom:18px;">
+        <b>Wikipedia referencia:</b> <span style="font-family:'JetBrains Mono',monospace;word-break:break-all;">${entry.wiki}</span>
+      </div>
+    ` : ""}
+
+    <div class="print-footer">
+      <span>Tudományos Szépségek Archívum · Nyomtatva: ${new Date().toLocaleDateString("hu-HU")}</span>
+      <span>PWA Offline Gyűjtemény · ${domainLabel}</span>
+    </div>
+  `;
+
+  const fBox = document.getElementById("printFormulaBox");
+  if (entry.type === "maxwell") {
+    entry.equations.forEach(eq => {
+      const d = document.createElement("div");
+      d.style.marginBottom = "8px";
+      safeKatex(eq, d, {throwOnError: false, displayMode: true});
+      fBox.appendChild(d);
+    });
+    if (entry.derived) {
+      const der = document.createElement("div");
+      der.style.marginTop = "10px";
+      safeKatex(entry.derived, der, {throwOnError: false, displayMode: true});
+      fBox.appendChild(der);
+    }
+  } else if (entry.type === "noether") {
+    fBox.innerHTML = `„${entry.quote}”`;
+    if (entry.pairs) {
+      const list = document.createElement("div");
+      list.style.marginTop = "10px";
+      entry.pairs.forEach(p => {
+        const item = document.createElement("div");
+        item.style.fontSize = "13px";
+        item.style.margin = "4px 0";
+        item.textContent = `${p.sym} ${p.arrow} ${p.law}`;
+        list.appendChild(item);
+      });
+      fBox.appendChild(list);
+    }
+  } else if (entry.tex) {
+    safeKatex(entry.tex, fBox, {throwOnError: false, displayMode: true});
+  } else {
+    fBox.style.display = "none";
+  }
+
+  document.body.classList.add("printing-single");
+
+  const cleanup = () => {
+    document.body.classList.remove("printing-single");
+    window.removeEventListener("afterprint", cleanup);
+  };
+  window.addEventListener("afterprint", cleanup);
+
+  setTimeout(() => {
+    window.print();
+    setTimeout(cleanup, 15000);
+  }, 120);
+}
+
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
     closeModal();
@@ -1897,6 +2014,20 @@ function renderDeck() {
   } else if (dSim) {
     dSim.style.display = "none";
   }
+
+  // Nyomtatás gomb a decken
+  let dPrint = document.getElementById("deckPrint");
+  if (!dPrint) {
+    dPrint = document.createElement("button");
+    dPrint.id = "deckPrint";
+    dPrint.className = "icon-btn print-btn";
+    dPrint.setAttribute("aria-label", "Nyomtatható A4 adatlap");
+    dPrint.title = "Nyomtatható A4 tudományos adatlap (PDF)";
+    dPrint.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9V4h12v5M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2" stroke="currentColor" stroke-width="1.6"/><rect x="6" y="14" width="12" height="7" rx="1" stroke="currentColor" stroke-width="1.6"/></svg>';
+    deckCard.querySelector(".deck-actions").appendChild(dPrint);
+  }
+  dPrint.onclick = () => printEntry(e, activeDomain);
+
   const favKey = activeDomain + ":" + slugify(e.name);
   deckFav.classList.toggle("active", favorites.has(favKey));
   deckFav.onclick = () => { toggleFavorite(favKey, deckFav); };
