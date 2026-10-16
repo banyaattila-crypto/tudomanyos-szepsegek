@@ -2,7 +2,7 @@
 
 **Projekt:** Telepíthető webapp (PWA) — szubjektív rangsor a legszebb matematikai, fizikai és informatikai tételekről.
 **Hely:** `/home/attila/projects/tudomanyos-szepsegek/`
-**Utolsó frissítés:** 2026. október 16.
+**Utolsó frissítés:** 2026. október 17.
 **Fő fájlok (forrás):** `index_template.html` (314 soros vékony HTML-váz) + `app.css` (1872 sor) + `app.js` (5244 sor) + `editor.js` (269 sor) + `data/*.json` (509 tétel).
 **Production:** `dist/` — **4 moduláris, külön cache-elhető fájlban** (`index.html` 17 KB + `app.css` 78 KB + `app.js` 809 KB + `editor.js` 12 KB), `index.htm` és `vercel.json` direkt kiszolgálással.
 
@@ -115,11 +115,11 @@ A PWA **teljesen működőképes**, production-ready állapotban van. Összesen 
 
 ## 4. FEJLESZTÉSI EREDMÉNYEK ÉS JAVÍTÁSOK
 
-### 2026. október 14–16. ✅
-1. **273 hiányzó évszám pótlása (100% lefedettség)**:
-   - A `data/matek.json` (136 tétel) és `data/fizika.json` (137 tétel) tételeinek `year` mezőit automatizált elemzéssel és forrásellenőrzéssel feltöltöttük.
+### 2026. október 14–17. ✅
+1. **273 hiányzó évszám pótlása és 100% lefedettség**:
+   - A korábbi hiányzó évszámok pótlásra kerültek, és minden új tétel pontos évszámmal lett ellátva.
    - A `build.py --validate-only` kimenete: **0 hiba, 0 figyelmeztetés**.
-   - Az **Idővonal nézet** most már mind a 473 tételt pontosan a saját évszázadába rendezi.
+   - Az **Idővonal nézet** most már mind az 509 tételt pontosan a saját évszázadába rendezi.
 2. **Interaktív Tudományos Laboratórium (7 Canvas szimuláció)**:
    - Reszponzív, retina/DPI skálázott szimulációs keretrendszer az appon belül.
    - 7 interaktív fizikai és matematikai modell:
@@ -174,7 +174,9 @@ python3 build.py --validate-only
 ```bash
 python3 -m http.server 8000
 ```
-- **Alkalmazás:** [http://localhost:8000/dist/index.html](http://localhost:8000/dist/index.html) *(vagy simán `http://localhost:8000/`)*
+- **Éles Vercel webalkalmazás:** [https://tudomanyos-szepsegek.vercel.app/](https://tudomanyos-szepsegek.vercel.app/)
+- **GitHub Pages telepítés:** [https://banyaattila-crypto.github.io/tudomanyos-szepsegek/](https://banyaattila-crypto.github.io/tudomanyos-szepsegek/)
+- **Helyi tesztelés:** [http://localhost:8000/dist/index.html](http://localhost:8000/dist/index.html) *(vagy közvetlenül `http://localhost:8000/`)*
 - **Fejlesztési sablon:** [http://localhost:8000/index_template.html](http://localhost:8000/index_template.html)
 
 ---
