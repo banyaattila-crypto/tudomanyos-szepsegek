@@ -22,15 +22,16 @@ A PWA **teljesen működőképes**, production-ready állapotban van. Összesen 
 | Figyelmeztetések (Warnings) | **0 (a build validator 0 hibával és 0 figyelmeztetéssel fut le)** |
 | Domainek | 3 (matek / fizika / informatika) |
 | Nézetek | 7 fül: Rangsor / Kategóriák / Idővonal / Lapozó / Játék / Térkép / Kedvencek |
-| Interaktív laboratórium | **7 Canvas szimuláció** (Lorentz, Kvantum-alagút, Mandelbrot, Fourier, Conway, Kettős inga, N-test gravitáció) |
+| Interaktív laboratórium | **8 Canvas szimuláció** (Lorentz, Kvantum-alagút, Mandelbrot, Fourier, Conway, Kettős inga, N-test gravitáció, **Bloch-gömb**) |
+| Tudományos Párharc | **⚔️ Összehasonlító nézet** (7 klasszikus preset + szabad választó, idővonal-híd, KaTeX képletek egymás mellett, `#duel:...` link) |
 | Nyomtatás | **A4 Tudományos Adatlap generálás** (Print CSS / PDF export) minden tételnél |
 | Szerkesztő panel | ✅ beépített (edit, add, delete, export, offline localStorage) |
 | Wiki linkek | minden tételnél (en/hu.wikipedia.org) |
 | SVG illusztrációk | **mind az 509 tételnél** (202 + 207 + 100), 4 téma: wave / lattice / graph / spiral |
-| PWA telepíthető | igen (manifest.json + sw.js **v11**) |
+| PWA telepíthető | igen (manifest.json + sw.js **v12**) |
 | Offline tűrés | igen (SW precache: index.html + app.css + app.js + editor.js + KaTeX-független boot) |
 | Közösségi megosztás | Teljes OpenGraph és Twitter kártya előnézet (og:title, og:image, og:description) |
-| Mélyhivatkozás (Deep Link) | Támogatott `#entry-domain-slug`, `#slug`, `#sim-key`, dinamikus hashchange figyelés és másolás a lapozóból is |
+| Mélyhivatkozás (Deep Link) | Támogatott `#entry-domain-slug`, `#slug`, `#sim-key`, `#duel:slugA:slugB`, dinamikus hashchange figyelés |
 | Forrás fájlszerkezet | **4 fájl** (moduláris): `index_template.html` + `app.css` + `app.js` + `editor.js` |
 | Build step | `python3 build.py` (JSON → `dist/` 4 fájl) + smoke guard |
 | Script szintaxis | Node --check: OK (a build smoke guard része, 2 JS-en) |
@@ -48,14 +49,26 @@ A PWA **teljesen működőképes**, production-ready állapotban van. Összesen 
 - [x] **Helyben generált SVG illusztrációk** — 4 téma (wave / lattice / graph / spiral), **mind az 509 tételnél**, offline működőképes.
 
 ### Nézetek és eszközök
-- [x] **Rangsor** (grid, kedvenc/ugrás/wiki/szimuláció/nyomtatás/linkmásolás gombokkal)
+- [x] **Rangsor** (grid, kedvenc/ugrás/wiki/szimuláció/párharc/nyomtatás/linkmásolás gombokkal)
 - [x] **Kategorikus** (csoportosított, kibontható)
 - [x] **Idővonal** (kronológiai rendezés évszázadok szerint az ókortól napjainkig)
-- [x] **Lapozó / Deck** — teljes képernyős kártyanézet, swipe + gombok (‹/›/🎲), kategóriaszűrő, kereső, billentyűparancsok (`←/→`, `F`, `R`), közvetlen link másolása (`deckLink`), szimuláció és nyomtatás gombok.
+- [x] **Lapozó / Deck** — teljes képernyős kártyanézet, swipe + gombok (‹/›/🎲), kategóriaszűrő, kereső, billentyűparancsok (`←/→`, `F`, `R`), közvetlen link másolása (`deckLink`), szimuláció, párharc és nyomtatás gombok.
 - [x] **Játék** ("Tippeld meg a képletet" — 10 körös tudományos kvíz)
 - [x] **Térkép** (tudás-gráf, csillagtérkép, pinch-zoom mobilon)
 - [x] **Kedvencek fül** (dedikált nézet, `data-view="fav"`)
 - [x] **Éjszakai égbolt** (kedvencek csillagképként kirajzolva)
+- [x] **⚔️ Tudományos Párharc & Összehasonlító nézet (Comparator)**:
+  - Két tétel egymás melletti részletes összehasonlítása (formulák, évszámok, időbeli távolság, miért fontosak).
+  - **7 ikonikus klasszikus párbaj** gyors preset gombokkal:
+    1. *Newton gravitáció (1687)* vs *Einstein általános relativitás (1915)* (+228 év)
+    2. *Maxwell elektromágnesség (1865)* vs *Einstein fotoeffektus (1905)* (+40 év)
+    3. *Boltzmann entrópia (1877)* vs *Shannon entrópia (1948)* (+71 év)
+    4. *Dijkstra algoritmus (1959)* vs *A\* keresés (1968)* (+9 év)
+    5. *RSA titkosítás (1977)* vs *Elliptikus görbe kriptográfia ECC (1985)* (+8 év)
+    6. *Turing-gép (1936)* vs *Shor kvantum-algoritmusa (1994)* (+58 év)
+    7. *Kepler III. törvénye (1619)* vs *Newton gravitáció (1687)* (+68 év)
+  - Tetszőleges szabad tételválasztó mind az 509 tételből mindkét oldalon.
+  - Véletlenszerű párbajgenerátor (🎲), megcserélés (⇄) és közvetlen megosztási link másolása (`#duel:slugA:slugB`).
 - [x] **🕹️ Interaktív Tudományos Laboratórium**:
   - *Lorentz-transzformáció és Idődilatáció* ($v/c$ csúszka, élő fényóra, $\gamma$-faktor telemetria)
   - *Kvantum-alagúthatás* (Schrödinger-egyenlet, állítható $E, V_0, a$, transzmissziós együttható)
@@ -64,6 +77,7 @@ A PWA **teljesen működőképes**, production-ready állapotban van. Összesen 
   - *Conway: Életjáték* (B3/S23 sejt-automata, kattintással rajzolható rács, beépített sablonok)
   - *Kettős inga és Káoszelmélet* (4. rendű Runge-Kutta [RK4] szimuláció, Pillangóhatás és ikeringa divergencia 0,001 rad kezdőeltérésből, Fázistér diagram [θ₁ vs ω₁], interaktív szög- és csillapítás-állítás)
   - *N-test gravitáció és Égimechanika* (szimplektikus Velocity Verlet integrátor [$\Delta E/E < 10^{-6}$], Chenciner–Montgomery 8-as pálya, Belső Naprendszer a Holddal, Lagrange L4/L5 pontok, Pitagoraszi 3-test és gravitációs parittya, interaktív égitest-indítás sebességvektorral)
+  - *Bloch-gömb és Kvantum-szuperpozíció* (3D egérrel/érintéssel forgatható Bloch-gömb, $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ állapotvektor fázissík vetülettel, unitér kvantum-kapuk: Hadamard $H$, Pauli-$X$, Pauli-$Y$, Pauli-$Z$, $S$ és $T$ kapuk, Born-szabály szerinti kvantummérés és hullámfüggvény-kollapszus animáció, 100-as statisztikai sokaságmérés, precesszió és fázisidőfejlődés)
 - [x] **🖨️ Nyomtatható A4 Tudományos Adatlap**:
   - Nyomtatóbarát, letisztult fehér hátterű A4-es tudományos lap generálás minden tételhez (Ctrl+P / PDF mentés).
 - [x] **Kártyakészítő** — PNG kártya letöltése megosztáshoz.
@@ -77,7 +91,7 @@ A PWA **teljesen működőképes**, production-ready állapotban van. Összesen 
 - [x] **Főcím glow & Hover-glow** — kiemelések Fraunces és pulzáló fénykoszorúval
 
 ### Technikai / PWA / Megosztás
-- [x] **SW v11 cache** — `tsz-cache-v11`, precache a moduláris app shellre, skipWaiting + clients.claim
+- [x] **SW v12 cache** — `tsz-cache-v12`, precache a moduláris app shellre, skipWaiting + clients.claim
 - [x] **Vercel Root kiszolgálás** — `vercel.json` (`outputDirectory: "dist"`), közvetlen gyökér kiszolgálás átirányítási villanás nélkül
 - [x] **OpenGraph & Twitter Card SEO** — teljes metaadatkészlet a közösségi platformokon való látványos megosztáshoz
 - [x] **Dinamikus Mélyhivatkozás (Deep Linking)** — hashchange eseménykezelő, automatikus domain és nézetváltás, fókuszált kiemelés és görgetés

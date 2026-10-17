@@ -95,6 +95,7 @@
     <div class="top-row-actions">
       <button type="button" class="info-btn" id="nightSkyBtn" aria-pressed="false" title="Éjszakai égbolt — kedvenceid csillagképe" aria-label="Éjszakai égbolt">✨</button>
       <button type="button" class="info-btn" id="simLabBtn" aria-label="Interaktív laboratórium" title="Interaktív tudományos szimulációk">🕹️</button>
+      <button type="button" class="info-btn" id="comparatorBtn" aria-label="Tudományos Párharc" title="Tudományos Párharc & Összehasonlítás">⚔️</button>
       <button type="button" class="info-btn" id="infoBtn" aria-label="A gyűjteményről" title="A gyűjteményről">ℹ</button>
       <button type="button" class="info-btn" id="statsBtn" aria-label="Statisztika" title="Statisztika">📊</button>
       <button type="button" class="info-btn" id="graphBtn" aria-label="Tudás-gráf" title="Tudás-gráf">🕸</button>
@@ -266,12 +267,66 @@
       <button type="button" class="sim-tab" data-sim="conway">👾 Conway: Életjáték</button>
       <button type="button" class="sim-tab" data-sim="pendulum">🪀 Kettős inga (Káosz)</button>
       <button type="button" class="sim-tab" data-sim="gravity">🪐 N-test gravitáció</button>
+      <button type="button" class="sim-tab" data-sim="bloch">🔮 Bloch-gömb (Kvantum)</button>
     </div>
     <div class="sim-canvas-wrap">
       <canvas id="simCanvas" width="640" height="360"></canvas>
     </div>
     <div class="sim-controls" id="simControls"></div>
     <div class="sim-info" id="simInfo"></div>
+  </div>
+</div>
+
+<!-- ===== Tudományos Párharc & Összehasonlító nézet ===== -->
+<div class="modal-overlay" id="comparatorOverlay" aria-hidden="true">
+  <div class="modal-panel comparator-panel" role="dialog" aria-modal="true" aria-labelledby="comparatorTitle">
+    <button type="button" class="modal-close" id="comparatorClose" aria-label="Bezárás">✕</button>
+    <p class="modal-eyebrow">Tudományos Párharc & Összehasonlítás</p>
+    <h2 id="comparatorTitle">Eszmék és formulák ütközete</h2>
+
+    <!-- Gyors presetek (ikonikus párharcok) -->
+    <div class="comparator-presets" id="comparatorPresets">
+      <span class="comparator-preset-label">Klasszikus párbajok:</span>
+      <div class="comparator-preset-chips" id="comparatorChips"></div>
+    </div>
+
+    <!-- Kiválasztó sor (Item A vs Item B) -->
+    <div class="comparator-selector-row">
+      <div class="comparator-select-box">
+        <label for="compSelectA">1. Tétel kiválasztása:</label>
+        <select id="compSelectA" class="comparator-select"></select>
+      </div>
+      <div class="comparator-vs-badge">
+        <span>VS</span>
+        <button type="button" id="compRandomBtn" class="comp-random-btn" title="Véletlenszerű párharc generálása">🎲</button>
+      </div>
+      <div class="comparator-select-box">
+        <label for="compSelectB">2. Tétel kiválasztása:</label>
+        <select id="compSelectB" class="comparator-select"></select>
+      </div>
+    </div>
+
+    <!-- Összehasonlító kártyák és híd -->
+    <div class="comparator-arena" id="comparatorArena">
+      <!-- Item A kártya -->
+      <div class="comp-card" id="compCardA"></div>
+
+      <!-- Párharc híd (Idővonal & Paradigmaváltás) -->
+      <div class="comp-bridge" id="compBridge">
+        <div class="comp-time-diff" id="compTimeDiff"></div>
+        <div class="comp-bridge-arrow" id="compBridgeArrow">➔</div>
+        <div class="comp-bridge-note" id="compBridgeNote"></div>
+      </div>
+
+      <!-- Item B kártya -->
+      <div class="comp-card" id="compCardB"></div>
+    </div>
+
+    <!-- Akciógombok -->
+    <div class="comparator-footer-actions">
+      <button type="button" class="group-btn" id="compShareBtn">🔗 Párharc linkjének másolása</button>
+      <button type="button" class="group-btn" id="compSwapBtn">⇄ Tételek megcserélése</button>
+    </div>
   </div>
 </div>
 
