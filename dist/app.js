@@ -6605,36 +6605,73 @@ const simControls = document.getElementById("simControls");
 const simInfo = document.getElementById("simInfo");
 
 const SIMULATION_TARGETS = {
+  // 1. Bloch-gömb & Kvantum
+  "bloch-tetel": "bloch",
+  "kvantum-teleportacio": "bloch",
+  "kvantum-teleportacio-protokoll-bennett-et-al": "bloch",
+  "zeno-paradoxon-kvantum": "bloch",
+  "kvantum-szupremacia-kvantum-fourier": "bloch",
+  "shor-algoritmus": "bloch",
+
+  // 2. Lorentz-transzformáció
   "lorentz-transzformacio": "lorentz",
+
+  // 3. Kvantum-alagút
   "kvantum-alaguthatas": "tunnel",
   "schrodinger-egyenlet": "tunnel",
   "hidrogenatom-schrodinger-egyenlete": "tunnel",
+
+  // 4. Mandelbrot-halmaz
   "mandelbrot-halmaz": "mandelbrot",
+
+  // 5. Fourier-sorfejtés
   "fourier-transzformalt": "fourier",
   "gyors-fourier-transzformacio-fft": "fourier",
   "fast-fourier-transzformacio-alkalmazasa-keptomoritesre-dct": "fourier",
+
+  // 6. Conway: Életjáték
   "conway-elet-jateka": "conway",
-  "lorenz-attraktor-pillangohatas": "pendulum",
+
+  // 7. Kettős inga (Káosz)
   "logisztikus-lekepezes": "pendulum",
   "euler-lagrange-egyenlet": "pendulum",
   "hamilton-egyenletek": "pendulum",
   "liouville-egyenlet-fazister": "pendulum",
   "poincare-bendixson-tetel": "pendulum",
   "foucault-inga": "pendulum",
+
+  // 8. N-test gravitáció
   "kepler-harmadik-torvenye": "gravity",
   "kepler-egyenlet-excentrikus-anomalia": "gravity",
   "newton-fele-gravitacios-torveny": "gravity",
-  "einstein-egyenletek-altalanos-relativitas": "gravity",
   "gravitacios-hullamok-kvadrupol-formula": "gravity",
-  "gravitacios-lencsehatas-1919-es-napfogyatkozas-kiserlet": "gravity",
   "eotvos-kiserlet": "gravity",
   "egyenertekusegi-elv-eotvos": "gravity",
-  "bloch-tetel": "bloch",
-  "kvantum-teleportacio": "bloch",
-  "kvantum-teleportacio-protokoll-bennett-et-al": "bloch",
-  "zeno-paradoxon-kvantum": "bloch",
-  "kvantum-szupremacia-kvantum-fourier": "bloch",
-  "shor-algoritmus": "bloch"
+
+  // 9. Lorenz-attraktor & Pillangó-effektus
+  "lorenz-attraktor-pillangohatas": "lorenz",
+
+  // 10. 2D Hullámmedence & Young-interferencia
+  "hullamegyenlet": "wave",
+  "interferencia-young-kiserlet": "wave",
+  "de-broglie-hullamhossz": "wave",
+
+  // 11. Fekete lyuk & Gravitációs lencsehatás
+  "schwarzschild-sugar": "blackhole",
+  "kerr-mezo-forgo-fekete-lyuk": "blackhole",
+  "gravitacios-lencsehatas-1919-es-napfogyatkozas-kiserlet": "blackhole",
+  "einstein-egyenletek-altalanos-relativitas": "blackhole",
+
+  // 12. Kinetikus gázelmélet & Maxwell-Boltzmann eloszlás
+  "maxwell-boltzmann-sebessegeloszlas": "gas",
+  "boltzmann-entropia": "gas",
+  "stefan-boltzmann-torveny": "gas",
+  "stefan-boltzmann-torveny-masodik-alak": "gas",
+
+  // 13. A* & Dijkstra útkereső algoritmusok
+  "dijkstra-algoritmus": "pathfinding",
+  "a-kereses": "pathfinding",
+  "halado-grafok-dijkstra": "pathfinding"
 };
 
 let activeDomain = "matek";
@@ -9552,12 +9589,13 @@ if (weeklyDismiss) weeklyDismiss.addEventListener("click", () => {
 // ==== INTERAKTÍV TUDOMÁNYOS LABORATÓRIUM (SZIMULÁCIÓK) =======================
 // ============================================================================
 
-let currentSimId = "lorentz";
+let currentSimId = "bloch";
 let simRaf = null;
 let simCtx = null;
 let simActive = false;
 
 const SIM_TITLES = {
+  bloch: "🔮 Bloch-gömb & Kvantum-szuperpozíció",
   lorentz: "⚡ Lorentz-transzformáció és Idődilatáció",
   tunnel: "🌊 Kvantum-alagúthatás (Schrödinger-egyenlet)",
   mandelbrot: "🌀 Mandelbrot-halmaz és Komplex fraktálok",
@@ -9565,7 +9603,11 @@ const SIM_TITLES = {
   conway: "👾 Conway: Élet játéka (Sejtautomata)",
   pendulum: "🪀 Kettős inga és Káoszelmélet (Pillangóhatás)",
   gravity: "🪐 N-test gravitáció és Kepler-pályák (Égimechanika)",
-  bloch: "🔮 Bloch-gömb & Kvantum-szuperpozíció"
+  lorenz: "🦋 Lorenz-attraktor & Pillangó-effektus (Determinisztikus káosz)",
+  wave: "〰️ 2D Hullámmedence & Young-interferencia (Hullámegyenlet)",
+  blackhole: "🕳️ Fekete lyuk & Relativisztikus gravitációs lencsehatás",
+  gas: "💨 Kinetikus gázelmélet & Maxwell–Boltzmann sebességeloszlás",
+  pathfinding: "🧭 A* és Dijkstra legrövidebb útkereső algoritmusok"
 };
 
 // 1. Lorentz állapot
@@ -9708,6 +9750,307 @@ const simBloch = {
   lastMouseY: 0,
   trail: []
 };
+
+// 9. Lorenz-attraktor & Pillangó-effektus állapot
+const simLorenzAttr = {
+  sigma: 10.0,
+  rho: 28.0,
+  beta: 8 / 3,
+  dt: 0.008,
+  speed: 1.0,
+  running: true,
+  showTwin: true,
+  rotX: 0.42,
+  rotY: 0.78,
+  isDragging: false,
+  lastMouseX: 0,
+  lastMouseY: 0,
+  posA: [0.1, 0, 0],
+  trailA: [],
+  posB: [0.1001, 0, 0], // delta = 0.0001 (Pillangóhatás!)
+  trailB: [],
+  maxTrail: 1400,
+  divergence: 0.001
+};
+
+function rk4LorenzStep(pos, dt, sigma, rho, beta) {
+  function getD(x, y, z) {
+    return [sigma * (y - x), x * (rho - z) - y, x * y - beta * z];
+  }
+  const [x, y, z] = pos;
+  const k1 = getD(x, y, z);
+  const k2 = getD(x + 0.5 * dt * k1[0], y + 0.5 * dt * k1[1], z + 0.5 * dt * k1[2]);
+  const k3 = getD(x + 0.5 * dt * k2[0], y + 0.5 * dt * k2[1], z + 0.5 * dt * k2[2]);
+  const k4 = getD(x + dt * k3[0], y + dt * k3[1], z + dt * k3[2]);
+
+  return [
+    x + (dt / 6) * (k1[0] + 2 * k2[0] + 2 * k3[0] + k4[0]),
+    y + (dt / 6) * (k1[1] + 2 * k2[1] + 2 * k3[1] + k4[1]),
+    z + (dt / 6) * (k1[2] + 2 * k2[2] + 2 * k3[2] + k4[2])
+  ];
+}
+
+// 10. 2D Hullámmedence & Young-interferencia állapot
+const simWave = {
+  cols: 130,
+  rows: 74,
+  u0: null,
+  u1: null,
+  u2: null,
+  wall: null,
+  damp: 0.991,
+  c2: 0.22,
+  freq: 0.26,
+  amplitude: 1.0,
+  time: 0,
+  running: true,
+  preset: "young",
+  isPointerDown: false
+};
+
+function initWaveSim(preset) {
+  const { cols, rows } = simWave;
+  simWave.u0 = new Float32Array(cols * rows);
+  simWave.u1 = new Float32Array(cols * rows);
+  simWave.u2 = new Float32Array(cols * rows);
+  simWave.wall = new Uint8Array(cols * rows);
+  simWave.time = 0;
+  if (preset) simWave.preset = preset;
+
+  if (simWave.preset === "young") {
+    const wallX = 44;
+    const midY = Math.floor(rows / 2);
+    const slitHalfSep = 7;
+    const slitHalfWidth = 2;
+    for (let y = 0; y < rows; y++) {
+      const inSlit1 = Math.abs(y - (midY - slitHalfSep)) <= slitHalfWidth;
+      const inSlit2 = Math.abs(y - (midY + slitHalfSep)) <= slitHalfWidth;
+      if (!inSlit1 && !inSlit2) {
+        simWave.wall[y * cols + wallX] = 1;
+        simWave.wall[y * cols + wallX + 1] = 1;
+      }
+    }
+  } else if (simWave.preset === "corner") {
+    const wallX = 48;
+    for (let y = 0; y < Math.floor(rows * 0.65); y++) {
+      simWave.wall[y * cols + wallX] = 1;
+      simWave.wall[y * cols + wallX + 1] = 1;
+    }
+  }
+}
+
+// 11. Fekete lyuk & Gravitációs lencsehatás állapot
+const simBlackhole = {
+  bhX: 270,
+  bhY: 180,
+  rs: 36,
+  spin: 0.65,
+  showAccretion: true,
+  showRings: true,
+  time: 0,
+  running: true,
+  isDragging: false,
+  stars: []
+};
+
+function initBlackholeStars(w, h) {
+  simBlackhole.stars = [];
+  const starCount = 300;
+  const colors = ["#ffffff", "#bfdbfe", "#e0e7ff", "#fef08a", "#fed7aa", "#93c5fd"];
+  for (let i = 0; i < starCount; i++) {
+    simBlackhole.stars.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      size: 0.8 + Math.random() * 1.8,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      alpha: 0.35 + Math.random() * 0.65,
+      dist: 0.5 + Math.random() * 0.5
+    });
+  }
+}
+
+// 12. Kinetikus gázelmélet & Maxwell-Boltzmann állapot
+const simGas = {
+  particles: [],
+  count: 130,
+  temp: 1.0,
+  gravity: 0.0,
+  showBrownian: true,
+  brownianTrail: [],
+  maxTrail: 160,
+  running: true,
+  boxX: 18,
+  boxY: 20,
+  boxW: 380,
+  boxH: 310,
+  speedBins: new Array(20).fill(0),
+  pressure: 0,
+  wallImpulse: 0,
+  lastPressureTime: 0
+};
+
+function initGasSim() {
+  simGas.particles = [];
+  simGas.brownianTrail = [];
+  const { boxX, boxY, boxW, boxH, count, temp } = simGas;
+
+  simGas.particles.push({
+    x: boxX + boxW * 0.5,
+    y: boxY + boxH * 0.5,
+    vx: (Math.random() - 0.5) * 1.2,
+    vy: (Math.random() - 0.5) * 1.2,
+    m: 14,
+    r: 12,
+    color: "#fbbf24",
+    isBrownian: true
+  });
+
+  for (let i = 1; i < count; i++) {
+    const angle = Math.random() * Math.PI * 2;
+    const speed = (0.8 + Math.random() * 1.8) * Math.sqrt(temp) * 1.8;
+    simGas.particles.push({
+      x: boxX + 20 + Math.random() * (boxW - 40),
+      y: boxY + 20 + Math.random() * (boxH - 40),
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      m: 1,
+      r: 3.2,
+      color: "#38bdf8",
+      isBrownian: false
+    });
+  }
+}
+
+// 13. A* & Dijkstra útkereső állapot
+const simPath = {
+  cols: 28,
+  rows: 16,
+  grid: [],
+  start: { x: 3, y: 8 },
+  target: { x: 24, y: 8 },
+  algo: "astar",
+  heuristic: "manhattan",
+  visitedOrder: [],
+  visitedSet: new Set(),
+  frontierSet: new Set(),
+  path: [],
+  stats: { visitedCount: 0, pathLength: 0, cost: 0 },
+  isDrawingWall: false,
+  isErasingWall: false,
+  draggedNode: null,
+  pulsePhase: 0
+};
+
+function initPathfindingGrid(clearOnly) {
+  const { cols, rows } = simPath;
+  simPath.grid = new Array(cols * rows).fill(0);
+  if (!clearOnly) {
+    for (let y = 3; y < 13; y++) {
+      if (y !== 7 && y !== 8) simPath.grid[y * cols + 10] = 1;
+    }
+    for (let y = 3; y < 13; y++) {
+      if (y !== 4 && y !== 11) simPath.grid[y * cols + 18] = 1;
+    }
+    for (let x = 11; x <= 17; x++) {
+      if (x !== 14) simPath.grid[8 * cols + x] = 1;
+    }
+  }
+  recomputePathfinding();
+}
+
+function recomputePathfinding() {
+  const { cols, rows, grid, start, target, algo, heuristic } = simPath;
+  simPath.visitedOrder = [];
+  simPath.visitedSet.clear();
+  simPath.frontierSet.clear();
+  simPath.path = [];
+
+  const startIdx = start.y * cols + start.x;
+  const targetIdx = target.y * cols + target.x;
+
+  function hCost(x, y) {
+    if (algo === "dijkstra" || algo === "bfs") return 0;
+    const dx = Math.abs(x - target.x);
+    const dy = Math.abs(y - target.y);
+    return heuristic === "manhattan" ? (dx + dy) : Math.hypot(dx, dy);
+  }
+
+  const openList = [];
+  const gScores = new Float32Array(cols * rows).fill(Infinity);
+  const parents = new Int32Array(cols * rows).fill(-1);
+
+  gScores[startIdx] = 0;
+  openList.push({ idx: startIdx, x: start.x, y: start.y, g: 0, h: hCost(start.x, start.y), f: hCost(start.x, start.y) });
+  simPath.frontierSet.add(startIdx);
+
+  const closedSet = new Uint8Array(cols * rows);
+  let reached = false;
+
+  const dirs = [
+    { dx: 1, dy: 0, cost: 1 },
+    { dx: -1, dy: 0, cost: 1 },
+    { dx: 0, dy: 1, cost: 1 },
+    { dx: 0, dy: -1, cost: 1 }
+  ];
+
+  while (openList.length > 0) {
+    let bestIdx = 0;
+    if (algo === "bfs") {
+      bestIdx = 0;
+    } else {
+      for (let i = 1; i < openList.length; i++) {
+        if (openList[i].f < openList[bestIdx].f) bestIdx = i;
+      }
+    }
+
+    const current = openList.splice(bestIdx, 1)[0];
+    simPath.frontierSet.delete(current.idx);
+
+    if (closedSet[current.idx]) continue;
+    closedSet[current.idx] = 1;
+    simPath.visitedSet.add(current.idx);
+    simPath.visitedOrder.push(current.idx);
+
+    if (current.idx === targetIdx) {
+      reached = true;
+      break;
+    }
+
+    for (const d of dirs) {
+      const nx = current.x + d.dx;
+      const ny = current.y + d.dy;
+      if (nx < 0 || nx >= cols || ny < 0 || ny >= rows) continue;
+      const nIdx = ny * cols + nx;
+      if (grid[nIdx] === 1 || closedSet[nIdx]) continue;
+
+      const tentativeG = current.g + d.cost;
+      if (tentativeG < gScores[nIdx]) {
+        gScores[nIdx] = tentativeG;
+        parents[nIdx] = current.idx;
+        const h = hCost(nx, ny);
+        const f = tentativeG + h;
+        openList.push({ idx: nIdx, x: nx, y: ny, g: tentativeG, h, f });
+        simPath.frontierSet.add(nIdx);
+      }
+    }
+  }
+
+  if (reached) {
+    let curr = targetIdx;
+    while (curr !== -1) {
+      const px = curr % cols;
+      const py = Math.floor(curr / cols);
+      simPath.path.unshift({ x: px, y: py, idx: curr });
+      curr = parents[curr];
+    }
+  }
+
+  simPath.stats = {
+    visitedCount: simPath.visitedSet.size,
+    pathLength: simPath.path.length,
+    found: reached
+  };
+}
 
 function getBlochCoords() {
   const st = Math.sin(simBloch.theta);
@@ -11397,6 +11740,777 @@ function drawBloch(ctx, width, height) {
   ctx.fillText("Egérrel / érintéssel húzd a gömböt a 3D nézőpont forgatásához!", 20, height - 12);
 }
 
+// 9. Lorenz-attraktor & Pillangó-effektus rajzoló
+function drawLorenzAttr(ctx, width, height) {
+  ctx.fillStyle = "#030712";
+  ctx.fillRect(0, 0, width, height);
+
+  const cx = width * 0.38;
+  const cy = height * 0.54;
+  const scale = Math.min(width, height) * 0.0155;
+
+  const bgGrad = ctx.createRadialGradient(cx, cy, 10, cx, cy, width * 0.45);
+  bgGrad.addColorStop(0, "rgba(30, 27, 75, 0.25)");
+  bgGrad.addColorStop(0.6, "rgba(15, 23, 42, 0.4)");
+  bgGrad.addColorStop(1, "rgba(3, 7, 18, 0)");
+  ctx.fillStyle = bgGrad;
+  ctx.beginPath();
+  ctx.arc(cx, cy, width * 0.45, 0, Math.PI * 2);
+  ctx.fill();
+
+  if (simLorenzAttr.running) {
+    const steps = 4;
+    const subDt = simLorenzAttr.dt * simLorenzAttr.speed;
+    for (let s = 0; s < steps; s++) {
+      simLorenzAttr.posA = rk4LorenzStep(simLorenzAttr.posA, subDt, simLorenzAttr.sigma, simLorenzAttr.rho, simLorenzAttr.beta);
+      simLorenzAttr.trailA.push([...simLorenzAttr.posA]);
+      if (simLorenzAttr.trailA.length > simLorenzAttr.maxTrail) simLorenzAttr.trailA.shift();
+
+      if (simLorenzAttr.showTwin) {
+        simLorenzAttr.posB = rk4LorenzStep(simLorenzAttr.posB, subDt, simLorenzAttr.sigma, simLorenzAttr.rho, simLorenzAttr.beta);
+        simLorenzAttr.trailB.push([...simLorenzAttr.posB]);
+        if (simLorenzAttr.trailB.length > simLorenzAttr.maxTrail) simLorenzAttr.trailB.shift();
+      }
+    }
+
+    if (simLorenzAttr.showTwin) {
+      const dx = simLorenzAttr.posA[0] - simLorenzAttr.posB[0];
+      const dy = simLorenzAttr.posA[1] - simLorenzAttr.posB[1];
+      const dz = simLorenzAttr.posA[2] - simLorenzAttr.posB[2];
+      simLorenzAttr.divergence = Math.sqrt(dx * dx + dy * dy + dz * dz);
+    }
+  }
+
+  const zCenter = simLorenzAttr.rho - 1;
+  const cosY = Math.cos(simLorenzAttr.rotY);
+  const sinY = Math.sin(simLorenzAttr.rotY);
+  const cosX = Math.cos(simLorenzAttr.rotX);
+  const sinX = Math.sin(simLorenzAttr.rotX);
+
+  function projectLorenz(x, y, z) {
+    const x0 = x;
+    const y0 = y;
+    const z0 = z - zCenter;
+    const x1 = x0 * cosY + z0 * sinY;
+    const z1 = -x0 * sinY + z0 * cosY;
+    const y2 = y0 * cosX - z1 * sinX;
+    return {
+      sx: cx + x1 * scale,
+      sy: cy - y2 * scale
+    };
+  }
+
+  const tA = simLorenzAttr.trailA;
+  if (tA.length > 1) {
+    ctx.lineWidth = 1.6;
+    for (let i = 1; i < tA.length; i++) {
+      const alpha = (i / tA.length) * 0.85;
+      ctx.strokeStyle = `rgba(0, 242, 254, ${alpha.toFixed(2)})`;
+      const p1 = projectLorenz(tA[i - 1][0], tA[i - 1][1], tA[i - 1][2]);
+      const p2 = projectLorenz(tA[i][0], tA[i][1], tA[i][2]);
+      ctx.beginPath();
+      ctx.moveTo(p1.sx, p1.sy);
+      ctx.lineTo(p2.sx, p2.sy);
+      ctx.stroke();
+    }
+
+    const tipA = projectLorenz(simLorenzAttr.posA[0], simLorenzAttr.posA[1], simLorenzAttr.posA[2]);
+    ctx.save();
+    ctx.fillStyle = "#ffffff";
+    ctx.shadowColor = "#00f2fe";
+    ctx.shadowBlur = 14;
+    ctx.beginPath();
+    ctx.arc(tipA.sx, tipA.sy, 4.5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  if (simLorenzAttr.showTwin) {
+    const tB = simLorenzAttr.trailB;
+    if (tB.length > 1) {
+      ctx.lineWidth = 1.6;
+      for (let i = 1; i < tB.length; i++) {
+        const alpha = (i / tB.length) * 0.85;
+        ctx.strokeStyle = `rgba(255, 65, 108, ${alpha.toFixed(2)})`;
+        const p1 = projectLorenz(tB[i - 1][0], tB[i - 1][1], tB[i - 1][2]);
+        const p2 = projectLorenz(tB[i][0], tB[i][1], tB[i][2]);
+        ctx.beginPath();
+        ctx.moveTo(p1.sx, p1.sy);
+        ctx.lineTo(p2.sx, p2.sy);
+        ctx.stroke();
+      }
+
+      const tipB = projectLorenz(simLorenzAttr.posB[0], simLorenzAttr.posB[1], simLorenzAttr.posB[2]);
+      ctx.save();
+      ctx.fillStyle = "#ffffff";
+      ctx.shadowColor = "#ff416c";
+      ctx.shadowBlur = 14;
+      ctx.beginPath();
+      ctx.arc(tipB.sx, tipB.sy, 4.5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+
+  const hudX = Math.max(width * 0.67, width - 235);
+  let hudY = 32;
+
+  ctx.font = "600 12px Inter, sans-serif";
+  ctx.fillStyle = "#9aa6c4";
+  ctx.fillText("LORENZ-ATTRAKTOR (KÁOSZELMÉLET)", 20, 24);
+
+  ctx.fillStyle = "rgba(15, 23, 42, 0.75)";
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.roundRect(hudX - 10, 16, width - hudX, height - 32, 10);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.font = "700 12.5px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#ffd700";
+  ctx.fillText("FÁZISTÉR TELEMETRIA", hudX, hudY);
+  hudY += 24;
+
+  ctx.font = "600 12px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#ffffff";
+  ctx.fillText("dx/dt = σ(y - x)", hudX, hudY); hudY += 18;
+  ctx.fillText("dy/dt = x(ρ - z) - y", hudX, hudY); hudY += 18;
+  ctx.fillText("dz/dt = xy - βz", hudX, hudY); hudY += 24;
+
+  ctx.font = "500 11.5px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#94a3b8";
+  ctx.fillText(`Prandtl σ = ${simLorenzAttr.sigma.toFixed(1)}`, hudX, hudY); hudY += 18;
+  ctx.fillText(`Rayleigh ρ = ${simLorenzAttr.rho.toFixed(1)}`, hudX, hudY); hudY += 18;
+  ctx.fillText(`Geometria β = ${(8/3).toFixed(2)}`, hudX, hudY); hudY += 26;
+
+  ctx.font = "600 11.5px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#cbd5e1";
+  ctx.fillText("PILLANGÓHATÁS DIVERGENCIA", hudX, hudY); hudY += 14;
+
+  const barW = Math.max(160, width - hudX - 24);
+  const barH = 16;
+  const divRatio = Math.min(1.0, Math.max(0.01, Math.log10(simLorenzAttr.divergence * 1000 + 1) / 3.0));
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.06)";
+  ctx.beginPath();
+  ctx.roundRect(hudX, hudY, barW, barH, 4);
+  ctx.fill();
+
+  const divGrad = ctx.createLinearGradient(hudX, hudY, hudX + barW, hudY);
+  divGrad.addColorStop(0, "#00f2fe");
+  divGrad.addColorStop(0.5, "#ffd700");
+  divGrad.addColorStop(1, "#ff416c");
+  ctx.fillStyle = divGrad;
+  ctx.beginPath();
+  ctx.roundRect(hudX, hudY, barW * divRatio, barH, 4);
+  ctx.fill();
+  hudY += barH + 16;
+
+  ctx.font = "600 11px 'JetBrains Mono', monospace";
+  ctx.fillStyle = simLorenzAttr.divergence > 10 ? "#ff416c" : "#00f2fe";
+  ctx.fillText(`Δr szétválás: ${simLorenzAttr.divergence.toFixed(3)}`, hudX, hudY); hudY += 18;
+
+  const stateStr = simLorenzAttr.divergence > 15 ? "Két külön lebenyben!" : "Közös lebenyben";
+  ctx.fillStyle = "#94a3b8";
+  ctx.fillText(`Állapot: ${stateStr}`, hudX, hudY);
+
+  ctx.font = "500 11px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#64748b";
+  ctx.fillText("Egérrel / érintéssel forgasd a 3D fázisteret!", 20, height - 12);
+}
+
+// 10. 2D Hullámmedence & Young-interferencia rajzoló
+function drawWave(ctx, width, height) {
+  ctx.fillStyle = "#030712";
+  ctx.fillRect(0, 0, width, height);
+
+  if (!simWave.u1) initWaveSim();
+
+  const { cols, rows, u0, u1, u2, wall, damp, c2, freq, amplitude, preset } = simWave;
+
+  if (simWave.running) {
+    simWave.time += freq;
+
+    if (preset === "young") {
+      const val = Math.sin(simWave.time) * amplitude * 2.4;
+      for (let y = 1; y < rows - 1; y++) {
+        u1[y * cols + 2] = val;
+      }
+    } else if (preset === "dipole") {
+      const cy = Math.floor(rows / 2);
+      const val = Math.sin(simWave.time) * amplitude * 2.8;
+      u1[(cy - 9) * cols + 35] = val;
+      u1[(cy + 9) * cols + 35] = val;
+    } else if (preset === "corner") {
+      const val = Math.sin(simWave.time) * amplitude * 2.8;
+      u1[Math.floor(rows * 0.25) * cols + 20] = val;
+    }
+
+    for (let y = 1; y < rows - 1; y++) {
+      const rOff = y * cols;
+      for (let x = 1; x < cols - 1; x++) {
+        const idx = rOff + x;
+        if (wall[idx]) {
+          u2[idx] = 0;
+          continue;
+        }
+        const lap = u1[idx - 1] + u1[idx + 1] + u1[idx - cols] + u1[idx + cols] - 4 * u1[idx];
+        u2[idx] = damp * (2 * u1[idx] - u0[idx] + c2 * lap);
+      }
+    }
+
+    u0.set(u1);
+    u1.set(u2);
+  }
+
+  const cellW = (width - 175) / cols;
+  const cellH = height / rows;
+
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      const idx = y * cols + x;
+      if (wall[idx]) {
+        ctx.fillStyle = "#334155";
+        ctx.fillRect(x * cellW, y * cellH, cellW + 0.5, cellH + 0.5);
+      } else {
+        const v = u1[idx];
+        if (Math.abs(v) > 0.05) {
+          if (v > 0) {
+            const intensity = Math.min(1.0, v * 0.45);
+            ctx.fillStyle = `rgba(0, 242, 254, ${intensity.toFixed(2)})`;
+          } else {
+            const intensity = Math.min(1.0, -v * 0.45);
+            ctx.fillStyle = `rgba(168, 85, 247, ${intensity.toFixed(2)})`;
+          }
+          ctx.fillRect(x * cellW, y * cellH, cellW + 0.5, cellH + 0.5);
+        }
+      }
+    }
+  }
+
+  const screenX = (cols - 4) * cellW;
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.25)";
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(screenX, 0);
+  ctx.lineTo(screenX, height);
+  ctx.stroke();
+
+  const hudX = width - 155;
+  let hudY = 32;
+
+  ctx.fillStyle = "rgba(15, 23, 42, 0.75)";
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.roundRect(hudX - 10, 16, width - hudX, height - 32, 10);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.font = "700 12px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#ffd700";
+  ctx.fillText("HULLÁM-PROFIL", hudX, hudY); hudY += 24;
+
+  ctx.font = "600 11px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#ffffff";
+  ctx.fillText("∂²u/∂t² = c²∇²u", hudX, hudY); hudY += 18;
+  ctx.fillStyle = "#94a3b8";
+  ctx.fillText(`c² = ${simWave.c2.toFixed(2)}`, hudX, hudY); hudY += 16;
+  ctx.fillText(`csillapítás: ${simWave.damp.toFixed(3)}`, hudX, hudY); hudY += 26;
+
+  ctx.font = "600 11px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#00f2fe";
+  ctx.fillText("DETEKTOR INTENZITÁS", hudX, hudY); hudY += 16;
+
+  ctx.strokeStyle = "#ffe066";
+  ctx.lineWidth = 1.8;
+  ctx.beginPath();
+  const detCol = cols - 4;
+  for (let y = 0; y < rows; y++) {
+    const val = Math.abs(u1[y * cols + detCol]) || 0;
+    const px = hudX + Math.min(90, val * 30);
+    const py = hudY + (y / rows) * 110;
+    if (y === 0) ctx.moveTo(px, py);
+    else ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+
+  ctx.font = "500 11px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#64748b";
+  ctx.fillText("Kattints és húzd az egeret a medencén hullámok keltéséhez!", 20, height - 12);
+}
+
+// 11. Fekete lyuk & Gravitációs lencsehatás rajzoló
+function drawBlackhole(ctx, width, height) {
+  ctx.fillStyle = "#02040a";
+  ctx.fillRect(0, 0, width, height);
+
+  if (simBlackhole.stars.length === 0) initBlackholeStars(width, height);
+
+  const { bhX, bhY, rs, showAccretion, showRings, stars } = simBlackhole;
+  simBlackhole.time += 0.025;
+
+  if (showAccretion) {
+    const rIn = rs * 1.5;
+    const rOut = rs * 4.6;
+
+    ctx.save();
+    const diskBackGrad = ctx.createRadialGradient(bhX, bhY, rIn, bhX, bhY, rOut);
+    diskBackGrad.addColorStop(0, "rgba(255, 255, 255, 0.95)");
+    diskBackGrad.addColorStop(0.2, "rgba(255, 214, 102, 0.85)");
+    diskBackGrad.addColorStop(0.55, "rgba(249, 115, 22, 0.65)");
+    diskBackGrad.addColorStop(0.85, "rgba(225, 29, 72, 0.35)");
+    diskBackGrad.addColorStop(1, "rgba(30, 10, 40, 0)");
+
+    ctx.fillStyle = diskBackGrad;
+    ctx.beginPath();
+    ctx.ellipse(bhX, bhY - rs * 0.45, rOut * 0.95, rOut * 0.42, 0, Math.PI, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.ellipse(bhX, bhY + rs * 0.45, rOut * 0.95, rOut * 0.42, 0, 0, Math.PI);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  const thetaE = Math.sqrt(2.2 * rs * 180);
+  const thetaE2 = thetaE * thetaE;
+  const shadowR = rs * 2.3;
+
+  for (let i = 0; i < stars.length; i++) {
+    const s = stars[i];
+    const dx = s.x - bhX;
+    const dy = s.y - bhY;
+    const r = Math.hypot(dx, dy);
+    if (r < 0.1) continue;
+
+    const rApp = (r + Math.sqrt(r * r + 4 * thetaE2)) * 0.5;
+    const scale = rApp / r;
+    const appX = bhX + dx * scale;
+    const appY = bhY + dy * scale;
+
+    if (Math.hypot(appX - bhX, appY - bhY) > shadowR) {
+      ctx.fillStyle = s.color;
+      ctx.globalAlpha = s.alpha;
+      ctx.beginPath();
+      ctx.arc(appX, appY, s.size * (1 + 18 / Math.max(20, r)), 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    if (r < thetaE * 1.8 && r > rs * 0.5) {
+      const rInner = (-r + Math.sqrt(r * r + 4 * thetaE2)) * 0.5;
+      if (rInner > shadowR * 0.85) {
+        const inScale = rInner / r;
+        const inX = bhX - dx * inScale;
+        const inY = bhY - dy * inScale;
+        ctx.fillStyle = "#ffd700";
+        ctx.globalAlpha = s.alpha * 0.5;
+        ctx.beginPath();
+        ctx.arc(inX, inY, s.size * 0.8, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+  }
+  ctx.globalAlpha = 1.0;
+
+  if (showAccretion) {
+    ctx.save();
+    const rOut = rs * 4.8;
+    ctx.beginPath();
+    ctx.ellipse(bhX, bhY, rOut, rOut * 0.28, -0.15, 0, Math.PI);
+
+    const diskGrad = ctx.createLinearGradient(bhX - rOut, bhY, bhX + rOut, bhY);
+    diskGrad.addColorStop(0, "rgba(56, 189, 248, 0.95)");
+    diskGrad.addColorStop(0.35, "rgba(255, 255, 255, 0.98)");
+    diskGrad.addColorStop(0.65, "rgba(251, 146, 60, 0.85)");
+    diskGrad.addColorStop(1, "rgba(185, 28, 28, 0.4)");
+
+    ctx.fillStyle = diskGrad;
+    ctx.fill();
+    ctx.restore();
+  }
+
+  ctx.save();
+  ctx.fillStyle = "#000000";
+  ctx.beginPath();
+  ctx.arc(bhX, bhY, shadowR, 0, Math.PI * 2);
+  ctx.fill();
+
+  if (showRings) {
+    ctx.strokeStyle = "rgba(255, 224, 102, 0.85)";
+    ctx.lineWidth = 2.5;
+    ctx.shadowColor = "#ffd700";
+    ctx.shadowBlur = 18;
+    ctx.beginPath();
+    ctx.arc(bhX, bhY, shadowR, 0, Math.PI * 2);
+    ctx.stroke();
+
+    ctx.strokeStyle = "rgba(0, 242, 254, 0.28)";
+    ctx.lineWidth = 1.2;
+    ctx.setLineDash([4, 4]);
+    ctx.beginPath();
+    ctx.arc(bhX, bhY, thetaE, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+  ctx.restore();
+
+  const hudX = Math.max(width * 0.67, width - 235);
+  let hudY = 32;
+
+  ctx.font = "600 12px Inter, sans-serif";
+  ctx.fillStyle = "#9aa6c4";
+  ctx.fillText("SCHWARZSCHILD FEKETE LYUK — RELATIVISZTIKUS LENCSE", 20, 24);
+
+  ctx.fillStyle = "rgba(15, 23, 42, 0.75)";
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.roundRect(hudX - 10, 16, width - hudX, height - 32, 10);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.font = "700 12.5px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#ffd700";
+  ctx.fillText("ÁLTALÁNOS RELATIVITÁS", hudX, hudY); hudY += 24;
+
+  ctx.font = "600 12px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#ffffff";
+  ctx.fillText("r_s = 2GM / c²", hudX, hudY); hudY += 20;
+
+  ctx.font = "500 11.5px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#94a3b8";
+  ctx.fillText(`Schwarzschild r_s: ${rs} px`, hudX, hudY); hudY += 18;
+  ctx.fillText(`Fotonszféra (1.5 r_s): ${(rs * 1.5).toFixed(0)} px`, hudX, hudY); hudY += 18;
+  ctx.fillText(`Árnyék (2.6 r_s): ${(shadowR).toFixed(0)} px`, hudX, hudY); hudY += 18;
+  ctx.fillText(`Einstein-sugár θ_E: ${(thetaE).toFixed(0)} px`, hudX, hudY); hudY += 26;
+
+  ctx.font = "600 11px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#00f2fe";
+  ctx.fillText("DOPPLER BEAMING:", hudX, hudY); hudY += 16;
+  ctx.fillStyle = "#cbd5e1";
+  ctx.fillText("Bal: kékeltolódás (közeledik)", hudX, hudY); hudY += 16;
+  ctx.fillText("Jobb: vöröseltolódás (távolodik)", hudX, hudY);
+
+  ctx.font = "500 11px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#64748b";
+  ctx.fillText("Egérrel / érintéssel húzd a fekete lyukat a csillagmező előtt!", 20, height - 12);
+}
+
+// 12. Kinetikus gázelmélet & Maxwell-Boltzmann rajzoló
+function drawGas(ctx, width, height) {
+  ctx.fillStyle = "#030712";
+  ctx.fillRect(0, 0, width, height);
+
+  if (simGas.particles.length === 0) initGasSim();
+
+  const { boxX, boxY, boxW, boxH, temp, gravity, showBrownian } = simGas;
+  const particles = simGas.particles;
+
+  ctx.strokeStyle = "rgba(120, 150, 220, 0.4)";
+  ctx.lineWidth = 2;
+  ctx.fillStyle = "rgba(10, 15, 30, 0.55)";
+  ctx.beginPath();
+  ctx.roundRect(boxX, boxY, boxW, boxH, 8);
+  ctx.fill();
+  ctx.stroke();
+
+  if (simGas.running) {
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      p.vy += gravity * 0.15;
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (p.x - p.r < boxX) { p.x = boxX + p.r; p.vx = -p.vx; simGas.wallImpulse += Math.abs(p.vx); }
+      if (p.x + p.r > boxX + boxW) { p.x = boxX + boxW - p.r; p.vx = -p.vx; simGas.wallImpulse += Math.abs(p.vx); }
+      if (p.y - p.r < boxY) { p.y = boxY + p.r; p.vy = -p.vy; simGas.wallImpulse += Math.abs(p.vy); }
+      if (p.y + p.r > boxY + boxH) { p.y = boxY + boxH - p.r; p.vy = -p.vy; simGas.wallImpulse += Math.abs(p.vy); }
+    }
+
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const p1 = particles[i];
+        const p2 = particles[j];
+        const dx = p2.x - p1.x;
+        const dy = p2.y - p1.y;
+        const dist = Math.hypot(dx, dy);
+        const minDist = p1.r + p2.r;
+
+        if (dist < minDist && dist > 0.001) {
+          const nx = dx / dist;
+          const ny = dy / dist;
+          const kx = p1.vx - p2.vx;
+          const ky = p1.vy - p2.vy;
+          const p = 2 * (nx * kx + ny * ky) / (p1.m + p2.m);
+
+          p1.vx -= p * p2.m * nx;
+          p1.vy -= p * p2.m * ny;
+          p2.vx += p * p1.m * nx;
+          p2.vy += p * p1.m * ny;
+
+          const overlap = 0.5 * (minDist - dist);
+          p1.x -= overlap * nx;
+          p1.y -= overlap * ny;
+          p2.x += overlap * nx;
+          p2.y += overlap * ny;
+        }
+      }
+    }
+
+    if (showBrownian && particles[0]) {
+      simGas.brownianTrail.push({ x: particles[0].x, y: particles[0].y });
+      if (simGas.brownianTrail.length > simGas.maxTrail) simGas.brownianTrail.shift();
+    }
+  }
+
+  if (showBrownian && simGas.brownianTrail.length > 1) {
+    ctx.lineWidth = 1.5;
+    for (let i = 1; i < simGas.brownianTrail.length; i++) {
+      const alpha = (i / simGas.brownianTrail.length) * 0.65;
+      ctx.strokeStyle = `rgba(251, 191, 36, ${alpha.toFixed(2)})`;
+      ctx.beginPath();
+      ctx.moveTo(simGas.brownianTrail[i - 1].x, simGas.brownianTrail[i - 1].y);
+      ctx.lineTo(simGas.brownianTrail[i].x, simGas.brownianTrail[i].y);
+      ctx.stroke();
+    }
+  }
+
+  for (let i = 0; i < particles.length; i++) {
+    const p = particles[i];
+    ctx.fillStyle = p.color;
+    if (p.isBrownian) {
+      ctx.save();
+      ctx.shadowColor = "#fbbf24";
+      ctx.shadowBlur = 12;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    } else {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  const hudX = Math.max(width * 0.66, width - 235);
+  let hudY = 32;
+
+  ctx.font = "600 12px Inter, sans-serif";
+  ctx.fillStyle = "#9aa6c4";
+  ctx.fillText("MAXWELL–BOLTZMANN KINETIKUS GÁZELMÉLET", 20, 24);
+
+  ctx.fillStyle = "rgba(15, 23, 42, 0.75)";
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.roundRect(hudX - 10, 16, width - hudX, height - 32, 10);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.font = "700 12.5px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#ffd700";
+  ctx.fillText("SEBESSÉGELOSZLÁS", hudX, hudY); hudY += 24;
+
+  simGas.speedBins.fill(0);
+  let totalSpeed = 0;
+  const maxV = 7.0;
+  for (let i = 1; i < particles.length; i++) {
+    const v = Math.hypot(particles[i].vx, particles[i].vy);
+    totalSpeed += v;
+    const binIdx = Math.min(19, Math.floor((v / maxV) * 20));
+    simGas.speedBins[binIdx]++;
+  }
+  const meanSpeed = totalSpeed / (particles.length - 1 || 1);
+
+  const histW = Math.max(160, width - hudX - 24);
+  const histH = 95;
+  const binW = histW / 20;
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+  ctx.fillRect(hudX, hudY, histW, histH);
+
+  let maxCount = Math.max(1, ...simGas.speedBins);
+  for (let b = 0; b < 20; b++) {
+    const h = (simGas.speedBins[b] / maxCount) * (histH - 10);
+    ctx.fillStyle = "#00f2fe";
+    ctx.fillRect(hudX + b * binW, hudY + histH - h, binW - 1, h);
+  }
+
+  ctx.strokeStyle = "#fbbf24";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  const vScale = 2.0 * temp;
+  for (let b = 0; b <= 20; b++) {
+    const v = (b / 20) * maxV;
+    const fv = (v / vScale) * Math.exp(-(v * v) / (2 * vScale));
+    const px = hudX + b * binW;
+    const py = hudY + histH - fv * (histH * 1.55);
+    if (b === 0) ctx.moveTo(px, py);
+    else ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+  hudY += histH + 18;
+
+  ctx.font = "600 11px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#fbbf24";
+  ctx.fillText("— Elméleti M-B görbe", hudX, hudY); hudY += 18;
+
+  ctx.font = "500 11px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#cbd5e1";
+  ctx.fillText(`Hőmérséklet: ${(temp).toFixed(2)} T₀`, hudX, hudY); hudY += 16;
+  ctx.fillText(`Átlagsebesség ⟨v⟩: ${meanSpeed.toFixed(2)}`, hudX, hudY); hudY += 16;
+  ctx.fillText(`Részecskeszám: ${particles.length} db`, hudX, hudY);
+
+  ctx.font = "500 11px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#64748b";
+  ctx.fillText("Sárga: Brown-pollen mozgása gázmolekulák ütközései miatt", 20, height - 12);
+}
+
+// 13. A* & Dijkstra útkereső rajzoló
+function drawPathfinding(ctx, width, height) {
+  ctx.fillStyle = "#030712";
+  ctx.fillRect(0, 0, width, height);
+
+  if (simPath.grid.length === 0) initPathfindingGrid();
+
+  const { cols, rows, grid, start, target, algo, visitedSet, frontierSet, path, stats } = simPath;
+  simPath.pulsePhase = (simPath.pulsePhase + 0.08) % (Math.PI * 2);
+
+  const gridAreaW = width - 240;
+  const cellW = gridAreaW / cols;
+  const cellH = height / rows;
+
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      const idx = y * cols + x;
+      const px = x * cellW;
+      const py = y * cellH;
+
+      if (grid[idx] === 1) {
+        ctx.fillStyle = "#1e293b";
+        ctx.strokeStyle = "#38bdf8";
+        ctx.lineWidth = 1;
+        ctx.fillRect(px + 1, py + 1, cellW - 2, cellH - 2);
+        ctx.strokeRect(px + 1, py + 1, cellW - 2, cellH - 2);
+      } else if (visitedSet.has(idx)) {
+        ctx.fillStyle = "rgba(14, 165, 233, 0.22)";
+        ctx.fillRect(px + 1, py + 1, cellW - 2, cellH - 2);
+        ctx.strokeStyle = "rgba(14, 165, 233, 0.4)";
+        ctx.lineWidth = 0.5;
+        ctx.strokeRect(px + 1, py + 1, cellW - 2, cellH - 2);
+      } else {
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.04)";
+        ctx.lineWidth = 0.5;
+        ctx.strokeRect(px, py, cellW, cellH);
+      }
+
+      if (frontierSet.has(idx)) {
+        ctx.strokeStyle = "#f59e0b";
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(px + 1.5, py + 1.5, cellW - 3, cellH - 3);
+      }
+    }
+  }
+
+  if (path.length > 1) {
+    ctx.lineWidth = 4;
+    ctx.strokeStyle = "#ffd700";
+    ctx.shadowColor = "#f59e0b";
+    ctx.shadowBlur = 12;
+    ctx.beginPath();
+    for (let i = 0; i < path.length; i++) {
+      const px = path[i].x * cellW + cellW * 0.5;
+      const py = path[i].y * cellH + cellH * 0.5;
+      if (i === 0) ctx.moveTo(px, py);
+      else ctx.lineTo(px, py);
+    }
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+
+    const pulseIdx = Math.floor(((simPath.pulsePhase / (Math.PI * 2)) * path.length)) % path.length;
+    const pulsePt = path[pulseIdx];
+    if (pulsePt) {
+      ctx.fillStyle = "#ffffff";
+      ctx.beginPath();
+      ctx.arc(pulsePt.x * cellW + cellW * 0.5, pulsePt.y * cellH + cellH * 0.5, 5, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  const startPx = start.x * cellW + cellW * 0.5;
+  const startPy = start.y * cellH + cellH * 0.5;
+  ctx.save();
+  ctx.fillStyle = "#10b981";
+  ctx.shadowColor = "#10b981";
+  ctx.shadowBlur = 14;
+  ctx.beginPath();
+  ctx.arc(startPx, startPy, Math.min(cellW, cellH) * 0.42, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
+  ctx.font = "bold 11px sans-serif";
+  ctx.fillStyle = "#ffffff";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText("S", startPx, startPy);
+
+  const targetPx = target.x * cellW + cellW * 0.5;
+  const targetPy = target.y * cellH + cellH * 0.5;
+  ctx.save();
+  ctx.fillStyle = "#ef4444";
+  ctx.shadowColor = "#ef4444";
+  ctx.shadowBlur = 14;
+  ctx.beginPath();
+  ctx.arc(targetPx, targetPy, Math.min(cellW, cellH) * 0.42, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
+  ctx.fillText("T", targetPx, targetPy);
+
+  const hudX = width - 225;
+  let hudY = 32;
+
+  ctx.textAlign = "left";
+  ctx.textBaseline = "alphabetic";
+  ctx.fillStyle = "rgba(15, 23, 42, 0.75)";
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.roundRect(hudX - 10, 16, width - hudX, height - 32, 10);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.font = "700 12.5px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#ffd700";
+  ctx.fillText("ÚTKERESŐ STATISZTIKA", hudX, hudY); hudY += 24;
+
+  const algoLabels = { astar: "A* keresés (Heurisztikus)", dijkstra: "Dijkstra-algoritmus", bfs: "Szélességi bejárás (BFS)" };
+  ctx.font = "600 12px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#38bdf8";
+  ctx.fillText(algoLabels[algo] || algo, hudX, hudY); hudY += 20;
+
+  ctx.font = "500 11.5px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#cbd5e1";
+  ctx.fillText(`Vizsgált mezők: ${stats.visitedCount} db`, hudX, hudY); hudY += 18;
+  ctx.fillText(`Legrövidebb út: ${stats.pathLength} lépés`, hudX, hudY); hudY += 18;
+
+  const effPercent = ((stats.pathLength / Math.max(1, stats.visitedCount)) * 100).toFixed(0);
+  ctx.fillText(`Célirányosság: ${effPercent}%`, hudX, hudY); hudY += 24;
+
+  ctx.font = "600 11px 'JetBrains Mono', monospace";
+  ctx.fillStyle = stats.found ? "#10b981" : "#ef4444";
+  ctx.fillText(stats.found ? "✓ Útvonal megtalálva" : "✗ Nincs átjáró (fal zárja)", hudX, hudY); hudY += 20;
+
+  ctx.font = "500 10.5px 'JetBrains Mono', monospace";
+  ctx.fillStyle = "#94a3b8";
+  ctx.fillText("Heurisztika: f = g + h", hudX, hudY); hudY += 16;
+  ctx.fillText("Kék: vizsgált mezők", hudX, hudY); hudY += 16;
+  ctx.fillText("Arany: megtalált legrövidebb út", hudX, hudY);
+
+  ctx.fillStyle = "#64748b";
+  ctx.fillText("Húzd az egeret falak rajzolásához, vagy húzd át az S és T pontokat!", 20, height - 12);
+}
+
 function renderSimControls(simId) {
   if (!simControls) return;
   simControls.innerHTML = "";
@@ -11930,6 +13044,296 @@ function renderSimControls(simId) {
       if (phiVal) phiVal.textContent = deg + "°";
       if (phiDeg) phiDeg.textContent = deg + "°";
     });
+  } else if (simId === "lorenz") {
+    simControls.innerHTML = `
+      <div class="sim-row">
+        <span class="sim-label">Rayleigh paraméter ρ: <b id="simLorenzRhoVal">${simLorenzAttr.rho.toFixed(1)}</b></span>
+        <div class="sim-slider-wrap">
+          <input type="range" class="sim-slider" id="simLorenzRhoSlider" min="12" max="38" step="0.5" value="${simLorenzAttr.rho}">
+          <span class="sim-val" id="simLorenzRhoNum">${simLorenzAttr.rho.toFixed(1)}</span>
+        </div>
+        <div class="sim-btn-group">
+          <button type="button" class="sim-ctrl-btn sim-btn-amber" id="simLorenzPlay">${simLorenzAttr.running ? "⏸ Szünet" : "▶ Indítás"}</button>
+          <button type="button" class="sim-ctrl-btn sim-btn-cyan" id="simLorenzTwin">${simLorenzAttr.showTwin ? "🦋 Iker ki" : "🦋 Iker be"}</button>
+          <button type="button" class="sim-ctrl-btn" id="simLorenzReset">↺ Újra</button>
+        </div>
+      </div>
+      <div class="sim-row">
+        <span class="sim-label">Prandtl paraméter σ: <b id="simLorenzSigmaVal">${simLorenzAttr.sigma.toFixed(1)}</b></span>
+        <div class="sim-slider-wrap">
+          <input type="range" class="sim-slider" id="simLorenzSigmaSlider" min="5" max="22" step="0.5" value="${simLorenzAttr.sigma}">
+          <span class="sim-val" id="simLorenzSigmaNum">${simLorenzAttr.sigma.toFixed(1)}</span>
+        </div>
+        <span class="sim-label">Szimuláció sebessége: <b id="simLorenzSpeedVal">${simLorenzAttr.speed.toFixed(1)}×</b></span>
+        <div class="sim-slider-wrap">
+          <input type="range" class="sim-slider" id="simLorenzSpeedSlider" min="0.4" max="2.4" step="0.2" value="${simLorenzAttr.speed}">
+          <span class="sim-val" id="simLorenzSpeedNum">${simLorenzAttr.speed.toFixed(1)}×</span>
+        </div>
+      </div>
+    `;
+
+    const rhoSlider = document.getElementById("simLorenzRhoSlider");
+    const rhoVal = document.getElementById("simLorenzRhoVal");
+    const rhoNum = document.getElementById("simLorenzRhoNum");
+    if (rhoSlider) rhoSlider.addEventListener("input", (e) => {
+      simLorenzAttr.rho = parseFloat(e.target.value);
+      if (rhoVal) rhoVal.textContent = simLorenzAttr.rho.toFixed(1);
+      if (rhoNum) rhoNum.textContent = simLorenzAttr.rho.toFixed(1);
+    });
+
+    const sigmaSlider = document.getElementById("simLorenzSigmaSlider");
+    const sigmaVal = document.getElementById("simLorenzSigmaVal");
+    const sigmaNum = document.getElementById("simLorenzSigmaNum");
+    if (sigmaSlider) sigmaSlider.addEventListener("input", (e) => {
+      simLorenzAttr.sigma = parseFloat(e.target.value);
+      if (sigmaVal) sigmaVal.textContent = simLorenzAttr.sigma.toFixed(1);
+      if (sigmaNum) sigmaNum.textContent = simLorenzAttr.sigma.toFixed(1);
+    });
+
+    const speedSlider = document.getElementById("simLorenzSpeedSlider");
+    const speedVal = document.getElementById("simLorenzSpeedVal");
+    const speedNum = document.getElementById("simLorenzSpeedNum");
+    if (speedSlider) speedSlider.addEventListener("input", (e) => {
+      simLorenzAttr.speed = parseFloat(e.target.value);
+      if (speedVal) speedVal.textContent = simLorenzAttr.speed.toFixed(1) + "×";
+      if (speedNum) speedNum.textContent = simLorenzAttr.speed.toFixed(1) + "×";
+    });
+
+    const playBtn = document.getElementById("simLorenzPlay");
+    if (playBtn) playBtn.addEventListener("click", () => {
+      simLorenzAttr.running = !simLorenzAttr.running;
+      playBtn.textContent = simLorenzAttr.running ? "⏸ Szünet" : "▶ Indítás";
+    });
+
+    const twinBtn = document.getElementById("simLorenzTwin");
+    if (twinBtn) twinBtn.addEventListener("click", () => {
+      simLorenzAttr.showTwin = !simLorenzAttr.showTwin;
+      twinBtn.textContent = simLorenzAttr.showTwin ? "🦋 Iker ki" : "🦋 Iker be";
+      if (simLorenzAttr.showTwin) {
+        simLorenzAttr.posB = [simLorenzAttr.posA[0] + 0.001, simLorenzAttr.posA[1], simLorenzAttr.posA[2]];
+        simLorenzAttr.trailB = [];
+      }
+    });
+
+    const resetBtn = document.getElementById("simLorenzReset");
+    if (resetBtn) resetBtn.addEventListener("click", () => {
+      simLorenzAttr.posA = [0.1, 0, 0];
+      simLorenzAttr.trailA = [];
+      simLorenzAttr.posB = [0.1001, 0, 0];
+      simLorenzAttr.trailB = [];
+      simLorenzAttr.divergence = 0.001;
+    });
+
+  } else if (simId === "wave") {
+    simControls.innerHTML = `
+      <div class="sim-row">
+        <span class="sim-label">Kísérleti elrendezés:</span>
+        <select class="sim-select" id="simWavePresetSel">
+          <option value="young" ${simWave.preset === "young" ? "selected" : ""}>Young-féle kétréses interferencia</option>
+          <option value="dipole" ${simWave.preset === "dipole" ? "selected" : ""}>Két koherens pontforrás</option>
+          <option value="corner" ${simWave.preset === "corner" ? "selected" : ""}>Huygens sarok-diffrakció</option>
+          <option value="free" ${simWave.preset === "free" ? "selected" : ""}>Szabad hullámmedence</option>
+        </select>
+        <div class="sim-btn-group">
+          <button type="button" class="sim-ctrl-btn sim-btn-cyan" id="simWavePulse">⚡ Hullámlökés</button>
+          <button type="button" class="sim-ctrl-btn" id="simWaveClear">↺ Lecsendesítés</button>
+        </div>
+      </div>
+      <div class="sim-row">
+        <span class="sim-label">Forrás frekvenciája: <b id="simWaveFreqVal">${simWave.freq.toFixed(2)}</b></span>
+        <div class="sim-slider-wrap">
+          <input type="range" class="sim-slider" id="simWaveFreqSlider" min="0.10" max="0.45" step="0.02" value="${simWave.freq}">
+          <span class="sim-val" id="simWaveFreqNum">${simWave.freq.toFixed(2)}</span>
+        </div>
+        <span class="sim-label">Közeg csillapítása: <b id="simWaveDampVal">${simWave.damp.toFixed(3)}</b></span>
+        <div class="sim-slider-wrap">
+          <input type="range" class="sim-slider" id="simWaveDampSlider" min="0.970" max="0.998" step="0.002" value="${simWave.damp}">
+          <span class="sim-val" id="simWaveDampNum">${simWave.damp.toFixed(3)}</span>
+        </div>
+      </div>
+    `;
+
+    const presetSel = document.getElementById("simWavePresetSel");
+    if (presetSel) presetSel.addEventListener("change", (e) => {
+      initWaveSim(e.target.value);
+    });
+
+    const pulseBtn = document.getElementById("simWavePulse");
+    if (pulseBtn) pulseBtn.addEventListener("click", () => {
+      const cy = Math.floor(simWave.rows / 2);
+      const cx = Math.floor(simWave.cols * 0.25);
+      simWave.u1[cy * simWave.cols + cx] += 5.0;
+    });
+
+    const clearBtn = document.getElementById("simWaveClear");
+    if (clearBtn) clearBtn.addEventListener("click", () => {
+      initWaveSim(simWave.preset);
+    });
+
+    const freqSlider = document.getElementById("simWaveFreqSlider");
+    const freqVal = document.getElementById("simWaveFreqVal");
+    const freqNum = document.getElementById("simWaveFreqNum");
+    if (freqSlider) freqSlider.addEventListener("input", (e) => {
+      simWave.freq = parseFloat(e.target.value);
+      if (freqVal) freqVal.textContent = simWave.freq.toFixed(2);
+      if (freqNum) freqNum.textContent = simWave.freq.toFixed(2);
+    });
+
+    const dampSlider = document.getElementById("simWaveDampSlider");
+    const dampVal = document.getElementById("simWaveDampVal");
+    const dampNum = document.getElementById("simWaveDampNum");
+    if (dampSlider) dampSlider.addEventListener("input", (e) => {
+      simWave.damp = parseFloat(e.target.value);
+      if (dampVal) dampVal.textContent = simWave.damp.toFixed(3);
+      if (dampNum) dampNum.textContent = simWave.damp.toFixed(3);
+    });
+
+  } else if (simId === "blackhole") {
+    simControls.innerHTML = `
+      <div class="sim-row">
+        <span class="sim-label">Schwarzschild sugár r_s: <b id="simBhRsVal">${simBlackhole.rs} px</b></span>
+        <div class="sim-slider-wrap">
+          <input type="range" class="sim-slider" id="simBhRsSlider" min="20" max="55" step="1" value="${simBlackhole.rs}">
+          <span class="sim-val" id="simBhRsNum">${simBlackhole.rs} px</span>
+        </div>
+        <div class="sim-btn-group">
+          <button type="button" class="sim-ctrl-btn ${simBlackhole.showAccretion ? "sim-btn-amber" : ""}" id="simBhAccretion">${simBlackhole.showAccretion ? "🔥 Korong be" : "Korong ki"}</button>
+          <button type="button" class="sim-ctrl-btn ${simBlackhole.showRings ? "sim-btn-cyan" : ""}" id="simBhRings">${simBlackhole.showRings ? "⭕ Gyűrűk be" : "Gyűrűk ki"}</button>
+          <button type="button" class="sim-ctrl-btn" id="simBhReset">↺ Középre</button>
+        </div>
+      </div>
+    `;
+
+    const rsSlider = document.getElementById("simBhRsSlider");
+    const rsVal = document.getElementById("simBhRsVal");
+    const rsNum = document.getElementById("simBhRsNum");
+    if (rsSlider) rsSlider.addEventListener("input", (e) => {
+      simBlackhole.rs = parseInt(e.target.value, 10);
+      if (rsVal) rsVal.textContent = simBlackhole.rs + " px";
+      if (rsNum) rsNum.textContent = simBlackhole.rs + " px";
+    });
+
+    const accBtn = document.getElementById("simBhAccretion");
+    if (accBtn) accBtn.addEventListener("click", () => {
+      simBlackhole.showAccretion = !simBlackhole.showAccretion;
+      accBtn.textContent = simBlackhole.showAccretion ? "🔥 Korong be" : "Korong ki";
+      accBtn.classList.toggle("sim-btn-amber", simBlackhole.showAccretion);
+    });
+
+    const ringsBtn = document.getElementById("simBhRings");
+    if (ringsBtn) ringsBtn.addEventListener("click", () => {
+      simBlackhole.showRings = !simBlackhole.showRings;
+      ringsBtn.textContent = simBlackhole.showRings ? "⭕ Gyűrűk be" : "Gyűrűk ki";
+      ringsBtn.classList.toggle("sim-btn-cyan", simBlackhole.showRings);
+    });
+
+    const resetBtn = document.getElementById("simBhReset");
+    if (resetBtn) resetBtn.addEventListener("click", () => {
+      simBlackhole.bhX = 270;
+      simBlackhole.bhY = 180;
+    });
+
+  } else if (simId === "gas") {
+    simControls.innerHTML = `
+      <div class="sim-row">
+        <span class="sim-label">Hőmérséklet T: <b id="simGasTempVal">${simGas.temp.toFixed(2)} T₀</b></span>
+        <div class="sim-slider-wrap">
+          <input type="range" class="sim-slider" id="simGasTempSlider" min="0.3" max="3.0" step="0.1" value="${simGas.temp}">
+          <span class="sim-val" id="simGasTempNum">${simGas.temp.toFixed(1)}×</span>
+        </div>
+        <div class="sim-btn-group">
+          <button type="button" class="sim-ctrl-btn sim-btn-amber" id="simGasPlay">${simGas.running ? "⏸ Szünet" : "▶ Indítás"}</button>
+          <button type="button" class="sim-ctrl-btn ${simGas.gravity > 0 ? "sim-btn-cyan" : ""}" id="simGasGrav">${simGas.gravity > 0 ? "🪐 Gravitáció be" : "Gravitáció ki"}</button>
+          <button type="button" class="sim-ctrl-btn" id="simGasReset">↺ Újragenerálás</button>
+        </div>
+      </div>
+    `;
+
+    const tempSlider = document.getElementById("simGasTempSlider");
+    const tempVal = document.getElementById("simGasTempVal");
+    const tempNum = document.getElementById("simGasTempNum");
+    if (tempSlider) tempSlider.addEventListener("input", (e) => {
+      const oldTemp = simGas.temp;
+      simGas.temp = parseFloat(e.target.value);
+      if (tempVal) tempVal.textContent = simGas.temp.toFixed(2) + " T₀";
+      if (tempNum) tempNum.textContent = simGas.temp.toFixed(1) + "×";
+      const scale = Math.sqrt(simGas.temp / oldTemp);
+      simGas.particles.forEach(p => {
+        p.vx *= scale;
+        p.vy *= scale;
+      });
+    });
+
+    const playBtn = document.getElementById("simGasPlay");
+    if (playBtn) playBtn.addEventListener("click", () => {
+      simGas.running = !simGas.running;
+      playBtn.textContent = simGas.running ? "⏸ Szünet" : "▶ Indítás";
+    });
+
+    const gravBtn = document.getElementById("simGasGrav");
+    if (gravBtn) gravBtn.addEventListener("click", () => {
+      simGas.gravity = simGas.gravity > 0 ? 0 : 0.08;
+      gravBtn.textContent = simGas.gravity > 0 ? "🪐 Gravitáció be" : "Gravitáció ki";
+      gravBtn.classList.toggle("sim-btn-cyan", simGas.gravity > 0);
+    });
+
+    const resetBtn = document.getElementById("simGasReset");
+    if (resetBtn) resetBtn.addEventListener("click", () => {
+      initGasSim();
+    });
+
+  } else if (simId === "pathfinding") {
+    simControls.innerHTML = `
+      <div class="sim-row">
+        <span class="sim-label">Algoritmus:</span>
+        <select class="sim-select" id="simPathAlgoSel">
+          <option value="astar" ${simPath.algo === "astar" ? "selected" : ""}>A* keresés (Heurisztikus)</option>
+          <option value="dijkstra" ${simPath.algo === "dijkstra" ? "selected" : ""}>Dijkstra-algoritmus</option>
+          <option value="bfs" ${simPath.algo === "bfs" ? "selected" : ""}>Szélességi bejárás (BFS)</option>
+        </select>
+        <span class="sim-label">Heurisztika:</span>
+        <select class="sim-select" id="simPathHeurSel">
+          <option value="manhattan" ${simPath.heuristic === "manhattan" ? "selected" : ""}>Manhattan távolság (|Δx|+|Δy|)</option>
+          <option value="euclidean" ${simPath.heuristic === "euclidean" ? "selected" : ""}>Euklideszi távolság (√(Δx²+Δy²))</option>
+        </select>
+        <div class="sim-btn-group">
+          <button type="button" class="sim-ctrl-btn sim-btn-amber" id="simPathMaze">🌀 Labirintus</button>
+          <button type="button" class="sim-ctrl-btn" id="simPathClear">↺ Törlés</button>
+        </div>
+      </div>
+    `;
+
+    const algoSel = document.getElementById("simPathAlgoSel");
+    if (algoSel) algoSel.addEventListener("change", (e) => {
+      simPath.algo = e.target.value;
+      recomputePathfinding();
+    });
+
+    const heurSel = document.getElementById("simPathHeurSel");
+    if (heurSel) heurSel.addEventListener("change", (e) => {
+      simPath.heuristic = e.target.value;
+      recomputePathfinding();
+    });
+
+    const mazeBtn = document.getElementById("simPathMaze");
+    if (mazeBtn) mazeBtn.addEventListener("click", () => {
+      initPathfindingGrid(false);
+      for (let i = 0; i < simPath.grid.length; i++) {
+        if (Math.random() < 0.22) {
+          const x = i % simPath.cols;
+          const y = Math.floor(i / simPath.cols);
+          if ((x !== simPath.start.x || y !== simPath.start.y) && (x !== simPath.target.x || y !== simPath.target.y)) {
+            simPath.grid[i] = 1;
+          }
+        }
+      }
+      recomputePathfinding();
+    });
+
+    const clearBtn = document.getElementById("simPathClear");
+    if (clearBtn) clearBtn.addEventListener("click", () => {
+      initPathfindingGrid(true);
+    });
   }
 }
 
@@ -11982,6 +13386,31 @@ function renderSimInfo(simId) {
       </ul>
       </p>
     `;
+  } else if (simId === "lorenz") {
+    simInfo.innerHTML = `
+      <p><b>A tétel lényege:</b> Edward Lorenz 1963-ban egy végletekig leegyszerűsített 3-változós légköri konvekciós modellt vizsgált: <i>dx/dt = σ(y - x)</i>, <i>dy/dt = x(ρ - z) - y</i>, <i>dz/dt = xy - βz</i>. Megdöbbenve tapasztalta, hogy a rendszer determinisztikus és szigorúan szabályos egyenletei ellenére a megoldás sosem ismétli önmagát, és végtelenül bonyolult fraktál-szerkezetet alkot (különös attraktor). Ez a modern <b>káoszelmélet</b> és a <b>Pillangóhatás</b> szülőhelye.</p>
+      <p><b>A szimuláció interakciója:</b> Két pont fut párhuzamosan: a ciánkék és a magenta trajektória. A kezdőhelyzetük mindössze <b>0,0001</b> egységgel tér el. Figyeld meg, hogy eleinte együtt keringenek az egyik szárnyban, majd a szétválási küszöböt elérve hirtelen és visszavonhatatlanul elválnak egymástól! Forgasd a 3D fázisteret az egérrel vagy az ujjaddal.</p>
+    `;
+  } else if (simId === "wave") {
+    simInfo.innerHTML = `
+      <p><b>A tétel lényege:</b> A klasszikus hullámegyenlet (<i>∂²u/∂t² = c²∇²u</i>) és Thomas Young 1801-es kétréses kísérlete a fény hullámtermészetének döntő bizonyítéka. Amikor egy hullámfront átjut a két szűk résen, a Huygens–Fresnel-elv szerint mindkét rés új elemi körhullámok forrásává válik. Ahol a hullámhegyek találkoznak, erősítés (konstruktív interferencia), ahol hegy és völgy találkozik, kioltás (destruktív interferencia) jön létre.</p>
+      <p><b>A szimuláció interakciója:</b> Válassz a sablonok közül (Young-kísérlet, Két pontforrás, Sarok diffrakció), vagy <b>kattints és húzd az egeret a medencében</b> saját hullámok keltéséhez! A jobb oldali detektor valós időben rajzolja ki a mért interferenciacsíkok intenzitásprofilját.</p>
+    `;
+  } else if (simId === "blackhole") {
+    simInfo.innerHTML = `
+      <p><b>A tétel lényege:</b> Albert Einstein általános relativitáselmélete és Karl Schwarzschild 1916-os egzakt megoldása szerint egy elég sűrű tömeg görbíti maga körül a téridőt. A fénysugarak nem egyenes vonalban haladnak, hanem a tér görbülete mentén elhajlanak (<b>gravitációs lencsehatás</b>). A fekete lyuk eseményhorizontján belülről semmi, még a fény sem szökhet meg (<i>r_s = 2GM/c²</i>), körülötte pedig a fotonszféra és a forró akkréciós korong ragyog.</p>
+      <p><b>A szimuláció interakciója:</b> <b>Kattints és húzd a fekete lyukat</b> a háttér csillagmező előtt! Figyeld meg a valós idejű Einstein-gyűrűt, a csillagok kettőzött és széthúzott képeit, valamint a relativisztikus akkréciós korong <i>Doppler-beaming</i> jelenségét (a felénk forgó oldal kékebb és fényesebb, a távolodó vörösebb és halványabb)!</p>
+    `;
+  } else if (simId === "gas") {
+    simInfo.innerHTML = `
+      <p><b>A tétel lényege:</b> James Clerk Maxwell és Ludwig Boltzmann statisztikus mechanikája: egy ideális gáz mikroszkopikus molekulái folyamatosan, véletlenszerűen ütköznek egymással. Bár az egyedi részecskék sebessége kaotikusan ugrál, a sokaság egészének sebességeloszlása szigorúan és determinisztikusan a <b>Maxwell–Boltzmann eloszlást</b> követi (<i>f(v) ∝ v·e^{-mv²/2k_BT}</i>).</p>
+      <p><b>A szimuláció interakciója:</b> A jobb oldali hisztogramon valós időben látható a tartályban lévő részecskék sebesség-statisztikája (kék oszlopok) és a sárga elméleti Maxwell–Boltzmann görbe tökéletes illeszkedése. Állítsd a hőmérsékletet, kapcsold be a gravitációt (barometrikus magasságformula szerinti leülepedés), és kövesd a nagy sárga pollen szemcse bolyongását (Einstein 1905-ös Brown-mozgása)!</p>
+    `;
+  } else if (simId === "pathfinding") {
+    simInfo.innerHTML = `
+      <p><b>A tétel lényege:</b> Az elméleti informatika és gráfelmélet egyik legfontosabb problémája a legrövidebb út megtalálása. Edsger W. Dijkstra 1956-os algoritmusa garantáltan megtalálja a legrövidebb utat, de vakon, körkörös hullámfrontban keres. Az 1968-as <b>A* algoritmus</b> (Hart, Nilsson, Raphael) ezt egy heurisztikus távolságfüggvénnyel (<i>f(n) = g(n) + h(n)</i>) egészíti ki: célirányosan a célpont felé vezeti a keresést, drasztikusan lecsökkentve a vizsgálandó állapotok számát.</p>
+      <p><b>A szimuláció interakciója:</b> Válassz az <b>A*</b> és a <b>Dijkstra</b> algoritmusok között! Húzd az egeret falak építéséhez, vagy húzd át a zöld Kezdőpontot (<b>S</b>) és a piros Célpontot (<b>T</b>). Az algoritmus valós időben keres, és a telemetrián azonnal látható a heurisztika zseniális hatékonysága (akár 80-90%-kal kevesebb vizsgált mező)!</p>
+    `;
   }
 }
 
@@ -11999,14 +13428,19 @@ function simLoop() {
     }
     simCtx.save();
     simCtx.scale(dpr, dpr);
-    if (currentSimId === "lorentz") drawLorentz(simCtx, w, h);
+    if (currentSimId === "bloch") drawBloch(simCtx, w, h);
+    else if (currentSimId === "lorentz") drawLorentz(simCtx, w, h);
     else if (currentSimId === "tunnel") drawTunnel(simCtx, w, h);
     else if (currentSimId === "mandelbrot") drawMandelbrot(simCtx, w, h);
     else if (currentSimId === "fourier") drawFourier(simCtx, w, h);
     else if (currentSimId === "conway") drawConway(simCtx, w, h);
     else if (currentSimId === "pendulum") drawPendulum(simCtx, w, h);
     else if (currentSimId === "gravity") drawGravity(simCtx, w, h);
-    else if (currentSimId === "bloch") drawBloch(simCtx, w, h);
+    else if (currentSimId === "lorenz") drawLorenzAttr(simCtx, w, h);
+    else if (currentSimId === "wave") drawWave(simCtx, w, h);
+    else if (currentSimId === "blackhole") drawBlackhole(simCtx, w, h);
+    else if (currentSimId === "gas") drawGas(simCtx, w, h);
+    else if (currentSimId === "pathfinding") drawPathfinding(simCtx, w, h);
     simCtx.restore();
   }
   simRaf = requestAnimationFrame(simLoop);
@@ -12033,6 +13467,18 @@ function switchSimulation(simId) {
   }
   if (simId === "gravity" && (!simGravity.bodies || simGravity.bodies.length === 0)) {
     loadGravityPreset(simGravity.preset, simCanvas?.width || 640, simCanvas?.height || 360);
+  }
+  if (simId === "wave" && !simWave.u1) {
+    initWaveSim();
+  }
+  if (simId === "gas" && simGas.particles.length === 0) {
+    initGasSim();
+  }
+  if (simId === "blackhole" && simBlackhole.stars.length === 0) {
+    initBlackholeStars(simCanvas?.width || 640, simCanvas?.height || 360);
+  }
+  if (simId === "pathfinding" && simPath.grid.length === 0) {
+    initPathfindingGrid();
   }
 }
 
@@ -12225,6 +13671,114 @@ if (simCanvas) {
     simGravity.aimCurrent = null;
   }
 
+  function handleWavePoke(clientX, clientY) {
+    if (currentSimId !== "wave" || !simWave.u1) return;
+    const rect = simCanvas.getBoundingClientRect();
+    const cellW = (rect.width - 175 * (rect.width / 640)) / simWave.cols;
+    const cellH = rect.height / simWave.rows;
+    const mx = clientX - rect.left;
+    const my = clientY - rect.top;
+    const gx = Math.floor(mx / cellW);
+    const gy = Math.floor(my / cellH);
+    if (gx >= 0 && gx < simWave.cols && gy >= 0 && gy < simWave.rows) {
+      for (let dy = -2; dy <= 2; dy++) {
+        for (let dx = -2; dx <= 2; dx++) {
+          const nx = gx + dx;
+          const ny = gy + dy;
+          if (nx >= 0 && nx < simWave.cols && ny >= 0 && ny < simWave.rows) {
+            const idx = ny * simWave.cols + nx;
+            if (!simWave.wall[idx]) {
+              const d = Math.hypot(dx, dy);
+              simWave.u1[idx] += Math.max(0, 3.8 - d * 1.2);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  function handleBlackholeDrag(clientX, clientY) {
+    if (currentSimId !== "blackhole") return;
+    const rect = simCanvas.getBoundingClientRect();
+    simBlackhole.bhX = Math.max(30, Math.min(rect.width - 30, (clientX - rect.left) * (640 / rect.width)));
+    simBlackhole.bhY = Math.max(30, Math.min(rect.height - 30, (clientY - rect.top) * (360 / rect.height)));
+  }
+
+  function handlePathfindingDown(clientX, clientY, isRightClick) {
+    if (currentSimId !== "pathfinding") return;
+    const rect = simCanvas.getBoundingClientRect();
+    const gridAreaW = rect.width - 240 * (rect.width / 640);
+    const cellW = gridAreaW / simPath.cols;
+    const cellH = rect.height / simPath.rows;
+    const mx = clientX - rect.left;
+    const my = clientY - rect.top;
+    if (mx > gridAreaW) return;
+    const gx = Math.floor(mx / cellW);
+    const gy = Math.floor(my / cellH);
+    if (gx < 0 || gx >= simPath.cols || gy < 0 || gy >= simPath.rows) return;
+
+    if (gx === simPath.start.x && gy === simPath.start.y) {
+      simPath.draggedNode = "start";
+      return;
+    }
+    if (gx === simPath.target.x && gy === simPath.target.y) {
+      simPath.draggedNode = "target";
+      return;
+    }
+
+    const idx = gy * simPath.cols + gx;
+    if (isRightClick || simPath.grid[idx] === 1) {
+      simPath.isErasingWall = true;
+      simPath.grid[idx] = 0;
+    } else {
+      simPath.isDrawingWall = true;
+      simPath.grid[idx] = 1;
+    }
+    recomputePathfinding();
+  }
+
+  function handlePathfindingMove(clientX, clientY) {
+    if (currentSimId !== "pathfinding") return;
+    const rect = simCanvas.getBoundingClientRect();
+    const gridAreaW = rect.width - 240 * (rect.width / 640);
+    const cellW = gridAreaW / simPath.cols;
+    const cellH = rect.height / simPath.rows;
+    const mx = clientX - rect.left;
+    const my = clientY - rect.top;
+    if (mx > gridAreaW) return;
+    const gx = Math.floor(mx / cellW);
+    const gy = Math.floor(my / cellH);
+    if (gx < 0 || gx >= simPath.cols || gy < 0 || gy >= simPath.rows) return;
+
+    if (simPath.draggedNode === "start") {
+      if (gx !== simPath.target.x || gy !== simPath.target.y) {
+        simPath.start = { x: gx, y: gy };
+        recomputePathfinding();
+      }
+    } else if (simPath.draggedNode === "target") {
+      if (gx !== simPath.start.x || gy !== simPath.start.y) {
+        simPath.target = { x: gx, y: gy };
+        recomputePathfinding();
+      }
+    } else if (simPath.isDrawingWall) {
+      const idx = gy * simPath.cols + gx;
+      if ((gx !== simPath.start.x || gy !== simPath.start.y) && (gx !== simPath.target.x || gy !== simPath.target.y)) {
+        simPath.grid[idx] = 1;
+        recomputePathfinding();
+      }
+    } else if (simPath.isErasingWall) {
+      const idx = gy * simPath.cols + gx;
+      simPath.grid[idx] = 0;
+      recomputePathfinding();
+    }
+  }
+
+  function handlePathfindingUp() {
+    simPath.draggedNode = null;
+    simPath.isDrawingWall = false;
+    simPath.isErasingWall = false;
+  }
+
   simCanvas.addEventListener("mousedown", (e) => {
     if (currentSimId === "conway") {
       isDrawingConway = true;
@@ -12237,8 +13791,21 @@ if (simCanvas) {
       simBloch.isDragging = true;
       simBloch.lastMouseX = e.clientX;
       simBloch.lastMouseY = e.clientY;
+    } else if (currentSimId === "lorenz") {
+      simLorenzAttr.isDragging = true;
+      simLorenzAttr.lastMouseX = e.clientX;
+      simLorenzAttr.lastMouseY = e.clientY;
+    } else if (currentSimId === "wave") {
+      simWave.isPointerDown = true;
+      handleWavePoke(e.clientX, e.clientY);
+    } else if (currentSimId === "blackhole") {
+      simBlackhole.isDragging = true;
+      handleBlackholeDrag(e.clientX, e.clientY);
+    } else if (currentSimId === "pathfinding") {
+      handlePathfindingDown(e.clientX, e.clientY, e.button === 2);
     }
   });
+
   window.addEventListener("mousemove", (e) => {
     if (isDrawingConway && currentSimId === "conway") handleConwayDraw(e);
     if (simPendulum.draggedBob && currentSimId === "pendulum") handlePendulumDrag(e.clientX, e.clientY);
@@ -12251,11 +13818,33 @@ if (simCanvas) {
       simBloch.lastMouseX = e.clientX;
       simBloch.lastMouseY = e.clientY;
     }
+    if (simLorenzAttr.isDragging && currentSimId === "lorenz") {
+      const dx = e.clientX - simLorenzAttr.lastMouseX;
+      const dy = e.clientY - simLorenzAttr.lastMouseY;
+      simLorenzAttr.rotY += dx * 0.01;
+      simLorenzAttr.rotX = Math.max(-Math.PI / 2.2, Math.min(Math.PI / 2.2, simLorenzAttr.rotX + dy * 0.01));
+      simLorenzAttr.lastMouseX = e.clientX;
+      simLorenzAttr.lastMouseY = e.clientY;
+    }
+    if (simWave.isPointerDown && currentSimId === "wave") {
+      handleWavePoke(e.clientX, e.clientY);
+    }
+    if (simBlackhole.isDragging && currentSimId === "blackhole") {
+      handleBlackholeDrag(e.clientX, e.clientY);
+    }
+    if (currentSimId === "pathfinding") {
+      handlePathfindingMove(e.clientX, e.clientY);
+    }
   });
+
   window.addEventListener("mouseup", () => {
     isDrawingConway = false;
     simPendulum.draggedBob = null;
     simBloch.isDragging = false;
+    simLorenzAttr.isDragging = false;
+    simWave.isPointerDown = false;
+    simBlackhole.isDragging = false;
+    handlePathfindingUp();
     if (currentSimId === "gravity") endGravityAim();
   });
 
@@ -12273,8 +13862,21 @@ if (simCanvas) {
       simBloch.isDragging = true;
       simBloch.lastMouseX = t.clientX;
       simBloch.lastMouseY = t.clientY;
+    } else if (currentSimId === "lorenz") {
+      simLorenzAttr.isDragging = true;
+      simLorenzAttr.lastMouseX = t.clientX;
+      simLorenzAttr.lastMouseY = t.clientY;
+    } else if (currentSimId === "wave") {
+      simWave.isPointerDown = true;
+      handleWavePoke(t.clientX, t.clientY);
+    } else if (currentSimId === "blackhole") {
+      simBlackhole.isDragging = true;
+      handleBlackholeDrag(t.clientX, t.clientY);
+    } else if (currentSimId === "pathfinding") {
+      handlePathfindingDown(t.clientX, t.clientY, false);
     }
   }, { passive: true });
+
   window.addEventListener("touchmove", (e) => {
     if (!e.touches || !e.touches[0]) return;
     const t = e.touches[0];
@@ -12289,16 +13891,60 @@ if (simCanvas) {
       simBloch.lastMouseX = t.clientX;
       simBloch.lastMouseY = t.clientY;
     }
+    if (simLorenzAttr.isDragging && currentSimId === "lorenz") {
+      const dx = t.clientX - simLorenzAttr.lastMouseX;
+      const dy = t.clientY - simLorenzAttr.lastMouseY;
+      simLorenzAttr.rotY += dx * 0.01;
+      simLorenzAttr.rotX = Math.max(-Math.PI / 2.2, Math.min(Math.PI / 2.2, simLorenzAttr.rotX + dy * 0.01));
+      simLorenzAttr.lastMouseX = t.clientX;
+      simLorenzAttr.lastMouseY = t.clientY;
+    }
+    if (simWave.isPointerDown && currentSimId === "wave") {
+      handleWavePoke(t.clientX, t.clientY);
+    }
+    if (simBlackhole.isDragging && currentSimId === "blackhole") {
+      handleBlackholeDrag(t.clientX, t.clientY);
+    }
+    if (currentSimId === "pathfinding") {
+      handlePathfindingMove(t.clientX, t.clientY);
+    }
   }, { passive: true });
+
   window.addEventListener("touchend", () => {
     isDrawingConway = false;
     simPendulum.draggedBob = null;
     simBloch.isDragging = false;
+    simLorenzAttr.isDragging = false;
+    simWave.isPointerDown = false;
+    simBlackhole.isDragging = false;
+    handlePathfindingUp();
     if (currentSimId === "gravity") endGravityAim();
   });
 }
 
-if (simLabBtn) simLabBtn.addEventListener("click", () => openSimulation());
+function initCosmicGlyphs() {
+  const container = document.getElementById("cosmicGlyphs");
+  if (!container) return;
+  container.innerHTML = "";
+  const glyphs = [
+    "ħ", "ψ", "∇×B", "e^{iπ}+1=0", "c", "∑", "∫", "λ", "Ω",
+    "|ψ⟩", "Ĥ", "ΔxΔp≥ħ/2", "G_μν", "k_B", "P=NP?", "δS=0"
+  ];
+  glyphs.forEach((g, idx) => {
+    const el = document.createElement("span");
+    el.className = "cosmic-glyph";
+    el.textContent = g;
+    el.style.left = `${(idx * 6.5 + (idx % 3) * 4) % 94}%`;
+    el.style.top = `${12 + ((idx * 17) % 66)}%`;
+    el.style.animationDelay = `${(idx * 0.75).toFixed(1)}s`;
+    el.style.animationDuration = `${9 + (idx % 5) * 2.5}s`;
+    container.appendChild(el);
+  });
+}
+
+const heroLabPill = document.getElementById("heroLabPill");
+if (heroLabPill) heroLabPill.addEventListener("click", () => openSimulation("bloch"));
+if (simLabBtn) simLabBtn.addEventListener("click", () => openSimulation("bloch"));
 if (simClose) simClose.addEventListener("click", closeSimulation);
 if (simOverlay) simOverlay.addEventListener("click", (e) => {
   if (e.target === simOverlay) closeSimulation();
@@ -12651,6 +14297,7 @@ if (comparatorBtn) {
 function init() {
   const total = MATEK_DATA.length + FIZIKA_DATA.length + INFORMATIKA_DATA.length;
   grandTotalEl.innerHTML = `Összesen <b>${total}</b> halhatatlan tudományos szépség a három gyűjteményben`;
+  initCosmicGlyphs();
   renderDomain("matek");
   renderDailyFeature();
   handleDeepLink();

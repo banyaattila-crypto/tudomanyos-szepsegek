@@ -22,13 +22,13 @@ A PWA **teljesen működőképes**, production-ready állapotban van. Összesen 
 | Figyelmeztetések (Warnings) | **0 (a build validator 0 hibával és 0 figyelmeztetéssel fut le)** |
 | Domainek | 3 (matek / fizika / informatika) |
 | Nézetek | 7 fül: Rangsor / Kategóriák / Idővonal / Lapozó / Játék / Térkép / Kedvencek |
-| Interaktív laboratórium | **8 Canvas szimuláció** (Lorentz, Kvantum-alagút, Mandelbrot, Fourier, Conway, Kettős inga, N-test gravitáció, **Bloch-gömb**) |
+| Interaktív laboratórium | **13 Canvas szimuláció** (**1. Bloch-gömb**, Lorentz, Kvantum-alagút, Mandelbrot, Fourier, Conway, Kettős inga, N-test gravitáció, **Lorenz-attraktor 3D**, **2D Hullámmedence**, **Fekete lyuk lencse**, **Maxwell–Boltzmann gáz**, **A* & Dijkstra**) |
 | Tudományos Párharc | **⚔️ Összehasonlító nézet** (7 klasszikus preset + szabad választó, idővonal-híd, KaTeX képletek egymás mellett, `#duel:...` link) |
 | Nyomtatás | **A4 Tudományos Adatlap generálás** (Print CSS / PDF export) minden tételnél |
 | Szerkesztő panel | ✅ beépített (edit, add, delete, export, offline localStorage) |
 | Wiki linkek | minden tételnél (en/hu.wikipedia.org) |
 | SVG illusztrációk | **mind az 509 tételnél** (202 + 207 + 100), 4 téma: wave / lattice / graph / spiral |
-| PWA telepíthető | igen (manifest.json + sw.js **v12**) |
+| PWA telepíthető | igen (manifest.json + sw.js **v13**) |
 | Offline tűrés | igen (SW precache: index.html + app.css + app.js + editor.js + KaTeX-független boot) |
 | Közösségi megosztás | Teljes OpenGraph és Twitter kártya előnézet (og:title, og:image, og:description) |
 | Mélyhivatkozás (Deep Link) | Támogatott `#entry-domain-slug`, `#slug`, `#sim-key`, `#duel:slugA:slugB`, dinamikus hashchange figyelés |
@@ -59,28 +59,34 @@ A PWA **teljesen működőképes**, production-ready állapotban van. Összesen 
 - [x] **Éjszakai égbolt** (kedvencek csillagképként kirajzolva)
 - [x] **⚔️ Tudományos Párharc & Összehasonlító nézet (Comparator)**:
   - Két tétel egymás melletti részletes összehasonlítása (formulák, évszámok, időbeli távolság, miért fontosak).
-  - **7 ikonikus klasszikus párbaj** gyors preset gombokkal:
-    1. *Newton gravitáció (1687)* vs *Einstein általános relativitás (1915)* (+228 év)
-    2. *Maxwell elektromágnesség (1865)* vs *Einstein fotoeffektus (1905)* (+40 év)
-    3. *Boltzmann entrópia (1877)* vs *Shannon entrópia (1948)* (+71 év)
-    4. *Dijkstra algoritmus (1959)* vs *A\* keresés (1968)* (+9 év)
-    5. *RSA titkosítás (1977)* vs *Elliptikus görbe kriptográfia ECC (1985)* (+8 év)
-    6. *Turing-gép (1936)* vs *Shor kvantum-algoritmusa (1994)* (+58 év)
-    7. *Kepler III. törvénye (1619)* vs *Newton gravitáció (1687)* (+68 év)
+  - **7 ikonikus klasszikus párbaj** gyors preset gombokkal
   - Tetszőleges szabad tételválasztó mind az 509 tételből mindkét oldalon.
   - Véletlenszerű párbajgenerátor (🎲), megcserélés (⇄) és közvetlen megosztási link másolása (`#duel:slugA:slugB`).
-- [x] **🕹️ Interaktív Tudományos Laboratórium**:
-  - *Lorentz-transzformáció és Idődilatáció* ($v/c$ csúszka, élő fényóra, $\gamma$-faktor telemetria)
-  - *Kvantum-alagúthatás* (Schrödinger-egyenlet, állítható $E, V_0, a$, transzmissziós együttható)
-  - *Mandelbrot-halmaz* (élő komplex dinamika, kattintásos 2.5× nagyítás, 3 színpaletta)
-  - *Fourier-sorfejtés* (forgó epiciklusok és szintetizált hullámforma négyszög/fűrészfog/háromszög jelekre, Gibbs-jelenség)
-  - *Conway: Életjáték* (B3/S23 sejt-automata, kattintással rajzolható rács, beépített sablonok)
-  - *Kettős inga és Káoszelmélet* (4. rendű Runge-Kutta [RK4] szimuláció, Pillangóhatás és ikeringa divergencia 0,001 rad kezdőeltérésből, Fázistér diagram [θ₁ vs ω₁], interaktív szög- és csillapítás-állítás)
-  - *N-test gravitáció és Égimechanika* (szimplektikus Velocity Verlet integrátor [$\Delta E/E < 10^{-6}$], Chenciner–Montgomery 8-as pálya, Belső Naprendszer a Holddal, Lagrange L4/L5 pontok, Pitagoraszi 3-test és gravitációs parittya, interaktív égitest-indítás sebességvektorral)
-  - *Bloch-gömb és Kvantum-szuperpozíció* (3D egérrel/érintéssel forgatható Bloch-gömb, $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ állapotvektor fázissík vetülettel, unitér kvantum-kapuk: Hadamard $H$, Pauli-$X$, Pauli-$Y$, Pauli-$Z$, $S$ és $T$ kapuk, Born-szabály szerinti kvantummérés és hullámfüggvény-kollapszus animáció, 100-as statisztikai sokaságmérés, precesszió és fázisidőfejlődés)
+- [x] **🕹️ Interaktív Tudományos Laboratórium (13 élő szimuláció)**:
+  - **1. 🔮 Bloch-gömb és Kvantum-szuperpozíció (ALAPÉRTELMEZETT #1)**: 3D egérrel/érintéssel forgatható Bloch-gömb, $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ állapotvektor fázissík vetülettel, unitér kvantum-kapuk ($H, X, Y, Z, S, T$), Born-szabály szerinti kvantummérés és hullámfüggvény-kollapszus animáció, 100-as statisztikai sokaságmérés, precesszió és fázisidőfejlődés.
+  - **2. ⚡ Lorentz-transzformáció és Idődilatáció**: $v/c$ csúszka, élő fényóra, $\gamma$-faktor telemetria, relativisztikus hosszkontrakció.
+  - **3. 🌊 Kvantum-alagúthatás**: Schrödinger-egyenlet, állítható $E, V_0, a$, transzmissziós együttható és valószínűségi áthatolás.
+  - **4. 🌀 Mandelbrot-halmaz**: élő komplex dinamika, kattintásos 2.5× nagyítás, 3 színpaletta, finom határvonal-iterációk.
+  - **5. 🎼 Fourier-sorfejtés**: forgó epiciklusok és szintetizált hullámforma négyszög/fűrészfog/háromszög jelekre, Gibbs-jelenség.
+  - **6. 👾 Conway: Életjáték**: B3/S23 sejt-automata, kattintással rajzolható rács, beépített sablonok (Sikló, Pulzár, Űrhajó).
+  - **7. 🪀 Kettős inga és Káoszelmélet**: 4. rendű Runge-Kutta [RK4] szimuláció, Pillangóhatás és ikeringa divergencia 0,001 rad kezdőeltérésből, Fázistér diagram [$\theta_1$ vs $\omega_1$].
+  - **8. 🪐 N-test gravitáció és Égimechanika**: szimplektikus Velocity Verlet integrátor, Chenciner–Montgomery 8-as pálya, Belső Naprendszer, Lagrange L4/L5 pontok, interaktív égitest-kilövés.
+  - **9. 🦋 Lorenz-attraktor és Pillangó-effektus (ÚJ!)**: 3D-ben forgatható determinisztikus káosz-attraktor ($\sigma=10, \rho=28, \beta=8/3$), valós idejű iker-trajektória szimuláció ($\Delta r = 0,0001$), exponenciális szétválás telemetria.
+  - **10. 〰️ 2D Hullámmedence és Young-interferencia (ÚJ!)**: valós idejű kétdimenziós hullámegyenlet-rács ($\partial^2 u/\partial t^2 = c^2 \nabla^2 u$), Young-féle kétréses kísérlet, koherens dipólus források, sarok-diffrakció, élő interferencia-intenzitás spektrogram.
+  - **11. 🕳️ Fekete lyuk és Gravitációs lencsehatás (ÚJ!)**: Schwarzschild fekete lyuk relativisztikus fényelhajlással, egérrel mozgatható eseményhorizont a háttér csillagmező előtt, valós idejű Einstein-gyűrűk és kettőzött képek, forró akkréciós korong Doppler-beaming effektussal.
+  - **12. 💨 Kinetikus gázelmélet és Maxwell–Boltzmann sebességeloszlás (ÚJ!)**: 130 rugalmasan ütköző molekula zárt kamrában, valós idejű sebesség-hisztogram illeszkedése az elméleti Maxwell–Boltzmann görbére, állítható hőmérséklet, gravitációs rétegződés és Brown-mozgás nyomkövetés.
+  - **13. 🧭 A* és Dijkstra legrövidebb útkereső algoritmusok (ÚJ!)**: interaktív 2D rács-gráf, A* (Manhattan/Euklideszi heurisztikával) vs Dijkstra vs BFS összehasonlítása, interaktív falrajzolás és labirintusgenerátor, mozgatható Start/Cél pontok azonnali újraszámolással.
 - [x] **🖨️ Nyomtatható A4 Tudományos Adatlap**:
   - Nyomtatóbarát, letisztult fehér hátterű A4-es tudományos lap generálás minden tételhez (Ctrl+P / PDF mentés).
 - [x] **Kártyakészítő** — PNG kártya letöltése megosztáshoz.
+
+### Főoldali Design és Animációk — "Kozmikus Obszervatórium"
+- [x] **Lebegő Kozmikus Képletek a Fejlécben**: `initCosmicGlyphs` mikromozgású, ragyogó tudományos szimbólumok ($\hbar, \psi, \nabla\times B, e^{i\pi}+1=0, c, \sum, \int, \Delta x \Delta p \ge \hbar/2$) finom parallaxis mozgással.
+- [x] **Áramló Színátmenet a Főcímen**: a főcím kiemelt szavai (`h1 em`) lélegző, áramló kozmikus gradiens-animációt (`heroGradientFlow`) és pulzáló fényudvart kaptak.
+- [x] **Főoldali Interaktív Laboratórium Kiemelő Banner**: a statisztikai számláló mellett elegáns, folyamatosan fénylő kerettel futó `hero-lab-pill`, amire kattintva közvetlenül a Bloch-gömb szimuláció nyílik meg.
+- [x] **`#simLabBtn` Lélegző Neon Fénypulzus**: a fejléc akciógombjai között a labor gomb diszkrét, de figyelemfelkeltő neon pulzálással (`simBtnPulse`) hívja fel magára a figyelmet.
+- [x] **Holografikus Kártya-peremfény és Képlet Hover-Glow**: a tételek fölé víve a kurzort a kártya elegánsan megemelkedik, a képlet körül kvantum-aura jelenik meg, az SVG illusztráció finoman lebeg.
+- [x] **Domain Váltó Gombok Lélegző Aurája**: a Matematika / Fizika / Informatika aktív fülei ragyogó neon fényudvart kaptak.
 
 ### Dizájn — "Kozmikus aurora" obszervatórium
 - [x] **Aurora sávok** — hullámzó fény a főcím felett (`@keyframes aurora`, 9s)

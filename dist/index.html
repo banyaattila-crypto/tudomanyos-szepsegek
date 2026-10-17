@@ -101,9 +101,17 @@
       <button type="button" class="info-btn" id="graphBtn" aria-label="Tudás-gráf" title="Tudás-gráf">🕸</button>
     </div>
   </div>
-  <p class="grand-total" id="grandTotal"></p>
+  <div class="grand-total-row">
+    <p class="grand-total" id="grandTotal"></p>
+    <button type="button" class="hero-lab-pill" id="heroLabPill" title="Interaktív tudományos laboratórium megnyitása">
+      <span class="hlp-icon">🔮</span>
+      <span class="hlp-text"><b>Interaktív Tudományos Laboratórium:</b> 13 élő szimuláció (Bloch-gömb, Káosz, Kvantum...)</span>
+      <span class="hlp-arrow">Kipróbálom →</span>
+    </button>
+  </div>
 
   <header>
+    <div class="cosmic-glyph-wrap" id="cosmicGlyphs" aria-hidden="true"></div>
     <p class="eyebrow" id="eyebrow"></p>
     <h1 id="title"></h1>
     <p class="sub" id="subtitle"></p>
@@ -260,14 +268,19 @@
     <p class="modal-eyebrow">Interaktív tudományos laboratórium</p>
     <h2 id="simTitle">Interaktív szimuláció</h2>
     <div class="sim-tabs" id="simTabs">
-      <button type="button" class="sim-tab active" data-sim="lorentz">⚡ Lorentz-transzformáció</button>
+      <button type="button" class="sim-tab active" data-sim="bloch">🔮 Bloch-gömb (Kvantum)</button>
+      <button type="button" class="sim-tab" data-sim="lorentz">⚡ Lorentz-transzformáció</button>
       <button type="button" class="sim-tab" data-sim="tunnel">🌊 Kvantum-alagút</button>
       <button type="button" class="sim-tab" data-sim="mandelbrot">🌀 Mandelbrot-halmaz</button>
       <button type="button" class="sim-tab" data-sim="fourier">🎼 Fourier-sorfejtés</button>
       <button type="button" class="sim-tab" data-sim="conway">👾 Conway: Életjáték</button>
       <button type="button" class="sim-tab" data-sim="pendulum">🪀 Kettős inga (Káosz)</button>
       <button type="button" class="sim-tab" data-sim="gravity">🪐 N-test gravitáció</button>
-      <button type="button" class="sim-tab" data-sim="bloch">🔮 Bloch-gömb (Kvantum)</button>
+      <button type="button" class="sim-tab" data-sim="lorenz">🦋 Lorenz-attraktor (Káosz)</button>
+      <button type="button" class="sim-tab" data-sim="wave">〰️ 2D Hullámmedence (Interferencia)</button>
+      <button type="button" class="sim-tab" data-sim="blackhole">🕳️ Fekete lyuk (Gravitációs lencse)</button>
+      <button type="button" class="sim-tab" data-sim="gas">💨 Maxwell–Boltzmann gázkinetika</button>
+      <button type="button" class="sim-tab" data-sim="pathfinding">🧭 A* & Dijkstra útkereső</button>
     </div>
     <div class="sim-canvas-wrap">
       <canvas id="simCanvas" width="640" height="360"></canvas>
